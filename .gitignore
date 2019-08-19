@@ -28,6 +28,8 @@ temp*
 *.out
 *.toc
 *.snm
+*.fls
+*.fdb_latexmk
 
 # misc:
 .DS_Store
