@@ -29,10 +29,27 @@ The course is offered by the Department of Physics
 </div>
 
 <div class='main_box'>
-<h3><span>Java script tests</span></h3>
+<h3><span>Course pages</span></h3>
+	<ul>
     <script>
-	document.write('newURL = ' + newURL + '<br/>');
+		document.write('<li><a href="' + syllabus + '">Syllabus</a></li>');
 	</script>
+	<noscript>
+		<li>Syllabus</li>
+	</noscript>
+    <script>
+		document.write('<li><a href="' + material + '">Material</a></li>');
+	</script>
+	<noscript>
+		<li>Material</li>
+	</noscript>
+    <script>
+		document.write('<li><a href="' + schedule + '">Schedule</a></li>');
+	</script>
+	<noscript>
+		<li>Schedule</li>
+	</noscript>
+	</ul>
 </div>
 
 </div>
