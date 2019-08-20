@@ -1,6 +1,5 @@
 var pathURL = window.location.pathname
 
-/*
 var protocolURL = window.location.protocol
 var hostURL = window.location.host
 var pathArray = window.location.pathname.split('/');
@@ -8,6 +7,7 @@ var secondLevelLocation = pathArray[0];
 var lastLevelLocation = pathArray[pathArray.length-1];
 var oldURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname + window.location.search
 
+/*
 // Change filename if it is in the URL
 if (lastLevelLocation.includes(".html")) {
 	pathArray[pathArray.length-1] = 'material.html';
