@@ -1,5 +1,12 @@
 var pathURL = window.location.pathname
 
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+
 var protocolURL = window.location.protocol
 var hostURL = window.location.host
 var pathArray = window.location.pathname.split('/');
@@ -27,7 +34,8 @@ var courseURL = "https://chalmers.instructure.com/courses/7773/";
 
 // Relative link to file if the current filename is in the URL
 var newURL = "";
-if (pathURL.includes(".html")) {
+//if (pathURL.includes(".html")) {
+if (!(inIframe())) {
 	newURL = 'material.html';
 } else {
 	newURL = courseURL + "external_tools/221";
