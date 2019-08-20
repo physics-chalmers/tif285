@@ -6,6 +6,7 @@ function inIframe () {
     } catch (e) {
         return true;
     }
+}
 
 var protocolURL = window.location.protocol
 var hostURL = window.location.host
