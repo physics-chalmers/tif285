@@ -27,13 +27,13 @@
    All files that are associated with this course are available via a public git repository, hosted on <a href="https://github.com/physics-chalmers/tif285">github</a>. The use of <code>git</code> is encouraged, but not mandatory. Alternatively, the course material is also available via the course web page and can be downloaded by right-clicking on the links.</p>
 
 <p>Using git, the course material can be downloaded by cloning the github repository:</p>
-<pre class="prettyprint"><code class="language-java">git clone https://github.com/physics-chalmers/tif285.git
+<pre class="prettyprint"><code class="language-java">$ git clone https://github.com/physics-chalmers/tif285.git
 </code></pre>
 <p>after which it will be available in the <code>tif285</code> directory. Note that you will have to perform a <code>git pull</code> operation when wou want to fetch and merge with future updates in the github repository. </p>
 
 <p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
 <pre class="prettyprint"><code class="language-java">$ git config --global user.name "Emilia Student"
-git config --global user.email name@example.com
+$ git config --global user.email name@example.com
 </code></pre>
 You might also want to set your default editor. E.g.,
 <pre class="prettyprint"><code class="language-java">$ git config --global core.editor emacs
@@ -62,21 +62,21 @@ You might also want to set your default editor. E.g.,
 <ol>
 
 <li>Download and run the miniconda installer:
-<pre class="prettyprint"><code class="language-java">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+<pre class="prettyprint"><code class="language-java">$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ bash Miniconda3-latest-Linux-x86_64.sh
 </code></pre>
 During the installation you will have to accept the license agreement. We also recommend to use the default installation directory <code>~/miniconda3</code> and to allow the installer to run <code>conda init</code> to set environment variables. It is recommended to use the <code>bash</code> shell. Further details and troubleshooting is available at <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">conda.io</a>.
 </li>
 
 <li>Check the installation:
-<pre class="prettyprint"><code class="language-java">conda list
+<pre class="prettyprint"><code class="language-java">$ conda list
 </code></pre>
 should give a list of python packages.
-<pre class="prettyprint"><code class="language-java">which python
+<pre class="prettyprint"><code class="language-java">$ which python
 </code></pre>
 should give the path to the conda python executable <code>~/miniconda3/bin/python</code>
 and
-<pre class="prettyprint"><code class="language-java">python --version
+<pre class="prettyprint"><code class="language-java">$ python --version
 </code></pre>
 should show that you are using a Python3 version (probably 3.7.x).
 </li>
@@ -86,7 +86,7 @@ should show that you are using a Python3 version (probably 3.7.x).
 
 <li>Create a virtual environment
 
-<pre class="prettyprint"><code class="language-java">conda env create -f environment.yml
+<pre class="prettyprint"><code class="language-java">$ conda env create -f environment.yml
 </code></pre>
 
 <p>which reads the environment.yml file in your current directory.</p>
@@ -99,7 +99,7 @@ file (as done here), or add them to the default conda channel configuration via,
 <li>
 <p>Once the virtual environment has been created it can be activated:</p>
 
-<pre class="prettyprint"><code class="language-java">conda activate tif285-env
+<pre class="prettyprint"><code class="language-java">$ conda activate tif285-env
 </code></pre>
 
 <p>For future reference, to deactivate the virtual environment:<code>conda deactivate</code>
@@ -117,11 +117,14 @@ file (as done here), or add them to the default conda channel configuration via,
 <p><a href="https://jupyter.org/">Jupyter notebooks</a> will be used extensively in this course. It is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 </p>
 
-<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:</p>
+<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:
 
-<pre class="prettyprint"><code class="language-java">cd tif285/pub/Exercises/Week1/
-jupyter notebook
+<pre class="prettyprint"><code class="language-java">$ cd tif285/pub/Exercises/Week1/
+$ jupyter notebook
 </code></pre>
+
+The Jupyter Notebook will open in your default browser. It should show a list of the files in your current directory. It is recommended that you start with the two Jupyter-Python-intro notebooks. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
+</p>
 
 <p>However, a word of warning is needed: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
 
