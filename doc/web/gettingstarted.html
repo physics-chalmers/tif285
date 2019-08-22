@@ -26,10 +26,19 @@
    <p>
    All files that are associated with this course are available via a public git repository, hosted on <a href="https://github.com/physics-chalmers/tif285">github</a>. The use of <code>git</code> is encouraged, but not mandatory. Alternatively, the course material is also available via the course web page and can be downloaded by right-clicking on the links.</p>
 
-   <p>Using git, the course material can be downloaded by cloning the github repository:</p>
+<p>Using git, the course material can be downloaded by cloning the github repository:</p>
 <pre class="prettyprint"><code class="language-java">git clone https://github.com/physics-chalmers/tif285.git
 </code></pre>
-<p>after which it will be available in the <code>tif285</code> directory. Note that you will have to perform a <code>git pull</code> operation when wou want to fetch and merge with updates in the github repository. </p>
+<p>after which it will be available in the <code>tif285</code> directory. Note that you will have to perform a <code>git pull</code> operation when wou want to fetch and merge with future updates in the github repository. </p>
+
+<p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
+<pre class="prettyprint"><code class="language-java">$ git config --global user.name "Emilia Student"
+git config --global user.email name@example.com
+</code></pre>
+You might also want to set your default editor. E.g.,
+<pre class="prettyprint"><code class="language-java">$ git config --global core.editor emacs
+</code></pre>
+</p>
 
 <p>There are plenty of tutorials and guides how to use git. Two recommended ones are:
 <ul>
@@ -48,7 +57,34 @@
 
 <p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="../../environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
 
-<p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment:</p>
+<p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that he miniconda installation requires 400 MB disk space.</p>
+
+<ol>
+
+<li>Download and run the miniconda installer:
+<pre class="prettyprint"><code class="language-java">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
+During the installation you will have to accept the license agreement. We also recommend to use the default installation directory <code>~/miniconda3</code> and to allow the installer to run <code>conda init</code> to set environment variables. It is recommended to use the <code>bash</code> shell. Further details and troubleshooting is available at <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">conda.io</a>.
+</li>
+
+<li>Check the installation:
+<pre class="prettyprint"><code class="language-java">conda list
+</code></pre>
+should give a list of python packages.
+<pre class="prettyprint"><code class="language-java">which python
+</code></pre>
+should give the path to the conda python executable <code>~/miniconda3/bin/python</code>
+and
+<pre class="prettyprint"><code class="language-java">python --version
+</code></pre>
+should show that you are using a Python3 version (probably 3.7.x).
+</li>
+
+<li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.
+</li>
+
+<li>Create a virtual environment
 
 <pre class="prettyprint"><code class="language-java">conda env create -f environment.yml
 </code></pre>
@@ -61,24 +97,39 @@ file (as done here), or add them to the default conda channel configuration via,
 
 <pre class="prettyprint"><code class="language-java">conda config --append channels conda-forge
 </code></pre>
+</li>
 
+<li>
 <p>Once the virtual environment has been created it can be activated:</p>
 
 <pre class="prettyprint"><code class="language-java">conda activate tif285-env
 </code></pre>
 
-<p>To deactivate the virtual environment:</p>
+<p>For future reference, to deactivate the virtual environment:</p>
 
 <pre class="prettyprint"><code class="language-java">conda deactivate
 </code></pre>
+</li>
+
+</ol>
 
 <p>There are also other options (<code>venv</code>, <code>pipenv</code>) for creating virtual environments with the python version and packages that we will be using. Or you can install packages, keeping track yourself of dependencies, using <code>pip install</code>.</p>
+</div>
 
-<p>Once the environment is set up and activated, you are encouraged to start a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:</p>
+
+<div class='main_box'>
+<h3><span>Jupyter notebooks</span></h3>
+
+<p><a href="https://jupyter.org/">Jupyter notebooks</a> will be used extensively in this course. It is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+</p>
+
+<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:</p>
 
 <pre class="prettyprint"><code class="language-java">cd tif285/pub/Exercises/Week1/
 jupyter notebook
 </code></pre>
+
+<p>However, a word of warning is needed: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
 
 <p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank">Google's Colab</a> is a free Jupyter notebook environment that requires 
 no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>
