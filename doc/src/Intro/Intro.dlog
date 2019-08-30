@@ -1,0 +1,970 @@
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+*** made directory latex_figs for admon figures
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+*** error: hyphen in front of text at a line
+    indicates description list, but this is not
+    indended here: (move the hypen to previous line)
+rmally our data set (which can be subdivided into
+training and test data). 
+- Model: The second item is a model, which is normally
+a function of some parameters. The model reflects our knowledge of
+th
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+*** error: hyphen in front of text at a line
+    indicates description list, but this is not
+    indended here: (move the hypen to previous line)
+rmally our data set (which can be subdivided into
+training and test data). 
+- Model: The second item is a model, which is normally
+a function of some parameters. The model reflects our knowledge of
+th
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+
+*** warning: found multi-line caption for fig/inference.png
+
+ Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+    fix: collected this text to one single line (right?)
+
+*** warning: the total of 1 fixes above should be manually edited in the file!
+    (also note: some of these automatic fixes may not be what you want)
+
+output in Intro-bs.html

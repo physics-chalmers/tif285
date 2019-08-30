@@ -1,0 +1,32 @@
+=== How will this course be different from a computer science class? ===
+
+Physics and astronomy students have different preparation:
+* Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
+* Weak / varied background in traditional computer science core topics such as fundamental algorithms, databases, etc.
+
+Physics and astronomy research also has different needs:
+  * Our data and models are often fundamentally different from those in typical computer science contexts.
+  * We ask different types of questions about our data, sometimes requiring new methods.
+  * We have different priorities for judging a ``good'' method: interpretability, error estimates, etc.
+
+
+=== What is special about machine learning in physics and astronomy? ===
+
+  * We are data _producers_, not (only) data consumers:
+    * Experiment / survey design.
+    * Optimization of statistical errors.
+    * Control of systematic errors.
+  
+  * Our data represent measurements of physical processes:
+    * Measurements often reduce to counting photons, etc, with known a-priori random errors.
+    * Dimensions and units are important.
+    * Experimental data comes with measurement errors that should be taken into account.
+
+  * Our models are usually traceable to an underlying physical theory:
+    * Models constrained by theory and previous observations.
+    * Parameter values often intrinsically interesting.
+    
+  * A parameter error estimate is just as important as its value:
+    * Prefer methods that handle input data errors (weights) and provide output parameter error estimates.
+  
+  * In some experiments and scientific domains, the data sets are *huge* (``Big Data'')

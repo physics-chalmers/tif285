@@ -1,0 +1,7 @@
+======= A first data and machine learning encounter =======
+
+A first demonstration of machine learning in physics is shown in the accompanying jupyter notebook. We will show some of the strengths of packages like _Scikit-Learn_ in fitting nuclear binding energies to specific models using linear regression.
+
+===== Software and needed installations =====
+
+See the Getting started guide on the course web page.

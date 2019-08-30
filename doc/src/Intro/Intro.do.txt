@@ -1,0 +1,73 @@
+TITLE: Learning from data: Getting started and a first data and machine learning encounter
+AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+AUTHOR: Morten Hjorth-Jensen at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: today
+
+!split
+======= Learning from data: Inference =======
+The general problem that will be adressed in this series of lectures is illustrated in the following figure
+FIGURE: [fig/inference.png, width=600 frac=0.8] Learning from data is an inference process. label{fig-inference}
+This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+
+=== Inference  ===
+!bblock
+- Inference: ``the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former'' (Webster) <linebreak>
+  Do premises $A, B, \ldots \Rightarrow$ hypothesis, $H$? 
+
+- Deductive inference: Premises allow definite determination of truth/falsity of $H$ (Boolean algebra) <linebreak>
+  $B(H|A,B,...) = 0$ or $1$
+
+- Inductive inference: Premises bear on truth/falsity of $H$, but don’t allow its definite determination<linebreak>
+  $A, B, C, D$ share properties $x, y, z$; $E$ has properties $x, y$<linebreak>
+  $\Rightarrow E$ probably has property $z$.
+!eblock
+
+In the natural sciences, data is often a finite set of measurements while learning usually comes from the confrontation of that data with theories and models. The conclusions might ultimately be falsification of an hypothesis underlying a theory or a model, but it will not be a determination of its truth. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
+
+This process of learning from data is fundamental to the scientific wheel of progress.
+FIGURE: [fig/scientific_wheel_data.png, width=300 frac=0.4]
+
+!split
+=== Statistical Inference  ===
+!bblock
+* Quantify the strength of inductive inferences from facts, in the form of data ($D$), and other premises, e.g. models, to hypotheses about the phenomena producing the data.
+* Quantify via probabilities, or averages calculated using probabilities. Frequentists ($\mathcal{F}$) and Bayesians ($\mathcal{B}$) use probabilities very differently for this.
+* To the pioneers such as Bernoulli, Bayes and Laplace, a probability represented a *degree-of-belief* or plausability: how much they thought that something as true based on the evidence at hand. This is the Bayesian approach.
+* To the 19th century scholars, this seemed too vague and subjective. They redefined probability as the *long run relative frequency* with which an event occurred, given (infinitely) many repeated (experimental) trials.
+!eblock
+
+!split
+=== Machine learning ===
+The basic process illustrated in Fig. ref{fig-inference} is employed also in the field of machine learning. Here, the learning part might take place when confronting a large set of data with a machine learning algorithm, and the specific aim might be tasks such as classification or clusterization. 
+FIGURE: [fig/MLinference.png, width=600 frac=0.8]
+
+Thus, we will be able to study statistical inference methods for learning from data and use them in scientific applications. In particular, we will use _Bayesian statistics_. Simultaneously we will slowly develop a deeper understanding and probabilistic interpretation of machine learning algorithms through a statistical foundation. 
+
+!split
+*Edwin Jaynes*, in his influential "How does the brain do plausible reasoning?": "https://link.springer.com/chapter/10.1007%2F978-94-009-3049-0_1", wrote:
+!bquote
+One of the most familiar facts of our experience is this: that there is such a thing as common sense, which enables us to do plausible reasoning in a fairly consistent way. People who have the same background of experience and the same amount of information about a proposition come to pretty much the same conclusions as to its plausibility. No jury has ever reached a verdict on the basis of pure deductive reasoning. Therefore the human brain must contain some fairly definite mechanism for plausible reasoning, undoubtedly much more complex than that required for deductive reasoning. But in order for this to be possible, there must exist consistent rules for carrying out plausible reasoning, in terms of operations so definite that they can be programmed on the computing machine which is the human brain.
+!equote
+
+!split
+Jaynes went on to show that these ``consistent rules'' are just the rules of Bayesian probability theory, supplemented by Laplace's principle of indifference and, its generalization, Shannon's principle of maximum entropy. This key observation implies that a computer can be programmed to ``reason'', or, update probabilities based on data. Given some very minimal desiderata, the rules of Bayesian probability are the only ones which conform to what, intuitively, we recognize as rationality. Such probability update rules can be used recursively to impute causal relationships between observations, that is, a machine can be programmed to ``learn''.
+
+!bsummary
+Inference and machine learning, then, is the creative application of
+Bayesian probability to problems of rational inference and causal
+knowledge discovery based on data.
+!esummary
+
+!split
+======= Learning from data: A physicist's perspective =======
+# #include "learning_from_data_physicist.do.txt"
+
+!split
+#======= Machine Learning =======
+# #include "introML.do.txt"
+
+!split
+#======= A first data and machine learning encounter =======
+# #include "IntroHow2ReadData.do.txt"
+
+  
