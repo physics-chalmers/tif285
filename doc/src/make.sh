@@ -51,8 +51,6 @@ system doconce format pdflatex $name $opt $encoding --minted_latex_style=trac --
 #system doconce ptex2tex $name envir=minted
 # Add special packages
 doconce replace '% insert custom LaTeX commands...' '\usepackage[swedish]{babel}' $name.tex
-doconce replace 'section{' 'section*{' $name.tex
-doconce replace 'Comment' 'Kommentar' $name.tex
 doconce subst 'frametitlebackgroundcolor=.*?,' 'frametitlebackgroundcolor=blue!5,' 
 
 #rm -rf $name.aux $name.ind $name.idx $name.bbl $name.toc $name.loe
@@ -65,7 +63,6 @@ mv -f $name.pdf ${name}-print.pdf
 cp $name.tex ${name}-plain-print.tex
 
 # IPython notebook
-# SKIPPED for now
 system doconce format ipynb $name $opt
 
 # Bootstrap style
@@ -76,8 +73,10 @@ system doconce format html $name --html_style=bootstrap --pygments_html_style=de
 # Publish
 if [ "$2" = "web" ]; then
 dest=../../web
-else
+elif [ "$2" = "pub" ]; then
 dest=../../pub
+else
+exit 0
 fi
 if [ ! -d $dest/$name ]; then
 mkdir $dest/$name
@@ -88,36 +87,50 @@ fi
 cp ${name}*.pdf $dest/$name/pdf/.
 cp -r ${name}*.html ._${name}*.html reveal.js $dest/$name/html
 
+for format in "html" "ipynb"; do
 # Figures: cannot just copy link, need to physically copy the files
 if [ -d fig ]; then
-if [ ! -d $dest/$name/html/fig ]; then
-mkdir $dest/$name/html/fig
+if [ ! -d $dest/$name/$format/fig ]; then
+mkdir $dest/$name/$format/fig
 fi
-cp -r fig/* $dest/$name/html/fig/.
+cp -r fig/* $dest/$name/$format/fig/.
 fi
 # Figures are evne better stored in fig-$name
 if [ -d fig-${name} ]; then
-if [ ! -d $dest/$name/html/fig-${name} ]; then
-mkdir $dest/$name/html/fig-${name}
+if [ ! -d $dest/$name/$format/fig-${name} ]; then
+mkdir $dest/$name/$format/fig-${name}
 fi
-cp -r fig-${name}/* $dest/$name/html/fig-${name}/.
+cp -r fig-${name}/* $dest/$name/$format/fig-${name}/.
 fi
 # The same with data files
-if [ -d data-${name} ]; then
-if [ ! -d $dest/$name/html/data-${name} ]; then
-mkdir $dest/$name/html/data-${name}
+if [ -d DataFiles ]; then
+if [ ! -d $dest/$name/$format/DataFiles ]; then
+mkdir $dest/$name/$format/DataFiles
 fi
-cp -r data-${name}/* $dest/$name/html/data-${name}/.
+cp -r DataFiles/* $dest/$name/$format/DataFiles/.
+fi
+if [ -d data-${name} ]; then
+if [ ! -d $dest/$name/$format/data-${name} ]; then
+mkdir $dest/$name/$format/data-${name}
+fi
+cp -r data-${name}/* $dest/$name/$format/data-${name}/.
+fi
+done
+
+cp ${name}.ipynb $dest/$name/ipynb/.
+# Possible demo notebook
+ipynb_demo=demo-${name}.ipynb
+if [ -f ${ipynb_demo} ]; then
+cp ${ipynb_demo} $dest/$name/ipynb/.
 fi
 
-cp ${name}.ipynb $dest/$name/ipynb
-ipynb_tarfile=ipynb-${name}-src.tar.gz
-if [ ! -f ${ipynb_tarfile} ]; then
-cat > README.txt <<EOF
-This IPython notebook ${name}.ipynb does not require any additional
-programs.
-EOF
-tar czf ${ipynb_tarfile} README.txt
-fi
-cp ${ipynb_tarfile} $dest/$name/ipynb
+#ipynb_tarfile=ipynb-${name}-src.tar.gz
+#if [ ! -f ${ipynb_tarfile} ]; then
+#cat > README.txt <<EOF
+#This IPython notebook ${name}.ipynb does not require any additional
+#programs.
+#EOF
+#tar czf ${ipynb_tarfile} README.txt
+#fi
+#cp ${ipynb_tarfile} $dest/$name/ipynb/.
 
