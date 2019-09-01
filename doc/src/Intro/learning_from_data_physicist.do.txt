@@ -1,21 +1,25 @@
-=== How will this course be different from a computer science class? ===
+=== How will this course be different from a computer science course? ===
 
-Physics and astronomy students have different preparation:
+In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs. 
+
+However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work. 
+
+In particular, physics and astronomy students have a unique preparation:
 * Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
-* Weak / varied background in traditional computer science core topics such as fundamental algorithms, databases, etc.
+* Considerable training in general problem solution skills.
 
 Physics and astronomy research also has different needs:
   * Our data and models are often fundamentally different from those in typical computer science contexts.
   * We ask different types of questions about our data, sometimes requiring new methods.
-  * We have different priorities for judging a ``good'' method: interpretability, error estimates, etc.
+  * We have different priorities for judging a ``good'' method: interpretability, error estimates, predictive power, etc.
 
 
 === What is special about machine learning in physics and astronomy? ===
 
   * We are data _producers_, not (only) data consumers:
-    * Experiment / survey design.
-    * Optimization of statistical errors.
-    * Control of systematic errors.
+    * Experimental design can (sometimes) be in our own control.
+    * Statistical errors on data can be quantified.
+    * Much efforts to understand systematic errors.
   
   * Our data represent measurements of physical processes:
     * Measurements often reduce to counting photons, etc, with known a-priori random errors.
