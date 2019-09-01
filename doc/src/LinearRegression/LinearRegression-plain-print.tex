@@ -1,0 +1,813 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\thepage}
+% Ensure copyright on titlepage (article style) and chapter pages (book style)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+%  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+% Ensure copyright on titlepages with \thispagestyle{empty}
+\fancypagestyle{empty}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+
+\pagestyle{fancy}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- begin definitions of admonition environments ---
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "notice" admon
+\definecolor{mdfbox_notice_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_notice_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_notice_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{notice_mdfboxmdframed}
+
+\newenvironment{notice_mdfboxadmon}[1][]{
+\begin{notice_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{notice_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "summary" admon
+\definecolor{mdfbox_summary_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_summary_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_summary_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{summary_mdfboxmdframed}
+
+\newenvironment{summary_mdfboxadmon}[1][]{
+\begin{summary_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{summary_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "warning" admon
+\definecolor{mdfbox_warning_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_warning_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_warning_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{warning_mdfboxmdframed}
+
+\newenvironment{warning_mdfboxadmon}[1][]{
+\begin{warning_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{warning_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "question" admon
+\definecolor{mdfbox_question_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_question_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_question_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{question_mdfboxmdframed}
+
+\newenvironment{question_mdfboxadmon}[1][]{
+\begin{question_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{question_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "block" admon
+\definecolor{mdfbox_block_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_block_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_block_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{block_mdfboxmdframed}
+
+\newenvironment{block_mdfboxadmon}[1][]{
+\begin{block_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{block_mdfboxmdframed}
+}
+
+% --- end of definitions of admonition environments ---
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+\usepackage[swedish]{babel}
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+\input{newcommands_keep}
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Learning from data: Linear Regression
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Christian Forssén${}^{1}$} \\ [0mm]
+\end{center}
+
+
+\begin{center}
+{\bf Morten Hjorth-Jensen${}^{2, 3}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\centerline{{\small ${}^1$Department of Physics, Chalmers University of Technology, Sweden}}
+\centerline{{\small ${}^2$Department of Physics, University of Oslo}}
+\centerline{{\small ${}^3$Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Sep 1, 2019
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+% !split
+\subsection{Why Linear Regression (aka Ordinary Least Squares and family)}
+
+Fitting a continuous function with linear parameterization in terms of the parameters  $\bm{\beta}$.
+\begin{itemize}
+\item Method of choice for fitting a continuous function!
+
+\item Gives an excellent introduction to central Machine Learning features with \textbf{understandable pedagogical} links to other methods like \textbf{Neural Networks}, \textbf{Support Vector Machines} etc
+
+\item Analytical expression for the fitting parameters $\bm{\beta}$
+
+\item Analytical expressions for statistical propertiers like mean values, variances, confidence intervals and more
+
+\item Analytical relation with probabilistic interpretations 
+
+\item Easy to introduce basic concepts like bias-variance tradeoff, cross-validation, resampling and regularization techniques and many other ML topics
+
+\item Easy to code! And links well with classification problems and logistic regression and neural networks
+
+\item Allows for \textbf{easy} hands-on understanding of gradient descent methods
+
+\item and many more features
+\end{itemize}
+
+\noindent
+% !split
+\paragraph{Regression analysis, overarching aims.}
+
+\begin{block_mdfboxadmon}[]
+
+Regression modeling deals with the description of  the sampling distribution of a given random variable $y$ and how it varies as function of another variable or a set of such variables $\bm{x} =[x_0, x_1,\dots, x_{n-1}]^T$. 
+The first variable is called the \textbf{dependent}, the \textbf{outcome} or the \textbf{response} variable while the set of variables $\bm{x}$ is called the independent variable, or the predictor variable or the explanatory variable. 
+
+A regression model aims at finding a likelihood function $p(\bm{y}\vert \bm{x})$, that is the conditional distribution for $\bm{y}$ with a given $\bm{x}$. The estimation of  $p(\bm{y}\vert \bm{x})$ is made using a data set with 
+\begin{itemize}
+\item $n$ cases $i = 0, 1, 2, \dots, n-1$ 
+
+\item Response (target, dependent or outcome) variable $y_i$ with $i = 0, 1, 2, \dots, n-1$ 
+
+\item $p$ so-called explanatory (independent or predictor) variables $\bm{x}_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]$ with $i = 0, 1, 2, \dots, n-1$ and explanatory variables running from $0$ to $p-1$. See below for more explicit examples.   
+\end{itemize}
+
+\noindent
+ The goal of the regression analysis is to extract/exploit relationship between $\bm{y}$ and $\bm{x}$ in or to infer causal dependencies, approximations to the likelihood functions, functional relationships and to make predictions, making fits and many other things.
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+
+
+Consider an experiment in which $p$ characteristics of $n$ samples are
+measured. The data from this experiment, for various explanatory variables $p$ are normally represented by a matrix  
+$\mathbf{X}$.
+
+The matrix $\mathbf{X}$ is called the \emph{design
+matrix}. Additional information of the samples is available in the
+form of $\bm{y}$ (also as above). The variable $\bm{y}$ is
+generally referred to as the \emph{response variable}. The aim of
+regression analysis is to explain $\bm{y}$ in terms of
+$\bm{X}$ through a functional relationship like $y_i =
+f(\mathbf{X}_{i,\ast})$. When no prior knowledge on the form of
+$f(\cdot)$ is available, it is common to assume a linear relationship
+between $\bm{X}$ and $\bm{y}$. This assumption gives rise to
+the \emph{linear regression model} where $\bm{\beta} = [\beta_0, \ldots,
+\beta_{p-1}]^{T}$ are the \emph{regression parameters}. 
+
+Linear regression gives us a set of analytical equations for the parameters $\beta_j$.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+
+% !split
+\paragraph{Example: Liquid-drop model for nuclear binding energies.}
+
+\begin{block_mdfboxadmon}[]
+In order to understand the relation among the predictors $p$, the set of data $n$ and the target (outcome, output etc) $\bm{y}$,
+consider the model we discussed for describing nuclear binding energies. 
+
+There we assumed that we could parametrize the data using a polynomial approximation based on the liquid drop model.
+Assuming 
+\[
+BE(A) = a_0+a_1A+a_2A^{2/3}+a_3A^{-1/3}+a_4A^{-1},
+\]
+we have five predictors, that is the intercept, the $A$ dependent term, the $A^{2/3}$ term and the $A^{-1/3}$ and $A^{-1}$ terms.
+This gives $p=0,1,2,3,4$. Furthermore we have $n$ entries for each predictor. It means that our design matrix is a 
+$p\times n$ matrix $\bm{X}$.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+\subsection{General linear models}
+\paragraph{Polynomial basis functions.}
+
+\begin{block_mdfboxadmon}[]
+Before we proceed let us study a case from linear algebra where we aim at fitting a set of data $\bm{y}=[y_0,y_1,\dots,y_{n-1}]$. We could think of these data as a result of an experiment or a complicated numerical experiment. These data are functions of a series of variables $\bm{x}=[x_0,x_1,\dots,x_{n-1}]$, that is $y_i = y(x_i)$ with $i=0,1,2,\dots,n-1$. The variables $x_i$ could represent physical quantities like time, temperature, position etc. We assume that $y(x)$ is a smooth function. 
+
+Since obtaining these data points may not be trivial, we want to use these data to fit a function which can allow us to make predictions for values of $y$ which are not in the present set. The perhaps simplest approach is to assume we can parametrize our function in terms of a polynomial of degree $n-1$ with $n$ points, that is
+\[
+y=y(x) \rightarrow y(x_i)=\tilde{y}_i+\epsilon_i=\sum_{j=0}^{n-1} \beta_j x_i^j+\epsilon_i,
+\]
+where $\epsilon_i$ is the error in our approximation.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+For every set of values $y_i,x_i$ we have thus the corresponding set of equations
+\begin{align*}
+y_0&=\beta_0+\beta_1x_0^1+\beta_2x_0^2+\dots+\beta_{n-1}x_0^{n-1}+\epsilon_0\\
+y_1&=\beta_0+\beta_1x_1^1+\beta_2x_1^2+\dots+\beta_{n-1}x_1^{n-1}+\epsilon_1\\
+y_2&=\beta_0+\beta_1x_2^1+\beta_2x_2^2+\dots+\beta_{n-1}x_2^{n-1}+\epsilon_2\\
+\dots & \dots \\
+y_{n-1}&=\beta_0+\beta_1x_{n-1}^1+\beta_2x_{n-1}^2+\dots+\beta_{n-1}x_{n-1}^{n-1}+\epsilon_{n-1}.\\
+\end{align*}
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+Defining the vectors
+\[
+\bm{y} = [y_0,y_1, y_2,\dots, y_{n-1}]^T,
+\]
+and
+\[
+\bm{\beta} = [\beta_0,\beta_1, \beta_2,\dots, \beta_{n-1}]^T,
+\]
+and
+\[
+\bm{\epsilon} = [\epsilon_0,\epsilon_1, \epsilon_2,\dots, \epsilon_{n-1}]^T,
+\]
+and the design matrix
+\[
+\bm{X}=
+\begin{bmatrix} 
+1& x_{0}^1 &x_{0}^2& \dots & \dots &x_{0}^{n-1}\\
+1& x_{1}^1 &x_{1}^2& \dots & \dots &x_{1}^{n-1}\\
+1& x_{2}^1 &x_{2}^2& \dots & \dots &x_{2}^{n-1}\\                      
+\dots& \dots &\dots& \dots & \dots &\dots\\
+1& x_{n-1}^1 &x_{n-1}^2& \dots & \dots &x_{n-1}^{n-1}\\
+\end{bmatrix} 
+\]
+we can rewrite our equations as
+\[
+\bm{y} = \bm{X}\bm{\beta}+\bm{\epsilon}.
+\]
+The above design matrix is called a \href{{https://en.wikipedia.org/wiki/Vandermonde_matrix}}{Vandermonde matrix}.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+\paragraph{General basis functions.}
+
+\begin{block_mdfboxadmon}[]
+
+We are obviously not limited to the above polynomial expansions.  We
+could replace the various powers of $x$ with elements of Fourier
+series or instead of $x_i^j$ we could have $\cos{(j x_i)}$ or $\sin{(j
+x_i)}$, or time series or other orthogonal functions.  For every set
+of values $y_i,x_i$ we can then generalize the equations to
+
+\begin{align*}
+y_0&=\beta_0x_{00}+\beta_1x_{01}+\beta_2x_{02}+\dots+\beta_{n-1}x_{0n-1}+\epsilon_0\\
+y_1&=\beta_0x_{10}+\beta_1x_{11}+\beta_2x_{12}+\dots+\beta_{n-1}x_{1n-1}+\epsilon_1\\
+y_2&=\beta_0x_{20}+\beta_1x_{21}+\beta_2x_{22}+\dots+\beta_{n-1}x_{2n-1}+\epsilon_2\\
+\dots & \dots \\
+y_{i}&=\beta_0x_{i0}+\beta_1x_{i1}+\beta_2x_{i2}+\dots+\beta_{n-1}x_{in-1}+\epsilon_i\\
+\dots & \dots \\
+y_{n-1}&=\beta_0x_{n-1,0}+\beta_1x_{n-1,2}+\beta_2x_{n-1,2}+\dots+\beta_{n-1}x_{n-1,n-1}+\epsilon_{n-1}.\\
+\end{align*}
+
+\textbf{Note that we have $p=n$ here. The matrix is symmetric. This is generally not the case!}
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+We redefine in turn the matrix $\bm{X}$ as
+\[
+\bm{X}=
+\begin{bmatrix} 
+x_{00}& x_{01} &x_{02}& \dots & \dots &x_{0,n-1}\\
+x_{10}& x_{11} &x_{12}& \dots & \dots &x_{1,n-1}\\
+x_{20}& x_{21} &x_{22}& \dots & \dots &x_{2,n-1}\\                      
+\dots& \dots &\dots& \dots & \dots &\dots\\
+x_{n-1,0}& x_{n-1,1} &x_{n-1,2}& \dots & \dots &x_{n-1,n-1}\\
+\end{bmatrix} 
+\]
+and without loss of generality we rewrite again  our equations as
+\[
+\bm{y} = \bm{X}\bm{\beta}+\bm{\epsilon}.
+\]
+The left-hand side of this equation is kwown. Our error vector $\bm{\epsilon}$ and the parameter vector $\bm{\beta}$ are our unknow quantities. How can we obtain the optimal set of $\beta_i$ values?
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+We have defined the matrix $\bm{X}$ via the equations
+\begin{align*}
+y_0&=\beta_0x_{00}+\beta_1x_{01}+\beta_2x_{02}+\dots+\beta_{n-1}x_{0n-1}+\epsilon_0\\
+y_1&=\beta_0x_{10}+\beta_1x_{11}+\beta_2x_{12}+\dots+\beta_{n-1}x_{1n-1}+\epsilon_1\\
+y_2&=\beta_0x_{20}+\beta_1x_{21}+\beta_2x_{22}+\dots+\beta_{n-1}x_{2n-1}+\epsilon_1\\
+\dots & \dots \\
+y_{i}&=\beta_0x_{i0}+\beta_1x_{i1}+\beta_2x_{i2}+\dots+\beta_{n-1}x_{in-1}+\epsilon_1\\
+\dots & \dots \\
+y_{n-1}&=\beta_0x_{n-1,0}+\beta_1x_{n-1,2}+\beta_2x_{n-1,2}+\dots+\beta_{n-1}x_{n-1,n-1}+\epsilon_{n-1}.\\
+\end{align*}
+
+As we noted above, we stayed with a system with the design matrix 
+ $\bm{X}\in {\mathbb{R}}^{n\times n}$, that is we have $p=n$. For reasons to come later (algorithmic arguments) we will hereafter define 
+our matrix as $\bm{X}\in {\mathbb{R}}^{n\times p}$, with the predictors refering to the column numbers and the entries $n$ being the row elements.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+With the above we use the design matrix to define the approximation $\bm{\tilde{y}}$ via the unknown quantity $\bm{\beta}$ as
+\[
+\bm{\tilde{y}}= \bm{X}\bm{\beta},
+\]
+and in order to find the optimal parameters $\beta_i$ instead of solving the above linear algebra problem, we define a function which gives a measure of the spread between the values $y_i$ (which represent hopefully the exact values) and the parameterized values $\tilde{y}_i$, namely
+\[
+C(\bm{\beta})=\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\left\{\left(\bm{y}-\bm{\tilde{y}}\right)^T\left(\bm{y}-\bm{\tilde{y}}\right)\right\},
+\]
+or using the matrix $\bm{X}$ and in a more compact matrix-vector notation as
+\[
+C(\bm{\beta})=\frac{1}{n}\left\{\left(\bm{y}-\bm{X}^T\bm{\beta}\right)^T\left(\bm{y}-\bm{X}^T\bm{\beta}\right)\right\}.
+\]
+This function is one possible way to define the so-called cost function.
+
+
+
+It is also common to define
+the function $Q$ as
+
+\[
+C(\bm{\beta})=\frac{1}{2n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2,
+\]
+since when taking the first derivative with respect to the unknown parameters $\beta$, the factor of $2$ cancels out.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+
+The function 
+\[
+C(\bm{\beta})=\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{\beta}\right)^T\left(\bm{y}-\bm{X}\bm{\beta}\right)\right\},
+\]
+can be linked to the variance of the quantity $y_i$ if we interpret the latter as the mean value. 
+When linking (see the discussion below) with the maximum likelihood approach below, we will indeed interpret $y_i$ as a mean value
+\[
+y_{i}=\langle y_i \rangle = \beta_0x_{i,0}+\beta_1x_{i,1}+\beta_2x_{i,2}+\dots+\beta_{n-1}x_{i,n-1}+\epsilon_i,
+\]
+
+where $\langle y_i \rangle$ is the mean value. Keep in mind also that
+till now we have treated $y_i$ as the exact value. Normally, the
+response (dependent or outcome) variable $y_i$ the outcome of a
+numerical experiment or another type of experiment and is thus only an
+approximation to the true value. It is then always accompanied by an
+error estimate, often limited to a statistical error estimate given by
+the standard deviation discussed earlier. In the discussion here we
+will treat $y_i$ as our exact value for the response variable.
+
+In order to find the parameters $\beta_i$ we will then minimize the spread of $C(\bm{\beta})$, that is we are going to solve the problem
+\[
+{\displaystyle \min_{\bm{\beta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{\beta}\right)^T\left(\bm{y}-\bm{X}\bm{\beta}\right)\right\}.
+\]
+In practical terms it means we will require
+\[
+\frac{\partial C(\bm{\beta})}{\partial \beta_j} = \frac{\partial }{\partial \beta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\beta_0x_{i,0}-\beta_1x_{i,1}-\beta_2x_{i,2}-\dots-\beta_{n-1}x_{i,n-1}\right)^2\right]=0, 
+\]
+which results in
+\[
+\frac{\partial C(\bm{\beta})}{\partial \beta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_{ij}\left(y_i-\beta_0x_{i,0}-\beta_1x_{i,1}-\beta_2x_{i,2}-\dots-\beta_{n-1}x_{i,n-1}\right)\right]=0, 
+\]
+or in a matrix-vector form as
+\[
+\frac{\partial C(\bm{\beta})}{\partial \bm{\beta}} = 0 = \bm{X}^T\left( \bm{y}-\bm{X}\bm{\beta}\right).  
+\]
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+We can rewrite
+\[
+\frac{\partial C(\bm{\beta})}{\partial \bm{\beta}} = 0 = \bm{X}^T\left( \bm{y}-\bm{X}\bm{\beta}\right),  
+\]
+as
+\[
+\bm{X}^T\bm{y} = \bm{X}^T\bm{X}\bm{\beta},  
+\]
+and if the matrix $\bm{X}^T\bm{X}$ is invertible we have the solution
+\[
+\bm{\beta} =\left(\bm{X}^T\bm{X}\right)^{-1}\bm{X}^T\bm{y}.
+\]
+
+We note also that since our design matrix is defined as $\bm{X}\in
+{\mathbb{R}}^{n\times p}$, the product $\bm{X}^T\bm{X} \in
+{\mathbb{R}}^{p\times p}$.  In the liquid drop model example from the Intro lecture, we had $p=5$ ($p \ll n$) meaning that we end up with inverting a small
+$5\times 5$ matrix. This is a rather common situation, in many cases we end up with low-dimensional
+matrices to invert. The methods discussed here and for many other
+supervised learning algorithms like classification with logistic
+regression or support vector machines, exhibit dimensionalities which
+allow for the usage of direct linear algebra methods such as \textbf{LU} decomposition or \textbf{Singular Value Decomposition} (SVD) for finding the inverse of the matrix
+$\bm{X}^T\bm{X}$.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+\begin{block_mdfboxadmon}[]
+\textbf{Small question}: What kind of problems can we expect when inverting the matrix  $\bm{X}^T\bm{X}$?
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\paragraph{Some useful matrix and vector expressions.}
+The following matrix and vector relation will be useful here and for the rest of the course. Vectors are always written as boldfaced lower case letters and 
+matrices as upper case boldfaced letters. 
+
+\[
+\frac{\partial (\bm{b}^T\bm{a})}{\partial \bm{a}} = \bm{b},
+\]
+\[
+\frac{\partial (\bm{a}^T\bm{A}\bm{a})}{\partial \bm{a}} = (\bm{A}+\bm{A}^T)\bm{a},
+\]
+\[
+\frac{\partial tr(\bm{B}\bm{A})}{\partial \bm{A}} = \bm{B}^T,
+\]
+\[
+\frac{\partial \log{\vert\bm{A}\vert}}{\partial \bm{A}} = (\bm{A}^{-1})^T.
+\]
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+The residuals $\bm{\epsilon}$ are in turn given by
+\[
+\bm{\epsilon} = \bm{y}-\bm{\tilde{y}} = \bm{y}-\bm{X}\bm{\beta},
+\]
+and with 
+\[
+\bm{X}^T\left( \bm{y}-\bm{X}\bm{\beta}\right)= 0, 
+\]
+we have
+\[
+\bm{X}^T\bm{\epsilon}=\bm{X}^T\left( \bm{y}-\bm{X}\bm{\beta}\right)= 0, 
+\]
+meaning that the solution for $\bm{\beta}$ is the one which minimizes the residuals.  Later we will link this with the maximum likelihood approach.
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\subsection{Adding error analysis and training set up}
+
+We can easily test our fit by computing various \textbf{cost functions} (or \textbf{training scores}). Several such cost functions are used in machine learning applications. First we have the \textbf{Mean-Squared Error} (MSE)
+\[
+\mathrm{MSE}(\bm{\beta}) = \frac{1}{n} \sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\bm{\beta}) \right)^2,
+\]
+where we have $n$ training data and our model is a function of the parameter vector $\bm{\beta}$.
+
+Furthermore, we have the \textbf{mean absolute error} (MAE) defined as.
+\[
+\mathrm{MAE}(\bm{\beta}) = \frac{1}{n} \sum_{i=1}^n \left| y_{\mathrm{data},i} - y_{\mathrm{model},i}(\bm{\beta}) \right|,
+\]
+
+And the $R2$ score, also known as \emph{coefficient of determination} is
+\[
+\mathrm{R2}(\bm{\beta}) = 1 - \frac{\sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\bm{\beta}) \right)^2}{\sum_{i=1}^n \left( y_{\mathrm{data},i} - \bar{y}_\mathrm{model}(\bm{\beta}) \right)^2},
+\]
+where $\bar{y}_\mathrm{model}(\bm{\beta}) = \frac{1}{n} \sum_{i=1}^n y_{\mathrm{model},i} (\bm{\beta})$ is the mean of the model predictions.
+
+
+% !split
+\paragraph{The $\chi^2$ function.}
+
+\begin{block_mdfboxadmon}[]
+
+Normally, the response (dependent or outcome) variable $y_i$ is the
+outcome of a numerical experiment or another type of experiment and is
+thus only an approximation to the true value. It is then always
+accompanied by an error estimate, often limited to a statistical error
+estimate given by the standard deviation discussed earlier. In the
+discussion here we will treat $y_i$ as our exact value for the
+response variable.
+
+Introducing the standard deviation $\sigma_i$ for each measurement
+$y_i$, we define now the $\chi^2$ function (omitting the $1/n$ term)
+as
+
+\[
+\chi^2(\bm{\beta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\bm{y}-\bm{\tilde{y}}\right)^T\frac{1}{\bm{\Sigma^2}}\left(\bm{y}-\bm{\tilde{y}}\right)\right\},
+\]
+where the matrix $\bm{\Sigma}$ is a diagonal matrix with $\sigma_i$ as matrix elements.
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+
+In order to find the parameters $\beta_i$ we will then minimize the spread of $\chi^2(\bm{\beta})$ by requiring
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \beta_j} = \frac{\partial }{\partial \beta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\beta_0x_{i,0}-\beta_1x_{i,1}-\beta_2x_{i,2}-\dots-\beta_{n-1}x_{i,n-1}}{\sigma_i}\right)^2\right]=0, 
+\]
+which results in
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \beta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}\frac{x_{ij}}{\sigma_i}\left(\frac{y_i-\beta_0x_{i,0}-\beta_1x_{i,1}-\beta_2x_{i,2}-\dots-\beta_{n-1}x_{i,n-1}}{\sigma_i}\right)\right]=0, 
+\]
+or in a matrix-vector form as
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \bm{\beta}} = 0 = \bm{A}^T\left( \bm{b}-\bm{A}\bm{\beta}\right).  
+\]
+where we have defined the matrix $\bm{A} =\bm{X}/\bm{\Sigma}$ with matrix elements $a_{ij} = x_{ij}/\sigma_i$ and the vector $\bm{b}$ with elements $b_i = y_i/\sigma_i$.
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+
+We can rewrite
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \bm{\beta}} = 0 = \bm{A}^T\left( \bm{b}-\bm{A}\bm{\beta}\right),  
+\]
+as
+\[
+\bm{A}^T\bm{b} = \bm{A}^T\bm{A}\bm{\beta},  
+\]
+and if the matrix $\bm{A}^T\bm{A}$ is invertible we have the solution
+\[
+\bm{\beta} =\left(\bm{A}^T\bm{A}\right)^{-1}\bm{A}^T\bm{b}.
+\]
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+
+If we then introduce the matrix
+\[
+\bm{H} =  \left(\bm{A}^T\bm{A}\right)^{-1},
+\]
+we have then the following expression for the parameters $\beta_j$ (the matrix elements of $\bm{H}$ are $h_{ij}$)
+\[
+\beta_j = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}\frac{y_i}{\sigma_i}\frac{x_{ik}}{\sigma_i} = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}b_ia_{ik}
+\]
+We state without proof the expression for the uncertainty  in the parameters $\beta_j$ as (we leave this as an exercise)
+\[
+\sigma^2(\beta_j) = \sum_{i=0}^{n-1}\sigma_i^2\left( \frac{\partial \beta_j}{\partial y_i}\right)^2, 
+\]
+resulting in 
+\[
+\sigma^2(\beta_j) = \left(\sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}a_{ik}\right)\left(\sum_{l=0}^{p-1}h_{jl}\sum_{m=0}^{n-1}a_{ml}\right) = h_{jj}!
+\]
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+
+\begin{block_mdfboxadmon}[]
+The first step here is to approximate the function $y$ with a first-order polynomial, that is we write
+\[
+y=y(x) \rightarrow y(x_i) \approx \beta_0+\beta_1 x_i.
+\]
+By computing the derivatives of $\chi^2$ with respect to $\beta_0$ and $\beta_1$ show that these are given by
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \beta_0} = -2\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\beta_0-\beta_1x_{i}}{\sigma_i^2}\right)\right]=0,
+\]
+and
+\[
+\frac{\partial \chi^2(\bm{\beta})}{\partial \beta_1} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_i\left(\frac{y_i-\beta_0-\beta_1x_{i}}{\sigma_i^2}\right)\right]=0.
+\]
+\end{block_mdfboxadmon} % title: 
+
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+
