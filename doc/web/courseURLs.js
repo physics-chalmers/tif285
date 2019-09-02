@@ -35,9 +35,9 @@ if (inIframe()) {
 
 var gettingstarted = "";
 if (inIframe()) {
-	schedule = courseURL + "external_tools/264";
+	gettingstarted = courseURL + "external_tools/264";
 } else {
-	schedule = 'gettingstarted.html';
+	gettingstarted = 'gettingstarted.html';
 }
 
 // var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
