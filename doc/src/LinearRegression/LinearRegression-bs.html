@@ -53,9 +53,8 @@ Automatically generated HTML file from DocOnce source
               ('General linear models', 2, None, '___sec3'),
               ('Polynomial basis functions', 3, None, '___sec4'),
               ('General basis functions', 3, None, '___sec5'),
-              ('Some useful matrix and vector expressions', 3, None, '___sec6'),
-              ('Adding error analysis and training set up', 2, None, '___sec7'),
-              ('The $\\chi^2$ function', 3, None, '___sec8')]}
+              ('Adding error analysis and training set up', 2, None, '___sec6'),
+              ('The $\\chi^2$ function', 3, None, '___sec7')]}
 end of tocinfo -->
 
 <body>
@@ -99,9 +98,8 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;"><b>General linear models</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Polynomial basis functions</a></li>
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;General basis functions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Some useful matrix and vector expressions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Adding error analysis and training set up</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The \( \chi^2 \) function</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Adding error analysis and training set up</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The \( \chi^2 \) function</a></li>
 
         </ul>
       </li>
@@ -140,7 +138,7 @@ MathJax.Hub.Config({
 <center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Sep 1, 2019</h4></center> <!-- date -->
+<center><h4>Sep 2, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -178,7 +176,7 @@ Regression modeling deals with the description of  the sampling distribution of 
 The first variable is called the <b>dependent</b>, the <b>outcome</b> or the <b>response</b> variable while the set of variables \( \boldsymbol{x} \) is called the independent variable, or the predictor variable or the explanatory variable.
 
 <p>
-A regression model aims at finding a likelihood function \( p(\boldsymbol{y}\vert \boldsymbol{x}) \), that is the conditional distribution for \( \boldsymbol{y} \) with a given \( \boldsymbol{x} \). The estimation of  \( p(\boldsymbol{y}\vert \boldsymbol{x}) \) is made using a data set with 
+A regression model \( M \) aims at finding a likelihood function \( p(\boldsymbol{y}\vert \boldsymbol{x},M,\mathcal{D}) \), that is the conditional distribution for \( \boldsymbol{y} \) given the independent variable \( \boldsymbol{x} \) and a model \( M \) that has been trained on a data set \( \mathcal{D} \) with 
 
 <ul>
 <li> \( n \) cases \( i = 0, 1, 2, \dots, n-1 \)</li> 
@@ -196,8 +194,6 @@ A regression model aims at finding a likelihood function \( p(\boldsymbol{y}\ver
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-
-<p>
 Consider an experiment in which \( p \) characteristics of \( n \) samples are
 measured. The data from this experiment, for various explanatory variables \( p \) are normally represented by a matrix  
 \( \mathbf{X} \).
@@ -442,7 +438,7 @@ $$
 
 or using the matrix \( \boldsymbol{X} \) and in a more compact matrix-vector notation as
 $$
-C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}^T\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}^T\boldsymbol{\theta}\right)\right\}.
+C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
 $$
 
 This function is one possible way to define the so-called cost function.
@@ -561,59 +557,7 @@ allow for the usage of direct linear algebra methods such as <b>LU</b> decomposi
 <p>
 <!-- !split -->
 
-<h3 id="___sec6" class="anchor">Some useful matrix and vector expressions </h3>
-
-<p>
-The following matrix and vector relation will be useful here and for the rest of the course. Vectors are always written as boldfaced lower case letters and 
-matrices as upper case boldfaced letters. 
-
-$$
-\frac{\partial (\boldsymbol{b}^T\boldsymbol{a})}{\partial \boldsymbol{a}} = \boldsymbol{b},
-$$
-
-$$
-\frac{\partial (\boldsymbol{a}^T\boldsymbol{A}\boldsymbol{a})}{\partial \boldsymbol{a}} = (\boldsymbol{A}+\boldsymbol{A}^T)\boldsymbol{a},
-$$
-
-$$
-\frac{\partial tr(\boldsymbol{B}\boldsymbol{A})}{\partial \boldsymbol{A}} = \boldsymbol{B}^T,
-$$
-
-$$
-\frac{\partial \log{\vert\boldsymbol{A}\vert}}{\partial \boldsymbol{A}} = (\boldsymbol{A}^{-1})^T.
-$$
-
-<p>
-<!-- !split -->
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The residuals \( \boldsymbol{\epsilon} \) are in turn given by
-$$
-\boldsymbol{\epsilon} = \boldsymbol{y}-\boldsymbol{\tilde{y}} = \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta},
-$$
-
-and with 
-$$
-\boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)= 0, 
-$$
-
-we have
-$$
-\boldsymbol{X}^T\boldsymbol{\epsilon}=\boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)= 0, 
-$$
-
-meaning that the solution for \( \boldsymbol{\theta} \) is the one which minimizes the residuals.  Later we will link this with the maximum likelihood approach.
-
-<p>
-</div>
-</div>
-
-
-<p>
-<!-- !split -->
-
-<h2 id="___sec7" class="anchor">Adding error analysis and training set up </h2>
+<h2 id="___sec6" class="anchor">Adding error analysis and training set up </h2>
 
 <p>
 We can easily test our fit by computing various <b>cost functions</b> (or <b>training scores</b>). Several such cost functions are used in machine learning applications. First we have the <b>Mean-Squared Error</b> (MSE)
@@ -640,7 +584,7 @@ where \( \bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n 
 <p>
 <!-- !split -->
 
-<h3 id="___sec8" class="anchor">The \( \chi^2 \) function  </h3>
+<h3 id="___sec7" class="anchor">The \( \chi^2 \) function  </h3>
 
 <div class="panel panel-default">
 <div class="panel-body">
@@ -657,14 +601,13 @@ response variable.
 
 <p>
 Introducing the standard deviation \( \sigma_i \) for each measurement
-\( y_i \), we define now the \( \chi^2 \) function (omitting the \( 1/n \) term)
-as
+\( y_i \) (assuming uncorrelated errors), we define the \( \chi^2 \) function as
 
 $$
-\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T\frac{1}{\boldsymbol{\Sigma^2}}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
+\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
 $$
 
-where the matrix \( \boldsymbol{\Sigma} \) is a diagonal matrix with \( \sigma_i \) as matrix elements.
+where the matrix \( \boldsymbol{\Sigma} \) is a diagonal \( n \times n \) matrix with \( \sigma_i^2 \) as matrix elements.
 
 <p>
 </div>
@@ -693,7 +636,7 @@ $$
 \frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right).  
 $$
 
-where we have defined the matrix \( \boldsymbol{A} =\boldsymbol{X}/\boldsymbol{\Sigma} \) with matrix elements \( a_{ij} = x_{ij}/\sigma_i \) and the vector \( \boldsymbol{b} \) with elements \( b_i = y_i/\sigma_i \).
+where we have defined the matrix \( \boldsymbol{A} =\boldsymbol{X} \boldsymbol{\Sigma}^{-1/2} \) with matrix elements \( a_{ij} = x_{ij}/\sigma_i \) and the vector \( \boldsymbol{b} \) with elements \( b_i = y_i/\sigma_i \).
 </div>
 </div>
 
@@ -748,29 +691,6 @@ $$
 resulting in 
 $$
 \sigma^2(\theta_j) = \left(\sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}a_{ik}\right)\left(\sum_{l=0}^{p-1}h_{jl}\sum_{m=0}^{n-1}a_{ml}\right) = h_{jj}!
-$$
-</div>
-</div>
-
-
-<p>
-<!-- !split -->
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The first step here is to approximate the function \( y \) with a first-order polynomial, that is we write
-$$
-y=y(x) \rightarrow y(x_i) \approx \theta_0+\theta_1 x_i.
-$$
-
-By computing the derivatives of \( \chi^2 \) with respect to \( \theta_0 \) and \( \theta_1 \) show that these are given by
-$$
-\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_0} = -2\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\theta_0-\theta_1x_{i}}{\sigma_i^2}\right)\right]=0,
-$$
-
-and
-$$
-\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_1} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_i\left(\frac{y_i-\theta_0-\theta_1x_{i}}{\sigma_i^2}\right)\right]=0.
 $$
 </div>
 </div>
