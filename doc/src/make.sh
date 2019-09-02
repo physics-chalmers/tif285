@@ -85,7 +85,8 @@ mkdir $dest/$name/html
 mkdir $dest/$name/ipynb
 fi
 cp ${name}*.pdf $dest/$name/pdf/.
-cp -r ${name}*.html ._${name}*.html reveal.js $dest/$name/html
+cp -r ${name}-bs.html $dest/$name/html
+#cp -r ${name}*.html ._${name}*.html reveal.js $dest/$name/html
 
 for format in "html" "ipynb"; do
 # Figures: cannot just copy link, need to physically copy the files
