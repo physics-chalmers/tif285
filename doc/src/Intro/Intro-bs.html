@@ -159,7 +159,7 @@ MathJax.Hub.Config({
 <center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Sep 1, 2019</h4></center> <!-- date -->
+<center><h4>Sep 2, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -168,14 +168,17 @@ MathJax.Hub.Config({
 <!-- !split -->
 
 <h1 id="___sec0" class="anchor">Learning from data: Inference </h1>
-The general problem that will be adressed in this series of lectures is illustrated in the following figure
+The general problem that will be adressed in this series of lectures is illustrated in the following figure. The learning process depicted there is known as <b>inference</b> and involves steps in reasoning to move from premises to logical consequences.
 
 <p>
 <center> <!-- figure label: --> <div id="fig-inference"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  Learning from data is an inference process.  <!-- caption label: fig-inference --> This process is known as <b>inference</b> and involves steps in reasoning to move from premises to logical consequences. </p></center>
+<center><p class="caption">Figure 1:  Learning from data is an inference process.  <!-- caption label: fig-inference --> </p></center>
 <p><img src="fig/inference.png" align="bottom" width=600></p>
 </center>
+
+<p>
+<!-- !split -->
 
 <h3 id="___sec1" class="anchor">Inference  </h3>
 
@@ -189,7 +192,7 @@ The general problem that will be adressed in this series of lectures is illustra
   Do premises \( A, B, \ldots \Rightarrow \) hypothesis, \( H \)? 
 <dt>Deductive inference:<dd> 
   Premises allow definite determination of truth/falsity of \( H \) (Boolean algebra) <br />
-  \( B(H|A,B,...) = 0 \) or \( 1 \)
+  \( p(H|A,B,...) = 0 \) or \( 1 \)
 <dt>Inductive inference:<dd> 
   Premises bear on truth/falsity of \( H \), but don&#8217;t allow its definite determination<br />
   \( A, B, C, D \) share properties \( x, y, z \); \( E \) has properties \( x, y \)<br />
@@ -200,11 +203,12 @@ The general problem that will be adressed in this series of lectures is illustra
 
 
 <p>
-In the natural sciences, data is often a finite set of measurements while learning usually comes from the confrontation of that data with theories and models. The conclusions might ultimately be falsification of an hypothesis underlying a theory or a model, but it will not be a determination of its truth. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
+<!-- !split -->
+In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
 
 <p>
 This process of learning from data is fundamental to the scientific wheel of progress.
-<br /><br /><center><p><img src="fig/scientific_wheel_data.png" align="bottom" width=300></p></center><br /><br />
+<br /><br /><center><p><img src="fig/scientific_wheel_data.png" align="bottom" width=400></p></center><br /><br />
 
 <p>
 <!-- !split -->
@@ -273,9 +277,11 @@ knowledge discovery based on data.
 In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs.
 
 <p>
+<!-- !split -->
 However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work.
 
 <p>
+<!-- !split -->
 In particular, physics and astronomy students have a unique preparation:
 
 <ul>
@@ -291,6 +297,8 @@ Physics and astronomy research also has different needs:
   <li> We have different priorities for judging a &quot;good&quot; method: interpretability, error estimates, predictive power, etc.</li>
 </ul>
 
+<!-- !split -->
+
 <h3 id="___sec6" class="anchor">What is special about machine learning in physics and astronomy? </h3>
 
 <ul>
@@ -302,6 +310,11 @@ Physics and astronomy research also has different needs:
     <li> Much efforts to understand systematic errors.</li>
 </ul>
 
+</ul>
+
+<!-- !split -->
+
+<ul>
   <li> Our data represent measurements of physical processes:</li>
 
 <ul>
@@ -410,6 +423,9 @@ theory, statistical data analysis, understanding errors and Monte
 Carlo methods are central elements in a proper understanding of many
 of algorithms and methods we will discuss.
 
+<p>
+<!-- !split -->
+
 <h2 id="___sec8" class="anchor">Types of Machine Learning </h2>
 
 <p>
@@ -424,25 +440,44 @@ behavioral psychology, where learning is achieved by trial-and-error,
 solely from rewards and punishment.
 
 <p>
+<!-- !split -->
 Another way to categorize machine learning tasks is to consider the
 desired output of a system. What kind of inference are you hoping to see in your data? Is the aim to classify a result into categories, to predict a continuous value, or to simply observe patterns within the data? Let&#8217;s briefly introduce each class:
 
 <p>
+<!-- !split -->
 
 <dl>
 <dt>Classification algorithms:<dd> 
   are used to predict whether a dataset&#8217;s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.
+</dl>
+
+<!-- !split -->
+
+<dl>
 <dt>Clustering algorithms:<dd> 
   can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don&#8217;t require output labels, making them unsupervised algorithms.
+</dl>
+
+<!-- !split -->
+
+<dl>
 <dt>Dimensionality reduction algorithms:<dd> 
   focuses on decreasing the number of features from your dataset, preventing your models from &#8220;overfitting&#8221; or generalizing on previously unseen data. They are also unsupervised.
+</dl>
+
+<!-- !split -->
+
+<dl>
 <dt>Regression algorithms:<dd> 
   Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.
 </dl>
 
+<!-- !split -->
 In the natural sciences, where we often confront scientific models with observations, there is certainly a large interest in regression algorithms. However, there are also many examples where other classes of machine-learning algorithms are being used.
 
 <p>
+<!-- !split -->
 All methods have three main ingredients in common, irrespective of whether we deal with supervised or unsupervised learning.
 
 <p>
@@ -455,6 +490,8 @@ All methods have three main ingredients in common, irrespective of whether we de
 <dt>Cost function:<dd> 
   The last ingredient is a so-called cost function, which allows us to present an estimate on how good our model is in reproducing the data it is supposed to describe.  
 </dl>
+
+<!-- !split -->
 
 <h2 id="___sec9" class="anchor">Choice of programming language </h2>
 
@@ -484,6 +521,9 @@ code written in C++/C or Fortran do the heavy duty numerical
 number crunching and leave the post-analysis of the data to the above
 mentioned Python modules or software packages.  However, with the developments taking place in for example the Python community, and seen
 the changes during the last decade, the above situation may change in the not too distant future.
+
+<p>
+<!-- !split -->
 
 <h2 id="___sec10" class="anchor">Data handling, machine learning  and ethical aspects </h2>
 

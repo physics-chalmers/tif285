@@ -1012,3 +1012,73 @@ This process is known as _inference_ and involves steps in reasoning to move fro
     (also note: some of these automatic fixes may not be what you want)
 
 output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+output in Intro-bs.html

@@ -294,7 +294,7 @@ Learning from data: Getting started and a first data and machine learning encoun
 
 % --- begin date ---
 \begin{center}
-Sep 1, 2019
+Sep 2, 2019
 \end{center}
 % --- end date ---
 
@@ -303,17 +303,20 @@ Sep 1, 2019
 
 % !split
 \section{Learning from data: Inference}
-The general problem that will be adressed in this series of lectures is illustrated in the following figure
+The general problem that will be adressed in this series of lectures is illustrated in the following figure. The learning process depicted there is known as \textbf{inference} and involves steps in reasoning to move from premises to logical consequences. 
+
+
 
 \begin{figure}[!ht]  % fig-inference
   \centerline{\includegraphics[width=0.8\linewidth]{fig/inference.png}}
   \caption{
-  Learning from data is an inference process. \label{fig-inference} This process is known as \textbf{inference} and involves steps in reasoning to move from premises to logical consequences.
+  Learning from data is an inference process. \label{fig-inference}
   }
 \end{figure}
 %\clearpage % flush figures fig-inference
 
 
+% !split
 \paragraph{Inference.}
 
 \begin{block_mdfboxadmon}[]
@@ -324,7 +327,7 @@ The general problem that will be adressed in this series of lectures is illustra
 
 \item[Deductive inference:] 
   Premises allow definite determination of truth/falsity of $H$ (Boolean algebra) \\
-  $B(H|A,B,...) = 0$ or $1$
+  $p(H|A,B,...) = 0$ or $1$
 
 \item[Inductive inference:] 
   Premises bear on truth/falsity of $H$, but don’t allow its definite determination\\
@@ -337,7 +340,8 @@ The general problem that will be adressed in this series of lectures is illustra
 
 
 
-In the natural sciences, data is often a finite set of measurements while learning usually comes from the confrontation of that data with theories and models. The conclusions might ultimately be falsification of an hypothesis underlying a theory or a model, but it will not be a determination of its truth. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
+% !split
+In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
 
 This process of learning from data is fundamental to the scientific wheel of progress.
 
@@ -411,8 +415,10 @@ knowledge discovery based on data.
 \paragraph{How will this course be different from a computer science course?}
 In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs. 
 
+% !split
 However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work. 
 
+% !split
 In particular, physics and astronomy students have a unique preparation:
 \begin{itemize}
 \item Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
@@ -431,6 +437,7 @@ Physics and astronomy research also has different needs:
 \end{itemize}
 
 \noindent
+% !split
 \paragraph{What is special about machine learning in physics and astronomy?}
 \begin{itemize}
   \item We are data \textbf{producers}, not (only) data consumers:
@@ -441,10 +448,14 @@ Physics and astronomy research also has different needs:
     \item Statistical errors on data can be quantified.
 
     \item Much efforts to understand systematic errors.
-
 \end{itemize}
 
 \noindent
+\end{itemize}
+
+\noindent
+% !split
+\begin{itemize}
   \item Our data represent measurements of physical processes:
 \begin{itemize}
 
@@ -558,6 +569,7 @@ of algorithms and methods we will discuss.
 
 
 
+% !split
 \subsection{Types of Machine Learning}
 
 
@@ -571,26 +583,42 @@ Some authours also operate with a third category, namely
 behavioral psychology, where learning is achieved by trial-and-error,
 solely from rewards and punishment.
 
+% !split
 Another way to categorize machine learning tasks is to consider the
 desired output of a system. What kind of inference are you hoping to see in your data? Is the aim to classify a result into categories, to predict a continuous value, or to simply observe patterns within the data? Let’s briefly introduce each class:
 
+% !split
 \begin{description}
 \item[Classification algorithms:] 
   are used to predict whether a dataset’s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.
+\end{description}
 
+\noindent
+% !split
+\begin{description}
 \item[Clustering algorithms:] 
   can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don’t require output labels, making them unsupervised algorithms.
+\end{description}
 
+\noindent
+% !split
+\begin{description}
 \item[Dimensionality reduction algorithms:] 
   focuses on decreasing the number of features from your dataset, preventing your models from “overfitting” or generalizing on previously unseen data. They are also unsupervised.
+\end{description}
 
+\noindent
+% !split
+\begin{description}
 \item[Regression algorithms:] 
   Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.
 \end{description}
 
 \noindent
+% !split
 In the natural sciences, where we often confront scientific models with observations, there is certainly a large interest in regression algorithms. However, there are also many examples where other classes of machine-learning algorithms are being used.
 
+% !split
 All methods have three main ingredients in common, irrespective of whether we deal with supervised or unsupervised learning. 
 
 \begin{description}
@@ -605,6 +633,7 @@ All methods have three main ingredients in common, irrespective of whether we de
 \end{description}
 
 \noindent
+% !split
 \subsection{Choice of programming language}
 
 Python plays a central role in the development of machine
@@ -631,6 +660,7 @@ number crunching and leave the post-analysis of the data to the above
 mentioned Python modules or software packages.  However, with the developments taking place in for example the Python community, and seen
 the changes during the last decade, the above situation may change in the not too distant future. 
 
+% !split
 \subsection{Data handling, machine learning  and ethical aspects}
 
 In most of the cases we will study, we will generate the data

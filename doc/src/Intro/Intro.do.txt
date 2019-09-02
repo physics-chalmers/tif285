@@ -5,27 +5,30 @@ DATE: today
 
 !split
 ======= Learning from data: Inference =======
-The general problem that will be adressed in this series of lectures is illustrated in the following figure
-FIGURE: [fig/inference.png, width=600 frac=0.8] Learning from data is an inference process. label{fig-inference}
-This process is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
+The general problem that will be adressed in this series of lectures is illustrated in the following figure. The learning process depicted there is known as _inference_ and involves steps in reasoning to move from premises to logical consequences. 
 
+
+FIGURE: [fig/inference.png, width=600 frac=0.8] Learning from data is an inference process. label{fig-inference}
+
+!split
 === Inference  ===
 !bblock
 - Inference: ``the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former'' (Webster) <linebreak>
   Do premises $A, B, \ldots \Rightarrow$ hypothesis, $H$? 
 
 - Deductive inference: Premises allow definite determination of truth/falsity of $H$ (Boolean algebra) <linebreak>
-  $B(H|A,B,...) = 0$ or $1$
+  $p(H|A,B,...) = 0$ or $1$
 
 - Inductive inference: Premises bear on truth/falsity of $H$, but don’t allow its definite determination<linebreak>
   $A, B, C, D$ share properties $x, y, z$; $E$ has properties $x, y$<linebreak>
   $\Rightarrow E$ probably has property $z$.
 !eblock
 
-In the natural sciences, data is often a finite set of measurements while learning usually comes from the confrontation of that data with theories and models. The conclusions might ultimately be falsification of an hypothesis underlying a theory or a model, but it will not be a determination of its truth. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
+!split
+In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
 
 This process of learning from data is fundamental to the scientific wheel of progress.
-FIGURE: [fig/scientific_wheel_data.png, width=300 frac=0.4]
+FIGURE: [fig/scientific_wheel_data.png, width=400 frac=0.4]
 
 !split
 === Statistical Inference  ===

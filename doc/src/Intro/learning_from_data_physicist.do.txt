@@ -2,8 +2,10 @@
 
 In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs. 
 
+!split
 However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work. 
 
+!split
 In particular, physics and astronomy students have a unique preparation:
 * Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
 * Considerable training in general problem solution skills.
@@ -14,6 +16,7 @@ Physics and astronomy research also has different needs:
   * We have different priorities for judging a ``good'' method: interpretability, error estimates, predictive power, etc.
 
 
+!split
 === What is special about machine learning in physics and astronomy? ===
 
   * We are data _producers_, not (only) data consumers:
@@ -21,16 +24,14 @@ Physics and astronomy research also has different needs:
     * Statistical errors on data can be quantified.
     * Much efforts to understand systematic errors.
   
+!split
   * Our data represent measurements of physical processes:
     * Measurements often reduce to counting photons, etc, with known a-priori random errors.
     * Dimensions and units are important.
     * Experimental data comes with measurement errors that should be taken into account.
-
   * Our models are usually traceable to an underlying physical theory:
     * Models constrained by theory and previous observations.
     * Parameter values often intrinsically interesting.
-    
   * A parameter error estimate is just as important as its value:
     * Prefer methods that handle input data errors (weights) and provide output parameter error estimates.
-  
   * In some experiments and scientific domains, the data sets are *huge* (``Big Data'')
