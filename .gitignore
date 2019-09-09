@@ -32,6 +32,10 @@ temp*
 # misc:
 .DS_Store
 
+# reveal
+reveal.js
+*-reveal.html
+
 # SPECIAL
 # remove KEYS (solutions to exercises and problem sets)
 KEY*
