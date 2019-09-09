@@ -1,0 +1,363 @@
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+*** warning: found link tag "...": "..." in footnote, which was removed
+    from tooltip (since it does not work with bootstrap tooltips)
+In particular chapter 4 in "Hands&#8209;On Machine Learning with Scikit&#8209;Learn and TensorFlow":"http://shop.oreilly.com/product/0636920052289.do" by Aurelien Geron and chapter 5 in the  "Python Data Science Handbook":"http://shop.oreilly.com/product/0636920034919.do" by Jake VanderPlas. The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University.
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+Table has column alignment specification: rrr, but 2 columns
+Table with rows
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+*** made directory latex_figs for admon figures
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-reveal.html
+translating doconce text in ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+translating doconce text in ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+translating doconce text in ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+output in ModelValidation-bs.html

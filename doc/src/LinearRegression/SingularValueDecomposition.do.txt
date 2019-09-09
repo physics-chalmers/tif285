@@ -268,3 +268,86 @@ Going back to our OLS equation we have
 \]
 !et
 We will come back to this expression when we discuss Ridge regression. 
+
+
+===== Interpreting the Ridge results in terms of SVD =====
+
+Furthermore, if we use the result above in terms of the SVD decomposition (our analysis was done for the OLS method), we had
+!bt
+\[
+(\bm{X}\bm{X}^T)\bm{U} = \bm{U}\bm{D}.
+\]
+!et
+
+We can  analyse the OLS solutions in terms of the eigenvectors (the columns) of the right singular value matrix $\bm{U}$ as
+!bt
+\[
+\bm{X}\bm{	heta} = \bm{X}\left(\bm{V}\bm{D}\bm{V}^T \right)^{-1}\bm{X}^T\bm{y}=\bm{U\Sigma V^T}\left(\bm{V}\bm{D}\bm{V}^T \right)^{-1}(\bm{U\Sigma V^T})^T\bm{y}=\bm{U}\bm{U}^T\bm{y}
+\]
+!et
+
+
+For Ridge regression this becomes
+
+!bt
+\[
+\bm{X}\bm{	heta}^{\mathrm{Ridge}} = \bm{U\Sigma V^T}\left(\bm{V}\bm{D}\bm{V}^T+\lambda\bm{I} \right)^{-1}(\bm{U\Sigma V^T})^T\bm{y}=\sum_{j=0}^{p-1}\bm{u}_j\bm{u}_j^T\frac{\sigma_j^2}{\sigma_j^2+\lambda}\bm{y},
+\]
+!et
+
+with the vectors $\bm{u}_j$ being the columns of $\bm{U}$. 
+
+!split
+Since $\lambda \geq 0$, it means that compared to OLS, we have 
+
+!bt
+\[
+\frac{\sigma_j^2}{\sigma_j^2+\lambda} \leq 1. 
+\]
+!et
+
+Ridge regression finds the coordinates of $\bm{y}$ with respect to the
+orthonormal basis $\bm{U}$, it then shrinks the coordinates by
+$\frac{\sigma_j^2}{\sigma_j^2+\lambda}$. Recall that the SVD has
+eigenvalues ordered in a descending way, that is $\sigma_i \geq
+\sigma_{i+1}$.
+
+For small eigenvalues $\sigma_i$ it means that their contributions become less important, a fact which can be used to reduce the number of degrees of freedom.
+Actually, calculating the variance of $\bm{X}\bm{v}_j$ shows that this quantity is equal to $\sigma_j^2/n$.
+With a parameter $\lambda$ we can thus shrink the role of specific parameters.  
+
+
+!split
+For the sake of simplicity, let us assume that the design matrix is orthonormal, that is 
+
+!bt
+\[
+\bm{X}^T\bm{X}=(\bm{X}^T\bm{X})^{-1} =\bm{I}. 
+\]
+!et
+
+In this case the standard OLS results in 
+!bt
+\[
+\bm{	heta}^{\mathrm{OLS}} = \bm{X}^T\bm{y}=\sum_{i=0}^{p-1}\bm{u}_j\bm{u}_j^T\bm{y},
+\]
+!et
+
+and
+
+!bt
+\[
+\bm{	heta}^{\mathrm{Ridge}} = \left(\bm{I}+\lambda\bm{I}\right)^{-1}\bm{X}^T\bm{y}=\left(1+\lambda\right)^{-1}\bm{	heta}^{\mathrm{OLS}},
+\]
+!et
+
+that is the Ridge estimator scales the OLS estimator by the inverse of a factor $1+\lambda$, and
+the Ridge estimator converges to zero when the hyperparameter goes to
+infinity.
+
+We will come back to more interpreations after we have gone through some of the statistical analysis part. 
+
+For more discussions of Ridge and Lasso regression, "Wessel van Wieringen's":"https://arxiv.org/abs/1509.09169" article is highly recommended.
+Similarly, "Mehta et al's article":"https://arxiv.org/abs/1803.08823" is also recommended.
+
+

@@ -1,0 +1,428 @@
+TITLE: Learning from data: Model Validation and Regularization
+AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+DATE: today
+
+In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
+  * Overfitting and underfitting
+  * Bias-variance-tradeoff
+  * Regularization
+  * Model hyperparameters
+  * Model validation
+  * Gradient descent optimization
+  * Learning curves
+  
+This lecture is accompanied by a demonstration Jupyter notebook. Furthermore, you will get your own experience with these concepts when working on the linear regression exercise and the problem set.
+
+The lecture is based and inspired by material in several good textbooks: in particular chapter 4 in "Hands‑On Machine Learning with Scikit‑Learn and TensorFlow":"http://shop.oreilly.com/product/0636920052289.do" by Aurelien Geron and chapter 5 in the 
+"Python Data Science Handbook":"http://shop.oreilly.com/product/0636920034919.do" by Jake VanderPlas.
+The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University. 
+
+!split
+======= Model validation =======
+
+!split
+===== Over- and underfitting =====
+
+Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. ref{fig-over_under_fitting} from the demonstration notebook.
+
+FIGURE: [fig/over_under_fitting.png, width=600 frac=0.8] The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. label{fig-over_under_fitting}
+
+The following quote from an unknown source provides a concise definition of overfitting and underfitting:
+!bquote
+A model overfits if it fits noise rather than only the data and underfits if it considers variability in data to be noise while it is actually not.
+!equote
+
+The question is then: How do we detect these problems and how can we reduce them.
+
+We can detect over- and underfitting by employing holdout sets, also known as *validation* sets (or sometimes referred to as validation sets). This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the modle parameters to best fit the training data, and then measure e.g. the mean-square error (MSE) of the model predictions for the validation set. 
+
+An underfit model has a *high bias*, which means that it gives a rather poor fit and the performance metric will be rather bad (large error). This will be true for both the training and the validation sets.
+
+An overfit model typically has a very *large varianc*, i.e. the model predictions reveal larger variance than the data itself. We will discuss this in more detail further down. High variance models typically perform much better on the training set than on the validation set. 
+
+Alternatively, a telltale sign for overfitting is the appearance of very large fit parameters that are needed for the fine tunings of cancellations of different terms in the model. The fits from our example has the following root-mean-square parameters
+
+!bt
+\[
+\theta_\mathrm{rms} \equiv \frac{1}{p} \sqrt{ \sum_{i=0}^p \theta_i^2 } \equiv \| \theta \|_2^2 / p.
+\]
+!et
+
+  |--r------r------|
+  |order  | $\theta_\mathrm{rms}$ | 
+  |---r-------r----|
+  | 1  | 3.0e-01   |
+  | 3  | 1.2e+00   |
+  | 100  | 6.3e+12 |
+  |----------------|
+
+
+!split
+===== Regularization: Ridge and Lasso =====
+
+Assuming that overfitting is characterized by large fit parameters, we can attempt to avoid this scenario by *regularizing* the model parameters. We will introduce two kinds of regularization: Ridge and Lasso. In addition, so called elastic net regularization is also in use and basically corresponds to a linear combination of the Ridge and Lasso penalty functions.
+
+Let us remind ourselves about the expression for the standard Mean Squared Error (MSE) which we used to define our cost function and the equations for the ordinary least squares (OLS) method. That is our optimization problem is
+!bt
+\[
+{\displaystyle \min_{\bm{\theta}\in {\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{	\theta}\right)^T\left(\bm{y}-\bm{X}\bm{\theta}\right)\right\}.
+\]
+!et
+or we can state it as
+!bt
+\[
+{\displaystyle \min_{\bm{\theta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2,
+\]
+!et
+where we have used the definition of  a norm-2 vector, that is
+!bt
+\[
+\vert\vert \bm{x}\vert\vert_2 = \sqrt{\sum_i x_i^2}. 
+\]
+!et
+
+By minimizing the above equation with respect to the parameters
+$\bm{\theta}$ we could then obtain an analytical expression for the
+parameters $\bm{\theta}$.  We can add a regularization parameter $\lambda$ by
+defining a new cost function to be optimized, that is
+
+!bt
+\[
+C_{\lambda,2} \left( \bm{X}, \bm{\theta} \right) \equiv
+{\displaystyle \min_{\bm{\theta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_2^2 
+\]
+!et
+
+which leads to the *Ridge regression* minimization problem where we
+constrain $\vert\vert \bm{\theta}\vert\vert_2^2$. 
+
+Alternatively, *Lasso regularization* can be performed by defining
+
+!bt
+\[
+C_{\lambda,1} \left( \bm{X},\bm{\theta} \right) \equiv
+\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_1.
+\]
+!et
+
+The optimization equation is now
+!bt
+\[
+{\displaystyle \min_{\bm{\theta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_1
+\].
+!et
+Lasso stands for least absolute shrinkage and selection operator. 
+
+Here we have defined the norm-1 as 
+!bt
+\[
+\vert\vert \bm{x}\vert\vert_1 = \sum_i \vert x_i\vert. 
+\]
+!et
+
+FIGURE: [fig/ridge_reg.png, width=900 frac=0.9] Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. label{fig-ridge_reg}
+
+
+
+!split
+===== More on Ridge Regression =====
+
+Using the matrix-vector expression for Ridge regression,
+
+!bt
+\[
+C(\bm{X},\bm{\theta})=\frac{1}{n}\left\{(\bm{y}-\bm{X}\bm{\theta})^T(\bm{y}-\bm{X}\bm{\theta})\right\}+\lambda\bm{\theta}^T\bm{\theta},
+\]
+!et
+
+by taking the derivatives with respect to $\bm{\theta}$ we obtain then
+a slightly modified matrix inversion problem which for finite values
+of $\lambda$ does not suffer from singularity problems. We obtain
+
+!bt
+\[
+\bm{\theta}^{\mathrm{Ridge}} = \left(\bm{X}^T\bm{X}+\lambda\bm{I}\right)^{-1}\bm{X}^T\bm{y},
+\]
+!et
+
+with $\bm{I}$ being a $p\times p$ identity matrix with the constraint that
+
+!bt
+\[
+\sum_{i=0}^{p-1} \theta_i^2 \leq t,
+\]
+!et
+
+with $t$ a finite positive number. 
+
+We see that Ridge regression is nothing but the standard
+OLS with a modified diagonal term added to $\bm{X}^T\bm{X}$. The
+consequences, in particular for our discussion of the bias-variance
+are rather interesting.
+
+For more discussions of Ridge and Lasso regression, "Wessel van Wieringen's":"https://arxiv.org/abs/1509.09169" article is highly recommended.
+Similarly, "Mehta et al's article":"https://arxiv.org/abs/1803.08823" is also recommended.
+
+!split
+===== The bias-variance tradeoff =====
+
+We will discuss the bias-variance tradeoff in the context of
+continuous predictions such as regression. However, many of the
+intuitions and ideas discussed here also carry over to classification
+tasks. Consider a dataset $\mathcal{L}$ consisting of the data
+$\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. 
+
+Let us assume that the true data is generated from a noisy model
+
+!bt
+\[
+\bm{y}=f(\boldsymbol{x}) + \bm{\epsilon}
+\]
+!et
+
+where $\epsilon$ is normally distributed with mean zero and standard deviation $\sigma^2$.
+
+In our derivation of the ordinary least squares method we defined then
+an approximation to the function $f$ in terms of the parameters
+$\bm{\theta}$ and the design matrix $\bm{X}$ which embody our model,
+that is $\bm{\tilde{y}}=\bm{X}\bm{\theta}$. 
+
+Thereafter we found the parameters $\bm{\theta}$ by optimizing the means squared error via the so-called cost function
+!bt
+\[
+C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2=\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right].
+\]
+!et
+
+We can rewrite this as 
+!bt
+\[
+\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\sigma^2.
+\]
+!et
+
+The three terms represent the square of the bias of the learning
+method, which can be thought of as the error caused by the simplifying
+assumptions built into the method. The second term represents the
+variance of the chosen model and finally the last terms is variance of
+the error $\bm{\epsilon}$.
+
+To derive this equation, we need to recall that the variance of $\bm{y}$ and $\bm{\epsilon}$ are both equal to $\sigma^2$. The mean value of $\bm{\epsilon}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastics variable, idem for $\bm{\tilde{y}}$.
+We use a more compact notation in terms of the expectation value 
+!bt
+\[
+\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{f}+\bm{\epsilon}-\bm{\tilde{y}})^2\right],
+\]
+!et
+and adding and subtracting $\mathbb{E}\left[\bm{\tilde{y}}\right]$ we get
+!bt
+\[
+\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{f}+\bm{\epsilon}-\bm{\tilde{y}}+\mathbb{E}\left[\bm{\tilde{y}}\right]-\mathbb{E}\left[\bm{\tilde{y}}\right])^2\right],
+\]
+!et
+which, using the abovementioned expectation values can be rewritten as 
+!bt
+\[
+\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{y}-\mathbb{E}\left[\bm{\tilde{y}}\right])^2\right]+\mathrm{Var}\left[\bm{\tilde{y}}\right]+\sigma^2,
+\]
+!et
+that is the rewriting in terms of the so-called bias, the variance of the model $\bm{\tilde{y}}$ and the variance of $\bm{\epsilon}$.
+
+The tradeoff between bias and variance is illustrated in Fig. ref{fig-bias_variance} from the demonstration notebook.
+
+FIGURE: [fig/bias_variance.png, width=600 frac=0.8] The bias-variance for different polynomial models of our noisy data set. label{fig-bias_variance}
+
+
+!split 
+===== Summing up ===== 
+
+
+The bias-variance tradeoff summarizes the fundamental tension in
+machine learning, particularly supervised learning, between the
+complexity of a model and the amount of training data needed to train
+it.  Since data is often limited, in practice it is often useful to
+use a less-complex model with higher bias, that is  a model whose asymptotic
+performance is worse than another model because it is easier to
+train and less sensitive to sampling noise arising from having a
+finite-sized training dataset (smaller variance). 
+
+
+
+The above equations tell us that in
+order to minimize the expected validation error, we need to select a
+statistical learning method that simultaneously achieves low variance
+and low bias. Note that variance is inherently a nonnegative quantity,
+and squared bias is also nonnegative. Hence, we see that the expected
+validation MSE can never lie below $Var(\epsilon)$, the irreducible error.
+
+
+What do we mean by the variance and bias of a statistical learning
+method? The variance refers to the amount by which our model would change if we
+estimated it using a different training data set. Since the training
+data are used to fit the statistical learning method, different
+training data sets  will result in a different estimate. But ideally the
+estimate for our model should not vary too much between training
+sets. However, if a method has high variance  then small changes in
+the training data can result in large changes in the model. In general, more
+flexible statistical methods have higher variance.
+
+
+!split 
+===== Model validation =====
+
+Let us summarize the basic recipe for applying a supervise machine-learning model:
+
+  o Choose a class of models
+  o Choose model hyperparameters
+  o Fit the model to the training data
+  o Use the model for predictions
+
+In our examples so far, the class of models has been linear regression models with polynomial basis functions. Hyperparameters then correspond to the choice of polynomial dagree, or it can correspond to the Ridge regularization factor $\lambda$ if we use this technique. 
+
+In order to make an informed choice for these hyperparameters we need to validate that our model and its hyperparameters provide a good fit to the data. This important step is typically known as *model validation*, and it most often involves splitting the data into two sets: the training set and the validation set. 
+
+The model is then trained on the first set of data, while it is validated (by computing your choice of performance score) on the validation set.
+
+!bquestion
+Why is it important not to train and evaluate the model on the same data?
+!equestion
+
+
+!split 
+===== Cross-validation =====
+
+Cross-validation is a strategy to find model hyperparameters that yield a model with good prediction
+performance. A common practice is to hold back some subset of the data from the training of the model and then use this holdout set to check the model performance. The splitting of data can be performed using the the `train_test_split` utility in Scikit-Learn.
+
+One of these two data sets, called the 
+*training set*, plays the role of _original_ data on which the model is
+built. The second of these data sets, called the *validation set*, plays the
+role of the _novel_ data and is used to evaluate the prediction
+performance (often operationalized as the log-likelihood or the
+prediction error: MSE or R2 score) of the model built on the training data set. This
+procedure (model building and prediction evaluation on training and
+validation set, respectively) is done for a collection of possible choices for the hyperparameters. The parameter that yields the model with
+the best prediction performance is to be preferred. 
+
+!split
+The validation set approach is conceptually simple and is easy to implement. But it has two potential drawbacks:
+
+* The validation estimate of the validation error rate can be highly variable, depending on precisely which observations are included in the training set and which observations are included in the validation set. There might be data points that are critical for training the model, and the performance metric will be very bad if those happen to be excluded from the training set.
+
+* In the validation approach, only a subset of the observations, those that are included in the training set rather than in the validation set are used to fit the model. Since statistical methods tend to perform worse when trained on fewer observations, this suggests that the validation set error rate may tend to overestimate the validation error rate for the model fit on the entire data set.
+
+!split 
+To reduce the sensitivity on a particular data split, one can use perform several different splits. For each split the model is fit using the training data and
+evaluated on the corresponding validation set. The hyperparameter that performs best on average (in some sense) is then selected.
+
+
+!split 
+===== $k$-fold cross validation cross-validation =====
+
+When the repetitive splitting of the data set is done randomly,
+samples may accidently end up in a fast majority of the splits in
+either training or validation set. Such samples may have an unbalanced
+influence on either model building or prediction evaluation. To avoid
+this $k$-fold cross-validation is an approach to structure the data splitting. The
+samples are divided into $k$ more or less equally sized, exhaustive and
+mutually exclusive subsets. In turn (at each split) one of these
+subsets plays the role of the validation set while the union of the
+remaining subsets constitutes the training set. Such a splitting
+warrants a balanced representation of each sample in both training and
+validation set over the splits. Still the division into the $k$ subsets
+involves a degree of randomness. This may be fully excluded when
+choosing $k=n$. This particular case is referred to as leave-one-out
+cross-validation (LOOCV). 
+
+!split 
+===== How to set up cross-validation =====
+
+* Define a range of interest for the  model hyperparameter(s) $\lambda$.
+
+* Divide the data set $\mathcal{D} = \{1, \ldots, n\}$ into $k$ exhaustive and mutually exclusive subsets $\mathcal{D}_{i} \subset \mathcal{D}$ for $i=1,\ldots,k$, and $\mathcal{D}_{i} \cap \mathcal{D}_{j} = \emptyset$ for $i \neq j$.
+
+* For $i \in \{1, \ldots, k\}$:
+  
+  * Define $\mathcal{D}_{i}$ as the validation set and $\mathcal{D}_{-i} = \mathcal{D} - \mathcal{D}_i$ as the training set.
+  
+  * Fit the model for each choice of the hyperparameter using the training set, which will give a best fit $\bm{\theta}_{-i}(\lambda)$.
+
+  * Evaluate the prediction performance of these models on the validation set by the MAE, MSE, or the R2 score function. 
+
+* Average the prediction performances of the validation sets at each grid point of the hyperparameter by computing the *cross-validated error*. It is an estimate of the prediction performance of the model corresponding to this value of the penalty parameter on novel data. For example, using the MSE measure it is defined as
+!bt
+\begin{align*}
+\mathrm{CV}_k(\lambda) \equiv
+\frac{1}{k} \sum_{i = 1}^k \mathrm{MSE} \left( \bm{\theta}_{-i}(\lambda) \right).
+\end{align*}
+!et
+
+* The value of the hyperparameter that minimizes the cross-validated error is the value of choice. 
+
+
+!split
+======= Gradient-descent optimization =======
+
+With the linear regression model we could find the best fit parameters using the normal equation. Although we could encounter problems associated with inverting a matrix, we do in principle have a closed-form expression for the model parameters.
+
+In general, the problem of optimizing the model parameters is a very difficult one. We will return to the optimization problem later in this course, but will just briefly introduce the most common class of optimization algorithms: *Gradient dDscent* methods. The general idea of Gradient Descent is to tweak parameters iteratively in order to minimize a cost function.
+
+Let us start with a cost function for our model such as the chi-squared function that was introduced in the Linear Regression lecture:
+
+!bt
+\[
+\chi^2(\bm{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\bm{y}-\bm{\tilde{y}}\right)^T \bm{\Sigma}^{-1}\left(\bm{y}-\bm{\tilde{y}}\right)\right\},
+\]
+!et
+
+Instead of finding a matrix equation for the vector $\bm{\theta}$ that minimizes this measure we will describe an iterative procedure:
+
+* Make a *random initialization* of the parameter vector $\bm{\theta}_0$.
+
+* Compute the gradient of the cost function with respect to the parameters (note that this can be done analytically for the linear regression model). Let us denote this gradient vector $\bm{\nabla} \chi^2$.
+
+* Once you have the gradient vector, which points uphill, just go in the opposite direction to go downhill. This means subtracting $\eta \bm{\nabla} \chi^2$ from $\bm{\theta}_0$. Note that the magnitude of the step, $\eta$ is known as the learning rate.
+
+* Continue this process iteratively until the gradient vector is close to zero.
+
+Gradient descent is a general optimization algorithm. However, there are several important issues that should be known before using it:
+
+o It requires the computation of partial derivatives of the cost function. This is straight-forward for the linear regression method, but can be difficult for other models. The use of *automatic differentiation* is very popular in the ML community,and is well worth exploring. 
+
+o In principle, gradient descent works well for convex cost functions, i.e. where the gradient will eventually direct you to the position of the global minimum. Again, the linear regression problem is favorable because you can show that the cost function has that property. However, most cost functions---in particular in many dimensions---correspond to very *complicated surfaces with many local minima*. In those cases, gradient descent is often not a good method.
+
+There are variations of gradient descent that uses only fractions of the training set for computation of the gradient. In particular, stochastic gradient descent and mini-batch gradient descent.
+
+!split
+===== Learning curves =====
+
+The performance of your model will depend on the amount of data that is used for training. When using iterative optimization approaches, such as gradient descent, it will also depend on the number of training iterations. In order to monitor this dependence one usually plots *learning curves*.
+
+Learning curves are plots of the model's performance on both the training and the validation sets, measured by some performance metric such as the mean squared error. This measure is plotted as a function of the size of the training set, or alternatively as a function of the training iterations.
+
+FIGURE: [fig/learning_curve.png, width=600 frac=0.8] Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. label{fig-learning_curve}
+
+Several features in the left-hand panel deserves to be mentioned:
+
+o  The performance on the training set starts at zero when only 1-2 data are in the training set.
+o  The error on the training set then increases steadily as more data is added. 
+o  It finally reaches a plateau.
+o  The validation error is initially very high, but reaches a plateau that is very close to the training error.
+
+The learning curves in the right hand panel are similar to the underfitting model; but there are some important differences:
+
+o  The training error is much smaller than with the linear model.
+o  There is no clear plateau.
+o  There is a gap between the curves, which implies that the model performs significantly better on the training data than on the validation set.
+
+Both these examples that we have just studied demonstrate again the so called *bias-variance tradeoff*.
+
+*  A high bias model has a relatively large error, most probably due to wrong assumptions about the data features.
+*  A high variance model is excessively sensitive to small variations in the training data.
+*  The irreducible error is due to the noisiness of the data itself. It can only be reduced by obtaining better data.
+
+We seek a more systematic way of distinguishing between under- and overfitting models, and for quantification of the different kinds of errors. We will find that _Bayesian statistics_ has the promise to deliver on that ultimate goal.
+
