@@ -1699,3 +1699,47 @@ copying after regex "start bayesian setup" until "end bayesian setup"
 copying after regex "start plotting" until "end plotting"
      file: src/coinflipping.py, lines 32-42 (format: pycod)
 output in BayesianBasics-bs.html
+translating doconce text in BayesianBasics.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/coinflipping.py, lines 2-4 (format: pycod)
+copying after regex "start simulation" until "end simulation"
+     file: src/coinflipping.py, lines 9-13 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/coinflipping.py, lines 16-29 (format: pycod)
+copying after regex "start plotting" until "end plotting"
+     file: src/coinflipping.py, lines 32-42 (format: pycod)
+output in BayesianBasics-reveal.html
+translating doconce text in BayesianBasics.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/coinflipping.py, lines 2-4 (format: pycod)
+copying after regex "start simulation" until "end simulation"
+     file: src/coinflipping.py, lines 9-13 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/coinflipping.py, lines 16-29 (format: pycod)
+copying after regex "start plotting" until "end plotting"
+     file: src/coinflipping.py, lines 32-42 (format: pycod)
+output in BayesianBasics.tex
+translating doconce text in BayesianBasics.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/coinflipping.py, lines 2-4 (format: pycod)
+copying after regex "start simulation" until "end simulation"
+     file: src/coinflipping.py, lines 9-13 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/coinflipping.py, lines 16-29 (format: pycod)
+copying after regex "start plotting" until "end plotting"
+     file: src/coinflipping.py, lines 32-42 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianBasics-src.tar.gz which must be distributed with the notebook
+output in BayesianBasics.ipynb
+translating doconce text in BayesianBasics.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/coinflipping.py, lines 2-4 (format: pycod)
+copying after regex "start simulation" until "end simulation"
+     file: src/coinflipping.py, lines 9-13 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/coinflipping.py, lines 16-29 (format: pycod)
+copying after regex "start plotting" until "end plotting"
+     file: src/coinflipping.py, lines 32-42 (format: pycod)
+output in BayesianBasics-bs.html
