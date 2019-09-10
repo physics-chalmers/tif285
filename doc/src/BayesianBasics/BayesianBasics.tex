@@ -159,6 +159,9 @@ commentstyle={},
 
 \setcounter{tocdepth}{2}  % levels in table of contents
 
+%\VerbatimFootnotes must come after hyperref and footmisc packages
+\VerbatimFootnotes
+
 % Tricks for having figures close to where they are defined:
 % 1. define less restrictive rules for where to put figures
 \setcounter{topnumber}{2}
@@ -399,7 +402,7 @@ Learning from data: Basics of Bayesian Statistics
 
 % --- begin date ---
 \begin{center}
-Sep 9, 2019
+Sep 10, 2019
 \end{center}
 % --- end date ---
 
@@ -407,7 +410,7 @@ Sep 9, 2019
 
 
 % !split
-\subsection{How do you feel about statistics?}
+\section{How do you feel about statistics?}
 % !bpop
 
 \begin{block_mdfboxadmon}[]
@@ -454,7 +457,8 @@ Bayesian Methods: rules of statistical inference are an application of the laws 
 
 % !split
 \subsection{Inference}
-% !bpop
+
+\begin{block_mdfboxadmon}[]
 \begin{itemize}
  \item Deductive inference. Cause $\to$ Effect. 
 
@@ -472,7 +476,9 @@ Bayesian Methods: rules of statistical inference are an application of the laws 
 \end{itemize}
 
 \noindent
-% !epop
+\end{block_mdfboxadmon} % title: 
+
+
 
 % !split
 \subsection{Some history}
@@ -530,7 +536,7 @@ Faced with the realization that the frequency definition of probability theory d
 
 
 % !split
-\subsection{Probability density functions (pdf:s)}
+\section{Probability density functions (pdf:s)}
 
 \begin{block_mdfboxadmon}[]
 
@@ -552,7 +558,220 @@ Faced with the realization that the frequency definition of probability theory d
 
 
 % !split
-\subsection{The Bayesian recipe}
+% ======= pdfs =======
+% !split
+\subsection{Properties of PDFs}
+
+\begin{block_mdfboxadmon}[]
+
+There are two properties that all PDFs must satisfy. The first one is
+positivity (assuming that the PDF is normalized)
+
+\begin{equation*}
+0 \leq p(x).
+\end{equation*}
+Naturally, it would be nonsensical for any of the values of the domain
+to occur with a probability less than $0$. Also,
+the PDF must be normalized. That is, all the probabilities must add up
+to unity.  The probability of ``anything'' to happen is always unity. For
+discrete and continuous PDFs, respectively, this condition is
+\begin{align*}
+\sum_{x_i\in\mathbb D} p(x_i) & =  1,\\
+\int_{x\in\mathbb D} p(x)\,dx & =  1.
+\end{align*}
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\subsection{Important distributions, the uniform distribution}
+
+\begin{block_mdfboxadmon}[]
+Let us consider some important, univariate distributions.
+The first one
+is the most basic PDF; namely the uniform distribution
+\begin{equation}
+p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
+\label{eq:unifromPDF}
+\end{equation}
+For $a=0$ and $b=1$ we have 
+\[
+p(x) = \left\{
+\begin{array}{ll}
+1 & x \in [0,1],\\
+0 & \mathrm{otherwise}
+\end{array}
+\right.
+\]
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\subsection{Gaussian distribution}
+
+\begin{block_mdfboxadmon}[]
+The second one is the univariate Gaussian Distribution
+\begin{equation*}
+p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
+\end{equation*}
+with mean value $\mu$ and standard deviation $\sigma$. If $\mu=0$ and $\sigma=1$, it is normally called the \textbf{standard normal distribution}
+\begin{equation*}
+p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
+\end{equation*}
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+\subsection{Expectation values}
+
+\begin{block_mdfboxadmon}[]
+Let $h(x)$ be an arbitrary continuous function on the domain of the stochastic
+variable $X$ whose PDF is $p(x)$. We define the \emph{expectation value}
+of $h$ with respect to $p$ as follows
+
+\begin{equation}
+\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+\label{eq:expectation_value_of_h_wrt_p}
+\end{equation}
+Whenever the PDF is known implicitly, like in this case, we will drop
+the index $X$ for clarity.  
+A particularly useful class of special expectation values are the
+\emph{moments}. The $n$-th moment of the PDF $p$ is defined as
+follows
+\begin{equation*}
+\langle x^n \rangle \equiv \int\! x^n p(x)\,dx
+\end{equation*}
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\subsection{Stochastic variables and the main concepts, mean values}
+
+\begin{block_mdfboxadmon}[]
+The zero-th moment $\langle 1\rangle$ is just the normalization condition of
+$p$. The first moment, $\langle x\rangle$, is called the \emph{mean} of $p$
+and often denoted by the letter $\mu$
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \int x p(x)dx,
+\end{equation*}
+for a continuous distribution and 
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),
+\end{equation*}
+for a discrete distribution. 
+Qualitatively it represents the centroid or the average value of the
+PDF and is therefore simply called the expectation value of $p(x)$.
+\end{block_mdfboxadmon} % title: 
+
+
+
+% !split
+\subsection{Mean, median, average}
+
+\begin{block_mdfboxadmon}[]
+The values of the \textbf{mode}, \textbf{mean}, \textbf{median} can all be used as point estimates for the "probable" value of $x$. For some pdfs, they will all be the same.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+\begin{figure}[!ht]  % 
+  \centerline{\includegraphics[width=1.0\linewidth]{fig/pdfs.png}}
+  \caption{
+  The 68\%/95% probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.
+  }
+\end{figure}
+%\clearpage % flush figures 
+
+
+% !split
+\subsection{Stochastic variables and the main concepts, central moments, the variance}
+
+\begin{block_mdfboxadmon}[]
+
+A special version of the moments is the set of \emph{central moments}, the n-th central moment defined as
+\begin{equation*}
+\langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\end{equation*}
+The zero-th and first central moments are both trivial, equal $1$ and
+$0$, respectively. But the second central moment, known as the
+\emph{variance} of $p$, is of particular interest. For the stochastic
+variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{Var}(X)$
+\begin{align*}
+\sigma^2_X &=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
+\int (x-\langle x\rangle)^2 p(x)dx\\
+& =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\\
+& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2 \rangle - \langle x\rangle^2
+\end{align*}
+The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the 
+\textbf{standard deviation} of $p$. It is the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the ``spread'' of $p$ around its mean.
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+
+% !split
+\subsection{Probability Distribution Functions}
+
+\begin{block_mdfboxadmon}[]
+
+The following table collects properties of probability distribution functions.
+In our notation we reserve the label $p(x)$ for the probability of a certain event,
+while $P(x)$ is the cumulative probability. 
+
+
+
+
+\begin{tabular}{lcc}
+\hline
+\multicolumn{1}{c}{  } & \multicolumn{1}{c}{ Discrete PDF } & \multicolumn{1}{c}{ Continuous PDF } \\
+\hline
+Domain        & $\left\{x_1, x_2, x_3, \dots, x_N\right\}$ & $[a,b]$                              \\
+Probability   & $p(x_i)$                                   & $p(x)dx$                             \\
+Cumulative    & $P_i=\sum_{l=1}^ip(x_l)$                   & $P(x)=\int_a^xp(t)dt$                \\
+Positivity    & $0 \le p(x_i) \le 1$                       & $p(x) \ge 0$                         \\
+Positivity    & $0 \le P_i \le 1$                          & $0 \le P(x) \le 1$                   \\
+Monotonic     & $P_i \ge P_j$ if $x_i \ge x_j$             & $P(x_i) \ge P(x_j)$ if $x_i \ge x_j$ \\
+Normalization & $P_N=1$                                    & $P(b)=1$                             \\
+\hline
+\end{tabular}
+
+
+\noindent
+\end{block_mdfboxadmon} % title: 
+
+
+
+
+% !split
+\subsection{Quick introduction to  \texttt{scipy.stats} }
+If you google \texttt{scipy.stats}, you'll likely get the manual page as the first hit: \href{{https://docs.scipy.org/doc/scipy/reference/stats.html}}{https://docs.scipy.org/doc/scipy/reference/stats.html}. Here you'll find a long list of the continuous and discrete distributions that are available, followed (scroll way down) by many different methods (functions) to extract properties of a distribution (called Summary Statistics) and do many other statistical tasks.
+
+Follow the link for any of the distributions (your choice!) to find its mathematical definition, some examples of how to use it, and a list of methods. Some methods of interest to us here:
+
+\begin{itemize}
+ \item \texttt{mean()} - Mean of the distribution.
+
+ \item \texttt{median()} - Median of the distribution.
+
+ \item \texttt{pdf(x)} - Value of the probability density function at x.
+
+ \item \texttt{rvs(size=numpts)} - generate numpts random values of the pdf.
+
+ \item \texttt{interval(alpha)} - Endpoints of the range that contains alpha percent of the distribution.
+\end{itemize}
+
+\noindent
+% !split
+\section{The Bayesian recipe}
 
 \begin{block_mdfboxadmon}[]
 Assess hypotheses by calculating their probabilities $p(H_i | \ldots)$ conditional on known and/or presumed information using the rules of probability theory.
@@ -709,7 +928,7 @@ We perform the setup of this Bayesian framework on the computer.
 \begin{lstlisting}[language=Python,style=blue1]
 def prior(pH):
     p=np.zeros_like(pH)
-    p[(0<=x)&(x<=1)]=1      # allowed range: 0<=pH<=1
+    p[(0<=pH)&(pH<=1)]=1      # allowed range: 0<=pH<=1
     return p                # uniform prior
 def likelihood(pH,data):
     N = len(data)
@@ -725,13 +944,13 @@ def posterior(pH,data):
 The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig.~\ref{fig:coinflipping}. 
 
 \begin{lstlisting}[language=Python,style=blue1]
-x=np.linspace(0,1,1000)
+pH=np.linspace(0,1,1000)
 fig, axs = plt.subplots(nrows=4,ncols=3,sharex=True,sharey='row',figsize=(14,14))
 axs_vec=np.reshape(axs,-1)
-axs_vec[0].plot(x,prior(x))
+axs_vec[0].plot(pH,prior(pH))
 for ndouble in range(11):
     ax=axs_vec[1+ndouble]
-    ax.plot(x,posterior(x,heads[:2**ndouble]))
+    ax.plot(pH,posterior(pH,heads[:2**ndouble]))
     ax.text(0.1, 0.8, '$N={0}$'.format(2**ndouble), transform=ax.transAxes)
 for row in range(4): axs[row,0].set_ylabel('$p(p_H|D_\mathrm{obs},I)$')
 for col in range(3): axs[-1,col].set_xlabel('$p_H$')

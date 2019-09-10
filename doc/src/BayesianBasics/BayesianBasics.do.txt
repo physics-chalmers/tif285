@@ -4,7 +4,7 @@ DATE: today
 
 
 !split
-===== How do you feel about statistics?  =====
+======= How do you feel about statistics?  =======
 !bpop
 !bblock
 Disraeli (attr.): 
@@ -39,13 +39,13 @@ Bayesian Methods: rules of statistical inference are an application of the laws 
 
 !split
 ===== Inference  =====
-!bpop
+!bblock
 *  Deductive inference. Cause $\to$ Effect. 
 *  Inference to best explanation. Effect $\to$ Cause. 
 *  Scientists need a way to:
    *  Quantify the strength of inductive inferences;
    *  Update that quantification as they acquire new data.
-!epop
+!eblock
 
 !split
 ===== Some history =====
@@ -84,7 +84,7 @@ Faced with the realization that the frequency definition of probability theory d
 !equote
 
 !split
-===== Probability density functions (pdf:s) =====
+======= Probability density functions (pdf:s) =======
 !bblock
 
 *  $p(A|B)$ reads “probability of $A$ given $B$”
@@ -95,7 +95,11 @@ Faced with the realization that the frequency definition of probability theory d
 !eblock
 
 !split
-===== The Bayesian recipe =====
+#======= pdfs =======
+# #include "pdfs.do.txt"
+
+!split
+======= The Bayesian recipe =======
 !bblock
 Assess hypotheses by calculating their probabilities $p(H_i | \ldots)$ conditional on known and/or presumed information using the rules of probability theory.
 !eblock
