@@ -1,0 +1,189 @@
+!split
+===== Properties of PDFs =====
+!bblock
+
+There are two properties that all PDFs must satisfy. The first one is
+positivity (assuming that the PDF is normalized)
+
+!bt
+\begin{equation*}
+0 \leq p(x).
+\end{equation*}
+!et
+Naturally, it would be nonsensical for any of the values of the domain
+to occur with a probability less than $0$. Also,
+the PDF must be normalized. That is, all the probabilities must add up
+to unity.  The probability of ``anything'' to happen is always unity. For
+discrete and continuous PDFs, respectively, this condition is
+!bt
+\begin{align*}
+\sum_{x_i\in\mathbb D} p(x_i) & =  1,\\
+\int_{x\in\mathbb D} p(x)\,dx & =  1.
+\end{align*}
+!et
+!eblock
+
+!split
+===== Important distributions, the uniform distribution =====
+!bblock
+Let us consider some important, univariate distributions.
+The first one
+is the most basic PDF; namely the uniform distribution
+!bt
+\begin{equation}
+p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
+label{eq:unifromPDF}
+\end{equation}
+!et
+For $a=0$ and $b=1$ we have 
+!bt
+\[
+p(x) = \left\{
+\begin{array}{ll}
+1 & x \in [0,1],\\
+0 & \mathrm{otherwise}
+\end{array}
+\right.
+\]
+!et
+!eblock
+
+!split
+===== Gaussian distribution =====
+!bblock
+The second one is the univariate Gaussian Distribution
+!bt
+\begin{equation*}
+p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
+\end{equation*}
+!et
+with mean value $\mu$ and standard deviation $\sigma$. If $\mu=0$ and $\sigma=1$, it is normally called the _standard normal distribution_
+!bt
+\begin{equation*}
+p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
+\end{equation*}
+!et
+!eblock
+
+
+!split
+===== Expectation values =====
+!bblock
+Let $h(x)$ be an arbitrary continuous function on the domain of the stochastic
+variable $X$ whose PDF is $p(x)$. We define the *expectation value*
+of $h$ with respect to $p$ as follows
+
+!bt
+\begin{equation}
+\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+label{eq:expectation_value_of_h_wrt_p}
+\end{equation}
+!et
+Whenever the PDF is known implicitly, like in this case, we will drop
+the index $X$ for clarity.  
+A particularly useful class of special expectation values are the
+*moments*. The $n$-th moment of the PDF $p$ is defined as
+follows
+!bt
+\begin{equation*}
+\langle x^n \rangle \equiv \int\! x^n p(x)\,dx
+\end{equation*}
+!et
+!eblock
+
+!split
+===== Stochastic variables and the main concepts, mean values =====
+!bblock
+The zero-th moment $\langle 1\rangle$ is just the normalization condition of
+$p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
+and often denoted by the letter $\mu$
+!bt
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \int x p(x)dx,
+\end{equation*}
+!et
+for a continuous distribution and 
+!bt
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),
+\end{equation*}
+!et
+for a discrete distribution. 
+Qualitatively it represents the centroid or the average value of the
+PDF and is therefore simply called the expectation value of $p(x)$.
+!eblock
+
+!split
+===== Mean, median, average =====
+!bblock
+The values of the _mode_, _mean_, _median_ can all be used as point estimates for the "probable" value of $x$. For some pdfs, they will all be the same.
+!eblock
+
+FIGURE: [fig/pdfs.png, width=800 frac=1.0] The 68%/95% probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.
+
+!split
+===== Stochastic variables and the main concepts, central moments, the variance =====
+!bblock
+
+A special version of the moments is the set of *central moments*, the n-th central moment defined as
+!bt
+\begin{equation*}
+\langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\end{equation*}
+!et
+The zero-th and first central moments are both trivial, equal $1$ and
+$0$, respectively. But the second central moment, known as the
+*variance* of $p$, is of particular interest. For the stochastic
+variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{Var}(X)$
+!bt
+\begin{align*}
+\sigma^2_X &=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
+\int (x-\langle x\rangle)^2 p(x)dx\\
+& =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\\
+& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2 \rangle - \langle x\rangle^2
+\end{align*}
+!et
+The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the 
+_standard deviation_ of $p$. It is the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the ``spread'' of $p$ around its mean.
+!eblock
+
+
+
+!split
+===== Probability Distribution Functions =====
+!bblock
+
+The following table collects properties of probability distribution functions.
+In our notation we reserve the label $p(x)$ for the probability of a certain event,
+while $P(x)$ is the cumulative probability. 
+
+
+|--------------------------------------------------------------------------------------------------------------------------------------|
+|                                            | Discrete PDF                               | Continuous PDF                             |
+|---------------------l-------------------------------------------c-------------------------------------------c------------------------|
+| Domain                                     | $\left\{x_1, x_2, x_3, \dots, x_N\right\}$ | $[a,b]$                                    |
+| Probability                                | $p(x_i)$                                   | $p(x)dx$                                   |
+| Cumulative                                 | $P_i=\sum_{l=1}^ip(x_l)$                   | $P(x)=\int_a^xp(t)dt$                      |
+| Positivity                                 | $0 \le p(x_i) \le 1$                      | $p(x) \ge 0$                              |
+| Positivity                                 | $0 \le P_i \le 1$                         | $0 \le P(x) \le 1$                        |
+| Monotonic                                  | $P_i \ge P_j$ if $x_i \ge x_j$             | $P(x_i) \ge P(x_j)$ if $x_i \ge x_j$       |
+| Normalization                              | $P_N=1$                                    | $P(b)=1$                                   |
+|--------------------------------------------------------------------------------------------------------------------------------------|
+
+!eblock
+     
+
+!split
+===== Quick introduction to  `scipy.stats` =====
+If you google `scipy.stats`, you'll likely get the manual page as the first hit: "https://docs.scipy.org/doc/scipy/reference/stats.html":"https://docs.scipy.org/doc/scipy/reference/stats.html". Here you'll find a long list of the continuous and discrete distributions that are available, followed (scroll way down) by many different methods (functions) to extract properties of a distribution (called Summary Statistics) and do many other statistical tasks.
+
+Follow the link for any of the distributions (your choice!) to find its mathematical definition, some examples of how to use it, and a list of methods. Some methods of interest to us here:
+
+*  `mean()` - Mean of the distribution.
+*  `median()` - Median of the distribution.
+*  `pdf(x)` - Value of the probability density function at x.
+*  `rvs(size=numpts)` - generate numpts random values of the pdf.
+*  `interval(alpha)` - Endpoints of the range that contains alpha percent of the distribution.
