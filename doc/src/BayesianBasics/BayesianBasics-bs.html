@@ -67,7 +67,8 @@ Automatically generated HTML file from DocOnce source
               ('The Bayesian recipe', 1, None, '___sec13'),
               ("Bayes' theorem", 2, None, '___sec14'),
               ("The friends of Bayes' theorem", 2, None, '___sec15'),
-              ('Example: Is this a fair coin?', 2, None, '___sec16')]}
+              ('Example: Is this a fair coin?', 1, None, '___sec16'),
+              ('Take aways: Coin tossing', 1, None, '___sec17')]}
 end of tocinfo -->
 
 <body>
@@ -121,7 +122,8 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;"><b>The Bayesian recipe</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Bayes' theorem</a></li>
      <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The friends of Bayes' theorem</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Example: Is this a fair coin?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;"><b>Example: Is this a fair coin?</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;"><b>Take aways: Coin tossing</b></a></li>
 
         </ul>
       </li>
@@ -154,7 +156,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 11, 2019</h4></center> <!-- date -->
+<center><h4>Sep 12, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -686,14 +688,16 @@ Marginalization is a very powerful device in data analysis because it enables us
 <p>
 <!-- !split -->
 
-<h2 id="___sec16" class="anchor">Example: Is this a fair coin? </h2>
+<h1 id="___sec16" class="anchor">Example: Is this a fair coin? </h1>
 Let us begin with the analysis of data from a simple coin-tossing experiment. 
 Given that we had observed 6 heads in 8 flips, would you think it was a fair coin? By fair, we mean that we would be prepared to lay an even 1 : 1 bet on the outcome of a flip being a head or a tail. If we decide that the coin was fair, the question which follows naturally is how sure are we that this was so; if it was not fair, how unfair do we think it was? Furthermore, if we were to continue collecting data for this particular coin, observing the outcomes of additional flips, how would we update our belief on the fairness of the coin?
 
 <p>
+<!-- !split -->
 A sensible way of formulating this problem is to consider a large number of hypotheses about the range in which the bias-weighting of the coin might lie. If we denote the bias-weighting by \( p_H \), then \( p_H = 0 \) and \( p_H = 1 \) can represent a coin which produces a tail or a head on every flip, respectively. There is a continuum of possibilities for the value of \( p_H \) between these limits, with \( p_H = 0.5 \) indicating a fair coin. Our state of knowledge about the fairness, or the degree of unfairness, of the coin is then completely summarized by specifying how much we believe these various propositions to be true.
 
 <p>
+<!-- !split -->
 Let us perform a computer simulation of a coin-tossing experiment. This provides the data that we will be analysing.
 
 <p>
@@ -711,9 +715,11 @@ flips<span style="color: #666666">=</span>np<span style="color: #666666">.</span
 heads<span style="color: #666666">=</span>flips<span style="color: #666666">&lt;</span>pH              <span style="color: #408080; font-style: italic"># boolean array, heads[i]=True if flip i is heads</span>
 </pre></div>
 <p>
+<!-- !split -->
 In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: \( p(p_H|D,I) \). This is, of course, shorthand for the limiting case of a continuum of propositions for the value of \( p_H \); that is to say, the probability that \( p_H \) lies in an infinitesimally narrow range is given by \( p(p_H|D,I) dp_H \).
 
 <p>
+<!-- !split -->
 To estimate this posterior pdf, we need to use Bayes&#8217; theorem \eqref{eq:bayes}. We will ignore the denominator \( p(D|I) \) as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition 
 $$
 \begin{equation}
@@ -723,6 +729,7 @@ $$
 $$
 
 <p>
+<!-- !split -->
 The prior pdf, \( p(p_H|I) \), represents what we know about the coin given only the information \( I \) that we are dealing with a &#8216;strange coin&#8217;. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior
 $$
 \begin{equation}
@@ -737,6 +744,7 @@ $$
 We will get back later to the choice of prior and its effect on the analysis.
 
 <p>
+<!-- !split -->
 This prior state of knowledge, or ignorance, is modified by the data through the likelihood function \( p(D|p_H,I) \). It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information \( I \), we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses' is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
 $$
 \begin{equation}
@@ -745,9 +753,12 @@ p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 \end{equation}
 $$
 
+<p>
+<!-- !split -->
 It seems reasonable because \( p_H \) is the chance of obtaining a head on any flip, and there were \( H \) of them, and \( 1-p_H \) is the corresponding probability for a tail, of which there were \( N-H \). We note that this binomial distribution also contains a normalization factor, but we will ignore it since it does not depend explicitly on \( p_H \), the quantity of interest. It will be absorbed by the normalization condition \eqref{eq:coin_posterior_norm}.
 
 <p>
+<!-- !split -->
 We perform the setup of this Bayesian framework on the computer.
 
 <p>
@@ -768,6 +779,7 @@ We perform the setup of this Bayesian framework on the computer.
     <span style="color: #008000; font-weight: bold">return</span> p<span style="color: #666666">/</span>norm
 </pre></div>
 <p>
+<!-- !split -->
 The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a href="#fig:coinflipping">2</a>.
 
 <p>
@@ -785,6 +797,9 @@ axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</sp
 <span style="color: #008000; font-weight: bold">for</span> col <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">3</span>): axs[<span style="color: #666666">-1</span>,col]<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&#39;$p_H$&#39;</span>)
 </pre></div>
 <p>
+<!-- !split -->
+
+<p>
 <center> <!-- figure label: --> <div id="fig:coinflipping"></div> <!-- FIGURE -->
 <hr class="figure">
 <center><p class="caption">Figure 2:  The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis.  <!-- caption label: fig:coinflipping --> </p></center>
@@ -792,13 +807,44 @@ axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</sp
 </center>
 
 <p>
+<!-- !split -->
 The panel in the top left-hand corner shows the posterior pdf for \( p_H \) given no data, i.e., it is the same as the prior pdf of Eq. \eqref{eq:coin_prior_uniform}. It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.
 
 <p>
+<!-- !split -->
 The first flip is obviously tails. At this point we have no evidence that the coin has a side with heads, as indicated by the pdf going to zero as \( p_H \to 1 \). The second flip is obviously heads and we have now excluded both extreme options \( p_H=0 \) (double-tailed) and \( p_H=1 \) (double-headed). We can note that the posterior at this point has the simple form \( p(p_H|D,I) = p_H(1-p_H) \) for \( 0 \le p_H \le 1 \).
 
 <p>
+<!-- !split -->
 The remainder of Fig. <a href="#fig:coinflipping">2</a> shows how the posterior pdf evolves as the number of data analysed becomes larger and larger. We see that the position of the maximum moves around, but that the amount by which it does so decreases with the increasing number of observations. The width of the posterior pdf also becomes narrower with more data, indicating that we are becoming increasingly confident in our estimate of the bias-weighting. For the coin in this example, the best estimate of \( p_H \) eventually converges to 0.6, which, of course, was the value chosen to simulate the flips.
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec17" class="anchor">Take aways: Coin tossing </h1>
+
+<p>
+<!-- !bpop -->
+
+<ul>
+<li> The Bayesian posterior \( p(p_H | D, I) \) is proportional to the product of the prior and the likelihood (which is given by a binomial distribution in this case).</li>
+<li> We can do this analysis sequentially (updating the prior after each toss and then adding new data; but don't use the same data more than once!). Or we can analyze all data at once.</li> 
+<li> Why (and when) are these two approaches equivalent, and why should we not use the same data more than once?</li>
+</ul>
+
+<!-- !epop -->
+
+<p>
+<!-- !split -->
+<!-- !bpop -->
+
+<ul>
+<li> Possible point estimates for the value of \( p_H \) could be the maximum (mode), mean, or median of this posterior pdf.</li> 
+<li> Bayesian p% degree-of-belief (DoB) intervals correspond to ranges in which we would give a p% odds of finding the true value for \( p_H \) based on the data and the information that we have.</li>
+<li> The frequentist point estimate is \( p_H^* = \frac{H}{N} \). It actually corresponds to one of the point estimates from the Bayesian analysis for a specific prior? Which point estimate and which prior?</li>
+</ul>
+
+<!-- !epop -->
 
 <!-- ------------------- end of main content --------------- -->
 
