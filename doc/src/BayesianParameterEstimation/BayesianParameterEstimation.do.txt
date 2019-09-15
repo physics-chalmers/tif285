@@ -1,0 +1,239 @@
+TITLE: Learning from data: Bayesian Parameter Estimation
+AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+DATE: today
+
+
+!split
+===== Inference With Parametric Models  =====
+!bblock
+Inductive inference with parametric models is a very important tool in the natural sciences.
+* Consider $N$ different models $M_i$ ($i = 1, \ldots, N$), each with parameters $\boldsymbol{\theta}_i$. Each of them implies a sampling distribution for possible data
+
+!bt
+\[
+p(D|\boldsymbol{\theta}_i, M_i)
+\]
+!et
+
+* The likelihood function is the pdf of the actual, observed data ($D_\mathrm{obs}$) given a set of parameters $\boldsymbol{\theta}_i$:
+!bt
+\[
+\mathcal{L}_i (\boldsymbol{\theta}_i) \equiv p(D_\mathrm{obs}|\boldsymbol{\theta}_i, M_i)
+\]
+!et
+* We may be uncertain about $M_i$ (model uncertainty),
+* or uncertain about $\boldsymbol{\theta}_i$ (parameter uncertainty).
+!eblock
+
+!split
+!bblock
+- Parameter Estimation: Premise = We have chosen a model (say $M_1$)<linebreak>
+  $\Rightarrow$ What can we say about its parameters $\boldsymbol{\theta}_1$?
+  
+- Model comparison: Premise = We have a set of different models $\{M_i\}$<linebreak> 
+  $\Rightarrow$ How do they compare with each other? Do we have evidence to say that, e.g. $M_1$, is better than the other models?
+  
+- Model adequacy: Premise = We have a model $M_1$<linebreak> 
+  $\Rightarrow$ Is $M_1$ adequate?
+  
+- Hybrid Uncertainty: Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$<linebreak>
+  $\Rightarrow$ What can we say about $\boldsymbol{\varphi}$? (Systematic error is an example)
+!eblock
+
+!split
+===== Parameter estimation  =====
+!bblock
+Overview comments:
+* In general terms, ``parameter estimation'' in physics means obtaining values for parameters (constants) that appear in a theoretical model which describes data (exceptions to this general definition exist of course).
+* Conventionally this process is known as ``parameter fitting'' and the goal is to find the ``best fit''.
+* We will make particular interpretations of these phrases from our Bayesian point of view.
+* We will also see how familiar ideas like ``least-squares optimization'' show up from a Bayesian perspective.
+!eblock
+
+!split
+FIGURE:[fig/m1m2.png, width=400 frac=0.8] Gravitational wave data analysis showing the pdf for the masses of the two black holes merging. label{fig:gw}
+
+
+!split
+===== Bayesian parameter estimation =====
+!bblock
+We will now consider the very important task of model parameter estimation using statistical inference. 
+
+Let us first remind ourselves what can go wrong in a fit. We have encountered both _underfitting_ (model is not complex enough to describe the variability in the data) and _overfitting_ (model tunes to data fluctuations, or terms are underdetermined causing them playing off each other). Bayesian methods can prevent/identify both these situations.
+!eblock
+
+!split
+#===== Example: Measured flux from a star (single parameter) =====
+# #include "ExampleSinglePhotonCount.do.txt"
+
+!split
+===== Example: Gaussian noise and averages =====
+The first example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from $M$ measurements $D \in \{ x_k \}_{k=0}^{M-1}$ that should be distributed according to a normal distribution $p( D | \mu,\sigma,I)$?
+
+!split
+Start from Bayes theorem
+!bt
+\[
+p(\mu,\sigma | D, I) = \frac{p(D|\mu,\sigma,I) p(\mu,\sigma|I)}{p(D|I)}
+\]
+!et 
+* Remind yourself about the names of the different terms.
+* It should become intuitive.
+* Bayes theorem tells you how to flip from (hard) $p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I)$ (easy).
+
+!split
+Aside on the denominator, which is known as the ``data probability'' or ``marginalized likelihood'' or ``evidence''. 
+* With $\theta$ denoting a general vector of parameters we must have
+!bt
+\[
+p(D|I) = \int d\theta p(D|\theta,I) p(\theta|I).
+\]
+!et
+* This integration (or marginalization) over all parameters is often difficult to perform.
+* Fortunately, for _parameter estimation_ we don't need $p(D|I)$ since it doesn't depend on $\theta$. We usually only need relative probabilities, or we can normalize the unnormalized posterior 
+!bt
+\[
+p(\theta | D,I) \propto p(D|\theta,I) p(\theta|I)
+\]
+!et
+when we have computed it.
+
+!split
+If we use a uniform prior $p(\theta | I ) \propto 1$ (in a finite volume), then the posterior is proportional to the _likelihood_
+!bt
+\[
+p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(D,\theta)
+\]
+!et
+In this particular situation, the mode of the likelihood (which would correspond to the point estimate of maximum likelihood) is equivalent to the mode of the posterior pdf in the Bayesian analysis.
+
+!split
+The real use of the prior, however, is to include additional information that you might have into the analysis. The prior makes these additional assumptions very explicit.
+
+But how do we actually compute the posterior in practice. Most often we won't be able to get an analytical expression, but we can sample the distribution using a method known as Markov Chain Monte Carlo (MCMC).
+
+!split
+===== Example: Fitting a straight line =====
+The second example in the demonstration notebook is the fit of a straight line.
+
+* Here the theoretical model is
+!bt
+\[
+y_\mathrm{th}(x; \theta) = m x + b,
+\]
+!et
+with parameters $\theta = [b,m]$.
+
+* The statistical model for the data is
+!bt
+\[
+y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp},
+\]
+!et
+where we often assume that the experimental errors are independent and normally distributed so that
+!bt
+\[
+y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
+\]
+!et
+
+* Is independent errors a good approximation?
+* An even better statistical model for finite resolution models would be
+!bt
+\[
+y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
+\]
+!et
+
+!split
+=== Why normal distributions? ===
+Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf $p(\theta | D,I)$. Our best estimate from this pdf will be $\theta_0$ where
+!bt
+\[ 
+\left. 
+\frac{ \partial p }{ \partial \theta }
+\right|_{\theta_0} = 0, \qquad
+\left. \frac{ \partial^2 p }{ \partial \theta^2 }
+\right|_{\theta_0} < 0.
+\]
+!et
+The distribution usually varies very rapidly so we study $L(\theta) \equiv \log p$ instead.
+Near the peak, it behaves as
+!bt
+\[
+L(\theta) = L(\theta_0) + \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2 + \ldots,
+\]
+!et
+where the first-order term is zero since we are expanding around a maximum and $\partial L / \partial\theta = 0$.
+
+!split
+If we neglect higher-order terms we find that 
+!bt
+\[
+p(\theta|D,I) \approx A \exp \left[ \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2  \right],
+\]
+!et
+which is a Gaussian $\mathcal{N}(\mu,\sigma^2)$ with
+!bt
+\[
+\mu = \theta_0, \qquad \sigma^2 = \left( - \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \right)^{-1/2}.
+\]
+!et
+
+!split
+===== Confidence intervals =====
+Rather than point estimates it is better to provide a confidence interval for the parameter(s)
+
+!bblock
+A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+!eblock
+
+!split
+!bblock
+A frequentist 95% confidence interval should be understood as follows: 
+``There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations''. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data. 
+
+Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter. 
+!eblock
+
+!split
+Some issues with confidence intervals:
+!bblock
+If the distribution is symmetric, then it is clear how to define the interval: Just start from the center, then step outward adding probability area and stop when you have reached $d \%$.
+!eblock
+
+!bblock
+What if the distribution is asymmetric or multimodal? 
+* Equal-tailed interval: the probability area above and below the interval are equal.
+* Highest posterior density (HPD) interval: The posterior density for any point within the interval is larger than the posterior density for any point outside the interval.
+!eblock
+
+!split
+===== Correlations =====
+In the ``fitting a straight-line'' example you should have seen that the joint pdf for the slope and the intercept $[m, b]$ corresponds to a slanted ellipses. That means that the parameters are _correlated_.
+
+A Taylor expansion for a pdf $p(x,y)$ around the mode $(x_0,y_0)$ gives
+!bt
+\[
+p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
+H
+\begin{pmatrix} x-x_0 \\ y-y_0 \end{pmatrix},
+\]
+!et
+where $H$ is the symmetric Hessian matrix
+!bt
+\[
+\begin{pmatrix}
+A & C \\ C & B
+\end{pmatrix}, \qquad 
+A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
+B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
+C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
+\]
+!et
+
+!split
+* So in this quadratic approximation the contour is an ellipse centered at $(x_0,y_0)$ with orientation and eccentricity determined by $A,B,C$.
+* The principal axes are found from the eigenvectors of $H$.
+* Depending on the skewness of the ellipse, the parameters are either not correlated, correlated, or anticorrelated.
+* Take a minute to consider what that implies?
