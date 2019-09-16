@@ -40,12 +40,12 @@ Automatically generated HTML file from DocOnce source
 </head>
 
 <!-- tocinfo
-{'highest level': 2,
- 'sections': [('Inference With Parametric Models', 2, None, '___sec0'),
+{'highest level': 1,
+ 'sections': [('Inference With Parametric Models', 1, None, '___sec0'),
               ('Parameter estimation', 2, None, '___sec1'),
               ('Bayesian parameter estimation', 2, None, '___sec2'),
               ('Example: Measured flux from a star (single parameter)',
-               2,
+               1,
                None,
                '___sec3'),
               ('Simple Photon Counts: Frequentist Approach',
@@ -58,16 +58,22 @@ Automatically generated HTML file from DocOnce source
                3,
                None,
                '___sec7'),
-              ('Best estimates and confidence intervals', 3, None, '___sec8'),
+              ('Aside: Best estimates and confidence intervals',
+               2,
+               None,
+               '___sec8'),
+              ('Symmetric posterior pdfs', 3, None, '___sec9'),
+              ('Asymmetric posterior pdfs', 3, None, '___sec10'),
+              ('Multimodal posterior pdfs', 3, None, '___sec11'),
+              ('Different views on confidence intervals', 3, None, '___sec12'),
               ('Simple Photon Counts: Best estimates and confidence intervals',
                3,
                None,
-               '___sec9'),
-              ('Example: Gaussian noise and averages', 2, None, '___sec10'),
-              ('Example: Fitting a straight line', 2, None, '___sec11'),
-              ('Why normal distributions?', 3, None, '___sec12'),
-              ('Confidence intervals', 2, None, '___sec13'),
-              ('Correlations', 2, None, '___sec14')]}
+               '___sec13'),
+              ('Example: Gaussian noise and averages', 1, None, '___sec14'),
+              ('Example: Fitting a straight line', 1, None, '___sec15'),
+              ('Why normal distributions?', 3, None, '___sec16'),
+              ('Correlations', 2, None, '___sec17')]}
 end of tocinfo -->
 
 <body>
@@ -106,20 +112,23 @@ MathJax.Hub.Config({
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Inference With Parametric Models</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;"><b>Parameter estimation</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;"><b>Bayesian parameter estimation</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Parameter estimation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Bayesian parameter estimation</a></li>
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;"><b>Example: Measured flux from a star (single parameter)</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Simple Photon Counts: Frequentist Approach</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian Approach</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;A note about priors</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian approach in practice</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Best estimates and confidence intervals</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Simple Photon Counts: Best estimates and confidence intervals</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;"><b>Example: Gaussian noise and averages</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;"><b>Example: Fitting a straight line</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Why normal distributions?</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;"><b>Confidence intervals</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;"><b>Correlations</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Frequentist Approach</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian Approach</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A note about priors</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian approach in practice</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Aside: Best estimates and confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Symmetric posterior pdfs</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asymmetric posterior pdfs</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimodal posterior pdfs</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Different views on confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Best estimates and confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;"><b>Example: Gaussian noise and averages</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;"><b>Example: Fitting a straight line</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Why normal distributions?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Correlations</a></li>
 
         </ul>
       </li>
@@ -152,7 +161,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 15, 2019</h4></center> <!-- date -->
+<center><h4>Sep 16, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -160,7 +169,17 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 
-<h2 id="___sec0" class="anchor">Inference With Parametric Models  </h2>
+<p>
+<center> <!-- figure label: --> <div id="fig:gw"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot.  <!-- caption label: fig:gw --> </p></center>
+<p><img src="fig/m1m2.png" align="bottom" width=400></p>
+</center>
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec0" class="anchor">Inference With Parametric Models  </h1>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -238,16 +257,6 @@ Overview comments:
 <p>
 <!-- !split -->
 
-<p>
-<center> <!-- figure label: --> <div id="fig:gw"></div> <!-- FIGURE -->
-<hr class="figure">
-<center><p class="caption">Figure 1:  Gravitational wave data analysis showing the pdf for the masses of the two black holes merging.  <!-- caption label: fig:gw --> </p></center>
-<p><img src="fig/m1m2.png" align="bottom" width=400></p>
-</center>
-
-<p>
-<!-- !split -->
-
 <h2 id="___sec2" class="anchor">Bayesian parameter estimation </h2>
 <div class="panel panel-default">
 <div class="panel-body">
@@ -262,17 +271,17 @@ Let us first remind ourselves what can go wrong in a fit. We have encountered bo
 
 <p>
 <!-- !split -->
-<!-- ===== Example: Measured flux from a star (single parameter)  <div id="___sec3"></div>===== -->
+<!-- ===== Example: Measured flux from a star (single parameter) ===== -->
 
-<h2>Example: Measured flux from a star (single parameter)</h2>
+<h1 id="___sec3" class="anchor">Example: Measured flux from a star (single parameter) </h1>
 Adapted from the blog <a href="http://jakevdp.github.io" target="_self">Pythonic Perambulations</a> by Jake VanderPlas.
 
 <p>
-Imagine that we point our telescope to the sky, and observe the light coming from a single star. Our physics model will be that the star's true flux is constant with time, i.e. that is it has a fixed value \( F_\mathrm{true} \) (we'll also ignore effects like sky noise and other sources of systematic error). Thus, we have a single model parameter: \( F_\mathrm{true} \).
+Imagine that we point our telescope to the sky, and observe the light coming from a single star. Our physics model will be that the star's true flux is constant with time, i.e. that  it has a fixed value \( F_\mathrm{true} \) (we'll also ignore effects like sky noise and other sources of systematic error). Thus, we have a single model parameter: \( F_\mathrm{true} \).
 
 <p>
 We'll assume that we perform a series of \( N \) measurements with our telescope, where the i:th measurement reports an observed photon flux \( F_i \) and is accompanied by an error model given by \( e_i \) <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, \( e_i \) is the standard deviation of the results of a single measurement event in the limit of repetitions of that event. In the Bayesian perspective, \( e_i \) is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>.
-The question is, given this set of measurements \( D = \{F_i\} \), and the statistical model \( F_i = F_\mathrm{true} + e_i \), what is our best estimate of the true flux \( F_\mathrm{true} \)?
+The question is, given this set of measurements \( D = \{F_i\}_{i=0}^{N-1} \), and the statistical model \( F_i = F_\mathrm{true} + e_i \), what is our best estimate of the true flux \( F_\mathrm{true} \)?
 
 <p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, \( e_i \) is the standard deviation of the results of a single measurement event in the limit of repetitions of <em>that event</em>. In the Bayesian perspective, \( e_i \) is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.</p>
 
@@ -304,8 +313,8 @@ Now let's make a simple visualization of the &quot;observed&quot; data, see Fig.
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>fig, ax <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots()
-ax<span style="color: #666666">.</span>errorbar(F, np<span style="color: #666666">.</span>arange(N), xerr<span style="color: #666666">=</span>e, fmt<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ok&#39;</span>, ecolor<span style="color: #666666">=</span><span style="color: #BA2121">&#39;gray&#39;</span>, theta<span style="color: #666666">=0.5</span>)
-ax<span style="color: #666666">.</span>vlines([F_true], <span style="color: #666666">0</span>, N, linewidth<span style="color: #666666">=5</span>, theta<span style="color: #666666">=0.2</span>)
+ax<span style="color: #666666">.</span>errorbar(F, np<span style="color: #666666">.</span>arange(N), xerr<span style="color: #666666">=</span>e, fmt<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ok&#39;</span>, ecolor<span style="color: #666666">=</span><span style="color: #BA2121">&#39;gray&#39;</span>, alpha<span style="color: #666666">=0.5</span>)
+ax<span style="color: #666666">.</span>vlines([F_true], <span style="color: #666666">0</span>, N, linewidth<span style="color: #666666">=5</span>, alpha<span style="color: #666666">=0.2</span>)
 ax<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&quot;Flux&quot;</span>);ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&quot;measurement number&quot;</span>);
 </pre></div>
 <p>
@@ -338,7 +347,7 @@ equals ...&quot;. You should recognize this as a normal distribution with mean \
 We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point
 $$
 \begin{equation}
-\mathcal{L}(D | F_\mathrm{true}, I) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
+\mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \label{_auto2}
 \end{equation}
 $$
@@ -411,10 +420,9 @@ These results are fairly simple calculations; let's evaluate them for our toy da
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>w<span style="color: #666666">=1./</span>e<span style="color: #666666">**2</span>
-<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;&quot;&quot;</span>
-<span style="color: #BA2121">F_true = {0}</span>
-<span style="color: #BA2121">F_est = {1:.0f} +/- {2:.0f} (based on {3} measurements) &quot;&quot;&quot;</span>\ 
-          <span style="color: #666666">.</span>format(F_true, (w <span style="color: #666666">*</span> F)<span style="color: #666666">.</span>sum() <span style="color: #666666">/</span> w<span style="color: #666666">.</span>sum(), w<span style="color: #666666">.</span>sum() <span style="color: #666666">**</span> <span style="color: #666666">-0.5</span>, N))
+<span style="color: #008000; font-weight: bold">print</span>(f<span style="color: #BA2121">&quot;&quot;&quot;</span>
+<span style="color: #BA2121">F_true = {F_true}</span>
+<span style="color: #BA2121">F_est = {(w * F).sum() / w.sum():.0f} +/- { w.sum() ** -0.5:.0f} (based on {N} measurements) &quot;&quot;&quot;</span>)
 </pre></div>
 <p>
 <code>F_true = 1000</code> <br />
@@ -425,13 +433,13 @@ We find that for 50 measurements of the flux, our estimate has an error of about
 
 <h3 id="___sec5" class="anchor">Simple Photon Counts: Bayesian Approach </h3>
 
-The Bayesian approach, as you might expect, begins and ends with probabilities. Our hypothesis is that the star has a constant flux \( F_\mathrm{true} \). It recognizes that what we fundamentally want to compute is our knowledge of the parameters in question given the data and other information (such as our knowledge of uncertainties for the observed values), i.e. in this case, \( p(F_\mathrm{true} | D,I) \).
+The Bayesian approach, as you might expect, begins and ends with probabilities. Our hypothesis is that the star has a constant flux \( F_\mathrm{true} \). It recognizes that what we fundamentally want to compute is our knowledge of the parameter in question given the data and other information (such as our knowledge of uncertainties for the observed values), i.e. in this case, \( p(F_\mathrm{true} | D,I) \).
 Note that this formulation of the problem is fundamentally contrary to the frequentist philosophy, which says that probabilities have no meaning for model parameters like \( F_\mathrm{true} \). Nevertheless, within the Bayesian philosophy this is perfectly acceptable.
 
 <p>
-To compute this result, Bayesians next apply Bayes' Theorem.
+To compute this pdf, Bayesians next apply Bayes' Theorem.
 If we set the prior \( p(F_\mathrm{true}|I) \propto 1 \) (a flat prior), we find
-\( p(F_\mathrm{true}|D,I) \propto p(D | F_\mathrm{true},I) \equiv \mathcal{L}(D | F_\mathrm{true},I) \)
+\( p(F_\mathrm{true}|D,I) \propto p(D | F_\mathrm{true},I) \equiv \mathcal{L}(F_\mathrm{true}) \)
 and the Bayesian probability is maximized at precisely the same value as the frequentist result! So despite the philosophical differences, we see that (for this simple problem at least) the Bayesian and frequentist point estimates are equivalent.
 
 <h3 id="___sec6" class="anchor">A note about priors </h3>
@@ -450,7 +458,10 @@ To perform this MCMC, we start by defining Python functions for the prior \( p(F
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">log_prior</span>(theta):
-    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span> <span style="color: #408080; font-style: italic"># flat prior</span>
+    <span style="color: #008000; font-weight: bold">if</span> theta<span style="color: #666666">&gt;0</span> <span style="color: #AA22FF; font-weight: bold">and</span> theta<span style="color: #666666">&lt;10000</span>:
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span> <span style="color: #408080; font-style: italic"># flat prior</span>
+    <span style="color: #008000; font-weight: bold">else</span>:
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-</span>np<span style="color: #666666">.</span>inf
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">log_likelihood</span>(theta, F, e):
     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">-0.5</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>sum(np<span style="color: #666666">.</span>log(<span style="color: #666666">2</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>pi <span style="color: #666666">*</span> e <span style="color: #666666">**</span> <span style="color: #666666">2</span>) \ 
@@ -484,9 +495,9 @@ If this all worked correctly, the array sample should contain a series of 50,000
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>fig, ax <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots()
-ax<span style="color: #666666">.</span>hist(samples, bins<span style="color: #666666">=50</span>, histtype<span style="color: #666666">=</span><span style="color: #BA2121">&quot;stepfilled&quot;</span>, theta<span style="color: #666666">=0.3</span>, normed<span style="color: #666666">=</span><span style="color: #008000">True</span>)
+ax<span style="color: #666666">.</span>hist(samples, bins<span style="color: #666666">=50</span>, histtype<span style="color: #666666">=</span><span style="color: #BA2121">&quot;stepfilled&quot;</span>, alpha<span style="color: #666666">=0.3</span>, density<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 ax<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">r&#39;$F_\mathrm{est}$&#39;</span>)
-ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">r&#39;$p(F_\mathrm{est}|D,I)$&#39;</span>)
+ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">r&#39;$p(F_\mathrm{est}|D,I)$&#39;</span>);
 </pre></div>
 <p>
 <center> <!-- figure label: --> <div id="fig:flux-bayesian"></div> <!-- FIGURE -->
@@ -495,45 +506,101 @@ ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">r
 <p><img src="fig/singlephotoncount_fig_2.png" align="bottom" width=400></p>
 </center>
 
-<h3 id="___sec8" class="anchor">Best estimates and confidence intervals </h3>
+<p>
+<!-- !split -->
 
+<h2 id="___sec8" class="anchor">Aside: Best estimates and confidence intervals </h2>
 The posterior distribution from our Bayesian data analysis is the key quantity that encodes our inference about the values of the model parameters, given the data and the relevant background information. Often, however, we wish to summarize this result with just a few numbers: the best estimate and a measure of its reliability.
 
 <p>
 There are a few different options for this. The choice of the most appropriate one depends mainly on the shape of the posterior distribution:
 
 <p>
-<em>Symmetric posterior pdfs</em>: Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by \( X \), with a posterior pdf \( P =p(X|D,I) \), then the best estimate of its value \( X_0 \) is given by the condition \( dP/dX|_{X=X_0}=0 \). Strictly speaking, we should also check the sign of the second derivative to ensure that \( X_0 \) represents a maximum.
+<!-- !split -->
+
+<h3 id="___sec9" class="anchor">Symmetric posterior pdfs </h3>
+
+Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by \( \theta \), with a posterior pdf \( P =p(\theta|D,I) \), then the best estimate of its value \( \theta_0 \) is given by the condition \( dP/d\theta|_{\theta=\theta_0}=0 \). Strictly speaking, we should also check the sign of the second derivative to ensure that \( \theta_0 \) represents a maximum.
 
 <p>
-To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about \( X_0 \). When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation
+To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about \( \theta_0 \). When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)
 $$
 \begin{equation}
-p(X|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(x-\mu)^2}{2\sigma^2} \right],
+p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \label{_auto8}
 \end{equation}
 $$
 
-where the mean \( \mu = X_0 \) and the variance \( \sigma = \left( - \left. \frac{d^2L}{dX^2} \right|_{X_0} \right)^{-1/2} \), where \( L \) is the logarithm of the posterior \( P \). Our inference about the quantity of interest is conveyed very concisely, therefore, by the statement \( X = X_0 \pm \sigma \), and 
+where the mean \( \mu = \theta_0 \) and the variance \( \sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2} \), where \( L \) is the logarithm of the posterior \( P \). Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian confidence interval \( \theta = \theta_0 \pm \sigma \), and 
 $$
-p(X_0-\sigma < X < X_0+\sigma | D,I) = \int_{X_0-\sigma}^{X_0+\sigma} p(X|D,I) dX \approx 0.67.
+p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
 $$
 
 <p>
-<em>Asymmetric posterior pdfs</em>: While the maximum of the posterior (\( X_0 \)) can still be regarded as giving the best estimate, the true value is now more likely to be on one side of this rather than the other. Alternatively one can compute the mean value, \( \langle X \rangle = \int X p(X|D,I) dX \), although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensamble.
+<!-- !split -->
+
+<h3 id="___sec10" class="anchor">Asymmetric posterior pdfs </h3>
+
+While the maximum of the posterior (\( \theta_0 \)) can still be regarded as giving the best estimate, the true value is now more likely to be on one side of this rather than the other. Alternatively one can compute the mean value, \( \langle \theta \rangle = \int \theta p(\theta|D,I) d\theta \), although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
 <p>
-Furthermore, the concept of an error-bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>confidence interval</em>. Since the area under the posterior pdf between \( X_1 \) and \( X_2 \) is proportional to how much we believe that \( X \) lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find \( X_1 \) and \( X_2 \) such that: 
+Furthermore, the concept of an error-bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>confidence interval</em>. Since the area under the posterior pdf between \( \theta_1 \) and \( \theta_2 \) is proportional to how much we believe that \( \theta \) lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find \( \theta_1 \) and \( \theta_2 \) such that: 
 $$
-p(X_1 < X < X_2 | D,I) = \int_{X_1}^{X_2} p(X|D,I) dX \approx 0.67, 
+p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
 $$
 
-where the difference \( X_2 - X_1 \) is as small as possible. The region \( X_1 < X < X_2 \) is then called the shortest 67% confidence interval.
+where the difference \( \theta_2 - \theta_1 \) is as small as possible. The region \( \theta_1 < \theta < \theta_2 \) is then called the shortest 67% confidence interval.
 
 <p>
-<em>Multimodal posterior pdfs</em>: We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a confidence interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can&#8217;t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint confidence intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
+<!-- !split -->
 
-<h3 id="___sec9" class="anchor">Simple Photon Counts: Best estimates and confidence intervals </h3>
+<h3 id="___sec11" class="anchor">Multimodal posterior pdfs </h3>
+
+We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a confidence interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can&#8217;t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint confidence intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
+
+<p>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Two options for assigning credible intervals to asymmetric and multimodal pdfs:
+
+<ul>
+<li> Equal-tailed interval: the probability area above and below the interval are equal.</li>
+<li> Highest posterior density (HPD) interval: The posterior density for any point within the interval is larger than the posterior density for any point outside the interval.</li>
+</ul>
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h3 id="___sec12" class="anchor">Different views on confidence intervals </h3>
+
+<p>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is \( d \% \) probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+A frequentist 95% confidence interval should be understood as follows: 
+&quot;There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations&quot;. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data.
+
+<p>
+Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.
+</div>
+</div>
+
+
+<h3 id="___sec13" class="anchor">Simple Photon Counts: Best estimates and confidence intervals </h3>
 
 To compute these numbers for our example, you would run:
 
@@ -541,16 +608,14 @@ To compute these numbers for our example, you would run:
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sampper<span style="color: #666666">=</span>np<span style="color: #666666">.</span>percentile(samples, [<span style="color: #666666">2.5</span>, <span style="color: #666666">16.5</span>, <span style="color: #666666">50</span>, <span style="color: #666666">83.5</span>, <span style="color: #666666">97.5</span>],axis<span style="color: #666666">=0</span>)<span style="color: #666666">.</span>flatten()
-<span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;&quot;&quot;</span>
-<span style="color: #BA2121">F_true = {0}</span>
-<span style="color: #BA2121">Based on {1} measurements the posterior point estimates are:</span>
-<span style="color: #BA2121">...F_est = {2:.0f} +/- {3:.0f}</span>
+<span style="color: #008000; font-weight: bold">print</span>(f<span style="color: #BA2121">&quot;&quot;&quot;</span>
+<span style="color: #BA2121">F_true = {F_true}</span>
+<span style="color: #BA2121">Based on {N} measurements the posterior point estimates are:</span>
+<span style="color: #BA2121">...F_est = { np.mean(samples):.0f} +/- { np.std(samples):.0f}</span>
 <span style="color: #BA2121">or using credibility intervals:</span>
-<span style="color: #BA2121">...F_est = {4:.0f}          (posterior median) </span>
-<span style="color: #BA2121">...F_est in [{5:.0f}, {6:.0f}] (67</span><span style="color: #BB6688; font-weight: bold">% c</span><span style="color: #BA2121">redibility interval) </span>
-<span style="color: #BA2121">...F_est in [{7:.0f}, {8:.0f}] (95</span><span style="color: #BB6688; font-weight: bold">% c</span><span style="color: #BA2121">redibility interval) &quot;&quot;&quot;</span>\ 
-          <span style="color: #666666">.</span>format(F_true, N, np<span style="color: #666666">.</span>mean(samples), np<span style="color: #666666">.</span>std(samples), \ 
-                      sampper[<span style="color: #666666">2</span>], sampper[<span style="color: #666666">1</span>], sampper[<span style="color: #666666">3</span>], sampper[<span style="color: #666666">0</span>], sampper[<span style="color: #666666">4</span>]))
+<span style="color: #BA2121">...F_est = {sampper[2]:.0f}          (posterior median) </span>
+<span style="color: #BA2121">...F_est in [{sampper[1]:.0f}, {sampper[3]:.0f}] (67</span><span style="color: #BB6688; font-weight: bold">% c</span><span style="color: #BA2121">redibility interval) </span>
+<span style="color: #BA2121">...F_est in [{sampper[0]:.0f}, {sampper[4]:.0f}] (95</span><span style="color: #BB6688; font-weight: bold">% c</span><span style="color: #BA2121">redibility interval) &quot;&quot;&quot;</span>)
 </pre></div>
 <p>
 <code>F_true = 1000</code> <br />
@@ -573,8 +638,8 @@ Furthermore, as data and models grow in complexity, the two approaches can diver
 <p>
 <!-- !split -->
 
-<h2 id="___sec10" class="anchor">Example: Gaussian noise and averages </h2>
-The first example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from \( M \) measurements \( D \in \{ x_k \}_{k=0}^{M-1} \) that should be distributed according to a normal distribution \( p( D | \mu,\sigma,I) \)?
+<h1 id="___sec14" class="anchor">Example: Gaussian noise and averages </h1>
+The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from \( M \) measurements \( D \in \{ x_k \}_{k=0}^{M-1} \) that should be distributed according to a normal distribution \( p( D | \mu,\sigma,I) \)?
 
 <p>
 <!-- !split -->
@@ -586,8 +651,8 @@ $$
 
 <ul>
 <li> Remind yourself about the names of the different terms.</li>
-<li> It should become intuitive.</li>
-<li> Bayes theorem tells you how to flip from (hard) \( p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I) \) (easy).</li>
+<li> It should become intuitive what the different probabilities (pdfs) describe.</li>
+<li> Bayes theorem tells you how to flip from (hard-to-compute) \( p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I) \) (easier-to-compute).</li>
 </ul>
 
 <!-- !split -->
@@ -604,27 +669,25 @@ $$
 
 <ul>
 <li> This integration (or marginalization) over all parameters is often difficult to perform.</li>
-<li> Fortunately, for <b>parameter estimation</b> we don't need \( p(D|I) \) since it doesn't depend on \( \theta \). We usually only need relative probabilities, or we can normalize the unnormalized posterior</li> 
+<li> Fortunately, for <b>parameter estimation</b> we don't need \( p(D|I) \) since it doesn't depend on \( \theta \). We usually only need relative probabilities, or we can determine the normalization \( N \) after we have computed the unnormalized posterior</li> 
 </ul>
 
 $$
-p(\theta | D,I) \propto p(D|\theta,I) p(\theta|I)
+p(\theta | D,I) = \frac{1}{N} p(D|\theta,I) p(\theta|I).
 $$
-
-when we have computed it.
 
 <p>
 <!-- !split -->
 If we use a uniform prior \( p(\theta | I ) \propto 1 \) (in a finite volume), then the posterior is proportional to the <b>likelihood</b>
 $$
-p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(D,\theta)
+p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(\theta)
 $$
 
 In this particular situation, the mode of the likelihood (which would correspond to the point estimate of maximum likelihood) is equivalent to the mode of the posterior pdf in the Bayesian analysis.
 
 <p>
 <!-- !split -->
-The real use of the prior, however, is to include additional information that you might have into the analysis. The prior makes these additional assumptions very explicit.
+The real use of the prior, however, is to include into the analysis any additional information that you might have. The prior statement makes such additional assumptions and information very explicit.
 
 <p>
 But how do we actually compute the posterior in practice. Most often we won't be able to get an analytical expression, but we can sample the distribution using a method known as Markov Chain Monte Carlo (MCMC).
@@ -632,8 +695,8 @@ But how do we actually compute the posterior in practice. Most often we won't be
 <p>
 <!-- !split -->
 
-<h2 id="___sec11" class="anchor">Example: Fitting a straight line </h2>
-The second example in the demonstration notebook is the fit of a straight line.
+<h1 id="___sec15" class="anchor">Example: Fitting a straight line </h1>
+The next example that we will study is the well known fit of a straight line.
 
 <ul>
 <li> Here the theoretical model is</li>
@@ -650,7 +713,7 @@ with parameters \( \theta = [b,m] \).
 </ul>
 
 $$
-y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp},
+y_{\mathrm{exp},i} = y_{\mathrm{th},i} + \delta y_{\mathrm{exp},i},
 $$
 
 where we often assume that the experimental errors are independent and normally distributed so that
@@ -660,8 +723,8 @@ $$
 
 
 <ul>
-<li> Is independent errors a good approximation?</li>
-<li> An even better statistical model for finite resolution models would be</li>
+<li> Is independent errors always a good approximation?</li>
+<li> An even better statistical model for theoretical models with a quantified, finite resolution would be</li>
 </ul>
 
 $$
@@ -671,7 +734,7 @@ $$
 <p>
 <!-- !split -->
 
-<h3 id="___sec12" class="anchor">Why normal distributions? </h3>
+<h3 id="___sec16" class="anchor">Why normal distributions? </h3>
 
 Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf \( p(\theta | D,I) \). Our best estimate from this pdf will be \( \theta_0 \) where
 $$ 
@@ -705,65 +768,15 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec13" class="anchor">Confidence intervals </h2>
-Rather than point estimates it is better to provide a confidence interval for the parameter(s)
-
-<p>
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is \( d \% \) probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
-</div>
-</div>
-
-
-<p>
-<!-- !split -->
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-A frequentist 95% confidence interval should be understood as follows: 
-&quot;There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations&quot;. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data.
-
-<p>
-Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.
-</div>
-</div>
-
-
-<p>
-<!-- !split -->
-Some issues with confidence intervals:
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-If the distribution is symmetric, then it is clear how to define the interval: Just start from the center, then step outward adding probability area and stop when you have reached \( d \% \).
-</div>
-</div>
-
-
-<p>
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-What if the distribution is asymmetric or multimodal? 
+<h2 id="___sec17" class="anchor">Correlations </h2>
+In the &quot;fitting a straight-line&quot; example you should find that the joint pdf for the slope and the intercept \( [m, b] \) corresponds to a slanted ellipse. That result implies that the model parameters are <b>correlated</b>.
 
 <ul>
-<li> Equal-tailed interval: the probability area above and below the interval are equal.</li>
-<li> Highest posterior density (HPD) interval: The posterior density for any point within the interval is larger than the posterior density for any point outside the interval.</li>
+<li> Try to understand the correlation that you find in this example.</li>
 </ul>
-</div>
-</div>
 
-
-<p>
-<!-- !split -->
-
-<h2 id="___sec14" class="anchor">Correlations </h2>
-In the &quot;fitting a straight-line&quot; example you should have seen that the joint pdf for the slope and the intercept \( [m, b] \) corresponds to a slanted ellipses. That means that the parameters are <b>correlated</b>.
-
-<p>
-A Taylor expansion for a pdf \( p(x,y) \) around the mode \( (x_0,y_0) \) gives
+Let us explore correlations by studying the behavior of the pdf at the maximum.
+A Taylor expansion for a bivariate pdf \( p(x,y) \) around the mode \( (x_0,y_0) \) gives
 $$
 p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
 H
@@ -774,7 +787,11 @@ where \( H \) is the symmetric Hessian matrix
 $$
 \begin{pmatrix}
 A & C \\ C & B
-\end{pmatrix}, \qquad 
+\end{pmatrix}, 
+$$
+
+with elements
+$$
 A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
 B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
 C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
@@ -786,8 +803,8 @@ $$
 <ul>
 <li> So in this quadratic approximation the contour is an ellipse centered at \( (x_0,y_0) \) with orientation and eccentricity determined by \( A,B,C \).</li>
 <li> The principal axes are found from the eigenvectors of \( H \).</li>
-<li> Depending on the skewness of the ellipse, the parameters are either not correlated, correlated, or anticorrelated.</li>
-<li> Take a minute to consider what that implies?</li>
+<li> Depending on the skewness of the ellipse, the parameters are either (i) not correlated, (ii) correlated, or (iii) anti-correlated.</li>
+<li> Take a minute to consider what that implies.</li>
 </ul>
 
 

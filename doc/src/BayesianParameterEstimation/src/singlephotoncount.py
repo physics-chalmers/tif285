@@ -18,8 +18,8 @@ e = np.sqrt(F)         # errors on Poisson counts estimated via square root
 
 # start visualize data
 fig, ax = plt.subplots()
-ax.errorbar(F, np.arange(N), xerr=e, fmt='ok', ecolor='gray', theta=0.5)
-ax.vlines([F_true], 0, N, linewidth=5, theta=0.2)
+ax.errorbar(F, np.arange(N), xerr=e, fmt='ok', ecolor='gray', alpha=0.5)
+ax.vlines([F_true], 0, N, linewidth=5, alpha=0.2)
 ax.set_xlabel("Flux");ax.set_ylabel("measurement number");
 # end visualize data
 
@@ -28,15 +28,17 @@ if savefig:
 
 # start frequentist
 w=1./e**2
-print("""
-F_true = {0}
-F_est = {1:.0f} +/- {2:.0f} (based on {3} measurements) """\
-          .format(F_true, (w * F).sum() / w.sum(), w.sum() ** -0.5, N))
+print(f"""
+F_true = {F_true}
+F_est = {(w * F).sum() / w.sum():.0f} +/- { w.sum() ** -0.5:.0f} (based on {N} measurements) """)
 # end frequentist
 
 # start bayesian setup
 def log_prior(theta):
-    return 0 # flat prior
+    if theta>0 and theta<10000:
+        return 0 # flat prior
+    else:
+        return -np.inf
 
 def log_likelihood(theta, F, e):
     return -0.5 * np.sum(np.log(2 * np.pi * e ** 2) \
@@ -62,9 +64,9 @@ samples = sampler.chain[:, nwarm:, :].reshape((-1, ndim))
 
 # start visualize bayesian
 fig, ax = plt.subplots()
-ax.hist(samples, bins=50, histtype="stepfilled", theta=0.3, normed=True)
+ax.hist(samples, bins=50, histtype="stepfilled", alpha=0.3, density=True)
 ax.set_xlabel(r'$F_\mathrm{est}$')
-ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$')
+ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$');
 # end visualize bayesian
 
 if savefig:
@@ -77,16 +79,14 @@ ax.plot(F_est, pdf, '-k')
 
 # start bayesian CI
 sampper=np.percentile(samples, [2.5, 16.5, 50, 83.5, 97.5],axis=0).flatten()
-print("""
-F_true = {0}
-Based on {1} measurements the posterior point estimates are:
-...F_est = {2:.0f} +/- {3:.0f}
+print(f"""
+F_true = {F_true}
+Based on {N} measurements the posterior point estimates are:
+...F_est = { np.mean(samples):.0f} +/- { np.std(samples):.0f}
 or using credibility intervals:
-...F_est = {4:.0f}          (posterior median) 
-...F_est in [{5:.0f}, {6:.0f}] (67% credibility interval) 
-...F_est in [{7:.0f}, {8:.0f}] (95% credibility interval) """\
-          .format(F_true, N, np.mean(samples), np.std(samples), \
-                      sampper[2], sampper[1], sampper[3], sampper[0], sampper[4]))
+...F_est = {sampper[2]:.0f}          (posterior median) 
+...F_est in [{sampper[1]:.0f}, {sampper[3]:.0f}] (67% credibility interval) 
+...F_est in [{sampper[0]:.0f}, {sampper[4]:.0f}] (95% credibility interval) """)
 # end bayesian CI
 
 if not savefig:

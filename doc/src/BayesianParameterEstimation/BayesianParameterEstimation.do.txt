@@ -4,7 +4,10 @@ DATE: today
 
 
 !split
-===== Inference With Parametric Models  =====
+FIGURE:[fig/m1m2.png, width=400 frac=0.8] Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. label{fig:gw}
+
+!split
+======= Inference With Parametric Models  =======
 !bblock
 Inductive inference with parametric models is a very important tool in the natural sciences.
 * Consider $N$ different models $M_i$ ($i = 1, \ldots, N$), each with parameters $\boldsymbol{\theta}_i$. Each of them implies a sampling distribution for possible data
@@ -50,9 +53,6 @@ Overview comments:
 * We will also see how familiar ideas like ``least-squares optimization'' show up from a Bayesian perspective.
 !eblock
 
-!split
-FIGURE:[fig/m1m2.png, width=400 frac=0.8] Gravitational wave data analysis showing the pdf for the masses of the two black holes merging. label{fig:gw}
-
 
 !split
 ===== Bayesian parameter estimation =====
@@ -67,8 +67,8 @@ Let us first remind ourselves what can go wrong in a fit. We have encountered bo
 # #include "ExampleSinglePhotonCount.do.txt"
 
 !split
-===== Example: Gaussian noise and averages =====
-The first example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from $M$ measurements $D \in \{ x_k \}_{k=0}^{M-1}$ that should be distributed according to a normal distribution $p( D | \mu,\sigma,I)$?
+======= Example: Gaussian noise and averages =======
+The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from $M$ measurements $D \in \{ x_k \}_{k=0}^{M-1}$ that should be distributed according to a normal distribution $p( D | \mu,\sigma,I)$?
 
 !split
 Start from Bayes theorem
@@ -78,8 +78,8 @@ p(\mu,\sigma | D, I) = \frac{p(D|\mu,\sigma,I) p(\mu,\sigma|I)}{p(D|I)}
 \]
 !et 
 * Remind yourself about the names of the different terms.
-* It should become intuitive.
-* Bayes theorem tells you how to flip from (hard) $p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I)$ (easy).
+* It should become intuitive what the different probabilities (pdfs) describe.
+* Bayes theorem tells you how to flip from (hard-to-compute) $p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I)$ (easier-to-compute).
 
 !split
 Aside on the denominator, which is known as the ``data probability'' or ``marginalized likelihood'' or ``evidence''. 
@@ -90,31 +90,30 @@ p(D|I) = \int d\theta p(D|\theta,I) p(\theta|I).
 \]
 !et
 * This integration (or marginalization) over all parameters is often difficult to perform.
-* Fortunately, for _parameter estimation_ we don't need $p(D|I)$ since it doesn't depend on $\theta$. We usually only need relative probabilities, or we can normalize the unnormalized posterior 
+* Fortunately, for _parameter estimation_ we don't need $p(D|I)$ since it doesn't depend on $\theta$. We usually only need relative probabilities, or we can determine the normalization $N$ after we have computed the unnormalized posterior 
 !bt
 \[
-p(\theta | D,I) \propto p(D|\theta,I) p(\theta|I)
+p(\theta | D,I) = \frac{1}{N} p(D|\theta,I) p(\theta|I).
 \]
 !et
-when we have computed it.
 
 !split
 If we use a uniform prior $p(\theta | I ) \propto 1$ (in a finite volume), then the posterior is proportional to the _likelihood_
 !bt
 \[
-p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(D,\theta)
+p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(\theta)
 \]
 !et
 In this particular situation, the mode of the likelihood (which would correspond to the point estimate of maximum likelihood) is equivalent to the mode of the posterior pdf in the Bayesian analysis.
 
 !split
-The real use of the prior, however, is to include additional information that you might have into the analysis. The prior makes these additional assumptions very explicit.
+The real use of the prior, however, is to include into the analysis any additional information that you might have. The prior statement makes such additional assumptions and information very explicit.
 
 But how do we actually compute the posterior in practice. Most often we won't be able to get an analytical expression, but we can sample the distribution using a method known as Markov Chain Monte Carlo (MCMC).
 
 !split
-===== Example: Fitting a straight line =====
-The second example in the demonstration notebook is the fit of a straight line.
+======= Example: Fitting a straight line =======
+The next example that we will study is the well known fit of a straight line.
 
 * Here the theoretical model is
 !bt
@@ -127,7 +126,7 @@ with parameters $\theta = [b,m]$.
 * The statistical model for the data is
 !bt
 \[
-y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp},
+y_{\mathrm{exp},i} = y_{\mathrm{th},i} + \delta y_{\mathrm{exp},i},
 \]
 !et
 where we often assume that the experimental errors are independent and normally distributed so that
@@ -137,8 +136,8 @@ y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 \]
 !et
 
-* Is independent errors a good approximation?
-* An even better statistical model for finite resolution models would be
+* Is independent errors always a good approximation?
+* An even better statistical model for theoretical models with a quantified, finite resolution would be
 !bt
 \[
 y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
@@ -181,38 +180,13 @@ which is a Gaussian $\mathcal{N}(\mu,\sigma^2)$ with
 !et
 
 !split
-===== Confidence intervals =====
-Rather than point estimates it is better to provide a confidence interval for the parameter(s)
-
-!bblock
-A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
-!eblock
-
-!split
-!bblock
-A frequentist 95% confidence interval should be understood as follows: 
-``There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations''. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data. 
-
-Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter. 
-!eblock
-
-!split
-Some issues with confidence intervals:
-!bblock
-If the distribution is symmetric, then it is clear how to define the interval: Just start from the center, then step outward adding probability area and stop when you have reached $d \%$.
-!eblock
-
-!bblock
-What if the distribution is asymmetric or multimodal? 
-* Equal-tailed interval: the probability area above and below the interval are equal.
-* Highest posterior density (HPD) interval: The posterior density for any point within the interval is larger than the posterior density for any point outside the interval.
-!eblock
-
-!split
 ===== Correlations =====
-In the ``fitting a straight-line'' example you should have seen that the joint pdf for the slope and the intercept $[m, b]$ corresponds to a slanted ellipses. That means that the parameters are _correlated_.
+In the ``fitting a straight-line'' example you should find that the joint pdf for the slope and the intercept $[m, b]$ corresponds to a slanted ellipse. That result implies that the model parameters are _correlated_.
 
-A Taylor expansion for a pdf $p(x,y)$ around the mode $(x_0,y_0)$ gives
+* Try to understand the correlation that you find in this example.
+
+Let us explore correlations by studying the behavior of the pdf at the maximum.
+A Taylor expansion for a bivariate pdf $p(x,y)$ around the mode $(x_0,y_0)$ gives
 !bt
 \[
 p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
@@ -225,15 +199,21 @@ where $H$ is the symmetric Hessian matrix
 \[
 \begin{pmatrix}
 A & C \\ C & B
-\end{pmatrix}, \qquad 
+\end{pmatrix}, 
+\]
+!et
+with elements
+!bt
+\[
 A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
 B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
 C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
 \]
 !et
 
+
 !split
 * So in this quadratic approximation the contour is an ellipse centered at $(x_0,y_0)$ with orientation and eccentricity determined by $A,B,C$.
 * The principal axes are found from the eigenvectors of $H$.
-* Depending on the skewness of the ellipse, the parameters are either not correlated, correlated, or anticorrelated.
-* Take a minute to consider what that implies?
+* Depending on the skewness of the ellipse, the parameters are either (i) not correlated, (ii) correlated, or (iii) anti-correlated.
+* Take a minute to consider what that implies.
