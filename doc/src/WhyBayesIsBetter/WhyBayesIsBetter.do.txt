@@ -1,0 +1,107 @@
+TITLE: Learning from data: Why Bayes is Better
+AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+DATE: today
+
+======= Why Bayes is Better (I) =======
+
+!split
+===== Quotes from one pioneering and one renaissance Bayesian authority =====
+Laplace:
+!bquote
+*"Probability theory is nothing but common sense reduced to calculation."*
+!equote
+
+Sivia
+!bquote
+*"Bayesian inference probabilities are a measure of our state of knowledge about nature, not a measure of nature itself."*
+!equote
+
+!split
+===== Advantages of the Bayesian approach =====
+!bpop
+o Provides an elegantly simple and rational approach for answering, in an optimal way, any scientific question for a given state of information. This contrasts to the recipe or cookbook approach of conventional statistical analysis. The procedure is well-defined:
+  * Clearly state your question and prior information.
+  * Apply the sum and product rules. The starting point is always Bayes’ theorem.
+o For some problems, a Bayesian analysis may simply lead to a familiar statistic. Even in this situation it often provides a powerful new insight concerning the interpretation of the statistic.
+o Incorporates relevant prior (e.g., known signal model or known theory model expansion) information through Bayes’ theorem. This is one of the great strengths of Bayesian analysis.
+  * For data with a small signal-to-noise ratio, a Bayesian analysis can frequently yield many orders of magnitude improvement in model parameter estimation, through the incorporation of relevant prior information about the signal model.
+o Provides a way of eliminating nuisance parameters through marginalization. For some problems, the marginalization can be performed analytically, permitting certain calculations to become computationally tractable.
+o Provides a way for incorporating the effects of systematic errors arising from both the measurement operation and theoretical model predictions.
+o Calculates probability of hypothesis directly: $p(H_i|D, I)$.
+o Provides a more powerful way of assessing competing theories at the forefront of science by automatically quantifying Occam’s razor.
+!epop
+
+The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.
+
+!split
+=== Occam's razor ===
+Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to "shave off" those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.
+
+!split
+FIGURE: [fig/Leprechaun_or_Clurichaun.png, width=500 frac=0.7] Did the Leprechaun drink your wine, or is there a simpler explanation?
+
+!split
+===== Nuisance parameters (I) =====
+See demonstration notebook: A Bayesian Billiard game
+
+!split
+===== Nuisance parameters (II): marginal distributions =====
+Assume that we have a model with two parameters, $\theta0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
+!bt
+\[
+p(\theta_0, \theta_1 | D, I).
+\]
+!et
+The marginal posterior pdf $p(\theta_1 | D, I)$ is obtained via marginalization
+!bt
+\[
+p(\theta_1 | D, I) = \int p(\theta_0, \theta_1 | D, I) d\theta_0.
+\]
+!et
+Assume that we have $N$ samples from the joint pdf. This might be the Markov Chain from an MCMC sampler: $\left\{ (\theta_0, \theta_1)_i \right\}_{i=0}^{N-1}$. Then the marginal distribution of $\theta_1$ will be given by the same chain by simply ignoring the $\theta_0$ column, i.e., $\left\{ \theta_{1,i} \right\}_{i=0}^{N-1}$. 
+
+See the interactive demos created by Chi Feng for an illustration of this: "The Markov-chain Monte Carlo Interactive Gallery": "https://chi-feng.github.io/mcmc-demo/".
+
+!split
+===== Error propagation (I): marginalization =====
+The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example <linebreak>
+
+!split
+_Inferring galactic distances with an imprecise knowledge of the Hubble constant_
+The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to $v = H_0 x$. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.
+
+Here we use marginalization to obtain the desired posterior pdf $p(x|D,I)$ from the joint distribution of $p(x,H_0|D,I)$
+!bt
+\[
+p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
+\]
+!et
+
+Using Bayes' rule: $p(x,H_0|D,I) \propto p(D|x,H_0,I) p(x,H_0|I)$, the product rule: $p(x,H_0|I) = p(H_0|x,I)p(x|I)$, and the fact that $H_0$ is independent of $x$: $p(H_0|x,I) = p(H_0|I)$, we find that
+!bt
+\[
+p(x|D,I) \propto p(x|I) \int dH_0 p(H_0|I) p(D|x,H_0,I),
+\]
+!et
+which means that we have expressed the quantity that we want (the posterior of $x$) in terms of quantities that we know.
+
+Assume that the pdf $p(H_0 | I)$ is known via its $N$ samples $\{H_{i}\}_{i=0}^{N-1}$ generated by the MCMC sampler.
+
+This means that we can approximate 
+!bt
+\[
+p(x |D,I) \propto \int dH_0 p(H_0|I) p(D|x,H_0,I) \approx \frac{1}{N} \sum_{i=1}^N p(D | x, H_i, I)
+\]
+!et
+where we have used a uniform prior for the distance $p(x|I) \propto 1$.
+
+
+!split
+===== Error propagation (II): prior information =====
+
+=== Example 3.6.2 in Sivia ===
+* Consider a Bragg peak amplitude that is proportional to the square of a complex structure function: $A = f^2$.
+* The amplitude is measured with an uncertainty $A = A_0 \pm \sigma_A$ from a least-squares fit to experimental data.
+* What is $f = f_0 \pm \sigma_f$?
+
+See notes and demonstration notebook.
