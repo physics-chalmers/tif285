@@ -150,7 +150,7 @@ The function $f(\boldsymbol{\theta})$ might represent the prediction of some new
 % !split
 Note that this is more involved than traditional calculations in which we would use a single vector of parameters, e.g.~denoted $\boldsymbol{\theta}^*$, that we might have found by maximizing a likelihood (minimizing a chi-squared function). Instead, $\langle f( \boldsymbol{\theta} ) \rangle$ means that we do a multidimensional integral over the full range of possible $\boldsymbol{\theta}$ values, weighted by the probability density function, $p(\boldsymbol{\theta} |D,I)$ that we have worked out.
 
-! split
+% !split
 \begin{itemize}
 \item This is a lot more work!
 
@@ -266,9 +266,9 @@ The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the
  \item Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
 \begin{itemize}
 
-    \item If $r \leq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
+    \item If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
 
-    \item If $r < 1$: accept the position with probability $r$ (remember that $0 \leq r \leq 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
+    \item If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
 \end{itemize}
 
 \noindent
@@ -302,7 +302,7 @@ The Metropolis(-Hastings) ratio is
 \begin{itemize}
 \item There are excellent javascript visualizations of MCMC sampling on the internet.
 
-\item A particularly useful set of interactive demos was created by Chi Feng, and are available on the github page: \href{{https://chi-feng.github.io/mcmc-demo/}}{The Markov-chain Monte Carlo Interactive Gallery}
+\item A particularly useful set of interactive demos was created by Chi Feng, and is available on the github page: \href{{https://chi-feng.github.io/mcmc-demo/}}{The Markov-chain Monte Carlo Interactive Gallery}
 
 \item An accessible introduction to MCMC, with simplified versions of Feng's visualizations, was created by Richard McElreath. It promotes Hamiltonian Monte Carlo and is available in a blog entry called \href{{http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/}}{Markov Chains: Why Walk When You Can Flow?} 
 \end{itemize}

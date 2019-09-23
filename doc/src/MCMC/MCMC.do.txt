@@ -24,7 +24,7 @@ The function $f(\boldsymbol{\theta})$ might represent the prediction of some new
 !split
 Note that this is more involved than traditional calculations in which we would use a single vector of parameters, e.g. denoted $\boldsymbol{\theta}^*$, that we might have found by maximizing a likelihood (minimizing a chi-squared function). Instead, $\langle f( \boldsymbol{\theta} ) \rangle$ means that we do a multidimensional integral over the full range of possible $\boldsymbol{\theta}$ values, weighted by the probability density function, $p(\boldsymbol{\theta} |D,I)$ that we have worked out.
 
-! split
+!split
 * This is a lot more work!
 * The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters $\boldsymbol{\theta}_B$ to find a pdf for the rest, $\boldsymbol{\theta}_A$. E.g., when extracting the masses of binary black holes from gravitational-wave signals there are many (nuisance) parameters that characterize, e.g.,   background noise that should be integrated out.
 * Therefore, in the Bayesian approach we will frequently encounter these multidimensional integrals. However, conventional methods for low dimensions (Gaussian quadrature or Simpson's rule) become inadequate rapidly with the increase of dimension.
@@ -120,8 +120,8 @@ o Collect samples by repeating the following:
   o Compute the Metropolis(-Hastings) ratio $r$ (defined below).
     Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
   o Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
-    * If $r \leq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
-    * If $r < 1$: accept the position with probability $r$ (remember that $0 \leq r \leq 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
+    * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
+    * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
     Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
   o Loop until the chain has reached a predetermined length.
     
@@ -142,7 +142,7 @@ The Metropolis(-Hastings) ratio is
 !split
 ===== Visualizations of MCMC =====
 * There are excellent javascript visualizations of MCMC sampling on the internet.
-* A particularly useful set of interactive demos was created by Chi Feng, and are available on the github page: "The Markov-chain Monte Carlo Interactive Gallery": "https://chi-feng.github.io/mcmc-demo/"
+* A particularly useful set of interactive demos was created by Chi Feng, and is available on the github page: "The Markov-chain Monte Carlo Interactive Gallery": "https://chi-feng.github.io/mcmc-demo/"
 * An accessible introduction to MCMC, with simplified versions of Feng's visualizations, was created by Richard McElreath. It promotes Hamiltonian Monte Carlo and is available in a blog entry called "Markov Chains: Why Walk When You Can Flow?": "http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/" 
 
 !split
