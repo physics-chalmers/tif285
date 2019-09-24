@@ -44,7 +44,7 @@ Automatically generated HTML file from DocOnce source
  'sections': [('Why Bayes is Better', 1, None, '___sec0'),
               ('Quotes from one pioneering and one renaissance Bayesian '
                'authority',
-               2,
+               3,
                None,
                '___sec1'),
               ('Advantages of the Bayesian approach', 2, None, '___sec2'),
@@ -103,7 +103,7 @@ MathJax.Hub.Config({
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Why Bayes is Better</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Quotes from one pioneering and one renaissance Bayesian authority</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quotes from one pioneering and one renaissance Bayesian authority</a></li>
      <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Advantages of the Bayesian approach</a></li>
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Occam's razor</a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nuisance parameters (I)</a></li>
@@ -147,14 +147,15 @@ MathJax.Hub.Config({
 <center><h4>Sep 24, 2019</h4></center> <!-- date -->
 <br>
 <p>
+<!-- potential-jumbotron-button -->
 </div> <!-- end jumbotron -->
+
+<!-- !split -->
 
 <h1 id="___sec0" class="anchor">Why Bayes is Better </h1>
 
-<p>
-<!-- !split -->
+<h3 id="___sec1" class="anchor">Quotes from one pioneering and one renaissance Bayesian authority </h3>
 
-<h2 id="___sec1" class="anchor">Quotes from one pioneering and one renaissance Bayesian authority </h2>
 Laplace:
 <blockquote>
     <em>"Probability theory is nothing but common sense reduced to calculation."</em>
@@ -198,6 +199,7 @@ Sivia
 <!-- !epop -->
 
 <p>
+<!-- !split -->
 The Bayesian quantitative Occam&#8217;s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.
 
 <p>
@@ -288,7 +290,7 @@ where we have used a uniform prior for the distance \( p(x|I) \propto 1 \).
 (Based on Sivia, ch 3.6.)
 
 <p>
-Assume that we have measured parameter \( X = 10 \pm 3 \) and \( Y=7 \pm 2 \); what can we say about the difference \( X-Y \) or the raio \( X/Y \), or the sum of their squares \( X^2+Y^2 \), etc? In essence, the problem is nothing more than an exercise in the change of variables: given the joint pdf $p(X,Y|I), where the information \( I \) might include the data if the pdf is a posterior from a data analysis, we need the corresponding pdf $p(Z|I), where \( Z=X-Y \), or \( Z=X/Y \), or whatever as appropriate.
+Assume that we have measured parameter \( X = 10 \pm 3 \) and \( Y=7 \pm 2 \); what can we say about the difference \( X-Y \) or the raio \( X/Y \), or the sum of their squares \( X^2+Y^2 \), etc? In essence, the problem is nothing more than an exercise in the change of variables: given the joint pdf \( p(X,Y|I) \), where the information \( I \) might include the data if the pdf is a posterior from a data analysis, we need the corresponding pdf \( p(Z|I) \), where \( Z=X-Y \), or \( Z=X/Y \), or whatever as appropriate.
 
 <p>
 <!-- !split -->
@@ -409,6 +411,9 @@ $$
 <p>
 <!-- !split -->
 Despite its virtues, let us end our discussion of error-propagation with a salutary warning against the blind use of this nifty short cut.
+
+<p>
+<!-- !split -->
 
 <h3 id="___sec9" class="anchor">Example: Taking the square root of a number </h3>
 
