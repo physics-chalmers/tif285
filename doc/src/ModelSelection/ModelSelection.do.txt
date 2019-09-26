@@ -1,0 +1,22 @@
+TITLE: Learning from data: Model Selection
+AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+DATE: today
+
+!split
+So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether a quadratic, or even cubic, function might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as _Model Selection_ problems and we will discuss them in some depth.
+
+======= Model selection =======
+!split
+#======= The Story of Dr. A and Prof. B =======
+## #include "story_of_drA_profB_short.do.txt"
+# #include "story_of_drA_profB.do.txt"
+
+!split
+======= Evidence calculations =======
+The actual computation of Bayesian evidences can be a challenging task. Recall that we often have knowledge of the posterior distribution only through sampling. In many cases, the simple Laplace method can be used to compute the evidence approximately, while in other cases we have to rely on special sampling algorithms such as nested sampling or parallel tempering with thermodynamic integration.
+
+#===== Laplace's method =====
+## #include "Laplaces_method_short.do.txt"
+# #include "Laplaces_method.do.txt"
+
+  
