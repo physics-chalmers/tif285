@@ -346,7 +346,7 @@ p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
 With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
 !bt
 \[
-p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
+p(x|\mu) = \mathcal{N} \exp \left[ -\lambda_1 x \right].
 \]
 !et
 
@@ -354,6 +354,21 @@ p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
 The normalization constant (related to $\lambda_0$) and the remaining Lagrange multiplier, $\lambda_1$, can easily determined by fulfilling the two constraints. 
 
 Assuming, e.g., that the normalization interval is $x \in [0, \infty[$ we obtain
+!bt
+\[
+\int_0^\infty p(x|\mu) dx = 1 = \left[ -\frac{\mathcal{N}}{\lambda_1} e^{-\lambda_1 x} \right]_0^\infty = \frac{\mathcal{N}}{\lambda_1} \quad \Rightarrow \quad \mathcal{N} = \lambda_1.
+\]
+!et
+The constraint for the mean then gives
+!bt
+\[
+\mu = \lambda_1 \int_0^\infty x  e^{-\lambda_1 x} dx = \lambda_1 \frac{1!}{\lambda_1^2}
+= \frac{1}{\lambda_1}
+\quad \Rightarrow \quad \lambda_1 = \frac{1}{\mu}.
+\]
+!et
+
+So that the properly normalized pdf from MaxEnt principles becomes the exponential distribution
 !bt
 \[
 p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].

@@ -609,7 +609,7 @@ $$
 <p>
 With a uniform measure \( m_j = \mathrm{constant} \) we find (in the continuous limit) that
 $$
-p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
+p(x|\mu) = \mathcal{N} \exp \left[ -\lambda_1 x \right].
 $$
 
 <p>
@@ -618,6 +618,19 @@ The normalization constant (related to \( \lambda_0 \)) and the remaining Lagran
 
 <p>
 Assuming, e.g., that the normalization interval is \( x \in [0, \infty[ \) we obtain
+$$
+\int_0^\infty p(x|\mu) dx = 1 = \left[ -\frac{\mathcal{N}}{\lambda_1} e^{-\lambda_1 x} \right]_0^\infty = \frac{\mathcal{N}}{\lambda_1} \quad \Rightarrow \quad \mathcal{N} = \lambda_1.
+$$
+
+The constraint for the mean then gives
+$$
+\mu = \lambda_1 \int_0^\infty x  e^{-\lambda_1 x} dx = \lambda_1 \frac{1!}{\lambda_1^2}
+= \frac{1}{\lambda_1}
+\quad \Rightarrow \quad \lambda_1 = \frac{1}{\mu}.
+$$
+
+<p>
+So that the properly normalized pdf from MaxEnt principles becomes the exponential distribution
 $$
 p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].
 $$
