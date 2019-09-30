@@ -110,3 +110,115 @@ output in ModelSelection.ipynb
 running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
 translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
 output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelSelection.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to ipynb
+collected all required additional files in ipynb-ModelSelection-src.tar.gz which must be distributed with the notebook
+output in ModelSelection.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelSelection.do.txt > tmp_preprocess__ModelSelection.do.txt
+translating doconce text in tmp_preprocess__ModelSelection.do.txt to html
+output in ModelSelection-bs.html

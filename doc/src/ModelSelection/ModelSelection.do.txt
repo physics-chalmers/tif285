@@ -5,7 +5,15 @@ DATE: today
 !split
 So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether a quadratic, or even cubic, function might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as _Model Selection_ problems and we will discuss them in some depth.
 
-======= Model selection =======
+!split
+We will start, however, with a brief discussion on the frequentist approach to hypothesis testing.
+
+!split
+======= Frequentist hypothesis testing =======
+# #include "frequentist_hypothesis_testing.do.txt"
+
+!split
+======= Bayesian model selection =======
 !split
 #======= The Story of Dr. A and Prof. B =======
 ## #include "story_of_drA_profB_short.do.txt"

@@ -1,0 +1,57 @@
+One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+
+!split
+===== Basic idea =====
+
+Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it. The basic idea is the following:
+
+!split
+!bpop
+* The standard sampling theory approach to hypothesis testing is to construct a statistical test.
+
+* The test usually compares a null hypothesis ($\mathcal{H}_0$) with an alternative hypothesis ($\mathcal{H}_A$). We will see an example below.
+
+* The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to $\mathcal{H}_0$, not on how much better $\mathcal{H}_A$ predicted the data. 
+
+* The degree of ''unexpectedness'' is based on a chosen statistic, such as the sample mean or the $\chi^2$ statistic. This statistic is first computed for the observed data set. 
+
+* Then it is computed for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true. 
+
+* The value of the statistic from our actual data set is compared with the distribution that is associated with the truth of the null hypothesis.
+
+* If the statistic from the observed data falls in a very unlikely spot on this distribution (the threshold is to be defined beforehand) we choose to reject the null hypothesis at some confidence level on the basis of the measured data set. 
+!epop
+
+!split
+=== Hypothesis testing with the chi-squared statistic ===
+
+A very common statistic to use is the chi-square. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days.
+
+* Choose a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.
+
+* In this example, it is assumed that he measurement errors are independently normal with a fixed standard deviation $\sigma$ that is known beforehand.
+
+* The $\chi^2$ statistic from the data set is evaluated (where $x_i$ is the data and $\bar{x}$ is the average from the sample)
+!bt
+\[
+\chi^2 = \sum_{i=1}^n \frac{(x_i - \bar{x})^2}{\sigma^2}.
+\]
+!et
+
+!split
+* In our example we had 15 data points, but we are using it to estimate the mean $\mu$. Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the $\chi^2$ distribution that will be used for comparison with our actual $\chi^2$ statistic.
+
+* The question of how unlikely is this value of $\chi^2$ is by convention interpreted in terms of the area in the tail of the $\chi^2$ distribution beyond this line. This is called the $P$-value or significance.
+
+!split
+FIGURE:[fig/gregory_7_2.png, width=400 frac=0.8] The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. (Gregory, Fig. 7.2)
+
+
+!split
+At the point of performing this comparison, and making a final statement, the sampling theory school divides itself into two camps:
+
+!bpop
+o One camp uses the following protocol: first, before looking at the data, pick the significance level of the test (e.g. 5%), and determine the critical value of $\chi^2$ above which the null hypothesis will be rejected. (The significance level is the fraction of times that the statistic $\chi^2$ would exceed the critical value, if the null hypothesis were true.) Then, compare the actual $\chi^2$ with the critical value, and declare the outcome of the test, and its significance level (which was fixed beforehand).
+
+o The second camp looks at the data, finds $\chi^2$, then looks in the table of $\chi^2$-distributions for the significance level, $P$, for which the observed value of $\chi^2$ would be the critical value. The result of the test is then reported by giving this value of $p$, which is the fraction of times that a result as extreme as the one observed, or more extreme, would be expected to arise if the null hypothesis were true. 
+!epop

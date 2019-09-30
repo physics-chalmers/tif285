@@ -41,16 +41,22 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 1,
- 'sections': [('Model selection', 1, None, '___sec0'),
-              ('The Story of Dr. A and Prof. B', 2, None, '___sec1'),
-              ('One adjustable parameter each', 3, None, '___sec2'),
+ 'sections': [('Frequentist hypothesis testing', 1, None, '___sec0'),
+              ('Basic idea', 2, None, '___sec1'),
+              ('Hypothesis testing with the chi-squared statistic',
+               3,
+               None,
+               '___sec2'),
+              ('Bayesian model selection', 1, None, '___sec3'),
+              ('The Story of Dr. A and Prof. B', 2, None, '___sec4'),
+              ('One adjustable parameter each', 3, None, '___sec5'),
               ('One adjustable parameter each; different prior ranges',
                3,
                None,
-               '___sec3'),
-              ('Comparison with parameter estimation', 2, None, '___sec4'),
-              ('Evidence calculations', 1, None, '___sec5'),
-              ("Laplace's method", 2, None, '___sec6')]}
+               '___sec6'),
+              ('Comparison with parameter estimation', 2, None, '___sec7'),
+              ('Evidence calculations', 1, None, '___sec8'),
+              ("Laplace's method", 2, None, '___sec9')]}
 end of tocinfo -->
 
 <body>
@@ -88,13 +94,16 @@ MathJax.Hub.Config({
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Model selection</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Story of Dr. A and Prof. B</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One adjustable parameter each</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One adjustable parameter each; different prior ranges</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Comparison with parameter estimation</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>Evidence calculations</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Laplace's method</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Frequentist hypothesis testing</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Basic idea</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hypothesis testing with the chi-squared statistic</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;"><b>Bayesian model selection</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Story of Dr. A and Prof. B</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One adjustable parameter each</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One adjustable parameter each; different prior ranges</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Comparison with parameter estimation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;"><b>Evidence calculations</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Laplace's method</a></li>
 
         </ul>
       </li>
@@ -127,7 +136,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 26, 2019</h4></center> <!-- date -->
+<center><h4>Sep 30, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -136,9 +145,93 @@ MathJax.Hub.Config({
 <!-- !split -->
 So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether a quadratic, or even cubic, function might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as <b>Model Selection</b> problems and we will discuss them in some depth.
 
-<h1 id="___sec0" class="anchor">Model selection </h1>
+<p>
 <!-- !split -->
-<!-- ======= The Story of Dr. A and Prof. B  <div id="___sec1"></div>======= -->
+We will start, however, with a brief discussion on the frequentist approach to hypothesis testing.
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec0" class="anchor">Frequentist hypothesis testing </h1>
+One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec1" class="anchor">Basic idea </h2>
+
+<p>
+Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it. The basic idea is the following:
+
+<p>
+<!-- !split -->
+<!-- !bpop -->
+
+<ul>
+<li> The standard sampling theory approach to hypothesis testing is to construct a statistical test.</li>
+<li> The test usually compares a null hypothesis (\( \mathcal{H}_0 \)) with an alternative hypothesis (\( \mathcal{H}_A \)). We will see an example below.</li>
+<li> The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to \( \mathcal{H}_0 \), not on how much better \( \mathcal{H}_A \) predicted the data.</li> 
+<li> The degree of ''unexpectedness'' is based on a chosen statistic, such as the sample mean or the \( \chi^2 \) statistic. This statistic is first computed for the observed data set.</li> 
+<li> Then it is computed for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true.</li> 
+<li> The value of the statistic from our actual data set is compared with the distribution that is associated with the truth of the null hypothesis.</li>
+<li> If the statistic from the observed data falls in a very unlikely spot on this distribution (the threshold is to be defined beforehand) we choose to reject the null hypothesis at some confidence level on the basis of the measured data set.</li> 
+</ul>
+
+<!-- !epop -->
+
+<p>
+<!-- !split -->
+
+<h3 id="___sec2" class="anchor">Hypothesis testing with the chi-squared statistic </h3>
+
+<p>
+A very common statistic to use is the chi-square. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days.
+
+<ul>
+<li> Choose a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.</li>
+<li> In this example, it is assumed that he measurement errors are independently normal with a fixed standard deviation \( \sigma \) that is known beforehand.</li>
+<li> The \( \chi^2 \) statistic from the data set is evaluated (where \( x_i \) is the data and \( \bar{x} \) is the average from the sample)</li>
+</ul>
+
+$$
+\chi^2 = \sum_{i=1}^n \frac{(x_i - \bar{x})^2}{\sigma^2}.
+$$
+
+<p>
+<!-- !split -->
+
+<ul>
+<li> In our example we had 15 data points, but we are using it to estimate the mean \( \mu \). Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the \( \chi^2 \) distribution that will be used for comparison with our actual \( \chi^2 \) statistic.</li>
+<li> The question of how unlikely is this value of \( \chi^2 \) is by convention interpreted in terms of the area in the tail of the \( \chi^2 \) distribution beyond this line. This is called the \( P \)-value or significance.</li>
+</ul>
+
+<!-- !split -->
+
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  The \( \chi^2 \) distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the \( P \)-value. (Gregory, Fig. 7.2) </p></center>
+<p><img src="fig/gregory_7_2.png" align="bottom" width=400></p>
+</center>
+
+<p>
+<!-- !split -->
+At the point of performing this comparison, and making a final statement, the sampling theory school divides itself into two camps:
+
+<p>
+<!-- !bpop -->
+
+<ol>
+<li> One camp uses the following protocol: first, before looking at the data, pick the significance level of the test (e.g. 5%), and determine the critical value of \( \chi^2 \) above which the null hypothesis will be rejected. (The significance level is the fraction of times that the statistic \( \chi^2 \) would exceed the critical value, if the null hypothesis were true.) Then, compare the actual \( \chi^2 \) with the critical value, and declare the outcome of the test, and its significance level (which was fixed beforehand).</li>
+<li> The second camp looks at the data, finds \( \chi^2 \), then looks in the table of \( \chi^2 \)-distributions for the significance level, \( P \), for which the observed value of \( \chi^2 \) would be the critical value. The result of the test is then reported by giving this value of \( p \), which is the fraction of times that a result as extreme as the one observed, or more extreme, would be expected to arise if the null hypothesis were true.</li> 
+</ol>
+
+<!-- !epop -->
+<!-- !split -->
+
+<h1 id="___sec3" class="anchor">Bayesian model selection </h1>
+<!-- !split -->
+<!-- ======= The Story of Dr. A and Prof. B  <div id="___sec4"></div>======= -->
 
 <h2>The Story of Dr. A and Prof. B</h2>
 [Reproduced, with some modifications, from Sivia, 2006].
@@ -196,12 +289,12 @@ p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0
 \end{equation}
 $$
 
-The assignments of the prior \eqref{eq:sivia_44} and the likelihood \eqref{eq:sivia_45} are illustrated in Fig. <a href="#fig:sivia_41">1</a>. We may note that, unlike the prior pdf \( p(\lambda|B,I) \), B&#8217;s likelihood function need not be normalized with respect to \( \lambda \); in other words, \( p(D|\lambda_0,B,I) \) need not equal \( 1/ \delta\lambda \sqrt{2\pi} \) . This is because the \( \lambda \) in \( p(D|\lambda,B,I) \) appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the &#8216;|&#8217; symbol.
+The assignments of the prior \eqref{eq:sivia_44} and the likelihood \eqref{eq:sivia_45} are illustrated in Fig. <a href="#fig:sivia_41">2</a>. We may note that, unlike the prior pdf \( p(\lambda|B,I) \), B&#8217;s likelihood function need not be normalized with respect to \( \lambda \); in other words, \( p(D|\lambda_0,B,I) \) need not equal \( 1/ \delta\lambda \sqrt{2\pi} \) . This is because the \( \lambda \) in \( p(D|\lambda,B,I) \) appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the &#8216;|&#8217; symbol.
 
 <p>
 <center> <!-- figure label: --> <div id="fig:sivia_41"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter \( \lambda \) in Prof B&#8217;s theory.  <!-- caption label: fig:sivia_41 --> </p></center>
+<center><p class="caption">Figure 2:  A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter \( \lambda \) in Prof B&#8217;s theory.  <!-- caption label: fig:sivia_41 --> </p></center>
 <p><img src="fig/fig41.png" align="bottom" width=500></p>
 </center>
 
@@ -241,7 +334,7 @@ While accepting the clear logic leading to Eq \eqref{eq:sivia_48}, many people r
 In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn \eqref{eq:sivia_48} tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B&#8217;s theory fails to give a significantly better fit as the quality of the data improves. In that case, \( \delta\lambda \) continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. \eqref{eq:sivia_48}, therefore, A&#8217;s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. \eqref{eq:sivia_48} is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A&#8217;s theory unless it is explicitly encoded in \( p(A|I)/p(B|I) \). This property can be verified formally by going back to Eqs. \eqref{eq:sivia_42}, \eqref{eq:sivia_45} and \eqref{eq:sivia_46}, and considering the poor-data limit in which 
 \( \delta\lambda \gg \lambda_\mathrm{max}-\lambda_\mathrm{min} \) and \( p(D|\lambda_0,B,I) \approx p(D|A,I) \).
 
-<h3 id="___sec2" class="anchor">One adjustable parameter each </h3>
+<h3 id="___sec5" class="anchor">One adjustable parameter each </h3>
 
 Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it \( \mu \). If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
 $$
@@ -257,7 +350,7 @@ $$
 $$
 For data of good quality, the dominant factor will tend to be the best-fit likelihood ratio. If both give comparable agreement with the measurements, however, then the shape with the larger error-bar for its associated parameter will be favoured. At first sight, it might seem rather odd that the less discriminating theory can gain the upper hand. It appears less strange once we realize that, in the context of model selection, a larger &#8216;error-bar&#8217; means that more parameter values are consistent with the given hypothesis; hence its preferential treatment.
 
-<h3 id="___sec3" class="anchor">One adjustable parameter each; different prior ranges </h3>
+<h3 id="___sec6" class="anchor">One adjustable parameter each; different prior ranges </h3>
 
 Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for \( \lambda \) (or \( \mu \)). Although Eq. \eqref{eq:sivia_48} can be seen as representing the case when \( (\mu_\mathrm{max} - \mu_\mathrm{min}) \) is infinitesimally small, so that A has no flexibility, Eq. \eqref{eq:sivia_49} is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
 $$
@@ -265,7 +358,7 @@ $$
 $$
 because the best-fit likelihood ratio will be unity (since \( \lambda_0 = \mu_0 \)) and \( \delta\lambda = \delta\mu \). Thus, our analysis will lead us to prefer the theorist who gives the narrower prior range; this is not unreasonable as he must have had some additional insight to be able to predict the value of the parameter more accurately.
 
-<h2 id="___sec4" class="anchor">Comparison with parameter estimation </h2>
+<h2 id="___sec7" class="anchor">Comparison with parameter estimation </h2>
 The dependence of the result in Eq. \eqref{eq:sivia_48} on the prior range \( (\lambda_\mathrm{max} - \lambda_\mathrm{min}) \) can seem a little strange, since we haven&#8217;t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of \( \lambda \) from the data, given that B&#8217;s theory is correct, we use Bayes&#8217; theorem:
 $$
 \begin{equation}
@@ -282,11 +375,11 @@ A simple way to think about the difference between parameter estimation and mode
 <p>
 <!-- !split -->
 
-<h1 id="___sec5" class="anchor">Evidence calculations </h1>
+<h1 id="___sec8" class="anchor">Evidence calculations </h1>
 The actual computation of Bayesian evidences can be a challenging task. Recall that we often have knowledge of the posterior distribution only through sampling. In many cases, the simple Laplace method can be used to compute the evidence approximately, while in other cases we have to rely on special sampling algorithms such as nested sampling or parallel tempering with thermodynamic integration.
 
 <p>
-<!-- ===== Laplace's method  <div id="___sec6"></div>===== -->
+<!-- ===== Laplace's method  <div id="___sec9"></div>===== -->
 
 <h2>Laplace's method</h2>
 The idea behind the Laplace approximation is simple. We assume that an unnormalized probability density \( P^*(\theta) \) has a peak at a point \( \theta_0 \). We are interested in the evidence, \( Z_P \), which is given by the normalizing constant
