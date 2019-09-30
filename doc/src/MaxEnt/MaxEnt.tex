@@ -20,6 +20,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage{bm,ltablex,microtype}
 
 \usepackage[pdftex]{graphicx}
+\usepackage{fancyvrb}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -85,6 +86,152 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \pagestyle{fancy}
 
 
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- begin definitions of admonition environments ---
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "notice" admon
+\definecolor{mdfbox_notice_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_notice_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_notice_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{notice_mdfboxmdframed}
+
+\newenvironment{notice_mdfboxadmon}[1][]{
+\begin{notice_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{notice_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "summary" admon
+\definecolor{mdfbox_summary_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_summary_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_summary_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{summary_mdfboxmdframed}
+
+\newenvironment{summary_mdfboxadmon}[1][]{
+\begin{summary_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{summary_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "warning" admon
+\definecolor{mdfbox_warning_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_warning_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_warning_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{warning_mdfboxmdframed}
+
+\newenvironment{warning_mdfboxadmon}[1][]{
+\begin{warning_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{warning_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "question" admon
+\definecolor{mdfbox_question_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_question_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_question_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{question_mdfboxmdframed}
+
+\newenvironment{question_mdfboxadmon}[1][]{
+\begin{question_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{question_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "block" admon
+\definecolor{mdfbox_block_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_block_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_block_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{block_mdfboxmdframed}
+
+\newenvironment{block_mdfboxadmon}[1][]{
+\begin{block_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{block_mdfboxmdframed}
+}
+
+% --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
@@ -141,7 +288,7 @@ Learning from data: Assigning probabilities
 
 % --- begin date ---
 \begin{center}
-Sep 29, 2019
+Sep 30, 2019
 \end{center}
 % --- end date ---
 
@@ -151,17 +298,19 @@ Sep 29, 2019
 % !split
 \section{Ignorance pdfs: Indifference and translation groups}
 
+% !split
+\subsection{Discrete permutation invariance}
 \begin{itemize}
-\item Consider a six-sided dice
+\item Consider a six-sided die
 
-\item How do we assign $p(X_i|I)$, $i \in \{1, 2, 3, 4, 5, 6\}$?
+\item How do we assign $p_i \equiv p(X_i|I)$, $i \in \{1, 2, 3, 4, 5, 6\}$?
 
 \item We do know $\sum_i p(X_i|I) = 1$
 
 \item Invariance under labeling $\Rightarrow p(X_i|I)=1/6$
 \begin{itemize}
 
-  \item provided that the prior information $I$ says nothing that breaks the symmetry.
+  \item provided that the prior information $I$ says nothing that breaks the permutation symmetry.
 \end{itemize}
 
 \noindent
@@ -170,21 +319,20 @@ Sep 29, 2019
 \noindent
 % !split
 \subsection{Location invariance}
-Indifference to a shift $x_0$ for a location parameter $x$ implies that
+Indifference to a constant shift $x_0$ for a location parameter $x$ implies that
 \[
 p(x|I) dx \approx p(x+ x_0|I) d(x+x_0) =  p(x+ x_0|I) dx,
 \]
 in the allowed range.
 
+Location invariance implies that
+\[
+p(x|I) =  p(x+ x_0|I) \quad \Rightarrow \quad p(x|I) = \mathrm{constant}.
+\]
+
 \begin{itemize}
-\item Invariance under origin position $\Rightarrow p(x|I) =  p(x+ x_0|I)$, i.e., $p(x|I) = \mathrm{constant}$.
-\begin{itemize}
+\item Provided that the prior information $I$ says nothing that breaks the symmetry.
 
-  \item Provided that the prior information $I$ says nothing that breaks the symmetry.
-
-\end{itemize}
-
-\noindent
 \item The pdf will be zero outside the allowed range (specified by $I$).
 \end{itemize}
 
@@ -198,15 +346,15 @@ p(x|I) dx \approx p(\lambda x|I) d(\lambda x) =  \lambda p(\lambda x|I) dx,
 \]
 in the allowed range.
 
+% !split
+Invariance under re-scaling implies that
+\[
+p(x|I) = \lambda p(\lambda x|I) \quad \Rightarrow \quad p(x|I) \propto 1/x.
+\]
+
 \begin{itemize}
-\item Invariance under re-scaling $\Rightarrow p(x|I) \propto 1/x$. 
-\begin{itemize}
+\item Provided that the prior information $I$ says nothing that breaks the symmetry.
 
-  \item Provided that the prior information $I$ says nothing that breaks the symmetry.
-
-\end{itemize}
-
-\noindent
 \item The pdf will be zero outside the allowed range (specified by $I$).
 
 \item This prior is often called a \emph{Jeffrey's prior}; it represents a complete ignorance of a scale parameter within an allowed range.
@@ -222,7 +370,10 @@ in the allowed range.
 
 \noindent
 \paragraph{Example: Straight-line model.}
-Consider the theoretical model $y_\mathrm{th}(x) = \theta_1  x  + \theta_0$.
+Consider the theoretical model 
+\[
+y_\mathrm{th}(x) = \theta_1  x  + \theta_0.
+\]
 
 \begin{itemize}
 \item Would you consider the intercept $\theta_0$ a location or a scale parameter, or something else?
@@ -243,8 +394,15 @@ Consider also the statistical model for the observed data $y_i = y_\mathrm{th}(x
 \begin{itemize}
 \item In fact, by symmetry indifference we could as well have written the linear model as $x_\mathrm{th}(y) = \theta_1'  y  + \theta_0'$
 
-\item We would then equate the probability elements for the two models $p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\theta_0' d\theta_1'$.
+\item We would then equate the probability elements for the two models 
+\end{itemize}
 
+\noindent
+\[
+p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\theta_0' d\theta_1'.
+\]
+
+\begin{itemize}
 \item The transformation gives $(\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1})$.
 \end{itemize}
 
@@ -281,7 +439,7 @@ p(\theta_0, \theta_1 | I) \propto \frac{1}{\left( 1 + \theta_1^2 \right)^{3/2}}.
 \begin{figure}[!ht]  % 
   \centerline{\includegraphics[width=0.8\linewidth]{fig/slope_priors.png}}
   \caption{
-  100 samples of straight lines with intercept 0 and slope from three different pdfs.
+  100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.
   }
 \end{figure}
 %\clearpage % flush figures 
@@ -291,7 +449,7 @@ p(\theta_0, \theta_1 | I) \propto \frac{1}{\left( 1 + \theta_1^2 \right)^{3/2}}.
 % !split
 \section{The principle of maximum entropy}
 
-Having dealt with ignorance, let us move on to a more enlightened situation.
+Having dealt with ignorance, let us move on to more enlightened situations.
 
 Consider a die with the usual six faces that was rolled a very large number of times. Suppose that we were only told that the average number of dots was 2.5. What (discrete) pdf would we assign? I.e. what are the probabilities $\{ p_i \}$ that the face on top had $i$ dots after a single throw?
 
@@ -306,16 +464,27 @@ This is obviously not a normal die, with uniform probability $p_i=1/6$, since th
 It turns out that there are several different arguments that all point in a direction that is very familiar to people with a physics background. Namely that we should prefer the probability distribution that maximizes an entropy measure, while fulfilling the given constraints. 
 
 % !split
+It will be shown below that the preferred pdf $\{ p_i \}$ is the one that maximizes
+
+\[
+Q\left( \{ p_i \} ; \lambda_0, \lambda_1 \right)
+= -\sum_{i=1}^6 p_i \log(p_i) 
++ \lambda_0 \left( 1 - \sum_{i=1}^6 p_i \right)
++ \lambda_1 \left( 2.5 - \sum_{i=1}^6 i p_i \right),
+\]
+where the constraints are included via the method of \href{{https://en.wikipedia.org/wiki/Lagrange_multiplier}}{Lagrange multipliers}.
+
+% !split
 \subsection{The entropy of Scandinavians}
 
-Let's consider another pdf assignment problem. This is originally the \emph{kangaroo problem} (Gull and SKilling, 1984), but adapted here to a local context. The problem is stated as follows:
+Let's consider another pdf assignment problem. This is originally the \emph{kangaroo problem} (Gull and Skilling, 1984), but translated here into a local context. The problem is stated as follows:
 
 \begin{description}
 \item[Information:] 
   70\% of all Scandinavians have blonde hair, and 10\% of all Scandinavians are left handed.
 
 \item[Question:] 
-  On the basis of this information alone, what proportion of kangaroos are both blonde and left handed?
+  On the basis of this information alone, what proportion of Scandinavians are both blonde and left handed?
 \end{description}
 
 \noindent
@@ -336,6 +505,11 @@ We note that for any one given Scandinavian there are four distinct possibilitie
 The following 2x2 contingency table
 
 
+\vspace{3mm}
+
+
+
+
 
 \begin{tabular}{lcc}
 \hline
@@ -348,8 +522,18 @@ Not blonde & $p_3$       & $p_4$        \\
 
 
 \noindent
+
+
+\vspace{3mm}
+
+
 % !split
 can be written in terms of a single variable $x$ due to the normalization condition $\sum_{i=1}^4 p_i = 1$, and the available information $p_1 + p_2 = 0.7$ and $p_1 + p_3 = 0.1$
+
+
+\vspace{3mm}
+
+
 
 
 
@@ -364,30 +548,44 @@ Not blonde & $0.1-x$           & $0.2+x$      \\
 
 
 \noindent
+
+
+\vspace{3mm}
+
+
 But which choice of $x$ is preferred?
 
 % !split
 \subsection{The monkey argument}
 
-A model for assigning probabilities to $M$ different alternatives that satisfy some constraint as described by $I$: 
+The monkey argument is a model for assigning probabilities to $M$ different alternatives that satisfy some constraint as described by $I$: 
 \begin{itemize}
 \item Monkeys throwing $N$ balls into $M$ equally sized boxes.
 
 \item The normalization condition $N = \sum_{i=1}^M n_i$.
 
-\item The fraction of balls in each box gives a possible assignment for the corresponding probability $p_i = n_i / M$.
+\item The fraction of balls in each box gives a possible assignment for the corresponding probability $p_i = n_i / N$.
 
-\item The distribution of balls $\{ n_i \}$ is therefore a candidate pdf $\{ p_i \}$.
-
-\item The resulting pdf might not be consistent with the constraints of $I$, however, in which case it should be rejected as a possible candidate.
-
-\item After many such trials, some distributions will be found to come up more often than others. The one that appears most frequently (and satisfies $I$) would be a sensible choice for $p(\{p_i\}|I)$.
+\item The distribution of balls $\{ n_i \}$ divided by $N$ is therefore a candidate pdf $\{ p_i \}$.
 \end{itemize}
 
 \noindent
 % !split
+After one round the monkeys have distributed their (large number of) balls over the $M$ boxes.
 \begin{itemize}
-\item The number of micro-states, $W$, as a function of $\{p_i\}$ is
+\item The resulting pdf might not be consistent with the constraints of $I$, however, in which case it should be rejected as a possible candidate.
+
+\item After many such rounds, some distributions will be found to come up more often than others. The one that appears most frequently (and satisfies $I$) would be a sensible choice for $p(\{p_i\}|I)$.
+
+\item Since our ideal monkeys have no agenda of their own to influence the distribution, this most favoured distribution can be regarded as the one that best represents our given state of knowledge.
+\end{itemize}
+
+\noindent
+% !split
+Now, let us see how this preferred solution corresponds to the pdf with the largest \texttt{entropy}. Remember in the following that $N$ (and $n_i$) are considered to be very large numbers ($N/M \gg 1$)
+
+\begin{itemize}
+\item The logarithm of the number of micro-states, $W$, as a function of $\{p_i\}$ is (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
 \end{itemize}
 
 \noindent
@@ -395,13 +593,20 @@ A model for assigning probabilities to $M$ different alternatives that satisfy s
 \log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
 \approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
 \]
-  where we have used the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and a cancellation of two terms. 
 
 % !split
 \begin{itemize}
 \item There are $M^N$ different ways to distribute the balls.
 
-\item The micro-states $\{ n_i\}$ are connected to the pdf $\{ p_i \}$, so the frequency of a given pdf is given by
+\item The micro-states $\{ n_i\}$ are connected to the pdf $\{ p_i \}$ and the frequency of a given pdf is given by
+\end{itemize}
+
+\noindent
+\[
+F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}
+\]
+\begin{itemize}
+\item Therefore, the logarithm of this frequency is
 \end{itemize}
 
 \noindent
@@ -415,7 +620,7 @@ Substituting $p_i = n_i/N$, and using the normalization condition finally gives
 \]
 
 % !split
-We note that $N$ and $M$ are constants so that the pdf is given by the $\{ p_i \}$ that maximizes
+We note that $N$ and $M$ are constants so that the preferred pdf is given by the $\{ p_i \}$ that maximizes
 \[
 S = - \sum_{i=1}^M p_i\log(p_i).
 \]
@@ -435,12 +640,17 @@ You might recognise this quantity as the \emph{entropy} from statistical mechani
 Consider the third argument. Let us check it empirically to the problem of hair colour and handedness of Scandinavians. We are interested in determining $p_1 \equiv p(L,B|I) \equiv x$, the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment $p_1=0.07$ is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.
 
 % !split
-So unless you have specific information about the existence of such a correlation, you should better not build it into the assignment of the probability $p_1$.
+So unless you have specific information about the existence of such a correlation, you should better not build it into the assignment of the probability $p_1$. 
 
 \textbf{Question}: Can you show why $p_1 < 0.07$ and $p_1 > 0.07$ corresponds to left-handedness and blondeness being dependent variables?
 
 % !split
 Let us now empirically consider a few variational functions of $\{ p_i \}$ and see if any of them gives a maximum that corresponds to the uncorrelated assignment $x=0.07$, which implies $p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27$. A few variational functions and their prediction for $x$ are shown in the following table.
+
+
+\vspace{3mm}
+
+
 
 
 
@@ -458,10 +668,17 @@ $-\sum_i \sqrt{p_i(1-p_i)}$ & 0.066     & Negative            \\
 
 \noindent
 
+
+\vspace{3mm}
+
+
+The assignment based on the entropy measure is the only one that respects this lack of correlations.
+
+
 \begin{figure}[!ht]  % 
   \centerline{\includegraphics[width=0.8\linewidth]{fig/scandinavian_entropy.png}}
   \caption{
-  Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ are shown by circles. The uncorrelated assignment $x=0.07$ is shown by a vertical line.
+  Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.
   }
 \end{figure}
 %\clearpage % flush figures 
@@ -474,15 +691,99 @@ S= −\sum_{i=1}^M p_i \log \left( \frac{p_i}{m_i} \right),
 \]
 which is often known as the \emph{Shannon-Jaynes entropy}, or the \emph{Kullback number}, or the \emph{cross entropy} (with opposite sign).
 
-In the continuous case
+Jaynes (1963) has pointed out that this generalization of the entropy, including a \emph{Leqesgue measure} $m_i$, is necessary when we consider the limit of continuous parameters. 
 \[
 S[p]= −\int p(x) \log \left( \frac{p(x)}{m(x)} \right).
 \]
 
+% !split
+\begin{itemize}
+\item In particular, $m(x)$ ensures that the entropy expression is invariant under a change of variables $x \to y=f(x)$.
+
+\item Typically, the transformation-group (invariance) arguments are appropriate for assigning $m(x) = \mathrm{constant}$.
+
+\item However, there are situations where other assignments for $m$ represent the most ignorance. For example, in counting experiments one might assign $m(N) = M^N / N!$ for the number of observed events $N$ and a very large number of intervals $M$.
+\end{itemize}
+
+\noindent
+% !split
 \subsection{Derivation of common pdfs using MaxEnt}
 
+The principle of maximum entropy (MaxEnt) allows incorporation of further information, e.g.~constraints on the mean, variance, etc, into the assignment of probability distributions.
+
+In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and generates smooth functions.
+
+% !split
+\paragraph{Mean and the Exponential pdf.}
+Suppose that we have a pdf $p(x|I)$ that is normalized over some interval $[ x_\mathrm{min}, x_\mathrm{max}]$. Assume that we have information about its mean value, i.e.,
+\[
+\langle x \rangle = \int x p(x|I) dx = \mu.
+\]
+
+Based only on this information, what functional form should we assign for the pdf that we will now denote $p(x|\mu)$? 
+
+% !split
+Let us use the principle of MaxEnt and maximize the entropy under the normalization and mean constraints. We will use Lagrange multipliers, and we will perform the optimization as a limiting case of a discrete problem; explicitly, we will maximize
+\[
+Q = -\sum_i p_i \log \left( \frac{p_i}{m_i} \right) + \lambda_0 \left( 1 - \sum_i p_i \right) + \lambda_1 \left( \mu - \sum_i x_i p_i \right).
+\]
+
+% !split
+Setting $\partial Q / \partial p_j = 0$ we obtain
+\[
+p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
+\]
+
+% !split
+With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
+\[
+p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
+\]
+
+% !split
+The normalization constant (related to $\lambda_0$) and the remaining Lagrange multiplier, $\lambda_1$, can easily determined by fulfilling the two constraints. 
+
+Assuming, e.g., that the normalization interval is $x \in [0, \infty[$ we obtain
+\[
+p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].
+\]
+
+% !split
 \paragraph{Variance and the Gaussian pdf.}
+Suppose that we have information not only on the mean $\mu$ but also on the variance
+\[
+\left\langle (x-\mu)^2 \right\rangle = \int (x-\mu)^2 p(x|I) dx = \sigma^2.
+\]
+
+% !split
+The principle of MaxEnt will then result in the continuum assignment
+\[
+p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].
+\]
+
+% !split
+Assuming that the limits of integration are $\pm \infty$ this results in the standard Gaussian pdf
+\[
+p(x|\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left[ - \frac{( x - \mu )^2}{2\sigma^2} \right].
+\]
+
+This indicates that the normal distribution is the most honest representation of our state of knowledge when we only have information about the mean and the variance.
+
+% !split
+
+\begin{notice_mdfboxadmon}[Notice]
+These arguments extend easily to the case of several parameters. For example, considering $\{x_k\}$ as the data $\{ D_k\}$ with error bars $\{sigma_k\}$ and $\{\mu_k\}$ as the model predictions, this allows us to identify the least-squares likelihood as the pdf which best represents our state of knowledge given only the value of the expected squared-deviation between our predictions and the data
+\[
+p\left( \{x_k\} | \{\mu_k, \sigma_k\} \right) = \prod_{k=1}^N \frac{1}{\sigma_k \sqrt{2\pi}} \exp \left[ - \frac{( x_k - \mu_k )^2}{2\sigma_k^2} \right].
+\]
+
+If we had convincing information about the covariance $\left\langle \left( x_i - \mu_i \right) \left( x_j - \mu_j \right) \right\rangle$, where $i \neq j$, then MaxEnt would assign a correlated, multivariate Gaussian pdf for $p\left( \{ x_k \} | I \right)$.
+\end{notice_mdfboxadmon} % title: Notice
+
+
+
 \paragraph{Counting statistics and the Poisson distribution.}
+The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.
 
 % ------------------- end of main content ---------------
 
