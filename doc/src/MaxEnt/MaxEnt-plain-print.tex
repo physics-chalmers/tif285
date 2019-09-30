@@ -369,6 +369,7 @@ p(x|I) = \lambda p(\lambda x|I) \quad \Rightarrow \quad p(x|I) \propto 1/x.
 \end{itemize}
 
 \noindent
+% !split
 \paragraph{Example: Straight-line model.}
 Consider the theoretical model 
 \[
@@ -407,6 +408,7 @@ p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\th
 \end{itemize}
 
 \noindent
+% !split
 This change of variables implies that
 \[
 q(\theta_0', \theta_1' | I) = p(\theta_0, \theta_1 | I) \left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right|,
@@ -423,6 +425,7 @@ where the (absolute value of the) determinant of the Jacobian is
 = \frac{1}{\left( \theta_1' \right)^3}.
 \]
 
+% !split
 \begin{itemize}
 \item In summary we find that $\theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I).$
 
@@ -672,6 +675,7 @@ $-\sum_i \sqrt{p_i(1-p_i)}$ & 0.066     & Negative            \\
 \vspace{3mm}
 
 
+% !split
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
 
 
@@ -684,6 +688,7 @@ The assignment based on the entropy measure is the only one that respects this l
 %\clearpage % flush figures 
 
 
+% !split
 \paragraph{Continuous case.}
 Return to monkeys, but now with different probabilities for each bin.Then
 \[
@@ -734,7 +739,6 @@ Setting $\partial Q / \partial p_j = 0$ we obtain
 p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
 \]
 
-% !split
 With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
 \[
 p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
@@ -755,7 +759,6 @@ Suppose that we have information not only on the mean $\mu$ but also on the vari
 \left\langle (x-\mu)^2 \right\rangle = \int (x-\mu)^2 p(x|I) dx = \sigma^2.
 \]
 
-% !split
 The principle of MaxEnt will then result in the continuum assignment
 \[
 p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].
@@ -782,6 +785,7 @@ If we had convincing information about the covariance $\left\langle \left( x_i -
 
 
 
+% !split
 \paragraph{Counting statistics and the Poisson distribution.}
 The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.
 

@@ -227,6 +227,8 @@ $$
 
 </ul>
 
+<!-- !split -->
+
 <h3 id="___sec4" class="anchor">Example: Straight-line model </h3>
 
 Consider the theoretical model 
@@ -264,6 +266,7 @@ $$
 <li> The transformation gives \( (\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1}) \).</li>
 </ul>
 
+<!-- !split -->
 This change of variables implies that
 $$
 q(\theta_0', \theta_1' | I) = p(\theta_0, \theta_1 | I) \left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right|,
@@ -281,6 +284,8 @@ $$
 = \frac{1}{\left( \theta_1' \right)^3}.
 $$
 
+<p>
+<!-- !split -->
 
 <ul>
 <li> In summary we find that \( \theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I). \)</li>
@@ -525,6 +530,7 @@ Let us now empirically consider a few variational functions of \( \{ p_i \} \) a
 </div> <!-- cell row -->
 <p>
 <br />
+<!-- !split -->
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
 
 <p>
@@ -533,6 +539,9 @@ The assignment based on the entropy measure is the only one that respects this l
 <center><p class="caption">Figure 2:  Four different variational functions \( f\left( \{ p_i \} \right) \). The optimal \( x \) for each one is shown by a circle. The uncorrelated assignment \( x=0.07 \) is shown by a vertical line. </p></center>
 <p><img src="fig/scandinavian_entropy.png" align="bottom" width=800></p>
 </center>
+
+<p>
+<!-- !split -->
 
 <h3 id="___sec10" class="anchor">Continuous case </h3>
 
@@ -598,7 +607,6 @@ p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
 $$
 
 <p>
-<!-- !split -->
 With a uniform measure \( m_j = \mathrm{constant} \) we find (in the continuous limit) that
 $$
 p(x|\mu) \propto \exp \left[ -\lambda_1 x \right].
@@ -626,7 +634,6 @@ $$
 $$
 
 <p>
-<!-- !split -->
 The principle of MaxEnt will then result in the continuum assignment
 $$
 p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].
@@ -660,6 +667,9 @@ If we had convincing information about the covariance \( \left\langle \left( x_i
 </div>
 </div>
 
+
+<p>
+<!-- !split -->
 
 <h3 id="___sec14" class="anchor">Counting statistics and the Poisson distribution </h3>
 

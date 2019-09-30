@@ -58,6 +58,7 @@ p(x|I) = \lambda p(\lambda x|I) \quad \Rightarrow \quad p(x|I) \propto 1/x.
 * It is equivalent to a uniform pdf for the logarithm: $p(\log(x)|I) = \mathrm{constant}$
   * as can be verified with a change of variable $y=\log(x)$, see lecture notes on error propagation.
   
+!split
 === Example: Straight-line model ===
 Consider the theoretical model 
 !bt
@@ -86,6 +87,7 @@ p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\th
 
 * The transformation gives $(\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1})$.
 
+!split
 This change of variables implies that
 !bt
 \[
@@ -106,6 +108,7 @@ where the (absolute value of the) determinant of the Jacobian is
 \]
 !et
 
+!split
 * In summary we find that $\theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I).$
 * This functional equation is satisfied by
 !bt
@@ -277,10 +280,12 @@ Let us now empirically consider a few variational functions of $\{ p_i \}$ and s
   |--------------------------------------------------------|
   
 <linebreak>
+!split
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
   
 FIGURE:[fig/scandinavian_entropy.png, width=800 frac=0.8] Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.
 
+!split
 === Continuous case ===
 
 Return to monkeys, but now with different probabilities for each bin.Then
@@ -338,7 +343,6 @@ p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
 \]
 !et
 
-!split
 With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
 !bt
 \[
@@ -366,7 +370,6 @@ Suppose that we have information not only on the mean $\mu$ but also on the vari
 \]
 !et
 
-!split
 The principle of MaxEnt will then result in the continuum assignment
 !bt
 \[
@@ -396,6 +399,7 @@ p\left( \{x_k\} | \{\mu_k, \sigma_k\} \right) = \prod_{k=1}^N \frac{1}{\sigma_k 
 If we had convincing information about the covariance $\left\langle \left( x_i - \mu_i \right) \left( x_j - \mu_j \right) \right\rangle$, where $i \neq j$, then MaxEnt would assign a correlated, multivariate Gaussian pdf for $p\left( \{ x_k \} | I \right)$.
 !enotice
 
+!split
 === Counting statistics and the Poisson distribution ===
 
 The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.
