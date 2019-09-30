@@ -1,0 +1,518 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Learning from data: Assigning probabilities">
+
+<title>Learning from data: Assigning probabilities</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Ignorance pdfs: Indifference and translation groups',
+               1,
+               None,
+               '___sec0'),
+              ('Location invariance', 2, None, '___sec1'),
+              ('Scale invariance', 2, None, '___sec2'),
+              ('Example: Straight-line model', 3, None, '___sec3'),
+              ('Symmetry invariance', 2, None, '___sec4'),
+              ('The principle of maximum entropy', 1, None, '___sec5'),
+              ('The entropy of Scandinavians', 2, None, '___sec6'),
+              ('The monkey argument', 2, None, '___sec7'),
+              ('Why maximize the entropy?', 3, None, '___sec8'),
+              ('Continuous case', 3, None, '___sec9'),
+              ('Derivation of common pdfs using MaxEnt', 2, None, '___sec10'),
+              ('Variance and the Gaussian pdf', 3, None, '___sec11'),
+              ('Counting statistics and the Poisson distribution',
+               3,
+               None,
+               '___sec12')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="MaxEnt-bs.html">Learning from data: Assigning probabilities</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Ignorance pdfs: Indifference and translation groups</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Location invariance</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Scale invariance</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Straight-line model</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Symmetry invariance</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>The principle of maximum entropy</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The entropy of Scandinavians</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The monkey argument</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Why maximize the entropy?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Continuous case</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Derivation of common pdfs using MaxEnt</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variance and the Gaussian pdf</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Counting statistics and the Poisson distribution</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Learning from data: Assigning probabilities</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Christian Forss&#233;n -->
+
+<center>
+<b>Christian Forss&#233;n</b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
+<br>
+<p>
+<center><h4>Sep 29, 2019</h4></center> <!-- date -->
+<br>
+<p>
+<!-- potential-jumbotron-button -->
+</div> <!-- end jumbotron -->
+
+<!-- !split -->
+
+<h1 id="___sec0" class="anchor">Ignorance pdfs: Indifference and translation groups </h1>
+
+<ul>
+<li> Consider a six-sided dice</li>
+<li> How do we assign \( p(X_i|I) \), \( i \in \{1, 2, 3, 4, 5, 6\} \)?</li>
+<li> We do know \( \sum_i p(X_i|I) = 1 \)</li>
+<li> Invariance under labeling \( \Rightarrow p(X_i|I)=1/6 \)</li>
+
+<ul>
+  <li> provided that the prior information \( I \) says nothing that breaks the symmetry.</li>
+</ul>
+
+</ul>
+
+<!-- !split -->
+
+<h2 id="___sec1" class="anchor">Location invariance </h2>
+Indifference to a shift \( x_0 \) for a location parameter \( x \) implies that
+$$
+p(x|I) dx \approx p(x+ x_0|I) d(x+x_0) =  p(x+ x_0|I) dx,
+$$
+
+in the allowed range.
+
+<ul>
+<li> Invariance under origin position \( \Rightarrow p(x|I) =  p(x+ x_0|I) \), i.e., \( p(x|I) = \mathrm{constant} \).</li>
+
+<ul>
+  <li> Provided that the prior information \( I \) says nothing that breaks the symmetry.</li>
+</ul>
+
+<li> The pdf will be zero outside the allowed range (specified by \( I \)).</li>
+</ul>
+
+<!-- !split -->
+
+<h2 id="___sec2" class="anchor">Scale invariance </h2>
+
+<p>
+Indifference to a re-scaling \( \lambda \) of a scale parameter \( x \) implies that
+$$
+p(x|I) dx \approx p(\lambda x|I) d(\lambda x) =  \lambda p(\lambda x|I) dx,
+$$
+
+in the allowed range.
+
+<ul>
+<li> Invariance under re-scaling \( \Rightarrow p(x|I) \propto 1/x \).</li> 
+
+<ul>
+  <li> Provided that the prior information \( I \) says nothing that breaks the symmetry.</li>
+</ul>
+
+<li> The pdf will be zero outside the allowed range (specified by \( I \)).</li>
+<li> This prior is often called a <em>Jeffrey's prior</em>; it represents a complete ignorance of a scale parameter within an allowed range.</li>
+<li> It is equivalent to a uniform pdf for the logarithm: \( p(\log(x)|I) = \mathrm{constant} \)</li>
+
+<ul>
+  <li> as can be verified with a change of variable \( y=\log(x) \), see lecture notes on error propagation.</li>
+</ul>
+
+</ul>
+
+<h3 id="___sec3" class="anchor">Example: Straight-line model </h3>
+
+Consider the theoretical model \( y_\mathrm{th}(x) = \theta_1  x  + \theta_0 \).
+
+<ul>
+<li> Would you consider the intercept \( \theta_0 \) a location or a scale parameter, or something else?</li>
+<li> Would you consider the slope \( \theta_1 \) a location or a scale parameter, or something else?</li>
+</ul>
+
+Consider also the statistical model for the observed data \( y_i = y_\mathrm{th}(x_i) + \epsilon_i \), where we assume independent, Gaussian noise \( \epsilon_i \sim \mathcal{N}(0, \sigma^2) \).
+
+<ul>
+<li> Would you consider the standard deviation \( \sigma \) a location or a scale parameter, or something else?</li>
+</ul>
+
+<!-- !split -->
+
+<h2 id="___sec4" class="anchor">Symmetry invariance </h2>
+
+<ul>
+<li> In fact, by symmetry indifference we could as well have written the linear model as \( x_\mathrm{th}(y) = \theta_1'  y  + \theta_0' \)</li>
+<li> We would then equate the probability elements for the two models \( p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\theta_0' d\theta_1' \).</li>
+<li> The transformation gives \( (\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1}) \).</li>
+</ul>
+
+This change of variables implies that
+$$
+q(\theta_0', \theta_1' | I) = p(\theta_0, \theta_1 | I) \left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right|,
+$$
+
+where the (absolute value of the) determinant of the Jacobian is
+$$
+\left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right| 
+= \mathrm{abs} \left( 
+\begin{vmatrix}
+\frac{\partial \theta_0}{\partial \theta_0'} & \frac{\partial \theta_0}{\partial \theta_1'} \\
+\frac{\partial \theta_1}{\partial \theta_0'} & \frac{\partial \theta_1}{\partial \theta_1'} 
+\end{vmatrix}
+\right)
+= \frac{1}{\left( \theta_1' \right)^3}.
+$$
+
+
+<ul>
+<li> In summary we find that \( \theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I). \)</li>
+<li> This functional equation is satisfied by</li>
+</ul>
+
+$$
+p(\theta_0, \theta_1 | I) \propto \frac{1}{\left( 1 + \theta_1^2 \right)^{3/2}}.
+$$
+
+<p>
+<!-- !split -->
+
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  100 samples of straight lines with intercept 0 and slope from three different pdfs. </p></center>
+<p><img src="fig/slope_priors.png" align="bottom" width=800></p>
+</center>
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec5" class="anchor">The principle of maximum entropy </h1>
+
+<p>
+Having dealt with ignorance, let us move on to a more enlightened situation.
+
+<p>
+Consider a die with the usual six faces that was rolled a very large number of times. Suppose that we were only told that the average number of dots was 2.5. What (discrete) pdf would we assign? I.e. what are the probabilities \( \{ p_i \} \) that the face on top had \( i \) dots after a single throw?
+
+<p>
+<!-- !split -->
+The available information can be summarized as follows
+$$
+\sum_{i=1}^6 p_i = 1, \qquad \sum_{i=1}^6 i p_i = 2.5
+$$
+
+This is obviously not a normal die, with uniform probability \( p_i=1/6 \), since the average result would then be 3.5. But there are many candidate pdfs that would reproduce the given information. Which one should we prefer?
+
+<p>
+<!-- !split -->
+It turns out that there are several different arguments that all point in a direction that is very familiar to people with a physics background. Namely that we should prefer the probability distribution that maximizes an entropy measure, while fulfilling the given constraints.
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec6" class="anchor">The entropy of Scandinavians </h2>
+
+<p>
+Let's consider another pdf assignment problem. This is originally the <em>kangaroo problem</em> (Gull and SKilling, 1984), but adapted here to a local context. The problem is stated as follows:
+
+<p>
+
+<dl>
+<dt>Information:<dd> 
+  70% of all Scandinavians have blonde hair, and 10% of all Scandinavians are left handed.
+<dt>Question:<dd> 
+  On the basis of this information alone, what proportion of kangaroos are both blonde and left handed?
+</dl>
+
+<!-- !split -->
+We note that for any one given Scandinavian there are four distinct possibilities: 
+
+<ol>
+<li> Blonde and left handed (probability \( p_1 \)).</li>
+<li> Blonde and right handed (probability \( p_2 \)).</li>
+<li> Not blonde and left handed (probability \( p_3 \)).</li>
+<li> Not blonde and right handed (probability \( p_4 \)).</li>
+</ol>
+
+<!-- !split -->
+The following 2x2 contingency table
+
+<p>
+
+<div class="row">
+  <div class="col-xs-3">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>          </b></td> <td align="center"><b>Left handed</b></td> <td align="center"><b>Right handed</b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Blonde        </td> <td align="center">   \( p_1 \)      </td> <td align="center">   \( p_2 \)       </td> </tr>
+<tr><td align="left">   Not blonde    </td> <td align="center">   \( p_3 \)      </td> <td align="center">   \( p_4 \)       </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-3 -->
+</div> <!-- cell row -->
+<p>
+<!-- !split -->
+can be written in terms of a single variable \( x \) due to the normalization condition \( \sum_{i=1}^4 p_i = 1 \), and the available information \( p_1 + p_2 = 0.7 \) and \( p_1 + p_3 = 0.1 \)
+
+<p>
+
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>          </b></td> <td align="center"><b>     Left handed     </b></td> <td align="center"><b>Right handed</b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Blonde        </td> <td align="center">   \( 0 \le x \le 0.1 \)    </td> <td align="center">   \( 0.7-x \)     </td> </tr>
+<tr><td align="left">   Not blonde    </td> <td align="center">   \( 0.1-x \)              </td> <td align="center">   \( 0.2+x \)     </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
+<p>
+But which choice of \( x \) is preferred?
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec7" class="anchor">The monkey argument </h2>
+
+<p>
+A model for assigning probabilities to \( M \) different alternatives that satisfy some constraint as described by \( I \): 
+
+<ul>
+<li> Monkeys throwing \( N \) balls into \( M \) equally sized boxes.</li>
+<li> The normalization condition \( N = \sum_{i=1}^M n_i \).</li>
+<li> The fraction of balls in each box gives a possible assignment for the corresponding probability \( p_i = n_i / M \).</li>
+<li> The distribution of balls \( \{ n_i \} \) is therefore a candidate pdf \( \{ p_i \} \).</li>
+<li> The resulting pdf might not be consistent with the constraints of \( I \), however, in which case it should be rejected as a possible candidate.</li>
+<li> After many such trials, some distributions will be found to come up more often than others. The one that appears most frequently (and satisfies \( I \)) would be a sensible choice for \( p(\{p_i\}|I) \).</li>
+</ul>
+
+<!-- !split -->
+
+<ul>
+<li> The number of micro-states, \( W \), as a function of \( \{p_i\} \) is</li>
+</ul>
+
+$$
+\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
+$$
+
+  where we have used the Stirling approximation \( \log(n!) \approx n\log(n) - n \) for large numbers, and a cancellation of two terms.
+
+<p>
+<!-- !split -->
+
+<ul>
+<li> There are \( M^N \) different ways to distribute the balls.</li>
+<li> The micro-states \( \{ n_i\} \) are connected to the pdf \( \{ p_i \} \), so the frequency of a given pdf is given by</li>
+</ul>
+
+$$
+\log(F(\{p_i\})) \approx -N \log(M) + N\log(N) - \sum_{i=1}^M n_i\log(n_i)
+$$
+
+<p>
+Substituting \( p_i = n_i/N \), and using the normalization condition finally gives
+$$
+\log(F(\{p_i\})) \approx -N \log(M) - N \sum_{i=1}^M p_i\log(p_i)
+$$
+
+<p>
+<!-- !split -->
+We note that \( N \) and \( M \) are constants so that the pdf is given by the \( \{ p_i \} \) that maximizes
+$$
+S = - \sum_{i=1}^M p_i\log(p_i).
+$$
+
+You might recognise this quantity as the <em>entropy</em> from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty, which remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied \( S = -k_B \sum_i p_i \log(p_i) \), where \( k_B \) is the Boltzmann constant.
+
+<p>
+<!-- !split -->
+
+<h3 id="___sec8" class="anchor">Why maximize the entropy? </h3>
+
+<ul>
+<li> Information theory: maximum entropy=minimum information (Shannon, 1948).</li>
+<li> Logical consistency (Shore &amp; Johnson, 1960).</li>
+<li> Uncorrelated assignments related monotonically to \( S \) (Skilling, 1988).</li>
+</ul>
+
+Consider the third argument. Let us check it empirically to the problem of hair colour and handedness of Scandinavians. We are interested in determining \( p_1 \equiv p(L,B|I) \equiv x \), the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment \( p_1=0.07 \) is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.
+
+<p>
+<!-- !split -->
+So unless you have specific information about the existence of such a correlation, you should better not build it into the assignment of the probability \( p_1 \).
+
+<p>
+<b>Question</b>: Can you show why \( p_1 < 0.07 \) and \( p_1 > 0.07 \) corresponds to left-handedness and blondeness being dependent variables?
+
+<p>
+<!-- !split -->
+Let us now empirically consider a few variational functions of \( \{ p_i \} \) and see if any of them gives a maximum that corresponds to the uncorrelated assignment \( x=0.07 \), which implies \( p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27 \). A few variational functions and their prediction for \( x \) are shown in the following table.
+
+<p>
+
+<div class="row">
+  <div class="col-xs-7">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>      Variational function     </b></td> <td align="center"><b>Optimal x</b></td> <td align="center"><b>Implied correlation</b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   \( -\sum_i p_i \log(p_i) \)        </td> <td align="center">   0.070        </td> <td align="center">   None                   </td> </tr>
+<tr><td align="center">   \( \sum_i \log(p_i) \)             </td> <td align="center">   0.053        </td> <td align="center">   Negative               </td> </tr>
+<tr><td align="center">   \( -\sum_i p_i^2 \log(p_i) \)      </td> <td align="center">   0.100        </td> <td align="center">   Positive               </td> </tr>
+<tr><td align="center">   \( -\sum_i \sqrt{p_i(1-p_i)} \)    </td> <td align="center">   0.066        </td> <td align="center">   Negative               </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-7 -->
+</div> <!-- cell row -->
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Four different variational functions \( f\left( \{ p_i \} \right) \). The optimal \( x \) are shown by circles. The uncorrelated assignment \( x=0.07 \) is shown by a vertical line. </p></center>
+<p><img src="fig/scandinavian_entropy.png" align="bottom" width=800></p>
+</center>
+
+<h3 id="___sec9" class="anchor">Continuous case </h3>
+
+<p>
+Return to monkeys, but now with different probabilities for each bin.Then
+$$
+S= −\sum_{i=1}^M p_i \log \left( \frac{p_i}{m_i} \right),
+$$
+
+which is often known as the <em>Shannon-Jaynes entropy</em>, or the <em>Kullback number</em>, or the <em>cross entropy</em> (with opposite sign).
+
+<p>
+In the continuous case
+$$
+S[p]= −\int p(x) \log \left( \frac{p(x)}{m(x)} \right).
+$$
+
+<h2 id="___sec10" class="anchor">Derivation of common pdfs using MaxEnt </h2>
+
+<h3 id="___sec11" class="anchor">Variance and the Gaussian pdf </h3>
+
+<h3 id="___sec12" class="anchor">Counting statistics and the Poisson distribution </h3>
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

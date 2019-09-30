@@ -1,0 +1,560 @@
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+ERROR: 4 !bt do not match 5 !et directives
+
+
+Two !et after each other!
+
+!et
+
+
+!et
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+p_i
+p_i
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+W\{p_i\}\log(n!) \approx n\log(n) - nM^N\{ n_i\}\{ p_i \}p_i = n_i/NNM\{ p_i \}$ that maximizes
+8 <<<!!MATH_BL
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+p_i
+p_i
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+W\{p_i\}\log(n!) \approx n\log(n) - nM^N\{ n_i\}\{ p_i \}p_i = n_i/NNM\{ p_i \}$ that maximizes
+8 <<<!!MATH_BL
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+assign_
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+ average number of dots was 2.5. What pdf would we assign_ I.e. what are the probabilities  that he face on to
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+Table has headings alignment specification: c|c|c, but 3 columns
+Table with rows
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+Table has headings alignment specification: c|c|c, but 3 columns
+Table with rows
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+Table has headings alignment specification: c|c|c, but 3 columns
+Table with rows
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+Table has headings alignment specification: c|c|c, but 3 columns
+Table with rows
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html
