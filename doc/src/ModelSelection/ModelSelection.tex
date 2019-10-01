@@ -85,6 +85,152 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \pagestyle{fancy}
 
 
+\usepackage[framemethod=TikZ]{mdframed}
+
+% --- begin definitions of admonition environments ---
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "notice" admon
+\definecolor{mdfbox_notice_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_notice_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_notice_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{notice_mdfboxmdframed}
+
+\newenvironment{notice_mdfboxadmon}[1][]{
+\begin{notice_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{notice_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "summary" admon
+\definecolor{mdfbox_summary_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_summary_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_summary_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{summary_mdfboxmdframed}
+
+\newenvironment{summary_mdfboxadmon}[1][]{
+\begin{summary_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{summary_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "warning" admon
+\definecolor{mdfbox_warning_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_warning_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_warning_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{warning_mdfboxmdframed}
+
+\newenvironment{warning_mdfboxadmon}[1][]{
+\begin{warning_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{warning_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "question" admon
+\definecolor{mdfbox_question_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_question_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_question_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{question_mdfboxmdframed}
+
+\newenvironment{question_mdfboxadmon}[1][]{
+\begin{question_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{question_mdfboxmdframed}
+}
+
+% Admonition style "mdfbox" is an oval colored box based on mdframed
+% "block" admon
+\definecolor{mdfbox_block_background}{rgb}{1,1,1}
+\newmdenv[
+  skipabove=15pt,
+  skipbelow=15pt,
+  outerlinewidth=0,
+  backgroundcolor=mdfbox_block_background,
+  linecolor=black,
+  linewidth=2pt,       % frame thickness
+  frametitlebackgroundcolor=mdfbox_block_background,
+  frametitlerule=true,
+  frametitlefont=\normalfont\bfseries,
+  shadow=false,        % frame shadow?
+  shadowsize=11pt,
+  leftmargin=0,
+  rightmargin=0,
+  roundcorner=5,
+  needspace=0pt,
+]{block_mdfboxmdframed}
+
+\newenvironment{block_mdfboxadmon}[1][]{
+\begin{block_mdfboxmdframed}[frametitle=#1]
+}
+{
+\end{block_mdfboxmdframed}
+}
+
+% --- end of definitions of admonition environments ---
+
 % prevent orhpans and widows
 \clubpenalty = 10000
 \widowpenalty = 10000
@@ -141,7 +287,7 @@ Learning from data: Model Selection
 
 % --- begin date ---
 \begin{center}
-Sep 30, 2019
+Oct 1, 2019
 \end{center}
 % --- end date ---
 
@@ -152,31 +298,41 @@ Sep 30, 2019
 So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether a quadratic, or even cubic, function might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as \textbf{Model Selection} problems and we will discuss them in some depth.
 
 % !split
-We will start, however, with a brief discussion on the frequentist approach to hypothesis testing.
+One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+
+
+% !split
+We will start, however, with a brief discussion on sampling theory and the frequentist approach to \textbf{hypothesis testing}. This will involve the introduction of the $P$-value or significance measure---quantities that are often misinterpreted even by scientists themselves. See, for example, the following comment published in Nature (March 20, 2019): \href{{https://www.nature.com/articles/d41586-019-00857-9}}{Scientists rise up against statistical significance}.
 
 % !split
 \section{Frequentist hypothesis testing}
-One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it.
 
 % !split
 \subsection{Basic idea}
 
-Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it. The basic idea is the following:
+The standard sampling theory approach to hypothesis testing is to construct a statistical test. The basic idea is the following:
+
+
+\begin{notice_mdfboxadmon}[Frequentist hypothesis testing]
+The sampling theory hypothesis test is designed to compare a selected statistic from the measured data with expected results from a very large number of hypothetical repeated measurements under the assumption that a chosen null hypothesis ($\mathcal{H}_0$) is true.
+\end{notice_mdfboxadmon} % title: Frequentist hypothesis testing
+
+
 
 % !split
+\begin{itemize}
+\item The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to $\mathcal{H}_0$, not on how much better the alternative hypothesis ($\mathcal{H}_A$) predicted the data. 
+\end{itemize}
+
+\noindent
 % !bpop
 \begin{itemize}
-\item The standard sampling theory approach to hypothesis testing is to construct a statistical test.
+\item The degree of ''unexpectedness'' is based on a statistic, such as the sample mean or the $\chi^2$ statistic. 
 
-\item The test usually compares a null hypothesis ($\mathcal{H}_0$) with an alternative hypothesis ($\mathcal{H}_A$). We will see an example below.
+\item The statistic is a random variable and it is chosen so that its distribution can be easily computed given the truth of the null hypothesis. In other words, this is the distribution of the chosen statistic for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true. 
 
-\item The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to $\mathcal{H}_0$, not on how much better $\mathcal{H}_A$ predicted the data. 
-
-\item The degree of ''unexpectedness'' is based on a chosen statistic, such as the sample mean or the $\chi^2$ statistic. This statistic is first computed for the observed data set. 
-
-\item Then it is computed for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true. 
-
-\item The value of the statistic from our actual data set is compared with the distribution that is associated with the truth of the null hypothesis.
+\item This statistic is then computed for the observed data set and its value is compared with the distribution that is associated with the truth of the null hypothesis.
 
 \item If the statistic from the observed data falls in a very unlikely spot on this distribution (the threshold is to be defined beforehand) we choose to reject the null hypothesis at some confidence level on the basis of the measured data set. 
 \end{itemize}
@@ -186,14 +342,14 @@ Recall that in frequentist statistics, probability statements are restricted to 
 
 % !split
 \paragraph{Hypothesis testing with the chi-squared statistic.}
-A very common statistic to use is the chi-square. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days.
+A very common statistic to use is the $\chi^2$ measure. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days. The main steps of the presented analysis are the following:
 
 \begin{itemize}
-\item Choose a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g.~the 95\% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.
+\item Choose as a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g.~the 95\% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.
 
-\item In this example, it is assumed that he measurement errors are independently normal with a fixed standard deviation $\sigma$ that is known beforehand.
+\item In this example, it is assumed that the measurement errors are independent and identically distributed (\textbf{iid}) according to a normal distribution with a fixed standard deviation $\sigma$ that is known beforehand.
 
-\item The $\chi^2$ statistic from the data set is evaluated (where $x_i$ is the data and $\bar{x}$ is the average from the sample)
+\item The $\chi^2$ statistic from the data set is evaluated ($x_i$ is the data and $\bar{x}$ is the average from the sample)
 \end{itemize}
 
 \noindent
@@ -203,7 +359,7 @@ A very common statistic to use is the chi-square. A good example is found in Gre
 
 % !split
 \begin{itemize}
-\item In our example we had 15 data points, but we are using it to estimate the mean $\mu$. Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the $\chi^2$ distribution that will be used for comparison with our actual $\chi^2$ statistic.
+\item In our example we had 15 data points, but we are using them first to estimate the mean $\mu$. Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the $\chi^2$ distribution that will be used for comparison with our actual $\chi^2$ statistic.
 
 \item The question of how unlikely is this value of $\chi^2$ is by convention interpreted in terms of the area in the tail of the $\chi^2$ distribution beyond this line. This is called the $P$-value or significance.
 \end{itemize}
@@ -214,7 +370,7 @@ A very common statistic to use is the chi-square. A good example is found in Gre
 \begin{figure}[!ht]  % 
   \centerline{\includegraphics[width=0.8\linewidth]{fig/gregory_7_2.png}}
   \caption{
-  The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. (Gregory, Fig.~7.2)
+  The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2\% in this particular example so we would reject the null hypothesis with 98\% confidence. (Gregory, Fig.~7.2)
   }
 \end{figure}
 %\clearpage % flush figures 

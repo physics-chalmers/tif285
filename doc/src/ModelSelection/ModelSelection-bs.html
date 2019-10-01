@@ -136,7 +136,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 30, 2019</h4></center> <!-- date -->
+<center><h4>Oct 1, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -147,13 +147,17 @@ So far, we have been concerned with the problem of parameter estimation. In stud
 
 <p>
 <!-- !split -->
-We will start, however, with a brief discussion on the frequentist approach to hypothesis testing.
+One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+
+<p>
+<!-- !split -->
+We will start, however, with a brief discussion on sampling theory and the frequentist approach to <b>hypothesis testing</b>. This will involve the introduction of the \( P \)-value or significance measure&mdash;quantities that are often misinterpreted even by scientists themselves. See, for example, the following comment published in Nature (March 20, 2019): <a href="https://www.nature.com/articles/d41586-019-00857-9" target="_self">Scientists rise up against statistical significance</a>.
 
 <p>
 <!-- !split -->
 
 <h1 id="___sec0" class="anchor">Frequentist hypothesis testing </h1>
-One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.
+Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it.
 
 <p>
 <!-- !split -->
@@ -161,19 +165,33 @@ One of the main objectives in science is that of inferring the truth of one or m
 <h2 id="___sec1" class="anchor">Basic idea </h2>
 
 <p>
-Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it. The basic idea is the following:
+The standard sampling theory approach to hypothesis testing is to construct a statistical test. The basic idea is the following:
+
+<p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Frequentist hypothesis testing</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The sampling theory hypothesis test is designed to compare a selected statistic from the measured data with expected results from a very large number of hypothetical repeated measurements under the assumption that a chosen null hypothesis (\( \mathcal{H}_0 \)) is true.
+</div>
+</div>
+
 
 <p>
 <!-- !split -->
+
+<ul>
+<li> The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to \( \mathcal{H}_0 \), not on how much better the alternative hypothesis (\( \mathcal{H}_A \)) predicted the data.</li> 
+</ul>
+
 <!-- !bpop -->
 
 <ul>
-<li> The standard sampling theory approach to hypothesis testing is to construct a statistical test.</li>
-<li> The test usually compares a null hypothesis (\( \mathcal{H}_0 \)) with an alternative hypothesis (\( \mathcal{H}_A \)). We will see an example below.</li>
-<li> The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to \( \mathcal{H}_0 \), not on how much better \( \mathcal{H}_A \) predicted the data.</li> 
-<li> The degree of ''unexpectedness'' is based on a chosen statistic, such as the sample mean or the \( \chi^2 \) statistic. This statistic is first computed for the observed data set.</li> 
-<li> Then it is computed for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true.</li> 
-<li> The value of the statistic from our actual data set is compared with the distribution that is associated with the truth of the null hypothesis.</li>
+<li> The degree of ''unexpectedness'' is based on a statistic, such as the sample mean or the \( \chi^2 \) statistic.</li> 
+<li> The statistic is a random variable and it is chosen so that its distribution can be easily computed given the truth of the null hypothesis. In other words, this is the distribution of the chosen statistic for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true.</li> 
+<li> This statistic is then computed for the observed data set and its value is compared with the distribution that is associated with the truth of the null hypothesis.</li>
 <li> If the statistic from the observed data falls in a very unlikely spot on this distribution (the threshold is to be defined beforehand) we choose to reject the null hypothesis at some confidence level on the basis of the measured data set.</li> 
 </ul>
 
@@ -185,12 +203,12 @@ Recall that in frequentist statistics, probability statements are restricted to 
 <h3 id="___sec2" class="anchor">Hypothesis testing with the chi-squared statistic </h3>
 
 <p>
-A very common statistic to use is the chi-square. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days.
+A very common statistic to use is the \( \chi^2 \) measure. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days. The main steps of the presented analysis are the following:
 
 <ul>
-<li> Choose a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.</li>
-<li> In this example, it is assumed that he measurement errors are independently normal with a fixed standard deviation \( \sigma \) that is known beforehand.</li>
-<li> The \( \chi^2 \) statistic from the data set is evaluated (where \( x_i \) is the data and \( \bar{x} \) is the average from the sample)</li>
+<li> Choose as a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.</li>
+<li> In this example, it is assumed that the measurement errors are independent and identically distributed (<b>iid</b>) according to a normal distribution with a fixed standard deviation \( \sigma \) that is known beforehand.</li>
+<li> The \( \chi^2 \) statistic from the data set is evaluated (\( x_i \) is the data and \( \bar{x} \) is the average from the sample)</li>
 </ul>
 
 $$
@@ -201,7 +219,7 @@ $$
 <!-- !split -->
 
 <ul>
-<li> In our example we had 15 data points, but we are using it to estimate the mean \( \mu \). Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the \( \chi^2 \) distribution that will be used for comparison with our actual \( \chi^2 \) statistic.</li>
+<li> In our example we had 15 data points, but we are using them first to estimate the mean \( \mu \). Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the \( \chi^2 \) distribution that will be used for comparison with our actual \( \chi^2 \) statistic.</li>
 <li> The question of how unlikely is this value of \( \chi^2 \) is by convention interpreted in terms of the area in the tail of the \( \chi^2 \) distribution beyond this line. This is called the \( P \)-value or significance.</li>
 </ul>
 
@@ -210,8 +228,8 @@ $$
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  The \( \chi^2 \) distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the \( P \)-value. (Gregory, Fig. 7.2) </p></center>
-<p><img src="fig/gregory_7_2.png" align="bottom" width=400></p>
+<center><p class="caption">Figure 1:  The \( \chi^2 \) distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the \( P \)-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2) </p></center>
+<p><img src="fig/gregory_7_2.png" align="bottom" width=600></p>
 </center>
 
 <p>
