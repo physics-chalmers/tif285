@@ -57,7 +57,7 @@ The assignments of the prior (ref{eq:sivia_44}) and the likelihood (ref{eq:sivia
 
 * We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ \delta\lambda 2\pi$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.
 
-FIGURE: [fig41.png, width=500 frac=0.8] A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. label{fig:sivia_41}
+FIGURE: [fig/fig41.png, width=500 frac=0.8] A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. label{fig:sivia_41}
 
 Evaluating $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; 
 !bt

@@ -1,3 +1,4 @@
+!split
 ===== Laplace's method =====
 The idea behind the Laplace approximation is simple. We assume that an unnormalized probability density $P^*(\theta)$ has a peak at a point $\theta_0$. We are interested in the evidence, $Z_P$, which is given by the normalizing constant
 $$
@@ -5,6 +6,7 @@ Z_P = \int P^*(\theta) d^K\theta,
 $$ 
 where we consider the general case in which $\theta$ is in a $K$-dimensional space. 
 
+!split
 We Taylor-expand the logarithm $\log P^*$ around the peak:
 $$
 \log P^*(\theta) = \log P^*(\theta_0) - \frac{1}{2} (\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) + \ldots,
@@ -13,6 +15,8 @@ where $\Sigma^{-1} = H$ is the (Hessian) matrix of second derivatives at the max
 $$
 H_{ij} = - \left. \frac{\partial^2}{\partial \theta_i \partial \theta_j}  \log P^*(\theta)\right|_{\theta=\theta_0}.
 $$
+
+!split
 We then approximate $P^*(\theta)$ by an unnormalized Gaussian, 
 $$
 Q^*(\theta) \equiv P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right],
@@ -24,12 +28,14 @@ Z_P \approx Z_Q = P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
 $$
 Predictions can then be made using this approximation $Q$. Physicists also call this widely-used approximation the saddle-point approximation.
 
+!split
 Note, in particular, that if we consider a chi-squared pdf: $P^*(\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)$, then we get
 $$
 Z_P \approx \exp \left( -\frac{1}{2} \chi^2(\theta_0)\right) \sqrt{\frac{(4\pi)^K}{\det\Sigma^{-1}}},
 $$
 where there is a factor $2^{K/2}$ that comes from the extra factor $1/2$ multiplying the covariance matrix $\Sigma^{-1}$ and therefore appearing in all $K$ eigenvalues.
     
+!split
 The fact that the normalizing constant of a Gaussian is given by 
 $$
 \int d^K\theta \exp \left[ - \frac{1}{2}\theta^T \Sigma^{-1} \theta \right] = \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}},
@@ -40,4 +46,5 @@ $$
 $$
 The product of the eigenvalues $\lambda_i$ is the determinant of $\Sigma^{-1}$.
 
+!split
 Note that the Laplace approximation is basis-dependent: if $\theta$ is transformed to a nonlinear function $u(\theta)$ and the density is transformed to $P(u) = P(\theta) |d\theta/du|$ then in general the approximate normalizing constants $Z_Q$ will be different. This can be viewed as a defect---since the true value $Z_P$ is basis-independent in this approximation---or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.

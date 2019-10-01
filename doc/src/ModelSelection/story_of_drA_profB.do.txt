@@ -3,6 +3,8 @@
 !bquote
 *Dr. A has a theory; Prof. B also has a theory, but with an adjustable parameter $\lambda$. Whose theory should we prefer on the basis of data $D$?*--- Jefferys (1939), Gull (1988), Sivia (2006)
 !equote
+
+!split
 It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,
 !bt
 \begin{equation}
@@ -79,6 +81,7 @@ While accepting the clear logic leading to Eq (ref{eq:sivia_48}), many people ri
 In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn (ref{eq:sivia_48}) tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B’s theory fails to give a significantly better fit as the quality of the data improves. In that case, $\delta\lambda$ continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. (ref{eq:sivia_48}), therefore, A’s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. (ref{eq:sivia_48}) is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A’s theory unless it is explicitly encoded in $p(A|I)/p(B|I)$. This property can be verified formally by going back to Eqs. (ref{eq:sivia_42}), (ref{eq:sivia_45}) and (ref{eq:sivia_46}), and considering the poor-data limit in which 
 $\delta\lambda \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda_0,B,I) \approx p(D|A,I)$.
 
+!split
 === One adjustable parameter each ===
 Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it $\mu$. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
 !bt
@@ -87,12 +90,17 @@ Some further interesting features arise when we consider the case where Dr A als
 label{eq:sivia_49}
 \end{equation}
 !et
+
+!split
 This could represent the situation where we have to choose between a Gaussian and Lorentzian shape for a signal peak, but one associated parameter is not known. The position of the maximum may be fixed at the origin by theory, for example, and the amplitude constrained by the normalization of the data; A and B could then be the hypotheses favouring the alternative lineshapes, where $\delta\mu$ and $\delta\lambda$ are their related full-width-half-maxima. If we give equal weight to A and B before the analysis, and assign a similar large prior range for both $\mu$ and $\lambda$, then Eq. (ref{eq:sivia_49}) reduces to
 $$
 \frac{p(A|D,I)}{p(B|D,I)} \approx  \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu}{\delta\lambda}. 
 $$
+
+!split
 For data of good quality, the dominant factor will tend to be the best-fit likelihood ratio. If both give comparable agreement with the measurements, however, then the shape with the larger error-bar for its associated parameter will be favoured. At first sight, it might seem rather odd that the less discriminating theory can gain the upper hand. It appears less strange once we realize that, in the context of model selection, a larger ‘error-bar’ means that more parameter values are consistent with the given hypothesis; hence its preferential treatment.
 
+!split
 === One adjustable parameter each; different prior ranges ===
 Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for $\lambda$ (or $\mu$). Although Eq. (ref{eq:sivia_48}) can be seen as representing the case when $(\mu_\mathrm{max} - \mu_\mathrm{min})$ is infinitesimally small, so that A has no flexibility, Eq. (ref{eq:sivia_49}) is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
 $$
@@ -100,6 +108,7 @@ $$
 $$
 because the best-fit likelihood ratio will be unity (since $\lambda_0 = \mu_0$) and $\delta\lambda = \delta\mu$. Thus, our analysis will lead us to prefer the theorist who gives the narrower prior range; this is not unreasonable as he must have had some additional insight to be able to predict the value of the parameter more accurately.
 
+!split
 ===== Comparison with parameter estimation =====
 The dependence of the result in Eq. (ref{eq:sivia_48}) on the prior range $(\lambda_\mathrm{max} - \lambda_\mathrm{min})$ can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of $\lambda$ from the data, given that B’s theory is correct, we use Bayes’ theorem:
 !bt
@@ -108,6 +117,11 @@ p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}.
 label{eq:sivia_410}
 \end{equation}
 !et
-The numerator is the familiar product of a prior and likelihood, and the denominator is usually omitted since it does not depend explicitly on $\lambda$; hence this relationship is often written as a proportionality. From the story of Dr A and Prof B, however, we find that the neglected term on the bottom plays a crucial role in ascertaining the merit of B’s theory relative to a competing alternative. In recognition of its new-found importance, the denominator in Bayes’ theorem is sometimes called the _‘evidence’_ for B; it is also referred to as the ‘marginal likelihood’, the ‘global likelihood’ and the ‘prior predictive’. Since all the components necessary for both parameter estimation and model selection appear in Eq. (ref{eq:sivia_410}), we are not dealing with any new principles; the only thing that sets them apart is that we are asking different questions of the data.
+The numerator is the familiar product of a prior and likelihood, and the denominator is usually omitted since it does not depend explicitly on $\lambda$; hence this relationship is often written as a proportionality. From the story of Dr A and Prof B, however, we find that the neglected term on the bottom plays a crucial role in ascertaining the merit of B’s theory relative to a competing alternative. 
 
+!split
+* In recognition of its new-found importance, the denominator in Bayes’ theorem is sometimes called the _‘evidence’_ for B; it is also referred to as the ‘marginal likelihood’, the ‘global likelihood’ and the ‘prior predictive’. 
+* Since all the components necessary for both parameter estimation and model selection appear in Eq. (ref{eq:sivia_410}), we are not dealing with any new principles; the only thing that sets them apart is that we are asking different questions of the data.
+
+!split
 A simple way to think about the difference between parameter estimation and model selection is to note that, to a good approximation, the former requires the location of the maximum of the likelihood function whereas the latter entails the calculation of its average value. As long as $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$ encompass the significant region of $p(D|\lambda,B,I)$ around $\lambda_0$, the precise bounds do not matter for estimating the optimal parameter and need not be specified. Since the prior range defines the domain over which the mean likelihood is computed, due thought is necessary when dealing with model selection. Indeed, it is precisely this act of comparing ‘average’ likelihoods rather than ‘maximum’ ones which introduces the desired Ockham balance to the goodness- of-fit criterion. Any likelihood gain from a better agreement with the data, allowed by the greater flexibility of a more complicated model, has to be weighed against the additional cost of averaging it over a larger parameter space.
