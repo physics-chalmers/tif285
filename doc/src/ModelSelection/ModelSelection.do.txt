@@ -1,4 +1,4 @@
-TITLE: Learning from data: Model Selection
+TITLE: Learning from data: Hypothesis testing and Bayesian model Selection
 AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
 DATE: today
 
