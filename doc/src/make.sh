@@ -104,11 +104,11 @@ fi
 cp -r fig-${name}/* $dest/$name/$format/fig-${name}/.
 fi
 # The same with data files
-if [ -d DataFiles ]; then
-if [ ! -d $dest/$name/$format/DataFiles ]; then
-mkdir $dest/$name/$format/DataFiles
+if [ -d data ]; then
+if [ ! -d $dest/$name/$format/data ]; then
+mkdir $dest/$name/$format/data
 fi
-cp -r DataFiles/* $dest/$name/$format/DataFiles/.
+cp -r data/* $dest/$name/$format/data/.
 fi
 if [ -d data-${name} ]; then
 if [ ! -d $dest/$name/$format/data-${name} ]; then
