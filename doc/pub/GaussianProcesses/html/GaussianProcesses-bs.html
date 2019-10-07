@@ -272,13 +272,85 @@ Assuming that we have a fixed set of basis functions and Gaussian prior distribu
 
 <h3 id="___sec3" class="anchor">Proof </h3>
 
-To be added.
+<p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Sum of normally distributed random variables</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+If \( X \) and \( Y \) are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., \( Z=X+Y \) is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.
+</div>
+</div>
+
+
+<p>
+Consider the linear model and define the \( N \times H \) design matrix \( \boldsymbol{R} \) with elements
+$$
+R_{nh} \equiv \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right).
+$$
+
+<p>
+Then \( \boldsymbol{y}_N = \boldsymbol{R} \boldsymbol{\theta} \) is the vector of model predictions, i.e.
+$$
+y^{(n)} = \sum_{h=1}^H R_{nh} \boldsymbol{\theta^{(h)}}.
+$$
+
+<p>
+Assume that we have a Gaussian prior for the linear model weights \( \boldsymbol{\theta} \) with zero mean and a diagonal covariance matrix
+$$
+p(\boldsymbol{\theta}) = \mathcal{N} \left( \boldsymbol{\theta}; 0, \sigma_\theta^2 \boldsymbol{I} \right).
+$$
+
+<p>
+Now, since \( y \) is a linear function of \( \boldsymbol{\theta} \), it is also Gaussian distributed with mean zero. Its covariance matrix becomes
+$$
+\boldsymbol{Q} = \langle \boldsymbol{y} \boldsymbol{y}^T \rangle = \langle \boldsymbol{R} \boldsymbol{\theta} \boldsymbol{\theta}^T \boldsymbol{R}^T \rangle
+= \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T,
+$$
+
+which implies that
+$$
+p(\boldsymbol{y}) = \mathcal{N} \left( \boldsymbol{y}; 0, \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T \right).
+$$
+
+This will be true for any set of points \( \boldsymbol{X}_N \); which is the defining property of a <b>Gaussian process</b>.
+
+<ul>
+<li> What about the target values \( \boldsymbol{t} \)?</li>
+</ul>
+
+Well, if \( t^{(n)} \) is assumed to differ by additive Gaussian noise, i.e., 
+$$
+t^{(n)} = y^{(n)} + \varepsilon^{(n)}, 
+$$
+
+where \( \varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right) \); then \( \boldsymbol{t} \) also has a Gaussian prior distribution
+$$
+p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),
+$$
+
+where the covariance matrix of this target distribution is given by
+$$
+\boldsymbol{C} = \boldsymbol{Q} + \sigma_\nu^2 \boldsymbol{I} = \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T + \sigma_\nu^2 \boldsymbol{I}.
+$$
+
+<p>
+<!-- !split -->
 
 <h3 id="___sec4" class="anchor">The covariance matrix as the central object </h3>
 
-To be added.
+The covariance matrices are given by
+$$
+Q_{nn'} = \sigma_\theta^2 \sum_h \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right) \phi^{(h)} \left( \boldsymbol{x}^{(n')} \right),
+$$
 
-<p>
+and
+$$
+C_{nn'} = Q_{nn'} + \delta_{nn'} \sigma_\nu^2.
+$$
+
+This means that the correlation between target values \( t^{(n)} \) and \( t^{(n')} \) is determined by the points \( \boldsymbol{x}^{(n)} \), \( \boldsymbol{x}^{(n')} \) and the behaviour of the basis functions.
 <!-- !split -->
 
 <h2 id="___sec5" class="anchor">Non-parametric approach: Mean and covariance functions </h2>
