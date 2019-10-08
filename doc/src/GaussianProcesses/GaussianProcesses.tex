@@ -457,30 +457,40 @@ and
 C_{nn'} = Q_{nn'} + \delta_{nn'} \sigma_\nu^2.
 \]
 This means that the correlation between target values $t^{(n)}$ and $t^{(n')}$ is determined by the points $\boldsymbol{x}^{(n)}$, $\boldsymbol{x}^{(n')}$ and the behaviour of the basis functions.
+
 % !split
 \subsection{Non-parametric approach: Mean and covariance functions}
 
-Similarly to how a D-dimensional Gaussian is parameterized by its mean vector and its covariance matrix, a GP is parameterized by a mean \emph{function} and a covariance \emph{function}. To explain this, we'll assume (without loss of generality) that the mean function is $\mu(x) = \mathbf{0}$. As for the covariance function, $C(x,x')$, it is a function that receives as input two locations $x,x'$ belonging to the input domain, i.e.~$x,x' \in \mathcal{X}$, and returns the value of their co-variance.
+In fact, we don't really need the basis functions and their parameters anymore. The influence of these appear only in the covariance matrix that describes the distribution of the targets, which is our key object. We can replace the parametric model altogether with a \textbf{covariance function} $C( \boldsymbol{x}, \boldsymbol{x}' )$ which generates the  elements of the covariance matrix
+\[
+Q_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right),
+\]
+for any set of points $\left\{ \boldsymbol{x}^{(n)} \right\}_{n=1}^N$.
 
-In this way, if we have a \emph{finite} set of input locations we can evaluate the covariance function at every pair of locations and obtain a covariance matrix $\mathbf{C}$. We write:
-\[ \mathbf{C} = C(\mathbf{X}, \mathbf{X}), \]
-where $\mathbf{X}$ is the collection of training inputs.
+Note, however, that $\boldsymbol{Q}$ must be positive-definite. This constrains the set of valid covariance functions.
 
-We'll see below that the covariance function is what encodes our assumption about the GP. By selecting a covariance function, we are making implicit assumptions about the shape of the function we wish to encode with the GP, for example how smooth it is.
+Once we have defined a covariance function, the covariance matrix for the target values will be given by
+\[
+C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right) + \sigma_\nu^2 \delta_{nn'}.
+\]
 
-Even if the covariance function has a parametric form, combined with the GP it gives us a nonparametric model. In other words, the covariance function is specifying the general properties of the GP function we wish to encode, and not a specific parametric form for it.
-
+A wide range of different covariance contributions can be \href{{https://en.wikipedia.org/wiki/Gaussian_process#Covariance_functions}}{constructed}. These standard covariance functions are typically parametrized with hyperparameters $\boldsymbol{\theta}$ so that 
+\[
+C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\theta} \right) + \delta_{nn'} \Delta \left( \boldsymbol{x}^{(n)};  \boldsymbol{\theta} \right),
+\]
+where $\Delta$ is usually included as a flexible noise model.
 
 % !split
 \paragraph{Stationary kernels.}
-To be added.
+The most common types of covariance functions are stationary, or translationally invariant, which implies that 
+\[
+C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\theta} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\theta} \right),
+\]
+where the function $D$ is often referred to as a \emph{kernel}.
 
-Below we define two very common covariance functions: The RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
+A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
 \[ k_{RBF}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \exp \left( -\frac{1}{2\ell^2} \sum_{q=1}^Q (x_{i,q} - x_{j,q})^2\right) \]
 where $Q$ denotes the dimensionality of the input space. Its parameters are: the \emph{lengthscale}, $\ell$ and the variance $\sigma^2$. 
-
-Furthermore, the linear kernel:
-\[ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j} \]
 
 \subsection{GP models for regression}
 To be added.
