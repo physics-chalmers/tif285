@@ -55,8 +55,12 @@ Automatically generated HTML file from DocOnce source
                '___sec5'),
               ('Stationary kernels', 3, None, '___sec6'),
               ('GP models for regression', 2, None, '___sec7'),
-              ('Optimizing the GP model hyperparameters', 3, None, '___sec8'),
-              ('GP emulators', 2, None, '___sec9')]}
+              ('Elegant approach using linear algebra tricks',
+               3,
+               None,
+               '___sec8'),
+              ('Optimizing the GP model hyperparameters', 3, None, '___sec9'),
+              ('GP emulators', 2, None, '___sec10')]}
 end of tocinfo -->
 
 <body>
@@ -102,8 +106,9 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>Non-parametric approach: Mean and covariance functions</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Stationary kernels</a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>GP models for regression</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Optimizing the GP model hyperparameters</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;"><b>GP emulators</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Elegant approach using linear algebra tricks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Optimizing the GP model hyperparameters</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;"><b>GP emulators</b></a></li>
 
         </ul>
       </li>
@@ -136,7 +141,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Oct 7, 2019</h4></center> <!-- date -->
+<center><h4>Oct 8, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -396,18 +401,127 @@ where the function \( D \) is often referred to as a <em>kernel</em>.
 
 <p>
 A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
-$$ k_{RBF}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \exp \left( -\frac{1}{2\ell^2} \sum_{q=1}^Q (x_{i,q} - x_{j,q})^2\right) $$
+$$ 
+C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\theta}) = \theta_0 + \theta_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
+$$
 
-where \( Q \) denotes the dimensionality of the input space. Its parameters are: the <em>lengthscale</em>, \( \ell \) and the variance \( \sigma^2 \).
+where \( I \) denotes the dimensionality of the input space. The hyperparameters are: \( \{ \theta_0, \theta_1, \vec{r} \} \). Sometimes, a single correlation length \( r \) is used.
+
+<p>
+<!-- !split -->
 
 <h2 id="___sec7" class="anchor">GP models for regression </h2>
+Let us return to the problem of predicting \( t^{(N+1)} \) given \( \boldsymbol{t}_N \). The independent variables \( \boldsymbol{X}_{N+1} \) are also given, but will be omitted from the conditional pdfs below.
+
+<p>
+The joint density is
+$$
+p \left( t^{(N+1)}, \boldsymbol{t}_N \right) = p \left( t^{(N+1)} | \boldsymbol{t}_N \right) p \left( \boldsymbol{t}_N \right) 
+\quad \Rightarrow \quad
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \boldsymbol{t}_N \right)}{p \left( \boldsymbol{t}_N \right) }.
+$$
+
+<p>
+Since both \( p \left( t^{(N+1)}, \boldsymbol{t}_N \right) \) and \( p \left( \boldsymbol{t}_N \right) \) are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation \( \boldsymbol{C}_{N+1} \) for the \( (N+1) \times (N+1) \) covariance matrix for \( \boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right) \). This implies that
+$$
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+\begin{pmatrix}
+\boldsymbol{t}_N \\
+t^{(N+1)}
+\end{pmatrix}
+\right]
+$$
+
+<p>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+  <h3 class="panel-title">Summary</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The prediction of the (Gaussian) pdf for \( t^{(N+1)} \) requires an inversion of the covariance matrix \( \boldsymbol{C}_{N+1}^{-1} \).
+</div>
+</div>
+
+
+<h3 id="___sec8" class="anchor">Elegant approach using linear algebra tricks </h3>
+
+Let us split the \( \boldsymbol{C}_{N+1} \) covariance matrix into four different blocks
+$$
+\boldsymbol{C}_{N+1} =
+\begin{pmatrix}
+\boldsymbol{C}_N & \boldsymbol{k} \\
+\boldsymbol{k}^T & \kappa
+\end{pmatrix},
+$$
+
+where \( \boldsymbol{C}_N \) is the \( N \times N \) covariance matrix (which depends on the positions \( \boldsymbol{X}_N \)), \( \boldsymbol{k} \) is an \( N \times 1 \) vector (that describes the covariance of \( \boldsymbol{X}_N \) with \( \boldsymbol{x}^{(N+1)} \)), while \( \kappa \) is the single diagonal element obtained from \( \boldsymbol{x}^{(N+1)} \).
+
+<p>
+We can use the partitioned inverse equations (Barnett, 1979) to rewrite \( \boldsymbol{C}_{N+1}^{-1} \) in terms of \( \boldsymbol{C}_{N}^{-1} \) and \( \boldsymbol{C}_{N} \) as follows
+$$
+\boldsymbol{C}_{N+1}^{-1} =
+\begin{pmatrix}
+\boldsymbol{M}_N & \boldsymbol{m} \\
+\boldsymbol{m}^T & \mu
+\end{pmatrix},
+$$
+
+where
+$$
+\begin{align*}
+\mu &= \left( \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k} \right)^{-1} \\
+\boldsymbol{m} &= -\mu \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
+\boldsymbol{M}_N &= \boldsymbol{C}_N^{-1} + \frac{1}{\mu} \boldsymbol{m} \boldsymbol{m}^T.
+\end{align*}
+$$
+
+<p>
+<div class="panel panel-success">
+  <div class="panel-heading">
+  <h3 class="panel-title">Question</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+What are the dimensions of the different blocks? Check that the answer.
+</div>
+</div>
+
+
+<p>
+This implies that we can make a prediction for the Gaussian pdf of \( t^{(N+1)} \) (meaning that we predict its value with an associated uncertainty) for an \( N^3 \) computational cost (the inversion of an \( N \times N \) matrix).
+
+<p>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+  <h3 class="panel-title">Summary</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The prediction for \( t^{(N+1)} \) is a Gaussian
+$$
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+\left[
+-\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma_{\hat{t}_{N+1}}^2}
+\right]
+$$
+
+with
+$$
+\begin{align*}
+\mathrm{mean:} & \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
+\mathrm{variance:} & \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
+\end{align*}
+$$
+</div>
+</div>
+
+
+<h3 id="___sec9" class="anchor">Optimizing the GP model hyperparameters </h3>
+
 To be added.
 
-<h3 id="___sec8" class="anchor">Optimizing the GP model hyperparameters </h3>
-
-To be added.
-
-<h2 id="___sec9" class="anchor">GP emulators </h2>
+<h2 id="___sec10" class="anchor">GP emulators </h2>
 
 <p>
 To be added.
