@@ -474,9 +474,9 @@ Once we have defined a covariance function, the covariance matrix for the target
 C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right) + \sigma_\nu^2 \delta_{nn'}.
 \]
 
-A wide range of different covariance contributions can be \href{{https://en.wikipedia.org/wiki/Gaussian_process#Covariance_functions}}{constructed}. These standard covariance functions are typically parametrized with hyperparameters $\boldsymbol{\theta}$ so that 
+A wide range of different covariance contributions can be \href{{https://en.wikipedia.org/wiki/Gaussian_process#Covariance_functions}}{constructed}. These standard covariance functions are typically parametrized with hyperparameters $\boldsymbol{\alpha}$ so that 
 \[
-C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\theta} \right) + \delta_{nn'} \Delta \left( \boldsymbol{x}^{(n)};  \boldsymbol{\theta} \right),
+C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) + \delta_{nn'} \Delta \left( \boldsymbol{x}^{(n)};  \boldsymbol{\alpha} \right),
 \]
 where $\Delta$ is usually included as a flexible noise model.
 
@@ -484,15 +484,15 @@ where $\Delta$ is usually included as a flexible noise model.
 \paragraph{Stationary kernels.}
 The most common types of covariance functions are stationary, or translationally invariant, which implies that 
 \[
-C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\theta} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\theta} \right),
+C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),
 \]
 where the function $D$ is often referred to as a \emph{kernel}.
 
 A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
 \[ 
-C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\theta}) = \theta_0 + \theta_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
+C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
 \]
-where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\{ \theta_0, \theta_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
+where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
 
 
 % !split
@@ -576,13 +576,57 @@ with
 
 
 
+In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
+\[
+\boldsymbol{C}_{N+M} =
+\begin{pmatrix}
+\boldsymbol{C}_N & \boldsymbol{k} \\
+\boldsymbol{k}^T & \boldsymbol{\kappa}
+\end{pmatrix},
+\]
+where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ an $M \times M$ matrix.
+
+The prediction becomes a multivariate Gaussian
+\[
+p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+\left[
+-\frac{1}{2} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)^T \boldsymbol{\Sigma}_M^{-1} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)
+\right],
+\]
+where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
+\begin{align*}
+\hat{\boldsymbol{t}}_M &= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
+\boldsymbol{\Sigma}_M &= \boldsymbol{\kappa} - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
+\end{align*}
+
 
 \paragraph{Optimizing the GP model hyperparameters.}
-To be added.
+Predictions can be made once we have
+\begin{enumerate}
+\item Chosen an appropriate covariance function.
 
-\subsection{GP emulators}
+\item Determined the hyperparameters.
 
-To be added.
+\item Evaluated the relevant blocks in the covariance function and inverted $\\boldsymbol{C}_N$.
+\end{enumerate}
+
+\noindent
+How do we determine the hyperparameters $\boldsymbol{\alpha}$? Well, recall that
+\[
+p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
+\right].
+\]
+This pdf is basically a data likelihood.
+
+\begin{itemize}
+\item The frequentist approach would be to find the set of hyperparameters $\boldsymbol{\alpha}^*$ that maximizes the data likelihood, i.e.~that minimizes $\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N$.
+
+\item A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf $p(\boldsymbol{\alpha} | \boldsymbol{t}_N)$ instead.
+\end{itemize}
+
+\noindent
+The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression.
+
 
 % ------------------- end of main content ---------------
 
