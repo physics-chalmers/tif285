@@ -47,11 +47,7 @@ Automatically generated HTML file from DocOnce source
               ('Linear classifier', 2, None, '___sec3'),
               ('Some selected properties', 2, None, '___sec4'),
               ('The logistic function', 2, None, '___sec5'),
-              ('Examples of likelihood functions used in logistic regression '
-               'and neural networks',
-               2,
-               None,
-               '___sec6'),
+              ('Standard activation functions', 2, None, '___sec6'),
               ('A binary classifier with two parameters', 2, None, '___sec7'),
               ('Maximum likelihood', 3, None, '___sec8'),
               ('The cost function rewritten as cross entropy',
@@ -111,7 +107,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Linear classifier</a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Some selected properties</a></li>
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The logistic function</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Examples of likelihood functions used in logistic regression and neural networks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Standard activation functions</a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;A binary classifier with two parameters</a></li>
      <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maximum likelihood</a></li>
      <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The cost function rewritten as cross entropy</a></li>
@@ -286,7 +282,7 @@ We would then have our
 weighted linear combination, namely 
 $$
 \begin{equation}
-\boldsymbol{y} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
+\boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \label{_auto1}
 \end{equation}
 $$
@@ -307,7 +303,7 @@ labels \( t_i \) are discrete variables.
 <p>
 One simple way to get a discrete output is to have sign
 functions that map the output of a linear regressor to values \( y_i \in \{ 0, 1 \} \),
-\( f(\tilde{y}_i)=sign(\tilde{y}_i)=1 \) if \( \tilde{y}_i\ge 0 \) and 0 if otherwise. 
+\( y_i = f(\tilde{y}_i)=\frac{sign(\tilde{y}_i)+1}{2} \), which will map to one if \( \tilde{y}_i\ge 0 \) and zero otherwise. 
 We will encounter this model in our first demonstration of neural networks. Historically it is called the &quot;perceptron&quot; model in the machine learning
 literature. This model is extremely simple. However, in many cases it is more
 favorable to use a &quot;soft&quot; classifier that outputs
@@ -343,7 +339,7 @@ where the so called <em>activation</em> \( a = a(\boldsymbol{x}; \boldsymbol{w})
 
 <!-- !split -->
 
-<h2 id="___sec6" class="anchor">Examples of likelihood functions used in logistic regression and neural networks </h2>
+<h2 id="___sec6" class="anchor">Standard activation functions </h2>
 
 <p>
 <center> <!-- figure label: --> <div id="fig:logistic"></div> <!-- FIGURE -->
@@ -407,13 +403,13 @@ $$
 \mathcal{C}(\boldsymbol{w}) = -\sum_{i=1}^n \left( t_i\log{ y(x_i,\boldsymbol{w})} + (1-t_i)\log\left[ 1-y( x_i,\boldsymbol{w}) \right] \right),
 $$
 
-which can be recognised as the relative entripy between the empirical probability distribution \( (t_i, 1-t_i) \) and the probability distribution predicted by the classifier \( (y_i, 1-y_i) \).
+which can be recognised as the relative entropy between the empirical probability distribution \( (t_i, 1-t_i) \) and the probability distribution predicted by the classifier \( (y_i, 1-y_i) \).
 Therefore, this cost function is known in statistics as the <b>cross entropy</b>.
 
 <p>
-Using specifically the Sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the <b>cost/loss</b> function as
+Using specifically the Sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the log-likelihood as
 $$
-\mathcal{C}(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t_i(w_0+w_1 x_i) -\log{(1+\exp{(w_0+w_1x_i)})} \right].
+L(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t_i(w_0+w_1 x_i) -\log{(1+\exp{(w_0+w_1x_i)})} \right].
 $$
 
 <p>
@@ -422,7 +418,7 @@ The maximum likelihood estimator is defined as the set of parameters (weights) t
 <p>
 Since the cost (error) function is here defined as the negative log-likelihood, for logistic regression, we have that
 $$
-\mathcal{C}(\boldsymbol{w})=-\sum_{i=1}^n  \left[ y_i (w_0+w_1x_i) -\log{ \left( 1+\exp{(w_0+w_1x_i)} \right) } \right].
+\mathcal{C}(\boldsymbol{w})=-\sum_{i=1}^n  \left[ t_i (w_0+w_1x_i) -\log{ \left( 1+\exp{(w_0+w_1x_i)} \right) } \right].
 $$
 
 <p>
@@ -465,12 +461,14 @@ therefore, any local minimizer is a global minimizer.
 Minimizing this cost function (here without regularization term) with respect to the two parameters \( w_0 \) and \( w_1 \) we obtain
 
 $$
-\frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_0} = -\sum_{i=1}^n  \left(t_i -\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right),
-$$
-
-and 
-$$
-\frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_1} = -\sum_{i=1}^n  \left(t_i x_i -x_i\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right).
+\begin{align*}
+\frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_0} 
+&= -\sum_{i=1}^n  \left(t_i -\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right)
+&= -\sum_{i=1}^n  \left(t_i - y_i \right), \\
+\frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_1} 
+&= -\sum_{i=1}^n  \left(t_i x_i -x_i\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right)
+&= -\sum_{i=1}^n  x_i \left(t_i - y_i \right).
+\end{align*}
 $$
 
 <p>
@@ -481,19 +479,11 @@ $$
 <p>
 Let us now define a vector \( \boldsymbol{t} \) with \( n \) elements \( t_i \), an
 \( n\times 2 \) matrix \( \boldsymbol{X} \) which contains the \( (1, x_i) \) predictor variables, and a
-vector \( \boldsymbol{y} \) of fitted probabilities \( y_i = p(t_i = 1 \vert x_i,\boldsymbol{w}) \). We can then rewrite the first
+vector \( \boldsymbol{y} \) of the outputs \( y_i = y(x_i,\boldsymbol{w}) \). We can then rewrite the first
 derivative of cost function in matrix form
 
 $$
 \frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial \boldsymbol{w}} = -\boldsymbol{X}^T\left( \boldsymbol{t}-\boldsymbol{y} \right). 
-$$
-
-<p>
-If we in addition define a diagonal matrix \( \boldsymbol{W} \) with elements 
-\( W_{ii} = p(t_i = 1 \vert x_i,\boldsymbol{w}) (1-p(t_i=1\vert x_i,\boldsymbol{w}) \), we can obtain a compact expression of the second derivative as 
-
-$$
-\frac{\partial^2 \mathcal{C}(\boldsymbol{w})}{\partial \boldsymbol{w}\partial \boldsymbol{w}^T} = \boldsymbol{X}^T\boldsymbol{W}\boldsymbol{X}. 
 $$
 
 <p>

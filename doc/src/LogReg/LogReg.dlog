@@ -358,3 +358,17 @@ collected all required additional files in ipynb-LogReg-src.tar.gz which must be
 output in LogReg.ipynb
 translating doconce text in LogReg.do.txt to html
 output in LogReg-bs.html
+translating doconce text in LogReg.do.txt to html
+output in LogReg-reveal.html
+translating doconce text in LogReg.do.txt to pdflatex
+open file with encoding utf-8
+output in LogReg.tex
+translating doconce text in LogReg.do.txt to ipynb
+collected all required additional files in ipynb-LogReg-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{bmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in LogReg.ipynb
+translating doconce text in LogReg.do.txt to html
+output in LogReg-bs.html
