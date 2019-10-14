@@ -230,7 +230,7 @@ In particular, Lasso regularization is obtained by defining another cost functio
 \mathcal{C}_W (\boldsymbol{w}) \equiv \mathcal{C} (\boldsymbol{w}) + \alpha E_W (\boldsymbol{w})
 \]
 !et
-where $E_W (\boldsymbol{w}) = \sum_i w_i^2$ and $\alpha$ is known as the *weight decay*.
+where $E_W (\boldsymbol{w}) = \frac{1}{2} \sum_i w_i^2$ and $\alpha$ is known as the *weight decay*.
 
 !bquestion
 Can you motivate why $\alpha$ is known as the weight decay? *Hint*: Recall the origin of this regularizer from a Bayesian perspective.
