@@ -204,7 +204,7 @@ Using the definitions of the probabilities we can rewrite the _cost/loss_ functi
 which can be recognised as the relative entropy between the empirical probability distribution $(t_i, 1-t_i)$ and the probability distribution predicted by the classifier $(y_i, 1-y_i)$.
 Therefore, this cost function is known in statistics as the _cross entropy_. 
 
-Using specifically the Sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the log-likelihood as
+Using specifically the logistic sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the log-likelihood as
 !bt
 \[
 L(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t_i(w_0+w_1 x_i) -\log{(1+\exp{(w_0+w_1x_i)})} \right].
