@@ -279,7 +279,7 @@ Learning from data: Neural networks, from the simple perceptron to deep learning
 
 % --- begin date ---
 \begin{center}
-Oct 14, 2019
+Oct 15, 2019
 \end{center}
 % --- end date ---
 
@@ -514,7 +514,7 @@ First, for each node $j$ in the first hidden layer, we calculate a weighted sum 
 \begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}
 
-Here $b_i$ is the so-called bias which is normally needed in
+Here $b_j^1$ is the so-called bias which is normally needed in
 case of zero activation weights or inputs. How to fix the biases and
 the weights will be discussed below.  The value of $z_j^1$ is the
 argument to the activation function $f$ of each node $j$, The
@@ -533,7 +533,7 @@ In this case we would identify these functions with a superscript $l$ for the $l
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}
-where $N_l$ is the number of nodes in layer $l$. When the output of
+where $N_{l-1}$ is the number of nodes in layer $l-1$. When the output of
 all the nodes in the first hidden layer are computed, the values of
 the subsequent layer can be calculated and so forth until the output
 is obtained.
@@ -575,9 +575,8 @@ illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form
 
 \begin{equation}
- f(x) = c_1 f(c_2 x + c_3) + c_4
+ f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}
-
 where the parameters $c_i$ are weights and biases. By adjusting these
 parameters, the activation functions can be shifted up and down or
 left and right, change slope or be rescaled which is the key to the
@@ -591,11 +590,11 @@ Additionally, we can represent the biases and activations
 as layer-wise column vectors $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$, so that the $i$-th element of each vector 
 is the bias $b_i^l$ and activation $y_i^l$ of node $i$ in layer $l$ respectively. 
 
-We have that $\mathrm{W}_l$ is an $N_{l-1} \times N_l$ matrix, while $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$ are $N_l \times 1$ column vectors. 
+We have that $\boldsymbol{W}_l$ is an $N_{l-1} \times N_l$ matrix, while $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$ are $N_l \times 1$ column vectors. 
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as
 \begin{equation}
- \boldsymbol{y}_2 = f_2(\mathrm{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
+ \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &w^2_{12} &w^2_{13} \\
     w^2_{21} &w^2_{22} &w^2_{23} \\
@@ -646,7 +645,7 @@ connectivity, is the choice of activation function(s).  The following restrictio
 
 \noindent
 % !split
-\paragraph{Logistic and Hyperbolic activation functions.}
+\paragraph{Logistic and Hyperbolic activation functions}
 The second requirement excludes all linear functions. Furthermore, in
 a MLP with only linear activation functions, each layer simply
 performs a linear transformation of its inputs.
@@ -657,12 +656,28 @@ some kind of non-linearity to the NN to be able to fit non-linear
 functions Typical examples are the logistic \emph{Sigmoid}
 
 \[
- f(z) = \frac{1}{1 + e^{-z}},
+ f_\mathrm{sigmoid}(z) = \frac{1}{1 + e^{-z}},
 \]
 and the \emph{hyperbolic tangent} function
 \[
- f(z) = \tanh(z)
+ f_\mathrm{tanh}(z) = \tanh(z)
 \]
+
+% !split
+\paragraph{Rectifier activation functions}
+The Rectifier Linear Unit (ReLU) uses the following activation function
+\[
+f_\mathrm{ReLU}(z) = \max(0,z).
+\]
+
+To solve a problem of dying ReLU neurons, practitioners often use a  variant of the ReLU
+function, such as the leaky ReLU or the so-called
+exponential linear unit (ELU) function
+\[
+f_\mathrm{ELU}(z) = \left\{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) & z < 0,\\  z & z \ge 0.\end{array}\right. 
+\]
+
+
 
 % !split
 \paragraph{Relevance.}
@@ -1017,7 +1032,7 @@ fast to compute).
 
 % !split
 \paragraph{The RELU function family.}
-The Rectifier Liner Unit (ReLU) uses the following activation function
+The Rectifier Linear Unit (ReLU) uses the following activation function
 \[
 f(z) = \max(0,z).
 \]
@@ -1062,27 +1077,23 @@ bootstrap to evaluate other activation functions.
 
 The first thing we would like to do is divide the data into two or three
 parts. A training set, a validation or dev (development) set, and a
-test set. The test set is the data on which we want to make
-predictions. The dev set is a subset of the training data we use to
-check how well we are doing out-of-sample, after training the model on
-the training dataset. We use the validation error as a proxy for the
-test error in order to make tweaks to our model. It is crucial that we
-do not use any of the test data to train the algorithm. This is a
-cardinal sin in ML. Then:
-
-
+test set. 
 \begin{itemize}
-\item Estimate optimal error rate
+\item The training set is used for learning and adjusting the weights.
 
-\item Minimize underfitting (bias) on training data set.
-
-\item Make sure you are not overfitting.
+\item The dev/validation set is a subset of the training data. It is used to
 \end{itemize}
 
 \noindent
-If the validation and test sets are drawn from the same distributions,
-then a good performance on the validation set should lead to similarly
-good performance on the test set. 
+check how well we are doing out-of-sample, after training the model on
+the training dataset. We use the validation error as a proxy for the
+test error in order to make tweaks to our model, e.g.~changing hyperparameters such as the learning rate.
+\begin{itemize}
+\item The test set will be used to test the performance of or predictions with the final neural net. 
+\end{itemize}
+
+\noindent
+It is crucial that we do not use any of the test data to train the algorithm. This is a cardinal sin in ML. T If the validation and test sets are drawn from the same distributions, then a good performance on the validation set should lead to similarly good performance on the test set. 
 
 However, sometimes
 the training data and test data differ in subtle ways because, for
