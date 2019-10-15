@@ -108,6 +108,13 @@ file (as done here), or add them to the default conda channel configuration via,
 <p>For future reference, to deactivate the virtual environment:<code>conda deactivate</code>
 </li>
 
+<li>
+<p>To update the virtual environment (e.g. after adding packages to the <code>environment.yml</code> file)</p>
+
+<pre class="prettyprint"><code class="language-java">$ conda env update -f environment.yml
+</code></pre>
+</li>
+
 </ol>
 
 <p>There are also other options (<code>venv</code>, <code>pipenv</code>) for creating virtual environments with the python version and packages that we will be using. Or you can install packages, keeping track yourself of dependencies, using <code>pip install</code>.</p>
