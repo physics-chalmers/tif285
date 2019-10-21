@@ -159,8 +159,8 @@ FIGURE:[fig/logistic_functions.png, width=600 frac=0.8] The sigmoid, step,and (n
 We assume now that we have two classes with $t_i$ either $0$ or $1$. Furthermore we assume also that we have only two parameters $w_0, w_1$ and the predictors $\boldsymbol{x}_i = \{ 1, x_i \}$ defining the Sigmoid function. We can produce probabilities from the classifier output $y_i$
 !bt
 \begin{align*}
-p(t_i=1|x_i,\boldsymbol{w}) &= \frac{y(a_i)}{1 + y(a_i)} = \frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}},\nonumber\\
-p(t_i=0|x_i,\boldsymbol{w}) &= 1 - p(t_i=1|x_i,\boldsymbol{w}) = \frac{1}{1 + y(a_i)} ,
+p(t_i=1|x_i,\boldsymbol{w}) &= y(a_i)= \frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}},\\
+p(t_i=0|x_i,\boldsymbol{w}) &= 1 - p(t_i=1|x_i,\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x_i)}},
 \end{align*}
 !et
 where $\boldsymbol{w} = \{ w_0, w_1\}$ are the weights we wish to extract from training data. 
