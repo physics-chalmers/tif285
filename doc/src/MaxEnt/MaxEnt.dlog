@@ -912,3 +912,18 @@ collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be
 output in MaxEnt.ipynb
 translating doconce text in MaxEnt.do.txt to html
 output in MaxEnt-bs.html
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-reveal.html
+translating doconce text in MaxEnt.do.txt to pdflatex
+open file with encoding utf-8
+*** made directory latex_figs for admon figures
+output in MaxEnt.tex
+translating doconce text in MaxEnt.do.txt to ipynb
+collected all required additional files in ipynb-MaxEnt-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{vmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in MaxEnt.ipynb
+translating doconce text in MaxEnt.do.txt to html
+output in MaxEnt-bs.html

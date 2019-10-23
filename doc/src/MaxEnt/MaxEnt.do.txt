@@ -1,5 +1,6 @@
 TITLE: Learning from data: Assigning probabilities
 AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
+AUTHOR: Daniel Phillips at Department of Physics and Astronomy, Ohio University
 DATE: today
 
 !split

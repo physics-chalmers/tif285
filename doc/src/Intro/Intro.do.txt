@@ -73,4 +73,7 @@ knowledge discovery based on data.
 #======= A first data and machine learning encounter =======
 # #include "IntroHow2ReadData.do.txt"
 
+!split
+#======= Acknowledgements =======
+# #include "introAcknowledgements.do.txt"
   

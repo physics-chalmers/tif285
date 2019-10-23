@@ -1124,3 +1124,189 @@ output in Intro.ipynb
 running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
 translating doconce text in tmp_preprocess__Intro.do.txt to html
 output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to ipynb
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+collected all required additional files in ipynb-Intro-src.tar.gz which must be distributed with the notebook
+output in Intro.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  Intro.do.txt > tmp_preprocess__Intro.do.txt
+translating doconce text in tmp_preprocess__Intro.do.txt to html
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Bayesian Logical Data Analysis for the Physical Sciences''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Probability Theory: The Logic of Science''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Information Theory, Inference, and Learning Algorithms''*
+    (backtick inside *...* emphasize is not allowed)
+*** warning: found ` (backtick) inside something that looks like emphasize:
+    *``Data Analysis : A Bayesian Tutorial''*
+    (backtick inside *...* emphasize is not allowed)
+output in Intro-bs.html
