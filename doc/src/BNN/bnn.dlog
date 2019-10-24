@@ -236,3 +236,362 @@ figure file fig/MacKay_41_2:
 figure file fig/MacKay_41_1:
     can use fig/MacKay_41_1.png for format html
 output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+*** warning: latex format will have problem with words
+    containing underscores (this warning is very uncertain, might be wrong too):
+
+w_i
+
+    typeset these words with `inline verbatim` or escape with backslash
+    First word appears here:
+ and an output signal y(a)\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^Ib \equiv w_0y\in [0,1]\boldsymbol{x}t=1
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format pdflatex
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format ipynb
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/MacKay_41_2:
+    can use fig/MacKay_41_2.png for format html
+figure file fig/MacKay_41_1:
+    can use fig/MacKay_41_1.png for format html
+output in bnn-bs.html
