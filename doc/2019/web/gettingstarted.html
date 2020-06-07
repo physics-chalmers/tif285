@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="content-type" content="application/xhtml+xml/>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>Learning from data [TIF285]</title>
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&amp;subset=latin-ext&amp;display=swap" rel="stylesheet">
+<link href="tif285.css" rel="stylesheet" type="text/css" />
+
+<script src="courseURLs.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
+
+<base target="_parent">
+</head>
+
+<body>
+
+
+<div id="content">
+
+ <div class='main_box'>
+   <h3>Downloading course material</h3>
+   <p>
+   All files that are associated with this course are available via a public git repository, hosted on <a href="https://github.com/physics-chalmers/tif285">github</a>. The use of <code>git</code> is encouraged, but not mandatory. Alternatively, the course material is also available via the course web page and can be downloaded by right-clicking on the links.</p>
+
+<p>Using git, the course material can be downloaded by cloning the github repository:</p>
+<pre class="prettyprint"><code class="language-java">$ git clone https://github.com/physics-chalmers/tif285.git
+</code></pre>
+<p>after which it will be available in the <code>tif285</code> directory. Note that you will have to perform a <code>git pull</code> operation when wou want to retrieve future updates in the github repository.</p>
+
+<p>When using the github repository to stay up-to-date with course material it is recommended to make a local copy of notebooks (giving it a new name) before starting to edit them. 
+</p>
+
+<p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
+<pre class="prettyprint"><code class="language-java">$ git config --global user.name "Emilia Student"
+$ git config --global user.email name@example.com
+</code></pre>
+You might also want to set your default editor. Pick the one that you prefer. E.g.,
+<pre class="prettyprint"><code class="language-java">$ git config --global core.editor emacs/vi/nano/...
+</code></pre>
+</p>
+
+<p>There are plenty of tutorials and guides how to use git. Two recommended ones are:
+<ul>
+<li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank">The Git Handbook</a> (a GitHub Guide),</li> 
+<li><a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git</a> (an online book by Scott Chacon and Ben Straub).</li> 
+</ul>
+</p>
+
+</div>
+
+<div class='main_box'>
+<h3><span>Python distribution</span></h3>
+
+<p>We will make extensive use of Python as programming language and its myriad of available libraries. You will find Jupyter notebooks invaluable in your work since they make it possible to run Python code interactively with the immediate benefit of visualizing your data. Jupyter notebooks also offer the possibility to run Julia or R code, or even integrate code in compiled languages like C++, Fortran etc if you prefer. The focus in this course will be on Python.
+</p>
+
+<p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="../../environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
+
+<p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that he miniconda installation requires 400 MB disk space.</p>
+
+<ol>
+
+<li>Download and run the miniconda installer:
+<pre class="prettyprint"><code class="language-java">$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
+During the installation you will have to accept the license agreement. We also recommend to use the default installation directory <code>~/miniconda3</code> and to allow the installer to run <code>conda init</code> to set environment variables. It is recommended to use the <code>bash</code> shell. Further details and troubleshooting is available at <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">conda.io</a>.
+</li>
+
+<li>Check the installation:
+<pre class="prettyprint"><code class="language-java">$ conda list
+</code></pre>
+should give a list of python packages.
+<pre class="prettyprint"><code class="language-java">$ which python
+</code></pre>
+should give the path to the conda python executable <code>~/miniconda3/bin/python</code>
+and
+<pre class="prettyprint"><code class="language-java">$ python --version
+</code></pre>
+should show that you are using a Python3 version (probably 3.7.x).
+</li>
+
+<li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.
+</li>
+
+<li>Create a virtual environment
+
+<pre class="prettyprint"><code class="language-java">$ conda env create -f environment.yml
+</code></pre>
+
+<p>which reads the environment.yml file in your current directory.</p>
+
+<p>Some packages might not be found in the default conda channels. One
+can either specify relevant package channel(s) in the environment.yml
+file (as done here), or add them to the default conda channel configuration via, e.g, <code>conda config --append channels conda-forge</code>
+</li>
+
+<li>
+<p>Once the virtual environment has been created it can be activated:</p>
+
+<pre class="prettyprint"><code class="language-java">$ conda activate tif285-env
+</code></pre>
+
+<p>For future reference, to deactivate the virtual environment:<code>conda deactivate</code>
+</li>
+
+<li>
+<p>To update the virtual environment (e.g. after adding packages to the <code>environment.yml</code> file)</p>
+
+<pre class="prettyprint"><code class="language-java">$ conda env update -f environment.yml
+</code></pre>
+</li>
+
+</ol>
+
+<p>There are also other options (<code>venv</code>, <code>pipenv</code>) for creating virtual environments with the python version and packages that we will be using. Or you can install packages, keeping track yourself of dependencies, using <code>pip install</code>.</p>
+</div>
+
+
+<div class='main_box'>
+<h3><span>Jupyter notebooks</span></h3>
+
+<p><a href="https://jupyter.org/">Jupyter notebooks</a> will be used extensively in this course. It is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+</p>
+
+<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:
+
+<pre class="prettyprint"><code class="language-java">$ cd doc/pub/Exercises/Week1/
+$ jupyter notebook
+</code></pre>
+
+The Jupyter Notebook will open in your default browser. It should show a list of the files in your current directory. It is recommended that you start with the two Jupyter-Python-intro notebooks. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
+</p>
+
+<p>However, a word of warning is needed: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
+
+<p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank">Google's Colab</a> is a free Jupyter notebook environment that requires 
+no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>
+</div>
+
+<div class='main_box'>
+<h3><span>Useful Python libraries</span></h3>
+<p>This is a list of important Python libraries that we will use during this course
+
+<ul>
+<li> <a href="https://www.numpy.org/" target="_blank">NumPy</a> is a highly popular library for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays</li>
+<li> <a href="https://pandas.pydata.org/" target="_blank">The pandas</a> library provides high-performance, easy-to-use data structures and data analysis tools</li> 
+<li> <a href="https://www.scipy.org/" target="_blank">Scipy</a> (pronounced &#8220;Sigh Pie&#8221;) is a Python-based ecosystem of open-source software for mathematics, science, and engineering.</li> 
+<li> <a href="https://matplotlib.org/" target="_blank">Matplotlib</a> is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.</li>
+<li> <a href="https://www.sympy.org/en/index.html" target="_blank">SymPy</a> is a Python library for symbolic mathematics.</li> 
+<li> <a href="https://scikit-learn.org/stable/" target="_blank">scikit-learn</a> has simple and efficient tools for machine learning, data mining and data analysis</li>
+<li> <a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a> is a Python library for fast numerical computing created and released by Google</li>
+</ul>
+</p>
+
+<p>We will also use several, specialized libraries such as <a href="https://emcee.readthedocs.io/en/latest/" target="_blank">emcee</a> and <a href="https://sheffieldml.github.io/GPy/" target="_blank">GPy</a>.
+In addition, here are some other major libraries that we might not use in this course, but that can be very useful in the context of Bayesian data analysis and machine learning:
+
+<ul>
+<li> <a href="https://github.com/HIPS/autograd" target="_blank">Autograd</a> can automatically differentiate native Python and Numpy code. It can handle a large subset of Python's features, including loops, ifs, recursion and closures, and it can even take derivatives of derivatives of derivatives</li>
+<li><a href="https://docs.pymc.io/" target="_blank">PyMC3</a> is a probabilistic programming package for Python that allows users to fit Bayesian models using a variety of numerical methods, most notably Markov chain Monte Carlo (MCMC) and variational inference (VI).</li>
+<li> And many more such as <a href="https://pytorch.org/" target="_blank">pytorch</a>,  <a href="https://pypi.org/project/Theano/" target="_blank">Theano</a> etc</li> 
+</ul>
+</p>
+
+</div>
+
+</body>
+</html>

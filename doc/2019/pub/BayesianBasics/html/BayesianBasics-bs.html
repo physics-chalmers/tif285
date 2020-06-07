@@ -1,0 +1,871 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Learning from data: Basics of Bayesian Statistics">
+
+<title>Learning from data: Basics of Bayesian Statistics</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('How do you feel about statistics?', 1, None, '___sec0'),
+              ('Inference', 2, None, '___sec1'),
+              ('Some history', 2, None, '___sec2'),
+              ('Probability density functions (pdf:s)', 1, None, '___sec3'),
+              ('Properties of PDFs', 2, None, '___sec4'),
+              ('Important distributions, the uniform distribution',
+               2,
+               None,
+               '___sec5'),
+              ('Gaussian distribution', 2, None, '___sec6'),
+              ('Expectation values', 2, None, '___sec7'),
+              ('Stochastic variables and the main concepts, mean values',
+               2,
+               None,
+               '___sec8'),
+              ('Mean, median, average', 2, None, '___sec9'),
+              ('Stochastic variables and the main concepts, central moments, '
+               'the variance',
+               2,
+               None,
+               '___sec10'),
+              ('Probability Distribution Functions', 2, None, '___sec11'),
+              ('Quick introduction to  `scipy.stats`', 2, None, '___sec12'),
+              ('The Bayesian recipe', 1, None, '___sec13'),
+              ("Bayes' theorem", 2, None, '___sec14'),
+              ("The friends of Bayes' theorem", 2, None, '___sec15'),
+              ('Example: Is this a fair coin?', 1, None, '___sec16'),
+              ('Take aways: Coin tossing', 1, None, '___sec17')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="BayesianBasics-bs.html">Learning from data: Basics of Bayesian Statistics</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>How do you feel about statistics?</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Inference</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Some history</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;"><b>Probability density functions (pdf:s)</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Properties of PDFs</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Important distributions, the uniform distribution</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Gaussian distribution</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Stochastic variables and the main concepts, mean values</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Mean, median, average</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Stochastic variables and the main concepts, central moments, the variance</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Probability Distribution Functions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Quick introduction to  <code>scipy.stats</code></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;"><b>The Bayesian recipe</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Bayes' theorem</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The friends of Bayes' theorem</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;"><b>Example: Is this a fair coin?</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;"><b>Take aways: Coin tossing</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Learning from data: Basics of Bayesian Statistics</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Christian Forss&#233;n -->
+
+<center>
+<b>Christian Forss&#233;n</b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
+<br>
+<p>
+<center><h4>Sep 12, 2019</h4></center> <!-- date -->
+<br>
+<p>
+<!-- potential-jumbotron-button -->
+</div> <!-- end jumbotron -->
+
+<!-- !split -->
+
+<h1 id="___sec0" class="anchor">How do you feel about statistics?  </h1>
+<!-- !bpop -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Disraeli (attr.): 
+<blockquote>
+    &#8220;There are three kinds of lies: lies, damned lies, and statistics.&#8221;
+</blockquote>
+</div>
+</div>
+
+<!-- !epop -->
+
+<p>
+<!-- !bpop -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Rutherford:
+<blockquote>
+    &#8220;If your result needs a statistician then you should design a better experiment.&#8221;
+</blockquote>
+</div>
+</div>
+
+<!-- !epop -->
+
+<p>
+<!-- !bpop -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Laplace:
+<blockquote>
+    &#8220;La th&#233;orie des probabilit&#233;s n'est que le bon sens r&#233;duit au calcul&#8221;
+</blockquote>
+</div>
+</div>
+
+<!-- !epop -->
+
+<p>
+<!-- !bpop -->
+Bayesian Methods: rules of statistical inference are an application of the laws of probability
+<!-- !epop -->
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec1" class="anchor">Inference  </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<ul>
+ <li> Deductive inference. Cause \( \to \) Effect.</li> 
+ <li> Inference to best explanation. Effect \( \to \) Cause.</li> 
+ <li> Scientists need a way to:</li>
+
+<ul>
+    <li> Quantify the strength of inductive inferences;</li>
+    <li> Update that quantification as they acquire new data.</li>
+</ul>
+
+</ul>
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec2" class="anchor">Some history </h2>
+Adapted from D.S. Sivia <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006"><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>:
+
+<p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006</p>
+
+<p>
+<blockquote>
+    Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].
+</blockquote>
+
+
+<p>
+<!-- !split -->
+<br /><br /><center><p><img src="fig/sivia_fig_1_2.png" align="bottom" width=700></p></center><br /><br />
+
+<p>
+<!-- !split -->
+<blockquote>
+    To Laplace, the (shaded) area under the posterior pdf curve between \( m_1 \) and \( m_2 \) was a measure of how much he believed that the mass of Saturn lay in the range \( m_1 \le M \le m_2 \). As such, the position of the maximum of the posterior pdf represents a best estimate of the mass; its width, or spread, about this optimal value gives an indication of the uncertainty in the estimate. Laplace stated that: &#8216; . . . it is a bet of 11,000 to 1 that the error of this result is not 1/100th of its value.&#8217; He would have won the bet, as another 150 years&#8217; accumulation of data has changed the estimate by only 0.63%!
+</blockquote>
+
+
+<p>
+<!-- !split -->
+<blockquote>
+    According to the frequency definition, however, we are not permitted to use probability theory to tackle this problem. This is because the mass of Saturn is a constant and not a random variable; therefore, it has no frequency distribution and so probability theory cannot be used.
+    
+    <p>
+    If the pdf [of Fig. 1.2] had to be interpreted in terms of the frequency definition, we would have to imagine a large ensemble of universes in which everything remains constant apart from the mass of Saturn.
+</blockquote>
+
+
+<p>
+<!-- !split -->
+<blockquote>
+    As this scenario appears quite far-fetched, we might be inclined to think of [Fig. 1.2] in terms of the distribution of the measurements of the mass in many repetitions of the experiment. Although we are at liberty to think about a problem in any way that facilitates its solution, or our understanding of it, having to seek a frequency interpretation for every data analysis problem seems rather perverse.
+    For example, what do we mean by the &#8216;measurement of the mass&#8217; when the data consist of orbital periods? Besides, why should we have to think about many repetitions of an experiment that never happened? What we really want to do is to make the best inference of the mass given the (few) data that we actually have; this is precisely the Bayes and Laplace view of probability.
+</blockquote>
+
+
+<p>
+<!-- !split -->
+<blockquote>
+    Faced with the realization that the frequency definition of probability theory did not permit most real-life scientific problems to be addressed, a new subject was invented &#8212; statistics! To estimate the mass of Saturn, for example, one has to relate the mass to the data through some function called the statistic; since the data are subject to &#8216;random&#8217; noise, the statistic becomes the random variable to which the rules of probability the- ory can be applied. But now the question arises: How should we choose the statistic? The frequentist approach does not yield a natural way of doing this and has, therefore, led to the development of several alternative schools of orthodox or conventional statis- tics. The masters, such as Fisher, Neyman and Pearson, provided a variety of different principles, which has merely resulted in a plethora of tests and procedures without any clear underlying rationale. This lack of unifying principles is, perhaps, at the heart of the shortcomings of the cook-book approach to statistics that students are often taught even today.
+</blockquote>
+
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec3" class="anchor">Probability density functions (pdf:s) </h1>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<ul>
+ <li> \( p(A|B) \) reads &#8220;probability of \( A \) given \( B \)&#8221;</li>
+ <li> Simplest examples are discrete, but physicists often interested in continuous case, e.g., parameter estimation.</li>
+ <li> When integrated, continuous pdfs become probabilities \( \Rightarrow \) pdfs are NOT dimensionless, even though probabilities are.</li>
+ <li> 68%, 95%, etc. intervals can then be computed by integration</li> 
+ <li> Certainty about a parameter corresponds to \( p(x) = \delta(x-x_0) \)</li>
+</ul>
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+<!-- ======= pdfs ======= -->
+<!-- !split -->
+
+<h2 id="___sec4" class="anchor">Properties of PDFs </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<p>
+There are two properties that all PDFs must satisfy. The first one is
+positivity (assuming that the PDF is normalized)
+
+$$
+\begin{equation*}
+0 \leq p(x).
+\end{equation*}
+$$
+
+Naturally, it would be nonsensical for any of the values of the domain
+to occur with a probability less than \( 0 \). Also,
+the PDF must be normalized. That is, all the probabilities must add up
+to unity.  The probability of &quot;anything&quot; to happen is always unity. For
+discrete and continuous PDFs, respectively, this condition is
+$$
+\begin{align*}
+\sum_{x_i\in\mathbb D} p(x_i) & =  1,\\
+\int_{x\in\mathbb D} p(x)\,dx & =  1.
+\end{align*}
+$$
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec5" class="anchor">Important distributions, the uniform distribution </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Let us consider some important, univariate distributions.
+The first one
+is the most basic PDF; namely the uniform distribution
+$$
+\begin{equation}
+p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
+\label{eq:unifromPDF}
+\end{equation}
+$$
+
+For \( a=0 \) and \( b=1 \) we have 
+$$
+p(x) = \left\{
+\begin{array}{ll}
+1 & x \in [0,1],\\
+0 & \mathrm{otherwise}
+\end{array}
+\right.
+$$
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec6" class="anchor">Gaussian distribution </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The second one is the univariate Gaussian Distribution
+$$
+\begin{equation*}
+p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
+\end{equation*}
+$$
+
+with mean value \( \mu \) and standard deviation \( \sigma \). If \( \mu=0 \) and \( \sigma=1 \), it is normally called the <b>standard normal distribution</b>
+$$
+\begin{equation*}
+p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
+\end{equation*}
+$$
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec7" class="anchor">Expectation values </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Let \( h(x) \) be an arbitrary continuous function on the domain of the stochastic
+variable \( X \) whose PDF is \( p(x) \). We define the <em>expectation value</em>
+of \( h \) with respect to \( p \) as follows
+
+$$
+\begin{equation}
+\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+\label{eq:expectation_value_of_h_wrt_p}
+\end{equation}
+$$
+
+Whenever the PDF is known implicitly, like in this case, we will drop
+the index \( X \) for clarity.  
+A particularly useful class of special expectation values are the
+<em>moments</em>. The \( n \)-th moment of the PDF \( p \) is defined as
+follows
+$$
+\begin{equation*}
+\langle x^n \rangle \equiv \int\! x^n p(x)\,dx
+\end{equation*}
+$$
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec8" class="anchor">Stochastic variables and the main concepts, mean values </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The zero-th moment \( \langle 1\rangle \) is just the normalization condition of
+\( p \). The first moment, \( \langle x\rangle \), is called the <em>mean</em> of \( p \)
+and often denoted by the letter \( \mu \)
+$$
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \int x p(x)dx,
+\end{equation*}
+$$
+
+for a continuous distribution and 
+$$
+\begin{equation*}
+\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),
+\end{equation*}
+$$
+
+for a discrete distribution. 
+Qualitatively it represents the centroid or the average value of the
+PDF and is therefore simply called the expectation value of \( p(x) \).
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec9" class="anchor">Mean, median, average </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The values of the <b>mode</b>, <b>mean</b>, <b>median</b> can all be used as point estimates for the "probable" value of \( x \). For some pdfs, they will all be the same.
+</div>
+</div>
+
+
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  The 68%/95% probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the \( x \)-axis translates into the vertical extent of the error bar or error band for \( x \). </p></center>
+<p><img src="fig/pdfs.png" align="bottom" width=800></p>
+</center>
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec10" class="anchor">Stochastic variables and the main concepts, central moments, the variance </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<p>
+A special version of the moments is the set of <em>central moments</em>, the n-th central moment defined as
+$$
+\begin{equation*}
+\langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\end{equation*}
+$$
+
+The zero-th and first central moments are both trivial, equal \( 1 \) and
+\( 0 \), respectively. But the second central moment, known as the
+<em>variance</em> of \( p \), is of particular interest. For the stochastic
+variable \( X \), the variance is denoted as \( \sigma^2_X \) or \( \mathrm{Var}(X) \)
+$$
+\begin{align*}
+\sigma^2_X &=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
+\int (x-\langle x\rangle)^2 p(x)dx\\
+& =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\\
+& =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2 \rangle - \langle x\rangle^2
+\end{align*}
+$$
+
+The square root of the variance, \( \sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle} \) is called the 
+<b>standard deviation</b> of \( p \). It is the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the &quot;spread&quot; of \( p \) around its mean.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec11" class="anchor">Probability Distribution Functions </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<p>
+The following table collects properties of probability distribution functions.
+In our notation we reserve the label \( p(x) \) for the probability of a certain event,
+while \( P(x) \) is the cumulative probability.
+
+<p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>             </b></td> <td align="center"><b>                 Discrete PDF                 </b></td> <td align="center"><b>               Continuous PDF               </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Domain           </td> <td align="center">   \( \left\{x_1, x_2, x_3, \dots, x_N\right\} \)    </td> <td align="center">   \( [a,b] \)                                     </td> </tr>
+<tr><td align="left">   Probability      </td> <td align="center">   \( p(x_i) \)                                      </td> <td align="center">   \( p(x)dx \)                                    </td> </tr>
+<tr><td align="left">   Cumulative       </td> <td align="center">   \( P_i=\sum_{l=1}^ip(x_l) \)                      </td> <td align="center">   \( P(x)=\int_a^xp(t)dt \)                       </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   \( 0 \le p(x_i) \le 1 \)                          </td> <td align="center">   \( p(x) \ge 0 \)                                </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   \( 0 \le P_i \le 1 \)                             </td> <td align="center">   \( 0 \le P(x) \le 1 \)                          </td> </tr>
+<tr><td align="left">   Monotonic        </td> <td align="center">   \( P_i \ge P_j \) if \( x_i \ge x_j \)            </td> <td align="center">   \( P(x_i) \ge P(x_j) \) if \( x_i \ge x_j \)    </td> </tr>
+<tr><td align="left">   Normalization    </td> <td align="center">   \( P_N=1 \)                                       </td> <td align="center">   \( P(b)=1 \)                                    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-12 -->
+</div> <!-- cell row -->
+<p>
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec12" class="anchor">Quick introduction to  <code>scipy.stats</code> </h2>
+If you google <code>scipy.stats</code>, you'll likely get the manual page as the first hit: <a href="https://docs.scipy.org/doc/scipy/reference/stats.html" target="_self">https://docs.scipy.org/doc/scipy/reference/stats.html</a>. Here you'll find a long list of the continuous and discrete distributions that are available, followed (scroll way down) by many different methods (functions) to extract properties of a distribution (called Summary Statistics) and do many other statistical tasks.
+
+<p>
+Follow the link for any of the distributions (your choice!) to find its mathematical definition, some examples of how to use it, and a list of methods. Some methods of interest to us here:
+
+<ul>
+ <li> <code>mean()</code> - Mean of the distribution.</li>
+ <li> <code>median()</code> - Median of the distribution.</li>
+ <li> <code>pdf(x)</code> - Value of the probability density function at x.</li>
+ <li> <code>rvs(size=numpts)</code> - generate numpts random values of the pdf.</li>
+ <li> <code>interval(alpha)</code> - Endpoints of the range that contains alpha percent of the distribution.</li>
+</ul>
+
+<!-- !split -->
+
+<h1 id="___sec13" class="anchor">The Bayesian recipe </h1>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Assess hypotheses by calculating their probabilities \( p(H_i | \ldots) \) conditional on known and/or presumed information using the rules of probability theory.
+</div>
+</div>
+
+
+<p>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Probability Theory Axioms:
+
+<dl>
+<dt>Product (AND) rule :<dd> 
+  \( p(A, B | I) = p(A|I) p(B|A, I) = p(B|I)p(A|B,I) \)<br />
+  Should read \( p(A,B|I) \) as the probability for propositions \( A \) AND \( B \) being true given that \( I \) is true.
+<dt>Sum (OR) rule:<dd> 
+  \( p(A + B | I) = p(A | I) + p(B | I) - p(A, B | I) \)<br />
+  \( p(A+B|I) \) is the probability that proposition \( A \) OR \( B \) is true given that \( I \) is true.
+<dt>Normalization:<dd> 
+  \( p(A|I) + p(\bar{A}|I) = 1 \)<br />
+  \( \bar{A} \) denotes the proposition that \( A \) is false.
+</dl>
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec14" class="anchor">Bayes' theorem </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Bayes' theorem follows directly from the product rule
+
+$$
+p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.
+$$
+
+<p>
+The importance of this property to data analysis becomes apparent if we replace \( A \) and \( B \) by hypothesis(\( H \)) and data(\( D \)):
+$$
+\begin{align}
+p(H|D,I) &= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
+\label{eq:bayes}
+\end{align}
+$$
+
+The power of Bayes&#8217; theorem lies in the fact that it relates the quantity of interest, the probability that the hypothesis is true given the data, to the term we have a better chance of being able to assign, the probability that we would have observed the measured data if the hypothesis was true.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The various terms in Bayes&#8217; theorem have formal names. 
+
+<ul>
+<li> The quantity on the far right, \( p(H|I) \), is called the <em>prior</em> probability; it represents our state of knowledge (or ignorance) about the truth of the hypothesis before we have analysed the current data.</li> 
+<li> This is modified by the experimental measurements through \( p(D|H,I) \), the <em>likelihood</em> function,</li> 
+<li> The denominator \( p(D|I) \) is called the <em>evidence</em>. It does not depend on the hypothesis and can be regarded as a normalization constant.</li>
+<li> Together, these yield the <em>posterior</em> probability, \( p(H|D, I ) \), representing our state of knowledge about the truth of the hypothesis in the light of the data.</li> 
+</ul>
+
+In a sense, Bayes&#8217; theorem encapsulates the process of learning.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec15" class="anchor">The friends of Bayes' theorem </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<dl>
+<dt>Normalization:<dd> 
+  \( \sum_i p(H_i|I) = 1 \).
+<dt>Marginalization:<dd> 
+  \( p(A|I) = \sum_i p(H_i|A,I) p(A|I) = \sum_i p(A,H_i|I) \).
+</dl>
+
+In the above, \( H_i \) is an exclusive and exhaustive list of hypotheses. For example,let&#8217;s imagine that there are five candidates in a presidential election; then \( H_1 \) could be the proposition that the first candidate will win, and so on. The probability that \( A \) is true, for example that unemployment will be lower in a year&#8217;s time (given all relevant information \( I \), but irrespective of whoever becomes president) is given by \( \sum_i p(A,H_i|I) \) as shown by using normalization and applying the product rule.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+
+<dl>
+<dt>Normalization (continuum limit):<dd> 
+  \( \int dx p(x|I) = 1 \).
+<dt>Marginalization (continuum limit):<dd> 
+  \( p(y|I) = \int dx p(x,y|I) \).
+</dl>
+
+In the continuum limit of propositions we must understand \( p(\ldots) \) as a pdf (probability density function).
+
+<p>
+Marginalization is a very powerful device in data analysis because it enables us to deal with nuisance parameters; that is, quantities which necessarily enter the analysis but are of no intrinsic interest. The unwanted background signal present in many experimental measurements are examples of nuisance parameters.
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec16" class="anchor">Example: Is this a fair coin? </h1>
+Let us begin with the analysis of data from a simple coin-tossing experiment. 
+Given that we had observed 6 heads in 8 flips, would you think it was a fair coin? By fair, we mean that we would be prepared to lay an even 1 : 1 bet on the outcome of a flip being a head or a tail. If we decide that the coin was fair, the question which follows naturally is how sure are we that this was so; if it was not fair, how unfair do we think it was? Furthermore, if we were to continue collecting data for this particular coin, observing the outcomes of additional flips, how would we update our belief on the fairness of the coin?
+
+<p>
+<!-- !split -->
+A sensible way of formulating this problem is to consider a large number of hypotheses about the range in which the bias-weighting of the coin might lie. If we denote the bias-weighting by \( p_H \), then \( p_H = 0 \) and \( p_H = 1 \) can represent a coin which produces a tail or a head on every flip, respectively. There is a continuum of possibilities for the value of \( p_H \) between these limits, with \( p_H = 0.5 \) indicating a fair coin. Our state of knowledge about the fairness, or the degree of unfairness, of the coin is then completely summarized by specifying how much we believe these various propositions to be true.
+
+<p>
+<!-- !split -->
+Let us perform a computer simulation of a coin-tossing experiment. This provides the data that we will be analysing.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>seed(<span style="color: #666666">999</span>)         <span style="color: #408080; font-style: italic"># for reproducibility</span>
+pH<span style="color: #666666">=0.6</span>                       <span style="color: #408080; font-style: italic"># biased coin</span>
+flips<span style="color: #666666">=</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #666666">2**12</span>) <span style="color: #408080; font-style: italic"># simulates 4096 coin flips</span>
+heads<span style="color: #666666">=</span>flips<span style="color: #666666">&lt;</span>pH              <span style="color: #408080; font-style: italic"># boolean array, heads[i]=True if flip i is heads</span>
+</pre></div>
+<p>
+<!-- !split -->
+In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: \( p(p_H|D,I) \). This is, of course, shorthand for the limiting case of a continuum of propositions for the value of \( p_H \); that is to say, the probability that \( p_H \) lies in an infinitesimally narrow range is given by \( p(p_H|D,I) dp_H \).
+
+<p>
+<!-- !split -->
+To estimate this posterior pdf, we need to use Bayes&#8217; theorem \eqref{eq:bayes}. We will ignore the denominator \( p(D|I) \) as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition 
+$$
+\begin{equation}
+\int_0^1 p(p_H|D,I) dp_H = 1.
+\label{eq:coin_posterior_norm}
+\end{equation}
+$$
+
+<p>
+<!-- !split -->
+The prior pdf, \( p(p_H|I) \), represents what we know about the coin given only the information \( I \) that we are dealing with a &#8216;strange coin&#8217;. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior
+$$
+\begin{equation}
+p(p_H|I) = \left\{ \begin{array}{ll}
+1 & 0 \le p_H \le 1, \\
+0 & \mathrm{otherwise}.
+\end{array} \right.
+\label{eq:coin_prior_uniform}
+\end{equation}
+$$
+
+We will get back later to the choice of prior and its effect on the analysis.
+
+<p>
+<!-- !split -->
+This prior state of knowledge, or ignorance, is modified by the data through the likelihood function \( p(D|p_H,I) \). It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information \( I \), we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses' is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
+$$
+\begin{equation}
+p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
+\label{_auto1}
+\end{equation}
+$$
+
+<p>
+<!-- !split -->
+It seems reasonable because \( p_H \) is the chance of obtaining a head on any flip, and there were \( H \) of them, and \( 1-p_H \) is the corresponding probability for a tail, of which there were \( N-H \). We note that this binomial distribution also contains a normalization factor, but we will ignore it since it does not depend explicitly on \( p_H \), the quantity of interest. It will be absorbed by the normalization condition \eqref{eq:coin_posterior_norm}.
+
+<p>
+<!-- !split -->
+We perform the setup of this Bayesian framework on the computer.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">prior</span>(pH):
+    p<span style="color: #666666">=</span>np<span style="color: #666666">.</span>zeros_like(pH)
+    p[(<span style="color: #666666">0&lt;=</span>pH)<span style="color: #666666">&amp;</span>(pH<span style="color: #666666">&lt;=1</span>)]<span style="color: #666666">=1</span>      <span style="color: #408080; font-style: italic"># allowed range: 0&lt;=pH&lt;=1</span>
+    <span style="color: #008000; font-weight: bold">return</span> p                <span style="color: #408080; font-style: italic"># uniform prior</span>
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">likelihood</span>(pH,data):
+    N <span style="color: #666666">=</span> <span style="color: #008000">len</span>(data)
+    no_of_heads <span style="color: #666666">=</span> <span style="color: #008000">sum</span>(data)
+    no_of_tails <span style="color: #666666">=</span> N <span style="color: #666666">-</span> no_of_heads
+    <span style="color: #008000; font-weight: bold">return</span> pH<span style="color: #666666">**</span>no_of_heads <span style="color: #666666">*</span> (<span style="color: #666666">1-</span>pH)<span style="color: #666666">**</span>no_of_tails
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">posterior</span>(pH,data):
+    p<span style="color: #666666">=</span>prior(pH)<span style="color: #666666">*</span>likelihood(pH,data)
+    norm<span style="color: #666666">=</span>np<span style="color: #666666">.</span>trapz(p,pH)
+    <span style="color: #008000; font-weight: bold">return</span> p<span style="color: #666666">/</span>norm
+</pre></div>
+<p>
+<!-- !split -->
+The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a href="#fig:coinflipping">2</a>.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pH<span style="color: #666666">=</span>np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>,<span style="color: #666666">1</span>,<span style="color: #666666">1000</span>)
+fig, axs <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(nrows<span style="color: #666666">=4</span>,ncols<span style="color: #666666">=3</span>,sharex<span style="color: #666666">=</span><span style="color: #008000">True</span>,sharey<span style="color: #666666">=</span><span style="color: #BA2121">&#39;row&#39;</span>,figsize<span style="color: #666666">=</span>(<span style="color: #666666">14</span>,<span style="color: #666666">14</span>))
+axs_vec<span style="color: #666666">=</span>np<span style="color: #666666">.</span>reshape(axs,<span style="color: #666666">-1</span>)
+axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>plot(pH,prior(pH))
+<span style="color: #008000; font-weight: bold">for</span> ndouble <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">11</span>):
+    ax<span style="color: #666666">=</span>axs_vec[<span style="color: #666666">1+</span>ndouble]
+    ax<span style="color: #666666">.</span>plot(pH,posterior(pH,heads[:<span style="color: #666666">2**</span>ndouble]))
+    ax<span style="color: #666666">.</span>text(<span style="color: #666666">0.1</span>, <span style="color: #666666">0.8</span>, <span style="color: #BA2121">&#39;$N={0}$&#39;</span><span style="color: #666666">.</span>format(<span style="color: #666666">2**</span>ndouble), transform<span style="color: #666666">=</span>ax<span style="color: #666666">.</span>transAxes)
+<span style="color: #008000; font-weight: bold">for</span> row <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">4</span>): axs[row,<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;$p(p_H|D_\mathrm{obs},I)$&#39;</span>)
+<span style="color: #008000; font-weight: bold">for</span> col <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">3</span>): axs[<span style="color: #666666">-1</span>,col]<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&#39;$p_H$&#39;</span>)
+</pre></div>
+<p>
+<!-- !split -->
+
+<p>
+<center> <!-- figure label: --> <div id="fig:coinflipping"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis.  <!-- caption label: fig:coinflipping --> </p></center>
+<p><img src="fig/coinflipping_fig_1.png" align="bottom" width=500></p>
+</center>
+
+<p>
+<!-- !split -->
+The panel in the top left-hand corner shows the posterior pdf for \( p_H \) given no data, i.e., it is the same as the prior pdf of Eq. \eqref{eq:coin_prior_uniform}. It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.
+
+<p>
+<!-- !split -->
+The first flip is obviously tails. At this point we have no evidence that the coin has a side with heads, as indicated by the pdf going to zero as \( p_H \to 1 \). The second flip is obviously heads and we have now excluded both extreme options \( p_H=0 \) (double-tailed) and \( p_H=1 \) (double-headed). We can note that the posterior at this point has the simple form \( p(p_H|D,I) = p_H(1-p_H) \) for \( 0 \le p_H \le 1 \).
+
+<p>
+<!-- !split -->
+The remainder of Fig. <a href="#fig:coinflipping">2</a> shows how the posterior pdf evolves as the number of data analysed becomes larger and larger. We see that the position of the maximum moves around, but that the amount by which it does so decreases with the increasing number of observations. The width of the posterior pdf also becomes narrower with more data, indicating that we are becoming increasingly confident in our estimate of the bias-weighting. For the coin in this example, the best estimate of \( p_H \) eventually converges to 0.6, which, of course, was the value chosen to simulate the flips.
+
+<p>
+<!-- !split -->
+
+<h1 id="___sec17" class="anchor">Take aways: Coin tossing </h1>
+
+<p>
+<!-- !bpop -->
+
+<ul>
+<li> The Bayesian posterior \( p(p_H | D, I) \) is proportional to the product of the prior and the likelihood (which is given by a binomial distribution in this case).</li>
+<li> We can do this analysis sequentially (updating the prior after each toss and then adding new data; but don't use the same data more than once!). Or we can analyze all data at once.</li> 
+<li> Why (and when) are these two approaches equivalent, and why should we not use the same data more than once?</li>
+</ul>
+
+<!-- !epop -->
+
+<p>
+<!-- !split -->
+<!-- !bpop -->
+
+<ul>
+<li> Possible point estimates for the value of \( p_H \) could be the maximum (mode), mean, or median of this posterior pdf.</li> 
+<li> Bayesian p% degree-of-belief (DoB) intervals correspond to ranges in which we would give a p% odds of finding the true value for \( p_H \) based on the data and the information that we have.</li>
+<li> The frequentist point estimate is \( p_H^* = \frac{H}{N} \). It actually corresponds to one of the point estimates from the Bayesian analysis for a specific prior? Which point estimate and which prior?</li>
+</ul>
+
+<!-- !epop -->
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
