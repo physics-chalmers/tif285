@@ -130,12 +130,22 @@ margin-bottom: 20px;
 }
 
 .main_box table {
-    padding:0px;
+    padding:2px;
     padding-left:0px;
-    margin:0px;
+    margin:2px;
     background:transparent;
     border: 1px solid #8784C6;
     border-collapse:collapse;
+}
+
+.main_box th {
+    padding:2px;
+    padding-left:2px;
+    margin:0px;
+    border: 1px solid #8784C6;
+    background:transparent;
+    vertical-align:top;	   
+    horizontal-align:center;	   
 }
 
 .main_box td {
