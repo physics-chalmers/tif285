@@ -14,7 +14,7 @@ var courseURL = "https://chalmers.instructure.com/courses/7773/";
 // Relative link to file if the current page is the top window
 var material = "";
 if (inIframe()) {
-	material = courseURL + "external_tools/221";
+	material = courseURL + "external_tools/438";
 } else {
 	material = 'material.html';
 }
@@ -28,14 +28,14 @@ if (inIframe()) {
 
 var schedule = "";
 if (inIframe()) {
-	schedule = courseURL + "external_tools/223";
+	schedule = courseURL + "external_tools/439";
 } else {
 	schedule = 'schedule.html';
 }
 
 var gettingstarted = "";
 if (inIframe()) {
-	gettingstarted = courseURL + "external_tools/264";
+	gettingstarted = courseURL + "external_tools/437";
 } else {
 	gettingstarted = 'gettingstarted.html';
 }
