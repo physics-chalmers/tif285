@@ -8,7 +8,7 @@ function inIframe () {
 }
 
 // course-specific URL
-var courseURL = "https://chalmers.instructure.com/courses/7773/";
+var courseURL = "https://chalmers.instructure.com/courses/10188/";
 
 // Course-specific url if the current page is within an iFrame.
 // Relative link to file if the current page is the top window
