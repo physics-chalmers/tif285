@@ -42,7 +42,7 @@ if (inIframe()) {
 
 var remoteteaching = "";
 if (inIframe()) {
-	remoteteaching = courseURL + "external_tools/442";
+	remoteteaching = courseURL + "external_tools/601";
 } else {
 	remoteteaching = 'remoteteaching.html';
 }
