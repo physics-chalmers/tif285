@@ -42,9 +42,9 @@ if (inIframe()) {
 
 var remoteteaching = "";
 if (inIframe()) {
-	gettingstarted = courseURL + "external_tools/442";
+	remoteteaching = courseURL + "external_tools/442";
 } else {
-	gettingstarted = 'remoteteaching.html';
+	remoteteaching = 'remoteteaching.html';
 }
 
 // var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
