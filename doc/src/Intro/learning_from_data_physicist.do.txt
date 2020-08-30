@@ -1,24 +1,25 @@
-=== How will this course be different from a computer science course? ===
+=== How will this course be different from an applied mathematics / computer science course? ===
 
 In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs. 
 
 !split
-However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work. 
+However, the ambition for teaching the theoretical foundation implies that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and  computational experience will give the best preparation for being able to apply the knowledge in new situations and real problems that will be encountered in future studies and work. 
 
 !split
-In particular, physics and astronomy students have a unique preparation:
-* Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
-* Considerable training in general problem solution skills.
-
-Physics and astronomy research also has different needs:
-  * Our data and models are often fundamentally different from those in typical computer science contexts.
-  * We ask different types of questions about our data, sometimes requiring new methods.
-  * We have different priorities for judging a ``good'' method: interpretability, error estimates, predictive power, etc.
-
+This course has been designed specifically for Physics students. We expect that you have:
+* Strong background and experience with mathematical tools (linear algebra, multivariate calculus) that will allow to immediately engage in rigorous discussions of statistics.
+* Experience with the use of (physics) models to describe reality and an understanding for  various uncertainties associated with experimental observations.
+* Considerable training in general problem solving skills.
 
 !split
 === What is special about machine learning in physics and astronomy? ===
 
+Physics research has different needs:
+  * Our data and models are often fundamentally different from those in typical computer science contexts. For example, we might have prior knowledge about underlying physics that should be taken into account.
+  * We ask different types of questions about our data, sometimes requiring new methods.
+  * We have different priorities for judging a ``good'' method: interpretability, error estimates, predictive power, etc.
+  
+!split
   * We are data _producers_, not (only) data consumers:
     * Experimental design can (sometimes) be in our own control.
     * Statistical errors on data can be quantified.

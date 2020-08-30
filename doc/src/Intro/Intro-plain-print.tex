@@ -70,14 +70,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -294,7 +294,7 @@ Learning from data: Getting started and a first data and machine learning encoun
 
 % --- begin date ---
 \begin{center}
-Oct 23, 2019
+Aug 30, 2020
 \end{center}
 % --- end date ---
 
@@ -412,24 +412,28 @@ knowledge discovery based on data.
 
 % !split
 \section{Learning from data: A physicist's perspective}
-\paragraph{How will this course be different from a computer science course?}
+\paragraph{How will this course be different from an applied mathematics / computer science course?}
 In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs. 
 
 % !split
-However, being this ambitious in teaching a theoretical foundation means that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and obtaining your own computational experience will give the best preparation for being able to apply the knowledge in new situations and for real problems that will be encountered in future studies and work. 
+However, the ambition for teaching the theoretical foundation implies that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and  computational experience will give the best preparation for being able to apply the knowledge in new situations and real problems that will be encountered in future studies and work. 
 
 % !split
-In particular, physics and astronomy students have a unique preparation:
+This course has been designed specifically for Physics students. We expect that you have:
 \begin{itemize}
-\item Strong background and experience with mathematical tools (linear algebra, multivariate calculus) needed for rigorous discussion of statistics.
+\item Strong background and experience with mathematical tools (linear algebra, multivariate calculus) that will allow to immediately engage in rigorous discussions of statistics.
 
-\item Considerable training in general problem solution skills.
+\item Experience with the use of (physics) models to describe reality and an understanding for  various uncertainties associated with experimental observations.
+
+\item Considerable training in general problem solving skills.
 \end{itemize}
 
 \noindent
-Physics and astronomy research also has different needs:
+% !split
+\paragraph{What is special about machine learning in physics and astronomy?}
+Physics research has different needs:
 \begin{itemize}
-  \item Our data and models are often fundamentally different from those in typical computer science contexts.
+  \item Our data and models are often fundamentally different from those in typical computer science contexts. For example, we might have prior knowledge about underlying physics that should be taken into account.
 
   \item We ask different types of questions about our data, sometimes requiring new methods.
 
@@ -438,7 +442,6 @@ Physics and astronomy research also has different needs:
 
 \noindent
 % !split
-\paragraph{What is special about machine learning in physics and astronomy?}
 \begin{itemize}
   \item We are data \textbf{producers}, not (only) data consumers:
 \begin{itemize}
@@ -776,12 +779,16 @@ development of the course material that is an integral part. In particular, I am
 \item Prof.~Morten Hjorth-Jensen, Oslo University and Michigan State University
 
 \item Prof.~Daniel Phillips, Ohio University.
+
+\item Dr.~Ian Vernon, Durham University
+
+\item Dr.~Sarah Wesolowski, Salisbury University
 \end{itemize}
 
 \noindent
 The list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than taking the risk of forgetting someone, I would just like to say thank you all. I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.
 
-The last statement extends obviously to the open source communities that make so many great computing tools publicly available. In this course we take much advantage of open-source python libraries.  
+The last statement extends obviously to the open-source communities that make so many great computing tools publicly available. In this course we take much advantage of open-source python libraries.  
 
 % ------------------- end of main content ---------------
 

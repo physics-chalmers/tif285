@@ -13,7 +13,9 @@ development of the course material that is an integral part. In particular, I am
 * Prof. Richard Furnstahl, Ohio State University
 * Prof. Morten Hjorth-Jensen, Oslo University and Michigan State University
 * Prof. Daniel Phillips, Ohio University.
+* Dr. Ian Vernon, Durham University
+* Dr. Sarah Wesolowski, Salisbury University
 
 The list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than taking the risk of forgetting someone, I would just like to say thank you all. I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.
 
-The last statement extends obviously to the open source communities that make so many great computing tools publicly available. In this course we take much advantage of open-source python libraries.
+The last statement extends obviously to the open-source communities that make so many great computing tools publicly available. In this course we take much advantage of open-source python libraries.
