@@ -54,7 +54,7 @@ Automatically generated HTML file from DocOnce source
               ('Polynomial basis functions', 2, None, '___sec4'),
               ('General basis functions', 3, None, '___sec5'),
               ('Training scores', 2, None, '___sec6'),
-              ('The $\\chi^2$ function', 3, None, '___sec7')]}
+              ('The $\\chi^2$ function', 2, None, '___sec7')]}
 end of tocinfo -->
 
 <body>
@@ -99,7 +99,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Polynomial basis functions</a></li>
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General basis functions</a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Training scores</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The \( \chi^2 \) function</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The \( \chi^2 \) function</a></li>
 
         </ul>
       </li>
@@ -138,7 +138,7 @@ MathJax.Hub.Config({
 <center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 30, 2020</h4></center> <!-- date -->
+<center><h4>Sep 1, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -176,19 +176,75 @@ Fitting a continuous function with linear parameterization in terms of the param
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
-Regression modeling deals with the description of  the sampling distribution of a given random variable \( y \) and how it varies as function of another variable or a set of such variables \( \boldsymbol{x} =[x_0, x_1,\dots, x_{n-1}]^T \). 
-The first variable is called the <b>dependent</b>, the <b>outcome</b> or the <b>response</b> variable while the set of variables \( \boldsymbol{x} \) is called the <b>independent</b> variable, or the <b>predictor</b> variable or the <b>explanatory</b> variable.
+Regression modeling deals with the description of a <b>response</b> variable(s) \( y \) and how it varies as function of some <b>predictor</b> variable(s) \( x \). The first variable is also often called the <b>dependent</b>, or the <b>outcome</b> variable while the second one can be called the <b>independent</b> variable, or the <b>explanatory</b> variable. Note also that each of these might be a vector of variables, meaning that there could be more than one response variable and more than one predictor variable.
 
 <p>
-A regression model \( M \) aims at finding a likelihood function \( p(\boldsymbol{y}\vert \boldsymbol{x},M,\mathcal{D}_n) \), that is the conditional distribution for \( \boldsymbol{y} \) given the independent variable \( \boldsymbol{x} \) and a model \( M \) that has been trained on a data set \( \mathcal{D}_n \). The data set consists of: 
+In general we will try to find a model \( M \) that corresponds to a function \( f_\theta(x) \) such that 
+$$
+y \approx f_\theta(x)
+$$
+
+In <b>linear regression</b> the dependence on the model parameters is <b>linear</b>, and this fact will make it possible to find an analytical expression for the optimal set of model parameters (as we will see below).
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<p>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+When performing a regression analysis we will have access to a set of data \( \mathcal{D} \) that consists of:
 
 <ul>
 <li> \( n \) cases \( i = 0, 1, 2, \dots, n-1 \)</li> 
-<li> Response variable \( y_i \) with \( i = 0, 1, 2, \dots, n-1 \). These are sometimes referred to as target, dependent or outcome.</li>
-<li> For each case there will be \( p \) so-called explanatory (independent or predictor) variables \( \boldsymbol{x}_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}] \) with \( i = 0, 1, 2, \dots, n-1 \) and explanatory variables running from \( 0 \) to \( p-1 \). See below for more explicit examples.</li> 
 </ul>
 
- The goal of the regression analysis is to extract/exploit a relationship between \( \boldsymbol{y} \) and \( \boldsymbol{x} \) or to infer causal dependencies, and to make fits, and predictions, and many other things.
+For each case there is a
+
+<ul>
+<li> (vector of) response variable(s) \( y_i \) (observations);</li>
+<li> (vector of) independent variable(s) \( x_i \).</li>
+</ul>
+
+Below, we will use boldface to denote the set of data, i.e., \( \boldsymbol{y} = (y_0, y_1,\ldots, y_{n-1}) \) and \( \boldsymbol{x} = (x_0, x_1,\ldots, x_{n-1}) \).
+
+<p>
+The independent variables can be turned into a number of <b>features</b>, and the key to a successful regression analysis is to identify the most relevant features. In physics, these would correspond to a set of <b>basis functions</b>.
+
+<p>
+Assume that there are \( p \) features and we will use the (possibly confusing) notation
+
+<ul>
+<li> \( x_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}] \) and from now on let \( x \) denote the vector of features. See below for more explicit examples.</li> 
+</ul>
+
+As our model will (in general) not predict the observations perfectly, we will write the relationship as
+$$
+y_i = f_\theta(x_i) + \epsilon_i,
+$$
+
+where \( \epsilon_i \) is the error (or the <b>residual</b>).
+</div>
+</div>
+
+
+<p>
+<!-- !split -->
+
+<p>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+A regression analysis aims at finding the model parameters \( \theta \) of a specified model \( M \) such that the vector of errors \( \boldsymbol{\epsilon} \) is minimized. You might ask the very relevant question what is specifically meant by minimizing a vector, and you will find that this is often achieved by minimizing a <b>cost</b> function that has been introduced without much motivation. This function might also be called a <b>loss</b> function or an <b>objective</b> function.
+
+<p>
+Alternatively, we could introduce the likelihood function \( p(\boldsymbol{y} \vert \boldsymbol{x}, M(\theta)) \).  It is the conditional distribution for the probability of making the observations \( \boldsymbol{y} \) given the independent variable \( \boldsymbol{x} \) and a model \( M \), where \( \boldsymbol{y} \) and \( \boldsymbol{x} \) are contained in our data set \( \mathcal{D} \). The parameters \( \theta \) that maximizes this likelihood function is then our optimal set. We will later discuss likelihood functions in much more detail.
+
+<p>
+Having access to this &quot;optimal&quot; model, we have extracted a relationship between \( \boldsymbol{y} \) and \( \boldsymbol{x} \) that we can exploit to infer causal dependencies, make predictions, and many other things.
 </div>
 </div>
 
@@ -198,22 +254,8 @@ A regression model \( M \) aims at finding a likelihood function \( p(\boldsymbo
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The \( p \) explanatory variables for the \( n \) cases in the data set are normally represented by a matrix \( \mathbf{X} \).
-
-<p>
-The matrix \( \mathbf{X} \) is called the <em>design
-matrix</em>. In addition, each case is also represented by its <em>response variable</em> \( \boldsymbol{y} \). The aim of
-regression analysis is to explain \( \boldsymbol{y} \) in terms of
-\( \boldsymbol{X} \) through a functional relationship like \( y_i =
-f(\mathbf{X}_{i},\ast ) \).
-
-<p>
-It is common to assume a linear relationship
-between \( \boldsymbol{X} \) and \( \boldsymbol{y} \). This assumption gives rise to
-the <em>linear regression model</em> where \( \boldsymbol{\theta} = [\theta_0, \ldots,
-\theta_{p-1}]^{T} \) are the <em>regression parameters</em>. Linear regression gives us a set of analytical equations for the parameters \( \theta_j \).
-
-<p>
+The \( p \) explanatory variables for the \( n \) cases in the data set are normally represented by a matrix \( \mathbf{X} \). The matrix \( \mathbf{X} \) is called the <em>design
+matrix</em>.
 </div>
 </div>
 
@@ -236,7 +278,7 @@ $$
 BE(A,N,Z) = a_0+a_1A+a_2A^{2/3}+a_3 Z^2 A^{-1/3}+a_4 (N-Z)^2 A^{-1},
 $$
 
-we have five predictors, that is the intercept (constant term, aka bias), the \( A \) dependent term, the \( A^{2/3} \) term and the \( Z^2 A^{-1/3} \) and \( (N-Z)^2 A^{-1} \) terms. Although the predictors are somewhat complicated functions of \( A,N,Z \), we note that the \( p=5 \) regression parameters \( \theta = (a_0, a_1, a_2, a_3, a_4) \) enter linearly. Furthermore we have \( n \) cases. It means that our design matrix is a 
+we have five features, that is the intercept (constant term, aka bias), the \( A \) dependent term, the \( A^{2/3} \) term and the \( Z^2 A^{-1/3} \) and \( (N-Z)^2 A^{-1} \) terms. Although the features are somewhat complicated functions of the independent variables \( A,N,Z \), we note that the \( p=5 \) regression parameters \( \theta = (a_0, a_1, a_2, a_3, a_4) \) enter linearly. Furthermore we have \( n \) cases. It means that our design matrix is a 
 \( p\times n \) matrix \( \boldsymbol{X} \).
 
 <p>
@@ -251,12 +293,9 @@ we have five predictors, that is the intercept (constant term, aka bias), the \(
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-Let us study a case from linear algebra where we aim at fitting a set of data \( \boldsymbol{y}=[y_0,y_1,\dots,y_{n-1}] \). We could think of these data as a result of an experiment or a complicated numerical experiment. These data are functions of a variable \( x \) so that for the data set we have \( \boldsymbol{x}=[x_0,x_1,\dots,x_{n-1}] \) and \( y_i = y(x_i) \) with \( i=0,1,2,\dots,n-1 \). The variable \( x_i \) could represent a physical quantity like time, temperature, position etc. We assume that \( y(x) \) is a smooth function.
-
-<p>
-Now, we don't know \( y(x) \) but we want to use the data that we have to fit a function which can allow us to make predictions for values of \( y \) which are not in the present set. The perhaps simplest approach is to assume we can parametrize our function in terms of a polynomial \( f(x) \) of degree \( p-1 \). Since we realize that our polynomial model might not represent \( y(x) \) perfectly we also add an error term
+The perhaps simplest linear-regression approach is to assume we can parametrize our function in terms of a polynomial \( f(x) \) of degree \( p-1 \). I.e.
 $$
-y=y(x) \rightarrow y(x_i)=f({x}_i)+\epsilon_i=\sum_{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,
+y(x_i)=f({x}_i)+\epsilon_i=\sum_{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,
 $$
 
 where \( \epsilon_i \) is the error in our approximation.
@@ -471,8 +510,7 @@ till now we have treated \( y_i \) as the exact value. Normally, the
 response (dependent or outcome) variable \( y_i \) the outcome of a
 numerical experiment or another type of experiment and is thus only an
 approximation to the true value. It is then always accompanied by an
-error estimate, often limited to a statistical error estimate given by
-the standard deviation discussed earlier. In the discussion here we
+error estimate, often limited to a statistical error estimate. For now, we
 will treat \( y_i \) as our exact value for the response variable.
 
 <p>
@@ -573,8 +611,7 @@ where \( \bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n 
 <p>
 <!-- !split -->
 
-<h3 id="___sec7" class="anchor">The \( \chi^2 \) function  </h3>
-
+<h2 id="___sec7" class="anchor">The \( \chi^2 \) function  </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -584,11 +621,11 @@ Normally, the response (dependent or outcome) variable \( y_i \) is the
 outcome of a numerical experiment or another type of experiment and is
 thus only an approximation to the true value. It is then always
 accompanied by an error estimate, often limited to a statistical error
-estimate given by the standard deviation discussed earlier.
+estimate given by a <b>standard deviation</b>.
 
 <p>
 Introducing the standard deviation \( \sigma_i \) for each measurement
-\( y_i \) (assuming uncorrelated errors), we define the \( \chi^2 \) function as
+\( y_i \) (assuming uncorrelated errors), we define the so called \( \chi^2 \) function as
 
 $$
 \chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
@@ -608,7 +645,7 @@ where the matrix \( \boldsymbol{\Sigma} \) is a diagonal \( n \times n \) matrix
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
-In order to find the parameters \( \theta_i \) we will then minimize the spread of \( \chi^2(\boldsymbol{\theta}) \) by requiring
+In order to find the parameters \( \theta_i \) we will then minimize the \( \chi^2(\boldsymbol{\theta}) \) function by requiring
 $$
 \frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)^2\right]=0, 
 $$
