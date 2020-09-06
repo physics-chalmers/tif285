@@ -63,6 +63,10 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % 3. enable begin{figure}[H] (often leads to ugly pagebreaks)
 %\usepackage{float}\restylefloat{figure}
 
+% newcommands for typesetting inline (doconce) comments
+\newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+\newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
+
 % --- fancyhdr package for fancy headers ---
 \usepackage{fancyhdr}
 \fancyhf{} % sets both header and footer to nothing
@@ -71,14 +75,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -288,7 +292,7 @@ Learning from data: Model Validation and Regularization
 
 % --- begin date ---
 \begin{center}
-Sep 9, 2019
+Sep 6, 2020
 \end{center}
 % --- end date ---
 
@@ -297,6 +301,8 @@ Sep 9, 2019
 
 In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
 \begin{itemize}
+  \item Model validation
+
   \item Overfitting and underfitting
 
   \item Bias-variance-tradeoff
@@ -304,8 +310,6 @@ In this lecture we will continue to explore linear regression and we will encoun
   \item Regularization
 
   \item Model hyperparameters
-
-  \item Model validation
 
   \item Gradient descent optimization
 
@@ -340,13 +344,13 @@ Overfitting and underfitting are common problems in data analysis and machine le
 The following quote from an unknown source provides a concise definition of overfitting and underfitting:
 
 \begin{quote}
-A model overfits if it fits noise rather than only the data and underfits if it considers variability in data to be noise while it is actually not.
+A model overfits if it fits noise as much as data and underfits if it considers variability in data to be noise while it is actually not.
 \end{quote}
 
 
 The question is then: How do we detect these problems and how can we reduce them.
 
-We can detect over- and underfitting by employing holdout sets, also known as \emph{validation} sets (or sometimes referred to as validation sets). This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the modle parameters to best fit the training data, and then measure e.g.~the mean-square error (MSE) of the model predictions for the validation set. 
+We can detect over- and underfitting by employing holdout sets, also known as \emph{validation} sets. This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the model parameters to best fit the training data, and then measure e.g.~the mean-square error (MSE) of the model predictions for the validation set. 
 
 An underfit model has a \emph{high bias}, which means that it gives a rather poor fit and the performance metric will be rather bad (large error). This will be true for both the training and the validation sets.
 
@@ -380,12 +384,12 @@ Assuming that overfitting is characterized by large fit parameters, we can attem
 
 Let us remind ourselves about the expression for the standard Mean Squared Error (MSE) which we used to define our cost function and the equations for the ordinary least squares (OLS) method. That is our optimization problem is
 \[
-{\displaystyle \min_{\bm{\theta}\in {\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{	\theta}\right)^T\left(\bm{y}-\bm{X}\bm{\theta}\right)\right\}.
+\bm{\theta}^* = \underset{\bm{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}} \frac{1}{n}\left\{\left(\bm{y}-\bm{X}\bm{	\theta}\right)^T\left(\bm{y}-\bm{X}\bm{\theta}\right)\right\}.
 \]
 or we can state it as
 \[
-{\displaystyle \min_{\bm{\theta}\in
-{\mathbb{R}}^{p}}}\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2,
+\bm{\theta}^* = \underset{\bm{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
+\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2,
 \]
 where we have used the definition of  a norm-2 vector, that is
 \[
@@ -395,16 +399,19 @@ where we have used the definition of  a norm-2 vector, that is
 By minimizing the above equation with respect to the parameters
 $\bm{\theta}$ we could then obtain an analytical expression for the
 parameters $\bm{\theta}$.  We can add a regularization parameter $\lambda$ by
-defining a new cost function to be optimized, that is
+defining a new cost function to be minimized, that is
 
 \[
 C_{\lambda,2} \left( \bm{X}, \bm{\theta} \right) \equiv
-{\displaystyle \min_{\bm{\theta}\in
-{\mathbb{R}}^{p}}}\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_2^2 
+\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_2^2 
 \]
 
 which leads to the \emph{Ridge regression} minimization problem where we
-constrain $\vert\vert \bm{\theta}\vert\vert_2^2$. 
+constrain the parameters via $\vert\vert \bm{\theta}\vert\vert_2^2$ and the optimization equation becomes
+\[
+\bm{\theta}^* = \underset{\bm{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
+C_{\lambda,2}
+\].
 
 Alternatively, \emph{Lasso regularization} can be performed by defining
 
@@ -412,18 +419,11 @@ Alternatively, \emph{Lasso regularization} can be performed by defining
 C_{\lambda,1} \left( \bm{X},\bm{\theta} \right) \equiv
 \frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_1.
 \]
-
-The optimization equation is now
-\[
-{\displaystyle \min_{\bm{\theta}\in
-{\mathbb{R}}^{p}}}\frac{1}{n}\vert\vert \bm{y}-\bm{X}\bm{\theta}\vert\vert_2^2+\lambda\vert\vert \bm{\theta}\vert\vert_1
-\].
-Lasso stands for least absolute shrinkage and selection operator. 
-
 Here we have defined the norm-1 as 
 \[
 \vert\vert \bm{x}\vert\vert_1 = \sum_i \vert x_i\vert. 
 \]
+Lasso stands for least absolute shrinkage and selection operator.
 
 
 \begin{figure}[!ht]  % fig-ridge_reg
@@ -454,21 +454,18 @@ of $\lambda$ does not suffer from singularity problems. We obtain
 \bm{\theta}^{\mathrm{Ridge}} = \left(\bm{X}^T\bm{X}+\lambda\bm{I}\right)^{-1}\bm{X}^T\bm{y},
 \]
 
-with $\bm{I}$ being a $p\times p$ identity matrix with the constraint that
-
-\[
-\sum_{i=0}^{p-1} \theta_i^2 \leq t,
-\]
-
-with $t$ a finite positive number. 
+with $\bm{I}$ being a $p\times p$ identity matrix 
 
 We see that Ridge regression is nothing but the standard
 OLS with a modified diagonal term added to $\bm{X}^T\bm{X}$. The
 consequences, in particular for our discussion of the bias-variance
-are rather interesting.
+are rather interesting. Ridge regression imposes a constraint on the model parameters
+\[
+\sum_{i=0}^{p-1} \theta_i^2 \leq t,
+\]
+with $t$ a finite positive number. 
 
-For more discussions of Ridge and Lasso regression, \href{{https://arxiv.org/abs/1509.09169}}{Wessel van Wieringen's} article is highly recommended.
-Similarly, \href{{https://arxiv.org/abs/1803.08823}}{Mehta et al's article} is also recommended.
+For more discussions of Ridge and Lasso regression, see: \href{{https://arxiv.org/abs/1509.09169}}{Wessel van Wieringen's} article or \href{{https://arxiv.org/abs/1803.08823}}{Mehta et al's article}.
 
 % !split
 \subsection{The bias-variance tradeoff}
@@ -479,36 +476,41 @@ intuitions and ideas discussed here also carry over to classification
 tasks. Consider a dataset $\mathcal{L}$ consisting of the data
 $\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. 
 
-Let us assume that the true data is generated from a noisy model
+Let us assume that the data with experimental noise is generated from a true model
 
 \[
-\bm{y}=f(\boldsymbol{x}) + \bm{\epsilon}
+\bm{y}=f(\boldsymbol{x}) + \bm{\epsilon}_\mathrm{exp}
 \]
 
-where $\epsilon$ is normally distributed with mean zero and standard deviation $\sigma^2$.
+where $\bm{\epsilon}_\mathrm{exp}$ is a vector of random variables that are normally distributed with mean zero and variance $\sigma^2_\mathrm{exp}$.
 
 In our derivation of the ordinary least squares method we defined then
 an approximation to the function $f$ in terms of the parameters
 $\bm{\theta}$ and the design matrix $\bm{X}$ which embody our model,
-that is $\bm{\tilde{y}}=\bm{X}\bm{\theta}$. 
-
-Thereafter we found the parameters $\bm{\theta}$ by optimizing the means squared error via the so-called cost function
+that is $\bm{\tilde{y}}=\bm{X}\bm{\theta}$. The relation between the true description and our model $\tilde{f}_i(\boldsymbol{\theta}) \equiv \tilde{y}_i$ is
 \[
-C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2=\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right].
+f_i = \tilde{y}_i + \bm{\epsilon}_\mathrm{model}.
 \]
+
+Thereafter we found the optimum set of model parameters $\bm{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
+\[
+C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 \equiv \mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right],
+\]
+where $\mathbb{E}(\bm{t})$ denotes the expectation value of a vector of random variables $\bm{t}$.
 
 We can rewrite this as 
 \[
-\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\sigma^2.
+\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\sigma^2_\mathrm{exp}.
 \]
 
-The three terms represent the square of the bias of the learning
+The first of the three terms represents the square of the bias of the learning
 method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
-variance of the chosen model and finally the last terms is variance of
-the error $\bm{\epsilon}$.
+variance of the chosen model and finally the last terms is the irreducible error $\bm{\epsilon}_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
 
-To derive this equation, we need to recall that the variance of $\bm{y}$ and $\bm{\epsilon}$ are both equal to $\sigma^2$. The mean value of $\bm{\epsilon}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastics variable, idem for $\bm{\tilde{y}}$.
+\shortinlinecomment{edit 1}{ Beware. This derivation will be replaced. }{ Beware. This derivation will }
+
+To derive this equation, we need to recall that the variance of $\bm{y}$ and $\bm{\epsilon}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\bm{\epsilon}_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\bm{\tilde{y}}$.
 We use a more compact notation in terms of the expectation value 
 \[
 \mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{f}+\bm{\epsilon}-\bm{\tilde{y}})^2\right],
@@ -556,7 +558,7 @@ order to minimize the expected validation error, we need to select a
 statistical learning method that simultaneously achieves low variance
 and low bias. Note that variance is inherently a nonnegative quantity,
 and squared bias is also nonnegative. Hence, we see that the expected
-validation MSE can never lie below $Var(\epsilon)$, the irreducible error.
+validation MSE can never lie below $\mathrm{Var}(\bm{\epsilon}_\mathrm{exp}) \equiv \sigma^2_\mathrm{exp}$, the irreducible error.
 
 
 What do we mean by the variance and bias of a statistical learning
@@ -571,7 +573,7 @@ flexible statistical methods have higher variance.
 
 
 % !split 
-\subsection{Model validation}
+\subsection{Model validation strategy}
 
 Let us summarize the basic recipe for applying a supervise machine-learning model:
 
@@ -586,7 +588,7 @@ Let us summarize the basic recipe for applying a supervise machine-learning mode
 \end{enumerate}
 
 \noindent
-In our examples so far, the class of models has been linear regression models with polynomial basis functions. Hyperparameters then correspond to the choice of polynomial dagree, or it can correspond to the Ridge regularization factor $\lambda$ if we use this technique. 
+In our examples so far, the class of models has been linear regression models with polynomial basis functions. Hyperparameters then correspond to the choice of polynomial degree, and the Ridge regularization factor $\lambda$ if we use this technique, etc. 
 
 In order to make an informed choice for these hyperparameters we need to validate that our model and its hyperparameters provide a good fit to the data. This important step is typically known as \emph{model validation}, and it most often involves splitting the data into two sets: the training set and the validation set. 
 
@@ -632,8 +634,7 @@ evaluated on the corresponding validation set. The hyperparameter that performs 
 
 
 % !split 
-\subsection{$k$-fold cross validation cross-validation}
-
+\paragraph{$k$-fold cross validation cross-validation.}
 When the repetitive splitting of the data set is done randomly,
 samples may accidently end up in a fast majority of the splits in
 either training or validation set. Such samples may have an unbalanced
@@ -650,8 +651,7 @@ choosing $k=n$. This particular case is referred to as leave-one-out
 cross-validation (LOOCV). 
 
 % !split 
-\subsection{How to set up cross-validation}
-
+\paragraph{How to set up cross-validation.}
 \begin{itemize}
 \item Define a range of interest for the  model hyperparameter(s) $\lambda$.
 
@@ -683,12 +683,19 @@ cross-validation (LOOCV).
 \end{itemize}
 
 \noindent
+\[
+\lambda^* = \underset{\lambda}{\operatorname{argmin}}
+\mathrm{CV}_k(\lambda)
+\].
+
+
+
 % !split
 \section{Gradient-descent optimization}
 
-With the linear regression model we could find the best fit parameters using the normal equation. Although we could encounter problems associated with inverting a matrix, we do in principle have a closed-form expression for the model parameters.
+With the linear regression model we could find the best fit parameters by solving the normal equation. Although we could encounter problems associated with inverting a matrix, we do in principle have a closed-form expression for the model parameters.
 
-In general, the problem of optimizing the model parameters is a very difficult one. We will return to the optimization problem later in this course, but will just briefly introduce the most common class of optimization algorithms: \emph{Gradient descent} methods. The general idea of Gradient Descent is to tweak parameters iteratively in order to minimize a cost function.
+In general, the problem of optimizing the model parameters is a very difficult one. We will return to the optimization problem later in this course, but will just briefly introduce the most common class of optimization algorithms: \emph{Gradient descent} methods. The general idea of Gradient descent is to tweak parameters iteratively in order to minimize a cost function.
 
 Let us start with a cost function for our model such as the chi-squared function that was introduced in the Linear Regression lecture:
 
@@ -701,11 +708,11 @@ Instead of finding a matrix equation for the vector $\bm{\theta}$ that minimizes
 \begin{itemize}
 \item Make a \emph{random initialization} of the parameter vector $\bm{\theta}_0$.
 
-\item Compute the gradient of the cost function with respect to the parameters (note that this can be done analytically for the linear regression model). Let us denote this gradient vector $\bm{\nabla} \chi^2$.
+\item Compute the gradient of the cost function with respect to the parameters (note that this can be done analytically for the linear regression model). Let us denote this gradient vector $\bm{\nabla}_{\bm{\theta}} \left( \chi^2 \right)$.
 
-\item Once you have the gradient vector, which points uphill, just go in the opposite direction to go downhill. This means subtracting $\eta \bm{\nabla} \chi^2$ from $\bm{\theta}_0$. Note that the magnitude of the step, $\eta$ is known as the learning rate.
+\item Once you have the gradient vector, which points uphill, just go in the opposite direction to go downhill. This means subtracting $\eta \bm{\nabla}_{\bm{\theta}} \left( \chi^2 \right)$ from $\bm{\theta}_0$. Note that the magnitude of the step, $\eta$ is known as the learning rate and becomes another hyperparameter that needs to be tuned.
 
-\item Continue this process iteratively until the gradient vector is close to zero.
+\item Continue this process iteratively until the gradient vector $\bm{\nabla}_{\bm{\theta}} \left( \chi^2 \right)$ is close to zero.
 \end{itemize}
 
 \noindent
