@@ -156,7 +156,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 12, 2019</h4></center> <!-- date -->
+<center><h4>Sep 6, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -280,7 +280,7 @@ Adapted from D.S. Sivia <button type="button" class="btn btn-primary btn-xs" rel
 <p>
 <!-- !split -->
 <blockquote>
-    Faced with the realization that the frequency definition of probability theory did not permit most real-life scientific problems to be addressed, a new subject was invented &#8212; statistics! To estimate the mass of Saturn, for example, one has to relate the mass to the data through some function called the statistic; since the data are subject to &#8216;random&#8217; noise, the statistic becomes the random variable to which the rules of probability the- ory can be applied. But now the question arises: How should we choose the statistic? The frequentist approach does not yield a natural way of doing this and has, therefore, led to the development of several alternative schools of orthodox or conventional statis- tics. The masters, such as Fisher, Neyman and Pearson, provided a variety of different principles, which has merely resulted in a plethora of tests and procedures without any clear underlying rationale. This lack of unifying principles is, perhaps, at the heart of the shortcomings of the cook-book approach to statistics that students are often taught even today.
+    Faced with the realization that the frequency definition of probability theory did not permit most real-life scientific problems to be addressed, a new subject was invented &#8212; statistics! To estimate the mass of Saturn, for example, one has to relate the mass to the data through some function called the statistic; since the data are subject to &#8216;random&#8217; noise, the statistic becomes the random variable to which the rules of probability theory can be applied. But now the question arises: How should we choose the statistic? The frequentist approach does not yield a natural way of doing this and has, therefore, led to the development of several alternative schools of orthodox or conventional statistics. The masters, such as Fisher, Neyman and Pearson, provided a variety of different principles, which has merely resulted in a plethora of tests and procedures without any clear underlying rationale. This lack of unifying principles is, perhaps, at the heart of the shortcomings of the cook-book approach to statistics that students are often taught even today.
 </blockquote>
 
 
@@ -405,13 +405,13 @@ of \( h \) with respect to \( p \) as follows
 
 $$
 \begin{equation}
-\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+\mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}
 $$
 
 Whenever the PDF is known implicitly, like in this case, we will drop
-the index \( X \) for clarity.  
+the index \( p \) for clarity.  
 A particularly useful class of special expectation values are the
 <em>moments</em>. The \( n \)-th moment of the PDF \( p \) is defined as
 follows
@@ -469,7 +469,7 @@ The values of the <b>mode</b>, <b>mean</b>, <b>median</b> can all be used as poi
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  The 68%/95% probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the \( x \)-axis translates into the vertical extent of the error bar or error band for \( x \). </p></center>
+<center><p class="caption">Figure 1:  The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the \( x \)-axis translates into the vertical extent of the error bar or error band for \( x \). </p></center>
 <p><img src="fig/pdfs.png" align="bottom" width=800></p>
 </center>
 
@@ -786,14 +786,14 @@ The next step is to confront this setup with the simulated data. To get a feel f
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pH<span style="color: #666666">=</span>np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>,<span style="color: #666666">1</span>,<span style="color: #666666">1000</span>)
-fig, axs <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(nrows<span style="color: #666666">=4</span>,ncols<span style="color: #666666">=3</span>,sharex<span style="color: #666666">=</span><span style="color: #008000">True</span>,sharey<span style="color: #666666">=</span><span style="color: #BA2121">&#39;row&#39;</span>,figsize<span style="color: #666666">=</span>(<span style="color: #666666">14</span>,<span style="color: #666666">14</span>))
+fig, axs <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(nrows<span style="color: #666666">=4</span>,ncols<span style="color: #666666">=3</span>,sharex<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">True</span>,sharey<span style="color: #666666">=</span><span style="color: #BA2121">&#39;row&#39;</span>,figsize<span style="color: #666666">=</span>(<span style="color: #666666">14</span>,<span style="color: #666666">14</span>))
 axs_vec<span style="color: #666666">=</span>np<span style="color: #666666">.</span>reshape(axs,<span style="color: #666666">-1</span>)
 axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>plot(pH,prior(pH))
 <span style="color: #008000; font-weight: bold">for</span> ndouble <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">11</span>):
     ax<span style="color: #666666">=</span>axs_vec[<span style="color: #666666">1+</span>ndouble]
     ax<span style="color: #666666">.</span>plot(pH,posterior(pH,heads[:<span style="color: #666666">2**</span>ndouble]))
-    ax<span style="color: #666666">.</span>text(<span style="color: #666666">0.1</span>, <span style="color: #666666">0.8</span>, <span style="color: #BA2121">&#39;$N={0}$&#39;</span><span style="color: #666666">.</span>format(<span style="color: #666666">2**</span>ndouble), transform<span style="color: #666666">=</span>ax<span style="color: #666666">.</span>transAxes)
-<span style="color: #008000; font-weight: bold">for</span> row <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">4</span>): axs[row,<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;$p(p_H|D_\mathrm{obs},I)$&#39;</span>)
+    ax<span style="color: #666666">.</span>text(<span style="color: #666666">0.1</span>, <span style="color: #666666">0.8</span>, <span style="color: #BA2121">&#39;$N=</span><span style="color: #BB6688; font-weight: bold">{0}</span><span style="color: #BA2121">$&#39;</span><span style="color: #666666">.</span>format(<span style="color: #666666">2**</span>ndouble), transform<span style="color: #666666">=</span>ax<span style="color: #666666">.</span>transAxes)
+<span style="color: #008000; font-weight: bold">for</span> row <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">4</span>): axs[row,<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;$p(p_H|D_\mathrm</span><span style="color: #BB6688; font-weight: bold">{obs}</span><span style="color: #BA2121">,I)$&#39;</span>)
 <span style="color: #008000; font-weight: bold">for</span> col <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">3</span>): axs[<span style="color: #666666">-1</span>,col]<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&#39;$p_H$&#39;</span>)
 </pre></div>
 <p>
@@ -840,7 +840,7 @@ The remainder of Fig. <a href="#fig:coinflipping">2</a> shows how the posterior 
 
 <ul>
 <li> Possible point estimates for the value of \( p_H \) could be the maximum (mode), mean, or median of this posterior pdf.</li> 
-<li> Bayesian p% degree-of-belief (DoB) intervals correspond to ranges in which we would give a p% odds of finding the true value for \( p_H \) based on the data and the information that we have.</li>
+<li> Bayesian p-precent degree-of-belief (DoB) intervals correspond to ranges in which we would give a p-percent odds of finding the true value for \( p_H \) based on the data and the information that we have.</li>
 <li> The frequentist point estimate is \( p_H^* = \frac{H}{N} \). It actually corresponds to one of the point estimates from the Bayesian analysis for a specific prior? Which point estimate and which prior?</li>
 </ul>
 
@@ -861,7 +861,7 @@ The remainder of Fig. <a href="#fig:coinflipping">2</a> shows how the posterior 
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

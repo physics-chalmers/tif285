@@ -75,12 +75,12 @@ of $h$ with respect to $p$ as follows
 
 !bt
 \begin{equation}
-\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+\mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 label{eq:expectation_value_of_h_wrt_p}
 \end{equation}
 !et
 Whenever the PDF is known implicitly, like in this case, we will drop
-the index $X$ for clarity.  
+the index $p$ for clarity.  
 A particularly useful class of special expectation values are the
 *moments*. The $n$-th moment of the PDF $p$ is defined as
 follows
@@ -119,7 +119,7 @@ PDF and is therefore simply called the expectation value of $p(x)$.
 The values of the _mode_, _mean_, _median_ can all be used as point estimates for the "probable" value of $x$. For some pdfs, they will all be the same.
 !eblock
 
-FIGURE: [fig/pdfs.png, width=800 frac=1.0] The 68%/95% probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.
+FIGURE: [fig/pdfs.png, width=800 frac=1.0] The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.
 
 !split
 ===== Stochastic variables and the main concepts, central moments, the variance =====
