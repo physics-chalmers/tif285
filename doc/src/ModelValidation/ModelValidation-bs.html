@@ -343,30 +343,33 @@ tasks. Consider a dataset \( \mathcal{L} \) consisting of the data
 
 <p>
 Let us assume that the data with experimental noise is generated from a true model
-
 $$
-\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp}
+\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp},
 $$
 
-<p>
-where \( \boldsymbol{\epsilon}_\mathrm{exp} \) is a vector of random variables that are normally distributed with mean zero and variance \( \sigma^2_\mathrm{exp} \).
+where \( \boldsymbol{\epsilon}_\mathrm{exp} \) is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance \( \sigma^2_\mathrm{exp} \).
 
 <p>
 In our derivation of the ordinary least squares method we defined then
 an approximation to the function \( f \) in terms of the parameters
 \( \boldsymbol{\theta} \) and the design matrix \( \boldsymbol{X} \) which embody our model,
-that is \( \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta} \). The relation between the true description and our model \( \tilde{f}_i(\boldsymbol{\theta}) \equiv \tilde{y}_i \) is
+that is 
 $$
-f_i = \tilde{y}_i + \boldsymbol{\epsilon}_\mathrm{model}.
+\boldsymbol{f}(\boldsymbol{x}) \approx \boldsymbol{\tilde{f}}(\boldsymbol{\theta}) \equiv \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta}. 
+$$
+
+The relation between the true description and our model is
+$$
+f_i = \tilde{y}_i + \boldsymbol{\epsilon}_{\mathrm{model},i}.
 $$
 
 <p>
 Thereafter we found the optimum set of model parameters \( \boldsymbol{\theta} \) by minimizing the mean-squared (model) error via the so-called cost function
 $$
-C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 \equiv \mathbb{E}\left[(\boldsymbol{y}-\boldsymbol{\tilde{y}})^2\right],
+C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = \mathbb{E}\left[(\boldsymbol{y}-\boldsymbol{\tilde{y}})^2\right],
 $$
 
-where \( \mathbb{E}(\boldsymbol{t}) \) denotes the expectation value of a vector of random variables \( \boldsymbol{t} \).
+where \( \mathbb{E}(\boldsymbol{t}) \) denotes the expectation value for the vector \( \boldsymbol{t} \) of a random variable. In this context we also remind that the variance is given by \( \mathrm{Var}(\boldsymbol{t}) = \mathbb{E} \left[ \left(\boldsymbol{t} -  \mathbb{E}(\boldsymbol{t})\right)^2 \right] \).
 
 <p>
 We can rewrite this as 

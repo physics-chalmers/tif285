@@ -169,32 +169,36 @@ tasks. Consider a dataset $\mathcal{L}$ consisting of the data
 $\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. 
 
 Let us assume that the data with experimental noise is generated from a true model
-
 !bt
 \[
-\bm{y}=f(\boldsymbol{x}) + \bm{\epsilon}_\mathrm{exp}
+\bm{y}=f(\boldsymbol{x}) + \bm{\epsilon}_\mathrm{exp},
 \]
 !et
-
-where $\bm{\epsilon}_\mathrm{exp}$ is a vector of random variables that are normally distributed with mean zero and variance $\sigma^2_\mathrm{exp}$.
+where $\bm{\epsilon}_\mathrm{exp}$ is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance $\sigma^2_\mathrm{exp}$.
 
 In our derivation of the ordinary least squares method we defined then
 an approximation to the function $f$ in terms of the parameters
 $\bm{\theta}$ and the design matrix $\bm{X}$ which embody our model,
-that is $\bm{\tilde{y}}=\bm{X}\bm{\theta}$. The relation between the true description and our model $\tilde{f}_i(\boldsymbol{\theta}) \equiv \tilde{y}_i$ is
+that is 
 !bt
 \[
-f_i = \tilde{y}_i + \bm{\epsilon}_\mathrm{model}.
+\bm{f}(\bm{x}) \approx \bm{\tilde{f}}(\bm{\theta}) \equiv \bm{\tilde{y}}=\bm{X}\bm{\theta}. 
+\]
+!et
+The relation between the true description and our model is
+!bt
+\[
+f_i = \tilde{y}_i + \bm{\epsilon}_{\mathrm{model},i}.
 \]
 !et
 
 Thereafter we found the optimum set of model parameters $\bm{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
 !bt
 \[
-C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 \equiv \mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right],
+C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = \mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right],
 \]
 !et
-where $\mathbb{E}(\bm{t})$ denotes the expectation value of a vector of random variables $\bm{t}$.
+where $\mathbb{E}(\bm{t})$ denotes the expectation value for the vector $\bm{t}$ of a random variable. In this context we also remind that the variance is given by $\mathrm{Var}(\bm{t}) = \mathbb{E} \left[ \left(\bm{t} -  \mathbb{E}(\bm{t})\right)^2 \right]$.
 
 We can rewrite this as 
 !bt
