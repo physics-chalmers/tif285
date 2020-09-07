@@ -2,6 +2,12 @@ TITLE: Learning from data: Model Validation and Regularization
 AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
 DATE: today
 
+# #if FORMAT in ("html")
+FIGURE: [https://imgs.xkcd.com/comics/machine_learning.png, width=600 frac=0.8] XKCD: "Machine Learning (1838)": "https://xkcd.com/1838/".
+# #endif
+
+
+!split
 In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
   * Model validation
   * Overfitting and underfitting

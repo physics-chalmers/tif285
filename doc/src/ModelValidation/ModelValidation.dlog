@@ -804,3 +804,45 @@ output in ModelValidation.ipynb
 translating doconce text in ModelValidation.do.txt to html
 *** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
 output in ModelValidation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+... checking existence of https://imgs.xkcd.com/comics/machine_learning.png ...
+    found!
+output in ModelValidation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+... checking existence of https://imgs.xkcd.com/comics/machine_learning.png ...
+    found!
+output in ModelValidation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+... checking existence of https://imgs.xkcd.com/comics/machine_learning.png ...
+    found!
+output in ModelValidation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to pdflatex
+open file with encoding utf-8
+output in ModelValidation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to ipynb
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+collected all required additional files in ipynb-ModelValidation-src.tar.gz which must be distributed with the notebook
+output in ModelValidation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  ModelValidation.do.txt > tmp_preprocess__ModelValidation.do.txt
+translating doconce text in tmp_preprocess__ModelValidation.do.txt to html
+*** replacing \bm{...} by \boldsymbol{...} (\bm is not supported by MathJax)
+... checking existence of https://imgs.xkcd.com/comics/machine_learning.png ...
+    found!
+output in ModelValidation-bs.html

@@ -140,6 +140,17 @@ MathJax.Hub.Config({
 <center><h4>Sep 7, 2020</h4></center> <!-- date -->
 <br>
 <p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  XKCD: <a href="https://xkcd.com/1838/" target="_self">Machine Learning (1838)</a>. </p></center>
+<p><img src="https://imgs.xkcd.com/comics/machine_learning.png" align="bottom" width=600></p>
+</center>
+
+<p>
+<!-- potential-jumbotron-button -->
+</div> <!-- end jumbotron -->
+
+<!-- !split -->
 In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
 
 <ul>
@@ -160,9 +171,6 @@ The lecture is based and inspired by material in several good textbooks: in part
 The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo &amp; Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University.
 
 <p>
-<!-- potential-jumbotron-button -->
-</div> <!-- end jumbotron -->
-
 <!-- !split -->
 
 <h1 id="___sec0" class="anchor">Model validation </h1>
@@ -173,12 +181,12 @@ The cross-validation example with Ridge Regularization is taken from teaching ma
 <h2 id="___sec1" class="anchor">Over- and underfitting </h2>
 
 <p>
-Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. <a href="#fig-over_under_fitting">1</a> from the demonstration notebook.
+Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. <a href="#fig-over_under_fitting">2</a> from the demonstration notebook.
 
 <p>
 <center> <!-- figure label: --> <div id="fig-over_under_fitting"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise.  <!-- caption label: fig-over_under_fitting --> </p></center>
+<center><p class="caption">Figure 2:  The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise.  <!-- caption label: fig-over_under_fitting --> </p></center>
 <p><img src="fig/over_under_fitting.png" align="bottom" width=600></p>
 </center>
 
@@ -287,7 +295,7 @@ Lasso stands for least absolute shrinkage and selection operator.
 <p>
 <center> <!-- figure label: --> <div id="fig-ridge_reg"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 2:  Ridge regularization with different penalty parameters \( \lambda \) for different polynomial models of our noisy data set.  <!-- caption label: fig-ridge_reg --> </p></center>
+<center><p class="caption">Figure 3:  Ridge regularization with different penalty parameters \( \lambda \) for different polynomial models of our noisy data set.  <!-- caption label: fig-ridge_reg --> </p></center>
 <p><img src="fig/ridge_reg.png" align="bottom" width=900></p>
 </center>
 
@@ -430,12 +438,12 @@ $$
 $$
 
 <p>
-The tradeoff between bias and variance is illustrated in Fig. <a href="#fig-bias_variance">3</a> from the demonstration notebook.
+The tradeoff between bias and variance is illustrated in Fig. <a href="#fig-bias_variance">4</a> from the demonstration notebook.
 
 <p>
 <center> <!-- figure label: --> <div id="fig-bias_variance"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 3:  The bias-variance for different polynomial models of our noisy data set.  <!-- caption label: fig-bias_variance --> </p></center>
+<center><p class="caption">Figure 4:  The bias-variance for different polynomial models of our noisy data set.  <!-- caption label: fig-bias_variance --> </p></center>
 <p><img src="fig/bias_variance.png" align="bottom" width=600></p>
 </center>
 
@@ -650,7 +658,7 @@ Learning curves are plots of the model's performance on both the training and th
 <p>
 <center> <!-- figure label: --> <div id="fig-learning_curve"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 4:  Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set.  <!-- caption label: fig-learning_curve --> </p></center>
+<center><p class="caption">Figure 5:  Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set.  <!-- caption label: fig-learning_curve --> </p></center>
 <p><img src="fig/learning_curve.png" align="bottom" width=600></p>
 </center>
 

@@ -156,8 +156,15 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 6, 2020</h4></center> <!-- date -->
+<center><h4>Sep 7, 2020</h4></center> <!-- date -->
 <br>
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  XKCD: <a href="https://xkcd.com/1132/" target="_self">Frequentists vs. Bayesians (1132)</a>. </p></center>
+<p><img src="https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png" align="bottom" width=600></p>
+</center>
+
 <p>
 <!-- potential-jumbotron-button -->
 </div> <!-- end jumbotron -->
@@ -469,7 +476,7 @@ The values of the <b>mode</b>, <b>mean</b>, <b>median</b> can all be used as poi
 <p>
 <center>  <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 1:  The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the \( x \)-axis translates into the vertical extent of the error bar or error band for \( x \). </p></center>
+<center><p class="caption">Figure 2:  The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the \( x \)-axis translates into the vertical extent of the error bar or error band for \( x \). </p></center>
 <p><img src="fig/pdfs.png" align="bottom" width=800></p>
 </center>
 
@@ -780,20 +787,20 @@ We perform the setup of this Bayesian framework on the computer.
 </pre></div>
 <p>
 <!-- !split -->
-The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a href="#fig:coinflipping">2</a>.
+The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a href="#fig:coinflipping">3</a>.
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pH<span style="color: #666666">=</span>np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>,<span style="color: #666666">1</span>,<span style="color: #666666">1000</span>)
-fig, axs <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(nrows<span style="color: #666666">=4</span>,ncols<span style="color: #666666">=3</span>,sharex<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">True</span>,sharey<span style="color: #666666">=</span><span style="color: #BA2121">&#39;row&#39;</span>,figsize<span style="color: #666666">=</span>(<span style="color: #666666">14</span>,<span style="color: #666666">14</span>))
+fig, axs <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>subplots(nrows<span style="color: #666666">=4</span>,ncols<span style="color: #666666">=3</span>,sharex<span style="color: #666666">=</span><span style="color: #008000">True</span>,sharey<span style="color: #666666">=</span><span style="color: #BA2121">&#39;row&#39;</span>,figsize<span style="color: #666666">=</span>(<span style="color: #666666">14</span>,<span style="color: #666666">14</span>))
 axs_vec<span style="color: #666666">=</span>np<span style="color: #666666">.</span>reshape(axs,<span style="color: #666666">-1</span>)
 axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>plot(pH,prior(pH))
 <span style="color: #008000; font-weight: bold">for</span> ndouble <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">11</span>):
     ax<span style="color: #666666">=</span>axs_vec[<span style="color: #666666">1+</span>ndouble]
     ax<span style="color: #666666">.</span>plot(pH,posterior(pH,heads[:<span style="color: #666666">2**</span>ndouble]))
-    ax<span style="color: #666666">.</span>text(<span style="color: #666666">0.1</span>, <span style="color: #666666">0.8</span>, <span style="color: #BA2121">&#39;$N=</span><span style="color: #BB6688; font-weight: bold">{0}</span><span style="color: #BA2121">$&#39;</span><span style="color: #666666">.</span>format(<span style="color: #666666">2**</span>ndouble), transform<span style="color: #666666">=</span>ax<span style="color: #666666">.</span>transAxes)
-<span style="color: #008000; font-weight: bold">for</span> row <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">4</span>): axs[row,<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;$p(p_H|D_\mathrm</span><span style="color: #BB6688; font-weight: bold">{obs}</span><span style="color: #BA2121">,I)$&#39;</span>)
+    ax<span style="color: #666666">.</span>text(<span style="color: #666666">0.1</span>, <span style="color: #666666">0.8</span>, <span style="color: #BA2121">&#39;$N={0}$&#39;</span><span style="color: #666666">.</span>format(<span style="color: #666666">2**</span>ndouble), transform<span style="color: #666666">=</span>ax<span style="color: #666666">.</span>transAxes)
+<span style="color: #008000; font-weight: bold">for</span> row <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">4</span>): axs[row,<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">&#39;$p(p_H|D_\mathrm{obs},I)$&#39;</span>)
 <span style="color: #008000; font-weight: bold">for</span> col <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #666666">3</span>): axs[<span style="color: #666666">-1</span>,col]<span style="color: #666666">.</span>set_xlabel(<span style="color: #BA2121">&#39;$p_H$&#39;</span>)
 </pre></div>
 <p>
@@ -802,7 +809,7 @@ axs_vec[<span style="color: #666666">0</span>]<span style="color: #666666">.</sp
 <p>
 <center> <!-- figure label: --> <div id="fig:coinflipping"></div> <!-- FIGURE -->
 <hr class="figure">
-<center><p class="caption">Figure 2:  The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis.  <!-- caption label: fig:coinflipping --> </p></center>
+<center><p class="caption">Figure 3:  The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis.  <!-- caption label: fig:coinflipping --> </p></center>
 <p><img src="fig/coinflipping_fig_1.png" align="bottom" width=500></p>
 </center>
 
@@ -816,7 +823,7 @@ The first flip is obviously tails. At this point we have no evidence that the co
 
 <p>
 <!-- !split -->
-The remainder of Fig. <a href="#fig:coinflipping">2</a> shows how the posterior pdf evolves as the number of data analysed becomes larger and larger. We see that the position of the maximum moves around, but that the amount by which it does so decreases with the increasing number of observations. The width of the posterior pdf also becomes narrower with more data, indicating that we are becoming increasingly confident in our estimate of the bias-weighting. For the coin in this example, the best estimate of \( p_H \) eventually converges to 0.6, which, of course, was the value chosen to simulate the flips.
+The remainder of Fig. <a href="#fig:coinflipping">3</a> shows how the posterior pdf evolves as the number of data analysed becomes larger and larger. We see that the position of the maximum moves around, but that the amount by which it does so decreases with the increasing number of observations. The width of the posterior pdf also becomes narrower with more data, indicating that we are becoming increasingly confident in our estimate of the bias-weighting. For the coin in this example, the best estimate of \( p_H \) eventually converges to 0.6, which, of course, was the value chosen to simulate the flips.
 
 <p>
 <!-- !split -->

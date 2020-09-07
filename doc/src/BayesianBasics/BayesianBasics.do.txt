@@ -2,6 +2,9 @@ TITLE: Learning from data: Basics of Bayesian Statistics
 AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of Physics, Chalmers University of Technology, Sweden
 DATE: today
 
+# #if FORMAT in ("html")
+FIGURE: [https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png, width=600 frac=0.8] XKCD: "Frequentists vs. Bayesians (1132)": "https://xkcd.com/1132/".
+# #endif
 
 !split
 ======= How do you feel about statistics?  =======
