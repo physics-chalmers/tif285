@@ -195,45 +195,61 @@ f_i = \tilde{y}_i + \bm{\epsilon}_{\mathrm{model},i}.
 Thereafter we found the optimum set of model parameters $\bm{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
 !bt
 \[
-C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = \mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right],
+C(\bm{X},\bm{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = 
+\left[ \begin{array}{c}
+\mathrm{assume}\\
+\mathrm{i.i.d.~samples}
+\end{array} \right]
+\approx
+\mathbb{E}\left[(y-\tilde{y})^2\right],
 \]
 !et
-where $\mathbb{E}(\bm{t})$ denotes the expectation value for the vector $\bm{t}$ of a random variable. In this context we also remind that the variance is given by $\mathrm{Var}(\bm{t}) = \mathbb{E} \left[ \left(\bm{t} -  \mathbb{E}(\bm{t})\right)^2 \right]$.
+where we have made the key assumption that the residuals $(\bm{y}-\bm{\tilde{y}})$ are independent and identically distributed (i.i.d.) random variables, i.e. these are samples from a single underlying probability distribution. Remember that $\mathbb{E}(t)$ denotes the expectation value for the random variable $t$. In this context we also remind that the variance is given by $\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]$.
 
-We can rewrite this as 
+We can rewrite this expectation value as 
 !bt
 \[
-\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\bm{\tilde{y}}\right])^2+\sigma^2_\mathrm{exp}.
+\mathbb{E}\left[(y-\tilde{y})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\tilde{y}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\tilde{y}\right])^2+\sigma^2_\mathrm{exp}.
 \]
 !et
 
 The first of the three terms represents the square of the bias of the learning
 method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
-variance of the chosen model and finally the last terms is the irreducible error $\bm{\epsilon}_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
+variance of the chosen model and finally the last terms is the irreducible error $\epsilon_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
 
-[edit: Beware. This derivation will be replaced.]
-
-To derive this equation, we need to recall that the variance of $\bm{y}$ and $\bm{\epsilon}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\bm{\epsilon}_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\bm{\tilde{y}}$.
+To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\tilde{y}$.
 We use a more compact notation in terms of the expectation value 
 !bt
 \[
-\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{f}+\bm{\epsilon}-\bm{\tilde{y}})^2\right],
+\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y})^2\right],
 \]
 !et
-and adding and subtracting $\mathbb{E}\left[\bm{\tilde{y}}\right]$ we get
+and adding and subtracting $\mathbb{E}\left[\tilde{y}\right]$ we get
 !bt
 \[
-\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{f}+\bm{\epsilon}-\bm{\tilde{y}}+\mathbb{E}\left[\bm{\tilde{y}}\right]-\mathbb{E}\left[\bm{\tilde{y}}\right])^2\right],
+\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y}+\mathbb{E}\left[\tilde{y}\right]-\mathbb{E}\left[\tilde{y}\right])^2\right].
 \]
 !et
-which, using the abovementioned expectation values can be rewritten as 
+We can rewrite this expression as a sum of three terms:
+* The first one is the (squared) bias of the model plus the irreducible data error $\sigma_\mathrm{exp}^2$
 !bt
 \[
-\mathbb{E}\left[(\bm{y}-\bm{\tilde{y}})^2\right]=\mathbb{E}\left[(\bm{y}-\mathbb{E}\left[\bm{\tilde{y}}\right])^2\right]+\mathrm{Var}\left[\bm{\tilde{y}}\right]+\sigma^2,
+\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\mathbb{E}\left[\tilde{y}\right])^2\right] = \mathbb{E}\left[({f}-\mathbb{E}\left[\tilde{y}\right])^2\right] + \mathbb{E}\left[\epsilon_\mathrm{exp}^2\right]+0.
 \]
 !et
-that is the rewriting in terms of the so-called bias, the variance of the model $\bm{\tilde{y}}$ and the variance of $\bm{\epsilon}$.
+* The second one is the variance of the model $\mathrm{Var}\left[ \tilde{y} \right]$
+!bt
+\[
+\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}\right] - \tilde{y})^2\right],
+\]
+!et
+* and the last one is zero
+!bt
+\[
+2\mathbb{E}\left[(y-\mathbb{E}\left[\tilde{y}\right])(\mathbb{E}\left[\tilde{y}\right]-\tilde{y})\right] = 2\mathbb{E}\left[y-\mathbb{E}\left[\tilde{y}\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}\right]\right] - \mathbb{E}\left[\tilde{y}\right]\right) = 0.
+\]
+!et
 
 The tradeoff between bias and variance is illustrated in Fig. ref{fig-bias_variance} from the demonstration notebook.
 
