@@ -4026,3 +4026,561 @@ copying after regex "start bayesian CI" until "end bayesian CI"
 We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
 
 output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation-reveal.html
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen -DTerminal}},framesep="2.5mm,framerule=0.7pt]" BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to pdflatex
+open file with encoding utf-8
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+output in BayesianParameterEstimation.tex
+running preprocess -DFORMAT=ipynb -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to ipynb
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: footnotes are not supported for format ipynb
+    footnotes will be left in the doconce syntax
+collected all required additional files in ipynb-BayesianParameterEstimation-src.tar.gz which must be distributed with the notebook
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+*** warning: latex envir \begin{pmatrix} does not work well in Markdown.
+    Stick to \[ ... \], equation, equation*, align, or align*
+    environments in math environments.
+
+output in BayesianParameterEstimation.ipynb
+running preprocess -DFORMAT=html -DDEVICE=screen  BayesianParameterEstimation.do.txt > tmp_preprocess__BayesianParameterEstimation.do.txt
+translating doconce text in tmp_preprocess__BayesianParameterEstimation.do.txt to html
+copying after regex "start import modules" until "end import modules"
+     file: src/singlephotoncount.py, lines 2-6 (format: pycod)
+copying after regex "start generate data" until "end generate data"
+     file: src/singlephotoncount.py, lines 11-17 (format: pycod)
+copying after regex "start visualize data" until "end visualize data"
+     file: src/singlephotoncount.py, lines 20-24 (format: pycod)
+copying after regex "start frequentist" until "end frequentist"
+     file: src/singlephotoncount.py, lines 30-34 (format: pycod)
+copying after regex "start bayesian setup" until "end bayesian setup"
+     file: src/singlephotoncount.py, lines 37-49 (format: pycod)
+copying after regex "start bayesian mcmc" until "end bayesian mcmc"
+     file: src/singlephotoncount.py, lines 52-63 (format: pycod)
+copying after regex "start visualize bayesian" until "end visualize bayesian"
+     file: src/singlephotoncount.py, lines 66-70 (format: pycod)
+copying after regex "start bayesian CI" until "end bayesian CI"
+     file: src/singlephotoncount.py, lines 81-90 (format: pycod)
+*** warning: found emphasis tag *...* in footnote, which was removed
+    in tooltip (since it does not work with bootstrap tooltips)
+    but not in the footnote itself.
+We'll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, $e_i$ is the standard deviation of the results of a single measurement event in the limit of repetitions of *that event*. In the Bayesian perspective, $e_i$ is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.
+
+output in BayesianParameterEstimation-bs.html

@@ -25,7 +25,7 @@ These measurements each have a different error $e_i$ which is estimated from Poi
 Let's take a look at the frequentist and Bayesian approaches to solving this.
 
 === Simple Photon Counts: Frequentist Approach ===
-We'll start with the classical frequentist maximum likelihood approach. Given a single observation $D_i = F_i$, we can compute the probability distribution of the measurement given the true flux $F_\mathrm{true}$ given our assumption of Gaussian errors
+We'll start with the classical frequentist maximum likelihood approach. Given a single observation $D_i = F_i$, we can compute the probability distribution of the measurement given the true flux $F_\mathrm{true}$ and our assumption of Gaussian errors
 !bt
 \begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
@@ -53,7 +53,7 @@ Combining the previous two equations and computing the log, we have
 \end{equation}
 !et
 
-What we'd like to do is determine $F_\mathrm{true}$ such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum
+In this approach we will determine $F_\mathrm{true}$ such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum
 !bt
 \begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
@@ -121,7 +121,7 @@ If this all worked correctly, the array sample should contain a series of 50,000
 FIGURE:[fig/singlephotoncount_fig_2.png, width=400 frac=0.8] Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. label{fig:flux-bayesian}
 
 !split
-===== Aside: Best estimates and confidence intervals =====
+===== Aside: Best estimates and credible intervals =====
 The posterior distribution from our Bayesian data analysis is the key quantity that encodes our inference about the values of the model parameters, given the data and the relevant background information. Often, however, we wish to summarize this result with just a few numbers: the best estimate and a measure of its reliability. 
 
 There are a few different options for this. The choice of the most appropriate one depends mainly on the shape of the posterior distribution:
@@ -136,7 +136,7 @@ To obtain a measure of the reliability of this best estimate, we need to look at
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}
 !et
-where the mean $\mu = \theta_0$ and the variance $\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}$, where $L$ is the logarithm of the posterior $P$. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian confidence interval $\theta = \theta_0 \pm \sigma$, and 
+where the mean $\mu = \theta_0$ and the variance $\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}$, where $L$ is the logarithm of the posterior $P$. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval $\theta = \theta_0 \pm \sigma$, and 
 !bt
 \[
 p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
@@ -145,19 +145,19 @@ p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\t
 
 !split
 === Asymmetric posterior pdfs === 
-While the maximum of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the true value is now more likely to be on one side of this rather than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
+While the maximum (mode) of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
-Furthermore, the concept of an error-bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a *confidence interval*. Since the area under the posterior pdf between $\theta_1$ and $\theta_2$ is proportional to how much we believe that $\theta$ lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find $\theta_1$ and $\theta_2$ such that: 
+Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a *credible interval*. Since the area under the posterior pdf between $\theta_1$ and $\theta_2$ is proportional to how much we believe that $\theta$ lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find $\theta_1$ and $\theta_2$ such that: 
 !bt
 \[
 p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
 \]
 !et
-where the difference $\theta_2 - \theta_1$ is as small as possible. The region $\theta_1 < \theta < \theta_2$ is then called the shortest 67% confidence interval. 
+where the difference $\theta_2 - \theta_1$ is as small as possible. The region $\theta_1 < \theta < \theta_2$ is then called a 67% credible interval. 
 
 !split
 === Multimodal posterior pdfs === 
-We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a confidence interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can’t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint confidence intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
+We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a credible interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can’t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint credible intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
 
 !bblock
 Two options for assigning credible intervals to asymmetric and multimodal pdfs:
@@ -167,22 +167,22 @@ Two options for assigning credible intervals to asymmetric and multimodal pdfs:
 
 
 !split
-=== Different views on confidence intervals ===
+=== Different views on credible/confidence intervals ===
 
 !bblock
-A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following: Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
 !eblock
 
 !split
 !bblock
-A frequentist 95% confidence interval should be understood as follows: 
+A frequentist 95% *confidence interval* should be understood as follows: 
 ``There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations''. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data. 
 
 Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter. 
 !eblock
 
 
-=== Simple Photon Counts: Best estimates and confidence intervals ===
+=== Simple Photon Counts: Best estimates and credible intervals ===
 To compute these numbers for our example, you would run:
 
 @@@CODE src/singlephotoncount.py from-to: start bayesian CI@end bayesian CI
@@ -198,6 +198,6 @@ In this particular example, the posterior pdf is actually a Gaussian (since it i
 
 From this final result you might come away with the impression that the Bayesian method is unnecessarily complicated, and in this case it certainly is. Using an MCMC sampler to characterize a one-dimensional normal distribution is a bit like using the Death Star to destroy a beach ball, but we did this here because it demonstrates an approach that can scale to complicated posteriors in many, many dimensions, and can provide nice results in more complicated situations where an analytic likelihood approach is not possible.
 
-Furthermore, as data and models grow in complexity, the two approaches can diverge greatly. 
+Furthermore, as data, prior information, and models grow in complexity, the two approaches can diverge greatly. 
 
 

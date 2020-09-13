@@ -10,7 +10,7 @@ FIGURE:[fig/m1m2.png, width=400 frac=0.8] Joint pdf for the masses of two black 
 ======= Inference With Parametric Models  =======
 !bblock
 Inductive inference with parametric models is a very important tool in the natural sciences.
-* Consider $N$ different models $M_i$ ($i = 1, \ldots, N$), each with parameters $\boldsymbol{\theta}_i$. Each of them implies a sampling distribution for possible data
+* Consider $N$ different models $M_i$ ($i = 1, \ldots, N$), each with a parameter vector $\boldsymbol{\theta}_i$. The number of parameters (length of $\boldsymbol{\theta}_i$) might be different for different models. Each of them implies a sampling distribution for possible data
 
 !bt
 \[
@@ -34,7 +34,7 @@ p(D|\boldsymbol{\theta}_i, M_i)
   $\Rightarrow$ What can we say about its parameters $\boldsymbol{\theta}_1$?
   
 - Model comparison: Premise = We have a set of different models $\{M_i\}$<linebreak> 
-  $\Rightarrow$ How do they compare with each other? Do we have evidence to say that, e.g. $M_1$, is better than the other models?
+  $\Rightarrow$ How do they compare with each other? Do we have evidence to say that, e.g. $M_1$, is better than $M_2$?
   
 - Model adequacy: Premise = We have a model $M_1$<linebreak> 
   $\Rightarrow$ Is $M_1$ adequate?
@@ -48,8 +48,9 @@ p(D|\boldsymbol{\theta}_i, M_i)
 !bblock
 Overview comments:
 * In general terms, ``parameter estimation'' in physics means obtaining values for parameters (constants) that appear in a theoretical model which describes data (exceptions to this general definition exist of course).
-* Conventionally this process is known as ``parameter fitting'' and the goal is to find the ``best fit''.
-* We will make particular interpretations of these phrases from our Bayesian point of view.
+* Conventionally this process is known as ``parameter fitting'' and very often the goal is just to find the ``best fit''.
+* We will interpret this task from our Bayesian point of view.
+* In particular, our ambition is larger as we realize that the strength of inference is best expressed via probabilities (or pdf:s).
 * We will also see how familiar ideas like ``least-squares optimization'' show up from a Bayesian perspective.
 !eblock
 
@@ -57,7 +58,7 @@ Overview comments:
 !split
 ===== Bayesian parameter estimation =====
 !bblock
-We will now consider the very important task of model parameter estimation using statistical inference. 
+We will now consider the Bayesian approach to the very important task of model parameter estimation using statistical inference. 
 
 Let us first remind ourselves what can go wrong in a fit. We have encountered both _underfitting_ (model is not complex enough to describe the variability in the data) and _overfitting_ (model tunes to data fluctuations, or terms are underdetermined causing them playing off each other). Bayesian methods can prevent/identify both these situations.
 !eblock
@@ -68,7 +69,7 @@ Let us first remind ourselves what can go wrong in a fit. We have encountered bo
 
 !split
 ======= Example: Gaussian noise and averages =======
-The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from $M$ measurements $D \in \{ x_k \}_{k=0}^{M-1}$ that should be distributed according to a normal distribution $p( D | \mu,\sigma,I)$?
+The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation from $M$ measurements $D \in \{ x_k \}_{k=0}^{M-1}$ that should be distributed according to a normal distribution $p( D | \mu,\sigma,I)$?
 
 !split
 Start from Bayes theorem
@@ -136,7 +137,7 @@ y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 \]
 !et
 
-* Is independent errors always a good approximation?
+* Are independent errors always a good approximation?
 * An even better statistical model for theoretical models with a quantified, finite resolution would be
 !bt
 \[
@@ -145,7 +146,38 @@ y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
 !et
 
 !split
-=== Why normal distributions? ===
+===== Linear regression revisited =====
+At this point it is instructive to revisit the linear regression method that we started out with. It corresponds to models that are linear in the parameters such that
+!bt
+\[
+y_\mathrm{th} = \sum_{j=0}^{p-1} \theta_j g_j(x),
+\]
+!et
+with $p$ parameters and $g_j(x)$ denoting the basis functions.
+
+With a likelihood as before
+!bt
+\[
+p(D|\theta,I) = \prod_{i=0}^{N-1} \exp \left[ -\frac{\left(y_i - y_\mathrm{th}(x_i;\theta) \right)^2}{2\sigma_i^2} \right],
+\]
+!et
+and assuming a Gaussian prior with a single width $\sigma_\theta$ on the parameters
+!bt
+\[
+p(\theta|I) \propto \prod_{j=0}^{p-1} \exp \left[ -\frac{\theta_j^2}{2\sigma_\theta^2} \right].
+\]
+!et
+We note that the prior can be written $\exp\left( -|\theta|^2 / 2 \sigma_\theta^2\right)$, such that the log (unnormalized) posterior becomes
+!bt
+\[
+\log \left[ p(\theta|D,I) \right] = -\frac{1}{2} \left[ \sum_{i=0}^{N-1} \left( \frac{ y_i - y_\mathrm{th}(x_i;\theta)}{\sigma_i}\right)^2 + \frac{|\theta|^2}{\sigma_\theta^2} \right].
+\]
+!et
+The mode of the posterior pdf occurs at the minimum of this log-posterior function. You might recognise it as the modified cost function that we introduced in a rather *ad hoc* fashion when implementing linear regression with Ridge regularisation.  From our Bayesian perspective, linear regression with Ridge regularisation corresponds to the maximum a posteriori (MAP) estimate with a Gaussian prior on the parameters.
+
+
+!split
+===== Why normal distributions? =====
 Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf $p(\theta | D,I)$. Our best estimate from this pdf will be $\theta_0$ where
 !bt
 \[ 

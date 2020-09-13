@@ -58,22 +58,26 @@ Automatically generated HTML file from DocOnce source
                3,
                None,
                '___sec7'),
-              ('Aside: Best estimates and confidence intervals',
+              ('Aside: Best estimates and credible intervals',
                2,
                None,
                '___sec8'),
               ('Symmetric posterior pdfs', 3, None, '___sec9'),
               ('Asymmetric posterior pdfs', 3, None, '___sec10'),
               ('Multimodal posterior pdfs', 3, None, '___sec11'),
-              ('Different views on confidence intervals', 3, None, '___sec12'),
-              ('Simple Photon Counts: Best estimates and confidence intervals',
+              ('Different views on credible/confidence intervals',
+               3,
+               None,
+               '___sec12'),
+              ('Simple Photon Counts: Best estimates and credible intervals',
                3,
                None,
                '___sec13'),
               ('Example: Gaussian noise and averages', 1, None, '___sec14'),
               ('Example: Fitting a straight line', 1, None, '___sec15'),
-              ('Why normal distributions?', 3, None, '___sec16'),
-              ('Correlations', 2, None, '___sec17')]}
+              ('Linear regression revisited', 2, None, '___sec16'),
+              ('Why normal distributions?', 2, None, '___sec17'),
+              ('Correlations', 2, None, '___sec18')]}
 end of tocinfo -->
 
 <body>
@@ -119,16 +123,17 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian Approach</a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A note about priors</a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Bayesian approach in practice</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Aside: Best estimates and confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Aside: Best estimates and credible intervals</a></li>
      <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Symmetric posterior pdfs</a></li>
      <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asymmetric posterior pdfs</a></li>
      <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multimodal posterior pdfs</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Different views on confidence intervals</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Best estimates and confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Different views on credible/confidence intervals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple Photon Counts: Best estimates and credible intervals</a></li>
      <!-- navigation toc: --> <li><a href="#___sec14" style="font-size: 80%;"><b>Example: Gaussian noise and averages</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec15" style="font-size: 80%;"><b>Example: Fitting a straight line</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Why normal distributions?</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Correlations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Linear regression revisited</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Why normal distributions?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Correlations</a></li>
 
         </ul>
       </li>
@@ -161,7 +166,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 16, 2019</h4></center> <!-- date -->
+<center><h4>Sep 13, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -186,7 +191,7 @@ MathJax.Hub.Config({
 Inductive inference with parametric models is a very important tool in the natural sciences.
 
 <ul>
-<li> Consider \( N \) different models \( M_i \) (\( i = 1, \ldots, N \)), each with parameters \( \boldsymbol{\theta}_i \). Each of them implies a sampling distribution for possible data</li>
+<li> Consider \( N \) different models \( M_i \) (\( i = 1, \ldots, N \)), each with a parameter vector \( \boldsymbol{\theta}_i \). The number of parameters (length of \( \boldsymbol{\theta}_i \)) might be different for different models. Each of them implies a sampling distribution for possible data</li>
 </ul>
 
 $$
@@ -223,7 +228,7 @@ $$
   \( \Rightarrow \) What can we say about its parameters \( \boldsymbol{\theta}_1 \)?
 <dt>Model comparison:<dd> 
   Premise = We have a set of different models \( \{M_i\} \)<br />
-  \( \Rightarrow \) How do they compare with each other? Do we have evidence to say that, e.g. \( M_1 \), is better than the other models?
+  \( \Rightarrow \) How do they compare with each other? Do we have evidence to say that, e.g. \( M_1 \), is better than \( M_2 \)?
 <dt>Model adequacy:<dd> 
   Premise = We have a model \( M_1 \)<br />
   \( \Rightarrow \) Is \( M_1 \) adequate?
@@ -246,8 +251,9 @@ Overview comments:
 
 <ul>
 <li> In general terms, &quot;parameter estimation&quot; in physics means obtaining values for parameters (constants) that appear in a theoretical model which describes data (exceptions to this general definition exist of course).</li>
-<li> Conventionally this process is known as &quot;parameter fitting&quot; and the goal is to find the &quot;best fit&quot;.</li>
-<li> We will make particular interpretations of these phrases from our Bayesian point of view.</li>
+<li> Conventionally this process is known as &quot;parameter fitting&quot; and very often the goal is just to find the &quot;best fit&quot;.</li>
+<li> We will interpret this task from our Bayesian point of view.</li>
+<li> In particular, our ambition is larger as we realize that the strength of inference is best expressed via probabilities (or pdf:s).</li>
 <li> We will also see how familiar ideas like &quot;least-squares optimization&quot; show up from a Bayesian perspective.</li>
 </ul>
 </div>
@@ -261,7 +267,7 @@ Overview comments:
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-We will now consider the very important task of model parameter estimation using statistical inference.
+We will now consider the Bayesian approach to the very important task of model parameter estimation using statistical inference.
 
 <p>
 Let us first remind ourselves what can go wrong in a fit. We have encountered both <b>underfitting</b> (model is not complex enough to describe the variability in the data) and <b>overfitting</b> (model tunes to data fluctuations, or terms are underdetermined causing them playing off each other). Bayesian methods can prevent/identify both these situations.
@@ -332,7 +338,7 @@ Let's take a look at the frequentist and Bayesian approaches to solving this.
 
 <h3 id="___sec4" class="anchor">Simple Photon Counts: Frequentist Approach </h3>
 
-We'll start with the classical frequentist maximum likelihood approach. Given a single observation \( D_i = F_i \), we can compute the probability distribution of the measurement given the true flux \( F_\mathrm{true} \) given our assumption of Gaussian errors
+We'll start with the classical frequentist maximum likelihood approach. Given a single observation \( D_i = F_i \), we can compute the probability distribution of the measurement given the true flux \( F_\mathrm{true} \) and our assumption of Gaussian errors
 $$
 \begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
@@ -376,7 +382,7 @@ $$
 $$
 
 <p>
-What we'd like to do is determine \( F_\mathrm{true} \) such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum
+In this approach we will determine \( F_\mathrm{true} \) such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum
 $$
 \begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
@@ -509,7 +515,7 @@ ax<span style="color: #666666">.</span>set_ylabel(<span style="color: #BA2121">r
 <p>
 <!-- !split -->
 
-<h2 id="___sec8" class="anchor">Aside: Best estimates and confidence intervals </h2>
+<h2 id="___sec8" class="anchor">Aside: Best estimates and credible intervals </h2>
 The posterior distribution from our Bayesian data analysis is the key quantity that encodes our inference about the values of the model parameters, given the data and the relevant background information. Often, however, we wish to summarize this result with just a few numbers: the best estimate and a measure of its reliability.
 
 <p>
@@ -531,7 +537,7 @@ p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu
 \end{equation}
 $$
 
-where the mean \( \mu = \theta_0 \) and the variance \( \sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2} \), where \( L \) is the logarithm of the posterior \( P \). Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian confidence interval \( \theta = \theta_0 \pm \sigma \), and 
+where the mean \( \mu = \theta_0 \) and the variance \( \sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2} \), where \( L \) is the logarithm of the posterior \( P \). Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval \( \theta = \theta_0 \pm \sigma \), and 
 $$
 p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
 $$
@@ -541,22 +547,22 @@ $$
 
 <h3 id="___sec10" class="anchor">Asymmetric posterior pdfs </h3>
 
-While the maximum of the posterior (\( \theta_0 \)) can still be regarded as giving the best estimate, the true value is now more likely to be on one side of this rather than the other. Alternatively one can compute the mean value, \( \langle \theta \rangle = \int \theta p(\theta|D,I) d\theta \), although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
+While the maximum (mode) of the posterior (\( \theta_0 \)) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, \( \langle \theta \rangle = \int \theta p(\theta|D,I) d\theta \), although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
 <p>
-Furthermore, the concept of an error-bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>confidence interval</em>. Since the area under the posterior pdf between \( \theta_1 \) and \( \theta_2 \) is proportional to how much we believe that \( \theta \) lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find \( \theta_1 \) and \( \theta_2 \) such that: 
+Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>credible interval</em>. Since the area under the posterior pdf between \( \theta_1 \) and \( \theta_2 \) is proportional to how much we believe that \( \theta \) lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find \( \theta_1 \) and \( \theta_2 \) such that: 
 $$
 p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
 $$
 
-where the difference \( \theta_2 - \theta_1 \) is as small as possible. The region \( \theta_1 < \theta < \theta_2 \) is then called the shortest 67% confidence interval.
+where the difference \( \theta_2 - \theta_1 \) is as small as possible. The region \( \theta_1 < \theta < \theta_2 \) is then called a 67% credible interval.
 
 <p>
 <!-- !split -->
 
 <h3 id="___sec11" class="anchor">Multimodal posterior pdfs </h3>
 
-We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a confidence interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can&#8217;t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint confidence intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
+We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a credible interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can&#8217;t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint credible intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
 
 <p>
 <div class="panel panel-default">
@@ -575,13 +581,13 @@ Two options for assigning credible intervals to asymmetric and multimodal pdfs:
 <p>
 <!-- !split -->
 
-<h3 id="___sec12" class="anchor">Different views on confidence intervals </h3>
+<h3 id="___sec12" class="anchor">Different views on credible/confidence intervals </h3>
 
 <p>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) interval is the following: Given this data and other information there is \( d \% \) probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following: Given this data and other information there is \( d \% \) probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
 </div>
 </div>
 
@@ -591,7 +597,7 @@ A Bayesian confidence interval, or credible interval, or degree-of-belief (DOB) 
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-A frequentist 95% confidence interval should be understood as follows: 
+A frequentist 95% <em>confidence interval</em> should be understood as follows: 
 &quot;There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations&quot;. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data.
 
 <p>
@@ -600,7 +606,7 @@ Let's try again to understand this: If we make a large number of repeated sample
 </div>
 
 
-<h3 id="___sec13" class="anchor">Simple Photon Counts: Best estimates and confidence intervals </h3>
+<h3 id="___sec13" class="anchor">Simple Photon Counts: Best estimates and credible intervals </h3>
 
 To compute these numbers for our example, you would run:
 
@@ -633,13 +639,13 @@ In this particular example, the posterior pdf is actually a Gaussian (since it i
 From this final result you might come away with the impression that the Bayesian method is unnecessarily complicated, and in this case it certainly is. Using an MCMC sampler to characterize a one-dimensional normal distribution is a bit like using the Death Star to destroy a beach ball, but we did this here because it demonstrates an approach that can scale to complicated posteriors in many, many dimensions, and can provide nice results in more complicated situations where an analytic likelihood approach is not possible.
 
 <p>
-Furthermore, as data and models grow in complexity, the two approaches can diverge greatly.
+Furthermore, as data, prior information, and models grow in complexity, the two approaches can diverge greatly.
 
 <p>
 <!-- !split -->
 
 <h1 id="___sec14" class="anchor">Example: Gaussian noise and averages </h1>
-The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation of a Gaussian distribution from \( M \) measurements \( D \in \{ x_k \}_{k=0}^{M-1} \) that should be distributed according to a normal distribution \( p( D | \mu,\sigma,I) \)?
+The example in the demonstration notebook is from Sivia's book. How do we infer the mean and standard deviation from \( M \) measurements \( D \in \{ x_k \}_{k=0}^{M-1} \) that should be distributed according to a normal distribution \( p( D | \mu,\sigma,I) \)?
 
 <p>
 <!-- !split -->
@@ -723,7 +729,7 @@ $$
 
 
 <ul>
-<li> Is independent errors always a good approximation?</li>
+<li> Are independent errors always a good approximation?</li>
 <li> An even better statistical model for theoretical models with a quantified, finite resolution would be</li>
 </ul>
 
@@ -734,8 +740,36 @@ $$
 <p>
 <!-- !split -->
 
-<h3 id="___sec16" class="anchor">Why normal distributions? </h3>
+<h2 id="___sec16" class="anchor">Linear regression revisited </h2>
+At this point it is instructive to revisit the linear regression method that we started out with. It corresponds to models that are linear in the parameters such that
+$$
+y_\mathrm{th} = \sum_{j=0}^{p-1} \theta_j g_j(x),
+$$
 
+with \( p \) parameters and \( g_j(x) \) denoting the basis functions.
+
+<p>
+With a likelihood as before
+$$
+p(D|\theta,I) = \prod_{i=0}^{N-1} \exp \left[ -\frac{\left(y_i - y_\mathrm{th}(x_i;\theta) \right)^2}{2\sigma_i^2} \right],
+$$
+
+and assuming a Gaussian prior with a single width \( \sigma_\theta \) on the parameters
+$$
+p(\theta|I) \propto \prod_{j=0}^{p-1} \exp \left[ -\frac{\theta_j^2}{2\sigma_\theta^2} \right].
+$$
+
+We note that the prior can be written \( \exp\left( -|\theta|^2 / 2 \sigma_\theta^2\right) \), such that the log (unnormalized) posterior becomes
+$$
+\log \left[ p(\theta|D,I) \right] = -\frac{1}{2} \left[ \sum_{i=0}^{N-1} \left( \frac{ y_i - y_\mathrm{th}(x_i;\theta)}{\sigma_i}\right)^2 + \frac{|\theta|^2}{\sigma_\theta^2} \right].
+$$
+
+The mode of the posterior pdf occurs at the minimum of this log-posterior function. You might recognise it as the modified cost function that we introduced in a rather <em>ad hoc</em> fashion when implementing linear regression with Ridge regularisation.  From our Bayesian perspective, linear regression with Ridge regularisation corresponds to the maximum a posteriori (MAP) estimate with a Gaussian prior on the parameters.
+
+<p>
+<!-- !split -->
+
+<h2 id="___sec17" class="anchor">Why normal distributions? </h2>
 Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf \( p(\theta | D,I) \). Our best estimate from this pdf will be \( \theta_0 \) where
 $$ 
 \left. 
@@ -768,7 +802,7 @@ $$
 <p>
 <!-- !split -->
 
-<h2 id="___sec17" class="anchor">Correlations </h2>
+<h2 id="___sec18" class="anchor">Correlations </h2>
 In the &quot;fitting a straight-line&quot; example you should find that the joint pdf for the slope and the intercept \( [m, b] \) corresponds to a slanted ellipse. That result implies that the model parameters are <b>correlated</b>.
 
 <ul>
@@ -823,7 +857,7 @@ $$
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
