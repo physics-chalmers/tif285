@@ -8,7 +8,7 @@ DATE: today
 We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters $\boldsymbol{\theta}$ in a model $M$ given data $D$ and other information $I$
 !bt
 \[
-p(\boldsymbol{\theta} | D, I).
+p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 \]
 !et
 
@@ -44,7 +44,11 @@ To approximate such integrals one turns to Monte Carlo (MC) methods. The straigh
 where
 !bt
 \[
-\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i ) \\
+\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )
+\]
+!et
+!bt
+\[
 \langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )
 \]
 !et
@@ -54,13 +58,13 @@ where
 The average of a function $g(\theta)$ on $\theta \in [a,b]$ is
 !bt
 \[
-\bar{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
+\overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
 \]
 !et
 from calculus. However, we can estimate $\bar{g(\theta)}$ by averaging over a set of random samples
 !bt
 \[
-\bar{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
+\overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
 \]
 !et
 Let us consider the integral
@@ -88,8 +92,8 @@ However, the samples don't actually need to be independent. they just need to ge
 !split
 ===== Markov Chain Monte Carlo =====
 A solution is therefore to do a *random walk* in the parameter space of $\boldsymbol{\theta}$ so that the probability for being in a region is proportional to $p( \boldsymbol{\theta} | D,I)$ in that region.
-* The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i$.
-* The transition probability is *time independent*, which means that $p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i$ is always the same.
+* The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$.
+* The transition probability is *time independent*, which means that $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$ is always the same.
 
 A sequence of points generated according to these rules is called a *Markov Chain* and the method is called Markov Chain Monte Carlo (MCMC).
 
@@ -121,7 +125,7 @@ o Collect samples by repeating the following:
     Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
   o Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
     * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
-    * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
+    * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
     Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
   o Loop until the chain has reached a predetermined length.
     

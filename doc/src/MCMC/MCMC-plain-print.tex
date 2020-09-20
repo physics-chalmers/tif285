@@ -55,14 +55,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -126,7 +126,7 @@ Learning from data: Markov Chain Monte Carlo sampling
 
 % --- begin date ---
 \begin{center}
-Sep 23, 2019
+Sep 20, 2020
 \end{center}
 % --- end date ---
 
@@ -137,7 +137,7 @@ Sep 23, 2019
 \section{Why MCMC}
 We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters $\boldsymbol{\theta}$ in a model $M$ given data $D$ and other information $I$
 \[
-p(\boldsymbol{\theta} | D, I).
+p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 \]
 
 % !split
@@ -173,7 +173,9 @@ To approximate such integrals one turns to Monte Carlo (MC) methods. The straigh
 \]
 where
 \[
-\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i ) \\
+\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )
+\]
+\[
 \langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )
 \]
 
@@ -181,11 +183,11 @@ where
 \paragraph{Example: One-dimensional integration.}
 The average of a function $g(\theta)$ on $\theta \in [a,b]$ is
 \[
-\bar{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
+\overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
 \]
 from calculus. However, we can estimate $\bar{g(\theta)}$ by averaging over a set of random samples
 \[
-\bar{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
+\overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
 \]
 Let us consider the integral
 \[
@@ -211,9 +213,9 @@ However, the samples don't actually need to be independent. they just need to ge
 \subsection{Markov Chain Monte Carlo}
 A solution is therefore to do a \emph{random walk} in the parameter space of $\boldsymbol{\theta}$ so that the probability for being in a region is proportional to $p( \boldsymbol{\theta} | D,I)$ in that region.
 \begin{itemize}
-\item The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i$.
+\item The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$.
 
-\item The transition probability is \emph{time independent}, which means that $p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i$ is always the same.
+\item The transition probability is \emph{time independent}, which means that $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$ is always the same.
 \end{itemize}
 
 \noindent
@@ -268,7 +270,7 @@ The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the
 
     \item If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
 
-    \item If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform(0,1) distribution. If $u \sim \mathrm{Uniform}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
+    \item If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
 \end{itemize}
 
 \noindent

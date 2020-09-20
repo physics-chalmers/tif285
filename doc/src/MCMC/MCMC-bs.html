@@ -126,7 +126,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 23, 2019</h4></center> <!-- date -->
+<center><h4>Sep 20, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -137,7 +137,7 @@ MathJax.Hub.Config({
 <h1 id="___sec0" class="anchor">Why MCMC </h1>
 We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters \( \boldsymbol{\theta} \) in a model \( M \) given data \( D \) and other information \( I \)
 $$
-p(\boldsymbol{\theta} | D, I).
+p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 $$
 
 <p>
@@ -177,7 +177,10 @@ $$
 
 where
 $$
-\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i ) \\
+\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )
+$$
+
+$$
 \langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )
 $$
 
@@ -188,12 +191,12 @@ $$
 
 The average of a function \( g(\theta) \) on \( \theta \in [a,b] \) is
 $$
-\bar{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
+\overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
 $$
 
 from calculus. However, we can estimate \( \bar{g(\theta)} \) by averaging over a set of random samples
 $$
-\bar{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
+\overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
 $$
 
 Let us consider the integral
@@ -230,8 +233,8 @@ However, the samples don't actually need to be independent. they just need to ge
 A solution is therefore to do a <em>random walk</em> in the parameter space of \( \boldsymbol{\theta} \) so that the probability for being in a region is proportional to \( p( \boldsymbol{\theta} | D,I) \) in that region.
 
 <ul>
-<li> The position \( \boldsymbol{\theta}_{i+1} \) follows from \( \boldsymbol{\theta}_i \) by a transition probability (kernel) \( p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i \).</li>
-<li> The transition probability is <em>time independent</em>, which means that \( p ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i \) is always the same.</li>
+<li> The position \( \boldsymbol{\theta}_{i+1} \) follows from \( \boldsymbol{\theta}_i \) by a transition probability (kernel) \( t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i ) \).</li>
+<li> The transition probability is <em>time independent</em>, which means that \( t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i ) \) is always the same.</li>
 </ul>
 
 A sequence of points generated according to these rules is called a <em>Markov Chain</em> and the method is called Markov Chain Monte Carlo (MCMC).
@@ -279,7 +282,7 @@ The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the
 
 <ul>
     <li> If \( r \geq 1 \): accept the proposal position and set \( \boldsymbol{\theta}_{i+1} = \boldsymbol{\phi} \).</li>
-    <li> If \( r < 1 \): accept the position with probability \( r \) (remember that now we have \( 0 \leq r < 1 \)) by sampling a uniform(0,1) distribution. If \( u \sim \mathrm{Uniform}(0,1) \leq r \), then \( \boldsymbol{\theta}_{i+1} = \boldsymbol{\phi} \) (accept); else \( \boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i \) (reject).</li>
+    <li> If \( r < 1 \): accept the position with probability \( r \) (remember that now we have \( 0 \leq r < 1 \)) by sampling a uniform \( \mathrm{U}(0,1) \) distribution. If \( u \sim \mathrm{U}(0,1) \leq r \), then \( \boldsymbol{\theta}_{i+1} = \boldsymbol{\phi} \) (accept); else \( \boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i \) (reject).</li>
 </ul>
 
     Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
@@ -342,7 +345,7 @@ We will not focus on these issues here, but just list a few problematic pdfs:
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
