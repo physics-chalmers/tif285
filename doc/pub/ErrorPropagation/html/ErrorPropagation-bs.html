@@ -49,22 +49,27 @@ Automatically generated HTML file from DocOnce source
                '___sec1'),
               ('Advantages of the Bayesian approach', 2, None, '___sec2'),
               ("Occam's razor", 3, None, '___sec3'),
-              ('Nuisance parameters (I)', 2, None, '___sec4'),
-              ('Nuisance parameters (II): marginal distributions',
-               2,
+              ('Nuisance parameters', 2, None, '___sec4'),
+              ('Nuisance parameters (I): Bayesian Billiard',
+               3,
                None,
                '___sec5'),
-              ('Error propagation (I): marginalization', 2, None, '___sec6'),
+              ('Nuisance parameters (II): marginal distributions',
+               3,
+               None,
+               '___sec6'),
+              ('Error propagation', 2, None, '___sec7'),
+              ('Error propagation (I): marginalization', 3, None, '___sec8'),
               ('Error propagation (II): changing variables and prior '
                'information',
-               2,
+               3,
                None,
-               '___sec7'),
-              ('A useful short cut', 3, None, '___sec8'),
+               '___sec9'),
+              ('A useful short cut', 3, None, '___sec10'),
               ('Example: Taking the square root of a number',
                3,
                None,
-               '___sec9')]}
+               '___sec11')]}
 end of tocinfo -->
 
 <body>
@@ -106,12 +111,14 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quotes from one pioneering and one renaissance Bayesian authority</a></li>
      <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Advantages of the Bayesian approach</a></li>
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Occam's razor</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nuisance parameters (I)</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nuisance parameters (II): marginal distributions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Error propagation (I): marginalization</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Error propagation (II): changing variables and prior information</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A useful short cut</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Taking the square root of a number</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nuisance parameters</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuisance parameters (I): Bayesian Billiard</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuisance parameters (II): marginal distributions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Error propagation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error propagation (I): marginalization</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error propagation (II): changing variables and prior information</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A useful short cut</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Taking the square root of a number</a></li>
 
         </ul>
       </li>
@@ -144,7 +151,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Sep 24, 2019</h4></center> <!-- date -->
+<center><h4>Sep 21, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -222,14 +229,18 @@ Occam&#8217;s razor is a principle attributed to the medieval philosopher Willia
 <p>
 <!-- !split -->
 
-<h2 id="___sec4" class="anchor">Nuisance parameters (I) </h2>
+<h2 id="___sec4" class="anchor">Nuisance parameters </h2>
+
+<h3 id="___sec5" class="anchor">Nuisance parameters (I): Bayesian Billiard </h3>
+
 See demonstration notebook: A Bayesian Billiard game
 
 <p>
 <!-- !split -->
 
-<h2 id="___sec5" class="anchor">Nuisance parameters (II): marginal distributions </h2>
-Assume that we have a model with two parameters, \( \theta0,\theta_1 \), although only one of them (say \( \theta_1 \)) is of physical relevance (the other one is a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
+<h3 id="___sec6" class="anchor">Nuisance parameters (II): marginal distributions </h3>
+
+Assume that we have a model with two parameters, \( \theta_0,\theta_1 \), although only one of them (say \( \theta_1 \)) is of physical relevance (the other one is them labeled a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
 $$
 p(\theta_0, \theta_1 | D, I).
 $$
@@ -247,7 +258,10 @@ See the interactive demos created by Chi Feng for an illustration of this: <a hr
 <p>
 <!-- !split -->
 
-<h2 id="___sec6" class="anchor">Error propagation (I): marginalization </h2>
+<h2 id="___sec7" class="anchor">Error propagation </h2>
+
+<h3 id="___sec8" class="anchor">Error propagation (I): marginalization </h3>
+
 The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example <br />
 
 <p>
@@ -286,7 +300,8 @@ where we have used a uniform prior for the distance \( p(x|I) \propto 1 \).
 <p>
 <!-- !split -->
 
-<h2 id="___sec7" class="anchor">Error propagation (II): changing variables and prior information </h2>
+<h3 id="___sec9" class="anchor">Error propagation (II): changing variables and prior information </h3>
+
 (Based on Sivia, ch 3.6.)
 
 <p>
@@ -350,7 +365,7 @@ We have now seen the basic ingredients required for the propagation of errors: i
 <p>
 <!-- !split -->
 
-<h3 id="___sec8" class="anchor">A useful short cut </h3>
+<h3 id="___sec10" class="anchor">A useful short cut </h3>
 
 For practical purposes, we are often satisfied to approximate pdfs with Gaussians. Within such limits there is an easier method that is often used for error propagation. Note, however, that there are instances when this method fails miserably as will be shown in the example further down.
 
@@ -415,7 +430,7 @@ Despite its virtues, let us end our discussion of error-propagation with a salut
 <p>
 <!-- !split -->
 
-<h3 id="___sec9" class="anchor">Example: Taking the square root of a number </h3>
+<h3 id="___sec11" class="anchor">Example: Taking the square root of a number </h3>
 
 (Example 3.6.2 in Sivia)
 
@@ -494,7 +509,7 @@ Let us visualize the difference between the Bayesian and the naive error propaga
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">A_posterior</span>(A,A0,sigA):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">A_posterior</span>(A,A0,sigA):
     pA <span style="color: #666666">=</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>(A<span style="color: #666666">-</span>A0)<span style="color: #666666">**2/</span>(<span style="color: #666666">2*</span>sigA<span style="color: #666666">**2</span>))
     <span style="color: #008000; font-weight: bold">return</span> pA<span style="color: #666666">/</span>np<span style="color: #666666">.</span>max(pA)
 
@@ -512,7 +527,7 @@ Let us visualize the difference between the Bayesian and the naive error propaga
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (A0,sigA) <span style="color: #AA22FF; font-weight: bold">in</span> [(<span style="color: #666666">9</span>,<span style="color: #666666">1</span>),(<span style="color: #666666">1</span>,<span style="color: #666666">9</span>),(<span style="color: #666666">-20</span>,<span style="color: #666666">9</span>)]:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%; margin: 0;"><span></span><span style="color: #008000; font-weight: bold">for</span> (A0,sigA) <span style="color: #AA22FF; font-weight: bold">in</span> [(<span style="color: #666666">9</span>,<span style="color: #666666">1</span>),(<span style="color: #666666">1</span>,<span style="color: #666666">9</span>),(<span style="color: #666666">-20</span>,<span style="color: #666666">9</span>)]:
     maxA <span style="color: #666666">=</span> <span style="color: #008000">max</span>(<span style="color: #666666">2*</span>A0,<span style="color: #666666">3*</span>sigA)
     A_arr <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0.01</span>,maxA)
     f_arr <span style="color: #666666">=</span> np<span style="color: #666666">.</span>sqrt(A_arr)
@@ -522,7 +537,7 @@ Let us visualize the difference between the Bayesian and the naive error propaga
     <span style="color: #008000; font-weight: bold">if</span> A0<span style="color: #666666">&gt;0</span>:
         ax[<span style="color: #666666">1</span>]<span style="color: #666666">.</span>plot(f_arr,f_likelihood(f_arr,A0,sigA),<span style="color: #BA2121">&#39;--&#39;</span>,label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;Naive&#39;</span>)
     ax[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>set(xlabel<span style="color: #666666">=</span><span style="color: #BA2121">&#39;A&#39;</span>,ylabel<span style="color: #666666">=</span><span style="color: #BA2121">&#39;p(A|D,I)&#39;</span>)
-    plt<span style="color: #666666">.</span>text(<span style="color: #666666">0.55</span>,<span style="color: #666666">0.8</span>,f<span style="color: #BA2121">&#39;$A={A0}$, $\sigma_A={sigA}$&#39;</span>, transform<span style="color: #666666">=</span>ax[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>transAxes,fontsize<span style="color: #666666">=16</span>)
+    plt<span style="color: #666666">.</span>text(<span style="color: #666666">0.55</span>,<span style="color: #666666">0.8</span>,<span style="color: #BA2121">f&#39;$A=</span><span style="color: #BB6688; font-weight: bold">{</span>A0<span style="color: #BB6688; font-weight: bold">}</span><span style="color: #BA2121">$, $\sigma_A=</span><span style="color: #BB6688; font-weight: bold">{</span>sigA<span style="color: #BB6688; font-weight: bold">}</span><span style="color: #BA2121">$&#39;</span>, transform<span style="color: #666666">=</span>ax[<span style="color: #666666">0</span>]<span style="color: #666666">.</span>transAxes,fontsize<span style="color: #666666">=16</span>)
     ax[<span style="color: #666666">1</span>]<span style="color: #666666">.</span>set(xlabel<span style="color: #666666">=</span><span style="color: #BA2121">&#39;f&#39;</span>,ylabel<span style="color: #666666">=</span><span style="color: #BA2121">&#39;p(f|D,I)&#39;</span>)
     ax[<span style="color: #666666">1</span>]<span style="color: #666666">.</span>legend(loc<span style="color: #666666">=</span><span style="color: #BA2121">&#39;best&#39;</span>)
     plt<span style="color: #666666">.</span>tight_layout()
@@ -560,7 +575,7 @@ Let us visualize the difference between the Bayesian and the naive error propaga
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

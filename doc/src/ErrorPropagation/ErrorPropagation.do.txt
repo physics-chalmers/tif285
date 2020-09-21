@@ -42,12 +42,14 @@ Occam’s razor is a principle attributed to the medieval philosopher William of
 FIGURE: [fig/Leprechaun_or_Clurichaun.png, width=500 frac=0.7] Did the Leprechaun drink your wine, or is there a simpler explanation?
 
 !split
-===== Nuisance parameters (I) =====
+===== Nuisance parameters =====
+
+=== Nuisance parameters (I): Bayesian Billiard ===
 See demonstration notebook: A Bayesian Billiard game
 
 !split
-===== Nuisance parameters (II): marginal distributions =====
-Assume that we have a model with two parameters, $\theta0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
+=== Nuisance parameters (II): marginal distributions ===
+Assume that we have a model with two parameters, $\theta_0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is them labeled a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
 !bt
 \[
 p(\theta_0, \theta_1 | D, I).
@@ -64,7 +66,9 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 See the interactive demos created by Chi Feng for an illustration of this: "The Markov-chain Monte Carlo Interactive Gallery": "https://chi-feng.github.io/mcmc-demo/".
 
 !split
-===== Error propagation (I): marginalization =====
+===== Error propagation =====
+
+=== Error propagation (I): marginalization ===
 The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example <linebreak>
 
 !split
@@ -99,7 +103,7 @@ where we have used a uniform prior for the distance $p(x|I) \propto 1$.
 
 
 !split
-===== Error propagation (II): changing variables and prior information =====
+=== Error propagation (II): changing variables and prior information ===
 (Based on Sivia, ch 3.6.)
 
 Assume that we have measured parameter $X = 10 \pm 3$ and $Y=7 \pm 2$; what can we say about the difference $X-Y$ or the raio $X/Y$, or the sum of their squares $X^2+Y^2$, etc? In essence, the problem is nothing more than an exercise in the change of variables: given the joint pdf $p(X,Y|I)$, where the information $I$ might include the data if the pdf is a posterior from a data analysis, we need the corresponding pdf $p(Z|I)$, where $Z=X-Y$, or $Z=X/Y$, or whatever as appropriate.

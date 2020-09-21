@@ -182,14 +182,14 @@ commentstyle={},
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -399,7 +399,7 @@ Learning from data: Error propagation and nuisance parameters
 
 % --- begin date ---
 \begin{center}
-Sep 24, 2019
+Sep 21, 2020
 \end{center}
 % --- end date ---
 
@@ -479,12 +479,14 @@ Occam’s razor is a principle attributed to the medieval philosopher William of
 
 
 % !split
-\subsection{Nuisance parameters (I)}
+\subsection{Nuisance parameters}
+
+\paragraph{Nuisance parameters (I): Bayesian Billiard.}
 See demonstration notebook: A Bayesian Billiard game
 
 % !split
-\subsection{Nuisance parameters (II): marginal distributions}
-Assume that we have a model with two parameters, $\theta0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
+\paragraph{Nuisance parameters (II): marginal distributions.}
+Assume that we have a model with two parameters, $\theta_0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is them labeled a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
 \[
 p(\theta_0, \theta_1 | D, I).
 \]
@@ -497,7 +499,9 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 See the interactive demos created by Chi Feng for an illustration of this: \href{{https://chi-feng.github.io/mcmc-demo/}}{The Markov-chain Monte Carlo Interactive Gallery}.
 
 % !split
-\subsection{Error propagation (I): marginalization}
+\subsection{Error propagation}
+
+\paragraph{Error propagation (I): marginalization.}
 The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example \\
 
 % !split
@@ -526,7 +530,7 @@ where we have used a uniform prior for the distance $p(x|I) \propto 1$.
 
 
 % !split
-\subsection{Error propagation (II): changing variables and prior information}
+\paragraph{Error propagation (II): changing variables and prior information.}
 (Based on Sivia, ch 3.6.)
 
 Assume that we have measured parameter $X = 10 \pm 3$ and $Y=7 \pm 2$; what can we say about the difference $X-Y$ or the raio $X/Y$, or the sum of their squares $X^2+Y^2$, etc? In essence, the problem is nothing more than an exercise in the change of variables: given the joint pdf $p(X,Y|I)$, where the information $I$ might include the data if the pdf is a posterior from a data analysis, we need the corresponding pdf $p(Z|I)$, where $Z=X-Y$, or $Z=X/Y$, or whatever as appropriate.
