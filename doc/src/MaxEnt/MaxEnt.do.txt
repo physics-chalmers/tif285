@@ -214,14 +214,6 @@ After one round the monkeys have distributed their (large number of) balls over 
 !split
 Now, let us see how this preferred solution corresponds to the pdf with the largest `entropy`. Remember in the following that $N$ (and $n_i$) are considered to be very large numbers ($N/M \gg 1$)
 
-* The logarithm of the number of micro-states, $W$, as a function of $\{p_i\}$ is (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
-!bt
-\[
-\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
-\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
-\]
-!et
-
 !split
 * There are $M^N$ different ways to distribute the balls.
 * The micro-states $\{ n_i\}$ are connected to the pdf $\{ p_i \}$ and the frequency of a given pdf is given by
@@ -230,7 +222,17 @@ Now, let us see how this preferred solution corresponds to the pdf with the larg
 F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}
 \]
 !et
-* Therefore, the logarithm of this frequency is
+* The number of micro-states, $W(\{n_i\}))$, in the nominator is equal to $N! / \prod_{i=1}^M n_i!$. 
+* We express the logarithm of this number (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
+!bt
+\[
+\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
+\]
+!et
+
+!split
+* Therefore, the logarithm of the frequency of a given pdf is
 !bt
 \[
 \log(F(\{p_i\})) \approx -N \log(M) + N\log(N) - \sum_{i=1}^M n_i\log(n_i)
