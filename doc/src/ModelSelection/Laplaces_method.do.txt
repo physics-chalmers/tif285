@@ -26,7 +26,7 @@ of this Gaussian,
 $$
 Z_P \approx Z_Q = P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
 $$
-Predictions can then be made using this approximation $Q$. Physicists also call this widely-used approximation the saddle-point approximation.
+Predictions can then be made using this approximation. Physicists also call this widely-used approximation the saddle-point approximation.
 
 !split
 Note, in particular, that if we consider a chi-squared pdf: $P^*(\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)$, then we get

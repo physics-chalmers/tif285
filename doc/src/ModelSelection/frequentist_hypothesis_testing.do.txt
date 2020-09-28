@@ -39,9 +39,11 @@ A very common statistic to use is the $\chi^2$ measure. A good example is found 
 !et
 
 !split
-* In our example we had 15 data points, but we are using them first to estimate the mean $\mu$. Therefore, we loose one degree of freedom and are left with 14. This number will determine the form of the $\chi^2$ distribution that will be used for comparison with our actual $\chi^2$ statistic.
+* In our example we had 15 data points, but we are using them first to estimate the mean $\mu$. Therefore, we lose one degree of freedom and are left with 14. This number will determine the form of the $\chi^2$ distribution that will be used for comparison with our actual $\chi^2$ statistic.
 
-* The question of how unlikely is this value of $\chi^2$ is by convention interpreted in terms of the area in the tail of the $\chi^2$ distribution beyond this line. This is called the $P$-value or significance.
+* The question of how unlikely is this value of $\chi^2$ is by convention interpreted in terms of the area in the tail of the $\chi^2$ distribution beyond this line. This is called the $P$-value or significance. 
+
+* In some cases, a two-sided statistic should be considered instead. 
 
 !split
 FIGURE:[fig/gregory_7_2.png, width=600 frac=0.8] The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)
