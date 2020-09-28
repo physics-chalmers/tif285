@@ -294,7 +294,7 @@ Learning from data: Assigning probabilities
 
 % --- begin date ---
 \begin{center}
-Sep 27, 2020
+Sep 28, 2020
 \end{center}
 % --- end date ---
 
@@ -593,16 +593,6 @@ After one round the monkeys have distributed their (large number of) balls over 
 % !split
 Now, let us see how this preferred solution corresponds to the pdf with the largest \texttt{entropy}. Remember in the following that $N$ (and $n_i$) are considered to be very large numbers ($N/M \gg 1$)
 
-\begin{itemize}
-\item The logarithm of the number of micro-states, $W$, as a function of $\{p_i\}$ is (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
-\end{itemize}
-
-\noindent
-\[
-\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
-\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
-\]
-
 % !split
 \begin{itemize}
 \item There are $M^N$ different ways to distribute the balls.
@@ -615,7 +605,20 @@ Now, let us see how this preferred solution corresponds to the pdf with the larg
 F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}
 \]
 \begin{itemize}
-\item Therefore, the logarithm of this frequency is
+\item The number of micro-states, $W(\{n_i\}))$, in the nominator is equal to $N! / \prod_{i=1}^M n_i!$. 
+
+\item We express the logarithm of this number (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
+\end{itemize}
+
+\noindent
+\[
+\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
+\]
+
+% !split
+\begin{itemize}
+\item Therefore, the logarithm of the frequency of a given pdf is
 \end{itemize}
 
 \noindent

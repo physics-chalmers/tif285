@@ -151,7 +151,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy, Ohio University</b></center>
 <br>
 <p>
-<center><h4>Sep 27, 2020</h4></center> <!-- date -->
+<center><h4>Sep 28, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -446,15 +446,6 @@ After one round the monkeys have distributed their (large number of) balls over 
 <!-- !split -->
 Now, let us see how this preferred solution corresponds to the pdf with the largest <code>entropy</code>. Remember in the following that \( N \) (and \( n_i \)) are considered to be very large numbers (\( N/M \gg 1 \))
 
-<ul>
-<li> The logarithm of the number of micro-states, \( W \), as a function of \( \{p_i\} \) is (where we use the Stirling approximation \( \log(n!) \approx n\log(n) - n \) for large numbers, and there is a cancellation of two terms)</li>
-</ul>
-
-$$
-\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
-\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
-$$
-
 <p>
 <!-- !split -->
 
@@ -469,7 +460,20 @@ $$
 
 
 <ul>
-<li> Therefore, the logarithm of this frequency is</li>
+<li> The number of micro-states, \( W(\{n_i\})) \), in the nominator is equal to \( N! / \prod_{i=1}^M n_i! \).</li> 
+<li> We express the logarithm of this number (where we use the Stirling approximation \( \log(n!) \approx n\log(n) - n \) for large numbers, and there is a cancellation of two terms)</li>
+</ul>
+
+$$
+\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),
+$$
+
+<p>
+<!-- !split -->
+
+<ul>
+<li> Therefore, the logarithm of the frequency of a given pdf is</li>
 </ul>
 
 $$
