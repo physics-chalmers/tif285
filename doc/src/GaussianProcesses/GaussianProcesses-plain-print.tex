@@ -55,14 +55,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -272,7 +272,7 @@ Learning from data: Gaussian processes
 
 % --- begin date ---
 \begin{center}
-Oct 21, 2019
+Oct 4, 2020
 \end{center}
 % --- end date ---
 
@@ -280,19 +280,19 @@ Oct 21, 2019
 
 
 % !split
-\subsection{Inference using Gaussian processes}
+\section{Inference using Gaussian processes}
 
 Assume that there is a set of input vectors with independent, predictor, variables
-\[ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(n)}\}_{n=1}^N \]
+\[ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(i)}\}_{i=1}^N \]
 and a set of target values
-\[ \boldsymbol{t}_N \equiv \{ t^{(n)}\}_{n=1}^N. \]
+\[ \boldsymbol{t}_N \equiv \{ t^{(i)}\}_{i=1}^N. \]
 
 \begin{itemize}
-\item Note that we will use the symbol $t$ to denote the target, or response, variables in the context of Gaussian Processes. 
+\item Note that we will use the symbol $t$ to denote the target, or response, variables in the context of Gaussian Processes. Here we will consider single, scalar outputs $t^{(i)}$. The extension to vector outputs $\boldsymbol{t}^{(i)}$ is straightforward.
 
-\item Furthermore, we will use the subscript $N$ to denote a vector of $N$ vectors (or scalars): $\boldsymbol{X}_N$ ($\boldsymbol{t}_N$)
+\item Furthermore, we will use the subscript $N$ to denote a set of $N$ vectors (or scalars): $\boldsymbol{X}_N$ ($\boldsymbol{t}_N$),
 
-\item While a single instance $i$ is denoted by a superscript: $\boldsymbol{x}^{(i)}$ ($t^{(i)}$).
+\item ... while a single instance $i$ is denoted by a superscript: $\boldsymbol{x}^{(i)}$ ($t^{(i)}$).
 \end{itemize}
 
 \noindent
@@ -300,9 +300,9 @@ and a set of target values
 We will consider two different \emph{inference problems}:
 
 \begin{enumerate}
-\item The prediction of \emph{new target} $t^{(N+1)}$ given a new input $\boldsymbol{x}^{(N+1)}$
+\item The prediction of a \emph{new target} $t^{(N+1)}$ given the data $\boldsymbol{X}_N, \boldsymbol{t}_N$ and a new input $\boldsymbol{x}^{(N+1)}$.
 
-\item The inference of a \emph{function} $y(\boldsymbol{x})$ from the data.
+\item The inference of a \emph{model function} $y(\boldsymbol{x})$ from the data $\boldsymbol{X}_N, \boldsymbol{t}_N$.
 \end{enumerate}
 
 \noindent
@@ -360,7 +360,7 @@ y (\boldsymbol{x}, \boldsymbol{\theta}) = \sum_{h=1}^H \theta^{(h)} \phi^{(h)} (
 
 
 \begin{notice_mdfboxadmon}[Notice]
-The basis functions can be non-linear such as Gaussians (aka \emph{radial basis functions})
+The basis functions can be non-linear in $\boldsymbol{x}$ such as Gaussians (aka \emph{radial basis functions})
 \[
 \phi^{(h)} (\boldsymbol{x}) = \exp \left[ -\frac{\left( \boldsymbol{x} - \boldsymbol{c}^{(h)} \right)^2}{2 (\sigma^{(h)})^2} \right].
 \]
@@ -376,7 +376,7 @@ p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
 = \frac{ p \left( \boldsymbol{t}_N | \boldsymbol{\theta}, \boldsymbol{X}_N \right) p \left( \boldsymbol{\theta} \right)}{p \left( \boldsymbol{t}_N | \boldsymbol{X}_N \right)}
 \]
 
-Having solved this inference problem (e.g.~by linear regression) a prediction can be made through marginalization
+Having solved this inference problem (note that the likelihhod is Gaussian, cf linear regression) a prediction can be made through marginalization
 \[
 p\left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N}, \boldsymbol{x}^{(N+1)} \right) 
 = \int d^H \boldsymbol{\theta} 
@@ -437,7 +437,7 @@ Well, if $t^{(n)}$ is assumed to differ by additive Gaussian noise, i.e.,
 \[
 t^{(n)} = y^{(n)} + \varepsilon^{(n)}, 
 \]
-where $\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)$; then $\boldsymbol{t}$ also has a Gaussian prior distribution
+where $\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)$; then $\boldsymbol{t}$ also has a Gaussian distribution
 \[
 p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),
 \]
@@ -492,11 +492,11 @@ A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaus
 \[ 
 C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
 \]
-where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
+where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
 
 
 % !split
-\subsection{GP models for regression}
+\section{GP models for regression}
 Let us return to the problem of predicting $t^{(N+1)}$ given $\boldsymbol{t}_N$. The independent variables $\boldsymbol{X}_{N+1}$ are also given, but will be omitted from the conditional pdfs below.
 
 The joint density is
@@ -518,7 +518,7 @@ t^{(N+1)}
 
 
 \begin{summary_mdfboxadmon}[Summary]
-The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}^{-1}$.
+The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.
 \end{summary_mdfboxadmon} % title: Summary
 
 
@@ -607,7 +607,7 @@ Predictions can be made once we have
 
 \item Determined the hyperparameters.
 
-\item Evaluated the relevant blocks in the covariance function and inverted $\\boldsymbol{C}_N$.
+\item Evaluated the relevant blocks in the covariance function and inverted $\boldsymbol{C}_N$.
 \end{enumerate}
 
 \noindent

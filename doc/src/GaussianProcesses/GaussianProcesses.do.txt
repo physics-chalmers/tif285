@@ -3,27 +3,27 @@ AUTHOR: Christian Forssén {copyright, 2018-present|CC BY-NC} at Department of P
 DATE: today
 
 !split
-===== Inference using Gaussian processes =====
+======= Inference using Gaussian processes =======
 
 Assume that there is a set of input vectors with independent, predictor, variables
 !bt
-\[ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(n)}\}_{n=1}^N \]
+\[ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(i)}\}_{i=1}^N \]
 !et
 and a set of target values
 !bt
-\[ \boldsymbol{t}_N \equiv \{ t^{(n)}\}_{n=1}^N. \]
+\[ \boldsymbol{t}_N \equiv \{ t^{(i)}\}_{i=1}^N. \]
 !et
 
-* Note that we will use the symbol $t$ to denote the target, or response, variables in the context of Gaussian Processes. 
-* Furthermore, we will use the subscript $N$ to denote a vector of $N$ vectors (or scalars): $\boldsymbol{X}_N$ ($\boldsymbol{t}_N$)
-* While a single instance $i$ is denoted by a superscript: $\boldsymbol{x}^{(i)}$ ($t^{(i)}$).
+* Note that we will use the symbol $t$ to denote the target, or response, variables in the context of Gaussian Processes. Here we will consider single, scalar outputs $t^{(i)}$. The extension to vector outputs $\boldsymbol{t}^{(i)}$ is straightforward.
+* Furthermore, we will use the subscript $N$ to denote a set of $N$ vectors (or scalars): $\boldsymbol{X}_N$ ($\boldsymbol{t}_N$),
+* ... while a single instance $i$ is denoted by a superscript: $\boldsymbol{x}^{(i)}$ ($t^{(i)}$).
 
 !split
 We will consider two different *inference problems*:
 
-o The prediction of *new target* $t^{(N+1)}$ given a new input $\boldsymbol{x}^{(N+1)}$
+o The prediction of a *new target* $t^{(N+1)}$ given the data $\boldsymbol{X}_N, \boldsymbol{t}_N$ and a new input $\boldsymbol{x}^{(N+1)}$.
 
-o The inference of a *function* $y(\boldsymbol{x})$ from the data.
+o The inference of a *model function* $y(\boldsymbol{x})$ from the data $\boldsymbol{X}_N, \boldsymbol{t}_N$.
 
 !split
 The former can be expressed with the pdf
@@ -71,7 +71,7 @@ y (\boldsymbol{x}, \boldsymbol{\theta}) = \sum_{h=1}^H \theta^{(h)} \phi^{(h)} (
 !et
 
 !bnotice
-The basis functions can be non-linear such as Gaussians (aka *radial basis functions*)
+The basis functions can be non-linear in $\boldsymbol{x}$ such as Gaussians (aka *radial basis functions*)
 !bt
 \[
 \phi^{(h)} (\boldsymbol{x}) = \exp \left[ -\frac{\left( \boldsymbol{x} - \boldsymbol{c}^{(h)} \right)^2}{2 (\sigma^{(h)})^2} \right].
@@ -89,7 +89,7 @@ p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
 \]
 !et
 
-Having solved this inference problem (e.g. by linear regression) a prediction can be made through marginalization
+Having solved this inference problem (note that the likelihhod is Gaussian, cf linear regression) a prediction can be made through marginalization
 !bt
 \[
 p\left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N}, \boldsymbol{x}^{(N+1)} \right) 
@@ -156,7 +156,7 @@ Well, if $t^{(n)}$ is assumed to differ by additive Gaussian noise, i.e.,
 t^{(n)} = y^{(n)} + \varepsilon^{(n)}, 
 \]
 !et
-where $\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)$; then $\boldsymbol{t}$ also has a Gaussian prior distribution
+where $\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)$; then $\boldsymbol{t}$ also has a Gaussian distribution
 !bt
 \[
 p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),
@@ -229,11 +229,11 @@ A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaus
 C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
 \]
 !et
-where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
+where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
 
 
 !split
-===== GP models for regression =====
+======= GP models for regression =======
 Let us return to the problem of predicting $t^{(N+1)}$ given $\boldsymbol{t}_N$. The independent variables $\boldsymbol{X}_{N+1}$ are also given, but will be omitted from the conditional pdfs below.
 
 The joint density is
@@ -258,7 +258,7 @@ t^{(N+1)}
 !et
 
 !bsummary
-The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}^{-1}$.
+The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.
 !esummary
 
 === Elegant approach using linear algebra tricks ===
@@ -352,7 +352,7 @@ where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
 Predictions can be made once we have
 o Chosen an appropriate covariance function.
 o Determined the hyperparameters.
-o Evaluated the relevant blocks in the covariance function and inverted $\\boldsymbol{C}_N$.
+o Evaluated the relevant blocks in the covariance function and inverted $\boldsymbol{C}_N$.
 
 How do we determine the hyperparameters $\boldsymbol{\alpha}$? Well, recall that
 !bt

@@ -40,8 +40,8 @@ Automatically generated HTML file from DocOnce source
 </head>
 
 <!-- tocinfo
-{'highest level': 2,
- 'sections': [('Inference using Gaussian processes', 2, None, '___sec0'),
+{'highest level': 1,
+ 'sections': [('Inference using Gaussian processes', 1, None, '___sec0'),
               ('References:', 3, None, '___sec1'),
               ('Parametric approach', 2, None, '___sec2'),
               ('Proof', 3, None, '___sec3'),
@@ -54,7 +54,7 @@ Automatically generated HTML file from DocOnce source
                None,
                '___sec5'),
               ('Stationary kernels', 3, None, '___sec6'),
-              ('GP models for regression', 2, None, '___sec7'),
+              ('GP models for regression', 1, None, '___sec7'),
               ('Elegant approach using linear algebra tricks',
                3,
                None,
@@ -98,15 +98,15 @@ MathJax.Hub.Config({
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Inference using Gaussian processes</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References:</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;"><b>Parametric approach</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Proof</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The covariance matrix as the central object</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;"><b>Non-parametric approach: Mean and covariance functions</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Stationary kernels</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;References:</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Parametric approach</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proof</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The covariance matrix as the central object</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Non-parametric approach: Mean and covariance functions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary kernels</a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>GP models for regression</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Elegant approach using linear algebra tricks</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Optimizing the GP model hyperparameters</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elegant approach using linear algebra tricks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Optimizing the GP model hyperparameters</a></li>
 
         </ul>
       </li>
@@ -139,7 +139,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Oct 21, 2019</h4></center> <!-- date -->
+<center><h4>Oct 4, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -147,28 +147,28 @@ MathJax.Hub.Config({
 
 <!-- !split -->
 
-<h2 id="___sec0" class="anchor">Inference using Gaussian processes </h2>
+<h1 id="___sec0" class="anchor">Inference using Gaussian processes </h1>
 
 <p>
 Assume that there is a set of input vectors with independent, predictor, variables
-$$ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(n)}\}_{n=1}^N $$
+$$ \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(i)}\}_{i=1}^N $$
 
 and a set of target values
-$$ \boldsymbol{t}_N \equiv \{ t^{(n)}\}_{n=1}^N. $$
+$$ \boldsymbol{t}_N \equiv \{ t^{(i)}\}_{i=1}^N. $$
 
 
 <ul>
-<li> Note that we will use the symbol \( t \) to denote the target, or response, variables in the context of Gaussian Processes.</li> 
-<li> Furthermore, we will use the subscript \( N \) to denote a vector of \( N \) vectors (or scalars): \( \boldsymbol{X}_N \) (\( \boldsymbol{t}_N \))</li>
-<li> While a single instance \( i \) is denoted by a superscript: \( \boldsymbol{x}^{(i)} \) (\( t^{(i)} \)).</li>
+<li> Note that we will use the symbol \( t \) to denote the target, or response, variables in the context of Gaussian Processes. Here we will consider single, scalar outputs \( t^{(i)} \). The extension to vector outputs \( \boldsymbol{t}^{(i)} \) is straightforward.</li>
+<li> Furthermore, we will use the subscript \( N \) to denote a set of \( N \) vectors (or scalars): \( \boldsymbol{X}_N \) (\( \boldsymbol{t}_N \)),</li>
+<li> ... while a single instance \( i \) is denoted by a superscript: \( \boldsymbol{x}^{(i)} \) (\( t^{(i)} \)).</li>
 </ul>
 
 <!-- !split -->
 We will consider two different <em>inference problems</em>:
 
 <ol>
-<li> The prediction of <em>new target</em> \( t^{(N+1)} \) given a new input \( \boldsymbol{x}^{(N+1)} \)</li>
-<li> The inference of a <em>function</em> \( y(\boldsymbol{x}) \) from the data.</li>
+<li> The prediction of a <em>new target</em> \( t^{(N+1)} \) given the data \( \boldsymbol{X}_N, \boldsymbol{t}_N \) and a new input \( \boldsymbol{x}^{(N+1)} \).</li>
+<li> The inference of a <em>model function</em> \( y(\boldsymbol{x}) \) from the data \( \boldsymbol{X}_N, \boldsymbol{t}_N \).</li>
 </ol>
 
 <!-- !split -->
@@ -236,7 +236,7 @@ $$
   </div>
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The basis functions can be non-linear such as Gaussians (aka <em>radial basis functions</em>)
+The basis functions can be non-linear in \( \boldsymbol{x} \) such as Gaussians (aka <em>radial basis functions</em>)
 $$
 \phi^{(h)} (\boldsymbol{x}) = \exp \left[ -\frac{\left( \boldsymbol{x} - \boldsymbol{c}^{(h)} \right)^2}{2 (\sigma^{(h)})^2} \right].
 $$
@@ -255,7 +255,7 @@ p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
 $$
 
 <p>
-Having solved this inference problem (e.g. by linear regression) a prediction can be made through marginalization
+Having solved this inference problem (note that the likelihhod is Gaussian, cf linear regression) a prediction can be made through marginalization
 $$
 p\left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N}, \boldsymbol{x}^{(N+1)} \right) 
 = \int d^H \boldsymbol{\theta} 
@@ -328,7 +328,7 @@ $$
 t^{(n)} = y^{(n)} + \varepsilon^{(n)}, 
 $$
 
-where \( \varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right) \); then \( \boldsymbol{t} \) also has a Gaussian prior distribution
+where \( \varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right) \); then \( \boldsymbol{t} \) also has a Gaussian distribution
 $$
 p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),
 $$
@@ -403,12 +403,12 @@ $$
 C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] 
 $$
 
-where \( I \) denotes the dimensionality of the input space. The hyperparameters are: \( \{ \alpha_0, \alpha_1, \vec{r} \} \). Sometimes, a single correlation length \( r \) is used.
+where \( I \) denotes the dimensionality of the input space. The hyperparameters are: \( \boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \} \). Sometimes, a single correlation length \( r \) is used.
 
 <p>
 <!-- !split -->
 
-<h2 id="___sec7" class="anchor">GP models for regression </h2>
+<h1 id="___sec7" class="anchor">GP models for regression </h1>
 Let us return to the problem of predicting \( t^{(N+1)} \) given \( \boldsymbol{t}_N \). The independent variables \( \boldsymbol{X}_{N+1} \) are also given, but will be omitted from the conditional pdfs below.
 
 <p>
@@ -437,7 +437,7 @@ $$
   </div>
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The prediction of the (Gaussian) pdf for \( t^{(N+1)} \) requires an inversion of the covariance matrix \( \boldsymbol{C}_{N+1}^{-1} \).
+The prediction of the (Gaussian) pdf for \( t^{(N+1)} \) requires an inversion of the covariance matrix \( \boldsymbol{C}_{N+1} \).
 </div>
 </div>
 
@@ -551,7 +551,7 @@ Predictions can be made once we have
 <ol>
 <li> Chosen an appropriate covariance function.</li>
 <li> Determined the hyperparameters.</li>
-<li> Evaluated the relevant blocks in the covariance function and inverted \( \\boldsymbol{C}_N \).</li>
+<li> Evaluated the relevant blocks in the covariance function and inverted \( \boldsymbol{C}_N \).</li>
 </ol>
 
 How do we determine the hyperparameters \( \boldsymbol{\alpha} \)? Well, recall that
@@ -584,7 +584,7 @@ The former approach is absolutely dominating the literature on GP regression. Th
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
