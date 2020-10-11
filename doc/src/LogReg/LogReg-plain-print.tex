@@ -70,14 +70,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -294,7 +294,7 @@ Learning from data: Logistic Regression
 
 % --- begin date ---
 \begin{center}
-Oct 21, 2019
+Oct 11, 2020
 \end{center}
 % --- end date ---
 
@@ -307,8 +307,8 @@ Oct 21, 2019
 In linear regression our main interest was centered on learning the
 coefficients of a functional fit (say a polynomial) in order to be
 able to predict the response of a continuous variable on some unseen
-data. The fit to the continuous variable $y_i$ is based on some
-independent variables $\boldsymbol{x}_i$. Linear regression resulted in
+data. The fit to the continuous variable $y^{(i)}$ is based on some
+independent variables $\boldsymbol{x}^{(i)}$. Linear regression resulted in
 analytical expressions for standard ordinary Least Squares or Ridge
 regression (in terms of matrices to invert) for several quantities,
 ranging from the variance and thereby the confidence intervals of the
@@ -380,17 +380,19 @@ We will use the following notation:
 \end{itemize}
 
 \noindent
-The subscript notation $y_i$ will here be used in parallel with the superscript one, $y^{(i)}$, for which the author apologizes.
 \end{notice_mdfboxadmon} % title: Notice
 
 
 
+% !split 
+\section{Binary classification}
+
 Let us specialize to the case of two classes only, with outputs
-$t_i=0$ and $t_i=1$. That is
+$t^{(i)} \in \{0,1\}$. That is
 
 
 \[
-t_i = \begin{bmatrix} 0 \\  1 \end{bmatrix}
+t^{(i)} = \begin{bmatrix} 0 \\  1 \end{bmatrix}
 = \begin{bmatrix} \mathrm{no}\\  \mathrm{yes} \end{bmatrix}.
 \]
 
@@ -401,8 +403,8 @@ t_i = \begin{bmatrix} 0 \\  1 \end{bmatrix}
 
 Before moving to the logistic model, let us try to use our linear
 regression model to classify these two outcomes. We could for example
-fit a linear model to the default case if $y_i > 0.5$ and the no
-default case $y_i \leq 0.5$.
+fit a linear model to the default case if $y^{(i)} > 0.5$ and the no
+default case $y^{(i)} \leq 0.5$.
 
 We would then have our 
 weighted linear combination, namely 
@@ -417,14 +419,14 @@ $n\times p$ design matrix and $\boldsymbol{w}$ represents our estimators/predict
 
 The main problem with our function is that it takes values on the
 entire real axis. In the case of logistic regression, however, the
-labels $t_i$ are discrete variables. 
+labels $t^{(i)}$ are discrete variables. 
 
 One simple way to get a discrete output is to have sign
-functions that map the output of a linear regressor to values $y_i \in \{ 0, 1 \}$,
-$y_i = f(\tilde{y}_i)=\frac{sign(\tilde{y}_i)+1}{2}$, which will map to one if $\tilde{y}_i\ge 0$ and zero otherwise. 
-We will encounter this model in our first demonstration of neural networks. Historically it is called the ``perceptron'' model in the machine learning
+functions that map the output of a linear regressor to values $y^{(i)} \in \{ 0, 1 \}$,
+$y^{(i)} = f(\tilde{y}^{(i)})=\frac{\mathrm{sign}(\tilde{y}^{(i)})+1}{2}$, which will map to one if $\tilde{y}^{(i)}\ge 0$ and zero otherwise. 
+We will encounter this model in our first demonstration of neural networks. Historically it is called the \emph{perceptron} model in the machine learning
 literature. This model is extremely simple. However, in many cases it is more
-favorable to use a ``soft'' classifier that outputs
+favorable to use a \emph{soft} classifier that outputs
 the probability of a given category. This leads us to the logistic function.
 
 
@@ -434,13 +436,13 @@ the probability of a given category. This leads us to the logistic function.
 The perceptron is an example of a ``hard classification'' model. We
 will encounter this model when we discuss neural networks as
 well. Each datapoint is deterministically assigned to a category (i.e
-$y_i=0$ or $y_i=1$). In many cases, it is favorable to have a ``soft''
+$y^{(i)}=0$ or $y^{(i)}=1$). In many cases, it is favorable to have a ``soft''
 classifier that outputs the probability of a given category rather
-than a single value. For example, given $\boldsymbol{x}_i$, the classifier
+than a single value. For example, given $\boldsymbol{x}^{(i)}$, the classifier
 outputs the probability of being in a category $k$.  Logistic regression
-is the most common example of a so-called soft classifier. In logistic
-regression, the probability that a data point $\boldsymbol{x}_i$
-belongs to a category $t_i=\{0,1\}$ is given by the so-called logit function (or Sigmoid) which is meant to represent the likelihood for a given event, 
+is the most common example of such a soft classifier. In logistic
+regression, the probability that a data point $\boldsymbol{x}^{(i)}$
+belongs to a category $t^{(i)} \in \{0,1\}$ is given by the so-called \emph{logit} function (an example of a S-shape or \emph{Sigmoid} function) which is meant to represent the likelihood for a given event, 
 \[
 y(\boldsymbol{x}; \boldsymbol{w}) = y(a) = \frac{1}{1+e^{-a}} = \frac{e^a}{1+e^a},
 \]
@@ -462,7 +464,7 @@ where the so called \emph{activation} $a = a(\boldsymbol{x}; \boldsymbol{w})$.
 \begin{figure}[!ht]  % fig:logistic
   \centerline{\includegraphics[width=0.8\linewidth]{fig/logistic_functions.png}}
   \caption{
-  The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in logistic regression and neural networks. \label{fig:logistic}
+  The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. \label{fig:logistic}
   }
 \end{figure}
 %\clearpage % flush figures fig:logistic
@@ -471,52 +473,60 @@ where the so called \emph{activation} $a = a(\boldsymbol{x}; \boldsymbol{w})$.
 % !split
 \subsection{A binary classifier with two parameters}
 
-We assume now that we have two classes with $t_i$ either $0$ or $1$. Furthermore we assume also that we have only two parameters $w_0, w_1$ and the predictors $\boldsymbol{x}_i = \{ 1, x_i \}$ defining the Sigmoid function. We can produce probabilities from the classifier output $y_i$
+We assume now that we have two classes with $t^{(i)}$ being either $0$ or $1$. Furthermore we assume also that we have only two parameters $w_0, w_1$ and the predictors $\boldsymbol{x}^{(i)} = \{ 1, x^{(i)} \}$ defining the Sigmoid function. I.e., there is a single independent (input) variable $x$. We can produce probabilities from the classifier output $y^{(i)}$
 \begin{align*}
-p(t_i=1|x_i,\boldsymbol{w}) &= y(a_i)= \frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}},\\
-p(t_i=0|x_i,\boldsymbol{w}) &= 1 - p(t_i=1|x_i,\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x_i)}},
+p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &= y(a^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
+p(t^{(i)}=0|x^{(i)},\boldsymbol{w}) &= 1 - p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x^{(i)})}},
 \end{align*}
-where $\boldsymbol{w} = \{ w_0, w_1\}$ are the weights we wish to extract from training data. 
+where $\boldsymbol{w} = ( w_0, w_1)$ are the weights we wish to extract from training data. 
+
+Note that $[p(t^{(i)}=0), p(t^{(i)}=1)]$ is a discrete set of probabilities that we will still refer to as a probability distribution.
+
+% !split
+\subsection{Determination of weights}
+Among ML practitioners, the prevalent approach to determine the weights in the activation function(s) is by minimizing some kind of cost function using some version of gradient descent. As we will see this usually corresponds to maximizing a likelihood function with or without a regularizer.
+
+In this course we will obviously also advocate (or at least make aware of) the more probabilistic approach to learning about these parameters.
 
 % !split 
 \paragraph{Maximum likelihood.}
 In order to define the total likelihood for all possible outcomes from a  
-dataset $\mathcal{D}=\{(x_i, t_i,)\}$, with the binary labels
-$t_i\in\{0,1\}$ and where the data points are drawn independently, we use the binary version of the \href{{https://en.wikipedia.org/wiki/Maximum_likelihood_estimation}}{Maximum Likelihood Estimation} (MLE) principle. 
+dataset $\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}$, with the binary labels
+$t^{(i)}\in\{0,1\}$ and where the data points are drawn independently, we use the binary version of the \href{{https://en.wikipedia.org/wiki/Maximum_likelihood_estimation}}{Maximum Likelihood Estimation} (MLE) principle. 
 We express the 
-likelihood in terms of the product of the individual probabilities of a specific outcome $t_i$, that is 
+likelihood in terms of the product of the individual probabilities of a specific outcome $t^{(i)}$, that is 
 \begin{align*}
-\mathcal{L} = P(\mathcal{D}|\boldsymbol{w})& = \prod_{i=1}^n \left[p(t_i=1|x_i,\boldsymbol{w})\right]^{t_i}\left[1-p(t_i=1|x_i,\boldsymbol{w}))\right]^{1-t_i}\nonumber \\
+\mathcal{L} = P(\mathcal{D}|\boldsymbol{w})& = \prod_{i=1}^n \left[p(t^{(i)}=1|x^{(i)},\boldsymbol{w})\right]^{t^{(i)}}\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]^{1-t^{(i)}}\nonumber \\
 \end{align*}
 from which we obtain the log-likelihood 
 \[
-L = \log(\mathcal{L}) = \sum_{i=1}^n \left( t_i\log{p(t_i=1|x_i,\boldsymbol{w})} + (1-t_i)\log\left[1-p(t_i=1|x_i,\boldsymbol{w}))\right]\right).
+L \equiv \log(\mathcal{L}) = \sum_{i=1}^n \left( t^{(i)}\log{p(t^{(i)}=1|x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]\right).
 \]
 
 The \textbf{cost/loss} function is then defined as the negative log-likelihood
 \[
-\mathcal{C}(\boldsymbol{w}) \equiv -L = -\sum_{i=1}^n \left( t_i\log{p(t_i=1|x_i,\boldsymbol{w})} + (1-t_i)\log\left[1-p(t_i=1|x_i,\boldsymbol{w}))\right]\right).
+\mathcal{C}(\boldsymbol{w}) \equiv -L = -\sum_{i=1}^n \left( t^{(i)}\log{p(t^{(i)}=1|x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]\right).
 \]
 
 % !split
 \paragraph{The cost function rewritten as cross entropy.}
 Using the definitions of the probabilities we can rewrite the \textbf{cost/loss} function as
 \[
-\mathcal{C}(\boldsymbol{w}) = -\sum_{i=1}^n \left( t_i\log{ y(x_i,\boldsymbol{w})} + (1-t_i)\log\left[ 1-y( x_i,\boldsymbol{w}) \right] \right),
+\mathcal{C}(\boldsymbol{w}) = -\sum_{i=1}^n \left( t^{(i)}\log{ y(x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[ 1-y( x^{(i)},\boldsymbol{w}) \right] \right),
 \]
-which can be recognised as the relative entropy between the empirical probability distribution $(t_i, 1-t_i)$ and the probability distribution predicted by the classifier $(y_i, 1-y_i)$.
+which can be recognised as the relative entropy between the empirical probability distribution $(t^{(i)}, 1-t^{(i)})$ and the probability distribution predicted by the classifier $(y^{(i)}, 1-y^{(i)})$.
 Therefore, this cost function is known in statistics as the \textbf{cross entropy}. 
 
 Using specifically the logistic sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the log-likelihood as
 \[
-L(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t_i(w_0+w_1 x_i) -\log{(1+\exp{(w_0+w_1x_i)})} \right].
+L(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t^{(i)}(w_0+w_1 x^{(i)}) -\log{(1+\exp{(w_0+w_1x^{(i)})})} \right].
 \]
 
 The maximum likelihood estimator is defined as the set of parameters (weights) that maximizes the log-likelihood (where we maximize with respect to $w$).
 
 Since the cost (error) function is here defined as the negative log-likelihood, for logistic regression, we have that
 \[
-\mathcal{C}(\boldsymbol{w})=-\sum_{i=1}^n  \left[ t_i (w_0+w_1x_i) -\log{ \left( 1+\exp{(w_0+w_1x_i)} \right) } \right].
+\mathcal{C}(\boldsymbol{w})=-\sum_{i=1}^n  \left[ t^{(i)} (w_0+w_1x^{(i)}) -\log{ \left( 1+\exp{(w_0+w_1x^{(i)})} \right) } \right].
 \]
 
 % !split
@@ -527,7 +537,7 @@ In particular, Lasso regularization is obtained by defining another cost functio
 \[
 \mathcal{C}_W (\boldsymbol{w}) \equiv \mathcal{C} (\boldsymbol{w}) + \alpha E_W (\boldsymbol{w})
 \]
-where $E_W (\boldsymbol{w}) = \frac{1}{2} \sum_i w_i^2$ and $\alpha$ is known as the \emph{weight decay}.
+where $E_W (\boldsymbol{w}) = \frac{1}{2} \sum_j w_j^2$ and $\alpha$ is known as the \emph{weight decay}.
 
 
 \begin{question_mdfboxadmon}[Question]
@@ -547,33 +557,34 @@ Minimizing this cost function (here without regularization term) with respect to
 
 \begin{align*}
 \frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_0} 
-&= -\sum_{i=1}^n  \left(t_i -\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right)
-&= -\sum_{i=1}^n  \left(t_i - y_i \right), \\
+&= -\sum_{i=1}^n  \left(t^{(i)} -\frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}}\right)
+&= -\sum_{i=1}^n  \left(t^{(i)} - y^{(i)} \right), \\
 \frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_1} 
-&= -\sum_{i=1}^n  \left(t_i x_i -x_i\frac{\exp{(w_0+w_1x_i)}}{1+\exp{(w_0+w_1x_i)}}\right)
-&= -\sum_{i=1}^n  x_i \left(t_i - y_i \right).
+&= -\sum_{i=1}^n  \left(t^{(i)} x^{(i)} -x^{(i)}\frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}}\right)
+&= -\sum_{i=1}^n  x^{(i)} \left(t^{(i)} - y^{(i)} \right).
 \end{align*}
 
 % !split
 \paragraph{A more compact expression.}
-Let us now define a vector $\boldsymbol{t}$ with $n$ elements $t_i$, an
-$n\times 2$ matrix $\boldsymbol{X}$ which contains the $(1, x_i)$ predictor variables, and a
-vector $\boldsymbol{y}$ of the outputs $y_i = y(x_i,\boldsymbol{w})$. We can then rewrite the first
-derivative of cost function in matrix form
+Let us now define a vector $\boldsymbol{t}$ with $n$ elements $t^{(i)}$, an
+$n\times 2$ matrix $\boldsymbol{X}$ which contains the $(1, x^{(i)})$ predictor variables, and a
+vector $\boldsymbol{y}$ of the outputs $y^{(i)} = y(x^{(i)},\boldsymbol{w})$. We can then express the first
+derivative of the cost function in matrix form
 
 \[
 \frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial \boldsymbol{w}} = -\boldsymbol{X}^T\left( \boldsymbol{t}-\boldsymbol{y} \right). 
 \]
 
 % !split
-\paragraph{A learning algorithm.}
+\subsection{A learning algorithm}
+
 
 \begin{notice_mdfboxadmon}[Notice]
 Having access to the first derivative we can define an \emph{on-line learning rule} as follows:
 \begin{itemize}
-\item For each input $i$, compute the error $e_i = t_i - y_i$.
+\item For each input $i$, compute the error $e^{(i)} = t^{(i)} - y^{(i)}$.
 
-\item Adjust the weights in a direction that would reduce this error: $\Delta w_j = \eta e_i x_{j,i}$.
+\item Adjust the weights in a direction that would reduce this error: $\Delta w_j = \eta e^{(i)} x_j^{(i)}$.
 
 \item The parameter $\eta$ is called the \emph{learning rate}.
 \end{itemize}
@@ -590,18 +601,18 @@ Alternatively, one can perform \emph{batch learning} for which multiple instance
 \paragraph{Extending to more predictors.}
 Within a binary classification problem, we can easily expand our model to include multiple predictors. Our activation function is then (with $p$ predictors)
 \[
-a( \boldsymbol{x}_i, \boldsymbol{w} ) = w_0 + w_1 x_{1,i} + w_2 x_{2,i} + \dots + w_p x_{p,i}.
+a( \boldsymbol{x}^{(i)}, \boldsymbol{w} ) = w_0 + w_1 x_1^{(i)} + w_2 x_2^{(i)} + \dots + w_p x_p^{(i)}.
 \]
-Defining $\boldsymbol{x}_i \equiv [1,x_{1,i}, x_{2,i}, \dots, x_{p,i}]$ and $\boldsymbol{w}=[w_0, w_1, \dots, w_p]$ we get
+Defining $\boldsymbol{x}^{(i)} \equiv [1,x_1^{(i)}, x_2^{(i)}, \dots, x_p^{(i)}]$ and $\boldsymbol{w}=[w_0, w_1, \dots, w_p]$ we get
 \[
-p(t_i=1 | \boldsymbol{w}, \boldsymbol{x}_i) = \frac{ \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}_i \right) }}{ 1 + \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}_i \right) } }.
+p(t^{(i)}=1 | \boldsymbol{w}, \boldsymbol{x}^{(i)}) = \frac{ \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}^{(i)} \right) }}{ 1 + \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}^{(i)} \right) } }.
 \]
 
 % !split
-\subsection{Including more classes}
+\section{Including more classes}
 
-Till now we have mainly focused on two classes, the so-called binary
-system. Suppose we wish to extend to $K$ classes.  We will then need to have $K-1$ outputs $\boldsymbol{y}_i = \{ y_{1,i}, y_{2,i}, \ldots, y_{K-1,i} \}$. 
+Until now we have mainly focused on two classes, the so-called binary
+system. Suppose we wish to extend to $K$ classes.  We will then need to have $K-1$ outputs $\boldsymbol{y}^{(i)} = \{ y_1^{(i)}, y_2^{(i)}, \ldots, y_{K-1}^{(i)} \}$. 
 
 
 \begin{question_mdfboxadmon}[Question]
@@ -610,7 +621,7 @@ Why do we need only $K-1$ outputs if there are $K$ classes?
 
 
 
-Let us for the sake of simplicity assume we have only two predictors. The activation functions for the outputs are (suppressing the index $i$)
+Let us for the sake of simplicity assume we have only one independent (inout) variable. The activation functions for the outputs are (suppressing the index $i$)
 
 \[
 a_1 = w_{1,0}+w_{1,1}x_1,
@@ -625,26 +636,25 @@ and so on until the class $C=K-1$ class
 a_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,
 \]
 
-and the model is specified in term of $K-1$ so-called log-odds or \textbf{logit} transformations $y_j = y(a_j)$.
+and the model is specified in term of $K-1$ so-called log-odds or \textbf{logit} transformations $y_j^{(i)} = y(a_j^{(i)})$.
 
 
 % !split
 \paragraph{Class probabilities: The Softmax function.}
-The transformation of the multiple outputs, as described above, to probabilities for belonging to any of $K$ different classes is done via the so-called \textbf{Softmax} function.
+The transformation of the multiple outputs, as described above, to probabilities for belonging to any of $K$ different classes can be achieved via the so-called \emph{Softmax} function.
 
 The Softmax function is used in various multiclass classification
 methods, such as multinomial logistic regression (also known as
 softmax regression), multiclass linear discriminant analysis, naive
 Bayes classifiers, and artificial neural networks.  Specifically, the predicted probability for the $k$-th class given a sample
-vector $\boldsymbol{x}_i$ and a weighting vector $\boldsymbol{w}$ is (with two
-predictors):
+vector $\boldsymbol{x}^{(i)}$ and a weighting vector $\boldsymbol{w}$ is (with one independent variable):
 
 \[
-p(t_i=k\vert \boldsymbol{x}_i,  \boldsymbol{w} ) = \frac{\exp{(w_{k,0}+w_{k,1}x_{1,i})}} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_{1,i})}}.
+p(t^{(i)}=k\vert \boldsymbol{x}^{(i)},  \boldsymbol{w} ) = \frac{\exp{(w_{k,0}+w_{k,1}x_1^{(i)})}} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_1^{(i)})}}.
 \]
 It is easy to extend to more predictors. The probability for the final class is 
 \[
-p(t_i=K\vert \boldsymbol{x}_i,  \boldsymbol{w} ) = \frac{1} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_{1,i})}},
+p(t^{(i)}=K\vert \boldsymbol{x}^{(i)},  \boldsymbol{w} ) = \frac{1} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_1^{(i)})}},
 \]
 which means that the discrete set of probabilities is properly normalized. 
 
