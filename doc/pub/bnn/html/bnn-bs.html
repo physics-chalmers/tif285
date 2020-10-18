@@ -133,7 +133,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, Chalmers University of Technology, Sweden</b></center>
 <br>
 <p>
-<center><h4>Oct 25, 2019</h4></center> <!-- date -->
+<center><h4>Oct 19, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- potential-jumbotron-button -->
@@ -145,7 +145,7 @@ MathJax.Hub.Config({
 The introduction part of this lecture is inspired by the chapter <em>"Learning as Inference"</em> in the excellent book <a href="http://www.inference.org.uk/mackay/itila/" target="_self">Information Theory, Inference, and Learning Algorithms</a> by David MacKay.
 
 <p>
-Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming) are:
+Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming in Machine Learning) are:
 
 <ul>
 <li> <a href="https://docs.pymc.io/" target="_self">PyMC3</a></li>
@@ -174,8 +174,7 @@ p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &= 1-y,
 \end{align}
 $$
 
-where we have simplified the notation, not using boldface anymore for the arrays \( w \) and \( x \).
-A simple neural network classifier can be trained by minimizing the loss function
+A simple binary classifier can be trained by minimizing the loss function
 $$ C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}), $$
 
 made up of an error function
@@ -261,7 +260,7 @@ We show an example of such inference, comparing the point estimate \( y(x; w^*, 
 </center>
 
 <p>
-The Bayesian classifier is based on sampling a very large number of neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data.
+The Bayesian classifier is based on sampling a very large ensamble of single neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data.
 
 <p>
 This becomes even more clear when we plot the standard deviation of the predictions of the Bayesian classifier.
@@ -461,7 +460,7 @@ See Martin Krasser's <a href="http://krasserm.github.io/2019/03/14/bayesian-neur
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2018-2019, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 2018-2020, Christian Forss&#233;n. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

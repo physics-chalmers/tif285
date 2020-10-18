@@ -1,3 +1,6 @@
 bnn-bs.html
-fig/MacKay_41_1.png
-fig/MacKay_41_2.png
+fig/scatter_joint_bnn_plot.png
+fig/bnn_binary_classifier_mean.png
+fig/bnn_binary_classifier_stddev.png
+fig/ADVI-classifier_ELBO.png
+fig/ADVI-classifier.png

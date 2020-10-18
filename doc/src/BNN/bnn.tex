@@ -20,6 +20,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage{bm,ltablex,microtype}
 
 \usepackage[pdftex]{graphicx}
+\usepackage{fancyvrb}
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -70,14 +71,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2019, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 2018-2020, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -287,7 +288,7 @@ Learning from data: Bayesian Neural Networks
 
 % --- begin date ---
 \begin{center}
-Oct 24, 2019
+Oct 19, 2020
 \end{center}
 % --- end date ---
 
@@ -298,7 +299,7 @@ Oct 24, 2019
 \section{Bayesian neural networks}
 The introduction part of this lecture is inspired by the chapter \emph{"Learning as Inference"} in the excellent book \href{{http://www.inference.org.uk/mackay/itila/}}{Information Theory, Inference, and Learning Algorithms} by David MacKay.
 
-Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming) are:
+Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming in Machine Learning) are:
 \begin{itemize}
 \item \href{{https://docs.pymc.io/}}{PyMC3}
 
@@ -322,8 +323,7 @@ Consider, e.g., a classification problem where the single output $y$ of the fina
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &= 1-y,
 \end{align}
-where we have simplified the notation, not using boldface anymore for the arrays $w$ and $x$.
-A simple neural network classifier can be trained by minimizing the loss function
+A simple binary classifier can be trained by minimizing the loss function
 \[ C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}), \]
 made up of an error function
 \[ C(\boldsymbol{w}) = -\sum_n \left[ t^{(n)} \log ( y(\boldsymbol{x}^{(n)},\boldsymbol{w})) + (1 - t^{(n)}) \log (1 - y(\boldsymbol{x}^{(n)},\boldsymbol{w})) \right], \]
@@ -337,21 +337,19 @@ Similarly the regularizer can be interpreted in terms of a log prior probability
 If $E_W$ is quadratic as given above, then the corresponding prior distribution is a Gaussian with variance $\sigma_W^2 = 1/\alpha$ and $1/Z_W = (\alpha/2\pi)^{K/2}$, where $K$ is the number of parameters in $w$.
 The objective function $C_W(w)$ then corresponds to the inference of the parameters $\boldsymbol{w}$ given the data
 \[ p(\boldsymbol{w} | \mathcal{D}, \alpha) = \frac{p(D|\boldsymbol{w}) p(\boldsymbol{w}|\alpha)}{p(\mathcal{D}|\alpha)} = \frac{1}{Z_M} \exp [ -C_W(\boldsymbol{w}) ]. \]
-The network parameters $\boldsymbol{w}$ that are found by minimizing $C_W(\boldsymbol{w})$ can be interpreted as the (locally) most probable parameter vector $\boldsymbol{w}^*$. We show the different probability distributions for a typical training sequence in the following figure (reproduced from \href{{http://www.inference.org.uk/mackay/itila/}}{Information Theory, Inference, and Learning Algorithms} by David MacKay)
+We show the evolution of the probability distribution for a sequence of an increasing number of training data in the following figure. The network parameters $\boldsymbol{w}$ that are found by minimizing $C_W(\boldsymbol{w})$ can be interpreted as the (locally) most probable parameter vector $\boldsymbol{w}^*$.
 
 
 \begin{figure}[!ht]  % 
-  \centerline{\includegraphics[width=0.8\linewidth]{fig/MacKay_41_1.png}}
+  \centerline{\includegraphics[width=0.95\linewidth]{fig/scatter_joint_bnn_plot.png}}
   \caption{
-  MacKay Fig.~41.1
+  Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights $p(w_1, w_2 | \mathcal{D}, \alpha)$ (i.e.~marginalized over the bias $w_0$) for a sequence of $N=0,2,6,10$ training data.
   }
 \end{figure}
 %\clearpage % flush figures 
 
 
-Instead, we will use the Bayesian approach and consider the information that is contained in the probability distribution. 
-
-In fact, there are different uncertainties that should be addressed:
+Instead, we will use the Bayesian approach and consider the information that is contained in the actual probability distribution. In fact, there are different uncertainties that should be addressed:
 
 \begin{description}
 \item[Epistemic uncertainties:] 
@@ -384,16 +382,36 @@ Returning to the binary classification problem, $y^{(n+1)}$ corresponds to the p
 \[ p(y^{(n+1)} | x^{(n+1)}, D, \alpha) = \int d \boldsymbol{w} p( y^{(n+1)} | x^{(n+1)}, w, \alpha) p(w|D,\alpha), \]
 where we have also included the weight decay hyperparameter $\alpha$ from the prior (regularizer). Marginalization could, of course, also be performed over this parameter.
 
-We show an example of such inference, comparing the point estimate $y(x; w^*, \alpha)$ and the Bayesian approach, in the follwoing figure (again from MacKay)
+We show an example of such inference, comparing the point estimate $y(x; w^*, \alpha)$ and the Bayesian approach, in the following figure.
 
 
 \begin{figure}[!ht]  % 
-  \centerline{\includegraphics[width=0.8\linewidth]{fig/MacKay_41_2.png}}
+  \centerline{\includegraphics[width=0.95\linewidth]{fig/bnn_binary_classifier_mean.png}}
   \caption{
-  MacKay Fig.~41.2
+  The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay $\alpha = 1.0$. The decision boundary ($y=0.5$, i.e.~the activation $a=0$) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation $a=\pm1,\pm2$). Test data is shown as plus symbols.
   }
 \end{figure}
 %\clearpage % flush figures 
+
+
+The Bayesian classifier is based on sampling a very large ensamble of single neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data. 
+
+This becomes even more clear when we plot the standard deviation of the predictions of the Bayesian classifier.
+
+
+\begin{figure}[!ht]  % 
+  \centerline{\includegraphics[width=0.8\linewidth]{fig/bnn_binary_classifier_stddev.png}}
+  \caption{
+  The standard deviation of the class label predictions for a Bayesian binary classifier.
+  }
+\end{figure}
+%\clearpage % flush figures 
+
+
+The predictions are rather certain along a diagonal line (close to the training data). Note that the interpretation of the prediction in the center of the figure (near $x_1,x_2 = 0,0$) is the following: The Bayesian binary classifier predicts a probability of $\sim 0.5$ for this point in the input parameter space to belong to class 1 (i.e.~the decision is very uncertain). The Baysian classifier is also very certain about this uncertainty (the standard deviation is small).
+
+In contrast, predictions for points in the upper left or lower right corners are very certain about the class label (and there is little uncertainty about this certainty).
+
 
 
 % !split
@@ -479,6 +497,32 @@ This problem constitutes a new and active area of research in machine learning a
 \subsection{Bayesian neural networks in PyMC3}
 In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the \textbf{Automatic Differentation Variational Inference} (ADVI) approach, described e.g.~in \href{{https://arxiv.org/abs/1506.03431}}{Automatic Variational Inference in Stan}.
 
+
+\begin{figure}[!ht]  % 
+  \centerline{\includegraphics[width=0.6\linewidth]{fig/ADVI-classifier_ELBO.png}}
+  \caption{
+  The training of the Bayesian binary classifier, that employs ADVI implemented in \texttt{pymc3}, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).
+  }
+\end{figure}
+%\clearpage % flush figures 
+
+
+
+\begin{figure}[!ht]  % 
+  \centerline{\includegraphics[width=0.95\linewidth]{fig/ADVI-classifier.png}}
+  \caption{
+  The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in \texttt{pymc3}. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.
+  }
+\end{figure}
+%\clearpage % flush figures 
+
+
+See also 
+\begin{itemize}
+\item Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). \emph{Automatic Differentiation Variational Inference}. arXiv preprint arXiv:"1603.00788": 'https://arxiv.org/abs/1603.00788".
+\end{itemize}
+
+\noindent
 % !split
 \subsection{Bayes by Backprop}
 

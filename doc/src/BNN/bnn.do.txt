@@ -6,7 +6,7 @@ DATE: today
 ======= Bayesian neural networks =======
 The introduction part of this lecture is inspired by the chapter *"Learning as Inference"* in the excellent book "Information Theory, Inference, and Learning Algorithms": "http://www.inference.org.uk/mackay/itila/" by David MacKay.
 
-Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming) are:
+Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming in Machine Learning) are:
 * "PyMC3": "https://docs.pymc.io/"
 * "Tensorflow Probability": "https://www.tensorflow.org/probability"
 * "Keras": "https://keras.io/" (for constructing tensorflow models).
@@ -28,8 +28,7 @@ p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &= 1-y,
 \end{align}
 !et
-where we have simplified the notation, not using boldface anymore for the arrays $w$ and $x$.
-A simple neural network classifier can be trained by minimizing the loss function
+A simple binary classifier can be trained by minimizing the loss function
 !bt
 \[ C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}), \]
 !et
@@ -90,7 +89,7 @@ We show an example of such inference, comparing the point estimate $y(x; w^*, \a
 
 FIGURE: [fig/bnn_binary_classifier_mean, width=800 frac=0.95] The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay $\alpha = 1.0$. The decision boundary ($y=0.5$, i.e. the activation $a=0$) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation $a=\pm1,\pm2$). Test data is shown as plus symbols. 
 
-The Bayesian classifier is based on sampling a very large number of neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data. 
+The Bayesian classifier is based on sampling a very large ensamble of single neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data. 
 
 This becomes even more clear when we plot the standard deviation of the predictions of the Bayesian classifier.
 

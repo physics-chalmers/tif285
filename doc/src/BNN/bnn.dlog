@@ -595,3 +595,29 @@ figure file fig/MacKay_41_2:
 figure file fig/MacKay_41_1:
     can use fig/MacKay_41_1.png for format html
 output in bnn-bs.html
+translating doconce text in bnn.do.txt to html
+figure file fig/bnn_binary_classifier_mean:
+    can use fig/bnn_binary_classifier_mean.png for format html
+figure file fig/bnn_binary_classifier_stddev:
+    can use fig/bnn_binary_classifier_stddev.png for format html
+output in bnn-reveal.html
+translating doconce text in bnn.do.txt to pdflatex
+open file with encoding utf-8
+figure file fig/bnn_binary_classifier_stddev:
+    can use fig/bnn_binary_classifier_stddev.png for format pdflatex
+figure file fig/bnn_binary_classifier_mean:
+    can use fig/bnn_binary_classifier_mean.png for format pdflatex
+output in bnn.tex
+translating doconce text in bnn.do.txt to ipynb
+figure file fig/bnn_binary_classifier_mean:
+    can use fig/bnn_binary_classifier_mean.png for format ipynb
+figure file fig/bnn_binary_classifier_stddev:
+    can use fig/bnn_binary_classifier_stddev.png for format ipynb
+collected all required additional files in ipynb-bnn-src.tar.gz which must be distributed with the notebook
+output in bnn.ipynb
+translating doconce text in bnn.do.txt to html
+figure file fig/bnn_binary_classifier_mean:
+    can use fig/bnn_binary_classifier_mean.png for format html
+figure file fig/bnn_binary_classifier_stddev:
+    can use fig/bnn_binary_classifier_stddev.png for format html
+output in bnn-bs.html
