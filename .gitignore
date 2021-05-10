@@ -15,6 +15,8 @@ tmp*
 temp*
 .#*
 \#*
+*.dlog
+*.copyright
 
 # tex files:
 *.log
@@ -39,7 +41,7 @@ reveal.js
 
 # SPECIAL
 # Remove old versions
-doc/20*
+doc/old
 
 # remove KEYS (solutions to exercises and problem sets)
 KEY*

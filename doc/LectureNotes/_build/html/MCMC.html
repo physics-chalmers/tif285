@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. Why MCMC &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. Metropolis-Hasting MCMC sampling of a Poisson distribution" href="demo-MCMC.html" />
+    <link rel="prev" title="8. Exercise: Bayesian parameter estimation" href="exercise_BayesianParameterEstimation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/MCMC.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   9. Why MCMC
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizations-of-mcmc">
+     9.1. Visualizations of MCMC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenges-in-mcmc-sampling">
+   10. Challenges in MCMC sampling
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
+<!-- !split -->
+<div class="section" id="why-mcmc">
+<h1><span class="section-number">9. </span>Why MCMC<a class="headerlink" href="#why-mcmc" title="Permalink to this headline">¶</a></h1>
+<p>We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> in a model <span class="math notranslate nohighlight">\(M\)</span> given data <span class="math notranslate nohighlight">\(D\)</span> and other information <span class="math notranslate nohighlight">\(I\)</span>
+$$</p>
+<p>p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+Suppose that this parametrized model can make predictions for some quantity $y = f(\boldsymbol{\theta})$ and that we would like to compute the expectation value of this prediction given our knowledge of the model parameters
+\]</div>
+<p>\langle f(\boldsymbol{\theta}) \rangle = \int f(\boldsymbol{\theta}) p(\boldsymbol{\theta} | D,I) d \boldsymbol{\theta} \equiv \int g( \boldsymbol{\theta} ) d\boldsymbol{\theta}.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+The function $f(\boldsymbol{\theta})$ might represent the prediction of some new data that was not part of the original data set $D$ used to constrain the model.\\&lt;!-- !split --&gt;
+Note that this is more involved than traditional calculations in which we would use a single vector of parameters, e.g. denoted $\boldsymbol{\theta}^*$, that we might have found by maximizing a likelihood (minimizing a chi-squared function). Instead, $\langle f( \boldsymbol{\theta} ) \rangle$ means that we do a multidimensional integral over the full range of possible $\boldsymbol{\theta}$ values, weighted by the probability density function, $p(\boldsymbol{\theta} |D,I)$ that we have worked out.\\&lt;!-- !split --&gt;
+* This is a lot more work!
+* The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters $\boldsymbol{\theta}_B$ to find a pdf for the rest, $\boldsymbol{\theta}_A$. E.g., when extracting the masses of binary black holes from gravitational-wave signals there are many (nuisance) parameters that characterize, e.g.,   background noise that should be integrated out.
+* Therefore, in the Bayesian approach we will frequently encounter these multidimensional integrals. However, conventional methods for low dimensions (Gaussian quadrature or Simpson's rule) become inadequate rapidly with the increase of dimension.
+* In particular, the integrals are problematic because the posterior pdfs are usually very small in much of the integration volume so that the relevant region has a very complicated shape.\\&lt;!-- !split --&gt;
+### Monte Carlo integration
+To approximate such integrals one turns to Monte Carlo (MC) methods. The straight and naive version of MC integration evaluates the integral by randomly distributing $n$ points in the multidimensional volume $V$ of possible parameter values $\boldsymbol{\theta}$. These points have to cover the regions where $p( \boldsymbol{\theta} |D,I)$ is significantly different from zero. Then\\&lt;!-- !split --&gt;
+\end{aligned}\end{align} \]</div>
+<p>\langle f( \boldsymbol{\theta} ) \rangle = \int_V g( \boldsymbol{\theta} ) d\boldsymbol{\theta} \approx V \langle g( \boldsymbol{\theta} ) \rangle
+\pm V \sqrt{ \frac{\langle g^2( \boldsymbol{\theta} ) \rangle - \langle g( \boldsymbol{\theta} ) \rangle^2 }{n} },</p>
+<div class="math notranslate nohighlight">
+\[
+where
+\]</div>
+<p>\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )</p>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<p>\langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+#### Example: One-dimensional integration\\The average of a function $g(\theta)$ on $\theta \in [a,b]$ is
+\end{aligned}\end{align} \]</div>
+<p>\overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,</p>
+<div class="math notranslate nohighlight">
+\[
+from calculus. However, we can estimate $\bar{g(\theta)}$ by averaging over a set of random samples
+\]</div>
+<p>\overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).</p>
+<div class="math notranslate nohighlight">
+\[
+Let us consider the integral
+\]</div>
+<p>\langle f(\theta) \rangle = \int_a^b g(\theta) d\theta \approx
+\frac{b-a}{n} \sum_{i=0}^{n-1} g(\theta_i),</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where $b-a$ is the volume $V$.\\&lt;!-- !split --&gt;
+#### Slow convergence\\The main uncertainty lies in assuming that a Gaussian approximation is valid. Note the dependence on $a/\sqrt{n}$, which means that you can get a more precise answer by increasing $n$. However, the result only gets better very slowly. Each additional decimal point accuracy costs you a factor of 100 in $n$.\\&lt;!-- !split --&gt;
+The key problem is that too much time is wasted in sampling regions where $p( \boldsymbol{\theta} |D,I )$ is very small. Consider the situation where the significant fraction for one parameter is $10^{-1}$. For a $m$-parameter problem the significant fraction of the volume is $10^{-m}$! This necessitates *importance sampling* which reweights the integrand to more appropriately distribute points (e.g. the [VEGAS algorithm](https://en.wikipedia.org/wiki/VEGAS_algorithm)), but this is difficult to accomplish.\\&lt;!-- !split --&gt;
+The bottom line is that its not feasible to draw a series of independent random samples from $p ( \boldsymbol{\theta} | D,I )$ from large $\boldsymbol{\theta}$ dimensions. Independence means if $\boldsymbol{\theta}_0, \boldsymbol{\theta}_1, \ldots$ is the series, knowing $\boldsymbol{\theta}_1$ doesn't tell us anything about $\boldsymbol{\theta}_2$.\\&lt;!-- !split --&gt;
+However, the samples don't actually need to be independent. they just need to generate a distribution that is proportional to $p ( \boldsymbol{\theta} |D,I)$. E.g., a histogram of the samples should approximate the true distribution.\\&lt;!-- !split --&gt;
+### Markov Chain Monte Carlo
+A solution is therefore to do a *random walk* in the parameter space of $\boldsymbol{\theta}$ so that the probability for being in a region is proportional to $p( \boldsymbol{\theta} | D,I)$ in that region.
+* The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$.
+* The transition probability is *time independent*, which means that $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$ is always the same.\\A sequence of points generated according to these rules is called a *Markov Chain* and the method is called Markov Chain Monte Carlo (MCMC).\\&lt;!-- !split --&gt;
+Before describing the most basic implementation of the MCMC, namely the Metropolis and Metropolis-Hastings algorithms, let us list a few state-of-the-art implementations and packages that are available in Python (and often other languages)\\emcee:
+  :    
+  [emcee](https://emcee.readthedocs.io/en/latest/) is an MIT licensed pure-Python implementation of Goodman &amp; Weare’s [Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler](http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml)
+PyMC3:
+  :    
+  [PyMC3](https://docs.pymc.io/) is a Python package for Bayesian statistical modeling and probabilistic machine learning which focuses on advanced Markov chain Monte Carlo and variational fitting algorithms.
+PyStan:
+  :    
+  [PyStan](https://pystan.readthedocs.io/en/latest/) provides an interface to [Stan](http://mc-stan.org/), a package for Bayesian inference using the No-U-Turn sampler, a variant of Hamiltonian Monte Carlo.
+PyMultiNest:
+  :    
+  [PyMultiNest](https://johannesbuchner.github.io/PyMultiNest/) interacts with [MultiNest](https://github.com/farhanferoz/MultiNest), a Nested Sampling Monte Carlo library.\\We have been using emcee extensively in this course. It is based on ensamble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some [lecture notes](http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html)\\
+&lt;!-- !split --&gt;
+### The Metropolis Hastings algorithm
+The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the following:\\1. Initialize the sampling by choosing a starting point $\boldsymbol{\theta}_0$.
+2. Collect samples by repeating the following:
+ a. Given $\boldsymbol{\theta}_i$, *propose* a new point $\boldsymbol{\theta}_{i+1}$, call it $\boldsymbol{\phi}$, sampled from a proposal distribution $q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )$. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by $\boldsymbol{\theta}_i$ and variance $\boldsymbol{\sigma}^2$.
+    * The transition density will (usually) give a smaller probability for visiting positions that are far from the current position.
+    * The width $\boldsymbol{\sigma}$ determines the average step size and is known as the proposal width.\\ b. Compute the Metropolis(-Hastings) ratio $r$ (defined below).
+    Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
+ c. Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
+    * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
+    * If $r &lt; 1$: accept the position with probability $r$ (remember that now we have $0 \leq r &lt; 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).\\    Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
+ d. Loop until the chain has reached a predetermined length.\\
+&lt;!-- !split --&gt;
+The Metropolis(-Hastings) ratio is
+\end{aligned}\end{align} \]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>r = \frac{p( \boldsymbol{\phi} | D,I)}{p( \boldsymbol{\theta}_i | D,I)}
+\frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
+</pre></div>
+</div>
+<p>$$</p>
+<ul class="simple">
+<li><p>The Metropolis algorithm dates back to the 1950s in physics, but didn’t become widespread in statistics until almost 1980.</p></li>
+<li><p>It enabled Bayesian methods to become feasible.</p></li>
+<li><p>Note, however, that novadays there are much more sophisticated samplers than the original Metropolis one.</p></li>
+</ul>
+<!-- !split -->
+<div class="section" id="visualizations-of-mcmc">
+<h2><span class="section-number">9.1. </span>Visualizations of MCMC<a class="headerlink" href="#visualizations-of-mcmc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>There are excellent javascript visualizations of MCMC sampling on the internet.</p></li>
+<li><p>A particularly useful set of interactive demos was created by Chi Feng, and is available on the github page: <a class="reference external" href="https://chi-feng.github.io/mcmc-demo/">The Markov-chain Monte Carlo Interactive Gallery</a></p></li>
+<li><p>An accessible introduction to MCMC, with simplified versions of Feng’s visualizations, was created by Richard McElreath. It promotes Hamiltonian Monte Carlo and is available in a blog entry called <a class="reference external" href="http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/">Markov Chains: Why Walk When You Can Flow?</a></p></li>
+</ul>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="challenges-in-mcmc-sampling">
+<h1><span class="section-number">10. </span>Challenges in MCMC sampling<a class="headerlink" href="#challenges-in-mcmc-sampling" title="Permalink to this headline">¶</a></h1>
+<p>There is much to be written about challenges in performing MCMC sampling and diagnostics that should be made to ascertain that your Markov chain has converged (although it is not really possible to be 100% certain except in special cases.)</p>
+<p>We will not focus on these issues here, but just list a few problematic pdfs:</p>
+<ul class="simple">
+<li><p>Correlated distributions that are very narrow in certain directions. (scaled parameters needed)</p></li>
+<li><p>Donut or banana shapes. (very low acceptance ratios)</p></li>
+<li><p>Multimodal distributions. (might easily get stuck in local region of high probability and completely miss other regions.)</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="exercise_BayesianParameterEstimation.html" title="previous page"><span class="section-number">8. </span>Exercise: Bayesian parameter estimation</a>
+    <a class='right-next' id="next-link" href="demo-MCMC.html" title="next page"><span class="section-number">11. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

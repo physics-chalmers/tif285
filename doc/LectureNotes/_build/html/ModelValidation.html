@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Model validation &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Linear Regression and Model Validation demonstration" href="demo-ModelValidation.html" />
+    <link rel="prev" title="1. Linear regression" href="LinearRegression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ModelValidation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2. Model validation
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#over-and-underfitting">
+     2.1. Over- and underfitting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularization-ridge-and-lasso">
+     2.2. Regularization: Ridge and Lasso
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-descent-optimization">
+   3. Gradient-descent optimization
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-curves">
+     3.1. Learning curves
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
+<!-- !split -->
+<p>In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:</p>
+<ul class="simple">
+<li><p>Model validation</p></li>
+<li><p>Overfitting and underfitting</p></li>
+<li><p>Bias-variance-tradeoff</p></li>
+<li><p>Regularization</p></li>
+<li><p>Model hyperparameters</p></li>
+<li><p>Gradient descent optimization</p></li>
+<li><p>Learning curves</p></li>
+</ul>
+<p>This lecture is accompanied by a demonstration Jupyter notebook. Furthermore, you will get your own experience with these concepts when working on the linear regression exercise and the problem set.</p>
+<p>The lecture is based and inspired by material in several good textbooks: in particular chapter 4 in <a class="reference external" href="http://shop.oreilly.com/product/0636920052289.do">Hands‑On Machine Learning with Scikit‑Learn and TensorFlow</a> by Aurelien Geron and chapter 5 in the
+<a class="reference external" href="http://shop.oreilly.com/product/0636920034919.do">Python Data Science Handbook</a> by Jake VanderPlas.
+The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo &amp; Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University.</p>
+<!-- !split -->
+<div class="section" id="model-validation">
+<h1><span class="section-number">2. </span>Model validation<a class="headerlink" href="#model-validation" title="Permalink to this headline">¶</a></h1>
+<!-- !split -->
+<div class="section" id="over-and-underfitting">
+<h2><span class="section-number">2.1. </span>Over- and underfitting<a class="headerlink" href="#over-and-underfitting" title="Permalink to this headline">¶</a></h2>
+<p>Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. <a class="reference external" href="#fig-over_under_fitting">fig-over_under_fitting</a> from the demonstration notebook.</p>
+<!-- <img src="fig/over_under_fitting.png" width=600><p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p> -->
+<p><img alt="The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. " src="fig/over_under_fitting.png" /></p>
+<p>The following quote from an unknown source provides a concise definition of overfitting and underfitting:</p>
+<blockquote>
+<div><p>A model overfits if it fits noise as much as data and underfits if it considers variability in data to be noise while it is actually not.</p>
+</div></blockquote>
+<p>The question is then: How do we detect these problems and how can we reduce them.</p>
+<p>We can detect over- and underfitting by employing holdout sets, also known as <em>validation</em> sets. This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the model parameters to best fit the training data, and then measure e.g. the mean-square error (MSE) of the model predictions for the validation set.</p>
+<p>An underfit model has a <em>high bias</em>, which means that it gives a rather poor fit and the performance metric will be rather bad (large error). This will be true for both the training and the validation sets.</p>
+<p>An overfit model typically has a very <em>large varianc</em>, i.e. the model predictions reveal larger variance than the data itself. We will discuss this in more detail further down. High variance models typically perform much better on the training set than on the validation set.</p>
+<p>Alternatively, a telltale sign for overfitting is the appearance of very large fit parameters that are needed for the fine tunings of cancellations of different terms in the model. The fits from our example has the following root-mean-square parameters</p>
+<div class="math notranslate nohighlight">
+\[\theta_\mathrm{rms} \equiv \frac{1}{p} \sqrt{ \sum_{i=0}^p \theta_i^2 } \equiv \| \theta \|_2^2 / p.\]</div>
+<p>order  <span class="math notranslate nohighlight">\(\theta_\mathrm{rms}\)</span></p>
+<hr class="docutils" />
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1                3.0e-01  
+3                1.2e+00  
+</pre></div>
+</div>
+<p>100                6.3e+12</p>
+<!-- !split -->
+</div>
+<div class="section" id="regularization-ridge-and-lasso">
+<h2><span class="section-number">2.2. </span>Regularization: Ridge and Lasso<a class="headerlink" href="#regularization-ridge-and-lasso" title="Permalink to this headline">¶</a></h2>
+<p>Assuming that overfitting is characterized by large fit parameters, we can attempt to avoid this scenario by <em>regularizing</em> the model parameters. We will introduce two kinds of regularization: Ridge and Lasso. In addition, so called elastic net regularization is also in use and basically corresponds to a linear combination of the Ridge and Lasso penalty functions.</p>
+<p>Let us remind ourselves about the expression for the standard Mean Squared Error (MSE) which we used to define our cost function and the equations for the ordinary least squares (OLS) method. That is our optimization problem is
+$$</p>
+<p>\boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}} \frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{	\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right}.</p>
+<div class="math notranslate nohighlight">
+\[
+or we can state it as
+\]</div>
+<p>\boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
+\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2,</p>
+<div class="math notranslate nohighlight">
+\[
+where we have used the definition of  a norm-2 vector, that is
+\]</div>
+<p>\vert\vert \boldsymbol{x}\vert\vert_2 = \sqrt{\sum_i x_i^2}.</p>
+<div class="math notranslate nohighlight">
+\[By minimizing the above equation with respect to the parameters
+$\boldsymbol{\theta}$ we could then obtain an analytical expression for the
+parameters $\boldsymbol{\theta}$.  We can add a regularization parameter $\lambda$ by
+defining a new cost function to be minimized, that is\]</div>
+<p>C_{\lambda,2} \left( \boldsymbol{X}, \boldsymbol{\theta} \right) \equiv
+\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2+\lambda\vert\vert \boldsymbol{\theta}\vert\vert_2^2</p>
+<div class="math notranslate nohighlight">
+\[which leads to the *Ridge regression* minimization problem where we
+constrain the parameters via $\vert\vert \boldsymbol{\theta}\vert\vert_2^2$ and the optimization equation becomes
+\]</div>
+<p>\boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
+C_{\lambda,2}
+.
+$$</p>
+<p>Alternatively, <em>Lasso regularization</em> can be performed by defining</p>
+<div class="math notranslate nohighlight">
+\[C_{\lambda,1} \left( \boldsymbol{X},\boldsymbol{\theta} \right) \equiv
+\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2+\lambda\vert\vert \boldsymbol{\theta}\vert\vert_1.\]</div>
+<p>Here we have defined the norm-1 as
+$$</p>
+<p>\vert\vert \boldsymbol{x}\vert\vert_1 = \sum_i \vert x_i\vert.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+Lasso stands for least absolute shrinkage and selection operator.\\&lt;!-- &lt;img src=&quot;fig/ridge_reg.png&quot; width=900&gt;&lt;p&gt;&lt;em&gt;Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. &lt;div id=&quot;fig-ridge_reg&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt; --&gt;
+![&lt;p&gt;&lt;em&gt;Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. &lt;div id=&quot;fig-ridge_reg&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt;](fig/ridge_reg.png)\\&lt;!-- !split --&gt;
+### More on Ridge Regression\\Using the matrix-vector expression for Ridge regression,\end{aligned}\end{align} \]</div>
+<p>C(\boldsymbol{X},\boldsymbol{\theta})=\frac{1}{n}\left{(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta})^T(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta})\right}+\lambda\boldsymbol{\theta}^T\boldsymbol{\theta},</p>
+<div class="math notranslate nohighlight">
+\[by taking the derivatives with respect to $\boldsymbol{\theta}$ we obtain then
+a slightly modified matrix inversion problem which for finite values
+of $\lambda$ does not suffer from singularity problems. We obtain\]</div>
+<p>\boldsymbol{\theta}^{\mathrm{Ridge}} = \left(\boldsymbol{X}^T\boldsymbol{X}+\lambda\boldsymbol{I}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y},</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}with $\boldsymbol{I}$ being a $p\times p$ identity matrix \\We see that Ridge regression is nothing but the standard
+OLS with a modified diagonal term added to $\boldsymbol{X}^T\boldsymbol{X}$. The
+consequences, in particular for our discussion of the bias-variance
+are rather interesting. Ridge regression imposes a constraint on the model parameters
+\end{aligned}\end{align} \]</div>
+<p>\sum_{i=0}^{p-1} \theta_i^2 \leq t,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+with $t$ a finite positive number. \\For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's](https://arxiv.org/abs/1509.09169) article or [Mehta et al's article](https://arxiv.org/abs/1803.08823).\\&lt;!-- !split --&gt;
+### The bias-variance tradeoff\\We will discuss the bias-variance tradeoff in the context of
+continuous predictions such as regression. However, many of the
+intuitions and ideas discussed here also carry over to classification
+tasks. Consider a dataset $\mathcal{L}$ consisting of the data
+$\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. \\Let us assume that the data with experimental noise is generated from a true model
+\end{aligned}\end{align} \]</div>
+<p>\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp},</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where $\boldsymbol{\epsilon}_\mathrm{exp}$ is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance $\sigma^2_\mathrm{exp}$.\\In our derivation of the ordinary least squares method we defined then
+an approximation to the function $f$ in terms of the parameters
+$\boldsymbol{\theta}$ and the design matrix $\boldsymbol{X}$ which embody our model,
+that is 
+\end{aligned}\end{align} \]</div>
+<p>\boldsymbol{f}(\boldsymbol{x}) \approx \boldsymbol{\tilde{f}}(\boldsymbol{\theta}) \equiv \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta}.</p>
+<div class="math notranslate nohighlight">
+\[
+The relation between the true description and our model is
+\]</div>
+<p>f_i = \tilde{y}<em>i + \boldsymbol{\epsilon}</em>{\mathrm{model},i}.</p>
+<div class="math notranslate nohighlight">
+\[Thereafter we found the optimum set of model parameters $\boldsymbol{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
+\]</div>
+<p>C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 =
+\left[ \begin{array}{c}
+\mathrm{assume}\
+\mathrm{i.i.d.~samples}
+\end{array} \right]
+\approx
+\mathbb{E}\left[(y-\tilde{y})^2\right],</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where we have made the key assumption that the residuals $(\boldsymbol{y}-\boldsymbol{\tilde{y}})$ are independent and identically distributed (i.i.d.) random variables, i.e. these are samples from a single underlying probability distribution. Remember that $\mathbb{E}(t)$ denotes the expectation value for the random variable $t$. In this context we also remind that the variance is given by $\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]$.\\We can rewrite this expectation value as 
+\end{aligned}\end{align} \]</div>
+<p>\mathbb{E}\left[(y-\tilde{y})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\tilde{y}\right])^2+\frac{1}{n}\sum_i(\tilde{y}<em>i-\mathbb{E}\left[\tilde{y}\right])^2+\sigma^2</em>\mathrm{exp}.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}The first of the three terms represents the square of the bias of the learning
+method, which can be thought of as the error caused by the simplifying
+assumptions built into the method. The second term represents the
+variance of the chosen model and finally the last terms is the irreducible error $\epsilon_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.\\To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\tilde{y}$.
+We use a more compact notation in terms of the expectation value 
+\end{aligned}\end{align} \]</div>
+<p>\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y})^2\right],</p>
+<div class="math notranslate nohighlight">
+\[
+and adding and subtracting $\mathbb{E}\left[\tilde{y}\right]$ we get
+\]</div>
+<p>\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y}+\mathbb{E}\left[\tilde{y}\right]-\mathbb{E}\left[\tilde{y}\right])^2\right].</p>
+<div class="math notranslate nohighlight">
+\[
+We can rewrite this expression as a sum of three terms:
+* The first one is the (squared) bias of the model plus the irreducible data error $\sigma_\mathrm{exp}^2$\]</div>
+<p>\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\mathbb{E}\left[\tilde{y}\right])^2\right] = \mathbb{E}\left[({f}-\mathbb{E}\left[\tilde{y}\right])^2\right] + \mathbb{E}\left[\epsilon_\mathrm{exp}^2\right]+0.</p>
+<div class="math notranslate nohighlight">
+\[
+* The second one is the variance of the model $\mathrm{Var}\left[ \tilde{y} \right]$\]</div>
+<p>\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}\right] - \tilde{y})^2\right],</p>
+<div class="math notranslate nohighlight">
+\[
+* and the last one is zero\]</div>
+<p>2\mathbb{E}\left[(y-\mathbb{E}\left[\tilde{y}\right])(\mathbb{E}\left[\tilde{y}\right]-\tilde{y})\right] = 2\mathbb{E}\left[y-\mathbb{E}\left[\tilde{y}\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}\right]\right] - \mathbb{E}\left[\tilde{y}\right]\right) = 0.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}The tradeoff between bias and variance is illustrated in Fig. [fig-bias_variance](#fig-bias_variance) from the demonstration notebook.\\&lt;!-- &lt;img src=&quot;fig/bias_variance.png&quot; width=600&gt;&lt;p&gt;&lt;em&gt;The bias-variance for different polynomial models of our noisy data set. &lt;div id=&quot;fig-bias_variance&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt; --&gt;
+![&lt;p&gt;&lt;em&gt;The bias-variance for different polynomial models of our noisy data set. &lt;div id=&quot;fig-bias_variance&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt;](fig/bias_variance.png)\\
+&lt;!-- !split  --&gt;
+### Summing up\\
+The bias-variance tradeoff summarizes the fundamental tension in
+machine learning, particularly supervised learning, between the
+complexity of a model and the amount of training data needed to train
+it.  Since data is often limited, in practice it is often useful to
+use a less-complex model with higher bias, that is  a model whose asymptotic
+performance is worse than another model because it is easier to
+train and less sensitive to sampling noise arising from having a
+finite-sized training dataset (smaller variance). \\The above equations tell us that in
+order to minimize the expected validation error, we need to select a
+statistical learning method that simultaneously achieves low variance
+and low bias. Note that variance is inherently a nonnegative quantity,
+and squared bias is also nonnegative. Hence, we see that the expected
+validation MSE can never lie below $\mathrm{Var}(\boldsymbol{\epsilon}_\mathrm{exp}) \equiv \sigma^2_\mathrm{exp}$, the irreducible error.\\
+What do we mean by the variance and bias of a statistical learning
+method? The variance refers to the amount by which our model would change if we
+estimated it using a different training data set. Since the training
+data are used to fit the statistical learning method, different
+training data sets  will result in a different estimate. But ideally the
+estimate for our model should not vary too much between training
+sets. However, if a method has high variance  then small changes in
+the training data can result in large changes in the model. In general, more
+flexible statistical methods have higher variance.\\
+&lt;!-- !split  --&gt;
+### Model validation strategy\\Let us summarize the basic recipe for applying a supervise machine-learning model:\\ 1. Choose a class of models
+ 2. Choose model hyperparameters
+ 3. Fit the model to the training data
+ 4. Use the model for predictions\\In our examples so far, the class of models has been linear regression models with polynomial basis functions. Hyperparameters then correspond to the choice of polynomial degree, and the Ridge regularization factor $\lambda$ if we use this technique, etc. \\In order to make an informed choice for these hyperparameters we need to validate that our model and its hyperparameters provide a good fit to the data. This important step is typically known as *model validation*, and it most often involves splitting the data into two sets: the training set and the validation set. \\The model is then trained on the first set of data, while it is validated (by computing your choice of performance score) on the validation set.\\*Question.* 
+Why is it important not to train and evaluate the model on the same data?\\
+&lt;!-- !split  --&gt;
+### Cross-validation\\Cross-validation is a strategy to find model hyperparameters that yield a model with good prediction
+performance. A common practice is to hold back some subset of the data from the training of the model and then use this holdout set to check the model performance. The splitting of data can be performed using the the `train_test_split` utility in Scikit-Learn.\\One of these two data sets, called the 
+*training set*, plays the role of **original** data on which the model is
+built. The second of these data sets, called the *validation set*, plays the
+role of the **novel** data and is used to evaluate the prediction
+performance (often operationalized as the log-likelihood or the
+prediction error: MSE or R2 score) of the model built on the training data set. This
+procedure (model building and prediction evaluation on training and
+validation set, respectively) is done for a collection of possible choices for the hyperparameters. The parameter that yields the model with
+the best prediction performance is to be preferred. \\&lt;!-- !split --&gt;
+The validation set approach is conceptually simple and is easy to implement. But it has two potential drawbacks:\\* The validation estimate of the validation error rate can be highly variable, depending on precisely which observations are included in the training set and which observations are included in the validation set. There might be data points that are critical for training the model, and the performance metric will be very bad if those happen to be excluded from the training set.
+* In the validation approach, only a subset of the observations, those that are included in the training set rather than in the validation set are used to fit the model. Since statistical methods tend to perform worse when trained on fewer observations, this suggests that the validation set error rate may tend to overestimate the validation error rate for the model fit on the entire data set.\\&lt;!-- !split  --&gt;
+To reduce the sensitivity on a particular data split, one can use perform several different splits. For each split the model is fit using the training data and
+evaluated on the corresponding validation set. The hyperparameter that performs best on average (in some sense) is then selected.\\
+&lt;!-- !split  --&gt;
+#### $k$-fold cross validation cross-validation\\When the repetitive splitting of the data set is done randomly,
+samples may accidently end up in a fast majority of the splits in
+either training or validation set. Such samples may have an unbalanced
+influence on either model building or prediction evaluation. To avoid
+this $k$-fold cross-validation is an approach to structure the data splitting. The
+samples are divided into $k$ more or less equally sized, exhaustive and
+mutually exclusive subsets. In turn (at each split) one of these
+subsets plays the role of the validation set while the union of the
+remaining subsets constitutes the training set. Such a splitting
+warrants a balanced representation of each sample in both training and
+validation set over the splits. Still the division into the $k$ subsets
+involves a degree of randomness. This may be fully excluded when
+choosing $k=n$. This particular case is referred to as leave-one-out
+cross-validation (LOOCV). \\&lt;!-- !split  --&gt;
+#### How to set up cross-validation\\* Define a range of interest for the  model hyperparameter(s) $\lambda$.
+* Divide the data set $\mathcal{D} = \{1, \ldots, n\}$ into $k$ exhaustive and mutually exclusive subsets $\mathcal{D}_{i} \subset \mathcal{D}$ for $i=1,\ldots,k$, and $\mathcal{D}_{i} \cap \mathcal{D}_{j} = \emptyset$ for $i \neq j$.
+* For $i \in \{1, \ldots, k\}$:
+  * Define $\mathcal{D}_{i}$ as the validation set and $\mathcal{D}_{-i} = \mathcal{D} - \mathcal{D}_i$ as the training set.
+  * Fit the model for each choice of the hyperparameter using the training set, which will give a best fit $\boldsymbol{\theta}_{-i}(\lambda)$.
+  * Evaluate the prediction performance of these models on the validation set by the MAE, MSE, or the R2 score function. \\* Average the prediction performances of the validation sets at each grid point of the hyperparameter by computing the *cross-validated error*. It is an estimate of the prediction performance of the model corresponding to this value of the penalty parameter on novel data. For example, using the MSE measure it is defined as\end{aligned}\end{align} \]</div>
+<p>\begin{align*}
+\mathrm{CV}<em>k(\lambda) \equiv
+\frac{1}{k} \sum</em>{i = 1}^k \mathrm{MSE} \left( \boldsymbol{\theta}_{-i}(\lambda) \right).
+\end{align*}
+$$</p>
+<ul class="simple">
+<li><p>The value of the hyperparameter that minimizes the cross-validated error is the value of choice.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lambda^* = \underset{\lambda}{\operatorname{argmin}}
+\mathrm{CV}_k(\lambda)
+.
+\]</div>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="gradient-descent-optimization">
+<h1><span class="section-number">3. </span>Gradient-descent optimization<a class="headerlink" href="#gradient-descent-optimization" title="Permalink to this headline">¶</a></h1>
+<p>With the linear regression model we could find the best fit parameters by solving the normal equation. Although we could encounter problems associated with inverting a matrix, we do in principle have a closed-form expression for the model parameters.</p>
+<p>In general, the problem of optimizing the model parameters is a very difficult one. We will return to the optimization problem later in this course, but will just briefly introduce the most common class of optimization algorithms: <em>Gradient descent</em> methods. The general idea of Gradient descent is to tweak parameters iteratively in order to minimize a cost function.</p>
+<p>Let us start with a cost function for our model such as the chi-squared function that was introduced in the Linear Regression lecture:</p>
+<div class="math notranslate nohighlight">
+\[\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},\]</div>
+<p>Instead of finding a matrix equation for the vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> that minimizes this measure we will describe an iterative procedure:</p>
+<ul class="simple">
+<li><p>Make a <em>random initialization</em> of the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_0\)</span>.</p></li>
+<li><p>Compute the gradient of the cost function with respect to the parameters (note that this can be done analytically for the linear regression model). Let us denote this gradient vector <span class="math notranslate nohighlight">\(\boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)\)</span>.</p></li>
+<li><p>Once you have the gradient vector, which points uphill, just go in the opposite direction to go downhill. This means subtracting <span class="math notranslate nohighlight">\(\eta \boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)\)</span> from <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_0\)</span>. Note that the magnitude of the step, <span class="math notranslate nohighlight">\(\eta\)</span> is known as the learning rate and becomes another hyperparameter that needs to be tuned.</p></li>
+<li><p>Continue this process iteratively until the gradient vector <span class="math notranslate nohighlight">\(\boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)\)</span> is close to zero.</p></li>
+</ul>
+<p>Gradient descent is a general optimization algorithm. However, there are several important issues that should be known before using it:</p>
+<ol class="simple">
+<li><p>It requires the computation of partial derivatives of the cost function. This is straight-forward for the linear regression method, but can be difficult for other models. The use of <em>automatic differentiation</em> is very popular in the ML community,and is well worth exploring.</p></li>
+<li><p>In principle, gradient descent works well for convex cost functions, i.e. where the gradient will eventually direct you to the position of the global minimum. Again, the linear regression problem is favorable because you can show that the cost function has that property. However, most cost functions—in particular in many dimensions—correspond to very <em>complicated surfaces with many local minima</em>. In those cases, gradient descent is often not a good method.</p></li>
+</ol>
+<p>There are variations of gradient descent that uses only fractions of the training set for computation of the gradient. In particular, stochastic gradient descent and mini-batch gradient descent.</p>
+<!-- !split -->
+<div class="section" id="learning-curves">
+<h2><span class="section-number">3.1. </span>Learning curves<a class="headerlink" href="#learning-curves" title="Permalink to this headline">¶</a></h2>
+<p>The performance of your model will depend on the amount of data that is used for training. When using iterative optimization approaches, such as gradient descent, it will also depend on the number of training iterations. In order to monitor this dependence one usually plots <em>learning curves</em>.</p>
+<p>Learning curves are plots of the model’s performance on both the training and the validation sets, measured by some performance metric such as the mean squared error. This measure is plotted as a function of the size of the training set, or alternatively as a function of the training iterations.</p>
+<!-- <img src="fig/learning_curve.png" width=600><p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p> -->
+<p><img alt="Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. " src="fig/learning_curve.png" /></p>
+<p>Several features in the left-hand panel deserves to be mentioned:</p>
+<ol class="simple">
+<li><p>The performance on the training set starts at zero when only 1-2 data are in the training set.</p></li>
+<li><p>The error on the training set then increases steadily as more data is added.</p></li>
+<li><p>It finally reaches a plateau.</p></li>
+<li><p>The validation error is initially very high, but reaches a plateau that is very close to the training error.</p></li>
+</ol>
+<p>The learning curves in the right hand panel are similar to the underfitting model; but there are some important differences:</p>
+<ol class="simple">
+<li><p>The training error is much smaller than with the linear model.</p></li>
+<li><p>There is no clear plateau.</p></li>
+<li><p>There is a gap between the curves, which implies that the model performs significantly better on the training data than on the validation set.</p></li>
+</ol>
+<p>Both these examples that we have just studied demonstrate again the so called <em>bias-variance tradeoff</em>.</p>
+<ul class="simple">
+<li><p>A high bias model has a relatively large error, most probably due to wrong assumptions about the data features.</p></li>
+<li><p>A high variance model is excessively sensitive to small variations in the training data.</p></li>
+<li><p>The irreducible error is due to the noisiness of the data itself. It can only be reduced by obtaining better data.</p></li>
+</ul>
+<p>We seek a more systematic way of distinguishing between under- and overfitting models, and for quantification of the different kinds of errors. We will find that <strong>Bayesian statistics</strong> has the promise to deliver on that ultimate goal.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="LinearRegression.html" title="previous page"><span class="section-number">1. </span>Linear regression</a>
+    <a class='right-next' id="next-link" href="demo-ModelValidation.html" title="next page"><span class="section-number">4. </span>Linear Regression and Model Validation demonstration</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

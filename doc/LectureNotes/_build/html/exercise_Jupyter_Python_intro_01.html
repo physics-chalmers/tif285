@@ -1,0 +1,1108 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Python and Jupyter notebooks: part 01 &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Python and Jupyter notebooks: part 02" href="exercise_Jupyter_Python_intro_02.html" />
+    <link rel="prev" title="2. Reading Data and fitting" href="demo-Intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/exercise_Jupyter_Python_intro_01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ok-time-to-try-out-python-expressions-and-numpy">
+   4.1. Ok, time to try out Python expressions and numpy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging-aside">
+     4.1.1. Debugging aside …
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numpy-arrays">
+     4.1.2. numpy arrays
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-help">
+   4.2. Getting help
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   4.3. Functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     4.3.1. Debugging aside …
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-with-matplotlib">
+   4.4. Plotting with Matplotlib
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-a-figure">
+     4.4.1. Saving a figure
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-examples-with-matplotlib">
+     4.4.2. Further examples with matplotlib
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#widgets">
+   4.5. Widgets!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-linear-algebra">
+   4.6. Numpy linear algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#further-examples-with-numpy">
+     4.6.1. Further examples with numpy
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="python-and-jupyter-notebooks-part-01">
+<h1><span class="section-number">4. </span>Python and Jupyter notebooks: part 01<a class="headerlink" href="#python-and-jupyter-notebooks-part-01" title="Permalink to this headline">¶</a></h1>
+<p>Original version: Dick Furnstahl, Ohio State University<br/>
+Last revised: 29-Aug-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
+<p><strong>You can find valuable documentation under the Jupyter notebook Help menu. The “User Interface Tour” and “Keyboard Shortcuts” are useful places to start, but there are also many other links to documentation there.</strong></p>
+<p>This is a whirlwind tour of just the minimum we need to know about Python and Jupyter notebooks to get started doing data analysis.  We’ll add more features and details as we proceed.</p>
+<p>A Jupyter notebook is displayed on a web browser on a computer, tablet (e.g., IPad), or even your smartphone.  The notebook is divided into <em>cells</em>, of which two types are relevant for us:</p>
+<ul class="simple">
+<li><p>Markdown cells: These have headings, text, and mathematical formulas in <span class="math notranslate nohighlight">\(\LaTeX\)</span> using a simple form of HTML called markdown.</p></li>
+<li><p>Code cells: These have Python code (or other languages, but we’ll stick to Python).</p></li>
+</ul>
+<p>Either type of cell can be selected with your cursor and will be highlighted in color when active.  You evaluate an active cell with shift-return (as with Mathematica) or by pressing <code class="docutils literal notranslate"><span class="pre">Run</span></code> on the toolbar.  Some notes:</p>
+<ul class="simple">
+<li><p>When a new cell is inserted, by default it is a Code cell and will have <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[]:</span></code> in front.  You can type Python expressions or entire programs in a cell.  How you break up code between cells is your choice and you can always put Markdown cells in between.  When you evaluate a cell it gets the next number, e.g., <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[5]:</span></code>.</p></li>
+<li><p>On the menu bar is a pulldown menu that lets you change back and forth between Code and Markdown cells.  Once you evaluate a Markdown cell, it gets formatted (and has a blue border).  To edit the Markdown cell, double click in it.</p></li>
+</ul>
+<p><strong>Try double-clicking on this cell and then shift-return.</strong>  You will see that a bullet list is created just with an asterisk and a space at the beginning of lines (without the space you get <em>italics</em> and with two asterisks you get <strong>bold</strong>).  <strong>Double click on the title header above and you’ll see it starts with a single #.</strong>  Headings of subsections are made using ## or ###.  See this <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown cheatsheet</a> for a quick tour of the Markdown language (including how to add links!).</p>
+<p><strong>Now try turning the next (empty) cell to a Markdown cell and type:</strong> <code class="docutils literal notranslate"><span class="pre">Einstein</span> <span class="pre">says</span> <span class="pre">$E=mc^2$</span></code> <strong>and then evaluate it.</strong>  This is <span class="math notranslate nohighlight">\(\LaTeX\)</span>! (If you forget to convert to Markdown and get <code class="docutils literal notranslate"><span class="pre">SyntaxError:</span> <span class="pre">invalid</span> <span class="pre">syntax</span></code>, just select the cell and convert to Markdown with the menu.)</p>
+<p>The menus enable you to rename your notebook file (always ending in <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">Checkpoint</span></code> to save the changes to your notebook.  You can insert and delete cells (use the up and down arrows in the toolbar to easily move cells).  You will often use the <code class="docutils literal notranslate"><span class="pre">Kernel</span></code> menu to <code class="docutils literal notranslate"><span class="pre">Restart</span></code> the notebook (and possibly clear output). The buttons below the menu allow quick access to several useful commands.</p>
+<p>As you get more proficient working with notebooks, you will certainly start using the shortcut keys from the command mode of cells. A cell that is marked in blue implies that you are in command mode. You can start editing the cell by hitting <code class="docutils literal notranslate"><span class="pre">Enter</span></code> (or by clicking inside it). You can exit from edit mode into command mode by hitting <code class="docutils literal notranslate"><span class="pre">Esc</span></code>. A list of shortcut keys can be seen when opening the command palette by clicking on the keyboard button.</p>
+<div class="section" id="ok-time-to-try-out-python-expressions-and-numpy">
+<h2><span class="section-number">4.1. </span>Ok, time to try out Python expressions and numpy<a class="headerlink" href="#ok-time-to-try-out-python-expressions-and-numpy" title="Permalink to this headline">¶</a></h2>
+<p>We can use the Jupyter notebook as a super calculator much like Mathematica and Matlab.  <strong>Try some basic operations, modifying and evaluating the following cells, noting that exponentiation is with</strong> <code class="docutils literal notranslate"><span class="pre">**</span></code> <strong>and not</strong> <code class="docutils literal notranslate"><span class="pre">^</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># Everything after a number sign / pound sign / hashtag) </span>
+        <span class="c1">#  is a comment</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">3.2</span> <span class="o">*</span> <span class="mf">4.713</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.081600000000002
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that if we want a floating point number (which will be the same as a <code class="docutils literal notranslate"><span class="pre">double</span></code> in C++), we <em>always</em> include a decimal point (even when we don’t have to) while a number without a decimal point is an integer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">3.</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can define integer, floating point, and string variables, perform operations on them, and print them.  Note that we don’t have to predefine the type of a variable and we can use underscores in the names (unlike Mathematica).  <strong>Evaluate the following cells and then try your own versions.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span>   <span class="c1"># If the last line of a cell returns a value, it is printed.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mf">3.</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">7.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y = &#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>           <span class="c1"># Strings delimited by &#39; &#39;s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y =  72.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are several ways to print strings that includes variables from your code. We recommend using the relatively newly added <code class="docutils literal notranslate"><span class="pre">fstring</span></code>. See, e.g., this <a class="reference external" href="https://cito.github.io/blog/f-strings/">blog</a> for examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>      <span class="c1"># Just a preview: more on format later </span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>      <span class="c1">#  (note that this uses the &quot;new&quot; fstring)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y = 72
+y = 72.00
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">fstring</span></code> will be used predominantly in this course, but you might also encounter older formatting syntax.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">%.2f</span><span class="s1">  y = </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x = </span><span class="si">{0:.2f}</span><span class="s1">  y = </span><span class="si">{1:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;x = </span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">  y = </span><span class="si">{</span><span class="n">y</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 5.00  y = 72.00
+x = 5.00  y = 72.00
+x = 5.00  y = 72.00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">&#39;Christian&#39;</span>     <span class="c1"># Strings delimited by &#39; &#39;s</span>
+<span class="n">last_name</span> <span class="o">=</span> <span class="s1">&#39;Forssén&#39;</span>
+<span class="n">full_name</span> <span class="o">=</span> <span class="n">first_name</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">last_name</span>  <span class="c1"># you can concatenate strings </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">first_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Christian Forssén
+Christian Forssén
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ok, how about square roots and trigonometric functions and …</p>
+<p><em>(Note: the next cells will give error messages — keep reading to see how to fix them.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">--------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="mf">66e338417901</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;sqrt&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to <code class="docutils literal notranslate"><span class="pre">import</span></code> these functions through the numpy library. There are other choices, but numpy works with the arrays we will use.  Note: <em>Never</em> use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">numpy</span> <span class="pre">import</span> <span class="pre">*</span></code> instead of <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code>.  Here <code class="docutils literal notranslate"><span class="pre">np</span></code> is just a abbreviation for numpy (which we can choose to be anything, but <code class="docutils literal notranslate"><span class="pre">np</span></code> is conventional).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">0.</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now functions and constants like <code class="docutils literal notranslate"><span class="pre">np.sqrt</span></code> and <code class="docutils literal notranslate"><span class="pre">np.pi</span></code> will work.  Go back and fix the square root and sine.</p>
+<div class="section" id="debugging-aside">
+<h3><span class="section-number">4.1.1. </span>Debugging aside …<a class="headerlink" href="#debugging-aside" title="Permalink to this headline">¶</a></h3>
+<p>Suppose you try to import and it fails (<strong>go ahead and evaluate the cell</strong>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpie</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you get a <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>, the first thing to check is whether you have misspelled the name. Try using Google, e.g., search for “python numpie”. In this case (and in most others), Google will suggest the correct name (here it is numpy).  If the name does exist, check whether it sounds like the package you wanted.</p>
+<p>If you have the correct spelling, check whether you have installed the relevant package.  If you installed Python with Anaconda (which we will assume you did – if not, do it!), then use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span> <span class="pre">numpy</span></code> in a Terminal window (on a Mac or Linux box) or in an Anaconda Prompt window (on a Windows PC).</p>
+</div>
+<div class="section" id="numpy-arrays">
+<h3><span class="section-number">4.1.2. </span>numpy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h3>
+<p>We will often use numpy arrays so we’ll start with those.  They are <em>like</em> lists delimited by square brackets, i.e., <code class="docutils literal notranslate"><span class="pre">[]</span></code>s, and we will construct them with <code class="docutils literal notranslate"><span class="pre">np.arange(min,</span> <span class="pre">max,</span> <span class="pre">step)</span></code> to get an array from <code class="docutils literal notranslate"><span class="pre">min</span></code> to <code class="docutils literal notranslate"><span class="pre">max</span></code> in steps of <code class="docutils literal notranslate"><span class="pre">step</span></code>. Examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>
+<span class="n">t_pts</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we give a numpy array to a function, each term in the list is evaluated with that function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can pick out elements of the list.  Why does the last one fail?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="getting-help">
+<h2><span class="section-number">4.2. </span>Getting help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>You will often need help identifying the appropriate Python (or numpy or scipy or …) command or you will need an example of how to do something or you may get an error message you can’t figure out.  In all of these cases, Google (or equivalent) is your friend. Always include “python” in the search string (or “numpy” or “matplotlib” or …) to avoid getting results for a different language. You will usually get an online manual as one of the first responses if you ask about a function; these usually have examples if you scroll down. Otherwise, answers from <em>Stack Overflow</em> queries are your best bet to find a useful answer.</p>
+</div>
+<div class="section" id="functions">
+<h2><span class="section-number">4.3. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>There are many Python language features that we will use eventually, but in the short term what we need first are functions.  Here we first see the role of <em>indentation</em> in Python in place of {}s or ()s in other languages.  We’ll always indent four spaces (never tabs!).  We know a function definition is complete when the indentation stops.</p>
+<p>To find out about a Python function or one you define, put your cursor on the function name and hit shift+Tab+Tab. <strong>Go back and try it on <code class="docutils literal notranslate"><span class="pre">np.arange</span></code>.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use &quot;def&quot; to create new functions.  </span>
+<span class="c1">#  Note the colon and indentation (4 spaces).</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function squares the input.  Always include a brief description</span>
+<span class="sd">        at the top between three starting and three ending quotes.  We will</span>
+<span class="sd">        talk more about proper documentation later.</span>
+<span class="sd">        Try shift+Tab+Tab after you have evaluated this function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">my_function</span><span class="p">(</span><span class="mf">5.</span><span class="p">))</span>
+
+<span class="c1"># We can pass an array to the function and it is evaluated term-by-term.</span>
+<span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_function</span><span class="p">(</span><span class="n">x_pts</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two variables, with a default for the second</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">4.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add two numbers.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is </span><span class="si">{}</span><span class="s2"> and y is </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>  <span class="c1"># Return values with a return statement</span>
+
+<span class="c1"># Calling functions with parameters</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The sum is &#39;</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>  <span class="c1"># =&gt; prints out &quot;x is 5 and y is 6&quot; and returns 11</span>
+
+<span class="c1"># Another way to call functions is with keyword arguments</span>
+<span class="n">add</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Keyword arguments can arrive in any order.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do you explain the following result?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3><span class="section-number">4.3.1. </span>Debugging aside …<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>There are two bugs in the following function.  <strong>Note the line where an error is first reported and fix the bugs sequentially (so you see the different error messages).</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello_function</span><span class="p">()</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;hello, world!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">msg</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-with-matplotlib">
+<h2><span class="section-number">4.4. </span>Plotting with Matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<p>Matplotlib is the plotting library we’ll use, at least at first.  We’ll follow convention and abbreviate the module we need as <code class="docutils literal notranslate"><span class="pre">plt</span></code>.  The <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> line tells the Jupyter notebook to make inline plots (we’ll see other possibilities later).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Procedure we’ll use to make the skeleton plot:
+0. Generate some data to plot in the form of arrays.</p>
+<ol class="simple">
+<li><p>Create a figure;</p></li>
+<li><p>add one or more subplots;</p></li>
+<li><p>make a plot and display it.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>     <span class="c1"># step 0.</span>
+<span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t_pts</span><span class="p">)</span>  <span class="c1"># More often this would be from a function </span>
+                       <span class="c1">#  *we* write.</span>
+
+<span class="n">my_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>              <span class="c1"># step 1.</span>
+<span class="n">my_ax</span> <span class="o">=</span> <span class="n">my_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># step 2: rows=1, cols=1, 1st subplot</span>
+<span class="n">my_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">)</span>           <span class="c1"># step 3: plot x vs. t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>NOTE: When making just a single plot, you will more usually see steps 1 to 3 compressed into <code class="docutils literal notranslate"><span class="pre">plt.plot(t_pts,</span> <span class="pre">np.sin(t_pts))</span></code>.  Don’t do this.  It saves a couple of lines but restricts your ability to easily extend the plot, which is what we want to make easy.</p>
+<p>We can always go back and dress up the plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">my_ax</span> <span class="o">=</span> <span class="n">my_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># nrows=1, ncols=1, first plot</span>
+<span class="n">my_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sine&#39;</span><span class="p">)</span>
+
+<span class="n">my_ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">my_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sin(t)$&#39;</span><span class="p">)</span>  <span class="c1"># here $s to get LaTeX and r to render it</span>
+<span class="n">my_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Sine wave&#39;</span><span class="p">)</span>
+
+<span class="c1"># here we&#39;ll put the function in the call to plot!</span>
+<span class="n">my_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>  <span class="c1"># just label the plot</span>
+
+<span class="n">my_ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>  <span class="c1"># turn on legend</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now make two subplots:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t_pts</span><span class="p">)</span>         <span class="c1"># another function for a separate plot</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># allow more room for two subplots</span>
+
+<span class="c1"># call the first axis ax1</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># one row, two columns, first plot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sine&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span>  <span class="c1"># just label the plot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># one row, two columns, second plot</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_pts</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;exponential&#39;</span><span class="p">)</span>  
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="saving-a-figure">
+<h3><span class="section-number">4.4.1. </span>Saving a figure<a class="headerlink" href="#saving-a-figure" title="Permalink to this headline">¶</a></h3>
+<p>Saving a figure to disk is as simple as calling <a class="reference external" href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.savefig"><code class="docutils literal notranslate"><span class="pre">savefig</span></code></a> with the name of the file (or a file object). The available image formats depend on the graphics backend you use.</p>
+<p>Let us save the figure (named ‘fig’) from the previous cell</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;sine_and_exp.png&quot;</span><span class="p">)</span>
+<span class="c1"># and a transparent version:</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;sine_and_exp_transparent.png&quot;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="further-examples-with-matplotlib">
+<h3><span class="section-number">4.4.2. </span>Further examples with matplotlib<a class="headerlink" href="#further-examples-with-matplotlib" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://matplotlib.org/gallery.html">matplotlib gallery</a> is a good resource for learning by working examples.</p></li>
+<li><p>You are also welcome to explore the more extensive matplotlib tutorial by Geron. It is reproduced, with the accompanying open-source Apache License, in the <span class="xref myst">handson-ml-notebooks</span> directory.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="widgets">
+<h2><span class="section-number">4.5. </span>Widgets!<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<p>A widget is an object such as a slider or a check box or a pulldown menu.  We can use them to make it easy to explore different parameter values in a problem we’re solving, which is invaluable for building intuition.  They act on the argument of a function.  We’ll look at a simple case here but plan to explore this more as we proceed.</p>
+<p>The set of widgets we’ll use here (there are others!) is from <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code>; we’ll conventionally import the module as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ipywidgets</span> <span class="pre">as</span> <span class="pre">widgets</span></code> and we’ll also often use <code class="docutils literal notranslate"><span class="pre">display</span></code> from <code class="docutils literal notranslate"><span class="pre">Ipython.display</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>The simplest form is to use <code class="docutils literal notranslate"><span class="pre">interact</span></code>, which we pass a function name and the variables with ranges.  By default this makes a <em>slider</em>, which takes on integer or floating point values depending on whether you put decimal points in the range. <strong>Try it! Then modify the function and try again.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can do this to any function</span>
+<span class="k">def</span> <span class="nf">test_f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test function that prints the passed value and its square.</span>
+<span class="sd">       Note that there is no return value in this case.&quot;&quot;&quot;</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;x = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39; and  x^2 = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">test_f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">10.</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explicit declaration of the widget (here FloatSlider) and details</span>
+<span class="k">def</span> <span class="nf">test_f</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">5.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test function that prints the passed value and its square.</span>
+<span class="sd">       Note that there is no return value in this case.&quot;&quot;&quot;</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;x = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39; and  x^2 = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">test_f</span><span class="p">,</span> 
+                 <span class="n">x</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span><span class="nb">max</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s an example with some bells and whistles for a plot.  <strong>Try making changes!</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_it</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> 
+            <span class="n">function</span><span class="o">=</span><span class="s1">&#39;sin&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Make a simple plot of a trig function but allow the plot style</span>
+<span class="sd">        to be changed as well as the function and frequency.&quot;&quot;&quot;</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># linspace(min, max, total #)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">function</span><span class="o">==</span><span class="s1">&#39;sin&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">function</span><span class="o">==</span><span class="s1">&#39;cos&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">function</span><span class="o">==</span><span class="s1">&#39;tan&#39;</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">plot_it</span><span class="p">,</span> 
+                 <span class="n">freq</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">],</span> 
+                 <span class="n">lw</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span><span class="p">],</span>
+                 <span class="n">function</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sin&#39;</span><span class="p">,</span> <span class="s1">&#39;cos&#39;</span><span class="p">,</span> <span class="s1">&#39;tan&#39;</span><span class="p">])</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numpy-linear-algebra">
+<h2><span class="section-number">4.6. </span>Numpy linear algebra<a class="headerlink" href="#numpy-linear-algebra" title="Permalink to this headline">¶</a></h2>
+<p>Having used numpy arrrays to describe vectors, we are now ready to try out matrices. We can define a <span class="math notranslate nohighlight">\(3 \times 3 \)</span> real matrix <span class="math notranslate nohighlight">\(\hat{A}\)</span> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.38629436 1.94591015 2.07944154]
+ [1.09861229 2.30258509 2.39789527]
+ [1.38629436 1.60943791 1.94591015]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we use the <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute we would get <span class="math notranslate nohighlight">\((3, 3)\)</span> as output, that is verifying that our matrix is a <span class="math notranslate nohighlight">\(3\times 3\)</span> matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can slice the matrix and print for example the first column (Python organized matrix elements in a row-major order, see below) as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="c1"># print the first column, row-major order and elements start with 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can continue this was by printing out other columns or rows. The example here prints out the second column</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span> <span class="p">]))</span>
+<span class="c1"># print the first column, row-major order and elements start with 0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numpy contains many other functionalities that allow us to slice, subdivide etc etc arrays. We strongly recommend that you look up the <a class="reference external" href="http://www.numpy.org/">Numpy website for more details</a>. Useful functions when defining a matrix are the <code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> function which declares a matrix of a given dimension and sets all elements to zero</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to zero</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to one</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>or as uniformly distributed random numbers on <span class="math notranslate nohighlight">\([0,1]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="c1"># define a matrix of dimension 10 x 10 and set all elements to random numbers with x \in [0, 1]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The transpose of this matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dot product of two matrices can be computed with the <code class="docutils literal notranslate"><span class="pre">numpy.dot</span></code> function. Note that it is not the same as the arithmetic <span class="math notranslate nohighlight">\(*\)</span> operation that performs elementwise multiplication</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;The dot product:&#39;</span><span class="p">)</span>
+<span class="n">AA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AA</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Element-wise product:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The inverse of this matrix can be computed using the <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code> module</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ainv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Ainv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dot product of a matrix by its inverse returns the identity matrix (with small floating point errors). Verify that this is true:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">Ainv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The eigenvalues and eigenvectors of a matrix can be computed with the <code class="docutils literal notranslate"><span class="pre">eig</span></code> function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The eigenvalues are:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The eigenvectors are:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">eigenvectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="further-examples-with-numpy">
+<h3><span class="section-number">4.6.1. </span>Further examples with numpy<a class="headerlink" href="#further-examples-with-numpy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://www.numpy.org/devdocs/user/quickstart.html">NumPy tutorial</a> is a good resource.</p></li>
+<li><p>You are also welcome to explore the more extensive numpy tutorial by Geron. It is reproduced, with the accompanying open-source Apache License, in the <span class="xref myst">handson-ml-notebooks</span> directory.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="demo-Intro.html" title="previous page"><span class="section-number">2. </span>Reading Data and fitting</a>
+    <a class='right-next' id="next-link" href="exercise_Jupyter_Python_intro_02.html" title="next page"><span class="section-number">5. </span>Python and Jupyter notebooks: part 02</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

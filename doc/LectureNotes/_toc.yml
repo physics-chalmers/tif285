@@ -1,0 +1,45 @@
+- file: welcome
+  numbered: true
+- part: Introduction
+  chapters:
+  - file: Intro
+  - file: demo-Intro.ipynb
+  - file: exercise_Jupyter_Python_intro_01.ipynb
+  - file: exercise_Jupyter_Python_intro_02.ipynb
+- part: Linear regression
+  chapters:
+  - file: LinearRegression
+  - file: ModelValidation
+  - file: demo-ModelValidation.ipynb
+  - file: exercise_LinearRegression.ipynb
+- part: Bayesian statistics
+  chapters:
+  - file: BayesianBasics
+  - file: BayesianRecipe
+  - file: demo-BayesianBasics.ipynb
+  - file: exercise_sum_product_rule.ipynb
+  - file: BayesianParameterEstimation
+  - file: demo-BayesianParameterEstimation.ipynb
+  - file: exercise_BayesianParameterEstimation.ipynb
+  - file: MCMC
+  - file: demo-MCMC.ipynb
+  - file: ErrorPropagation
+  - file: demo-ErrorPropagation.ipynb
+  - file: MaxEnt
+  - file: demo-MaxEnt.ipynb
+  - file: ModelSelection
+- part: Machine learning---A Bayesian perspective
+  chapters:
+  - file: GaussianProcesses
+  - file: demo-GaussianProcesses.ipynb
+  - file: exercise_GP.ipynb
+  - file: LogReg
+  - file: NeuralNet
+  - file: demo-NeuralNet.ipynb
+  - file: exercises_LogReg_NeuralNet.ipynb
+  - file: cnn
+  - file: demo-cnn.ipynb
+  - file: bnn
+  - file: demo-bnn.ipynb
+  - file: exercises_BNN.ipynb
+  

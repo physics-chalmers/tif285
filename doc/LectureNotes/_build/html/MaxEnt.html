@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16. Ignorance pdfs: Indifference and translation groups &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="17. Assigning probabilities" href="demo-MaxEnt.html" />
+    <link rel="prev" title="13. Learning from Data: Error propagation and nuisance parameters (demonstration)" href="demo-ErrorPropagation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/MaxEnt.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-permutation-invariance">
+   16.1. Discrete permutation invariance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#location-invariance">
+   16.2. Location invariance
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counting-statistics-and-the-poisson-distribution">
+     16.2.1. Counting statistics and the Poisson distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
+<!-- !split -->
+<div class="section" id="ignorance-pdfs-indifference-and-translation-groups">
+<h1><span class="section-number">16. </span>Ignorance pdfs: Indifference and translation groups<a class="headerlink" href="#ignorance-pdfs-indifference-and-translation-groups" title="Permalink to this headline">¶</a></h1>
+<!-- !split -->
+<div class="section" id="discrete-permutation-invariance">
+<h2><span class="section-number">16.1. </span>Discrete permutation invariance<a class="headerlink" href="#discrete-permutation-invariance" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Consider a six-sided die</p></li>
+<li><p>How do we assign <span class="math notranslate nohighlight">\(p_i \equiv p(X_i|I)\)</span>, <span class="math notranslate nohighlight">\(i \in \{1, 2, 3, 4, 5, 6\}\)</span>?</p></li>
+<li><p>We do know <span class="math notranslate nohighlight">\(\sum_i p(X_i|I) = 1\)</span></p></li>
+<li><p>Invariance under labeling <span class="math notranslate nohighlight">\(\Rightarrow p(X_i|I)=1/6\)</span></p>
+<ul>
+<li><p>provided that the prior information <span class="math notranslate nohighlight">\(I\)</span> says nothing that breaks the permutation symmetry.</p></li>
+</ul>
+</li>
+</ul>
+<!-- !split -->
+</div>
+<div class="section" id="location-invariance">
+<h2><span class="section-number">16.2. </span>Location invariance<a class="headerlink" href="#location-invariance" title="Permalink to this headline">¶</a></h2>
+<p>Indifference to a constant shift <span class="math notranslate nohighlight">\(x_0\)</span> for a location parameter <span class="math notranslate nohighlight">\(x\)</span> implies that
+$$</p>
+<p>p(x|I) dx \approx p(x+ x_0|I) d(x+x_0) =  p(x+ x_0|I) dx,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+in the allowed range.\\Location invariance implies that
+\end{aligned}\end{align} \]</div>
+<p>p(x|I) =  p(x+ x_0|I) \quad \Rightarrow \quad p(x|I) = \mathrm{constant}.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}* Provided that the prior information $I$ says nothing that breaks the symmetry.
+* The pdf will be zero outside the allowed range (specified by $I$).\\&lt;!-- !split --&gt;
+### Scale invariance\\Indifference to a re-scaling $\lambda$ of a scale parameter $x$ implies that
+\end{aligned}\end{align} \]</div>
+<p>p(x|I) dx \approx p(\lambda x|I) d(\lambda x) =  \lambda p(\lambda x|I) dx,</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+in the allowed range.\\&lt;!-- !split --&gt;
+Invariance under re-scaling implies that
+\end{aligned}\end{align} \]</div>
+<p>p(x|I) = \lambda p(\lambda x|I) \quad \Rightarrow \quad p(x|I) \propto 1/x.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}* Provided that the prior information $I$ says nothing that breaks the symmetry.
+* The pdf will be zero outside the allowed range (specified by $I$).
+* This prior is often called a *Jeffrey's prior*; it represents a complete ignorance of a scale parameter within an allowed range.
+* It is equivalent to a uniform pdf for the logarithm: $p(\log(x)|I) = \mathrm{constant}$
+  * as can be verified with a change of variable $y=\log(x)$, see lecture notes on error propagation.\\
+&lt;!-- !split --&gt;
+#### Example: Straight-line model\\Consider the theoretical model 
+\end{aligned}\end{align} \]</div>
+<p>y_\mathrm{th}(x) = \theta_1  x  + \theta_0.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}* Would you consider the intercept $\theta_0$ a location or a scale parameter, or something else?
+* Would you consider the slope $\theta_1$ a location or a scale parameter, or something else?\\Consider also the statistical model for the observed data $y_i = y_\mathrm{th}(x_i) + \epsilon_i$, where we assume independent, Gaussian noise $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$.
+* Would you consider the standard deviation $\sigma$ a location or a scale parameter, or something else?\\&lt;!-- !split --&gt;
+### Symmetry invariance\\* In fact, by symmetry indifference we could as well have written the linear model as $x_\mathrm{th}(y) = \theta_1'  y  + \theta_0'$
+* We would then equate the probability elements for the two models \end{aligned}\end{align} \]</div>
+<p>p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0’, \theta_1’ | I) d\theta_0’ d\theta_1’.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}* The transformation gives $(\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1})$.\\&lt;!-- !split --&gt;
+This change of variables implies that
+\end{aligned}\end{align} \]</div>
+<p>q(\theta_0’, \theta_1’ | I) = p(\theta_0, \theta_1 | I) \left| \frac{d\theta_0 d\theta_1}{d\theta_0’ d\theta_1’} \right|,</p>
+<div class="math notranslate nohighlight">
+\[
+where the (absolute value of the) determinant of the Jacobian is
+\]</div>
+<p>\left| \frac{d\theta_0 d\theta_1}{d\theta_0’ d\theta_1’} \right|
+= \mathrm{abs} \left(
+\begin{vmatrix}
+\frac{\partial \theta_0}{\partial \theta_0’} &amp; \frac{\partial \theta_0}{\partial \theta_1’} \
+\frac{\partial \theta_1}{\partial \theta_0’} &amp; \frac{\partial \theta_1}{\partial \theta_1’}
+\end{vmatrix}
+\right)
+= \frac{1}{\left( \theta_1’ \right)^3}.</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+* In summary we find that $\theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I).$
+* This functional equation is satisfied by\]</div>
+<p>p(\theta_0, \theta_1 | I) \propto \frac{1}{\left( 1 + \theta_1^2 \right)^{3/2}}.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+&lt;!-- &lt;img src=&quot;fig/slope_priors.png&quot; width=800&gt;&lt;p&gt;&lt;em&gt;100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.&lt;/em&gt;&lt;/p&gt; --&gt;
+![&lt;p&gt;&lt;em&gt;100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.&lt;/em&gt;&lt;/p&gt;](fig/slope_priors.png)\\
+&lt;!-- !split --&gt;
+## The principle of maximum entropy\\Having dealt with ignorance, let us move on to more enlightened situations.\\Consider a die with the usual six faces that was rolled a very large number of times. Suppose that we were only told that the average number of dots was 2.5. What (discrete) pdf would we assign? I.e. what are the probabilities $\{ p_i \}$ that the face on top had $i$ dots after a single throw?\\&lt;!-- !split --&gt;
+The available information can be summarized as follows
+\end{aligned}\end{align} \]</div>
+<p>\sum_{i=1}^6 p_i = 1, \qquad \sum_{i=1}^6 i p_i = 2.5</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+This is obviously not a normal die, with uniform probability $p_i=1/6$, since the average result would then be 3.5. But there are many candidate pdfs that would reproduce the given information. Which one should we prefer?\\&lt;!-- !split --&gt;
+It turns out that there are several different arguments that all point in a direction that is very familiar to people with a physics background. Namely that we should prefer the probability distribution that maximizes an entropy measure, while fulfilling the given constraints. \\&lt;!-- !split --&gt;
+It will be shown below that the preferred pdf $\{ p_i \}$ is the one that maximizes\end{aligned}\end{align} \]</div>
+<p>Q\left( { p_i } ; \lambda_0, \lambda_1 \right)
+= -\sum_{i=1}^6 p_i \log(p_i)</p>
+<ul class="simple">
+<li><p>\lambda_0 \left( 1 - \sum_{i=1}^6 p_i \right)</p></li>
+<li><p>\lambda_1 \left( 2.5 - \sum_{i=1}^6 i p_i \right),</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where the constraints are included via the method of [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).\\&lt;!-- !split --&gt;
+### The entropy of Scandinavians\\Let's consider another pdf assignment problem. This is originally the *kangaroo problem* (Gull and Skilling, 1984), but translated here into a local context. The problem is stated as follows:\\Information:
+  :    
+  70% of all Scandinavians have blonde hair, and 10% of all Scandinavians are left handed.
+Question:
+  :    
+  On the basis of this information alone, what proportion of Scandinavians are both blonde and left handed?\\&lt;!-- !split --&gt;
+We note that for any one given Scandinavian there are four distinct possibilities: 
+1. Blonde and left handed (probability $p_1$).
+2. Blonde and right handed (probability $p_2$).
+3. Not blonde and left handed (probability $p_3$).
+4. Not blonde and right handed (probability $p_4$).\\&lt;!-- !split --&gt;
+The following 2x2 contingency table
+\n\\
+            Left handed  Right handed  
+----------  -----------  ------------  
+Blonde         $p_1$        $p_2$      
+Not blonde     $p_3$        $p_4$      \\
+\n
+&lt;!-- !split --&gt;
+can be written in terms of a single variable $x$ due to the normalization condition $\sum_{i=1}^4 p_i = 1$, and the available information $p_1 + p_2 = 0.7$ and $p_1 + p_3 = 0.1$
+\n\\
+               Left handed     Right handed  
+----------  -----------------  ------------  
+Blonde      $0 \le x \le 0.1$    $0.7-x$     
+Not blonde       $0.1-x$         $0.2+x$     \\
+\n
+But which choice of $x$ is preferred?\\&lt;!-- !split --&gt;
+### The monkey argument\\The monkey argument is a model for assigning probabilities to $M$ different alternatives that satisfy some constraint as described by $I$: 
+* Monkeys throwing $N$ balls into $M$ equally sized boxes.
+* The normalization condition $N = \sum_{i=1}^M n_i$.
+* The fraction of balls in each box gives a possible assignment for the corresponding probability $p_i = n_i / N$.
+* The distribution of balls $\{ n_i \}$ divided by $N$ is therefore a candidate pdf $\{ p_i \}$.\\&lt;!-- !split --&gt;
+After one round the monkeys have distributed their (large number of) balls over the $M$ boxes.
+* The resulting pdf might not be consistent with the constraints of $I$, however, in which case it should be rejected as a possible candidate.
+* After many such rounds, some distributions will be found to come up more often than others. The one that appears most frequently (and satisfies $I$) would be a sensible choice for $p(\{p_i\}|I)$.
+* Since our ideal monkeys have no agenda of their own to influence the distribution, this most favoured distribution can be regarded as the one that best represents our given state of knowledge.\\&lt;!-- !split --&gt;
+Now, let us see how this preferred solution corresponds to the pdf with the largest `entropy`. Remember in the following that $N$ (and $n_i$) are considered to be very large numbers ($N/M \gg 1$)\\&lt;!-- !split --&gt;
+* There are $M^N$ different ways to distribute the balls.
+* The micro-states $\{ n_i\}$ are connected to the pdf $\{ p_i \}$ and the frequency of a given pdf is given by\end{aligned}\end{align} \]</div>
+<p>F({p_i}) = \frac{\text{number of ways of obtaining } {n_i}}{M^N}</p>
+<div class="math notranslate nohighlight">
+\[
+* The number of micro-states, $W(\{n_i\}))$, in the nominator is equal to $N! / \prod_{i=1}^M n_i!$. 
+* We express the logarithm of this number (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)\]</div>
+<p>\log(W({n_i})) = \log(N!) − \sum_{i=1}^M \log(n_i!)
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+* Therefore, the logarithm of the frequency of a given pdf is\]</div>
+<p>\log(F({p_i})) \approx -N \log(M) + N\log(N) - \sum_{i=1}^M n_i\log(n_i)</p>
+<div class="math notranslate nohighlight">
+\[Substituting $p_i = n_i/N$, and using the normalization condition finally gives
+\]</div>
+<p>\log(F({p_i})) \approx -N \log(M) - N \sum_{i=1}^M p_i\log(p_i)</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+We note that $N$ and $M$ are constants so that the preferred pdf is given by the $\{ p_i \}$ that maximizes
+\]</div>
+<p>S = - \sum_{i=1}^M p_i\log(p_i).</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+You might recognise this quantity as the *entropy* from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty, which remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied $S = -k_B \sum_i p_i \log(p_i)$, where $k_B$ is the Boltzmann constant.\\&lt;!-- !split --&gt;
+#### Why maximize the entropy?\\* Information theory: maximum entropy=minimum information (Shannon, 1948).
+* Logical consistency (Shore &amp; Johnson, 1960).
+* Uncorrelated assignments related monotonically to $S$ (Skilling, 1988).\\Consider the third argument. Let us check it empirically to the problem of hair colour and handedness of Scandinavians. We are interested in determining $p_1 \equiv p(L,B|I) \equiv x$, the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment $p_1=0.07$ is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.\\&lt;!-- !split --&gt;
+So unless you have specific information about the existence of such a correlation, you should better not build it into the assignment of the probability $p_1$. \\**Question**: Can you show why $p_1 &lt; 0.07$ and $p_1 &gt; 0.07$ corresponds to left-handedness and blondeness being dependent variables?\\&lt;!-- !split --&gt;
+Let us now empirically consider a few variational functions of $\{ p_i \}$ and see if any of them gives a maximum that corresponds to the uncorrelated assignment $x=0.07$, which implies $p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27$. A few variational functions and their prediction for $x$ are shown in the following table.
+\n\\
+    Variational function     Optimal x  Implied correlation  
+---------------------------  ---------  -------------------  
+  $-\sum_i p_i \log(p_i)$      0.070            None         
+     $\sum_i \log(p_i)$        0.053          Negative       
+ $-\sum_i p_i^2 \log(p_i)$     0.100          Positive       
+$-\sum_i \sqrt{p_i(1-p_i)}$    0.066          Negative       \\
+\n
+&lt;!-- !split --&gt;
+The assignment based on the entropy measure is the only one that respects this lack of correlations.\\&lt;!-- &lt;img src=&quot;fig/scandinavian_entropy.png&quot; width=800&gt;&lt;p&gt;&lt;em&gt;Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.&lt;/em&gt;&lt;/p&gt; --&gt;
+![&lt;p&gt;&lt;em&gt;Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.&lt;/em&gt;&lt;/p&gt;](fig/scandinavian_entropy.png)\\&lt;!-- !split --&gt;
+#### Continuous case\\Return to monkeys, but now with different probabilities for each bin.Then
+\end{aligned}\end{align} \]</div>
+<p>S= −\sum_{i=1}^M p_i \log \left( \frac{p_i}{m_i} \right),</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+which is often known as the *Shannon-Jaynes entropy*, or the *Kullback number*, or the *cross entropy* (with opposite sign).\\Jaynes (1963) has pointed out that this generalization of the entropy, including a *Leqesgue measure* $m_i$, is necessary when we consider the limit of continuous parameters. 
+\end{aligned}\end{align} \]</div>
+<p>S[p]= −\int p(x) \log \left( \frac{p(x)}{m(x)} \right).</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+* In particular, $m(x)$ ensures that the entropy expression is invariant under a change of variables $x \to y=f(x)$.
+* Typically, the transformation-group (invariance) arguments are appropriate for assigning $m(x) = \mathrm{constant}$.
+* However, there are situations where other assignments for $m$ represent the most ignorance. For example, in counting experiments one might assign $m(N) = M^N / N!$ for the number of observed events $N$ and a very large number of intervals $M$.\\&lt;!-- !split --&gt;
+### Derivation of common pdfs using MaxEnt\\The principle of maximum entropy (MaxEnt) allows incorporation of further information, e.g. constraints on the mean, variance, etc, into the assignment of probability distributions.\\In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and generates smooth functions.\\&lt;!-- !split --&gt;
+#### Mean and the Exponential pdf\\Suppose that we have a pdf $p(x|I)$ that is normalized over some interval $[ x_\mathrm{min}, x_\mathrm{max}]$. Assume that we have information about its mean value, i.e.,
+\end{aligned}\end{align} \]</div>
+<p>\langle x \rangle = \int x p(x|I) dx = \mu.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}Based only on this information, what functional form should we assign for the pdf that we will now denote $p(x|\mu)$? \\&lt;!-- !split --&gt;
+Let us use the principle of MaxEnt and maximize the entropy under the normalization and mean constraints. We will use Lagrange multipliers, and we will perform the optimization as a limiting case of a discrete problem; explicitly, we will maximize
+\end{aligned}\end{align} \]</div>
+<p>Q = -\sum_i p_i \log \left( \frac{p_i}{m_i} \right) + \lambda_0 \left( 1 - \sum_i p_i \right) + \lambda_1 \left( \mu - \sum_i x_i p_i \right).</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+Setting $\partial Q / \partial p_j = 0$ we obtain
+\]</div>
+<p>p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].</p>
+<div class="math notranslate nohighlight">
+\[With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
+\]</div>
+<p>p(x|\mu) = \mathcal{N} \exp \left[ -\lambda_1 x \right].</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+The normalization constant (related to $\lambda_0$) and the remaining Lagrange multiplier, $\lambda_1$, can easily determined by fulfilling the two constraints. \\Assuming, e.g., that the normalization interval is $x \in [0, \infty[$ we obtain
+\end{aligned}\end{align} \]</div>
+<p>\int_0^\infty p(x|\mu) dx = 1 = \left[ -\frac{\mathcal{N}}{\lambda_1} e^{-\lambda_1 x} \right]_0^\infty = \frac{\mathcal{N}}{\lambda_1} \quad \Rightarrow \quad \mathcal{N} = \lambda_1.</p>
+<div class="math notranslate nohighlight">
+\[
+The constraint for the mean then gives
+\]</div>
+<p>\mu = \lambda_1 \int_0^\infty x  e^{-\lambda_1 x} dx = \lambda_1 \frac{1!}{\lambda_1^2}
+= \frac{1}{\lambda_1}
+\quad \Rightarrow \quad \lambda_1 = \frac{1}{\mu}.</p>
+<div class="math notranslate nohighlight">
+\[So that the properly normalized pdf from MaxEnt principles becomes the exponential distribution
+\]</div>
+<p>p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+#### Variance and the Gaussian pdf\\Suppose that we have information not only on the mean $\mu$ but also on the variance
+\end{aligned}\end{align} \]</div>
+<p>\left\langle (x-\mu)^2 \right\rangle = \int (x-\mu)^2 p(x|I) dx = \sigma^2.</p>
+<div class="math notranslate nohighlight">
+\[The principle of MaxEnt will then result in the continuum assignment
+\]</div>
+<p>p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+Assuming that the limits of integration are $\pm \infty$ this results in the standard Gaussian pdf
+\]</div>
+<p>p(x|\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left[ - \frac{( x - \mu )^2}{2\sigma^2} \right].</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}This indicates that the normal distribution is the most honest representation of our state of knowledge when we only have information about the mean and the variance.\\&lt;!-- !split --&gt;
+*Notice.* 
+These arguments extend easily to the case of several parameters. For example, considering $\{x_k\}$ as the data $\{ D_k\}$ with error bars $\{\sigma_k\}$ and $\{\mu_k\}$ as the model predictions, this allows us to identify the least-squares likelihood as the pdf which best represents our state of knowledge given only the value of the expected squared-deviation between our predictions and the data
+\end{aligned}\end{align} \]</div>
+<p>p\left( {x_k} | {\mu_k, \sigma_k} \right) = \prod_{k=1}^N \frac{1}{\sigma_k \sqrt{2\pi}} \exp \left[ - \frac{( x_k - \mu_k )^2}{2\sigma_k^2} \right].</p>
+<p>$$</p>
+<p>If we had convincing information about the covariance <span class="math notranslate nohighlight">\(\left\langle \left( x_i - \mu_i \right) \left( x_j - \mu_j \right) \right\rangle\)</span>, where <span class="math notranslate nohighlight">\(i \neq j\)</span>, then MaxEnt would assign a correlated, multivariate Gaussian pdf for <span class="math notranslate nohighlight">\(p\left( \{ x_k \} | I \right)\)</span>.</p>
+<!-- !split -->
+<div class="section" id="counting-statistics-and-the-poisson-distribution">
+<h3><span class="section-number">16.2.1. </span>Counting statistics and the Poisson distribution<a class="headerlink" href="#counting-statistics-and-the-poisson-distribution" title="Permalink to this headline">¶</a></h3>
+<p>The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="demo-ErrorPropagation.html" title="previous page"><span class="section-number">13. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)</a>
+    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">17. </span>Assigning probabilities</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Learning from data: Inference &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Reading Data and fitting" href="demo-Intro.html" />
+    <link rel="prev" title="Course aim" href="welcome.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Intro.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference">
+   1.1. Inference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistical-inference">
+   1.2. Statistical Inference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning">
+   1.3. Machine learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-from-data-a-physicist-s-perspective">
+   1.4. Learning from data: A physicist’s perspective
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-will-this-course-be-different-from-an-applied-mathematics-computer-science-course">
+     1.4.1. How will this course be different from an applied mathematics / computer science course?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-special-about-machine-learning-in-physics-and-astronomy">
+     1.4.2. What is special about machine learning in physics and astronomy?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#machine-learning-in-science-and-society">
+     1.4.3. Machine learning in science and society
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-machine-learning">
+     1.4.4. Types of Machine Learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choice-of-programming-language">
+     1.4.5. Choice of programming language
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-handling-machine-learning-and-ethical-aspects">
+     1.4.6. Data handling, machine learning  and ethical aspects
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-first-data-and-machine-learning-encounter">
+   1.5. A first data and machine learning encounter
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software-and-needed-installations">
+     1.5.1. Software and needed installations
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="learning-from-data-inference">
+<h1><span class="section-number">1. </span>Learning from data: Inference<a class="headerlink" href="#learning-from-data-inference" title="Permalink to this headline">¶</a></h1>
+<p>The general problem that will be adressed in this series of lectures is illustrated in the following figure. The learning process depicted there is known as <strong>inference</strong> and involves steps in reasoning to move from premises to logical consequences.</p>
+<!-- <img src="fig/Intro/inference.png" width=600><p><em>Learning from data is an inference process. <div id="fig-inference"></div></em></p> -->
+<p><img alt="Learning from data is an inference process. " src="_images/inference.png" /></p>
+<!-- !split -->
+<div class="section" id="inference">
+<h2><span class="section-number">1.1. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h2>
+<p>Inference:
+:<br />
+“the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former” (Webster) \n
+Do premises <span class="math notranslate nohighlight">\(A, B, \ldots \Rightarrow\)</span> hypothesis, <span class="math notranslate nohighlight">\(H\)</span>?
+Deductive inference:
+:<br />
+Premises allow definite determination of truth/falsity of <span class="math notranslate nohighlight">\(H\)</span> (Boolean algebra) \n
+<span class="math notranslate nohighlight">\(p(H|A,B,...) = 0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>
+Inductive inference:
+:<br />
+Premises bear on truth/falsity of <span class="math notranslate nohighlight">\(H\)</span>, but don’t allow its definite determination\n
+<span class="math notranslate nohighlight">\(A, B, C, D\)</span> share properties <span class="math notranslate nohighlight">\(x, y, z\)</span>; <span class="math notranslate nohighlight">\(E\)</span> has properties <span class="math notranslate nohighlight">\(x, y\)</span>\n
+<span class="math notranslate nohighlight">\(\Rightarrow E\)</span> probably has property <span class="math notranslate nohighlight">\(z\)</span>.</p>
+<!-- !split -->
+<p>In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.</p>
+<p>This process of learning from data is fundamental to the scientific wheel of progress.</p>
+<!-- <img src="fig/Intro/scientific_wheel_data.png" width=400> -->
+<p><img alt="" src="_images/scientific_wheel_data.png" /></p>
+<!-- !split -->
+</div>
+<div class="section" id="statistical-inference">
+<h2><span class="section-number">1.2. </span>Statistical Inference<a class="headerlink" href="#statistical-inference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Quantify the strength of inductive inferences from facts, in the form of data (<span class="math notranslate nohighlight">\(D\)</span>), and other premises, e.g. models, to hypotheses about the phenomena producing the data.</p></li>
+<li><p>Quantify via probabilities, or averages calculated using probabilities. Frequentists (<span class="math notranslate nohighlight">\(\mathcal{F}\)</span>) and Bayesians (<span class="math notranslate nohighlight">\(\mathcal{B}\)</span>) use probabilities very differently for this.</p></li>
+<li><p>To the pioneers such as Bernoulli, Bayes and Laplace, a probability represented a <em>degree-of-belief</em> or plausability: how much they thought that something as true based on the evidence at hand. This is the Bayesian approach.</p></li>
+<li><p>To the 19th century scholars, this seemed too vague and subjective. They redefined probability as the <em>long run relative frequency</em> with which an event occurred, given (infinitely) many repeated (experimental) trials.</p></li>
+</ul>
+<!-- !split -->
+</div>
+<div class="section" id="machine-learning">
+<h2><span class="section-number">1.3. </span>Machine learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h2>
+<p>The basic process illustrated in Fig. <a class="reference external" href="#fig-inference">fig-inference</a> is employed also in the field of machine learning. Here, the learning part might take place when confronting a large set of data with a machine learning algorithm, and the specific aim might be tasks such as classification or clusterization.</p>
+<!-- <img src="fig/Intro/MLinference.png" width=600> -->
+<p><img alt="" src="_images/MLinference.png" /></p>
+<p>Thus, we will be able to study statistical inference methods for learning from data and use them in scientific applications. In particular, we will use <strong>Bayesian statistics</strong>. Simultaneously we will slowly develop a deeper understanding and probabilistic interpretation of machine learning algorithms through a statistical foundation.</p>
+<!-- !split -->
+<p><em>Edwin Jaynes</em>, in his influential <a class="reference external" href="https://link.springer.com/chapter/10.1007%2F978-94-009-3049-0_1">How does the brain do plausible reasoning?</a>, wrote:</p>
+<blockquote>
+<div><p>One of the most familiar facts of our experience is this: that there is such a thing as common sense, which enables us to do plausible reasoning in a fairly consistent way. People who have the same background of experience and the same amount of information about a proposition come to pretty much the same conclusions as to its plausibility. No jury has ever reached a verdict on the basis of pure deductive reasoning. Therefore the human brain must contain some fairly definite mechanism for plausible reasoning, undoubtedly much more complex than that required for deductive reasoning. But in order for this to be possible, there must exist consistent rules for carrying out plausible reasoning, in terms of operations so definite that they can be programmed on the computing machine which is the human brain.</p>
+</div></blockquote>
+<!-- !split -->
+<p>Jaynes went on to show that these “consistent rules” are just the rules of Bayesian probability theory, supplemented by Laplace’s principle of indifference and, its generalization, Shannon’s principle of maximum entropy. This key observation implies that a computer can be programmed to “reason”, or, update probabilities based on data. Given some very minimal desiderata, the rules of Bayesian probability are the only ones which conform to what, intuitively, we recognize as rationality. Such probability update rules can be used recursively to impute causal relationships between observations, that is, a machine can be programmed to “learn”.</p>
+<p><em>Summary.</em>
+Inference and machine learning, then, is the creative application of
+Bayesian probability to problems of rational inference and causal
+knowledge discovery based on data.</p>
+<!-- !split -->
+</div>
+<div class="section" id="learning-from-data-a-physicist-s-perspective">
+<h2><span class="section-number">1.4. </span>Learning from data: A physicist’s perspective<a class="headerlink" href="#learning-from-data-a-physicist-s-perspective" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-will-this-course-be-different-from-an-applied-mathematics-computer-science-course">
+<h3><span class="section-number">1.4.1. </span>How will this course be different from an applied mathematics / computer science course?<a class="headerlink" href="#how-will-this-course-be-different-from-an-applied-mathematics-computer-science-course" title="Permalink to this headline">¶</a></h3>
+<p>In this course we will focus in particular on the statistical foundation for being able to learn from data, in particular we will take the Bayesian viewpoint of extended logic. Although we aim for theoretical depth, we will still take a practical learning approach with many opportunities to apply the theories in practice using simple computer programs.</p>
+<!-- !split -->
+<p>However, the ambition for teaching the theoretical foundation implies that there will be less time to cover the plethora of machine learning methods, or to find examples from a very wide list of subfields in physics. We believe that striving for theoretical depth and  computational experience will give the best preparation for being able to apply the knowledge in new situations and real problems that will be encountered in future studies and work.</p>
+<!-- !split -->
+<p>This course has been designed specifically for Physics students. We expect that you have:</p>
+<ul class="simple">
+<li><p>Strong background and experience with mathematical tools (linear algebra, multivariate calculus) that will allow to immediately engage in rigorous discussions of statistics.</p></li>
+<li><p>Experience with the use of (physics) models to describe reality and an understanding for  various uncertainties associated with experimental observations.</p></li>
+<li><p>Considerable training in general problem solving skills.</p></li>
+</ul>
+<!-- !split -->
+</div>
+<div class="section" id="what-is-special-about-machine-learning-in-physics-and-astronomy">
+<h3><span class="section-number">1.4.2. </span>What is special about machine learning in physics and astronomy?<a class="headerlink" href="#what-is-special-about-machine-learning-in-physics-and-astronomy" title="Permalink to this headline">¶</a></h3>
+<p>Physics research has different needs:</p>
+<ul class="simple">
+<li><p>Our data and models are often fundamentally different from those in typical computer science contexts. For example, we might have prior knowledge about underlying physics that should be taken into account.</p></li>
+<li><p>We ask different types of questions about our data, sometimes requiring new methods.</p></li>
+<li><p>We have different priorities for judging a “good” method: interpretability, error estimates, predictive power, etc.</p></li>
+</ul>
+<!-- !split -->
+<ul class="simple">
+<li><p>We are data <strong>producers</strong>, not (only) data consumers:</p>
+<ul>
+<li><p>Experimental design can (sometimes) be in our own control.</p></li>
+<li><p>Statistical errors on data can be quantified.</p></li>
+<li><p>Much efforts to understand systematic errors.</p></li>
+</ul>
+</li>
+</ul>
+<!-- !split -->
+<ul class="simple">
+<li><p>Our data represent measurements of physical processes:</p>
+<ul>
+<li><p>Measurements often reduce to counting photons, etc, with known a-priori random errors.</p></li>
+<li><p>Dimensions and units are important.</p></li>
+<li><p>Experimental data comes with measurement errors that should be taken into account.</p></li>
+</ul>
+</li>
+<li><p>Our models are usually traceable to an underlying physical theory:</p>
+<ul>
+<li><p>Models constrained by theory and previous observations.</p></li>
+<li><p>Parameter values often intrinsically interesting.</p></li>
+</ul>
+</li>
+<li><p>A parameter error estimate is just as important as its value:</p>
+<ul>
+<li><p>Prefer methods that handle input data errors (weights) and provide output parameter error estimates.</p></li>
+</ul>
+</li>
+<li><p>In some experiments and scientific domains, the data sets are <em>huge</em> (“Big Data”)</p></li>
+</ul>
+<!-- !split -->
+<!-- ======= Machine Learning ======= -->
+</div>
+<div class="section" id="machine-learning-in-science-and-society">
+<h3><span class="section-number">1.4.3. </span>Machine learning in science and society<a class="headerlink" href="#machine-learning-in-science-and-society" title="Permalink to this headline">¶</a></h3>
+<p>During the last two decades there has been a swift and amazing
+development of Machine learning techniques and algorithms that impact
+many areas in not only Science and Technology but also the Humanities,
+Social Sciences, Medicine, Law, etc. Indeed, almost all possible
+disciplines are affected. The applications are incredibly many, from self-driving
+cars to solving high-dimensional differential equations or complicated
+quantum mechanical many-body problems. Machine learning is perceived
+by many as one of the main disruptive techniques nowadays.</p>
+<p>Statistics, Data science and Machine learning form important
+fields of research in modern science.  They describe how to learn and
+make predictions from data, as well as allowing us to extract
+important correlations about physical process and the underlying laws
+of motion in large data sets. The latter, big data sets, appear
+frequently in essentially all disciplines, from the traditional
+Science, Technology, Mathematics and Engineering fields to Life
+Science, Law, education research, the Humanities and the Social
+Sciences.</p>
+<p>It has become more
+and more common to see research projects on big data in for example
+the Social Sciences where extracting patterns from complicated survey
+data is one of many research directions.  Having a solid grasp of data
+analysis and machine learning is thus becoming central to scientific
+computing in many fields, and competences and skills within the fields
+of machine learning and scientific computing are nowadays strongly
+requested by many potential employers. The latter cannot be
+overstated, familiarity with machine learning has almost become a
+prerequisite for many of the most exciting employment opportunities,
+whether they are in bioinformatics, life science, physics or finance,
+in the private or the public sector. This author has had several
+students or met students who have been hired recently based on their
+skills and competences in scientific computing and data science, often
+with marginal knowledge of machine learning.</p>
+<p>Machine learning is a subfield of computer science, and is closely
+related to computational statistics.  It evolved from the study of
+pattern recognition in artificial intelligence (AI) research, and has
+made contributions to AI tasks like computer vision, natural language
+processing and speech recognition. Many of the methods we will study are also
+strongly rooted in basic mathematics and physics research.</p>
+<p>Ideally, machine learning represents the science of giving computers
+the ability to learn without being explicitly programmed.  The idea is
+that there exist generic algorithms which can be used to find patterns
+in a broad class of data sets without having to write code
+specifically for each problem. The algorithm will build its own logic
+based on the data.  You should however always keep in mind that
+machines and algorithms are to a large extent developed by humans. The
+insights and knowledge we have about a specific system, play a central
+role when we develop a specific machine learning algorithm.</p>
+<p>Machine learning is an extremely rich field, in spite of its young
+age. The increases we have seen during the last three decades in
+computational capabilities have been followed by developments of
+methods and techniques for analyzing and handling large date sets,
+relying heavily on statistics, computer science and mathematics.  The
+field is rather new and developing rapidly. Popular software packages
+written in Python for machine learning like
+<a class="reference external" href="http://scikit-learn.org/stable/">Scikit-learn</a>,
+<a class="reference external" href="https://www.tensorflow.org/">Tensorflow</a>,
+<a class="reference external" href="http://pytorch.org/">PyTorch</a> and <a class="reference external" href="https://keras.io/">Keras</a>, all
+freely available at their respective GitHub sites, encompass
+communities of developers in the thousands or more. And the number of
+code developers and contributors keeps increasing. Not all the
+algorithms and methods can be given a rigorous mathematical
+justification, opening up thereby large rooms for experimenting and
+trial and error and thereby exciting new developments.  However, a
+solid command of linear algebra, multivariate theory, probability
+theory, statistical data analysis, understanding errors and Monte
+Carlo methods are central elements in a proper understanding of many
+of algorithms and methods we will discuss.</p>
+<!-- !split -->
+</div>
+<div class="section" id="types-of-machine-learning">
+<h3><span class="section-number">1.4.4. </span>Types of Machine Learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this headline">¶</a></h3>
+<p>The approaches to machine learning are many, but are often split into
+two main categories.  In <em>supervised learning</em> we know the answer to a
+problem, and let the computer deduce the logic behind it. On the other
+hand, <em>unsupervised learning</em> is a method for finding patterns and
+relationship in data sets without any prior knowledge of the system.
+Some authours also operate with a third category, namely
+<em>reinforcement learning</em>. This is a paradigm of learning inspired by
+behavioral psychology, where learning is achieved by trial-and-error,
+solely from rewards and punishment.</p>
+<!-- !split -->
+<p>Another way to categorize machine learning tasks is to consider the
+desired output of a system. What kind of inference are you hoping to see in your data? Is the aim to classify a result into categories, to predict a continuous value, or to simply observe patterns within the data? Let’s briefly introduce each class:</p>
+<!-- !split -->
+<p>Classification algorithms:
+:<br />
+are used to predict whether a dataset’s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.</p>
+<!-- !split -->
+<p>Clustering algorithms:
+:<br />
+can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don’t require output labels, making them unsupervised algorithms.</p>
+<!-- !split -->
+<p>Dimensionality reduction algorithms:
+:<br />
+focuses on decreasing the number of features from your dataset, preventing your models from “overfitting” or generalizing on previously unseen data. They are also unsupervised.</p>
+<!-- !split -->
+<p>Regression algorithms:
+:<br />
+Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.</p>
+<!-- !split -->
+<p>In the natural sciences, where we often confront scientific models with observations, there is certainly a large interest in regression algorithms. However, there are also many examples where other classes of machine-learning algorithms are being used.</p>
+<!-- !split -->
+<p>All methods have three main ingredients in common, irrespective of whether we deal with supervised or unsupervised learning.</p>
+<p>Data set:
+:<br />
+The first, and most important, one is normally our data set (which can be subdivided into training and test data).
+Model:
+:<br />
+The second item is a model, which is normally a function of some parameters. The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determine our model.
+Cost function:
+:<br />
+The last ingredient is a so-called cost function, which allows us to present an estimate on how good our model is in reproducing the data it is supposed to describe.</p>
+<!-- !split -->
+</div>
+<div class="section" id="choice-of-programming-language">
+<h3><span class="section-number">1.4.5. </span>Choice of programming language<a class="headerlink" href="#choice-of-programming-language" title="Permalink to this headline">¶</a></h3>
+<p>Python plays a central role in the development of machine
+learning techniques and tools for data analysis. In particular, given
+the wealth of machine learning and data analysis libraries written in
+Python, easy-to-use libraries with immediate visualization (and the
+impressive galleries of existing examples), the popularity of the
+Jupyter notebook framework (with the possibility to run <strong>R</strong> codes, or
+simulation programs written in compiled languages), and much more made our choice of
+programming language for this series of lectures easy. However,
+since the focus here is not only on using existing Python libraries such
+as <strong>Scikit-Learn</strong> or <strong>Tensorflow</strong>, but also on developing your own
+algorithms and codes, we will as far as possible present many of these
+algorithms as Python codes.</p>
+<p>The reason we also  mention compiled languages (like C, C++ or
+Fortran), is that Python is still notoriously slow when we do not
+utilize highly streamlined computational libraries
+written in compiled languages.  Therefore, analysis codes involving heavy Markov Chain Monte Carlo simulations and high-dimensional optimization of cost functions, tend to utilize C++/C or Fortran codes for the heavy lifting.</p>
+<p>Presently thus, the community tends to let
+code written in C++/C or Fortran do the heavy duty numerical
+number crunching and leave the post-analysis of the data to the above
+mentioned Python modules or software packages.  However, with the developments taking place in for example the Python community, and seen
+the changes during the last decade, the above situation may change in the not too distant future.</p>
+<!-- !split -->
+</div>
+<div class="section" id="data-handling-machine-learning-and-ethical-aspects">
+<h3><span class="section-number">1.4.6. </span>Data handling, machine learning  and ethical aspects<a class="headerlink" href="#data-handling-machine-learning-and-ethical-aspects" title="Permalink to this headline">¶</a></h3>
+<p>In most of the cases we will study, we will generate the data
+to analyze ourselves. However, this does not hinder us from developing a sound
+ethical attitude to the data we use, how we analyze the data and how
+we handle it.</p>
+<p>The most immediate and simplest possible ethical aspects deal with our
+approach to the scientific process. Nowadays, with version control
+software like <a class="reference external" href="https://git-scm.com/">Git</a> and various online
+repositories like <a class="reference external" href="https://github.com/">Github</a>,
+<a class="reference external" href="https://about.gitlab.com/">Gitlab</a> etc, we can easily make our codes
+and data sets we have used, freely and easily accessible to a wider
+community. This helps us almost automagically in making our science
+reproducible. The large open-source development communities involved
+in say <a class="reference external" href="http://scikit-learn.org/stable/">Scikit-Learn</a>,
+<a class="reference external" href="https://www.tensorflow.org/">Tensorflow</a>,
+<a class="reference external" href="http://pytorch.org/">PyTorch</a> and <a class="reference external" href="https://keras.io/">Keras</a>, are
+all excellent examples of this. The codes can be tested and improved
+upon continuosly, helping thereby our scientific community at large in
+developing data analysis and machine learning tools.  It is much
+easier today to gain traction and acceptance for making your science
+reproducible. From a societal stand, this is an important element
+since many of the developers are employees of large public institutions like
+universities and research labs.</p>
+<p>However, this more mechanical aspect of the ethics of science (in
+particular the reproducibility of scientific results) is something
+which is obvious and everybody should do so as part of the dialectics of
+science.</p>
+<p>Before we proceed, we should add a disclaimer. Even though
+we may dream of computers developing some kind of higher learning
+capabilities, at the end (even if the artificial intelligence
+community keeps touting our ears full of fancy futuristic avenues), it is we, yes you reading these lines,
+who end up constructing and instructing, via various algorithms, the
+machine learning approaches.</p>
+<p>For self-driving vehicles, where the standard machine
+learning algorithms discussed here enter into the software, there are
+stages where we have to make choices. Yes, we, the humans who wrote
+a program for a specific brand of a self-driving car.  As an example,
+all carmakers have as their utmost priority the security of the
+driver and the accompanying passengers. A famous European carmaker, which is
+one of the leaders in the market of self-driving cars, had <strong>if</strong>
+statements of the following type: suppose there are two obstacles in
+front of you and you cannot avoid to collide with one of them. One of
+the obstacles is a monstertruck while the other one is a kindergarten
+class trying to cross the road. The self-driving car algo would then
+opt for the hitting the small folks instead of the monstertruck, since
+the likelihood of surving a collision with our future citizens, is
+much higher.</p>
+<p>This leads to serious ethical aspects. Why should we
+opt for such an option? Who decides and who is entitled to make such
+choices? Keep in mind that many of the algorithms you will encounter in
+this series of lectures or hear about later, are indeed based on
+simple programming instructions. And you are very likely to be one of
+the people who may end up writing such a code. Thus, developing a
+sound ethical attitude is much needed. The example of the self-driving cars is
+just one of infinitely many cases where we have to make choices. When
+you analyze data on economic inequalities, who guarantees that you are
+not weighting some data in a particular way, perhaps because you dearly want a
+specific conclusion which may support your political views?</p>
+<p>We do not have the answers here, nor will we venture into a deeper
+discussions of these aspects, but we want you think over these topics
+in a more overarching way.  A statistical data analysis with its dry
+numbers and graphs meant to guide the eye, does not necessarily
+reflect the truth, whatever that is.  As a scientist, and after a
+university education, you are supposedly a better citizen, with an
+improved critical view and understanding of the scientific method, and
+perhaps some deeper understanding of the ethics of science at
+large. Use these insights. Be a critical citizen. You owe it to our
+society.</p>
+<!-- !split -->
+<!-- ======= A first data and machine learning encounter ======= -->
+</div>
+</div>
+<div class="section" id="a-first-data-and-machine-learning-encounter">
+<h2><span class="section-number">1.5. </span>A first data and machine learning encounter<a class="headerlink" href="#a-first-data-and-machine-learning-encounter" title="Permalink to this headline">¶</a></h2>
+<p>A first demonstration of machine learning in physics is shown in the accompanying jupyter notebook. We will show some of the strengths of packages like <strong>Scikit-Learn</strong> in fitting nuclear binding energies to specific models using linear regression.</p>
+<div class="section" id="software-and-needed-installations">
+<h3><span class="section-number">1.5.1. </span>Software and needed installations<a class="headerlink" href="#software-and-needed-installations" title="Permalink to this headline">¶</a></h3>
+<p>See the Getting started guide on the course web page.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="welcome.html" title="previous page">Course aim</a>
+    <a class='right-next' id="next-link" href="demo-Intro.html" title="next page"><span class="section-number">2. </span>Reading Data and fitting</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

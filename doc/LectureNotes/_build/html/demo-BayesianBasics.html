@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Interactive Bayesian Coin Tossing &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Checking the sum and product rules, and their consequences" href="exercise_sum_product_rule.html" />
+    <link rel="prev" title="2. The Bayesian recipe" href="BayesianRecipe.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/demo-BayesianBasics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-name-python-python-jupyter-set-up-a">
+   3.1.
+   <a name="Python">
+    Python/Jupyter set up
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-name-updating-bayesian-updating-examples-a">
+   3.2.
+   <a name="Updating">
+    Bayesian updating examples
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determining-the-bias-of-a-coin">
+     3.2.1. Determining the bias of a coin
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#main-code-for-coin-flipping-ui">
+       3.2.1.1. Main code for coin-flipping UI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#user-interface-for-coin-flipping">
+       3.2.1.2. User-interface for coin-flipping
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#degree-of-belief-intervals">
+   3.3. Degree of belief intervals
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="interactive-bayesian-coin-tossing">
+<h1><span class="section-number">3. </span>Interactive Bayesian Coin Tossing<a class="headerlink" href="#interactive-bayesian-coin-tossing" title="Permalink to this headline">¶</a></h1>
+<p>Original version: Dick Furnstahl, Ohio State University<br/>
+Last revised: 06-Sep-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
+<div class="section" id="a-name-python-python-jupyter-set-up-a">
+<h2><span class="section-number">3.1. </span><a name="Python">Python/Jupyter set up</a><a class="headerlink" href="#a-name-python-python-jupyter-set-up-a" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">uniform</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Tab</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">,</span> <span class="n">Play</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">HTMLMath</span> 
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="a-name-updating-bayesian-updating-examples-a">
+<h2><span class="section-number">3.2. </span><a name="Updating">Bayesian updating examples</a><a class="headerlink" href="#a-name-updating-bayesian-updating-examples-a" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(  \newcommand{\thetavec}{\boldsymbol{\theta}} \newcommand{\pr}{\textrm{p}}\)</span>
+Recall Bayes’ theorem with <span class="math notranslate nohighlight">\(\thetavec\)</span> the vector of parameters we seek and information <span class="math notranslate nohighlight">\(I\)</span> is kept implicit.</p>
+<div class="math notranslate nohighlight">
+\[
+  \overbrace{\pr(\thetavec \mid \textrm{data},I)}^{\textrm{posterior}} =
+  \frac{\color{red}{\overbrace{\pr(\textrm{data} \mid \thetavec,I)}^{\textrm{likelihood}}} \times
+   \color{blue}{\overbrace{\pr(\thetavec \mid I)}^{\textrm{prior}}}}
+   {\color{darkgreen}{\underbrace{\pr(\textrm{data} \mid I)}_{\textrm{evidence}}}}
+\]</div>
+<p>If we view the prior as the initial information we have about <span class="math notranslate nohighlight">\(\thetavec\)</span>, summarized as a probability density function, then Bayes’ theorem tells us how to <em>update</em> that information after observing some data: this is the posterior pdf.  Here we will give some examples of how this plays out when tossing coins.</p>
+<div class="section" id="determining-the-bias-of-a-coin">
+<h3><span class="section-number">3.2.1. </span>Determining the bias of a coin<a class="headerlink" href="#determining-the-bias-of-a-coin" title="Permalink to this headline">¶</a></h3>
+<p>The idea here is that we are observing successive flips of a coin, which is a proxy for any process that has a binary outcome.  There is a definite true probability for getting heads, which we’ll label <span class="math notranslate nohighlight">\(p_h\)</span>, but we don’t know what it is.  We start with a preconceived notion of the probability expressed in terms of a prior pdf for <span class="math notranslate nohighlight">\(p_h\)</span>, i.e., <span class="math notranslate nohighlight">\(\pr(p_h)\)</span>.  With each flip of the coin, we have more information, so our goal is to <em>update</em> our expectation of <span class="math notranslate nohighlight">\(p_h\)</span>, meaning we want the posterior <span class="math notranslate nohighlight">\(\pr(p_h \mid \mbox{# tosses, # heads})\)</span>.</p>
+<div class="section" id="main-code-for-coin-flipping-ui">
+<h4><span class="section-number">3.2.1.1. </span>Main code for coin-flipping UI<a class="headerlink" href="#main-code-for-coin-flipping-ui" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial values (can be changed by widgets)</span>
+<span class="n">n_trials_max</span> <span class="o">=</span> <span class="mi">5000</span>          <span class="c1"># maximum number of coin tosses</span>
+<span class="n">prob_heads</span> <span class="o">=</span> <span class="mf">0.4</span>             <span class="c1"># p_h, the true probability of a heads</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">301</span><span class="p">)</span>   <span class="c1"># mesh for posterior plots (enough so smooth)</span>
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Class to hold the array of heads and tails (1s and 0s) outcomes.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="o">=</span><span class="mi">5000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">prob_heads</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">generate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prob_heads</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate an array of heads or tails, 1 or 0, for n_trials_max</span>
+<span class="sd">           independent tosses according to the Bernoulli distribution.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">bernoulli</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">prob_heads</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_trials_max</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">heads_in_data_to_N</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Count how many heads in the first N elements of the data.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">coin_data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">prob_heads</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="p">)</span>    
+    
+<span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">jump</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">recalculate_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">prob_heads</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+                <span class="n">alpha_1</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">beta_1</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                <span class="n">alpha_2</span><span class="o">=</span><span class="mf">30.</span><span class="p">,</span> <span class="n">beta_2</span><span class="o">=</span><span class="mf">30.</span><span class="p">,</span>
+                <span class="n">alpha_3</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">beta_3</span><span class="o">=</span><span class="mf">0.3</span>
+               <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make a new plot based on the current widget settings for the input</span>
+<span class="sd">    parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  
+    
+    <span class="n">font_size</span> <span class="o">=</span> <span class="mi">18</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="n">font_size</span><span class="p">})</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">recalculate_data</span><span class="p">:</span>
+        <span class="n">coin_data</span><span class="o">.</span><span class="n">generate_data</span><span class="p">(</span><span class="n">prob_heads</span><span class="p">,</span> <span class="n">n_trials_max</span><span class="p">)</span>
+        <span class="n">recalculate_data_w</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">heads</span> <span class="o">=</span> <span class="n">coin_data</span><span class="o">.</span><span class="n">heads_in_data_to_N</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># add up the 1s (= # of heads)</span>
+    <span class="c1"># update using the conjugate prior, which is a beta pdf</span>
+    <span class="n">y_1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha_1</span> <span class="o">+</span> <span class="n">heads</span><span class="p">,</span> <span class="n">beta_1</span> <span class="o">+</span> <span class="n">N</span> <span class="o">-</span> <span class="n">heads</span><span class="p">)</span>    
+    <span class="n">y_2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha_2</span> <span class="o">+</span> <span class="n">heads</span><span class="p">,</span> <span class="n">beta_2</span> <span class="o">+</span> <span class="n">N</span> <span class="o">-</span> <span class="n">heads</span><span class="p">)</span>   
+    <span class="n">y_3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha_3</span> <span class="o">+</span> <span class="n">heads</span><span class="p">,</span> <span class="n">beta_3</span> <span class="o">+</span> <span class="n">N</span> <span class="o">-</span> <span class="n">heads</span><span class="p">)</span>   
+
+    <span class="c1"># default y_3 distribution has two high max at endpoints for plot</span>
+    <span class="n">y_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">y_1</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y_2</span><span class="o">.</span><span class="n">max</span><span class="p">()])</span>  
+    
+    <span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;uniform prior&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;informative prior&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">line3</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;anti prior&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+     
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$p_h$, probability of heads&quot;</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>  <span class="c1"># turn off the plotting of ticks on the y-axis</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">prob_heads</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="o">*</span><span class="n">y_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;observe </span><span class="si">{</span><span class="n">N</span><span class="si">:</span><span class="s1">d</span><span class="si">}</span><span class="s1"> tosses,</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">heads</span><span class="si">:</span><span class="s1">d</span><span class="si">}</span><span class="s1"> heads&#39;</span><span class="p">,</span> 
+                <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.85</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> 
+                <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">leg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+    <span class="n">leg</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">autoscale</span><span class="p">(</span><span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    
+<span class="c1">################### begin: text for help tabs ##################</span>
+<span class="c1"># In HTML (could move this to an external file!)</span>
+<span class="n">overview_text</span> <span class="o">=</span> \
+   <span class="sa">r</span><span class="sd">&quot;&quot;&quot;&lt;p&gt;Here we explore Bayesian updating for a coin flip. There is help </span>
+<span class="sd">          available under the other tabs.&lt;/p&gt;  </span>
+<span class="sd">          &lt;ul&gt;</span>
+<span class="sd">            &lt;li&gt;Bayes theorem tab: find out about Bayesian updating.</span>
+<span class="sd">            &lt;li&gt;Toss coin tab: find out what the controls do.</span>
+<span class="sd">            &lt;li&gt;Priors tab: change the three initial priors.</span>
+<span class="sd">            &lt;li&gt;Setup tab: change how the plots are made.</span>
+<span class="sd">          &lt;/ul&gt;      </span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+<span class="n">Bayes_text</span> <span class="o">=</span> \
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &lt;p&gt;Recall Bayes&#39; theorem with $\thetavec$ the vector of parameters </span>
+<span class="sd">    we seek and information $I$ is kept implicit.&lt;/p&gt;</span>
+
+<span class="sd">    $$</span>
+<span class="sd">     \newcommand{\thetavec}{\boldsymbol{\theta}}</span>
+<span class="sd">     \overbrace{p(\thetavec \mid \textrm{data},I)}^{\textrm{posterior}} =</span>
+<span class="sd">     \frac{\color{red}{\overbrace{p(\textrm{data} </span>
+<span class="sd">     \mid \thetavec,I)}^{\textrm{likelihood}}} \times</span>
+<span class="sd">      \color{blue}{\overbrace{p(\thetavec \mid I)}^{\textrm{prior}}}}</span>
+<span class="sd">      {\color{darkgreen}{\underbrace{p(\textrm{data} </span>
+<span class="sd">         \mid I)}_{\textrm{evidence}}}}</span>
+<span class="sd">   $$</span>
+
+<span class="sd">    &lt;p&gt;If we view the prior as the initial information we have about </span>
+<span class="sd">     $\thetavec$, summarized as a probability density function, </span>
+<span class="sd">     then Bayes&#39; theorem tells us how to &lt;em&gt;update&lt;/em&gt; that </span>
+<span class="sd">     information after observing some data: this is the posterior pdf.  </span>
+<span class="sd">     Here we will look at an example of how this plays out in practice:</span>
+<span class="sd">     flipping a (biased) coin.&lt;/p&gt;     </span>
+
+<span class="sd">    &lt;br&gt;</span>
+
+<span class="sd">    &lt;p&gt;The idea here is that we are observing successive flips of a coin, </span>
+<span class="sd">    which is a proxy for any process that has a binary outcome.  </span>
+<span class="sd">    There is a definite true probability for getting heads, </span>
+<span class="sd">    which we&#39;ll label $p_h$, but we don&#39;t know what it is.  </span>
+<span class="sd">    We start with a preconceived notion of the probability expressed </span>
+<span class="sd">    in terms of a prior pdf for $p_h$, i.e., $p(p_h)$.  </span>
+<span class="sd">    With each flip of the coin, we have more information, so our goal is </span>
+<span class="sd">    to &lt;em&gt;update&lt;/em&gt; our expectation of $p_h$, meaning we want the </span>
+<span class="sd">    posterior $p(p_h\mid \mbox{# tosses, # heads})$.&lt;/p&gt; </span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+
+<span class="n">toss_coin_text</span> <span class="o">=</span> \
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The graph shows three posteriors that result from three choices for</span>
+<span class="sd">    the prior (see the &quot;Priors&quot; tab for details) for the number of coin</span>
+<span class="sd">    tosses and observed heads shown at the upper left. The true probability</span>
+<span class="sd">    of a heads, $p_h$, is indicated by a dashed vertical line.</span>
+<span class="sd">    &lt;ul&gt;</span>
+<span class="sd">      &lt;li&gt;The &quot;Next&quot; button advances the number of coin tosses by the</span>
+<span class="sd">        amount shown after &quot;Jump&quot;.</span>
+<span class="sd">      &lt;li&gt;The &quot;Jump&quot; pulldown is used to set how many observations are</span>
+<span class="sd">       made with each press of the &quot;Next&quot; button.</span>
+<span class="sd">      &lt;li&gt;The &quot;Reset&quot; button sets the number of observations back to zero.</span>
+<span class="sd">      &lt;li&gt;The probability of heads $p_h$ can be adjusted between 0 and</span>
+<span class="sd">      1 using the slider.</span>
+<span class="sd">    &lt;/ul&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="n">setup_text</span> <span class="o">=</span> \
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Select the maximum number of trials possible.  The calculations will</span>
+<span class="sd">    simply stop if you try to go higher.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="n">initial_text</span> <span class="o">=</span> \
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The graph shows three posteriors that result from three choices for</span>
+<span class="sd">    the prior (set under the &quot;Priors&quot; tab) for the number of coin</span>
+<span class="sd">    tosses and observed heads shown at the upper left. The true probability</span>
+<span class="sd">    of a heads, $p_h$, is indicated by a dashed vertical line.</span>
+<span class="sd">    Press &quot;Next&quot; to make observations, &quot;Reset&quot; to go back to zero.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="n">initial_text_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">initial_text</span><span class="p">)</span>
+
+<span class="n">priors_text</span> <span class="o">=</span> \
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Hyperparameters for several different priors (all beta distributions).</span>
+<span class="sd">    Default prior 1 ($\alpha_1 = 1$, $\beta_1 = 1$) is uniform in [0,1].</span>
+<span class="sd">    Default prior 2 ($\alpha_2 = 30$, $\beta_2 = 30$) is concentrated </span>
+<span class="sd">    near 0.5 with very small tails.</span>
+<span class="sd">    Defalt prior 3 ($\alpha_3 = .2$, $\beta_3 = .2$) is peaked at the ends, </span>
+<span class="sd">    but allows for probability everywhere.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<span class="n">priors_text_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">priors_text</span><span class="p">)</span>
+<span class="c1">################### end: text for help tabs ##################</span>
+    
+    
+    
+    
+<span class="c1">################### begin: definitions of widgets ##################</span>
+<span class="n">recalculate_data_w</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+<span class="n">prob_heads_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">prob_heads</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;true $p_h$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">n_trials_max_w</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">n_trials_max</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;max # trials:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+ 
+<span class="n">N_w</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">n_trials_max</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">next_button_w</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Next&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                       <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;80px&#39;</span><span class="p">),</span> <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> 
+                       <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Increment number of trials by jump&#39;</span><span class="p">)</span>
+<span class="n">reset_button_w</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Reset&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;80px&#39;</span><span class="p">),</span> <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> 
+                        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Reset number of trials to zero&#39;</span><span class="p">)</span>
+
+<span class="n">jump_w</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Jump:&#39;</span><span class="p">,</span>
+                  <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;150px&#39;</span><span class="p">),</span>
+                  <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">],</span>
+                  <span class="n">value</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+                  <span class="n">continuos_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,)</span>
+
+<span class="n">alpha_1_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha_1$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">alpha_1_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+
+<span class="n">alpha_2_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">30.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">200.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha_2$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">alpha_2_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+<span class="n">alpha_3_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha_3$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">alpha_3_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>
+<span class="n">beta_1_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\beta_1$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">beta_1_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span>
+<span class="n">beta_2_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">30.</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">200.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\beta_2$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">beta_2_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+<span class="n">beta_3_w</span> <span class="o">=</span> <span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                           <span class="n">description</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\beta_3$:&#39;</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">beta_3_w</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>
+
+<span class="c1"># Widgets for the help section, which are HTMLMath boxes in a Tab widget</span>
+<span class="n">help_overview_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">overview_text</span><span class="p">)</span>
+<span class="n">help_Bayes_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">Bayes_text</span><span class="p">)</span>
+<span class="n">help_toss_coin_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">toss_coin_text</span><span class="p">)</span>
+<span class="n">help_priors_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">priors_text</span><span class="p">)</span>
+<span class="n">help_setup_w</span> <span class="o">=</span> <span class="n">HTMLMath</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">setup_text</span><span class="p">)</span>
+
+<span class="c1">################### end: definitions of widgets ##################</span>
+
+<span class="c1">################### begin: explicit widget callbacks ##################</span>
+<span class="k">def</span> <span class="nf">update_N</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Increment the number of trials N by the Jump value&quot;&quot;&quot;</span>
+    <span class="n">N_w</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">jump_w</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">reset_N</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Reset the number of trials N to zero&quot;&quot;&quot;</span>
+    <span class="n">N_w</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+    
+<span class="k">def</span> <span class="nf">update_prob_heads</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change the value of prob_heads and regenerate data.&quot;&quot;&quot;</span>
+    <span class="n">recalculate_data_w</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">N_w</span><span class="o">.</span><span class="n">max</span> <span class="o">=</span> <span class="n">n_trials_max_w</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">next_button_w</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">update_N</span><span class="p">)</span>
+<span class="n">reset_button_w</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">reset_N</span><span class="p">)</span>
+ 
+<span class="n">prob_heads_w</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_prob_heads</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>    
+<span class="n">n_trials_max_w</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_prob_heads</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>    
+
+<span class="c1">################### end: explicit widget callbacks ##################</span>
+
+
+<span class="c1"># Organize the help as Tabs (which will be itself under the Help Tab)</span>
+<span class="n">help_max_height</span> <span class="o">=</span> <span class="s1">&#39;500px&#39;</span>
+<span class="n">help_tab</span> <span class="o">=</span> <span class="n">Tab</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">help_overview_w</span><span class="p">,</span> <span class="n">help_Bayes_w</span><span class="p">,</span> <span class="n">help_toss_coin_w</span><span class="p">,</span> 
+                         <span class="n">help_priors_w</span><span class="p">,</span> <span class="n">help_setup_w</span><span class="p">],</span> 
+               <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">,</span> <span class="n">max_height</span><span class="o">=</span><span class="n">help_max_height</span><span class="p">))</span>
+<span class="n">help_tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Overview&#39;</span><span class="p">)</span>
+<span class="n">help_tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Bayes Theorem&#39;</span><span class="p">)</span>
+<span class="n">help_tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Toss Coin&#39;</span><span class="p">)</span>
+<span class="n">help_tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Priors&#39;</span><span class="p">)</span>
+<span class="n">help_tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Set-up&#39;</span><span class="p">)</span>
+    
+<span class="c1"># Boxes of widgets that will go into the top-level tabs</span>
+<span class="n">textbox0</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">initial_text_w</span><span class="p">])</span>
+<span class="n">hbox0</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">next_button_w</span><span class="p">,</span> <span class="n">jump_w</span><span class="p">,</span> <span class="n">reset_button_w</span><span class="p">,</span> <span class="n">prob_heads_w</span><span class="p">])</span>
+<span class="n">textbox1</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">priors_text_w</span><span class="p">])</span>
+<span class="n">hbox1a</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">alpha_1_w</span><span class="p">,</span> <span class="n">alpha_2_w</span><span class="p">,</span> <span class="n">alpha_3_w</span><span class="p">])</span>
+<span class="n">hbox1b</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">beta_1_w</span><span class="p">,</span> <span class="n">beta_2_w</span><span class="p">,</span> <span class="n">beta_3_w</span><span class="p">])</span>
+<span class="n">hbox2</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">n_trials_max_w</span><span class="p">])</span>
+<span class="n">hbox3</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">help_tab</span><span class="p">])</span>
+
+<span class="c1"># We&#39;ll set up Tabs to organize the controls.  The Tab contents are declared</span>
+<span class="c1">#  as tab0, tab1, ... (probably should make this a list) and the overall Tab</span>
+<span class="c1">#  is called tab (so its children are tab0, tab1, ...).</span>
+<span class="n">tab_height</span> <span class="o">=</span> <span class="s1">&#39;70px&#39;</span>  <span class="c1"># Fixed minimum height for all tabs. Specify another way?</span>
+<span class="n">tab0</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">textbox0</span><span class="p">,</span> <span class="n">hbox0</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_height</span><span class="o">=</span><span class="n">tab_height</span><span class="p">))</span>
+<span class="n">tab1</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">textbox1</span><span class="p">,</span> <span class="n">hbox1a</span><span class="p">,</span> <span class="n">hbox1b</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_height</span><span class="o">=</span><span class="n">tab_height</span><span class="p">))</span>
+<span class="n">tab2</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">hbox2</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_height</span><span class="o">=</span><span class="n">tab_height</span><span class="p">))</span>
+<span class="n">tab3</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">hbox3</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">min_height</span><span class="o">=</span><span class="n">tab_height</span><span class="p">))</span>
+
+<span class="n">tab</span> <span class="o">=</span> <span class="n">Tab</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">tab0</span><span class="p">,</span> <span class="n">tab1</span><span class="p">,</span> <span class="n">tab2</span><span class="p">,</span> <span class="n">tab3</span><span class="p">])</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Toss Coin&#39;</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Priors&#39;</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Set-up&#39;</span><span class="p">)</span>
+<span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Help&#39;</span><span class="p">)</span>
+
+<span class="n">plot_out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_plot</span><span class="p">,</span>
+                                      <span class="nb">dict</span><span class="p">(</span>
+                                           <span class="n">N</span><span class="o">=</span><span class="n">N_w</span><span class="p">,</span>
+                                           <span class="n">jump</span><span class="o">=</span><span class="n">jump_w</span><span class="p">,</span>
+                                           <span class="n">recalculate_data</span><span class="o">=</span><span class="n">recalculate_data_w</span><span class="p">,</span>
+                                           <span class="n">prob_heads</span><span class="o">=</span><span class="n">prob_heads_w</span><span class="p">,</span>
+                                           <span class="n">n_trials_max</span><span class="o">=</span><span class="n">n_trials_max_w</span><span class="p">,</span>
+                                           <span class="n">alpha_1</span><span class="o">=</span><span class="n">alpha_1_w</span><span class="p">,</span> <span class="n">beta_1</span><span class="o">=</span><span class="n">beta_1_w</span><span class="p">,</span>
+                                           <span class="n">alpha_2</span><span class="o">=</span><span class="n">alpha_2_w</span><span class="p">,</span> <span class="n">beta_2</span><span class="o">=</span><span class="n">beta_2_w</span><span class="p">,</span>
+                                           <span class="n">alpha_3</span><span class="o">=</span><span class="n">alpha_3_w</span><span class="p">,</span> <span class="n">beta_3</span><span class="o">=</span><span class="n">beta_3_w</span><span class="p">,</span>
+                                      <span class="p">)</span>
+                                     <span class="p">)</span>
+
+<span class="n">UI_box</span> <span class="o">=</span> <span class="n">VBox</span><span class="p">([</span><span class="n">tab</span><span class="p">,</span> <span class="n">plot_out</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/demo-BayesianBasics_8_0.png" src="_images/demo-BayesianBasics_8_0.png" />
+<img alt="_images/demo-BayesianBasics_8_1.png" src="_images/demo-BayesianBasics_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="user-interface-for-coin-flipping">
+<h4><span class="section-number">3.2.1.2. </span>User-interface for coin-flipping<a class="headerlink" href="#user-interface-for-coin-flipping" title="Permalink to this headline">¶</a></h4>
+<p>Take a look at the information under the <code class="docutils literal notranslate"><span class="pre">Help</span></code> tab to find out about what the controls do, what the priors are, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">UI_box</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "45808f0569b9408d8323f78d6f3946f0"}
+</script></div>
+</div>
+<p>Questions and tasks relating to priors and dealing with uncertainty:</p>
+<ul class="simple">
+<li><p><em>What prior would you choose? How does this affect how long it takes you to arrive at the correct conclusion?</em> Note that the answer to this question may be <span class="math notranslate nohighlight">\(p_H\)</span> dependent.</p></li>
+<li><p><em>What would your standard be for deciding the coin was so unfair that you would walk away? That you’d call the police? That you’d try and publish the fact that you found an unfair coin in a scientific journal?</em> Hint: for the last one try thinking in terms of a “p value”. If you don’t know what that mean google “hypothesis testing”.</p></li>
+<li><p><em>What if you were <strong>sure</strong> the coin was unfair before you started? (E.g. you saw the person doctoring it.) What prior would you choose then? What happens to the posterior in this case?</em>  This one may be best answered without any hitting of shift-return…..</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="degree-of-belief-intervals">
+<h2><span class="section-number">3.3. </span>Degree of belief intervals<a class="headerlink" href="#degree-of-belief-intervals" title="Permalink to this headline">¶</a></h2>
+<p>Now we are going to compute some Bayesian confidence intervals, aka DoB intervals, aka credibility intervals….
+You shoud go through this section once using the numbers provided, and then come back and run it again (or copy-paste the relevant lines) for other results from the widget. You can also employ priors other than those provided if you wish, but that takes a bit more work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dist_stuff</span><span class="p">(</span><span class="n">dist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the median, mean, and 68%/95% credible intervals for the given </span>
+<span class="sd">    1-d distribution (which is an object from scipy.stats).  </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># For x = median, mean: return x and the value of the pdf at x as a list</span>
+    <span class="n">median</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">median</span><span class="p">())]</span>  
+    <span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">())]</span>
+    <span class="c1"># The left and right limits of the credibility interval are returned</span>
+    <span class="n">cred68</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.68</span><span class="p">)</span>
+    <span class="n">cred95</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">median</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cred68</span><span class="p">,</span> <span class="n">cred95</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dist_mode</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the mode (maximum) of the 1-d distribution for array x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x_max_index</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+    <span class="c1"># Return x of the maximum and the value of the pdf at that x </span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">x_max_index</span><span class="p">],</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">x_max_index</span><span class="p">])]</span>
+    <span class="k">return</span> <span class="n">mode</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we use this to write an object that will give us back the mean, 68%, and 95% intervals for a uniform prior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_uniform_prior_measures</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">heads</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prints out the mean, and 68 and 95 CIs for a uniform prior. Note that this means alpha=beta=1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">median</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cred68</span><span class="p">,</span> <span class="n">cred95</span> <span class="o">=</span> <span class="n">dist_stuff</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">))</span>
+    <span class="n">mode</span><span class="o">=</span><span class="n">dist_mode</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">),</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For a uniform prior, and </span><span class="si">{</span><span class="n">heads</span><span class="si">}</span><span class="s1"> heads out of </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> tosses:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  mean=</span><span class="si">{</span><span class="n">mean</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">; Mode=</span><span class="si">{</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  68% DoB interval=[</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  95% DoB interval=[</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="k">return</span>                              
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we fill in the values for N and heads from running the widget. Which for me gave 3 heads out of 14 tosses. (Actualy, I thought it was broken because I only had 1 head from 10 tosses. How unlikely is that?)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_uniform_prior_measures</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For a uniform prior, and 3 heads out of 14 tosses:
+  mean=0.250; Mode=0.213
+  68% DoB interval=[0.144,0.356]
+  95% DoB interval=[0.078,0.481]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The actual value of p_H is&#39;</span><span class="p">,</span><span class="n">prob_heads</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The actual value of p_H is 0.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, at least for the data I generated, the 68% DoB for a uniform prior does <em>not</em> contain the true value, but the 95% one does. Are you surprised by that? Should you be?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_frequentist_estimators</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">heads</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the mean, and 68 and 95 CIs for a uniform prior. Note that this means alpha_1=beta_1=1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mean</span><span class="o">=</span><span class="n">heads</span><span class="o">/</span><span class="n">N</span>
+    <span class="n">sigma</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For </span><span class="si">{</span><span class="n">heads</span><span class="si">}</span><span class="s1"> heads out of </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> tosses, the frequentist 1-sigma interval=&#39;</span><span class="p">,</span>\
+          <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">mean</span><span class="o">-</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">mean</span><span class="o">+</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_frequentist_estimators</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For 3 heads out of 14 tosses, the frequentist 1-sigma interval= (0.105,0.324)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Which Bayesian estimator is the frequentist mean closest to?</p>
+<p>Is the frequentist 1<span class="math notranslate nohighlight">\(\sigma\)</span> interval the same as the Bayesian 68% DoB interval? If so, should they be? If not, why are they different?</p>
+<p>Now we will also generate the summary statistics for the other priors. (What is coded is for the default values. After running through the exercise you can come back and try and change it; indeed, you should do that if you comparing to results where you altered the prior above.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_likely_fair_prior_measures</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">heads</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prints out the mean, and 68 and 95 CIs for the &quot;coin is likely fair&quot; prior. This means alpha=beta=30.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">median</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cred68</span><span class="p">,</span> <span class="n">cred95</span> <span class="o">=</span> <span class="n">dist_stuff</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mi">30</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">))</span>
+    <span class="n">mode</span><span class="o">=</span><span class="n">dist_mode</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">),</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For the trusting-person`s prior, and&#39;</span><span class="p">,</span><span class="n">heads</span><span class="p">,</span><span class="s1">&#39;heads out of&#39;</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;tosses:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean=</span><span class="si">{</span><span class="n">mean</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">; Mode=</span><span class="si">{</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;68% DoB interval=[</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;95% DoB interval=[</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="k">return</span>              
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_likely_fair_prior_measures</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For the trusting-person`s prior, and 3 heads out of 14 tosses:
+Mean=0.446; Mode=0.213
+68% DoB interval=[0.388,0.503]
+95% DoB interval=[0.335,0.559]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_likely_unfair_prior_measures</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">heads</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Prints out the mean, and 68 and 95 CIs for the &quot;coin is likely unfair&quot; prior. This means alpha=beta=0.2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">median</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cred68</span><span class="p">,</span> <span class="n">cred95</span> <span class="o">=</span> <span class="n">dist_stuff</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mf">0.2</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mf">0.2</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">))</span>
+    <span class="n">mode</span><span class="o">=</span><span class="n">dist_mode</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">heads</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">N</span><span class="o">-</span><span class="n">heads</span><span class="p">),</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;For the nasty-suspicious-mind prior, and&#39;</span><span class="p">,</span><span class="n">heads</span><span class="p">,</span><span class="s1">&#39;heads out of&#39;</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;tosses:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean=</span><span class="si">{</span><span class="n">mean</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">; Mode=</span><span class="si">{</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;68% DoB interval=[</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred68</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;95% DoB interval=[</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">cred95</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="k">return</span>              
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_likely_unfair_prior_measures</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For the nasty-suspicious-mind prior, and 3 heads out of 14 tosses:
+Mean=0.222; Mode=0.213
+68% DoB interval=[0.116,0.329]
+95% DoB interval=[0.056,0.461]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what is the best approach in this case? Objectivity? Trust? Suspicion?</p>
+<p>Now having printed out the results for my particular coin-tossing experiment you should play with things and see what the different summary statistics give for other “experimental runs”.</p>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"94044b96197c4b0394f79a10d1db07ea": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ed4a4cb758f54d11938fbc6d3d2f07ec": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "4d2c187d99bd4c199cc46ef574b28ecb": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_94044b96197c4b0394f79a10d1db07ea", "placeholder": "\u200b", "style": "IPY_MODEL_ed4a4cb758f54d11938fbc6d3d2f07ec", "value": "\n    The graph shows three posteriors that result from three choices for\n    the prior (set under the \"Priors\" tab) for the number of coin\n    tosses and observed heads shown at the upper left. The true probability\n    of a heads, $p_h$, is indicated by a dashed vertical line.\n    Press \"Next\" to make observations, \"Reset\" to go back to zero.\n    "}}, "96938236da9d4e298e7aa4c28348f904": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9997e5159b514d0196813c1f89299291": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5eb8f6a7ffe54383a1b47ab8f5e0597f": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_96938236da9d4e298e7aa4c28348f904", "placeholder": "\u200b", "style": "IPY_MODEL_9997e5159b514d0196813c1f89299291", "value": "\n    Hyperparameters for several different priors (all beta distributions).\n    Default prior 1 ($\\alpha_1 = 1$, $\\beta_1 = 1$) is uniform in [0,1].\n    Default prior 2 ($\\alpha_2 = 30$, $\\beta_2 = 30$) is concentrated \n    near 0.5 with very small tails.\n    Defalt prior 3 ($\\alpha_3 = .2$, $\\beta_3 = .2$) is peaked at the ends, \n    but allows for probability everywhere.\n    "}}, "3d7996091ea44eb7b006b038e452b6ee": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0f884abe31c64adb93f420ae6da68cb3": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f296ad6f7dac4edfa78d39d6bfed7a54": {"model_name": "CheckboxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "CheckboxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "CheckboxView", "description": "", "description_tooltip": null, "disabled": false, "indent": true, "layout": "IPY_MODEL_3d7996091ea44eb7b006b038e452b6ee", "style": "IPY_MODEL_0f884abe31c64adb93f420ae6da68cb3", "value": false}}, "6d125379f8d145c7a2bbd2e39086e2fd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a219618c32b049b288b5fb2cbe61b94d": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "7b03b505028f4d0eb5bcbbe53d758a1e": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "true $p_h$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_6d125379f8d145c7a2bbd2e39086e2fd", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.05, "style": "IPY_MODEL_a219618c32b049b288b5fb2cbe61b94d", "value": 0.4}}, "e29279c397a64090a4eee41addfe2df2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7665bc8dfbe54deeb15e8b9ab927aecd": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "3f933fdb718142088476f87f099dc727": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": false, "description": "max # trials:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_e29279c397a64090a4eee41addfe2df2", "max": 10000, "min": 100, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 100, "style": "IPY_MODEL_7665bc8dfbe54deeb15e8b9ab927aecd", "value": 5000}}, "95687254c4a2440f86fc36978c1d6447": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7cab4d84719d4154a2ffa44e30f618c9": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "df952ca2e5b64627a10e7ec7cbf2192b": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": false, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_95687254c4a2440f86fc36978c1d6447", "max": 5000, "min": 0, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_7cab4d84719d4154a2ffa44e30f618c9", "value": 0}}, "ff857a42862f415a922dc6082299fa10": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "80px"}}, "bd680fea4006418f882e829332cdc830": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "31770e8ff8c147b48afd942ec132db24": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Next", "disabled": false, "icon": "", "layout": "IPY_MODEL_ff857a42862f415a922dc6082299fa10", "style": "IPY_MODEL_bd680fea4006418f882e829332cdc830", "tooltip": "Increment number of trials by jump"}}, "28b7391ebb7f437f9268e68f952ad079": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "80px"}}, "25b4e2ff791c4ca38cea80fe9e27198f": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "15f87796f2bd45c1aef6b4a2cc1fcb7a": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Reset", "disabled": false, "icon": "", "layout": "IPY_MODEL_28b7391ebb7f437f9268e68f952ad079", "style": "IPY_MODEL_25b4e2ff791c4ca38cea80fe9e27198f", "tooltip": "Reset number of trials to zero"}}, "2e4bbe0ffb9e49fca19436c7abea1664": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "150px"}}, "012c5eee8fc54bdf92b323139e35a443": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "75a2a695ede64066a3c8f7e84816ff6e": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DropdownModel", "_options_labels": ["1", "10", "100", "1000"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "DropdownView", "description": "Jump:", "description_tooltip": null, "disabled": false, "index": 0, "layout": "IPY_MODEL_2e4bbe0ffb9e49fca19436c7abea1664", "style": "IPY_MODEL_012c5eee8fc54bdf92b323139e35a443"}}, "19a64a80cb334213aeb4253d02d6dc19": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ef7962eec1134a57ac68f210668f3254": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "blue"}}, "e02ba88937d1477196b89fe1852d3bf8": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\alpha_1$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_19a64a80cb334213aeb4253d02d6dc19", "max": 2.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_ef7962eec1134a57ac68f210668f3254", "value": 1.0}}, "569a1658b23142778fcaae8f1ee43521": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "90701c07f28d4de2a6735aa49c4ba238": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "red"}}, "63d7c4796bbe406689ae9d510c983782": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\alpha_2$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_569a1658b23142778fcaae8f1ee43521", "max": 200.0, "min": 5.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 5.0, "style": "IPY_MODEL_90701c07f28d4de2a6735aa49c4ba238", "value": 30.0}}, "c8e3b39905024b0ca672fd9eb0b734bf": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "04af1e6456cb42cb8c17106aaf5c77ce": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "green"}}, "6bb4492df4a54e9c9b6f44e345b48f7c": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\alpha_3$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_c8e3b39905024b0ca672fd9eb0b734bf", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_04af1e6456cb42cb8c17106aaf5c77ce", "value": 0.2}}, "ecf186f5054e4ca396e655fd03df475a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fb319b7478eb47e7a38206db7b4e19ad": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "blue"}}, "a32973199b654b1e88aa79960cf8efe3": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\beta_1$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_ecf186f5054e4ca396e655fd03df475a", "max": 2.0, "min": 0.1, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_fb319b7478eb47e7a38206db7b4e19ad", "value": 1.0}}, "4df2987313f4424b8f0f3e82c44bc2ba": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1c71b807b41b4e8cb941ab69558bb853": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "red"}}, "4387368074e5441c9db3d764440f4f50": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\beta_2$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_4df2987313f4424b8f0f3e82c44bc2ba", "max": 200.0, "min": 5.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 5.0, "style": "IPY_MODEL_1c71b807b41b4e8cb941ab69558bb853", "value": 30.0}}, "8fc8cc5c32e2479982e307e25d9f9cfa": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9a26c383e8bf40b29b350baa05d5cc82": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": "green"}}, "3179d9e88ba94a97be0a490c0f233542": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatSliderView", "continuous_update": false, "description": "$\\beta_3$:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_8fc8cc5c32e2479982e307e25d9f9cfa", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_9a26c383e8bf40b29b350baa05d5cc82", "value": 0.2}}, "ab73b3bed67b4f48bcda9ec152145594": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "26fa806e96904ae38b9d3638814ba257": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "9bd6dc496ca146c6962b91251b6c201a": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ab73b3bed67b4f48bcda9ec152145594", "placeholder": "\u200b", "style": "IPY_MODEL_26fa806e96904ae38b9d3638814ba257", "value": "<p>Here we explore Bayesian updating for a coin flip. There is help \n          available under the other tabs.</p>  \n          <ul>\n            <li>Bayes theorem tab: find out about Bayesian updating.\n            <li>Toss coin tab: find out what the controls do.\n            <li>Priors tab: change the three initial priors.\n            <li>Setup tab: change how the plots are made.\n          </ul>      \n    "}}, "8ba834d0a9c7447f94bb72c4703812e2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "87876579b0544f5f8731e0f7caaa9402": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "0c79452c7108418d917ce05549503f49": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8ba834d0a9c7447f94bb72c4703812e2", "placeholder": "\u200b", "style": "IPY_MODEL_87876579b0544f5f8731e0f7caaa9402", "value": "\n    <p>Recall Bayes' theorem with $\\thetavec$ the vector of parameters \n    we seek and information $I$ is kept implicit.</p>\n\n    $$\n     \\newcommand{\\thetavec}{\\boldsymbol{\\theta}}\n     \\overbrace{p(\\thetavec \\mid \\textrm{data},I)}^{\\textrm{posterior}} =\n     \\frac{\\color{red}{\\overbrace{p(\\textrm{data} \n     \\mid \\thetavec,I)}^{\\textrm{likelihood}}} \\times\n      \\color{blue}{\\overbrace{p(\\thetavec \\mid I)}^{\\textrm{prior}}}}\n      {\\color{darkgreen}{\\underbrace{p(\\textrm{data} \n         \\mid I)}_{\\textrm{evidence}}}}\n   $$\n\n    <p>If we view the prior as the initial information we have about \n     $\\thetavec$, summarized as a probability density function, \n     then Bayes' theorem tells us how to <em>update</em> that \n     information after observing some data: this is the posterior pdf.  \n     Here we will look at an example of how this plays out in practice:\n     flipping a (biased) coin.</p>     \n\n    <br>\n\n    <p>The idea here is that we are observing successive flips of a coin, \n    which is a proxy for any process that has a binary outcome.  \n    There is a definite true probability for getting heads, \n    which we'll label $p_h$, but we don't know what it is.  \n    We start with a preconceived notion of the probability expressed \n    in terms of a prior pdf for $p_h$, i.e., $p(p_h)$.  \n    With each flip of the coin, we have more information, so our goal is \n    to <em>update</em> our expectation of $p_h$, meaning we want the \n    posterior $p(p_h\\mid \\mbox{# tosses, # heads})$.</p> \n\n   "}}, "a9f5b47e7bb74b26a877e45622c97a6e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c9e9ec956a9c452c9cf49b0edb3ab44d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "1237f6547bd5460d84abfee00bdce6d7": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a9f5b47e7bb74b26a877e45622c97a6e", "placeholder": "\u200b", "style": "IPY_MODEL_c9e9ec956a9c452c9cf49b0edb3ab44d", "value": "\n    The graph shows three posteriors that result from three choices for\n    the prior (see the \"Priors\" tab for details) for the number of coin\n    tosses and observed heads shown at the upper left. The true probability\n    of a heads, $p_h$, is indicated by a dashed vertical line.\n    <ul>\n      <li>The \"Next\" button advances the number of coin tosses by the\n        amount shown after \"Jump\".\n      <li>The \"Jump\" pulldown is used to set how many observations are\n       made with each press of the \"Next\" button.\n      <li>The \"Reset\" button sets the number of observations back to zero.\n      <li>The probability of heads $p_h$ can be adjusted between 0 and\n      1 using the slider.\n    </ul>\n    "}}, "1331339db3be425295953c623c12ed8d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a4d09d4e143645b0b72facb7e378657c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "be65abee438a499e8a02c8632a16b31a": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1331339db3be425295953c623c12ed8d", "placeholder": "\u200b", "style": "IPY_MODEL_a4d09d4e143645b0b72facb7e378657c", "value": "\n    Hyperparameters for several different priors (all beta distributions).\n    Default prior 1 ($\\alpha_1 = 1$, $\\beta_1 = 1$) is uniform in [0,1].\n    Default prior 2 ($\\alpha_2 = 30$, $\\beta_2 = 30$) is concentrated \n    near 0.5 with very small tails.\n    Defalt prior 3 ($\\alpha_3 = .2$, $\\beta_3 = .2$) is peaked at the ends, \n    but allows for probability everywhere.\n    "}}, "3a5a9b4405f844a8abc839b5103385bf": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1d08e1a7efdb41fea59f5c78daac2082": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "ea976b95a924472588208f3b45634914": {"model_name": "HTMLMathModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLMathModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLMathView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3a5a9b4405f844a8abc839b5103385bf", "placeholder": "\u200b", "style": "IPY_MODEL_1d08e1a7efdb41fea59f5c78daac2082", "value": "\n    Select the maximum number of trials possible.  The calculations will\n    simply stop if you try to go higher.\n    "}}, "7aec80d22c534eb99788b7c13f4a04c3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": "500px", "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "95%"}}, "1edfe46f7db2488d9dcaaeae11bad531": {"model_name": "TabModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TabModel", "_titles": {"0": "Overview", "1": "Bayes Theorem", "2": "Toss Coin", "3": "Priors", "4": "Set-up"}, "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TabView", "box_style": "", "children": ["IPY_MODEL_9bd6dc496ca146c6962b91251b6c201a", "IPY_MODEL_0c79452c7108418d917ce05549503f49", "IPY_MODEL_1237f6547bd5460d84abfee00bdce6d7", "IPY_MODEL_be65abee438a499e8a02c8632a16b31a", "IPY_MODEL_ea976b95a924472588208f3b45634914"], "layout": "IPY_MODEL_7aec80d22c534eb99788b7c13f4a04c3", "selected_index": 0}}, "f8698bc756114b63b5b4a4403f2a737e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7492a53c9d95407283b396f9e5af76f3": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_4d2c187d99bd4c199cc46ef574b28ecb"], "layout": "IPY_MODEL_f8698bc756114b63b5b4a4403f2a737e"}}, "940e6a9617d84bfdb55a91279ea65353": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d5f490d3284446919a7b813a54939363": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_31770e8ff8c147b48afd942ec132db24", "IPY_MODEL_75a2a695ede64066a3c8f7e84816ff6e", "IPY_MODEL_15f87796f2bd45c1aef6b4a2cc1fcb7a", "IPY_MODEL_7b03b505028f4d0eb5bcbbe53d758a1e"], "layout": "IPY_MODEL_940e6a9617d84bfdb55a91279ea65353"}}, "c5f3076b8e2c49ada5c1e58851411b72": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f625f5a3a644444d9d88a5460b251b49": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_5eb8f6a7ffe54383a1b47ab8f5e0597f"], "layout": "IPY_MODEL_c5f3076b8e2c49ada5c1e58851411b72"}}, "81f769eed7d04a8597f247ca6811e93a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1f0c15e9457543eeaa0de81adc1a694c": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_e02ba88937d1477196b89fe1852d3bf8", "IPY_MODEL_63d7c4796bbe406689ae9d510c983782", "IPY_MODEL_6bb4492df4a54e9c9b6f44e345b48f7c"], "layout": "IPY_MODEL_81f769eed7d04a8597f247ca6811e93a"}}, "e822c7618e2b4ac1a7e424693ee66e41": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9d410dfbd88b42268305ac30a2e8f420": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_a32973199b654b1e88aa79960cf8efe3", "IPY_MODEL_4387368074e5441c9db3d764440f4f50", "IPY_MODEL_3179d9e88ba94a97be0a490c0f233542"], "layout": "IPY_MODEL_e822c7618e2b4ac1a7e424693ee66e41"}}, "dd5f2e5febbe4426a61a4245e2894ea8": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a00bad2e848e454fb4d5eab839dd6ca6": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_3f933fdb718142088476f87f099dc727"], "layout": "IPY_MODEL_dd5f2e5febbe4426a61a4245e2894ea8"}}, "ff1d0d269169463d923ae645a5ac413b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "02f7dcd7d0e5426b8a154a215842761a": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1edfe46f7db2488d9dcaaeae11bad531"], "layout": "IPY_MODEL_ff1d0d269169463d923ae645a5ac413b"}}, "891d5149ac1c4118a9f21db2e7346457": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": "70px", "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f1127ffb35f246f9920a16de202c04e9": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_7492a53c9d95407283b396f9e5af76f3", "IPY_MODEL_d5f490d3284446919a7b813a54939363"], "layout": "IPY_MODEL_891d5149ac1c4118a9f21db2e7346457"}}, "87b69cec8b8e4a76b603ae2f8689aea9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": "70px", "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "54eb1d554b1e45bfbb4cd4acb97a26c8": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_f625f5a3a644444d9d88a5460b251b49", "IPY_MODEL_1f0c15e9457543eeaa0de81adc1a694c", "IPY_MODEL_9d410dfbd88b42268305ac30a2e8f420"], "layout": "IPY_MODEL_87b69cec8b8e4a76b603ae2f8689aea9"}}, "7de668763de84f97a548cd82bcd5c878": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": "70px", "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3ab309a1bb7f4c1da64795f9a39d7136": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_a00bad2e848e454fb4d5eab839dd6ca6"], "layout": "IPY_MODEL_7de668763de84f97a548cd82bcd5c878"}}, "1a9778ca58d74b3085a0ba68bfafdc58": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": "70px", "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7b5b1684aa0e41d0a37914226c17fd90": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_02f7dcd7d0e5426b8a154a215842761a"], "layout": "IPY_MODEL_1a9778ca58d74b3085a0ba68bfafdc58"}}, "a5fde24de91a4068a45030b8ff70b11f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "19f9f05c254b411995ee5cf96e563938": {"model_name": "TabModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TabModel", "_titles": {"0": "Toss Coin", "1": "Priors", "2": "Set-up", "3": "Help"}, "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TabView", "box_style": "", "children": ["IPY_MODEL_f1127ffb35f246f9920a16de202c04e9", "IPY_MODEL_54eb1d554b1e45bfbb4cd4acb97a26c8", "IPY_MODEL_3ab309a1bb7f4c1da64795f9a39d7136", "IPY_MODEL_7b5b1684aa0e41d0a37914226c17fd90"], "layout": "IPY_MODEL_a5fde24de91a4068a45030b8ff70b11f", "selected_index": 0}}, "3198ad61d04746d692d4821df48cceaa": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c46569e4c80549779b94cbc66af27914": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_3198ad61d04746d692d4821df48cceaa", "msg_id": "", "outputs": []}}, "d74b28a7afc0487aaa4e166e97f1dfcb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "45808f0569b9408d8323f78d6f3946f0": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_19f9f05c254b411995ee5cf96e563938", "IPY_MODEL_c46569e4c80549779b94cbc66af27914"], "layout": "IPY_MODEL_d74b28a7afc0487aaa4e166e97f1dfcb"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="BayesianRecipe.html" title="previous page"><span class="section-number">2. </span>The Bayesian recipe</a>
+    <a class='right-next' id="next-link" href="exercise_sum_product_rule.html" title="next page"><span class="section-number">4. </span>Checking the sum and product rules, and their consequences</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4. Checking the sum and product rules, and their consequences &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Inference With Parametric Models" href="BayesianParameterEstimation.html" />
+    <link rel="prev" title="3. Interactive Bayesian Coin Tossing" href="demo-BayesianBasics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/exercise_sum_product_rule.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-rules-of-probability-as-principles-of-logic">
+   4.1. Bayesian rules of probability as principles of logic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answer-the-questions-in-italics-check-answers-with-your-neighbors-ask-for-help-if-you-get-stuck-or-are-unsure">
+   4.2. Answer the questions in
+   <em>
+    italics
+   </em>
+   . Check answers with your neighbors. Ask for help if you get stuck or are unsure.
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="checking-the-sum-and-product-rules-and-their-consequences">
+<h1><span class="section-number">4. </span>Checking the sum and product rules, and their consequences<a class="headerlink" href="#checking-the-sum-and-product-rules-and-their-consequences" title="Permalink to this headline">¶</a></h1>
+<p>Goal: Check using a very simple example that the Bayesian rules are consistent with standard probabilities based on frequencies.  Also check notation and vocabulary.</p>
+<p>Physicist-friendly references:</p>
+<ul class="simple">
+<li><p>R. Trotta, <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/00107510802066753"><em>Bayes in the sky: Bayesian inference and model selection in cosmology</em></a>, Contemp. Phys. <strong>49</strong>, 71 (2008)  <a class="reference external" href="https://arxiv.org/abs/0803.4089">arXiv:0803.4089</a>.</p></li>
+<li><p>D.S. Sivia and J. Skilling, <span class="xref myst"><em>Data Analysis: A Bayesian Tutorial, 2nd edition</em></span>, (Oxford University Press, 2006).</p></li>
+<li><p>P. Gregory,
+<span class="xref myst"><em>Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support</em></span>, (Cambridge University Press, 2010).</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(% Some LaTeX definitions we'll use.
+\newcommand{\pr}{\textrm{p}}
+\)</span></p>
+<div class="section" id="bayesian-rules-of-probability-as-principles-of-logic">
+<h2><span class="section-number">4.1. </span>Bayesian rules of probability as principles of logic<a class="headerlink" href="#bayesian-rules-of-probability-as-principles-of-logic" title="Permalink to this headline">¶</a></h2>
+<p>Notation: <span class="math notranslate nohighlight">\(p(x \mid I)\)</span> is the probability (or pdf) of <span class="math notranslate nohighlight">\(x\)</span> being true
+given information <span class="math notranslate nohighlight">\(I\)</span></p>
+<ol class="simple">
+<li><p><strong>Sum rule:</strong> If set <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is exhaustive and exclusive,
+$<span class="math notranslate nohighlight">\( \sum_i p(x_i  \mid  I) = 1   \quad \longrightarrow \quad       \color{red}{\int\!dx\, p(x \mid I) = 1} 
+\)</span>$</p>
+<ul class="simple">
+<li><p>cf. complete and orthonormal</p></li>
+<li><p>implies <em>marginalization</em> (cf. inserting complete set of states or integrating out variables - but be careful!)
+$<span class="math notranslate nohighlight">\(
+p(x \mid  I) = \sum_j p(x,y_j \mid I) 
+\quad \longrightarrow \quad
+\color{red}{p(x \mid I) = \int\!dy\, p(x,y \mid I)} 
+\)</span>$</p></li>
+</ul>
+</li>
+<li><p><strong>Product rule:</strong> expanding a joint probability of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span><br />
+$<span class="math notranslate nohighlight">\(
+      \color{red}{ p(x,y \mid I) = p(x \mid y,I)\,p(y \mid I)
+           = p(y \mid x,I)\,p(x \mid I)}
+  \)</span>$</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are <em>mutually independent</em>:  <span class="math notranslate nohighlight">\(p(x \mid y,I)
+= p(x \mid I)\)</span>, then<br />
+$<span class="math notranslate nohighlight">\(
+ p(x,y \mid I) \longrightarrow p(x \mid I)\,p(y \mid I)
+\)</span>$</p></li>
+<li><p>Rearranging the second equality yields <em> Bayes’ Rule (or Theorem)</em>
+$<span class="math notranslate nohighlight">\(
+\color{blue}{p(x  \mid y,I) = \frac{p(y \mid x,I)\, 
+ p(x \mid I)}{p(y \mid I)}}
+\)</span>$</p></li>
+</ul>
+</li>
+</ol>
+<p>See <a href="https://www.amazon.com/Algebra-Probable-Inference-Richard-Cox/dp/080186982X/ref=sr_1_1?s=books&ie=UTF8&qid=1538835666&sr=1-1">Cox</a> for the proof.</p>
+</div>
+<div class="section" id="answer-the-questions-in-italics-check-answers-with-your-neighbors-ask-for-help-if-you-get-stuck-or-are-unsure">
+<h2><span class="section-number">4.2. </span>Answer the questions in <em>italics</em>. Check answers with your neighbors. Ask for help if you get stuck or are unsure.<a class="headerlink" href="#answer-the-questions-in-italics-check-answers-with-your-neighbors-ask-for-help-if-you-get-stuck-or-are-unsure" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+ <span class="nt">table</span> <span class="p">{</span> <span class="k">width</span><span class="p">:</span><span class="mi">80</span><span class="kt">%</span> <span class="cp">!important</span><span class="p">;</span> <span class="p">}</span>
+ <span class="nt">table</span> <span class="nt">td</span><span class="o">,</span> <span class="nt">th</span> <span class="p">{</span> <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">black</span> <span class="cp">!important</span><span class="p">;</span> 
+         <span class="k">text-align</span><span class="p">:</span><span class="kc">center</span> <span class="cp">!important</span><span class="p">;</span>
+         <span class="k">font-size</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span> <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+ table { width:80% !important; }
+ table td, th { border: 1px solid black !important; 
+         text-align:center !important;
+         font-size: 20px }
+</style>
+</div></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>TABLE 1</p></th>
+<th class="text-align:center head"><p>Blue</p></th>
+<th class="text-align:center head"><p>Brown</p></th>
+<th class="text-align:center head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>Tall</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>17</p></td>
+<td class="text-align:center"><p>18</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Short</p></td>
+<td class="text-align:center"><p>37</p></td>
+<td class="text-align:center"><p>20</p></td>
+<td class="text-align:center"><p>57</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Total</p></td>
+<td class="text-align:center"><p>38</p></td>
+<td class="text-align:center"><p>37</p></td>
+<td class="text-align:center"><p>75</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>TABLE 2</p></th>
+<th class="text-align:center head"><p>Blue</p></th>
+<th class="text-align:center head"><p>Brown</p></th>
+<th class="text-align:center head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>Tall</p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>Short</p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>Total</p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+<td class="text-align:center"><p> </p></td>
+</tr>
+</tbody>
+</table>
+<ol class="simple">
+<li><p>Table 1 shows the number of blue- or brown-eyed and tall or short individuals in a population of 75.
+<em>Fill in the blanks in Table 2 with probabilities (in decimals with three places, not fractions) based on the usual “frequentist” interpretations of probability</em> (which would say that the probability of randomly drawing an ace from a deck of cards is 4/52 = 1/13). <em>Add x’s in the row and/or column that illustrates the sum rule.</em>
+<br>
+<br></p></li>
+</ol>
+<ol class="simple">
+<li><p><em>What is <span class="math notranslate nohighlight">\(\pr(short, blue)\)</span>? Is this a joint or conditional probability?  What is <span class="math notranslate nohighlight">\(\pr(blue)\)</span>?
+<br>From the product rule, what is <span class="math notranslate nohighlight">\(\pr(short | blue)\)</span>?  Can you read this result directly from the table?</em>
+<br>
+<br>
+<br>
+<br></p></li>
+</ol>
+<ol class="simple">
+<li><p><em>Apply Bayes’ theorem to find <span class="math notranslate nohighlight">\(\pr(blue | short)\)</span> from your answers to the last part.</em>
+<br>
+<br>
+<br>
+<br></p></li>
+</ol>
+<ol class="simple">
+<li><p><em>What rule does the second row (the one starting with “Short”) illustrate?  Write it out in <span class="math notranslate nohighlight">\(\pr(\cdot)\)</span> notation.</em>
+<br>
+<br>
+<br></p></li>
+</ol>
+<ol class="simple">
+<li><p><em>Are the probabilities of being tall and having brown eyes mutually independent?  Why or why not?</em>
+<br>
+<br>
+<br></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="demo-BayesianBasics.html" title="previous page"><span class="section-number">3. </span>Interactive Bayesian Coin Tossing</a>
+    <a class='right-next' id="next-link" href="BayesianParameterEstimation.html" title="next page"><span class="section-number">5. </span>Inference With Parametric Models</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

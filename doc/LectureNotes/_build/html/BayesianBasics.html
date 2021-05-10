@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Statistical inference &#8212; Learning from data</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. The Bayesian recipe" href="BayesianRecipe.html" />
+    <link rel="prev" title="5. Linear Regression exercise" href="exercise_LinearRegression.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="LinearRegression.html">
+   1. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   2. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   4. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   5. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianRecipe.html">
+   2. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   3. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   4. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   5. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   7. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
+   8. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MCMC.html">
+   9. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MCMC.html">
+   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ErrorPropagation.html">
+   12. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ErrorPropagation.html">
+   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   16. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   17. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelSelection.html">
+   18. Frequentist hypothesis testing
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning---A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaussianProcesses.html">
+   1. Inference using Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-GaussianProcesses.html">
+   2. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_GP.html">
+   3. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="LogReg.html">
+   4. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="NeuralNet.html">
+   6. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-NeuralNet.html">
+   7. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
+   8. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cnn.html">
+   9. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-cnn.html">
+   10. Convolutional Neural Network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bnn.html">
+   13. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   14. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   15. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/BayesianBasics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-you-feel-about-statistics">
+   1.1. How do you feel about statistics?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inference">
+     1.1.1. Inference
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-history">
+     1.1.2. Some history
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-density-functions-pdf-s">
+   1.2. Probability density functions (pdf:s)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#properties-of-pdfs">
+     1.2.1. Properties of PDFs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#important-distributions-the-uniform-distribution">
+     1.2.2. Important distributions, the uniform distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#probability-distribution-functions">
+     1.2.3. Probability Distribution Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-introduction-to-scipy-stats">
+     1.2.4. Quick introduction to
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.stats
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
+<div class="section" id="statistical-inference">
+<h1><span class="section-number">1. </span>Statistical inference<a class="headerlink" href="#statistical-inference" title="Permalink to this headline">¶</a></h1>
+<!-- !split -->
+<div class="section" id="how-do-you-feel-about-statistics">
+<h2><span class="section-number">1.1. </span>How do you feel about statistics?<a class="headerlink" href="#how-do-you-feel-about-statistics" title="Permalink to this headline">¶</a></h2>
+<!-- !bpop -->
+<p>Disraeli (attr.):</p>
+<blockquote>
+<div><p>“There are three kinds of lies: lies, damned lies, and statistics.”</p>
+</div></blockquote>
+<!-- !epop -->
+<!-- !bpop -->
+<p>Rutherford:</p>
+<blockquote>
+<div><p>“If your result needs a statistician then you should design a better experiment.”</p>
+</div></blockquote>
+<!-- !epop -->
+<!-- !bpop -->
+<p>Laplace:</p>
+<blockquote>
+<div><p>“La théorie des probabilités n’est que le bon sens réduit au calcul”</p>
+</div></blockquote>
+<!-- !epop -->
+<!-- !bpop -->
+<p>Bayesian Methods: rules of statistical inference are an application of the laws of probability</p>
+<!-- !epop -->
+<!-- !split -->
+<div class="section" id="inference">
+<h3><span class="section-number">1.1.1. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Deductive inference. Cause <span class="math notranslate nohighlight">\(\to\)</span> Effect.</p></li>
+<li><p>Inference to best explanation. Effect <span class="math notranslate nohighlight">\(\to\)</span> Cause.</p></li>
+<li><p>Scientists need a way to:</p>
+<ul>
+<li><p>Quantify the strength of inductive inferences;</p></li>
+<li><p>Update that quantification as they acquire new data.</p></li>
+</ul>
+</li>
+</ul>
+<!-- !split -->
+</div>
+<div class="section" id="some-history">
+<h3><span class="section-number">1.1.2. </span>Some history<a class="headerlink" href="#some-history" title="Permalink to this headline">¶</a></h3>
+<p>Adapted from D.S. Sivia<a class="footnote-reference brackets" href="#sivia" id="id1">1</a>:</p>
+<blockquote>
+<div><p>Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].</p>
+</div></blockquote>
+<!-- !split -->
+<!-- <img src="fig/sivia_fig_1_2.png" width=700> -->
+<p><img alt="" src="fig/sivia_fig_1_2.png" /></p>
+<!-- !split -->
+<blockquote>
+<div><p>To Laplace, the (shaded) area under the posterior pdf curve between <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span> was a measure of how much he believed that the mass of Saturn lay in the range <span class="math notranslate nohighlight">\(m_1 \le M \le m_2\)</span>. As such, the position of the maximum of the posterior pdf represents a best estimate of the mass; its width, or spread, about this optimal value gives an indication of the uncertainty in the estimate. Laplace stated that: ‘ … it is a bet of 11,000 to 1 that the error of this result is not 1/100th of its value.’ He would have won the bet, as another 150 years’ accumulation of data has changed the estimate by only 0.63%!</p>
+</div></blockquote>
+<!-- !split -->
+<blockquote>
+<div><p>According to the frequency definition, however, we are not permitted to use probability theory to tackle this problem. This is because the mass of Saturn is a constant and not a random variable; therefore, it has no frequency distribution and so probability theory cannot be used.</p>
+<p>If the pdf [of Fig. 1.2] had to be interpreted in terms of the frequency definition, we would have to imagine a large ensemble of universes in which everything remains constant apart from the mass of Saturn.</p>
+</div></blockquote>
+<!-- !split -->
+<blockquote>
+<div><p>As this scenario appears quite far-fetched, we might be inclined to think of [Fig. 1.2] in terms of the distribution of the measurements of the mass in many repetitions of the experiment. Although we are at liberty to think about a problem in any way that facilitates its solution, or our understanding of it, having to seek a frequency interpretation for every data analysis problem seems rather perverse.
+For example, what do we mean by the ‘measurement of the mass’ when the data consist of orbital periods? Besides, why should we have to think about many repetitions of an experiment that never happened? What we really want to do is to make the best inference of the mass given the (few) data that we actually have; this is precisely the Bayes and Laplace view of probability.</p>
+</div></blockquote>
+<!-- !split -->
+<blockquote>
+<div><p>Faced with the realization that the frequency definition of probability theory did not permit most real-life scientific problems to be addressed, a new subject was invented — statistics! To estimate the mass of Saturn, for example, one has to relate the mass to the data through some function called the statistic; since the data are subject to ‘random’ noise, the statistic becomes the random variable to which the rules of probability theory can be applied. But now the question arises: How should we choose the statistic? The frequentist approach does not yield a natural way of doing this and has, therefore, led to the development of several alternative schools of orthodox or conventional statistics. The masters, such as Fisher, Neyman and Pearson, provided a variety of different principles, which has merely resulted in a plethora of tests and procedures without any clear underlying rationale. This lack of unifying principles is, perhaps, at the heart of the shortcomings of the cook-book approach to statistics that students are often taught even today.</p>
+</div></blockquote>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="probability-density-functions-pdf-s">
+<h2><span class="section-number">1.2. </span>Probability density functions (pdf:s)<a class="headerlink" href="#probability-density-functions-pdf-s" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(A|B)\)</span> reads “probability of <span class="math notranslate nohighlight">\(A\)</span> given <span class="math notranslate nohighlight">\(B\)</span>”</p></li>
+<li><p>Simplest examples are discrete, but physicists often interested in continuous case, e.g., parameter estimation.</p></li>
+<li><p>When integrated, continuous pdfs become probabilities <span class="math notranslate nohighlight">\(\Rightarrow\)</span> pdfs are NOT dimensionless, even though probabilities are.</p></li>
+<li><p>68%, 95%, etc. intervals can then be computed by integration</p></li>
+<li><p>Certainty about a parameter corresponds to <span class="math notranslate nohighlight">\(p(x) = \delta(x-x_0)\)</span></p></li>
+</ul>
+<!-- !split -->
+<!-- ======= pdfs ======= -->
+<!-- !split -->
+<div class="section" id="properties-of-pdfs">
+<h3><span class="section-number">1.2.1. </span>Properties of PDFs<a class="headerlink" href="#properties-of-pdfs" title="Permalink to this headline">¶</a></h3>
+<p>There are two properties that all PDFs must satisfy. The first one is
+positivity (assuming that the PDF is normalized)</p>
+<div class="math notranslate nohighlight">
+\[0 \leq p(x).\]</div>
+<p>Naturally, it would be nonsensical for any of the values of the domain
+to occur with a probability less than <span class="math notranslate nohighlight">\(0\)</span>. Also,
+the PDF must be normalized. That is, all the probabilities must add up
+to unity.  The probability of “anything” to happen is always unity. For
+discrete and continuous PDFs, respectively, this condition is
+$<span class="math notranslate nohighlight">\(
+\begin{align*}
+\sum_{x_i\in\mathbb D} p(x_i) &amp; =  1,\\
+\int_{x\in\mathbb D} p(x)\,dx &amp; =  1.
+\end{align*}
+\)</span>$</p>
+<!-- !split -->
+</div>
+<div class="section" id="important-distributions-the-uniform-distribution">
+<h3><span class="section-number">1.2.2. </span>Important distributions, the uniform distribution<a class="headerlink" href="#important-distributions-the-uniform-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Let us consider some important, univariate distributions.
+The first one
+is the most basic PDF; namely the uniform distribution
+$<span class="math notranslate nohighlight">\(
+\begin{equation}
+p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
+\label{eq:unifromPDF}
+\end{equation}
+\)</span><span class="math notranslate nohighlight">\(
+For \)</span>a=0<span class="math notranslate nohighlight">\( and \)</span>b=1<span class="math notranslate nohighlight">\( we have 
+\)</span>$</p>
+<p>p(x) = \left{
+\begin{array}{ll}
+1 &amp; x \in [0,1],\
+0 &amp; \mathrm{otherwise}
+\end{array}
+\right.</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+### Gaussian distribution
+The second one is the univariate Gaussian Distribution
+\]</div>
+<p>p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},</p>
+<div class="math notranslate nohighlight">
+\[
+with mean value $\mu$ and standard deviation $\sigma$. If $\mu=0$ and $\sigma=1$, it is normally called the **standard normal distribution**
+\]</div>
+<p>p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;!-- !split --&gt;
+### Expectation values
+Let $h(x)$ be an arbitrary continuous function on the domain of the stochastic
+variable $X$ whose PDF is $p(x)$. We define the *expectation value*
+of $h$ with respect to $p$ as follows\]</div>
+<p>\begin{equation}
+\mathbb{E}_p[h] = \langle h \rangle_p \equiv \int! h(x)p(x),dx
+\label{eq:expectation_value_of_h_wrt_p}
+\end{equation}
+$<span class="math notranslate nohighlight">\(
+Whenever the PDF is known implicitly, like in this case, we will drop
+the index \)</span>p<span class="math notranslate nohighlight">\( for clarity.  
+A particularly useful class of special expectation values are the
+*moments*. The \)</span>n<span class="math notranslate nohighlight">\(-th moment of the PDF \)</span>p<span class="math notranslate nohighlight">\( is defined as
+follows
+\)</span>$</p>
+<p>\langle x^n \rangle \equiv \int! x^n p(x),dx</p>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+### Stochastic variables and the main concepts, mean values
+The zero-th moment $\langle 1\rangle$ is just the normalization condition of
+$p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
+and often denoted by the letter $\mu$
+\]</div>
+<p>\langle x\rangle  \equiv \mu = \int x p(x)dx,</p>
+<div class="math notranslate nohighlight">
+\[
+for a continuous distribution and 
+\]</div>
+<p>\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+for a discrete distribution. 
+Qualitatively it represents the centroid or the average value of the
+PDF and is therefore simply called the expectation value of $p(x)$.\\&lt;!-- !split --&gt;
+### Mean, median, average
+The values of the **mode**, **mean**, **median** can all be used as point estimates for the &quot;probable&quot; value of $x$. For some pdfs, they will all be the same.\\&lt;!-- &lt;img src=&quot;fig/pdfs.png&quot; width=800&gt;&lt;p&gt;&lt;em&gt;The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.&lt;/em&gt;&lt;/p&gt; --&gt;
+![&lt;p&gt;&lt;em&gt;The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.&lt;/em&gt;&lt;/p&gt;](fig/pdfs.png)\\&lt;!-- !split --&gt;
+### Stochastic variables and the main concepts, central moments, the variance\\A special version of the moments is the set of *central moments*, the n-th central moment defined as
+\end{aligned}\end{align} \]</div>
+<p>\langle (x-\langle x\rangle )^n\rangle  \equiv \int! (x-\langle x\rangle)^n p(x),dx</p>
+<div class="math notranslate nohighlight">
+\[
+The zero-th and first central moments are both trivial, equal $1$ and
+$0$, respectively. But the second central moment, known as the
+*variance* of $p$, is of particular interest. For the stochastic
+variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{Var}(X)$
+\]</div>
+<p>\begin{align*}
+\sigma^2_X &amp;=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
+\int (x-\langle x\rangle)^2 p(x)dx\
+&amp; =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\
+&amp; =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\
+&amp; =  \langle x^2 \rangle - \langle x\rangle^2
+\end{align*}
+$<span class="math notranslate nohighlight">\(
+The square root of the variance, \)</span>\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}<span class="math notranslate nohighlight">\( is called the 
+**standard deviation** of \)</span>p<span class="math notranslate nohighlight">\(. It is the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the &quot;spread&quot; of \)</span>p$ around its mean.</p>
+<!-- !split -->
+</div>
+<div class="section" id="probability-distribution-functions">
+<h3><span class="section-number">1.2.3. </span>Probability Distribution Functions<a class="headerlink" href="#probability-distribution-functions" title="Permalink to this headline">¶</a></h3>
+<p>The following table collects properties of probability distribution functions.
+In our notation we reserve the label <span class="math notranslate nohighlight">\(p(x)\)</span> for the probability of a certain event,
+while <span class="math notranslate nohighlight">\(P(x)\)</span> is the cumulative probability.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                          Discrete PDF                            Continuous PDF             
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Domain         <span class="math notranslate nohighlight">\(\left\{x_1, x_2, x_3, \dots, x_N\right\}\)</span>                <span class="math notranslate nohighlight">\([a,b]\)</span><br />
+Probability                     <span class="math notranslate nohighlight">\(p(x_i)\)</span>                                 <span class="math notranslate nohighlight">\(p(x)dx\)</span><br />
+Cumulative              <span class="math notranslate nohighlight">\(P_i=\sum_{l=1}^ip(x_l)\)</span>                  <span class="math notranslate nohighlight">\(P(x)=\int_a^xp(t)dt\)</span><br />
+Positivity                <span class="math notranslate nohighlight">\(0 \le p(x_i) \le 1\)</span>                         <span class="math notranslate nohighlight">\(p(x) \ge 0\)</span><br />
+Positivity                 <span class="math notranslate nohighlight">\(0 \le P_i \le 1\)</span>                        <span class="math notranslate nohighlight">\(0 \le P(x) \le 1\)</span><br />
+Monotonic            <span class="math notranslate nohighlight">\(P_i \ge P_j\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span>        <span class="math notranslate nohighlight">\(P(x_i) \ge P(x_j)\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span><br />
+Normalization                   <span class="math notranslate nohighlight">\(P_N=1\)</span>                                  <span class="math notranslate nohighlight">\(P(b)=1\)</span></p>
+<!-- !split -->
+</div>
+<div class="section" id="quick-introduction-to-scipy-stats">
+<h3><span class="section-number">1.2.4. </span>Quick introduction to  <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code><a class="headerlink" href="#quick-introduction-to-scipy-stats" title="Permalink to this headline">¶</a></h3>
+<p>If you google <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, you’ll likely get the manual page as the first hit: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">https://docs.scipy.org/doc/scipy/reference/stats.html</a>. Here you’ll find a long list of the continuous and discrete distributions that are available, followed (scroll way down) by many different methods (functions) to extract properties of a distribution (called Summary Statistics) and do many other statistical tasks.</p>
+<p>Follow the link for any of the distributions (your choice!) to find its mathematical definition, some examples of how to use it, and a list of methods. Some methods of interest to us here:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mean()</span></code> - Mean of the distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">median()</span></code> - Median of the distribution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdf(x)</span></code> - Value of the probability density function at x.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rvs(size=numpts)</span></code> - generate numpts random values of the pdf.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval(alpha)</span></code> - Endpoints of the range that contains alpha percent of the distribution.</p></li>
+</ul>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="sivia"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="exercise_LinearRegression.html" title="previous page"><span class="section-number">5. </span>Linear Regression exercise</a>
+    <a class='right-next' id="next-link" href="BayesianRecipe.html" title="next page"><span class="section-number">2. </span>The Bayesian recipe</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
