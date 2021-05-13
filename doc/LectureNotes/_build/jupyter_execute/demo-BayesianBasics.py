@@ -405,7 +405,7 @@ def dist_mode(dist, x):
 
 # Then we use this to write an object that will give us back the mean, 68%, and 95% intervals for a uniform prior. 
 
-# In[7]:
+# In[30]:
 
 
 def print_uniform_prior_measures(N,heads):
@@ -423,13 +423,13 @@ def print_uniform_prior_measures(N,heads):
 
 # Now we fill in the values for N and heads from running the widget. Which for me gave 3 heads out of 14 tosses. (Actualy, I thought it was broken because I only had 1 head from 10 tosses. How unlikely is that?)
 
-# In[8]:
+# In[31]:
 
 
 print_uniform_prior_measures(14,3)
 
 
-# In[9]:
+# In[32]:
 
 
 print('The actual value of p_H is',prob_heads)
@@ -437,7 +437,7 @@ print('The actual value of p_H is',prob_heads)
 
 # So, at least for the data I generated, the 68% DoB for a uniform prior does _not_ contain the true value, but the 95% one does. Are you surprised by that? Should you be?
 
-# In[10]:
+# In[33]:
 
 
 def print_frequentist_estimators(N,heads):
@@ -450,7 +450,7 @@ def print_frequentist_estimators(N,heads):
     return
 
 
-# In[11]:
+# In[34]:
 
 
 print_frequentist_estimators(14,3)
@@ -462,7 +462,7 @@ print_frequentist_estimators(14,3)
 
 # Now we will also generate the summary statistics for the other priors. (What is coded is for the default values. After running through the exercise you can come back and try and change it; indeed, you should do that if you comparing to results where you altered the prior above.)
 
-# In[12]:
+# In[35]:
 
 
 def print_likely_fair_prior_measures(N,heads):
@@ -478,13 +478,13 @@ def print_likely_fair_prior_measures(N,heads):
     return              
 
 
-# In[13]:
+# In[36]:
 
 
 print_likely_fair_prior_measures(14,3)
 
 
-# In[14]:
+# In[37]:
 
 
 def print_likely_unfair_prior_measures(N,heads):
@@ -500,7 +500,7 @@ def print_likely_unfair_prior_measures(N,heads):
     return              
 
 
-# In[15]:
+# In[38]:
 
 
 print_likely_unfair_prior_measures(14,3)

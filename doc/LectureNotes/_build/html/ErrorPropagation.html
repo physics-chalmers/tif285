@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -393,11 +391,6 @@
      12.3.2. Nuisance parameters (II): marginal distributions
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-useful-short-cut">
-     12.3.3. A useful short cut
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -487,13 +480,14 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 **Inferring galactic distances with an imprecise knowledge of the Hubble constant**
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to $v = H_0 x$. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.\\Here we use marginalization to obtain the desired posterior pdf $p(x|D,I)$ from the joint distribution of $p(x,H_0|D,I)$
 \end{aligned}\end{align} \]</div>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f67077b-ba78-4154-8e61-6f11354c7557">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-7f67077b-ba78-4154-8e61-6f11354c7557" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
-\end{equation}
-$$</p>
-<p>Using Bayes’ rule: <span class="math notranslate nohighlight">\(p(x,H_0|D,I) \propto p(D|x,H_0,I) p(x,H_0|I)\)</span>, the product rule: <span class="math notranslate nohighlight">\(p(x,H_0|I) = p(H_0|x,I)p(x|I)\)</span>, and the fact that <span class="math notranslate nohighlight">\(H_0\)</span> is independent of <span class="math notranslate nohighlight">\(x\)</span>: <span class="math notranslate nohighlight">\(p(H_0|x,I) = p(H_0|I)\)</span>, we find that
-$$</p>
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[Using Bayes' rule: $p(x,H_0|D,I) \propto p(D|x,H_0,I) p(x,H_0|I)$, the product rule: $p(x,H_0|I) = p(H_0|x,I)p(x|I)$, and the fact that $H_0$ is independent of $x$: $p(H_0|x,I) = p(H_0|I)$, we find that
+\]</div>
 <p>p(x|D,I) \propto p(x|I) \int dH_0 p(H_0|I) p(D|x,H_0,I),</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
@@ -518,33 +512,29 @@ Assume now that the function $f$ will map the point $X=X^*$ uniquely onto $Y=Y^*
 \[&lt;!-- !split --&gt;
 In the limit of infinitesimally small intervals, and with the realization that this should be true for any point $X$, we obtain the relationship
 \]</div>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92b40a37-60eb-4693-9d04-0d41ddbe9d1f">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-92b40a37-60eb-4693-9d04-0d41ddbe9d1f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
-\end{equation}
-$$
-where the term on the far right is called the <em>Jacobian</em>.</p>
-<!-- !split -->
-<p>The generalization to several variables, relating the pdf for <span class="math notranslate nohighlight">\(M\)</span> variables <span class="math notranslate nohighlight">\(\{ X_j \}\)</span> in terms of the same number of quantities <span class="math notranslate nohighlight">\(\{ Y_j \}\)</span> related to them, is
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where the term on the far right is called the *Jacobian*.\\&lt;!-- !split --&gt;
+The generalization to several variables, relating the pdf for $M$ variables $\{ X_j \}$ in terms of the same number of quantities $\{ Y_j \}$ related to them, is
+\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d91be45c-b785-4356-a420-4f22cfdc998c">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-d91be45c-b785-4356-a420-4f22cfdc998c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
-\end{equation}
-\)</span><span class="math notranslate nohighlight">\(
-where the multivariate Jacobian is given by the determinant of the \)</span>M \times M<span class="math notranslate nohighlight">\( matrix of partial derivatives \)</span>\partial Y_i / \partial X_j$.</p>
-<!-- !split -->
-<p><em>Summary.</em>
-We have now seen the basic ingredients required for the propagation of errors: it either involves a transformation in the sense of Eq. (<a class="reference external" href="#eq:multivariate-transformation">eq:multivariate-transformation</a>) or an integration as in Eq. (<a class="reference external" href="#eq:marginalization">eq:marginalization</a>).</p>
-<!-- !split -->
-</div>
-<div class="section" id="a-useful-short-cut">
-<h3><span class="section-number">12.3.3. </span>A useful short cut<a class="headerlink" href="#a-useful-short-cut" title="Permalink to this headline">¶</a></h3>
-<p>For practical purposes, we are often satisfied to approximate pdfs with Gaussians. Within such limits there is an easier method that is often used for error propagation. Note, however, that there are instances when this method fails miserably as will be shown in the example further down.</p>
-<p>Suppose that we have summarized the pdfs <span class="math notranslate nohighlight">\(p(X|I)\)</span> and <span class="math notranslate nohighlight">\(p(Y|I)\)</span> as two Gaussians with mean and standard deviation <span class="math notranslate nohighlight">\(x_0, \sigma_x\)</span> and <span class="math notranslate nohighlight">\(y_0, \sigma_y\)</span>, respectively. Assume further that these two variables are not correlated, i.e., <span class="math notranslate nohighlight">\(p(X,Y|I) = p(X|I) p(Y|I)\)</span>.</p>
-<!-- !split -->
-<p>Suppose now that we are interested in <span class="math notranslate nohighlight">\(Z=X-Y\)</span>. Intuitively, we might guess that the best estimate <span class="math notranslate nohighlight">\(z_0 = x_0 - y_0\)</span>, but the error bar <span class="math notranslate nohighlight">\(\sigma_z\)</span> requires some more thought. Differentiate the relation
-$$</p>
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where the multivariate Jacobian is given by the determinant of the $M \times M$ matrix of partial derivatives $\partial Y_i / \partial X_j$.\\&lt;!-- !split --&gt;
+*Summary.* 
+We have now seen the basic ingredients required for the propagation of errors: it either involves a transformation in the sense of Eq. ([eq:multivariate-transformation](#eq:multivariate-transformation)) or an integration as in Eq. ([eq:marginalization](#eq:marginalization)).\\&lt;!-- !split --&gt;
+#### A useful short cut\\For practical purposes, we are often satisfied to approximate pdfs with Gaussians. Within such limits there is an easier method that is often used for error propagation. Note, however, that there are instances when this method fails miserably as will be shown in the example further down.\\Suppose that we have summarized the pdfs $p(X|I)$ and $p(Y|I)$ as two Gaussians with mean and standard deviation $x_0, \sigma_x$ and $y_0, \sigma_y$, respectively. Assume further that these two variables are not correlated, i.e., $p(X,Y|I) = p(X|I) p(Y|I)$.\\&lt;!-- !split --&gt;
+Suppose now that we are interested in $Z=X-Y$. Intuitively, we might guess that the best estimate $z_0 = x_0 - y_0$, but the error bar $\sigma_z$ requires some more thought. Differentiate the relation
+\end{aligned}\end{align} \]</div>
 <p>\delta Z = \delta X - \delta Y.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -556,13 +546,15 @@ Square both sides and integrate to get the expectation value
 where we have employed the linear property for an integral over a sum of terms.\\&lt;!-- !split --&gt;
 Since we assumed that the pdfs for $X$ and $Y$ were described by independent Gaussians we have
 \end{aligned}\end{align} \]</div>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-93b97ee0-e332-4a58-86b1-846c7d263eb4">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-93b97ee0-e332-4a58-86b1-846c7d263eb4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
-\end{equation}
-$<span class="math notranslate nohighlight">\(
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[
 and we find that
-\)</span>$</p>
+\]</div>
 <p>\sigma_z = \sqrt{ \langle \delta Z^2 \rangle } = \sqrt{ \sigma_x^2 + \sigma_y^2 }.</p>
 <div class="math notranslate nohighlight">
 \[&lt;!-- !split --&gt;

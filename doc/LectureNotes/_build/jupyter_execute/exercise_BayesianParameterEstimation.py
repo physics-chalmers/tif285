@@ -7,7 +7,7 @@
 
 # ### Import of modules
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -31,7 +31,7 @@ sns.set_context("talk")
 # 
 # Let's start by creating some data that we will fit with a straight line.  We'll start with a constant standard deviation of $\sigma$ on the $y$ values and no error on $x$.
 
-# In[2]:
+# In[3]:
 
 
 def make_data(intercept, slope, N=20, dy=5, rseed=42):
@@ -113,7 +113,7 @@ fig.tight_layout()
 # 
 # 2. *Use tools in [``scipy.optimize``](http://docs.scipy.org/doc/scipy/reference/optimize.html) to maximize this likelihood (i.e. minimize the negative log-likelihood). How close is this result to the input ``theta_true`` above?*
 
-# In[3]:
+# In[4]:
 
 
 # Write your code here
@@ -158,7 +158,7 @@ fig.tight_layout()
 # Let's define two python functions to compute the options for our prior: we'll use both a (log) flat prior and a (log) symmetric prior.
 # In general, we need not worry about the normalization of the prior or the likelihood, which makes our lives easier:
 
-# In[4]:
+# In[8]:
 
 
 def log_flat_prior(theta):
@@ -184,7 +184,7 @@ def log_symmetric_prior(theta):
 # 
 # *Plot the posterior probability distribution for the slope and intercept, once for each prior. You might use ``plt.contourf()`` or ``plt.pcolor()``. How different are the distributions?*
 
-# In[5]:
+# In[7]:
 
 
 # Write your code here
@@ -205,7 +205,7 @@ def log_symmetric_prior(theta):
 
 # Let's use a different data with few measurements and see what happens:
 
-# In[6]:
+# In[12]:
 
 
 x2, y2, dy2 = make_data(*theta_true, N=3, dy=40)

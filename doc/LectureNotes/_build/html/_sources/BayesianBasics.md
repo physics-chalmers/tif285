@@ -1,10 +1,3 @@
-% Learning from data: Basics of Bayesian Statistics
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
 # Statistical inference
 
 <!-- !split -->
@@ -56,8 +49,8 @@ Adapted from D.S. Sivia[^Sivia]:
 
 
 <!-- !split -->
-<!-- <img src="fig/sivia_fig_1_2.png" width=700> -->
-![](fig/sivia_fig_1_2.png)
+<!-- <img src="fig/BayesianBasics/sivia_fig_1_2.png" width=700> -->
+![](fig/BayesianBasics/sivia_fig_1_2.png)
 
 <!-- !split -->
 > To Laplace, the (shaded) area under the posterior pdf curve between $m_1$ and $m_2$ was a measure of how much he believed that the mass of Saturn lay in the range $m_1 \le M \le m_2$. As such, the position of the maximum of the posterior pdf represents a best estimate of the mass; its width, or spread, about this optimal value gives an indication of the uncertainty in the estimate. Laplace stated that: ‘ . . . it is a bet of 11,000 to 1 that the error of this result is not 1/100th of its value.’ He would have won the bet, as another 150 years’ accumulation of data has changed the estimate by only 0.63%!
@@ -102,21 +95,17 @@ There are two properties that all PDFs must satisfy. The first one is
 positivity (assuming that the PDF is normalized)
 
 $$
-
 0 \leq p(x).
-
 $$
 Naturally, it would be nonsensical for any of the values of the domain
 to occur with a probability less than $0$. Also,
 the PDF must be normalized. That is, all the probabilities must add up
 to unity.  The probability of "anything" to happen is always unity. For
 discrete and continuous PDFs, respectively, this condition is
-$$
-\begin{align*}
+\begin{gather*}
 \sum_{x_i\in\mathbb D} p(x_i) & =  1,\\
 \int_{x\in\mathbb D} p(x)\,dx & =  1.
-\end{align*}
-$$
+\end{gather*}
 
 
 
@@ -125,42 +114,32 @@ $$
 Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution
-$$
 \begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}
-$$
 For $a=0$ and $b=1$ we have 
-$$
-
+\begin{equation*}
 p(x) = \left\{
 \begin{array}{ll}
 1 & x \in [0,1],\\
 0 & \mathrm{otherwise}
 \end{array}
 \right.
-
-$$
+\end{equation*}
 
 
 
 <!-- !split -->
 ### Gaussian distribution
 The second one is the univariate Gaussian Distribution
-$$
-
+\begin{equation*}
 p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
-
-$$
+\end{equation*}
 with mean value $\mu$ and standard deviation $\sigma$. If $\mu=0$ and $\sigma=1$, it is normally called the **standard normal distribution**
-$$
-
+\begin{equation*}
 p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
-
-$$
-
-
+\end{equation*}
 
 
 <!-- !split -->
@@ -168,24 +147,18 @@ $$
 Let $h(x)$ be an arbitrary continuous function on the domain of the stochastic
 variable $X$ whose PDF is $p(x)$. We define the *expectation value*
 of $h$ with respect to $p$ as follows
-
-$$
 \begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}
-$$
 Whenever the PDF is known implicitly, like in this case, we will drop
 the index $p$ for clarity.  
 A particularly useful class of special expectation values are the
 *moments*. The $n$-th moment of the PDF $p$ is defined as
 follows
-$$
-
+\begin{equation*}
 \langle x^n \rangle \equiv \int\! x^n p(x)\,dx
-
-$$
-
+\end{equation*}
 
 
 <!-- !split -->
@@ -193,17 +166,13 @@ $$
 The zero-th moment $\langle 1\rangle$ is just the normalization condition of
 $p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
 and often denoted by the letter $\mu$
-$$
-
+\begin{equation*}
 \langle x\rangle  \equiv \mu = \int x p(x)dx,
-
-$$
+\end{equation*}
 for a continuous distribution and 
-$$
-
+\begin{equation*}
 \langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),
-
-$$
+\end{equation*}
 for a discrete distribution. 
 Qualitatively it represents the centroid or the average value of the
 PDF and is therefore simply called the expectation value of $p(x)$.
@@ -216,23 +185,20 @@ The values of the **mode**, **mean**, **median** can all be used as point estima
 
 
 
-<!-- <img src="fig/pdfs.png" width=800><p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p> -->
-![<p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p>](fig/pdfs.png)
+<!-- <img src="fig/BayesianBasics/pdfs.png" width=800><p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p> -->
+![<p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p>](fig/BayesianBasics/pdfs.png)
 
 <!-- !split -->
 ### Stochastic variables and the main concepts, central moments, the variance
 
 A special version of the moments is the set of *central moments*, the n-th central moment defined as
-$$
-
+\begin{equation*}
 \langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
-
-$$
+\end{equation*}
 The zero-th and first central moments are both trivial, equal $1$ and
 $0$, respectively. But the second central moment, known as the
 *variance* of $p$, is of particular interest. For the stochastic
 variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{Var}(X)$
-$$
 \begin{align*}
 \sigma^2_X &=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
 \int (x-\langle x\rangle)^2 p(x)dx\\
@@ -240,7 +206,6 @@ $$
 & =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
 & =  \langle x^2 \rangle - \langle x\rangle^2
 \end{align*}
-$$
 The square root of the variance, $\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}$ is called the 
 **standard deviation** of $p$. It is the RMS (root-mean-square)
 value of the deviation of the PDF from its mean value, interpreted
@@ -259,15 +224,15 @@ while $P(x)$ is the cumulative probability.
 
 
 
-                              Discrete PDF                            Continuous PDF             
--------------  ------------------------------------------  ------------------------------------  
-Domain         $\left\{x_1, x_2, x_3, \dots, x_N\right\}$                $[a,b]$                 
-Probability                     $p(x_i)$                                 $p(x)dx$                
-Cumulative              $P_i=\sum_{l=1}^ip(x_l)$                  $P(x)=\int_a^xp(t)dt$          
-Positivity                $0 \le p(x_i) \le 1$                         $p(x) \ge 0$              
-Positivity                 $0 \le P_i \le 1$                        $0 \le P(x) \le 1$           
-Monotonic            $P_i \ge P_j$ if $x_i \ge x_j$        $P(x_i) \ge P(x_j)$ if $x_i \ge x_j$  
-Normalization                   $P_N=1$                                  $P(b)=1$
+|   | Discrete PDF |  Continuous PDF |            
+| :--- | :----------- | :-------------- |  
+| Domain       | $\left\{x_1, x_2, x_3, \dots, x_N\right\}$ | $[a,b]$ |                
+| Probability  | $p(x_i)$                       | $p(x)dx$  |              
+| Cumulative   | $P_i=\sum_{l=1}^ip(x_l)$       | $P(x)=\int_a^xp(t)dt$  |        
+| Positivity   | $0 \le p(x_i) \le 1$           | $p(x) \ge 0$           |  
+| Positivity   | $0 \le P_i \le 1$              | $0 \le P(x) \le 1$     |      
+| Monotonic    | $P_i \ge P_j$ if $x_i \ge x_j$ | $P(x_i) \ge P(x_j)$ if $x_i \ge x_j$ | 
+| Normalization | $P_N=1$                       | $P(b)=1$ |
 
 
 

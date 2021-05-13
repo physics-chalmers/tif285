@@ -31,12 +31,10 @@ p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.
 $$
 
 The importance of this property to data analysis becomes apparent if we replace $A$ and $B$ by hypothesis($H$) and data($D$):
-$$
 \begin{align}
 p(H|D,I) &= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
 \label{eq:bayes}
 \end{align}
-$$
 The power of Bayes’ theorem lies in the fact that it relates the quantity of interest, the probability that the hypothesis is true given the data, to the term we have a better chance of being able to assign, the probability that we would have observed the measured data if the hypothesis was true.
 
 
@@ -108,16 +106,13 @@ In the light of this data, our inference about the fairness of this coin is summ
 
 <!-- !split -->
 To estimate this posterior pdf, we need to use Bayes’ theorem ([eq:bayes](#eq:bayes)). We will ignore the denominator $p(D|I)$ as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition 
-$$
 \begin{equation}
 \int_0^1 p(p_H|D,I) dp_H = 1.
 \label{eq:coin_posterior_norm}
 \end{equation}
-$$
 
 <!-- !split -->
 The prior pdf, $p(p_H|I)$, represents what we know about the coin given only the information $I$ that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior
-$$
 \begin{equation}
 p(p_H|I) = \left\{ \begin{array}{ll}
 1 & 0 \le p_H \le 1, \\
@@ -125,7 +120,6 @@ p(p_H|I) = \left\{ \begin{array}{ll}
 \end{array} \right.
 \label{eq:coin_prior_uniform}
 \end{equation}
-$$
 We will get back later to the choice of prior and its effect on the analysis.
 
 <!-- !split -->
@@ -177,8 +171,8 @@ for col in range(3): axs[-1,col].set_xlabel('$p_H$')
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <!-- !split -->
-<!-- <img src="fig/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
-![<p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p>](fig/coinflipping_fig_1.png)
+<!-- <img src="fig/BayesianRecipe/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
+![<p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p>](fig/BayesianRecipe/coinflipping_fig_1.png)
 
 <!-- !split -->
 The panel in the top left-hand corner shows the posterior pdf for $p_H$ given no data, i.e., it is the same as the prior pdf of Eq. ([eq:coin_prior_uniform](#eq:coin_prior_uniform)). It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.

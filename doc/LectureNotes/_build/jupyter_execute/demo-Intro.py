@@ -10,7 +10,7 @@
 # strengths of packages like **Scikit-Learn** in fitting nuclear binding energies to
 # specific functions using linear regression first. First, however, we need to meet the **Pandas**.
 
-# In[1]:
+# In[10]:
 
 
 # For showing plots inline
@@ -109,7 +109,7 @@ display(df**2)
 
 # Thereafter we can select specific columns only and plot final results
 
-# In[7]:
+# In[12]:
 
 
 df.columns = ['First', 'Second', 'Third', 'Fourth', 'Fifth']
@@ -131,7 +131,7 @@ df.plot.bar(figsize=(10,6), rot=15);
 
 # We can produce a $4\times 4$ matrix
 
-# In[8]:
+# In[13]:
 
 
 b = np.arange(16).reshape((4,4))
@@ -230,7 +230,7 @@ print(df1)
 # 
 # We import also various modules that we will find useful in order to present various Machine Learning methods. Here we focus mainly on the functionality of **scikit-learn**.
 
-# In[9]:
+# In[14]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -245,7 +245,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import os
 
 
-# In[10]:
+# In[15]:
 
 
 # Nicer plots
@@ -262,7 +262,7 @@ sns.set('talk')
 # 
 # We start with preparing folders for storing our calculations and the data file over masses and binding energies. 
 
-# In[11]:
+# In[16]:
 
 
 # Where to save the figures and data files
@@ -295,7 +295,7 @@ def save_fig(fig_id):
 # always useful (unless you have a binary file or other types of compressed
 # data) to actually open the file and simply take a look at it!
 
-# In[12]:
+# In[17]:
 
 
 infile = open(data_path("MassEval2016.dat"),'r')

@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -426,16 +424,18 @@ $<span class="math notranslate nohighlight">\(
 where \)</span>\boldsymbol{w} = \left{ w_i \right}_{i=1}^I<span class="math notranslate nohighlight">\( are the weights of the neuron and we have included a bias (\)</span>b \equiv w_0$).</p>
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:
-$<span class="math notranslate nohighlight">\(
-\begin{align}
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-60730245-fd42-40c6-a08e-1cd8855e74f7">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-60730245-fd42-40c6-a08e-1cd8855e74f7" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
-\end{align}
-\)</span><span class="math notranslate nohighlight">\(
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[
 A simple binary classifier can be trained by minimizing the loss function
-\)</span><span class="math notranslate nohighlight">\(
- C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}), 
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}),
+$<span class="math notranslate nohighlight">\(
 made up of an error function
 \)</span><span class="math notranslate nohighlight">\(
  C(\boldsymbol{w}) = -\sum_n \left[ t^{(n)} \log ( y(\boldsymbol{x}^{(n)},\boldsymbol{w})) + (1 - t^{(n)}) \log (1 - y(\boldsymbol{x}^{(n)},\boldsymbol{w})) \right], 
@@ -535,36 +535,31 @@ $$</p>
 To minimize the first term we have to avoid putting probability mass into regions of implausible parameters. To minimize the second term we have to maximize the entropy of the variational distribution $q$ as this term corresponds to its negative entropy.\\&lt;!-- !split --&gt;
 #### Evidence Lower Bound\\Let us rewrite the posterior pdf $p(\boldsymbol{w} \lvert \mathcal{D})$ using Bayes theorem
 \end{aligned}\end{align} \]</div>
-<p>\begin{align*}
-D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \left[ \log , q(\boldsymbol{w}\lvert \boldsymbol{\theta})  - p( \mathcal{D} \lvert \boldsymbol{w}) - p(\boldsymbol{w}) + p(\mathcal{D}) \right] \
-&amp;= \mathbb{E}_{q} \left[ \log , q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]</p>
-<ul class="simple">
-<li><p>\mathbb{E}_{q} \left[ \log , p(\mathcal{D} \lvert \boldsymbol{w}) \right]</p></li>
-<li><p>\mathbb{E}_{q} \left[ \log , p(\boldsymbol{w}) \right]</p></li>
-</ul>
-<ul class="simple">
-<li><p>\log , p(\mathcal{D}).
-\end{align*}
-$<span class="math notranslate nohighlight">\(
-Note that the logarithm of the last term has no dependence on \)</span>\boldsymbol{w}<span class="math notranslate nohighlight">\( and the integration of \)</span>q<span class="math notranslate nohighlight">\( will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the **Evidence Lower Bound** (ELBO)
-\)</span>$
-\begin{equation}
-\log , p(\mathcal{D}) \ge</p></li>
-</ul>
-<ul class="simple">
-<li><p>\mathbb{E}_{q} \left[ \log , q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]</p></li>
-</ul>
-<ul class="simple">
-<li><p>\mathbb{E}_{q} \left[ \log , p(\mathcal{D} \lvert \boldsymbol{w}) \right]</p></li>
-<li><p>\mathbb{E}<em>{q} \left[ \log , p(\boldsymbol{w}) \right]
-\equiv J</em>\mathrm{ELBO}(\boldsymbol{\theta})
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \left[ \log \, q(\boldsymbol{w}\lvert \boldsymbol{\theta})  - p( \mathcal{D} \lvert \boldsymbol{w}) - p(\boldsymbol{w}) + p(\mathcal{D}) \right] \\
+&amp;= \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
+- \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
+- \mathbb{E}_{q} \left[ \log \, p(\boldsymbol{w}) \right]
++ \log \, p(\mathcal{D}).
+\end{align*}\]</div>
+<div class="math notranslate nohighlight">
+\[
+Note that the logarithm of the last term has no dependence on $\boldsymbol{w}$ and the integration of $q$ will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the **Evidence Lower Bound** (ELBO)
+\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8980b340-53c8-4efa-ad6a-dfb75c0fab08">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-8980b340-53c8-4efa-ad6a-dfb75c0fab08" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\log \, p(\mathcal{D}) \ge 
+- \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
++ \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
++ \mathbb{E}_{q} \left[ \log \, p(\boldsymbol{w}) \right]
+\equiv J_\mathrm{ELBO}(\boldsymbol{\theta})
 \label{eq:elbo}
-\end{equation}
-$<span class="math notranslate nohighlight">\(
-Variational inference was originally inspired by work in statistical physics, and with that analogy, \)</span>-J_\mathrm{ELBO}(\boldsymbol{\theta})<span class="math notranslate nohighlight">\( is also called the **variational free energy** and sometimes denoted \)</span>\mathcal{F}(\mathcal{D},\boldsymbol{\theta})$.</p></li>
-</ul>
-<p>The task at hand is therefore to find the set of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span> that maximizes <span class="math notranslate nohighlight">\(J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span>. The hardest term to evaluate is obviously the expectation of the log-likelihood
-$$</p>
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+Variational inference was originally inspired by work in statistical physics, and with that analogy, $-J_\mathrm{ELBO}(\boldsymbol{\theta})$ is also called the **variational free energy** and sometimes denoted $\mathcal{F}(\mathcal{D},\boldsymbol{\theta})$.\\The task at hand is therefore to find the set of parameters $\boldsymbol{\theta}^*$ that maximizes $J_\mathrm{ELBO}(\boldsymbol{\theta})$. The hardest term to evaluate is obviously the expectation of the log-likelihood
+\end{aligned}\end{align} \]</div>
 <p>\mathbb{E}<em>{q} \left[ \log , p(\mathcal{D} \lvert \boldsymbol{w}) \right]
 = \sum{i=1}^N \mathbb{E}</em>{q} \left[ \log , p( y^{(i)} \lvert \boldsymbol{x}^{(i)}, \boldsymbol{w}) \right].</p>
 <div class="math notranslate nohighlight">
@@ -576,14 +571,15 @@ In the demonstration notebook of this lecture, it is shown how to use Variationa
 ![&lt;p&gt;&lt;em&gt;The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.&lt;/em&gt;&lt;/p&gt;](fig/ADVI-classifier.png)\\See also 
 * Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). *Automatic Differentiation Variational Inference*. arXiv preprint arXiv:&quot;1603.00788&quot;: 'https://arxiv.org/abs/1603.00788&quot;.\\&lt;!-- !split --&gt;
 ### Bayes by Backprop\\The well-cited paper paper: [Weight Uncertainty in Neural Networks](https://arxiv.org/abs/1505.05424) (*Bayes by Backprop*) has been well described in the [blog entry](http://krasserm.github.io/2019/03/14/bayesian-neural-networks/) by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation. \\All three terms in equation ([eq:elbo](#eq:elbo)) are expectations w.r.t. the variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$. In this paper they use the variational free energy $\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})$ as a cost function (since it should be *minimized*). This quantity can be approximated by drawing [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) samples $\boldsymbol{w}^{(i)}$ from $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$.\end{aligned}\end{align} \]</div>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7fe8dd19-6d2e-43f6-a7cb-575b7738e434">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-7fe8dd19-6d2e-43f6-a7cb-575b7738e434" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
-\log , q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
-\log , p(\boldsymbol{w}^{(i)}) -
-\log , p(\mathcal{D} \lvert \boldsymbol{w}^{(i)})\right]
+\log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
+\log \, p(\boldsymbol{w}^{(i)}) -
+\log \, p(\mathcal{D} \lvert \boldsymbol{w}^{(i)})\right]
 \label{eq:VariationalFreeEnergy}
-\end{equation}
-$$</p>
+\end{equation}\]</div>
+<p>$$</p>
 <p>In the example used in the blog post, they use a Gaussian distribution for the variational posterior, parameterized by <span class="math notranslate nohighlight">\(\boldsymbol{\theta} = (\boldsymbol{\mu}, \boldsymbol{\sigma})\)</span> where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the mean vector of the distribution and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> the standard deviation vector. The elements of <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> are the elements of a diagonal covariance matrix which means that weights are assumed to be uncorrelated. Instead of parameterizing the neural network with weights <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> directly, it is parameterized with <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> and therefore the number of parameters are doubled compared to a plain neural network.</p>
 <!-- !split -->
 </div>

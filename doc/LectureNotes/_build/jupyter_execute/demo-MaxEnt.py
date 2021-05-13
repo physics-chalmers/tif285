@@ -39,7 +39,7 @@ import emcee
 
 # We will define three different priors for the straight line model. Using always a flat prior U(-100,100) for the intercept, and a non-zero pdf range -100 <= slope <= 100.
 
-# In[4]:
+# In[17]:
 
 
 def log_flat_prior(theta):
@@ -64,14 +64,14 @@ def log_symmetric_prior(theta):
 # Let us create 1000 samples from each prior pdf and plot the resulting sample of straight lines.
 # Since the intercept is uniformly distributed in all three prior alternatives, we will just consider straight lines with intercept 0 since it makes it easier to compare the distribution of slopes.
 
-# In[5]:
+# In[18]:
 
 
 def log_prior(th1,logp):
     return logp([0,th1])
 
 
-# In[6]:
+# In[19]:
 
 
 ndim = 1  # number of parameters in the model
@@ -85,7 +85,7 @@ np.random.seed(2020)
 starting_guesses = 100 * np.random.rand(nwalkers,ndim)
 
 
-# In[7]:
+# In[20]:
 
 
 x = [-1,1]
@@ -136,14 +136,14 @@ axs[0].set_ylabel(r'$y=\theta x$');
 # **Question:**
 # Can you explain why $x \lt 0.07$ implies a negative correlation between left-handedness and blonde hair, while $x \gt 0.07$ implies a positive correlation?
 
-# In[8]:
+# In[21]:
 
 
 # Insert your answer here
 #
 
 
-# In[9]:
+# In[22]:
 
 
 def pdf_Scandinavian(x):
@@ -151,7 +151,7 @@ def pdf_Scandinavian(x):
     return np.array([x,0.7-x,0.1-x,0.2+x])
 
 
-# In[10]:
+# In[23]:
 
 
 x=np.linspace(0.001,0.0999,1000)
@@ -170,7 +170,7 @@ x3 = x[np.argmax(fun3)]
 print(f"-sum p**2*log(p):  x={x3:.3f}")
 
 
-# In[11]:
+# In[24]:
 
 
 fig,ax = plt.subplots(figsize=(10,8))

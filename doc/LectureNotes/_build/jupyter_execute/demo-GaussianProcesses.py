@@ -267,7 +267,7 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 
 # #### The RBF kernel (a.k.a Gaussian)
 
-# In[8]:
+# In[9]:
 
 
 def cov_RBF(x, x2=None, alpha=np.array([1,1])):        
@@ -292,7 +292,7 @@ def cov_RBF(x, x2=None, alpha=np.array([1,1])):
 
 # Given hyperparameters $\theta$, we plot the resulting covariance matrix and samples from a GP with this covariance function.
 
-# In[9]:
+# In[10]:
 
 
 X = np.sort(np.random.rand(400, 1) * 6 , axis=0)
@@ -327,7 +327,7 @@ plt.tight_layout()
 # ## Example: GP models for regression
 # ### No-core shell model $\hbar\omega$ dependence
 
-# In[10]:
+# In[11]:
 
 
 # import some NCSM data from

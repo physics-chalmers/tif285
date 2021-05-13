@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -370,13 +368,6 @@
   <a class="reference internal nav-link" href="#parametric-approach">
    1.2. Parametric approach
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optimizing-the-gp-model-hyperparameters">
-     1.2.1. Optimizing the GP model hyperparameters
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -557,46 +548,48 @@ p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \bolds
 <div class="math notranslate nohighlight">
 \[Since both $p \left( t^{(N+1)}, \boldsymbol{t}_N \right)$ and $p \left( \boldsymbol{t}_N \right)$ are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation $\boldsymbol{C}_{N+1}$ for the $(N+1) \times (N+1)$ covariance matrix for $\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)$. This implies that
 \]</div>
-<p>p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}<em>N, t^{(N+1)} \right) \boldsymbol{C}</em>{N+1}^{-1}
-\begin{pmatrix}
-\boldsymbol{t}_N \
+<p>p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}<em>N, t^{(N+1)} \right) \boldsymbol{C}</em>{N+1}^{-1}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-542b9d82-7f38-405a-ad90-658b8ac1718f">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-542b9d82-7f38-405a-ad90-658b8ac1718f" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\boldsymbol{t}_N \\
 t^{(N+1)}
-\end{pmatrix}
-\right]</p>
+\end{pmatrix}\]</div>
+<p>\right]</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}*Summary.* 
 The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.\\#### Elegant approach using linear algebra tricks\\Let us split the $\boldsymbol{C}_{N+1}$ covariance matrix into four different blocks
 \end{aligned}\end{align} \]</div>
-<p>\boldsymbol{C}_{N+1} =
-\begin{pmatrix}
-\boldsymbol{C}_N &amp; \boldsymbol{k} \
+<p>\boldsymbol{C}_{N+1} =</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cf7f059f-26d1-47dd-981c-e1c3da003811">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-cf7f059f-26d1-47dd-981c-e1c3da003811" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \kappa
-\end{pmatrix},</p>
+\end{pmatrix}\]</div>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 where $\boldsymbol{C}_N$ is the $N \times N$ covariance matrix (which depends on the positions $\boldsymbol{X}_N$), $\boldsymbol{k}$ is an $N \times 1$ vector (that describes the covariance of $\boldsymbol{X}_N$ with $\boldsymbol{x}^{(N+1)}$), while $\kappa$ is the single diagonal element obtained from $\boldsymbol{x}^{(N+1)}$.\\We can use the partitioned inverse equations (Barnett, 1979) to rewrite $\boldsymbol{C}_{N+1}^{-1}$ in terms of $\boldsymbol{C}_{N}^{-1}$ and $\boldsymbol{C}_{N}$ as follows
 \end{aligned}\end{align} \]</div>
-<p>\boldsymbol{C}_{N+1}^{-1} =
-\begin{pmatrix}
-\boldsymbol{M}_N &amp; \boldsymbol{m} \
+<p>\boldsymbol{C}_{N+1}^{-1} =</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f97928bd-ed8e-428e-b831-33029777c435">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-f97928bd-ed8e-428e-b831-33029777c435" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\boldsymbol{M}_N &amp; \boldsymbol{m} \\
 \boldsymbol{m}^T &amp; \mu
-\end{pmatrix},</p>
+\end{pmatrix}\]</div>
 <div class="math notranslate nohighlight">
 \[
 where
 \]</div>
-<p>\begin{align*}
-\mu &amp;= \left( \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k} \right)^{-1} \
-\boldsymbol{m} &amp;= -\mu \boldsymbol{C}_N^{-1} \boldsymbol{k} \
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mu &amp;= \left( \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k} \right)^{-1} \\
+\boldsymbol{m} &amp;= -\mu \boldsymbol{C}_N^{-1} \boldsymbol{k} \\
 \boldsymbol{M}_N &amp;= \boldsymbol{C}_N^{-1} + \frac{1}{\mu} \boldsymbol{m} \boldsymbol{m}^T.
-\end{align*}
-$$</p>
-<p><em>Question.</em>
-What are the dimensions of the different blocks? Check that the answer.</p>
-<p>This implies that we can make a prediction for the Gaussian pdf of <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> (meaning that we predict its value with an associated uncertainty) for an <span class="math notranslate nohighlight">\(N^3\)</span> computational cost (the inversion of an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix).</p>
-<p><em>Summary.</em>
-The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian
-$$</p>
+\end{align*}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}*Question.* 
+What are the dimensions of the different blocks? Check that the answer.\\This implies that we can make a prediction for the Gaussian pdf of $t^{(N+1)}$ (meaning that we predict its value with an associated uncertainty) for an $N^3$ computational cost (the inversion of an $N \times N$ matrix).\\*Summary.* 
+The prediction for $t^{(N+1)}$ is a Gaussian
+\end{aligned}\end{align} \]</div>
 <p>p \left( t^{(N+1)} | \boldsymbol{t}<em>N \right) = \frac{1}{Z} \exp
 \left[
 -\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma</em>{\hat{t}_{N+1}}^2}
@@ -605,18 +598,20 @@ $$</p>
 \[
 with
 \]</div>
-<p>\begin{align*}
-\mathrm{mean:} &amp; \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}<em>N^{-1} \boldsymbol{t}<em>N \
-\mathrm{variance:} &amp; \quad \sigma</em>{\hat{t}</em>{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
-\end{align*}
-$$</p>
-<p>In fact, since the prediction only depends on the <span class="math notranslate nohighlight">\(N\)</span> available data we might as well predict several new target values at once. Consider <span class="math notranslate nohighlight">\(\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M\)</span> so that
-$$</p>
-<p>\boldsymbol{C}_{N+M} =
-\begin{pmatrix}
-\boldsymbol{C}_N &amp; \boldsymbol{k} \
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathrm{mean:} &amp; \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
+\mathrm{variance:} &amp; \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
+\end{align*}\]</div>
+<div class="math notranslate nohighlight">
+\[In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
+\]</div>
+<p>\boldsymbol{C}_{N+M} =</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8b2f95c4-cf7f-4bd3-8f7b-426f3d305670">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-8b2f95c4-cf7f-4bd3-8f7b-426f3d305670" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \boldsymbol{\kappa}
-\end{pmatrix},</p>
+\end{pmatrix}\]</div>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ an $M \times M$ matrix.\\The prediction becomes a multivariate Gaussian
@@ -629,21 +624,18 @@ where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ a
 \[
 where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
 \]</div>
-<p>\begin{align*}
-\hat{\boldsymbol{t}}_M &amp;= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\hat{\boldsymbol{t}}_M &amp;= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \boldsymbol{\Sigma}_M &amp;= \boldsymbol{\kappa} - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
-\end{align*}
-$$</p>
-<div class="section" id="optimizing-the-gp-model-hyperparameters">
-<h3><span class="section-number">1.2.1. </span>Optimizing the GP model hyperparameters<a class="headerlink" href="#optimizing-the-gp-model-hyperparameters" title="Permalink to this headline">¶</a></h3>
-<p>Predictions can be made once we have</p>
-<ol class="simple">
-<li><p>Chosen an appropriate covariance function.</p></li>
-<li><p>Determined the hyperparameters.</p></li>
-<li><p>Evaluated the relevant blocks in the covariance function and inverted <span class="math notranslate nohighlight">\(\boldsymbol{C}_N\)</span>.</p></li>
-</ol>
-<p>How do we determine the hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span>? Well, recall that
-$$</p>
+\end{align*}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+#### Optimizing the GP model hyperparameters\\Predictions can be made once we have
+1. Chosen an appropriate covariance function.
+2. Determined the hyperparameters.
+3. Evaluated the relevant blocks in the covariance function and inverted $\boldsymbol{C}_N$.\\How do we determine the hyperparameters $\boldsymbol{\alpha}$? Well, recall that
+\end{aligned}\end{align} \]</div>
 <p>p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}<em>N^T \boldsymbol{C}</em>{N}^{-1} \boldsymbol{t}_N
 \right].</p>
 <p>$$
@@ -653,7 +645,6 @@ This pdf is basically a data likelihood.</p>
 <li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead.</p></li>
 </ul>
 <p>The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression.</p>
-</div>
 </div>
 </div>
 

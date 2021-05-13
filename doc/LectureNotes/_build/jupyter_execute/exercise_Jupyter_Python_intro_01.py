@@ -36,14 +36,14 @@
 # 
 # We can use the Jupyter notebook as a super calculator much like Mathematica and Matlab.  **Try some basic operations, modifying and evaluating the following cells, noting that exponentiation is with** `**` **and not** `^`.
 
-# In[1]:
+# In[ ]:
 
 
 1 + 1  # Everything after a number sign / pound sign / hashtag) 
        #  is a comment
 
 
-# In[2]:
+# In[ ]:
 
 
 3.2 * 4.713
@@ -51,7 +51,7 @@
 
 # Note that if we want a floating point number (which will be the same as a `double` in C++), we *always* include a decimal point (even when we don't have to) while a number without a decimal point is an integer.
 
-# In[3]:
+# In[ ]:
 
 
 3.**2
@@ -59,7 +59,7 @@
 
 # We can define integer, floating point, and string variables, perform operations on them, and print them.  Note that we don't have to predefine the type of a variable and we can use underscores in the names (unlike Mathematica).  **Evaluate the following cells and then try your own versions.** 
 
-# In[4]:
+# In[7]:
 
 
 x = 5.
@@ -67,7 +67,7 @@ print(x)
 x   # If the last line of a cell returns a value, it is printed.
 
 
-# In[5]:
+# In[8]:
 
 
 y = 3.*x**2 - 2.*x + 7.
@@ -76,7 +76,7 @@ print('y = ', y)           # Strings delimited by ' 's
 
 # There are several ways to print strings that includes variables from your code. We recommend using the relatively newly added `fstring`. See, e.g., this [blog](https://cito.github.io/blog/f-strings/) for examples. 
 
-# In[6]:
+# In[9]:
 
 
 print(f'y = {y:.0f}')      # Just a preview: more on format later 
@@ -85,7 +85,7 @@ print(f'y = {y:.2f}')      #  (note that this uses the "new" fstring)
 
 # The `fstring` will be used predominantly in this course, but you might also encounter older formatting syntax.
 
-# In[7]:
+# In[15]:
 
 
 print('x = %.2f  y = %.2f' %(x,y)) 
@@ -93,7 +93,7 @@ print('x = {0:.2f}  y = {1:.2f}'.format(x, y))
 print(f'x = {x:.2f}  y = {y:.2f}')
 
 
-# In[8]:
+# In[16]:
 
 
 first_name = 'Christian'     # Strings delimited by ' 's
@@ -108,7 +108,7 @@ print(f'{first_name} {last_name}')
 # 
 # *(Note: the next cells will give error messages --- keep reading to see how to fix them.)*
 
-# In[9]:
+# In[ ]:
 
 
 sqrt(2)

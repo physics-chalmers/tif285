@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -546,15 +544,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:19: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
- /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:52: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;-o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
- /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:52: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;-o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
- /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:52: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;-o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
- /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:52: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;-o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
- /Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/ipykernel_launcher.py:52: UserWarning:marker is redundantly defined by the &#39;marker&#39; keyword argument and the fmt string &quot;-o&quot; (-&gt; marker=&#39;o&#39;). The keyword argument will take precedence.
-</pre></div>
-</div>
-<img alt="_images/demo-GaussianProcesses_8_1.png" src="_images/demo-GaussianProcesses_8_1.png" />
+<img alt="_images/demo-GaussianProcesses_8_0.png" src="_images/demo-GaussianProcesses_8_0.png" />
 </div>
 </div>
 <p>Repeat as before, but now we’ll plot many samples from two kinds of Gaussians: one which with strongly correlated dimensions and one with weak correlations</p>
@@ -784,39 +774,6 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some NCSM data from</span>
 <span class="c1"># Phys. Rev. C 97, 034328 (2018)</span>
 <span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="n">Nmax</span><span class="p">,</span><span class="n">hw</span><span class="p">)</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/Li6E_NNLOopt_Nmax10.txt&#39;</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">--------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mf">00e52</span><span class="n">a17425a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># import some NCSM data from</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Phys. Rev. C 97, 034328 (2018)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="n">Nmax</span><span class="p">,</span><span class="n">hw</span><span class="p">)</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;data/Li6E_NNLOopt_Nmax10.txt&#39;</span><span class="p">,</span><span class="n">unpack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/numpy/lib/npyio.py</span> in <span class="ni">loadtxt</span><span class="nt">(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin, encoding, max_rows)</span>
-<span class="g g-Whitespace">    </span><span class="mi">959</span>             <span class="n">fname</span> <span class="o">=</span> <span class="n">os_fspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">960</span>         <span class="k">if</span> <span class="n">_is_string_like</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">961</span>             <span class="n">fh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">_datasource</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">962</span>             <span class="n">fencoding</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">,</span> <span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">963</span>             <span class="n">fh</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
-
-<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/numpy/lib/_datasource.py</span> in <span class="ni">open</span><span class="nt">(path, mode, destpath, encoding, newline)</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span> 
-<span class="g g-Whitespace">    </span><span class="mi">194</span>     <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSource</span><span class="p">(</span><span class="n">destpath</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">195</span>     <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span> 
-<span class="g g-Whitespace">    </span><span class="mi">197</span> 
-
-<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/numpy/lib/_datasource.py</span> in <span class="ni">open</span><span class="nt">(self, path, mode, encoding, newline)</span>
-<span class="g g-Whitespace">    </span><span class="mi">533</span>                                       <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">534</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">535</span>             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> not found.&quot;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span> 
-<span class="g g-Whitespace">    </span><span class="mi">537</span> 
-
-<span class="ne">OSError</span>: data/Li6E_NNLOopt_Nmax10.txt not found.
 </pre></div>
 </div>
 </div>

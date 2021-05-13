@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -370,84 +368,22 @@
   <a class="reference internal nav-link" href="#artificial-neurons">
    6.2. Artificial neurons
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neural-network-types">
-   6.3. Neural network types
-  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#feed-forward-neural-networks">
-     6.3.1. Feed-forward neural networks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolutional-neural-network">
-     6.3.2. Convolutional Neural Network
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recurrent-neural-networks">
-     6.3.3. Recurrent neural networks
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-types-of-networks">
-     6.3.4. Other types of networks
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multilayer-perceptrons">
-   6.4. Multilayer perceptrons
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-multilayer-perceptrons">
-     6.4.1. Why multilayer perceptrons?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mathematical-model">
-     6.4.2. Mathematical model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matrix-vector-notation">
-     6.4.3. Matrix-vector notation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#matrix-vector-notation-and-activation">
-     6.4.4. Matrix-vector notation  and activation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activation-functions">
-     6.4.5. Activation functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#final-back-propagating-equation">
-     6.4.6. Final back-propagating equation
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#which-activation-function-should-we-use">
-     6.4.7. Which activation function should we use?
+     6.2.1. Which activation function should we use?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-top-down-perspective-on-neural-networks">
-   6.5. A top-down perspective on Neural networks
+   6.3. A top-down perspective on Neural networks
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-supervised-learning-with-deep-networks">
-   6.6. Limitations of supervised learning with deep networks
+   6.4. Limitations of supervised learning with deep networks
   </a>
  </li>
 </ul>
@@ -500,24 +436,22 @@ signals, which must exceed an activation threshold to yield an
 output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.</p>
 <p>This behaviour has inspired a simple mathematical model for an artificial neuron.
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c704c181-62d8-49bb-ba95-05c5f22d2826">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-c704c181-62d8-49bb-ba95-05c5f22d2826" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
-\end{equation}
-\)</span><span class="math notranslate nohighlight">\(
-where the bias \)</span>b<span class="math notranslate nohighlight">\( is sometimes denoted \)</span>w_0<span class="math notranslate nohighlight">\(.
-Here, the output \)</span>y<span class="math notranslate nohighlight">\( of the neuron is the value of its activation function, which have as input
-a weighted sum of signals \)</span>x_1, \dots ,x_n<span class="math notranslate nohighlight">\( received by \)</span>n$ other neurons.</p>
-<p>Conceptually, it is helpful to divide neural networks into four
-categories:</p>
-<ol class="simple">
-<li><p>general purpose neural networks, including deep neural networks (DNN) with several hidden layers, for supervised learning,</p></li>
-<li><p>neural networks designed specifically for image processing, the most prominent example of this class being Convolutional Neural Networks (CNNs),</p></li>
-<li><p>neural networks for sequential data such as Recurrent Neural Networks (RNNs), and</p></li>
-<li><p>neural networks for unsupervised learning such as Deep Boltzmann Machines.</p></li>
-</ol>
-<p>In natural science, DNNs and CNNs have already found numerous
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where the bias $b$ is sometimes denoted $w_0$.
+Here, the output $y$ of the neuron is the value of its activation function, which have as input
+a weighted sum of signals $x_1, \dots ,x_n$ received by $n$ other neurons.\\Conceptually, it is helpful to divide neural networks into four
+categories:
+1. general purpose neural networks, including deep neural networks (DNN) with several hidden layers, for supervised learning,
+2. neural networks designed specifically for image processing, the most prominent example of this class being Convolutional Neural Networks (CNNs),
+3. neural networks for sequential data such as Recurrent Neural Networks (RNNs), and
+4. neural networks for unsupervised learning such as Deep Boltzmann Machines.\\In natural science, DNNs and CNNs have already found numerous
 applications. In statistical physics, they have been applied to detect
 phase transitions in 2D Ising and Potts models, lattice gauge
 theories, and different phases of polymers, or solving the
@@ -525,135 +459,94 @@ Navier-Stokes equation in weather forecasting.  Deep learning has also
 found interesting applications in quantum physics. Various quantum
 phase transitions can be detected and studied using DNNs and CNNs:
 topological phases, and even non-equilibrium many-body
-localization.</p>
-<p>In quantum information theory, it has been shown that one can perform
-gate decompositions with the help of neural networks.</p>
-<p>The applications are not limited to the natural sciences. There is a
+localization. \\In quantum information theory, it has been shown that one can perform
+gate decompositions with the help of neural networks. \\The applications are not limited to the natural sciences. There is a
 plethora of applications in essentially all disciplines, from the
-humanities to life science and medicine.</p>
-<!-- !split -->
-</div>
-<div class="section" id="neural-network-types">
-<h2><span class="section-number">6.3. </span>Neural network types<a class="headerlink" href="#neural-network-types" title="Permalink to this headline">¶</a></h2>
-<p>An artificial neural network (ANN), is a computational model that
+humanities to life science and medicine.\\&lt;!-- !split --&gt;
+### Neural network types\\An artificial neural network (ANN), is a computational model that
 consists of layers of connected neurons, or nodes or units.  We will
 refer to these interchangeably as units or nodes, and sometimes as
-neurons.</p>
-<p>It is supposed to mimic a biological nervous system by letting each
+neurons.\\It is supposed to mimic a biological nervous system by letting each
 neuron interact with other neurons by sending signals in the form of
 mathematical functions between layers.  A wide variety of different
 ANNs have been developed, but most of them consist of an input layer,
-an output layer and eventual layers in-between, called <em>hidden
-layers</em>. All layers can contain an arbitrary number of nodes, and each
-connection between two nodes is associated with a weight variable.</p>
-<p>Neural networks (also called neural nets) are neural-inspired
+an output layer and eventual layers in-between, called *hidden
+layers*. All layers can contain an arbitrary number of nodes, and each
+connection between two nodes is associated with a weight variable.\\Neural networks (also called neural nets) are neural-inspired
 nonlinear models for supervised learning.  As we will see, neural nets
 can be viewed as natural, more powerful extensions of supervised
 learning methods such as linear and logistic regression and soft-max
-methods we discussed earlier.</p>
-<!-- !split -->
-<div class="section" id="feed-forward-neural-networks">
-<h3><span class="section-number">6.3.1. </span>Feed-forward neural networks<a class="headerlink" href="#feed-forward-neural-networks" title="Permalink to this headline">¶</a></h3>
-<p>The feed-forward neural network (FFNN) was the first and simplest type
+methods we discussed earlier.\\
+&lt;!-- !split --&gt;
+#### Feed-forward neural networks\\The feed-forward neural network (FFNN) was the first and simplest type
 of ANNs that were devised. In this network, the information moves in
-only one direction: forward through the layers.</p>
-<p>Nodes are represented by circles, while the arrows display the
+only one direction: forward through the layers.\\Nodes are represented by circles, while the arrows display the
 connections between the nodes, including the direction of information
 flow. Additionally, each arrow corresponds to a weight variable
 (figure to come).  We observe that each node in a layer is connected
-to <em>all</em> nodes in the subsequent layer, making this a so-called
-<em>fully-connected</em> FFNN.</p>
-<!-- !split -->
-</div>
-<div class="section" id="convolutional-neural-network">
-<h3><span class="section-number">6.3.2. </span>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">¶</a></h3>
-<p>A different variant of FFNNs are <em>convolutional neural networks</em>
+to *all* nodes in the subsequent layer, making this a so-called
+*fully-connected* FFNN.\\&lt;!-- !split --&gt;
+#### Convolutional Neural Network\\A different variant of FFNNs are *convolutional neural networks*
 (CNNs), which have a connectivity pattern inspired by the animal
 visual cortex. Individual neurons in the visual cortex only respond to
 stimuli from small sub-regions of the visual field, called a receptive
 field. This makes the neurons well-suited to exploit the strong
 spatially local correlation present in natural images. The response of
 each neuron can be approximated mathematically as a convolution
-operation.  (figure to come)</p>
-<p>Convolutional neural networks emulate the behaviour of neurons in the
-visual cortex by enforcing a <em>local</em> connectivity pattern between
+operation.  (figure to come)\\Convolutional neural networks emulate the behaviour of neurons in the
+visual cortex by enforcing a *local* connectivity pattern between
 nodes of adjacent layers: Each node in a convolutional layer is
 connected only to a subset of the nodes in the previous layer, in
 contrast to the fully-connected FFNN.  Often, CNNs consist of several
 convolutional layers that learn local features of the input, with a
 fully-connected layer at the end, which gathers all the local data and
 produces the outputs. They have wide applications in image and video
-recognition.</p>
-<!-- !split -->
-</div>
-<div class="section" id="recurrent-neural-networks">
-<h3><span class="section-number">6.3.3. </span>Recurrent neural networks<a class="headerlink" href="#recurrent-neural-networks" title="Permalink to this headline">¶</a></h3>
-<p>So far we have only mentioned ANNs where information flows in one
-direction: forward. <em>Recurrent neural networks</em> on the other hand,
-have connections between nodes that form directed <em>cycles</em>. This
+recognition.\\&lt;!-- !split --&gt;
+#### Recurrent neural networks\\So far we have only mentioned ANNs where information flows in one
+direction: forward. *Recurrent neural networks* on the other hand,
+have connections between nodes that form directed *cycles*. This
 creates a form of internal memory which are able to capture
 information on what has been calculated before; the output is
 dependent on the previous computations. Recurrent NNs make use of
 sequential information by performing the same task for every element
 in a sequence, where each element depends on previous elements. An
 example of such information is sentences, making recurrent NNs
-especially well-suited for handwriting and speech recognition.</p>
-<!-- !split -->
-</div>
-<div class="section" id="other-types-of-networks">
-<h3><span class="section-number">6.3.4. </span>Other types of networks<a class="headerlink" href="#other-types-of-networks" title="Permalink to this headline">¶</a></h3>
-<p>There are many other kinds of ANNs that have been developed. One type
+especially well-suited for handwriting and speech recognition.\\&lt;!-- !split --&gt;
+#### Other types of networks\\There are many other kinds of ANNs that have been developed. One type
 that is specifically designed for interpolation in multidimensional
 space is the radial basis function (RBF) network. RBFs are typically
 made up of three layers: an input layer, a hidden layer with
 non-linear radial symmetric activation functions and a linear output
-layer (‘’linear’’ here means that each node in the output layer has a
+layer (''linear'' here means that each node in the output layer has a
 linear activation function). The layers are normally fully-connected
 and there are no cycles, thus RBFs can be viewed as a type of
 fully-connected FFNN. They are however usually treated as a separate
-type of NN due the unusual activation functions.</p>
-<!-- !split -->
-</div>
-</div>
-<div class="section" id="multilayer-perceptrons">
-<h2><span class="section-number">6.4. </span>Multilayer perceptrons<a class="headerlink" href="#multilayer-perceptrons" title="Permalink to this headline">¶</a></h2>
-<p>The <em>multilayer perceptron</em> (MLP) is a very popular, and easy to implement approach, to deep learning. It consists of</p>
-<ol class="simple">
-<li><p>a neural network with one or more layers of nodes between the input and the output nodes.</p></li>
-<li><p>the multilayer network structure, or architecture, or topology, consists of an input layer, one or more hidden layers, and one output layer.</p></li>
-<li><p>the input nodes pass values to the first hidden layer, its nodes pass the information on to the second and so on till we reach the output layer.</p></li>
-</ol>
-<p>As a convention it is normal to call a network with one layer of input units, one layer of hidden units and one layer of output units as  a two-layer network. A network with two layers of hidden units is called a three-layer network etc.</p>
-<p>The number of input nodes does not need to equal the number of output
+type of NN due the unusual activation functions.\\&lt;!-- !split --&gt;
+### Multilayer perceptrons\\The *multilayer perceptron* (MLP) is a very popular, and easy to implement approach, to deep learning. It consists of
+1. a neural network with one or more layers of nodes between the input and the output nodes.
+2. the multilayer network structure, or architecture, or topology, consists of an input layer, one or more hidden layers, and one output layer.
+3. the input nodes pass values to the first hidden layer, its nodes pass the information on to the second and so on till we reach the output layer.\\As a convention it is normal to call a network with one layer of input units, one layer of hidden units and one layer of output units as  a two-layer network. A network with two layers of hidden units is called a three-layer network etc.\\The number of input nodes does not need to equal the number of output
 nodes. This applies also to the hidden layers. Each layer may have its
-own number of nodes and activation functions.</p>
-<p>The hidden layers have their name from the fact that they are not
+own number of nodes and activation functions.\\The hidden layers have their name from the fact that they are not
 linked to observables and as we will see below when we define the
-so-called activation <span class="math notranslate nohighlight">\(\boldsymbol{z}\)</span>, we can think of this as a basis
-expansion of the original inputs <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>.</p>
-<!-- !split -->
-<div class="section" id="why-multilayer-perceptrons">
-<h3><span class="section-number">6.4.1. </span>Why multilayer perceptrons?<a class="headerlink" href="#why-multilayer-perceptrons" title="Permalink to this headline">¶</a></h3>
-<p>According to the <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&amp;rep=rep1&amp;type=pdf">universal approximation
-theorem</a>, a feed-forward
+so-called activation $\boldsymbol{z}$, we can think of this as a basis
+expansion of the original inputs $\boldsymbol{x}$. \\&lt;!-- !split --&gt;
+#### Why multilayer perceptrons?\\According to the [universal approximation
+theorem](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&amp;rep=rep1&amp;type=pdf), a feed-forward
 neural network with just a single hidden layer containing a finite
 number of neurons can approximate a continuous multidimensional
 function to arbitrary accuracy, assuming the activation function for
-the hidden layer is a <strong>non-constant, bounded and
-monotonically-increasing continuous function</strong>. The theorem thus
+the hidden layer is a **non-constant, bounded and
+monotonically-increasing continuous function**. The theorem thus
 states that simple neural networks can represent a wide variety of
 interesting functions when given appropriate parameters. It is the
 multilayer feedforward architecture itself which gives neural networks
-the potential of being universal approximators.</p>
-<p>Note that the requirements on the activation function only applies to
+the potential of being universal approximators.\\Note that the requirements on the activation function only applies to
 the hidden layer, the output nodes are always assumed to be linear, so
-as to not restrict the range of output values.</p>
-<!-- !split -->
-</div>
-<div class="section" id="mathematical-model">
-<h3><span class="section-number">6.4.2. </span>Mathematical model<a class="headerlink" href="#mathematical-model" title="Permalink to this headline">¶</a></h3>
-<p>The output <span class="math notranslate nohighlight">\(y\)</span> is produced via the activation function <span class="math notranslate nohighlight">\(f\)</span>
-$$</p>
+as to not restrict the range of output values.\\
+&lt;!-- !split --&gt;
+#### Mathematical model\\The output $y$ is produced via the activation function $f$
+\end{aligned}\end{align} \]</div>
 <p>y = f\left(\sum_{i=1}^n w_ix_i + b \right) = f(z),</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
@@ -664,98 +557,93 @@ the neurons in the preceding layer. Furthermore, an MLP is
 fully-connected, which means that each neuron receives a weighted sum
 of the outputs of *all* neurons in the previous layer.\\&lt;!-- !split --&gt;
 First, for each node $j$ in the first hidden layer, we calculate a weighted sum $z_j^1$ of the input coordinates $x_i$,\end{aligned}\end{align} \]</div>
-<p>\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
-\end{equation}
-$$</p>
-<p>Here <span class="math notranslate nohighlight">\(b_j^1\)</span> is the so-called bias which is normally needed in
-case of zero activation weights or inputs. How to fix the biases and
-the weights will be discussed below.  The value of <span class="math notranslate nohighlight">\(z_j^1\)</span> is the
-argument to the activation function <span class="math notranslate nohighlight">\(f\)</span> of each node <span class="math notranslate nohighlight">\(j\)</span>, The
-variable <span class="math notranslate nohighlight">\(n\)</span> stands for all possible inputs to a given node <span class="math notranslate nohighlight">\(j\)</span> in the
-first layer.  We define  the output <span class="math notranslate nohighlight">\(y_j^1\)</span> of all neurons in layer 1 as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-00351f66-6026-42ee-9669-bc7e6f8a9ec1">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-00351f66-6026-42ee-9669-bc7e6f8a9ec1" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
+\end{equation}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{equation}
+\[Here $b_j^1$ is the so-called bias which is normally needed in
+case of zero activation weights or inputs. How to fix the biases and
+the weights will be discussed below.  The value of $z_j^1$ is the
+argument to the activation function $f$ of each node $j$, The
+variable $n$ stands for all possible inputs to a given node $j$ in the
+first layer.  We define  the output $y_j^1$ of all neurons in layer 1 as\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-2e625c95-d245-4e3a-859f-36eb17a433fa">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-2e625c95-d245-4e3a-859f-36eb17a433fa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
-\end{equation}
-\]</div>
-<p>where we assume that all nodes in the same layer have identical
-activation functions, hence the notation <span class="math notranslate nohighlight">\(f\)</span>. In general, we could assume in the more general case that different layers have different activation functions.
-In this case we would identify these functions with a superscript <span class="math notranslate nohighlight">\(l\)</span> for the <span class="math notranslate nohighlight">\(l\)</span>-th layer,</p>
+\end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[
-\begin{equation}
+where we assume that all nodes in the same layer have identical
+activation functions, hence the notation $f$. In general, we could assume in the more general case that different layers have different activation functions.
+In this case we would identify these functions with a superscript $l$ for the $l$-th layer,\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9710c5d5-0b39-47d6-85f6-e35b77782044">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-9710c5d5-0b39-47d6-85f6-e35b77782044" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
-\end{equation}
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(N_{l-1}\)</span> is the number of nodes in layer <span class="math notranslate nohighlight">\(l-1\)</span>. When the output of
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where $N_{l-1}$ is the number of nodes in layer $l-1$. When the output of
 all the nodes in the first hidden layer are computed, the values of
 the subsequent layer can be calculated and so forth until the output
-is obtained.</p>
-<!-- !split -->
-<p>The output of neuron <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is thus,
-$<span class="math notranslate nohighlight">\(
-\begin{align}
+is obtained.\\
+&lt;!-- !split --&gt;
+The output of neuron $i$ in layer 2 is thus,
+\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9a67198d-3f6f-4e08-9ed7-5156893b6280">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-9a67198d-3f6f-4e08-9ed7-5156893b6280" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^2 &amp;= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &amp;= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
-\end{align}
-\)</span><span class="math notranslate nohighlight">\(
-where we have substituted \)</span>y_k^1<span class="math notranslate nohighlight">\( with the inputs \)</span>x_k<span class="math notranslate nohighlight">\(. Finally, the ANN output reads
-\)</span>$
-\begin{align}
-y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \
-&amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)</p>
-<ul class="simple">
-<li><p>b_1^3\right]
-\end{align}
-$$</p></li>
-</ul>
-<!-- !split -->
-<p>We can generalize this expression to an MLP with <span class="math notranslate nohighlight">\(L\)</span> hidden
-layers. The complete functional form is,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
 \[
-\begin{align}
+where we have substituted $y_k^1$ with the inputs $x_k$. Finally, the ANN output reads
+\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-dd5befc6-3a41-45a9-a92d-5a590bb4a701">
+<span class="eqno">(6.16)<a class="headerlink" href="#equation-dd5befc6-3a41-45a9-a92d-5a590bb4a701" title="Permalink to this equation">¶</a></span>\[\begin{align}
+ y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
+ &amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
+  + b_1^3\right]
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[&lt;!-- !split --&gt;
+We can generalize this expression to an MLP with $L$ hidden
+layers. The complete functional form is,\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5c1a916f-b2c2-4e7a-8d6d-18e45482db56">
+<span class="eqno">(6.17)<a class="headerlink" href="#equation-5c1a916f-b2c2-4e7a-8d6d-18e45482db56" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &amp;&amp;
  \label{completeNN}
-\end{align}
-\]</div>
-<p>which illustrates a basic property of MLPs: The only independent
-variables are the input values <span class="math notranslate nohighlight">\(x_n\)</span>.</p>
-<!-- !split -->
-<p>This confirms that an MLP, despite its quite convoluted mathematical
-form, is nothing more than an analytic function, specifically a
-mapping of real-valued vectors <span class="math notranslate nohighlight">\(\boldsymbol{x} \in \mathbb{R}^n \rightarrow
-\boldsymbol{y} \in \mathbb{R}^m\)</span>.</p>
-<p>Furthermore, the flexibility and universality of an MLP can be
-illustrated by realizing that the expression is essentially a nested
-sum of scaled activation functions of the form</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{equation}
+\[ \begin{align}\begin{aligned}
+which illustrates a basic property of MLPs: The only independent
+variables are the input values $x_n$.\\&lt;!-- !split --&gt;
+This confirms that an MLP, despite its quite convoluted mathematical
+form, is nothing more than an analytic function, specifically a
+mapping of real-valued vectors $\boldsymbol{x} \in \mathbb{R}^n \rightarrow
+\boldsymbol{y} \in \mathbb{R}^m$.\\Furthermore, the flexibility and universality of an MLP can be
+illustrated by realizing that the expression is essentially a nested
+sum of scaled activation functions of the form\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8417fc37-ccb1-4f79-a539-46307ed1a953">
+<span class="eqno">(6.18)<a class="headerlink" href="#equation-8417fc37-ccb1-4f79-a539-46307ed1a953" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
-\end{equation}
-\]</div>
-<p>where the parameters <span class="math notranslate nohighlight">\(c_i\)</span> are weights and biases. By adjusting these
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+where the parameters $c_i$ are weights and biases. By adjusting these
 parameters, the activation functions can be shifted up and down or
 left and right, change slope or be rescaled which is the key to the
-flexibility of a neural network.</p>
-<!-- !split -->
-</div>
-<div class="section" id="matrix-vector-notation">
-<h3><span class="section-number">6.4.3. </span>Matrix-vector notation<a class="headerlink" href="#matrix-vector-notation" title="Permalink to this headline">¶</a></h3>
-<p>We can introduce a more convenient notation for the activations in an ANN.</p>
-<p>Additionally, we can represent the biases and activations
-as layer-wise column vectors <span class="math notranslate nohighlight">\(\boldsymbol{b}_l\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}_l\)</span>, so that the <span class="math notranslate nohighlight">\(i\)</span>-th element of each vector
-is the bias <span class="math notranslate nohighlight">\(b_i^l\)</span> and activation <span class="math notranslate nohighlight">\(y_i^l\)</span> of node <span class="math notranslate nohighlight">\(i\)</span> in layer <span class="math notranslate nohighlight">\(l\)</span> respectively.</p>
-<p>We have that <span class="math notranslate nohighlight">\(\boldsymbol{W}_l\)</span> is an <span class="math notranslate nohighlight">\(N_{l-1} \times N_l\)</span> matrix, while <span class="math notranslate nohighlight">\(\boldsymbol{b}_l\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}_l\)</span> are <span class="math notranslate nohighlight">\(N_l \times 1\)</span> column vectors.
+flexibility of a neural network.\\&lt;!-- !split --&gt;
+#### Matrix-vector notation\\We can introduce a more convenient notation for the activations in an ANN. \\Additionally, we can represent the biases and activations
+as layer-wise column vectors $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$, so that the $i$-th element of each vector 
+is the bias $b_i^l$ and activation $y_i^l$ of node $i$ in layer $l$ respectively. \\We have that $\boldsymbol{W}_l$ is an $N_{l-1} \times N_l$ matrix, while $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$ are $N_l \times 1$ column vectors. 
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-fad2b3e8-468d-4f46-ba77-1f1700b6440a">
+<span class="eqno">(6.19)<a class="headerlink" href="#equation-fad2b3e8-468d-4f46-ba77-1f1700b6440a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &amp;w^2_{12} &amp;w^2_{13} \\
@@ -772,50 +660,39 @@ $<span class="math notranslate nohighlight">\(
            b^2_2 \\
            b^2_3 \\
           \end{array}\right]\right).
-\end{equation}
-\)</span>$</p>
-<!-- !split -->
-</div>
-<div class="section" id="matrix-vector-notation-and-activation">
-<h3><span class="section-number">6.4.4. </span>Matrix-vector notation  and activation<a class="headerlink" href="#matrix-vector-notation-and-activation" title="Permalink to this headline">¶</a></h3>
-<p>The activation of node <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is</p>
+\end{equation}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{equation}
+\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
+#### Matrix-vector notation  and activation\\The activation of node $i$ in layer 2 is\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ca7d7af5-c0ca-4dff-8880-07ca3eb34468">
+<span class="eqno">(6.20)<a class="headerlink" href="#equation-ca7d7af5-c0ca-4dff-8880-07ca3eb34468" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
-\end{equation}
-\]</div>
-<p>This is not just a convenient and compact notation, but also a useful
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}This is not just a convenient and compact notation, but also a useful
 and intuitive way to think about MLPs: The output is calculated by a
 series of matrix-vector multiplications and vector additions that are
 used as input to the activation functions. For each operation
-<span class="math notranslate nohighlight">\(\mathrm{W}_l \boldsymbol{y}_{l-1}\)</span> we move forward one layer.</p>
-<!-- !split -->
-</div>
-<div class="section" id="activation-functions">
-<h3><span class="section-number">6.4.5. </span>Activation functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline">¶</a></h3>
-<p>A property that characterizes a neural network, other than its
-connectivity, is the choice of activation function(s).  The following restrictions are imposed on an activation function for a FFNN to fulfill the universal approximation theorem</p>
-<ul class="simple">
-<li><p>Non-constant</p></li>
-<li><p>Bounded</p></li>
-<li><p>Monotonically-increasing</p></li>
-<li><p>Continuous</p></li>
-</ul>
-<!-- !split -->
-<p><em>Logistic and Hyperbolic activation functions</em>
+$\mathrm{W}_l \boldsymbol{y}_{l-1}$ we move forward one layer.\\
+&lt;!-- !split --&gt;
+#### Activation functions\\A property that characterizes a neural network, other than its
+connectivity, is the choice of activation function(s).  The following restrictions are imposed on an activation function for a FFNN to fulfill the universal approximation theorem\\  * Non-constant
+  * Bounded
+  * Monotonically-increasing
+  * Continuous\\&lt;!-- !split --&gt;
+*Logistic and Hyperbolic activation functions*
 The second requirement excludes all linear functions. Furthermore, in
 a MLP with only linear activation functions, each layer simply
-performs a linear transformation of its inputs.</p>
-<p>Regardless of the number of layers, the output of the NN will be
+performs a linear transformation of its inputs.\\Regardless of the number of layers, the output of the NN will be
 nothing but a linear function of the inputs. Thus we need to introduce
 some kind of non-linearity to the NN to be able to fit non-linear
-functions Typical examples are the logistic <em>Sigmoid</em></p>
+functions Typical examples are the logistic *Sigmoid*\end{aligned}\end{align} \]</div>
+<p>f_\mathrm{sigmoid}(z) = \frac{1}{1 + e^{-z}},</p>
 <div class="math notranslate nohighlight">
-\[ f_\mathrm{sigmoid}(z) = \frac{1}{1 + e^{-z}},\]</div>
-<p>and the <em>hyperbolic tangent</em> function
-$$</p>
+\[
+and the *hyperbolic tangent* function
+\]</div>
 <p>f_\mathrm{tanh}(z) = \tanh(z)</p>
 <div class="math notranslate nohighlight">
 \[&lt;!-- !split --&gt;
@@ -944,45 +821,43 @@ which can also be interpreted as the partial derivative of the cost function wit
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 That is, the error $\delta_j^L$ is exactly equal to the rate of change of the cost function as a function of the bias. \\&lt;!-- !split --&gt;\\We have now three equations that are essential for the computations of the derivatives of the cost function at the output layer. These equations are needed to start the algorithm and they are\\*The starting equations.* \end{aligned}\end{align} \]</div>
-<p>\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a3445501-aa05-444d-b1a0-432657e208df">
+<span class="eqno">(6.21)<a class="headerlink" href="#equation-a3445501-aa05-444d-b1a0-432657e208df" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
-\end{equation}
-$<span class="math notranslate nohighlight">\(
-and
-\)</span><span class="math notranslate nohighlight">\(
-\begin{equation}
-\delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
-\end{equation}
-\)</span>$
-and</p>
+\end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[
-\begin{equation}
-\delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
-\end{equation}
+and
 \]</div>
-<p>An interesting consequence of the above equations is that when the
-activation <span class="math notranslate nohighlight">\(a_k^{L-1}\)</span> is small, the gradient term, that is the
+<div class="amsmath math notranslate nohighlight" id="equation-b6ed1105-f95d-4c17-9d0a-cd6040a044f4">
+<span class="eqno">(6.22)<a class="headerlink" href="#equation-b6ed1105-f95d-4c17-9d0a-cd6040a044f4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[
+and\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-9b0d3b45-d1f0-4025-b00b-10bffe00c79e">
+<span class="eqno">(6.23)<a class="headerlink" href="#equation-9b0d3b45-d1f0-4025-b00b-10bffe00c79e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
+\end{equation}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+An interesting consequence of the above equations is that when the
+activation $a_k^{L-1}$ is small, the gradient term, that is the
 derivative of the cost function with respect to the weights, will also
 tend to be small. We say then that the weight learns slowly, meaning
 that it changes slowly when we minimize the weights via say gradient
-descent. In this case we say the system learns slowly.</p>
-<p>Another interesting feature is that is when the activation function,
+descent. In this case we say the system learns slowly.\\Another interesting feature is that is when the activation function,
 represented by the sigmoid function here, is rather flat when we move towards
-its end values <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. In these
+its end values $0$ and $1$. In these
 cases, the derivatives of the activation function will also be close
 to zero, meaning again that the gradients will be small and the
-network learns slowly again.</p>
-<p>We need a fourth equation and we are set. We are going to propagate
+network learns slowly again.\\We need a fourth equation and we are set. We are going to propagate
 backwards in order to determine the weights and biases. In order
 to do so we need to represent the error in the layer before the final
-one <span class="math notranslate nohighlight">\(L-1\)</span> in terms of the errors in the final output layer.</p>
-<!-- !split -->
-</div>
-<div class="section" id="final-back-propagating-equation">
-<h3><span class="section-number">6.4.6. </span>Final back-propagating equation<a class="headerlink" href="#final-back-propagating-equation" title="Permalink to this headline">¶</a></h3>
-<p>We have that (replacing <span class="math notranslate nohighlight">\(L\)</span> with a general layer <span class="math notranslate nohighlight">\(l\)</span>)
-$$</p>
+one $L-1$ in terms of the errors in the final output layer.\\&lt;!-- !split --&gt;
+#### Final back-propagating equation\\We have that (replacing $L$ with a general layer $l$)
+\end{aligned}\end{align} \]</div>
 <p>\delta_j^l =\frac{\partial {\cal C}}{\partial z_j^l}.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1087,9 +962,8 @@ exponential linear unit (ELU) function\end{aligned}\end{align} \]</div>
 <p>ELU(z) = \left{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) &amp; z &lt; 0,\  z &amp; z \ge 0.\end{array}\right.</p>
 <p>$$</p>
 <!-- !split -->
-</div>
 <div class="section" id="which-activation-function-should-we-use">
-<h3><span class="section-number">6.4.7. </span>Which activation function should we use?<a class="headerlink" href="#which-activation-function-should-we-use" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.2.1. </span>Which activation function should we use?<a class="headerlink" href="#which-activation-function-should-we-use" title="Permalink to this headline">¶</a></h3>
 <p>In general it seems that the ELU activation function is better than
 the leaky ReLU function (and its variants), which is better than
 ReLU. ReLU performs better than <span class="math notranslate nohighlight">\(\tanh\)</span> which in turn performs better
@@ -1105,7 +979,7 @@ bootstrap to evaluate other activation functions.</p>
 </div>
 </div>
 <div class="section" id="a-top-down-perspective-on-neural-networks">
-<h2><span class="section-number">6.5. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.3. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The first thing we would like to do is divide the data into two or three
 parts. A training set, a validation or dev (development) set, and a
 test set.</p>
@@ -1137,7 +1011,7 @@ supervised learning.</p>
 <!-- !split -->
 </div>
 <div class="section" id="limitations-of-supervised-learning-with-deep-networks">
-<h2><span class="section-number">6.6. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
 <p>Like all statistical methods, supervised learning using neural
 networks has important limitations. This is especially important when
 one seeks to apply these methods, especially to physics problems. Like

@@ -1,14 +1,3 @@
-% Learning from data: Model Validation and Regularization
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
-
-
-<!-- !split -->
 In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
   * Model validation
   * Overfitting and underfitting
@@ -32,8 +21,8 @@ The cross-validation example with Ridge Regularization is taken from teaching ma
 
 Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. [fig-over_under_fitting](#fig-over_under_fitting) from the demonstration notebook.
 
-<!-- <img src="fig/over_under_fitting.png" width=600><p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p> -->
-![<p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p>](fig/over_under_fitting.png)
+<!-- <img src="fig/ModelValidation/over_under_fitting.png" width=600><p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p> -->
+![<p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p>](fig/ModelValidation/over_under_fitting.png)
 
 The following quote from an unknown source provides a concise definition of overfitting and underfitting:
 > A model overfits if it fits noise as much as data and underfits if it considers variability in data to be noise while it is actually not.
@@ -57,11 +46,11 @@ $$
 $$
 
 
-order  $\theta_\mathrm{rms}$  
------  ---------------------  
-    1                3.0e-01  
-    3                1.2e+00  
-  100                6.3e+12  
+| order  | $\theta_\mathrm{rms}$  |
+| :----- | :--------------------- | 
+|    1   |             3.0e-01    |
+|    3   |             1.2e+00    |
+|  	 100  |             6.3e+12    |
 
 
 
@@ -71,23 +60,24 @@ order  $\theta_\mathrm{rms}$
 Assuming that overfitting is characterized by large fit parameters, we can attempt to avoid this scenario by *regularizing* the model parameters. We will introduce two kinds of regularization: Ridge and Lasso. In addition, so called elastic net regularization is also in use and basically corresponds to a linear combination of the Ridge and Lasso penalty functions.
 
 Let us remind ourselves about the expression for the standard Mean Squared Error (MSE) which we used to define our cost function and the equations for the ordinary least squares (OLS) method. That is our optimization problem is
+
 $$
 
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}} \frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{	\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
 
 $$
-or we can state it as
-$$
 
+or we can state it as
+
+$$
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
 \frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2,
-
 $$
+
 where we have used the definition of  a norm-2 vector, that is
+
 $$
-
 \vert\vert \boldsymbol{x}\vert\vert_2 = \sqrt{\sum_i x_i^2}. 
-
 $$
 
 By minimizing the above equation with respect to the parameters
@@ -104,8 +94,8 @@ $$
 
 which leads to the *Ridge regression* minimization problem where we
 constrain the parameters via $\vert\vert \boldsymbol{\theta}\vert\vert_2^2$ and the optimization equation becomes
-$$
 
+$$
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
 C_{\lambda,2}
 .
@@ -119,16 +109,19 @@ C_{\lambda,1} \left( \boldsymbol{X},\boldsymbol{\theta} \right) \equiv
 \frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2+\lambda\vert\vert \boldsymbol{\theta}\vert\vert_1.
 
 $$
+
 Here we have defined the norm-1 as 
+
 $$
 
 \vert\vert \boldsymbol{x}\vert\vert_1 = \sum_i \vert x_i\vert. 
 
 $$
+
 Lasso stands for least absolute shrinkage and selection operator.
 
-<!-- <img src="fig/ridge_reg.png" width=900><p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p> -->
-![<p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p>](fig/ridge_reg.png)
+<!-- <img src="fig/ModelValidation/ridge_reg.png" width=900><p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p> -->
+![<p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p>](fig/ModelValidation/ridge_reg.png)
 
 
 
@@ -159,11 +152,11 @@ We see that Ridge regression is nothing but the standard
 OLS with a modified diagonal term added to $\boldsymbol{X}^T\boldsymbol{X}$. The
 consequences, in particular for our discussion of the bias-variance
 are rather interesting. Ridge regression imposes a constraint on the model parameters
-$$
 
+$$
 \sum_{i=0}^{p-1} \theta_i^2 \leq t,
-
 $$
+
 with $t$ a finite positive number. 
 
 For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's](https://arxiv.org/abs/1509.09169) article or [Mehta et al's article](https://arxiv.org/abs/1803.08823).
@@ -178,32 +171,31 @@ tasks. Consider a dataset $\mathcal{L}$ consisting of the data
 $\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. 
 
 Let us assume that the data with experimental noise is generated from a true model
-$$
 
+$$
 \boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp},
-
 $$
+
 where $\boldsymbol{\epsilon}_\mathrm{exp}$ is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance $\sigma^2_\mathrm{exp}$.
 
 In our derivation of the ordinary least squares method we defined then
 an approximation to the function $f$ in terms of the parameters
 $\boldsymbol{\theta}$ and the design matrix $\boldsymbol{X}$ which embody our model,
 that is 
-$$
 
+$$
 \boldsymbol{f}(\boldsymbol{x}) \approx \boldsymbol{\tilde{f}}(\boldsymbol{\theta}) \equiv \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta}. 
-
 $$
+
 The relation between the true description and our model is
+
 $$
-
 f_i = \tilde{y}_i + \boldsymbol{\epsilon}_{\mathrm{model},i}.
-
 $$
 
 Thereafter we found the optimum set of model parameters $\boldsymbol{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
-$$
 
+$$
 C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = 
 \left[ \begin{array}{c}
 \mathrm{assume}\\
@@ -211,15 +203,14 @@ C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}
 \end{array} \right]
 \approx
 \mathbb{E}\left[(y-\tilde{y})^2\right],
-
 $$
+
 where we have made the key assumption that the residuals $(\boldsymbol{y}-\boldsymbol{\tilde{y}})$ are independent and identically distributed (i.i.d.) random variables, i.e. these are samples from a single underlying probability distribution. Remember that $\mathbb{E}(t)$ denotes the expectation value for the random variable $t$. In this context we also remind that the variance is given by $\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]$.
 
 We can rewrite this expectation value as 
+
 $$
-
 \mathbb{E}\left[(y-\tilde{y})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\tilde{y}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\tilde{y}\right])^2+\sigma^2_\mathrm{exp}.
-
 $$
 
 The first of the three terms represents the square of the bias of the learning
@@ -229,44 +220,40 @@ variance of the chosen model and finally the last terms is the irreducible error
 
 To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\tilde{y}$.
 We use a more compact notation in terms of the expectation value 
-$$
 
+$$
 \mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y})^2\right],
-
 $$
+
 and adding and subtracting $\mathbb{E}\left[\tilde{y}\right]$ we get
-$$
 
+$$
 \mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y}+\mathbb{E}\left[\tilde{y}\right]-\mathbb{E}\left[\tilde{y}\right])^2\right].
-
 $$
+
 We can rewrite this expression as a sum of three terms:
 * The first one is the (squared) bias of the model plus the irreducible data error $\sigma_\mathrm{exp}^2$
 
 $$
-
 \mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\mathbb{E}\left[\tilde{y}\right])^2\right] = \mathbb{E}\left[({f}-\mathbb{E}\left[\tilde{y}\right])^2\right] + \mathbb{E}\left[\epsilon_\mathrm{exp}^2\right]+0.
-
 $$
+
 * The second one is the variance of the model $\mathrm{Var}\left[ \tilde{y} \right]$
 
 $$
-
 \mathbb{E}\left[(\mathbb{E}\left[\tilde{y}\right] - \tilde{y})^2\right],
-
 $$
+
 * and the last one is zero
 
 $$
-
 2\mathbb{E}\left[(y-\mathbb{E}\left[\tilde{y}\right])(\mathbb{E}\left[\tilde{y}\right]-\tilde{y})\right] = 2\mathbb{E}\left[y-\mathbb{E}\left[\tilde{y}\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}\right]\right] - \mathbb{E}\left[\tilde{y}\right]\right) = 0.
-
 $$
 
 The tradeoff between bias and variance is illustrated in Fig. [fig-bias_variance](#fig-bias_variance) from the demonstration notebook.
 
-<!-- <img src="fig/bias_variance.png" width=600><p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p> -->
-![<p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p>](fig/bias_variance.png)
+<!-- <img src="fig/ModelValidation/bias_variance.png" width=600><p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p> -->
+![<p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p>](fig/ModelValidation/bias_variance.png)
 
 
 <!-- !split  -->
@@ -382,12 +369,10 @@ cross-validation (LOOCV).
 
 * Average the prediction performances of the validation sets at each grid point of the hyperparameter by computing the *cross-validated error*. It is an estimate of the prediction performance of the model corresponding to this value of the penalty parameter on novel data. For example, using the MSE measure it is defined as
 
-$$
 \begin{align*}
 \mathrm{CV}_k(\lambda) \equiv
 \frac{1}{k} \sum_{i = 1}^k \mathrm{MSE} \left( \boldsymbol{\theta}_{-i}(\lambda) \right).
 \end{align*}
-$$
 
 * The value of the hyperparameter that minimizes the cross-validated error is the value of choice. 
 
@@ -436,8 +421,8 @@ The performance of your model will depend on the amount of data that is used for
 
 Learning curves are plots of the model's performance on both the training and the validation sets, measured by some performance metric such as the mean squared error. This measure is plotted as a function of the size of the training set, or alternatively as a function of the training iterations.
 
-<!-- <img src="fig/learning_curve.png" width=600><p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p> -->
-![<p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p>](fig/learning_curve.png)
+<!-- <img src="fig/ModelValidation/learning_curve.png" width=600><p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p> -->
+![<p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p>](fig/ModelValidation/learning_curve.png)
 
 Several features in the left-hand panel deserves to be mentioned:
 

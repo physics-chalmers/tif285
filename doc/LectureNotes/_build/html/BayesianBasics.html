@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -394,13 +392,38 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaussian-distribution">
+     1.2.3. Gaussian distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectation-values">
+     1.2.4. Expectation values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-variables-and-the-main-concepts-mean-values">
+     1.2.5. Stochastic variables and the main concepts, mean values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-median-average">
+     1.2.6. Mean, median, average
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stochastic-variables-and-the-main-concepts-central-moments-the-variance">
+     1.2.7. Stochastic variables and the main concepts, central moments, the variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-distribution-functions">
-     1.2.3. Probability Distribution Functions
+     1.2.8. Probability Distribution Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#quick-introduction-to-scipy-stats">
-     1.2.4. Quick introduction to
+     1.2.9. Quick introduction to
      <code class="docutils literal notranslate">
       <span class="pre">
        scipy.stats
@@ -421,8 +444,7 @@
         
               <div>
                 
-  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
-<div class="section" id="statistical-inference">
+  <div class="section" id="statistical-inference">
 <h1><span class="section-number">1. </span>Statistical inference<a class="headerlink" href="#statistical-inference" title="Permalink to this headline">¶</a></h1>
 <!-- !split -->
 <div class="section" id="how-do-you-feel-about-statistics">
@@ -470,8 +492,8 @@
 <div><p>Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].</p>
 </div></blockquote>
 <!-- !split -->
-<!-- <img src="fig/sivia_fig_1_2.png" width=700> -->
-<p><img alt="" src="fig/sivia_fig_1_2.png" /></p>
+<!-- <img src="fig/BayesianBasics/sivia_fig_1_2.png" width=700> -->
+<p><img alt="" src="_images/sivia_fig_1_2.png" /></p>
 <!-- !split -->
 <blockquote>
 <div><p>To Laplace, the (shaded) area under the posterior pdf curve between <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span> was a measure of how much he believed that the mass of Saturn lay in the range <span class="math notranslate nohighlight">\(m_1 \le M \le m_2\)</span>. As such, the position of the maximum of the posterior pdf represents a best estimate of the mass; its width, or spread, about this optimal value gives an indication of the uncertainty in the estimate. Laplace stated that: ‘ … it is a bet of 11,000 to 1 that the error of this result is not 1/100th of its value.’ He would have won the bet, as another 150 years’ accumulation of data has changed the estimate by only 0.63%!</p>
@@ -510,134 +532,176 @@ For example, what do we mean by the ‘measurement of the mass’ when the data 
 <p>There are two properties that all PDFs must satisfy. The first one is
 positivity (assuming that the PDF is normalized)</p>
 <div class="math notranslate nohighlight">
-\[0 \leq p(x).\]</div>
+\[
+0 \leq p(x).
+\]</div>
 <p>Naturally, it would be nonsensical for any of the values of the domain
 to occur with a probability less than <span class="math notranslate nohighlight">\(0\)</span>. Also,
 the PDF must be normalized. That is, all the probabilities must add up
 to unity.  The probability of “anything” to happen is always unity. For
-discrete and continuous PDFs, respectively, this condition is
-$<span class="math notranslate nohighlight">\(
-\begin{align*}
+discrete and continuous PDFs, respectively, this condition is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{gather*}
 \sum_{x_i\in\mathbb D} p(x_i) &amp; =  1,\\
 \int_{x\in\mathbb D} p(x)\,dx &amp; =  1.
-\end{align*}
-\)</span>$</p>
+\end{gather*}\]</div>
 <!-- !split -->
 </div>
 <div class="section" id="important-distributions-the-uniform-distribution">
 <h3><span class="section-number">1.2.2. </span>Important distributions, the uniform distribution<a class="headerlink" href="#important-distributions-the-uniform-distribution" title="Permalink to this headline">¶</a></h3>
 <p>Let us consider some important, univariate distributions.
 The first one
-is the most basic PDF; namely the uniform distribution
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+is the most basic PDF; namely the uniform distribution</p>
+<div class="amsmath math notranslate nohighlight" id="equation-18f462dc-e659-4e54-8a47-d94b41a0a2e9">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-18f462dc-e659-4e54-8a47-d94b41a0a2e9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
-\end{equation}
-\)</span><span class="math notranslate nohighlight">\(
-For \)</span>a=0<span class="math notranslate nohighlight">\( and \)</span>b=1<span class="math notranslate nohighlight">\( we have 
-\)</span>$</p>
-<p>p(x) = \left{
+\end{equation}\]</div>
+<p>For <span class="math notranslate nohighlight">\(a=0\)</span> and <span class="math notranslate nohighlight">\(b=1\)</span> we have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+p(x) = \left\{
 \begin{array}{ll}
-1 &amp; x \in [0,1],\
+1 &amp; x \in [0,1],\\
 0 &amp; \mathrm{otherwise}
 \end{array}
-\right.</p>
-<div class="math notranslate nohighlight">
-\[&lt;!-- !split --&gt;
-### Gaussian distribution
-The second one is the univariate Gaussian Distribution
-\]</div>
-<p>p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},</p>
-<div class="math notranslate nohighlight">
-\[
-with mean value $\mu$ and standard deviation $\sigma$. If $\mu=0$ and $\sigma=1$, it is normally called the **standard normal distribution**
-\]</div>
-<p>p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},</p>
-<div class="math notranslate nohighlight">
-\[
-&lt;!-- !split --&gt;
-### Expectation values
-Let $h(x)$ be an arbitrary continuous function on the domain of the stochastic
-variable $X$ whose PDF is $p(x)$. We define the *expectation value*
-of $h$ with respect to $p$ as follows\]</div>
-<p>\begin{equation}
-\mathbb{E}_p[h] = \langle h \rangle_p \equiv \int! h(x)p(x),dx
+\right.
+\end{equation*}\]</div>
+<!-- !split -->
+</div>
+<div class="section" id="gaussian-distribution">
+<h3><span class="section-number">1.2.3. </span>Gaussian distribution<a class="headerlink" href="#gaussian-distribution" title="Permalink to this headline">¶</a></h3>
+<p>The second one is the univariate Gaussian Distribution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
+\end{equation*}\]</div>
+<p>with mean value <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>. If <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(\sigma=1\)</span>, it is normally called the <strong>standard normal distribution</strong></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
+\end{equation*}\]</div>
+<!-- !split -->
+</div>
+<div class="section" id="expectation-values">
+<h3><span class="section-number">1.2.4. </span>Expectation values<a class="headerlink" href="#expectation-values" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
+variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
+of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d2c4b8ee-2c1e-4629-a6de-bea9906c5d56">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-d2c4b8ee-2c1e-4629-a6de-bea9906c5d56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
-\end{equation}
-$<span class="math notranslate nohighlight">\(
-Whenever the PDF is known implicitly, like in this case, we will drop
-the index \)</span>p<span class="math notranslate nohighlight">\( for clarity.  
+\end{equation}\]</div>
+<p>Whenever the PDF is known implicitly, like in this case, we will drop
+the index <span class="math notranslate nohighlight">\(p\)</span> for clarity.<br />
 A particularly useful class of special expectation values are the
-*moments*. The \)</span>n<span class="math notranslate nohighlight">\(-th moment of the PDF \)</span>p<span class="math notranslate nohighlight">\( is defined as
-follows
-\)</span>$</p>
-<p>\langle x^n \rangle \equiv \int! x^n p(x),dx</p>
-<div class="math notranslate nohighlight">
-\[&lt;!-- !split --&gt;
-### Stochastic variables and the main concepts, mean values
-The zero-th moment $\langle 1\rangle$ is just the normalization condition of
-$p$. The first moment, $\langle x\rangle$, is called the *mean* of $p$
-and often denoted by the letter $\mu$
-\]</div>
-<p>\langle x\rangle  \equiv \mu = \int x p(x)dx,</p>
-<div class="math notranslate nohighlight">
-\[
-for a continuous distribution and 
-\]</div>
-<p>\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-for a discrete distribution. 
+<em>moments</em>. The <span class="math notranslate nohighlight">\(n\)</span>-th moment of the PDF <span class="math notranslate nohighlight">\(p\)</span> is defined as
+follows</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle x^n \rangle \equiv \int\! x^n p(x)\,dx
+\end{equation*}\]</div>
+<!-- !split -->
+</div>
+<div class="section" id="stochastic-variables-and-the-main-concepts-mean-values">
+<h3><span class="section-number">1.2.5. </span>Stochastic variables and the main concepts, mean values<a class="headerlink" href="#stochastic-variables-and-the-main-concepts-mean-values" title="Permalink to this headline">¶</a></h3>
+<p>The zero-th moment <span class="math notranslate nohighlight">\(\langle 1\rangle\)</span> is just the normalization condition of
+<span class="math notranslate nohighlight">\(p\)</span>. The first moment, <span class="math notranslate nohighlight">\(\langle x\rangle\)</span>, is called the <em>mean</em> of <span class="math notranslate nohighlight">\(p\)</span>
+and often denoted by the letter <span class="math notranslate nohighlight">\(\mu\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle x\rangle  \equiv \mu = \int x p(x)dx,
+\end{equation*}\]</div>
+<p>for a continuous distribution and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle x\rangle  \equiv \mu = \sum_{i=1}^N x_i p(x_i),
+\end{equation*}\]</div>
+<p>for a discrete distribution.
 Qualitatively it represents the centroid or the average value of the
-PDF and is therefore simply called the expectation value of $p(x)$.\\&lt;!-- !split --&gt;
-### Mean, median, average
-The values of the **mode**, **mean**, **median** can all be used as point estimates for the &quot;probable&quot; value of $x$. For some pdfs, they will all be the same.\\&lt;!-- &lt;img src=&quot;fig/pdfs.png&quot; width=800&gt;&lt;p&gt;&lt;em&gt;The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.&lt;/em&gt;&lt;/p&gt; --&gt;
-![&lt;p&gt;&lt;em&gt;The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.&lt;/em&gt;&lt;/p&gt;](fig/pdfs.png)\\&lt;!-- !split --&gt;
-### Stochastic variables and the main concepts, central moments, the variance\\A special version of the moments is the set of *central moments*, the n-th central moment defined as
-\end{aligned}\end{align} \]</div>
-<p>\langle (x-\langle x\rangle )^n\rangle  \equiv \int! (x-\langle x\rangle)^n p(x),dx</p>
-<div class="math notranslate nohighlight">
-\[
-The zero-th and first central moments are both trivial, equal $1$ and
-$0$, respectively. But the second central moment, known as the
-*variance* of $p$, is of particular interest. For the stochastic
-variable $X$, the variance is denoted as $\sigma^2_X$ or $\mathrm{Var}(X)$
-\]</div>
-<p>\begin{align*}
+PDF and is therefore simply called the expectation value of <span class="math notranslate nohighlight">\(p(x)\)</span>.</p>
+<!-- !split -->
+</div>
+<div class="section" id="mean-median-average">
+<h3><span class="section-number">1.2.6. </span>Mean, median, average<a class="headerlink" href="#mean-median-average" title="Permalink to this headline">¶</a></h3>
+<p>The values of the <strong>mode</strong>, <strong>mean</strong>, <strong>median</strong> can all be used as point estimates for the “probable” value of <span class="math notranslate nohighlight">\(x\)</span>. For some pdfs, they will all be the same.</p>
+<!-- <img src="fig/BayesianBasics/pdfs.png" width=800><p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p> -->
+<p><img alt="The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the -axis translates into the vertical extent of the error bar or error band for ." src="_images/pdfs.png" /></p>
+<!-- !split -->
+</div>
+<div class="section" id="stochastic-variables-and-the-main-concepts-central-moments-the-variance">
+<h3><span class="section-number">1.2.7. </span>Stochastic variables and the main concepts, central moments, the variance<a class="headerlink" href="#stochastic-variables-and-the-main-concepts-central-moments-the-variance" title="Permalink to this headline">¶</a></h3>
+<p>A special version of the moments is the set of <em>central moments</em>, the n-th central moment defined as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\end{equation*}\]</div>
+<p>The zero-th and first central moments are both trivial, equal <span class="math notranslate nohighlight">\(1\)</span> and
+<span class="math notranslate nohighlight">\(0\)</span>, respectively. But the second central moment, known as the
+<em>variance</em> of <span class="math notranslate nohighlight">\(p\)</span>, is of particular interest. For the stochastic
+variable <span class="math notranslate nohighlight">\(X\)</span>, the variance is denoted as <span class="math notranslate nohighlight">\(\sigma^2_X\)</span> or <span class="math notranslate nohighlight">\(\mathrm{Var}(X)\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
 \sigma^2_X &amp;=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
-\int (x-\langle x\rangle)^2 p(x)dx\
-&amp; =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\
-&amp; =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\
+\int (x-\langle x\rangle)^2 p(x)dx\\
+&amp; =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\\
+&amp; =  \langle x^2\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
 &amp; =  \langle x^2 \rangle - \langle x\rangle^2
-\end{align*}
-$<span class="math notranslate nohighlight">\(
-The square root of the variance, \)</span>\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}<span class="math notranslate nohighlight">\( is called the 
-**standard deviation** of \)</span>p<span class="math notranslate nohighlight">\(. It is the RMS (root-mean-square)
+\end{align*}\]</div>
+<p>The square root of the variance, <span class="math notranslate nohighlight">\(\sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle}\)</span> is called the
+<strong>standard deviation</strong> of <span class="math notranslate nohighlight">\(p\)</span>. It is the RMS (root-mean-square)
 value of the deviation of the PDF from its mean value, interpreted
-qualitatively as the &quot;spread&quot; of \)</span>p$ around its mean.</p>
+qualitatively as the “spread” of <span class="math notranslate nohighlight">\(p\)</span> around its mean.</p>
 <!-- !split -->
 </div>
 <div class="section" id="probability-distribution-functions">
-<h3><span class="section-number">1.2.3. </span>Probability Distribution Functions<a class="headerlink" href="#probability-distribution-functions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.2.8. </span>Probability Distribution Functions<a class="headerlink" href="#probability-distribution-functions" title="Permalink to this headline">¶</a></h3>
 <p>The following table collects properties of probability distribution functions.
 In our notation we reserve the label <span class="math notranslate nohighlight">\(p(x)\)</span> for the probability of a certain event,
 while <span class="math notranslate nohighlight">\(P(x)\)</span> is the cumulative probability.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                          Discrete PDF                            Continuous PDF             
-</pre></div>
-</div>
-<hr class="docutils" />
-<p>Domain         <span class="math notranslate nohighlight">\(\left\{x_1, x_2, x_3, \dots, x_N\right\}\)</span>                <span class="math notranslate nohighlight">\([a,b]\)</span><br />
-Probability                     <span class="math notranslate nohighlight">\(p(x_i)\)</span>                                 <span class="math notranslate nohighlight">\(p(x)dx\)</span><br />
-Cumulative              <span class="math notranslate nohighlight">\(P_i=\sum_{l=1}^ip(x_l)\)</span>                  <span class="math notranslate nohighlight">\(P(x)=\int_a^xp(t)dt\)</span><br />
-Positivity                <span class="math notranslate nohighlight">\(0 \le p(x_i) \le 1\)</span>                         <span class="math notranslate nohighlight">\(p(x) \ge 0\)</span><br />
-Positivity                 <span class="math notranslate nohighlight">\(0 \le P_i \le 1\)</span>                        <span class="math notranslate nohighlight">\(0 \le P(x) \le 1\)</span><br />
-Monotonic            <span class="math notranslate nohighlight">\(P_i \ge P_j\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span>        <span class="math notranslate nohighlight">\(P(x_i) \ge P(x_j)\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span><br />
-Normalization                   <span class="math notranslate nohighlight">\(P_N=1\)</span>                                  <span class="math notranslate nohighlight">\(P(b)=1\)</span></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:left head"><p>Discrete PDF</p></th>
+<th class="text-align:left head"><p>Continuous PDF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Domain</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(\left\{x_1, x_2, x_3, \dots, x_N\right\}\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\([a,b]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Probability</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p(x_i)\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p(x)dx\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Cumulative</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P_i=\sum_{l=1}^ip(x_l)\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P(x)=\int_a^xp(t)dt\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Positivity</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 \le p(x_i) \le 1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p(x) \ge 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Positivity</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 \le P_i \le 1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 \le P(x) \le 1\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Monotonic</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P_i \ge P_j\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P(x_i) \ge P(x_j)\)</span> if <span class="math notranslate nohighlight">\(x_i \ge x_j\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Normalization</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P_N=1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(P(b)=1\)</span></p></td>
+</tr>
+</tbody>
+</table>
 <!-- !split -->
 </div>
 <div class="section" id="quick-introduction-to-scipy-stats">
-<h3><span class="section-number">1.2.4. </span>Quick introduction to  <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code><a class="headerlink" href="#quick-introduction-to-scipy-stats" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.2.9. </span>Quick introduction to  <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code><a class="headerlink" href="#quick-introduction-to-scipy-stats" title="Permalink to this headline">¶</a></h3>
 <p>If you google <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, you’ll likely get the manual page as the first hit: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/stats.html">https://docs.scipy.org/doc/scipy/reference/stats.html</a>. Here you’ll find a long list of the continuous and discrete distributions that are available, followed (scroll way down) by many different methods (functions) to extract properties of a distribution (called Summary Statistics) and do many other statistical tasks.</p>
 <p>Follow the link for any of the distributions (your choice!) to find its mathematical definition, some examples of how to use it, and a list of methods. Some methods of interest to us here:</p>
 <ul class="simple">

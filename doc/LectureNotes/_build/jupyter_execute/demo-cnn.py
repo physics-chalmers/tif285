@@ -52,7 +52,7 @@
 
 # ### Import TensorFlow
 
-# In[2]:
+# In[1]:
 
 
 from __future__ import absolute_import, division, print_function, unicode_literals
@@ -158,7 +158,7 @@ model.summary()
 
 # ### Compile and train the model
 
-# In[9]:
+# In[10]:
 
 
 model.compile(optimizer='adam',

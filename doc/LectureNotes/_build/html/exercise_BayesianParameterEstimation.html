@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -564,7 +562,7 @@ If you don’t have an empirical prior, you might be tempted to simply use a <em
 What we <em>really</em> want in cases where no empirical prior is available is a <strong>non-informative prior</strong>. Among other things, such a prior should not depend on the units of the data.
 Perhaps the most principled approach to choosing non-informative priors was the <em>principle of maximum entropy</em> advocated by Jaynes (<a class="reference external" href="http://omega.albany.edu:8008/JaynesBook.html">book</a>).
 Similar in spirit is the commonly-used <a class="reference external" href="https://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a>, which in many cases of interest amounts to a “scale invariant” prior: a flat prior on the logarithm of the parameter.
-In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see <a class="reference external" href="http://arxiv.org/abs/1411.5018">http://arxiv.org/abs/1411.5018</a> for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives
+In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see http://arxiv.org/abs/1411.5018 for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives
 $<span class="math notranslate nohighlight">\(
 \pr(m) \propto (1 + m^2)^{-3/2}
 \)</span><span class="math notranslate nohighlight">\(

@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -371,7 +369,38 @@
      1.1.1. Regression analysis, overarching aims
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-liquid-drop-model-for-nuclear-binding-energies">
+     1.1.2. Example: Liquid-drop model for nuclear binding energies
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomial-basis-functions">
+   1.2. Polynomial basis functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-basis-functions">
+     1.2.1. General basis functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-scores">
+   1.3. Training scores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-chi-2-function">
+   1.4. The
+   <span class="math notranslate nohighlight">
+    \(\chi^2\)
+   </span>
+   function
+  </a>
  </li>
 </ul>
 
@@ -406,291 +435,341 @@
 <div class="section" id="regression-analysis-overarching-aims">
 <h3><span class="section-number">1.1.1. </span>Regression analysis, overarching aims<a class="headerlink" href="#regression-analysis-overarching-aims" title="Permalink to this headline">¶</a></h3>
 <p>Regression modeling deals with the description of a <strong>response</strong> variable(s) <span class="math notranslate nohighlight">\(y\)</span> and how it varies as function of some <strong>predictor</strong> variable(s) <span class="math notranslate nohighlight">\(x\)</span>. The first variable is also often called the <strong>dependent</strong>, or the <strong>outcome</strong> variable while the second one can be called the <strong>independent</strong> variable, or the <strong>explanatory</strong> variable. Note also that each of these might be a vector of variables, meaning that there could be more than one response variable and more than one predictor variable.</p>
-<p>In general we will try to find a model <span class="math notranslate nohighlight">\(M\)</span> that corresponds to a function <span class="math notranslate nohighlight">\(f_\theta(x)\)</span> such that
-$$</p>
-<p>y \approx f_\theta(x)</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-In **linear regression** the dependence on the model parameters is **linear**, and this fact will make it possible to find an analytical expression for the optimal set of model parameters (as we will see below).\\&lt;!-- !split --&gt;\\When performing a regression analysis we will have access to a set of data $\mathcal{D}$ that consists of:
-* $n$ cases $i = 0, 1, 2, \dots, n-1$ \\For each case there is a
-* (vector of) response variable(s) $y_i$ (observations);
-* (vector of) independent variable(s) $x_i$.\\Below, we will use boldface to denote the set of data, i.e., $\boldsymbol{y} = (y_0, y_1,\ldots, y_{n-1})$ and $\boldsymbol{x} = (x_0, x_1,\ldots, x_{n-1})$.\\The independent variables can be turned into a number of **features**, and the key to a successful regression analysis is to identify the most relevant features. In physics, these would correspond to a set of **basis functions**.\\Assume that there are $p$ features and we will use the (possibly confusing) notation
-* $x_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]$ and from now on let $x$ denote the vector of features. See below for more explicit examples. \\As our model will (in general) not predict the observations perfectly, we will write the relationship as
-\end{aligned}\end{align} \]</div>
-<p>y_i = f_\theta(x_i) + \epsilon_i,</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\epsilon_i$ is the error (or the **residual**).\\&lt;!-- !split --&gt;\\A regression analysis aims at finding the model parameters $\theta$ of a specified model $M$ such that the vector of errors $\boldsymbol{\epsilon}$ is minimized. You might ask the very relevant question what is specifically meant by minimizing a vector, and you will find that this is often achieved by minimizing a **cost** function that has been introduced without much motivation. This function might also be called a **loss** function or an **objective** function.\\Alternatively, we could introduce the likelihood function $p(\boldsymbol{y} \vert \boldsymbol{x}, M(\theta))$.  It is the conditional distribution for the probability of making the observations $\boldsymbol{y}$ given the independent variable $\boldsymbol{x}$ and a model $M$, where $\boldsymbol{y}$ and $\boldsymbol{x}$ are contained in our data set $\mathcal{D}$. The parameters $\theta$ that maximizes this likelihood function is then our optimal set. We will later discuss likelihood functions in much more detail.\\Having access to this &quot;optimal&quot; model, we have extracted a relationship between $\boldsymbol{y}$ and $\boldsymbol{x}$ that we can exploit to infer causal dependencies, make predictions, and many other things.\\&lt;!-- !split --&gt;
-The $p$ explanatory variables for the $n$ cases in the data set are normally represented by a matrix $\mathbf{X}$. The matrix $\mathbf{X}$ is called the *design
-matrix*.\\&lt;!-- !split --&gt;
-#### Example: Liquid-drop model for nuclear binding energies\\In order to understand the relation among the predictors $p$, the set of data $\mathcal{D}_n$ and the target (outcome, output etc) $\boldsymbol{y}$,
-consider the model we discussed for describing nuclear binding energies. \\There we assumed that we could parametrize the data using a polynomial approximation based on the liquid drop model.
-Assuming 
-\end{aligned}\end{align} \]</div>
-<p>BE(A,N,Z) = a_0+a_1A+a_2A^{2/3}+a_3 Z^2 A^{-1/3}+a_4 (N-Z)^2 A^{-1},</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-we have five features, that is the intercept (constant term, aka bias), the $A$ dependent term, the $A^{2/3}$ term and the $Z^2 A^{-1/3}$ and $(N-Z)^2 A^{-1}$ terms. Although the features are somewhat complicated functions of the independent variables $A,N,Z$, we note that the $p=5$ regression parameters $\theta = (a_0, a_1, a_2, a_3, a_4)$ enter linearly. Furthermore we have $n$ cases. It means that our design matrix is a 
-$p\times n$ matrix $\boldsymbol{X}$.\\
-&lt;!-- !split --&gt;
-### Polynomial basis functions
-The perhaps simplest linear-regression approach is to assume we can parametrize our function in terms of a polynomial $f(x)$ of degree $p-1$. I.e.
-\end{aligned}\end{align} \]</div>
-<p>y(x_i)=f({x}<em>i)+\epsilon_i=\sum</em>{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\epsilon_i$ is the error in our approximation.\\
-&lt;!-- !split --&gt;
-For every set of values $y_i,x_i$ we have thus the corresponding set of equations
-\end{aligned}\end{align} \]</div>
-<p>\begin{align*}
-y_0&amp;=\theta_0+\theta_1x_0^1+\theta_2x_0^2+\dots+\theta_{p-1}x_0^{p-1}+\epsilon_0\
-y_1&amp;=\theta_0+\theta_1x_1^1+\theta_2x_1^2+\dots+\theta_{p-1}x_1^{p-1}+\epsilon_1\
-y_2&amp;=\theta_0+\theta_1x_2^1+\theta_2x_2^2+\dots+\theta_{p-1}x_2^{p-1}+\epsilon_2\
-\dots &amp; \dots \
-y_{n-1}&amp;=\theta_0+\theta_1x_{n-1}^1+\theta_2x_{n-1}^2+\dots+\theta_{p-1}x_{n-1}^{p-1}+\epsilon_{n-1}.\
-\end{align*}
-$$</p>
+<p>In general we will try to find a model <span class="math notranslate nohighlight">\(M\)</span> that corresponds to a function <span class="math notranslate nohighlight">\(f_\theta(x)\)</span> such that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y \approx f_\theta(x)
+\end{equation*}\]</div>
+<p>In <strong>linear regression</strong> the dependence on the model parameters is <strong>linear</strong>, and this fact will make it possible to find an analytical expression for the optimal set of model parameters (as we will see below).</p>
 <!-- !split -->
-<p>Defining the vectors
-$$</p>
-<p>\boldsymbol{y} = [y_0,y_1, y_2,\dots, y_{n-1}]^T,</p>
-<div class="math notranslate nohighlight">
-\[
-and
-\]</div>
-<p>\boldsymbol{\theta} = [\theta_0,\theta_1, \theta_2,\dots, \theta_{p-1}]^T,</p>
-<div class="math notranslate nohighlight">
-\[
-and
-\]</div>
-<p>\boldsymbol{\epsilon} = [\epsilon_0,\epsilon_1, \epsilon_2,\dots, \epsilon_{n-1}]^T,</p>
-<div class="math notranslate nohighlight">
-\[
-and the design matrix
-\]</div>
-<p>\boldsymbol{X}=
-\begin{bmatrix}
-1&amp; x_{0}^1 &amp;x_{0}^2&amp; \dots &amp; \dots &amp;x_{0}^{p-1}\
-1&amp; x_{1}^1 &amp;x_{1}^2&amp; \dots &amp; \dots &amp;x_{1}^{p-1}\
-1&amp; x_{2}^1 &amp;x_{2}^2&amp; \dots &amp; \dots &amp;x_{2}^{p-1}\<br />
-\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\
-1&amp; x_{n-1}^1 &amp;x_{n-1}^2&amp; \dots &amp; \dots &amp;x_{n-1}^{p-1}\
-\end{bmatrix}</p>
-<div class="math notranslate nohighlight">
-\[
-we can rewrite our equations as
-\]</div>
-<p>\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-The above design matrix is called a [Vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix).\\
-&lt;!-- !split --&gt;
-#### General basis functions\\
-We are obviously not limited to the above polynomial expansions.  We
-could replace the various powers of $x$ with elements of Fourier
-series or instead of $x_i^j$ we could have $\cos{(j x_i)}$ or $\sin{(j
-x_i)}$, or time series or other orthogonal functions.  For every set
-of values $y_i,x_i$ we can then generalize the equations to\end{aligned}\end{align} \]</div>
-<p>\begin{align*}
-y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\
-y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\
-y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_2\
-\dots &amp; \dots \
-y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_i\
-\dots &amp; \dots \
-y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\
-\end{align*}
-$$</p>
+<p>When performing a regression analysis we will have access to a set of data <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> that consists of:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> cases <span class="math notranslate nohighlight">\(i = 0, 1, 2, \dots, n-1\)</span></p></li>
+</ul>
+<p>For each case there is a</p>
+<ul class="simple">
+<li><p>(vector of) response variable(s) <span class="math notranslate nohighlight">\(y_i\)</span> (observations);</p></li>
+<li><p>(vector of) independent variable(s) <span class="math notranslate nohighlight">\(x_i\)</span>.</p></li>
+</ul>
+<p>Below, we will use boldface to denote the set of data, i.e., <span class="math notranslate nohighlight">\(\boldsymbol{y} = (y_0, y_1,\ldots, y_{n-1})\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_0, x_1,\ldots, x_{n-1})\)</span>.</p>
+<p>The independent variables can be turned into a number of <strong>features</strong>, and the key to a successful regression analysis is to identify the most relevant features. In physics, these would correspond to a set of <strong>basis functions</strong>.</p>
+<p>Assume that there are <span class="math notranslate nohighlight">\(p\)</span> features and we will use the (possibly confusing) notation</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]\)</span> and from now on let <span class="math notranslate nohighlight">\(x\)</span> denote the vector of features. See below for more explicit examples.</p></li>
+</ul>
+<p>As our model will (in general) not predict the observations perfectly, we will write the relationship as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y_i = f_\theta(x_i) + \epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error (or the <strong>residual</strong>).</p>
 <!-- !split -->
-<p>We redefine in turn the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> as
-$$</p>
-<p>\boldsymbol{X}=
-\begin{bmatrix}
-x_{00}&amp; x_{01} &amp;x_{02}&amp; \dots &amp; \dots &amp;x_{0,p-1}\
-x_{10}&amp; x_{11} &amp;x_{12}&amp; \dots &amp; \dots &amp;x_{1,p-1}\
-x_{20}&amp; x_{21} &amp;x_{22}&amp; \dots &amp; \dots &amp;x_{2,p-1}\<br />
-\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\
-x_{n-1,0}&amp; x_{n-1,1} &amp;x_{n-1,2}&amp; \dots &amp; \dots &amp;x_{n-1,p-1}\
-\end{bmatrix}</p>
-<div class="math notranslate nohighlight">
-\[
-and without loss of generality we rewrite again our equations as
-\]</div>
-<p>\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-The left-hand side of this equation is kwown. The error vector $\boldsymbol{\epsilon}$ and the parameter vector $\boldsymbol{\theta}$ are unknown quantities. How can we obtain the optimal set of $\theta_i$ values?\\
-&lt;!-- !split --&gt;
-We have defined the matrix $\boldsymbol{X}$ via the equations
-\end{aligned}\end{align} \]</div>
-<p>\begin{align*}
-y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\
-y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\
-y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_1\
-\dots &amp; \dots \
-y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_1\
-\dots &amp; \dots \
-y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\
-\end{align*}
-$$</p>
+<p>A regression analysis aims at finding the model parameters <span class="math notranslate nohighlight">\(\theta\)</span> of a specified model <span class="math notranslate nohighlight">\(M\)</span> such that the vector of errors <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> is minimized. You might ask the very relevant question what is specifically meant by minimizing a vector, and you will find that this is often achieved by minimizing a <strong>cost</strong> function that has been introduced without much motivation. This function might also be called a <strong>loss</strong> function or an <strong>objective</strong> function.</p>
+<p>Alternatively, we could introduce the likelihood function <span class="math notranslate nohighlight">\(p(\boldsymbol{y} \vert \boldsymbol{x}, M(\theta))\)</span>.  It is the conditional distribution for the probability of making the observations <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> given the independent variable <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and a model <span class="math notranslate nohighlight">\(M\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> are contained in our data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. The parameters <span class="math notranslate nohighlight">\(\theta\)</span> that maximizes this likelihood function is then our optimal set. We will later discuss likelihood functions in much more detail.</p>
+<p>Having access to this “optimal” model, we have extracted a relationship between <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> that we can exploit to infer causal dependencies, make predictions, and many other things.</p>
+<!-- !split -->
+<p>The <span class="math notranslate nohighlight">\(p\)</span> explanatory variables for the <span class="math notranslate nohighlight">\(n\)</span> cases in the data set are normally represented by a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. The matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is called the <em>design
+matrix</em>.</p>
+<!-- !split -->
+</div>
+<div class="section" id="example-liquid-drop-model-for-nuclear-binding-energies">
+<h3><span class="section-number">1.1.2. </span>Example: Liquid-drop model for nuclear binding energies<a class="headerlink" href="#example-liquid-drop-model-for-nuclear-binding-energies" title="Permalink to this headline">¶</a></h3>
+<p>In order to understand the relation among the predictors <span class="math notranslate nohighlight">\(p\)</span>, the set of data <span class="math notranslate nohighlight">\(\mathcal{D}_n\)</span> and the target (outcome, output etc) <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>,
+consider the model we discussed for describing nuclear binding energies.</p>
+<p>There we assumed that we could parametrize the data using a polynomial approximation based on the liquid drop model.
+Assuming</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+BE(A,N,Z) = a_0+a_1A+a_2A^{2/3}+a_3 Z^2 A^{-1/3}+a_4 (N-Z)^2 A^{-1},
+\end{equation*}\]</div>
+<p>we have five features, that is the intercept (constant term, aka bias), the <span class="math notranslate nohighlight">\(A\)</span> dependent term, the <span class="math notranslate nohighlight">\(A^{2/3}\)</span> term and the <span class="math notranslate nohighlight">\(Z^2 A^{-1/3}\)</span> and <span class="math notranslate nohighlight">\((N-Z)^2 A^{-1}\)</span> terms. Although the features are somewhat complicated functions of the independent variables <span class="math notranslate nohighlight">\(A,N,Z\)</span>, we note that the <span class="math notranslate nohighlight">\(p=5\)</span> regression parameters <span class="math notranslate nohighlight">\(\theta = (a_0, a_1, a_2, a_3, a_4)\)</span> enter linearly. Furthermore we have <span class="math notranslate nohighlight">\(n\)</span> cases. It means that our design matrix is a
+<span class="math notranslate nohighlight">\(p\times n\)</span> matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="polynomial-basis-functions">
+<h2><span class="section-number">1.2. </span>Polynomial basis functions<a class="headerlink" href="#polynomial-basis-functions" title="Permalink to this headline">¶</a></h2>
+<p>The perhaps simplest linear-regression approach is to assume we can parametrize our function in terms of a polynomial <span class="math notranslate nohighlight">\(f(x)\)</span> of degree <span class="math notranslate nohighlight">\(p-1\)</span>. I.e.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y(x_i)=f({x}_i)+\epsilon_i=\sum_{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error in our approximation.</p>
+<!-- !split -->
+<p>For every set of values <span class="math notranslate nohighlight">\(y_i,x_i\)</span> we have thus the corresponding set of equations</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0+\theta_1x_0^1+\theta_2x_0^2+\dots+\theta_{p-1}x_0^{p-1}+\epsilon_0\\
+y_1&amp;=\theta_0+\theta_1x_1^1+\theta_2x_1^2+\dots+\theta_{p-1}x_1^{p-1}+\epsilon_1\\
+y_2&amp;=\theta_0+\theta_1x_2^1+\theta_2x_2^2+\dots+\theta_{p-1}x_2^{p-1}+\epsilon_2\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0+\theta_1x_{n-1}^1+\theta_2x_{n-1}^2+\dots+\theta_{p-1}x_{n-1}^{p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
+<!-- !split -->
+<p>Defining the vectors</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = [y_0,y_1, y_2,\dots, y_{n-1}]^T,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} = [\theta_0,\theta_1, \theta_2,\dots, \theta_{p-1}]^T,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\epsilon} = [\epsilon_0,\epsilon_1, \epsilon_2,\dots, \epsilon_{n-1}]^T,
+\end{equation*}\]</div>
+<p>and the design matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}=
+\begin{bmatrix} 
+1&amp; x_{0}^1 &amp;x_{0}^2&amp; \dots &amp; \dots &amp;x_{0}^{p-1}\\
+1&amp; x_{1}^1 &amp;x_{1}^2&amp; \dots &amp; \dots &amp;x_{1}^{p-1}\\
+1&amp; x_{2}^1 &amp;x_{2}^2&amp; \dots &amp; \dots &amp;x_{2}^{p-1}\\                      
+\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\\
+1&amp; x_{n-1}^1 &amp;x_{n-1}^2&amp; \dots &amp; \dots &amp;x_{n-1}^{p-1}\\
+\end{bmatrix} 
+\end{equation*}\]</div>
+<p>we can rewrite our equations as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.
+\end{equation*}\]</div>
+<p>The above design matrix is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</a>.</p>
+<!-- !split -->
+<div class="section" id="general-basis-functions">
+<h3><span class="section-number">1.2.1. </span>General basis functions<a class="headerlink" href="#general-basis-functions" title="Permalink to this headline">¶</a></h3>
+<p>We are obviously not limited to the above polynomial expansions.  We
+could replace the various powers of <span class="math notranslate nohighlight">\(x\)</span> with elements of Fourier
+series or instead of <span class="math notranslate nohighlight">\(x_i^j\)</span> we could have <span class="math notranslate nohighlight">\(\cos{(j x_i)}\)</span> or <span class="math notranslate nohighlight">\(\sin{(j
+x_i)}\)</span>, or time series or other orthogonal functions.  For every set
+of values <span class="math notranslate nohighlight">\(y_i,x_i\)</span> we can then generalize the equations to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\\
+y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\\
+y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_2\\
+\dots &amp; \dots \\
+y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_i\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
+<!-- !split -->
+<p>We redefine in turn the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}=
+\begin{bmatrix} 
+x_{00}&amp; x_{01} &amp;x_{02}&amp; \dots &amp; \dots &amp;x_{0,p-1}\\
+x_{10}&amp; x_{11} &amp;x_{12}&amp; \dots &amp; \dots &amp;x_{1,p-1}\\
+x_{20}&amp; x_{21} &amp;x_{22}&amp; \dots &amp; \dots &amp;x_{2,p-1}\\                      
+\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\\
+x_{n-1,0}&amp; x_{n-1,1} &amp;x_{n-1,2}&amp; \dots &amp; \dots &amp;x_{n-1,p-1}\\
+\end{bmatrix} 
+\end{equation*}\]</div>
+<p>and without loss of generality we rewrite again our equations as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.
+\end{equation*}\]</div>
+<p>The left-hand side of this equation is kwown. The error vector <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> and the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> are unknown quantities. How can we obtain the optimal set of <span class="math notranslate nohighlight">\(\theta_i\)</span> values?</p>
+<!-- !split -->
+<p>We have defined the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> via the equations</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\\
+y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\\
+y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_1\\
+\dots &amp; \dots \\
+y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_1\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
 <p>Note that the design matrix
 <span class="math notranslate nohighlight">\(\boldsymbol{X}\in {\mathbb{R}}^{n\times p}\)</span>, with the predictors refering to the column numbers and the entries <span class="math notranslate nohighlight">\(n\)</span> being the row elements.</p>
 <!-- !split -->
-<p>With the above we use the design matrix to define the approximation <span class="math notranslate nohighlight">\(\boldsymbol{\tilde{y}}\)</span> via the unknown quantity <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> as
-$$</p>
-<p>\boldsymbol{\tilde{y}}= \boldsymbol{X}\boldsymbol{\theta},</p>
-<div class="math notranslate nohighlight">
-\[
-and in order to find the optimal parameters $\theta_i$ instead of solving the above linear algebra problem, we define a function which gives a measure of the spread between the values $y_i$ (which represent hopefully the exact values) and the parameterized values $\tilde{y}_i$, namely
-\]</div>
-<p>C(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right},</p>
-<div class="math notranslate nohighlight">
-\[
-or using the matrix $\boldsymbol{X}$ and in a more compact matrix-vector notation as
-\]</div>
-<p>C(\boldsymbol{\theta})=\frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-This function is one possible way to define the so-called **cost function**.\\It is also common to define
-the cost function as\end{aligned}\end{align} \]</div>
-<p>C(\boldsymbol{\theta})=\frac{1}{2n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2,</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-since when taking the first derivative with respect to the unknown parameters $\theta$, the factor of $2$ cancels out.\\
-&lt;!-- !split --&gt;\\The function 
-\end{aligned}\end{align} \]</div>
-<p>C(\boldsymbol{\theta})=\frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right},</p>
-<div class="math notranslate nohighlight">
-\[
-can be linked to the variance of the quantity $y_i$ if we interpret the latter as the mean value. 
-When linking (see the discussion below) with the maximum likelihood approach, we will indeed interpret $y_i$ as a mean value
-\]</div>
-<p>y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dots+\theta_{n-1}x_{i,n-1}+\epsilon_i,</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}where $\langle y_i \rangle$ is the mean value. Keep in mind also that
-till now we have treated $y_i$ as the exact value. Normally, the
-response (dependent or outcome) variable $y_i$ the outcome of a
+<p>With the above we use the design matrix to define the approximation <span class="math notranslate nohighlight">\(\boldsymbol{\tilde{y}}\)</span> via the unknown quantity <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\tilde{y}}= \boldsymbol{X}\boldsymbol{\theta},
+\end{equation*}\]</div>
+<p>and in order to find the optimal parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> instead of solving the above linear algebra problem, we define a function which gives a measure of the spread between the values <span class="math notranslate nohighlight">\(y_i\)</span> (which represent hopefully the exact values) and the parameterized values <span class="math notranslate nohighlight">\(\tilde{y}_i\)</span>, namely</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
+\end{equation*}\]</div>
+<p>or using the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> and in a more compact matrix-vector notation as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
+\end{equation*}\]</div>
+<p>This function is one possible way to define the so-called <strong>cost function</strong>.</p>
+<p>It is also common to define
+the cost function as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{2n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2,
+\end{equation*}\]</div>
+<p>since when taking the first derivative with respect to the unknown parameters <span class="math notranslate nohighlight">\(\theta\)</span>, the factor of <span class="math notranslate nohighlight">\(2\)</span> cancels out.</p>
+<!-- !split -->
+<p>The function</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\},
+\end{equation*}\]</div>
+<p>can be linked to the variance of the quantity <span class="math notranslate nohighlight">\(y_i\)</span> if we interpret the latter as the mean value.
+When linking (see the discussion below) with the maximum likelihood approach, we will indeed interpret <span class="math notranslate nohighlight">\(y_i\)</span> as a mean value</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dots+\theta_{n-1}x_{i,n-1}+\epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle y_i \rangle\)</span> is the mean value. Keep in mind also that
+till now we have treated <span class="math notranslate nohighlight">\(y_i\)</span> as the exact value. Normally, the
+response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> the outcome of a
 numerical experiment or another type of experiment and is thus only an
 approximation to the true value. It is then always accompanied by an
 error estimate, often limited to a statistical error estimate. For now, we
-will treat $y_i$ as our exact value for the response variable.\\In order to find the parameters $\theta_i$ we will then minimize the spread of $C(\boldsymbol{\theta})$, that is we are going to solve the problem
-\end{aligned}\end{align} \]</div>
-<p>{\displaystyle \min_{\boldsymbol{\theta}\in
-{\mathbb{R}}^{p}}}\frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right}.</p>
-<div class="math notranslate nohighlight">
-\[
-In practical terms it means we will require
-\]</div>
-<p>\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)^2\right]=0,</p>
-<div class="math notranslate nohighlight">
-\[
-which results in
-\]</div>
-<p>\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_{ij}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)\right]=0,</p>
-<div class="math notranslate nohighlight">
-\[
-or in a matrix-vector form as
-\]</div>
-<p>\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right).</p>
-<div class="math notranslate nohighlight">
-\[
-&lt;!-- !split --&gt;
-We can rewrite
-\]</div>
-<p>\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right),</p>
-<div class="math notranslate nohighlight">
-\[
-as
-\]</div>
-<p>\boldsymbol{X}^T\boldsymbol{y} = \boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\theta},</p>
-<div class="math notranslate nohighlight">
-\[
-and if the matrix $\boldsymbol{X}^T\boldsymbol{X}$ is invertible we have the solution
-\]</div>
-<p>\boldsymbol{\theta} =\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}We note also that since our design matrix is defined as $\boldsymbol{X}\in
-{\mathbb{R}}^{n\times p}$, the product $\boldsymbol{X}^T\boldsymbol{X} \in
-{\mathbb{R}}^{p\times p}$.  In the liquid drop model example from the Intro lecture, we had $p=5$ ($p \ll n$) meaning that we end up with inverting a small
-$5\times 5$ matrix. This is a rather common situation, in many cases we end up with low-dimensional
+will treat <span class="math notranslate nohighlight">\(y_i\)</span> as our exact value for the response variable.</p>
+<p>In order to find the parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> we will then minimize the spread of <span class="math notranslate nohighlight">\(C(\boldsymbol{\theta})\)</span>, that is we are going to solve the problem</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+{\displaystyle \min_{\boldsymbol{\theta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
+\end{equation*}\]</div>
+<p>In practical terms it means we will require</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)^2\right]=0, 
+\end{equation*}\]</div>
+<p>which results in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_{ij}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)\right]=0, 
+\end{equation*}\]</div>
+<p>or in a matrix-vector form as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right).  
+\end{equation*}\]</div>
+<!-- !split -->
+<p>We can rewrite</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right),  
+\end{equation*}\]</div>
+<p>as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}^T\boldsymbol{y} = \boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\theta},  
+\end{equation*}\]</div>
+<p>and if the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is invertible we have the solution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} =\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}.
+\end{equation*}\]</div>
+<p>We note also that since our design matrix is defined as <span class="math notranslate nohighlight">\(\boldsymbol{X}\in
+{\mathbb{R}}^{n\times p}\)</span>, the product <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X} \in
+{\mathbb{R}}^{p\times p}\)</span>.  In the liquid drop model example from the Intro lecture, we had <span class="math notranslate nohighlight">\(p=5\)</span> (<span class="math notranslate nohighlight">\(p \ll n\)</span>) meaning that we end up with inverting a small
+<span class="math notranslate nohighlight">\(5\times 5\)</span> matrix. This is a rather common situation, in many cases we end up with low-dimensional
 matrices to invert, which
-allow for the usage of direct linear algebra methods such as **LU** decomposition or **Singular Value Decomposition** (SVD) for finding the inverse of the matrix
-$\boldsymbol{X}^T\boldsymbol{X}$.\\**Small question**: What kind of problems can we expect when inverting the matrix  $\boldsymbol{X}^T\boldsymbol{X}$?\\&lt;!-- !split --&gt;
-### Training scores\\We can easily test our fit by computing various **training scores**. Several such measures are used in machine learning applications. First we have the **Mean-Squared Error** (MSE)
-\end{aligned}\end{align} \]</div>
-<p>\mathrm{MSE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2,</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where we have $n$ training data and our model is a function of the parameter vector $\boldsymbol{\theta}$.\\Furthermore, we have the **mean absolute error** (MAE) defined as.
-\end{aligned}\end{align} \]</div>
-<p>\mathrm{MAE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left| y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right|,</p>
-<div class="math notranslate nohighlight">
-\[And the $R2$ score, also known as *coefficient of determination* is
-\]</div>
-<p>\mathrm{R2}(\boldsymbol{\theta}) = 1 - \frac{\sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2}{\sum_{i=1}^n \left( y_{\mathrm{data},i} - \bar{y}_\mathrm{model}(\boldsymbol{\theta}) \right)^2},</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n y_{\mathrm{model},i} (\boldsymbol{\theta})$ is the mean of the model predictions.\\
-&lt;!-- !split --&gt;
-### The $\chi^2$ function\\Normally, the response (dependent or outcome) variable $y_i$ is the
+allow for the usage of direct linear algebra methods such as <strong>LU</strong> decomposition or <strong>Singular Value Decomposition</strong> (SVD) for finding the inverse of the matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>.</p>
+<p><strong>Small question</strong>: What kind of problems can we expect when inverting the matrix  <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>?</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="training-scores">
+<h2><span class="section-number">1.3. </span>Training scores<a class="headerlink" href="#training-scores" title="Permalink to this headline">¶</a></h2>
+<p>We can easily test our fit by computing various <strong>training scores</strong>. Several such measures are used in machine learning applications. First we have the <strong>Mean-Squared Error</strong> (MSE)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{MSE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2,
+\end{equation*}\]</div>
+<p>where we have <span class="math notranslate nohighlight">\(n\)</span> training data and our model is a function of the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
+<p>Furthermore, we have the <strong>mean absolute error</strong> (MAE) defined as.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{MAE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left| y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right|,
+\end{equation*}\]</div>
+<p>And the <span class="math notranslate nohighlight">\(R2\)</span> score, also known as <em>coefficient of determination</em> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{R2}(\boldsymbol{\theta}) = 1 - \frac{\sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2}{\sum_{i=1}^n \left( y_{\mathrm{data},i} - \bar{y}_\mathrm{model}(\boldsymbol{\theta}) \right)^2},
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n y_{\mathrm{model},i} (\boldsymbol{\theta})\)</span> is the mean of the model predictions.</p>
+<!-- !split -->
+</div>
+<div class="section" id="the-chi-2-function">
+<h2><span class="section-number">1.4. </span>The <span class="math notranslate nohighlight">\(\chi^2\)</span> function<a class="headerlink" href="#the-chi-2-function" title="Permalink to this headline">¶</a></h2>
+<p>Normally, the response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> is the
 outcome of a numerical experiment or another type of experiment and is
 thus only an approximation to the true value. It is then always
 accompanied by an error estimate, often limited to a statistical error
-estimate given by a **standard deviation**. \\Introducing the standard deviation $\sigma_i$ for each measurement
-$y_i$ (assuming uncorrelated errors), we define the so called $\chi^2$ function as\end{aligned}\end{align} \]</div>
-<p>\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right},</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where the matrix $\boldsymbol{\Sigma}$ is a diagonal $n \times n$ matrix with $\sigma_i^2$ as matrix elements.\\&lt;!-- !split --&gt;\\In order to find the parameters $\theta_i$ we will then minimize the $\chi^2(\boldsymbol{\theta})$ function by requiring
-\end{aligned}\end{align} \]</div>
-<p>\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)^2\right]=0,</p>
-<div class="math notranslate nohighlight">
-\[
-which results in
-\]</div>
-<p>\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}\frac{x_{ij}}{\sigma_i}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)\right]=0,</p>
-<div class="math notranslate nohighlight">
-\[
-or in a matrix-vector form as
-\]</div>
-<p>\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right).</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where we have defined the matrix $\boldsymbol{A} =\boldsymbol{X} \boldsymbol{\Sigma}^{-1/2}$ with matrix elements $a_{ij} = x_{ij}/\sigma_i$ and the vector $\boldsymbol{b}$ with elements $b_i = y_i/\sigma_i$.\\&lt;!-- !split --&gt;\\We can rewrite
-\end{aligned}\end{align} \]</div>
-<p>\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right),</p>
-<div class="math notranslate nohighlight">
-\[
-as
-\]</div>
-<p>\boldsymbol{A}^T\boldsymbol{b} = \boldsymbol{A}^T\boldsymbol{A}\boldsymbol{\theta},</p>
-<div class="math notranslate nohighlight">
-\[
-and if the matrix $\boldsymbol{A}^T\boldsymbol{A}$ is invertible we have the solution
-\]</div>
-<p>\boldsymbol{\theta} =\left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1}\boldsymbol{A}^T\boldsymbol{b}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;\\If we then introduce the matrix
-\end{aligned}\end{align} \]</div>
-<p>\boldsymbol{H} =  \left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1},</p>
-<div class="math notranslate nohighlight">
-\[
-we have then the following expression for the parameters $\theta_j$ (the matrix elements of $\boldsymbol{H}$ are $h_{ij}$)
-\]</div>
-<p>\theta_j = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}\frac{y_i}{\sigma_i}\frac{x_{ik}}{\sigma_i} = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}b_ia_{ik}</p>
-<div class="math notranslate nohighlight">
-\[
-We state without proof the expression for the uncertainty  in the parameters $\theta_j$ as (we leave this as an exercise)
-\]</div>
-<p>\sigma^2(\theta_j) = \sum_{i=0}^{n-1}\sigma_i^2\left( \frac{\partial \theta_j}{\partial y_i}\right)^2,</p>
-<div class="math notranslate nohighlight">
-\[
-resulting in 
-\]</div>
-<p>\sigma^2(\theta_j) = \left(\sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}a_{ik}\right)\left(\sum_{l=0}^{p-1}h_{jl}\sum_{m=0}^{n-1}a_{ml}\right) = h_{jj}!</p>
-<p>$$</p>
-</div>
+estimate given by a <strong>standard deviation</strong>.</p>
+<p>Introducing the standard deviation <span class="math notranslate nohighlight">\(\sigma_i\)</span> for each measurement
+<span class="math notranslate nohighlight">\(y_i\)</span> (assuming uncorrelated errors), we define the so called <span class="math notranslate nohighlight">\(\chi^2\)</span> function as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
+\end{equation*}\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is a diagonal <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with <span class="math notranslate nohighlight">\(\sigma_i^2\)</span> as matrix elements.</p>
+<!-- !split -->
+<p>In order to find the parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> we will then minimize the <span class="math notranslate nohighlight">\(\chi^2(\boldsymbol{\theta})\)</span> function by requiring</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)^2\right]=0, 
+\end{equation*}\]</div>
+<p>which results in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}\frac{x_{ij}}{\sigma_i}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)\right]=0, 
+\end{equation*}\]</div>
+<p>or in a matrix-vector form as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right).  
+\end{equation*}\]</div>
+<p>where we have defined the matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} =\boldsymbol{X} \boldsymbol{\Sigma}^{-1/2}\)</span> with matrix elements <span class="math notranslate nohighlight">\(a_{ij} = x_{ij}/\sigma_i\)</span> and the vector <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span> with elements <span class="math notranslate nohighlight">\(b_i = y_i/\sigma_i\)</span>.</p>
+<!-- !split -->
+<p>We can rewrite</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right),  
+\end{equation*}\]</div>
+<p>as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{A}^T\boldsymbol{b} = \boldsymbol{A}^T\boldsymbol{A}\boldsymbol{\theta},  
+\end{equation*}\]</div>
+<p>and if the matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}^T\boldsymbol{A}\)</span> is invertible we have the solution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} =\left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1}\boldsymbol{A}^T\boldsymbol{b}.
+\end{equation*}\]</div>
+<!-- !split -->
+<p>If we then introduce the matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{H} =  \left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1},
+\end{equation*}\]</div>
+<p>we have then the following expression for the parameters <span class="math notranslate nohighlight">\(\theta_j\)</span> (the matrix elements of <span class="math notranslate nohighlight">\(\boldsymbol{H}\)</span> are <span class="math notranslate nohighlight">\(h_{ij}\)</span>)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\theta_j = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}\frac{y_i}{\sigma_i}\frac{x_{ik}}{\sigma_i} = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}b_ia_{ik}
+\end{equation*}\]</div>
+<p>We state without proof the expression for the uncertainty  in the parameters <span class="math notranslate nohighlight">\(\theta_j\)</span> as (we leave this as an exercise)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sigma^2(\theta_j) = \sum_{i=0}^{n-1}\sigma_i^2\left( \frac{\partial \theta_j}{\partial y_i}\right)^2, 
+\end{equation*}\]</div>
+<p>resulting in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sigma^2(\theta_j) = \left(\sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}a_{ik}\right)\left(\sum_{l=0}^{p-1}h_{jl}\sum_{m=0}^{n-1}a_{ml}\right) = h_{jj}!
+\end{equation*}\]</div>
 </div>
 </div>
 

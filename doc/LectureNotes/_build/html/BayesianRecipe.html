@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -417,14 +415,13 @@ Normalization:
 <p>Bayes’ theorem follows directly from the product rule</p>
 <div class="math notranslate nohighlight">
 \[p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.\]</div>
-<p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):
-$<span class="math notranslate nohighlight">\(
-\begin{align}
+<p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-03303eae-fbc4-4794-b138-3a5c1faa7213">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-03303eae-fbc4-4794-b138-3a5c1faa7213" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(H|D,I) &amp;= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
 \label{eq:bayes}
-\end{align}
-\)</span>$
-The power of Bayes’ theorem lies in the fact that it relates the quantity of interest, the probability that the hypothesis is true given the data, to the term we have a better chance of being able to assign, the probability that we would have observed the measured data if the hypothesis was true.</p>
+\end{align}\]</div>
+<p>The power of Bayes’ theorem lies in the fact that it relates the quantity of interest, the probability that the hypothesis is true given the data, to the term we have a better chance of being able to assign, the probability that we would have observed the measured data if the hypothesis was true.</p>
 <!-- !split -->
 <p>The various terms in Bayes’ theorem have formal names.</p>
 <ul class="simple">
@@ -467,32 +464,31 @@ Given that we had observed 6 heads in 8 flips, would you think it was a fair coi
 <!-- !split -->
 <p>In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: <span class="math notranslate nohighlight">\(p(p_H|D,I)\)</span>. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of <span class="math notranslate nohighlight">\(p_H\)</span>; that is to say, the probability that <span class="math notranslate nohighlight">\(p_H\)</span> lies in an infinitesimally narrow range is given by <span class="math notranslate nohighlight">\(p(p_H|D,I) dp_H\)</span>.</p>
 <!-- !split -->
-<p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+<p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3c1c5360-28f0-425f-b6e1-6f30c9a2996c">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-3c1c5360-28f0-425f-b6e1-6f30c9a2996c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \int_0^1 p(p_H|D,I) dp_H = 1.
 \label{eq:coin_posterior_norm}
-\end{equation}
-\)</span>$</p>
+\end{equation}\]</div>
 <!-- !split -->
-<p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+<p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4a520a9c-d43b-4411-b94f-e366d029b372">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-4a520a9c-d43b-4411-b94f-e366d029b372" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(p_H|I) = \left\{ \begin{array}{ll}
 1 &amp; 0 \le p_H \le 1, \\
 0 &amp; \mathrm{otherwise}.
 \end{array} \right.
 \label{eq:coin_prior_uniform}
-\end{equation}
-\)</span>$
-We will get back later to the choice of prior and its effect on the analysis.</p>
+\end{equation}\]</div>
+<p>We will get back later to the choice of prior and its effect on the analysis.</p>
 <!-- !split -->
 <p>This prior state of knowledge, or ignorance, is modified by the data through the likelihood function <span class="math notranslate nohighlight">\(p(D|p_H,I)\)</span>. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information <span class="math notranslate nohighlight">\(I\)</span>, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses’ is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
-$<span class="math notranslate nohighlight">\(
-\begin{equation}
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8930a1aa-7b38-4371-97d0-5af1fe9672f6">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-8930a1aa-7b38-4371-97d0-5af1fe9672f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
-\end{equation}
-\)</span>$</p>
+\end{equation}\]</div>
+<p>$$</p>
 <!-- !split -->
 <p>It seems reasonable because <span class="math notranslate nohighlight">\(p_H\)</span> is the chance of obtaining a head on any flip, and there were <span class="math notranslate nohighlight">\(H\)</span> of them, and <span class="math notranslate nohighlight">\(1-p_H\)</span> is the corresponding probability for a tail, of which there were <span class="math notranslate nohighlight">\(N-H\)</span>. We note that this binomial distribution also contains a normalization factor, but we will ignore it since it does not depend explicitly on <span class="math notranslate nohighlight">\(p_H\)</span>, the quantity of interest. It will be absorbed by the normalization condition (<a class="reference external" href="#eq:coin_posterior_norm">eq:coin_posterior_norm</a>).</p>
 <!-- !split -->
@@ -500,8 +496,8 @@ p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 <!-- !split -->
 <p>The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a class="reference external" href="#fig:coinflipping">fig:coinflipping</a>.</p>
 <!-- !split -->
-<!-- <img src="fig/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
-<p><img alt="The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. " src="fig/coinflipping_fig_1.png" /></p>
+<!-- <img src="fig/BayesianRecipe/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
+<p><img alt="The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. " src="_images/coinflipping_fig_1.png" /></p>
 <!-- !split -->
 <p>The panel in the top left-hand corner shows the posterior pdf for <span class="math notranslate nohighlight">\(p_H\)</span> given no data, i.e., it is the same as the prior pdf of Eq. (<a class="reference external" href="#eq:coin_prior_uniform">eq:coin_prior_uniform</a>). It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.</p>
 <!-- !split -->

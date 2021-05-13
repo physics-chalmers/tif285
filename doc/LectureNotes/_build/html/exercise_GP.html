@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -518,13 +516,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  <span class=" -Color -Color-Bold">rbf.       </span>  |  value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">variance   </span>  |    1.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">lengthscale</span>  |    0.2  |      +ve      |        
-</pre></div>
-</div>
-</div>
 </div>
 <p>It is also possible to plot the kernel as a function of one of its inputs (whilst fixing the other) with <code class="docutils literal notranslate"><span class="pre">k.plot()</span></code>.</p>
 <div class="cell docutils container">
@@ -533,9 +524,6 @@
 <span class="n">k</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_11_0.png" src="_images/exercise_GP_11_0.png" />
 </div>
 </div>
 </div>
@@ -555,9 +543,6 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;lengthscale&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_14_0.png" src="_images/exercise_GP_14_0.png" />
 </div>
 </div>
 </div>
@@ -592,9 +577,6 @@ covariance function). For plotting, it may be interesting to change the value of
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_22_0.png" src="_images/exercise_GP_22_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="computing-the-covariance-function-given-the-input-data-mathbf-x">
@@ -616,9 +598,6 @@ checked numerically by looking at the eigenvalues:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_25_0.png" src="_images/exercise_GP_25_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="question">
@@ -635,9 +614,10 @@ checked numerically by looking at the eigenvalues:</p>
 <p>a) A matrix, <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, is positive semi-definite if the matrix inner product, <span class="math notranslate nohighlight">\(\mathbf{x}^\top \mathbf{K}\mathbf{x}\)</span> is greater than or equal to zero regardless of the values in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Given this it should be easy to see that the sum of two positive semi-definite matrices is also positive semi-definite. In the context of Gaussian processes, this is the sum of two covariance functions. What does this mean from a modelling perspective?</p>
 <p><em>Hint</em>: there are actually two related interpretations for this. Think about the properties of a Gaussian distribution, and where the sum of Gaussian variances arises.</p>
 <p>b) What about the element-wise product of two covariance functions? In other words if we define</p>
-<p>\begin{align*}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
 k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathbf{x}, \mathbf{x}^\prime)
-\end{align*}</p>
+\end{align*}\]</div>
 <p>then is <span class="math notranslate nohighlight">\(k(\mathbf{x}, \mathbf{x}^\prime)\)</span> a valid covariance function?</p>
 </div>
 <div class="section" id="combining-covariance-functions-in-gpy">
@@ -654,16 +634,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  <span class=" -Color -Color-Bold">sum.             </span>  |  value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance     </span>  |    1.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale  </span>  |    2.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">Mat52.variance   </span>  |    2.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">Mat52.lengthscale</span>  |    4.0  |      +ve      |        
-</pre></div>
-</div>
-<img alt="_images/exercise_GP_38_1.png" src="_images/exercise_GP_38_1.png" />
-</div>
 </div>
 <p>Or if we wanted to multiply them we can write</p>
 <div class="cell docutils container">
@@ -674,16 +644,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 <span class="n">kern</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  <span class=" -Color -Color-Bold">mul.             </span>  |  value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance     </span>  |    1.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale  </span>  |    2.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">Mat52.variance   </span>  |    2.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">Mat52.lengthscale</span>  |    4.0  |      +ve      |        
-</pre></div>
-</div>
-<img alt="_images/exercise_GP_40_1.png" src="_images/exercise_GP_40_1.png" />
 </div>
 </div>
 </div>
@@ -713,9 +673,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_43_0.png" src="_images/exercise_GP_43_0.png" />
-</div>
 </div>
 <p>Our choice of <code class="docutils literal notranslate"><span class="pre">X</span></code> means that the points are close enough together to look like functions. We can see the structure of the covariance matrix we are plotting from if we visualize C.</p>
 <div class="cell docutils container">
@@ -724,9 +681,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_45_0.png" src="_images/exercise_GP_45_0.png" />
 </div>
 </div>
 <p>Now try a range of different covariance functions and values and plot the corresponding sample paths for each using the same approach given above.</p>
@@ -751,9 +705,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
     <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_49_0.png" src="_images/exercise_GP_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -780,9 +731,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_53_0.png" src="_images/exercise_GP_53_0.png" />
-</div>
 </div>
 <p>A GP regression model based on an exponentiated quadratic covariance function can be defined by first defining a covariance function,</p>
 <div class="cell docutils container">
@@ -807,20 +755,6 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 13.408031369627965
-Number of Parameters : 3
-Number of Optimization Parameters : 3
-Updates : True
-Parameters:
-  <span class=" -Color -Color-Bold">GP_regression.         </span>  |  value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance           </span>  |    1.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |    1.0  |      +ve      |        
-  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |    1.0  |      +ve      |        
-</pre></div>
-</div>
-</div>
 </div>
 <p>Note that by default the model includes some observation noise
 with variance 1. We can see the posterior mean prediction and visualize the marginal posterior variances using <code class="docutils literal notranslate"><span class="pre">m.plot()</span></code>.</p>
@@ -830,9 +764,6 @@ with variance 1. We can see the posterior mean prediction and visualize the marg
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_61_0.png" src="_images/exercise_GP_61_0.png" />
 </div>
 </div>
 <p>The actual predictions of the model for a set of points <code class="docutils literal notranslate"><span class="pre">Xnew</span></code> can be computed using</p>
@@ -854,15 +785,6 @@ with variance 1. We can see the posterior mean prediction and visualize the marg
 <span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;  X   mean Y   var Y   lo95</span><span class="si">%   hi</span><span class="s2">95%&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Xi</span><span class="p">,</span><span class="n">Ymeani</span><span class="p">,</span><span class="n">Yvari</span><span class="p">,</span><span class="n">Yloi</span><span class="p">,</span><span class="n">Yhii</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Xnew</span><span class="p">,</span><span class="n">Ymean</span><span class="p">,</span><span class="n">Yvar</span><span class="p">,</span><span class="n">Ylo95</span><span class="p">,</span><span class="n">Yhi95</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">Ymeani</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">Yvari</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">Yloi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">   </span><span class="si">{</span><span class="n">Yhii</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  X   mean Y   var Y   lo95%   hi95%
- 0.00  -0.31    1.20   -2.46    1.84
- 0.50  -0.02    1.10   -2.08    2.03
- 1.00   0.27    1.20   -1.88    2.42
- 1.50   0.39    1.48   -1.99    2.78
 </pre></div>
 </div>
 </div>
@@ -891,9 +813,6 @@ adapted?</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/exercise_GP_69_0.png" src="_images/exercise_GP_69_0.png" />
-</div>
 </div>
 <p>c) As in Section 2, random sample paths from the conditional GP can be obtained using
 <code class="docutils literal notranslate"><span class="pre">np.random.multivariate_normal(mu[:,0],C)</span></code> where the mean vector and covariance
@@ -915,11 +834,6 @@ matrix <code class="docutils literal notranslate"><span class="pre">mu</span></c
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>reconstraining parameters GP_regression
-</pre></div>
-</div>
-</div>
 </div>
 <p>The warnings are because the parameters are already constrained by default, the software is warning us that they are being reconstrained.</p>
 <p>Now we can optimize the model using the <code class="docutils literal notranslate"><span class="pre">m.optimize()</span></code> method.</p>
@@ -931,21 +845,6 @@ matrix <code class="docutils literal notranslate"><span class="pre">mu</span></c
 <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 9.266672542160638
-Number of Parameters : 3
-Number of Optimization Parameters : 3
-Updates : True
-Parameters:
-  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                 value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance           </span>  |      0.73111719917526  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |   0.11783131979826715  |      +ve      |        
-  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  0.029914922778665254  |      +ve      |        
-</pre></div>
-</div>
-<img alt="_images/exercise_GP_77_1.png" src="_images/exercise_GP_77_1.png" />
 </div>
 </div>
 <p>The parameters obtained after optimisation can be compared with the values selected by hand above. As previously, you can modify the kernel used for building the model to investigate its influence on the model.</p>
