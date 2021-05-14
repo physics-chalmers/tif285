@@ -48,16 +48,15 @@ html:
 latex:
   latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
 
-bibtex_bibfiles:
-    - references.bib
+bibtex_bibfiles             : ["references.bib"]
     
 #######################################################################################
 # Launch button settings
 launch_buttons:
+  colab_url                 : "https://colab.research.google.com"
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
-  colab_url                 : https://colab.research.google.com
 
 repository:
   url                       : https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html  # The URL to your book's repository
