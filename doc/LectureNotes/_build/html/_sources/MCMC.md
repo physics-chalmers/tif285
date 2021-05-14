@@ -1,28 +1,18 @@
-% Learning from data: Markov Chain Monte Carlo sampling 
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
-
 <!-- !split -->
-## Why MCMC
+# Why MCMC
 We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters $\boldsymbol{\theta}$ in a model $M$ given data $D$ and other information $I$
+
 $$
-
 p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
-
 $$
 
 <!-- !split -->
 Suppose that this parametrized model can make predictions for some quantity $y = f(\boldsymbol{\theta})$ and that we would like to compute the expectation value of this prediction given our knowledge of the model parameters
-$$
 
+$$
 \langle f(\boldsymbol{\theta}) \rangle = \int f(\boldsymbol{\theta}) p(\boldsymbol{\theta} | D,I) d \boldsymbol{\theta} \equiv \int g( \boldsymbol{\theta} ) d\boldsymbol{\theta}.
-
 $$
+
 The function $f(\boldsymbol{\theta})$ might represent the prediction of some new data that was not part of the original data set $D$ used to constrain the model.
 
 <!-- !split -->
@@ -35,22 +25,26 @@ Note that this is more involved than traditional calculations in which we would 
 * In particular, the integrals are problematic because the posterior pdfs are usually very small in much of the integration volume so that the relevant region has a very complicated shape.
 
 <!-- !split -->
-### Monte Carlo integration
+## Monte Carlo integration
 To approximate such integrals one turns to Monte Carlo (MC) methods. The straight and naive version of MC integration evaluates the integral by randomly distributing $n$ points in the multidimensional volume $V$ of possible parameter values $\boldsymbol{\theta}$. These points have to cover the regions where $p( \boldsymbol{\theta} |D,I)$ is significantly different from zero. Then
 
 <!-- !split -->
+
 $$
 
 \langle f( \boldsymbol{\theta} ) \rangle = \int_V g( \boldsymbol{\theta} ) d\boldsymbol{\theta} \approx V \langle g( \boldsymbol{\theta} ) \rangle 
 \pm V \sqrt{ \frac{\langle g^2( \boldsymbol{\theta} ) \rangle - \langle g( \boldsymbol{\theta} ) \rangle^2 }{n} },
 
 $$
+
 where
+
 $$
 
 \langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )
 
 $$
+
 $$
 
 \langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )
@@ -58,31 +52,37 @@ $$
 $$
 
 <!-- !split -->
-#### Example: One-dimensional integration
+### Example: One-dimensional integration
 
 The average of a function $g(\theta)$ on $\theta \in [a,b]$ is
+
 $$
 
 \overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,
 
 $$
+
 from calculus. However, we can estimate $\bar{g(\theta)}$ by averaging over a set of random samples
+
 $$
 
 \overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).
 
 $$
+
 Let us consider the integral
+
 $$
 
 \langle f(\theta) \rangle = \int_a^b g(\theta) d\theta \approx 
 \frac{b-a}{n} \sum_{i=0}^{n-1} g(\theta_i),
 
 $$
+
 where $b-a$ is the volume $V$.
 
 <!-- !split -->
-#### Slow convergence
+### Slow convergence
 
 The main uncertainty lies in assuming that a Gaussian approximation is valid. Note the dependence on $a/\sqrt{n}$, which means that you can get a more precise answer by increasing $n$. However, the result only gets better very slowly. Each additional decimal point accuracy costs you a factor of 100 in $n$.
 
@@ -96,7 +96,7 @@ The bottom line is that its not feasible to draw a series of independent random 
 However, the samples don't actually need to be independent. they just need to generate a distribution that is proportional to $p ( \boldsymbol{\theta} |D,I)$. E.g., a histogram of the samples should approximate the true distribution.
 
 <!-- !split -->
-### Markov Chain Monte Carlo
+## Markov Chain Monte Carlo
 A solution is therefore to do a *random walk* in the parameter space of $\boldsymbol{\theta}$ so that the probability for being in a region is proportional to $p( \boldsymbol{\theta} | D,I)$ in that region.
 * The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$.
 * The transition probability is *time independent*, which means that $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$ is always the same.
@@ -106,44 +106,44 @@ A sequence of points generated according to these rules is called a *Markov Chai
 <!-- !split -->
 Before describing the most basic implementation of the MCMC, namely the Metropolis and Metropolis-Hastings algorithms, let us list a few state-of-the-art implementations and packages that are available in Python (and often other languages)
 
-emcee:
-  :    
+```{admonition} emcee:
   [emcee](https://emcee.readthedocs.io/en/latest/) is an MIT licensed pure-Python implementation of Goodman & Weare’s [Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler](http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml)
-PyMC3:
-  :    
+  ```
+  
+```{admonition} PyMC3:
   [PyMC3](https://docs.pymc.io/) is a Python package for Bayesian statistical modeling and probabilistic machine learning which focuses on advanced Markov chain Monte Carlo and variational fitting algorithms.
-PyStan:
-  :    
+  ```
+  
+```{admonition} PyStan:
   [PyStan](https://pystan.readthedocs.io/en/latest/) provides an interface to [Stan](http://mc-stan.org/), a package for Bayesian inference using the No-U-Turn sampler, a variant of Hamiltonian Monte Carlo.
-PyMultiNest:
-  :    
+  ```
+  
+```{admonition} PyMultiNest:
   [PyMultiNest](https://johannesbuchner.github.io/PyMultiNest/) interacts with [MultiNest](https://github.com/farhanferoz/MultiNest), a Nested Sampling Monte Carlo library.
+  ```
 
 We have been using emcee extensively in this course. It is based on ensamble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some [lecture notes](http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html)
 
 
 <!-- !split -->
-### The Metropolis Hastings algorithm
+## The Metropolis Hastings algorithm
 The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the following:
 
 1. Initialize the sampling by choosing a starting point $\boldsymbol{\theta}_0$.
 2. Collect samples by repeating the following:
- a. Given $\boldsymbol{\theta}_i$, *propose* a new point $\boldsymbol{\theta}_{i+1}$, call it $\boldsymbol{\phi}$, sampled from a proposal distribution $q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )$. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by $\boldsymbol{\theta}_i$ and variance $\boldsymbol{\sigma}^2$.
-    * The transition density will (usually) give a smaller probability for visiting positions that are far from the current position.
-    * The width $\boldsymbol{\sigma}$ determines the average step size and is known as the proposal width.
-
- b. Compute the Metropolis(-Hastings) ratio $r$ (defined below).
-    Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
- c. Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
-    * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
-    * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject).
-
-    Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
- d. Loop until the chain has reached a predetermined length.
+   1. Given $\boldsymbol{\theta}_i$, *propose* a new point $\boldsymbol{\theta}_{i+1}$, call it $\boldsymbol{\phi}$, sampled from a proposal distribution $q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )$. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by $\boldsymbol{\theta}_i$ and variance $\boldsymbol{\sigma}^2$.
+      * The transition density will (usually) give a smaller probability for visiting positions that are far from the current position.
+      * The width $\boldsymbol{\sigma}$ determines the average step size and is known as the proposal width.
+   2. Compute the Metropolis(-Hastings) ratio $r$ (defined below). Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
+   3. Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
+      * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
+      * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject). Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
+   4. Loop until the chain has reached a predetermined length.
 
 
 <!-- !split -->
 The Metropolis(-Hastings) ratio is
+
 $$
     
     r = \frac{p( \boldsymbol{\phi} | D,I)}{p( \boldsymbol{\theta}_i | D,I)}
@@ -156,7 +156,7 @@ $$
 * Note, however, that novadays there are much more sophisticated samplers than the original Metropolis one.
 
 <!-- !split -->
-### Visualizations of MCMC
+## Visualizations of MCMC
 * There are excellent javascript visualizations of MCMC sampling on the internet.
 * A particularly useful set of interactive demos was created by Chi Feng, and is available on the github page: [The Markov-chain Monte Carlo Interactive Gallery](https://chi-feng.github.io/mcmc-demo/)
 * An accessible introduction to MCMC, with simplified versions of Feng's visualizations, was created by Richard McElreath. It promotes Hamiltonian Monte Carlo and is available in a blog entry called [Markov Chains: Why Walk When You Can Flow?](http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/) 

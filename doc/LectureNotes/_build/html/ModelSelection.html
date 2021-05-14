@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>17. Frequentist hypothesis testing &#8212; Learning from data</title>
+    <title>16. Frequentist hypothesis testing &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Inference using Gaussian processes" href="GaussianProcesses.html" />
-    <link rel="prev" title="16. Assigning probabilities" href="demo-MaxEnt.html" />
+    <link rel="prev" title="15. Assigning probabilities" href="demo-MaxEnt.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -193,32 +193,32 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   9. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   11. Why Bayes is Better
+   10. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   11. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   15. Ignorance pdfs: Indifference and translation groups
+   14. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   16. Assigning probabilities
+   15. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   17. Frequentist hypothesis testing
+   16. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,17 +361,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   17. Frequentist hypothesis testing
+   16. Frequentist hypothesis testing
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basic-idea">
-     17.1. Basic idea
+     16.1. Basic idea
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#hypothesis-testing-with-the-chi-squared-statistic">
-       17.1.1. Hypothesis testing with the chi-squared statistic
+       16.1.1. Hypothesis testing with the chi-squared statistic
       </a>
      </li>
     </ul>
@@ -380,24 +380,24 @@
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bayesian-model-selection">
-   18. Bayesian model selection
+   17. Bayesian model selection
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-story-of-dr-a-and-prof-b">
-     18.1. The Story of Dr. A and Prof. B
+     17.1. The Story of Dr. A and Prof. B
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#one-adjustable-parameter-each-different-prior-ranges">
-       18.1.1. One adjustable parameter each; different prior ranges
+       17.1.1. One adjustable parameter each; different prior ranges
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comparison-with-parameter-estimation">
-     18.2. Comparison with parameter estimation
+     17.2. Comparison with parameter estimation
     </a>
    </li>
   </ul>
@@ -422,11 +422,11 @@
 <p>We will start, however, with a brief discussion on sampling theory and the frequentist approach to <strong>hypothesis testing</strong>. This will involve the introduction of the <span class="math notranslate nohighlight">\(P\)</span>-value or significance measure—quantities that are often misinterpreted even by scientists themselves. See, for example, the following comment published in Nature (March 20, 2019): <a class="reference external" href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a>.</p>
 <!-- !split -->
 <div class="section" id="frequentist-hypothesis-testing">
-<h1><span class="section-number">17. </span>Frequentist hypothesis testing<a class="headerlink" href="#frequentist-hypothesis-testing" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">16. </span>Frequentist hypothesis testing<a class="headerlink" href="#frequentist-hypothesis-testing" title="Permalink to this headline">¶</a></h1>
 <p>Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it.</p>
 <!-- !split -->
 <div class="section" id="basic-idea">
-<h2><span class="section-number">17.1. </span>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.1. </span>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h2>
 <p>The standard sampling theory approach to hypothesis testing is to construct a statistical test. The basic idea is the following:</p>
 <p><em>Frequentist hypothesis testing.</em>
 The sampling theory hypothesis test is designed to compare a selected statistic from the measured data with expected results from a very large number of hypothetical repeated measurements under the assumption that a chosen null hypothesis (<span class="math notranslate nohighlight">\(\mathcal{H}_0\)</span>) is true.</p>
@@ -444,7 +444,7 @@ The sampling theory hypothesis test is designed to compare a selected statistic 
 <!-- !epop -->
 <!-- !split -->
 <div class="section" id="hypothesis-testing-with-the-chi-squared-statistic">
-<h3><span class="section-number">17.1.1. </span>Hypothesis testing with the chi-squared statistic<a class="headerlink" href="#hypothesis-testing-with-the-chi-squared-statistic" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">16.1.1. </span>Hypothesis testing with the chi-squared statistic<a class="headerlink" href="#hypothesis-testing-with-the-chi-squared-statistic" title="Permalink to this headline">¶</a></h3>
 <p>A very common statistic to use is the <span class="math notranslate nohighlight">\(\chi^2\)</span> measure. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days. The main steps of the presented analysis are the following:</p>
 <ul class="simple">
 <li><p>Choose as a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.</p></li>
@@ -475,11 +475,11 @@ The sampling theory hypothesis test is designed to compare a selected statistic 
 </div>
 </div>
 <div class="section" id="bayesian-model-selection">
-<h1><span class="section-number">18. </span>Bayesian model selection<a class="headerlink" href="#bayesian-model-selection" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">17. </span>Bayesian model selection<a class="headerlink" href="#bayesian-model-selection" title="Permalink to this headline">¶</a></h1>
 <!-- !split -->
 <!-- ======= The Story of Dr. A and Prof. B ======= -->
 <div class="section" id="the-story-of-dr-a-and-prof-b">
-<h2><span class="section-number">18.1. </span>The Story of Dr. A and Prof. B<a class="headerlink" href="#the-story-of-dr-a-and-prof-b" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">17.1. </span>The Story of Dr. A and Prof. B<a class="headerlink" href="#the-story-of-dr-a-and-prof-b" title="Permalink to this headline">¶</a></h2>
 <p>[Reproduced, with some modifications, from Sivia, 2006].</p>
 <blockquote>
 <div><p><em>Dr. A has a theory; Prof. B also has a theory, but with an adjustable parameter <span class="math notranslate nohighlight">\(\lambda\)</span>. Whose theory should we prefer on the basis of data <span class="math notranslate nohighlight">\(D\)</span>?</em>— Jefferys (1939), Gull (1988), Sivia (2006)</p>
@@ -487,8 +487,8 @@ The sampling theory hypothesis test is designed to compare a selected statistic 
 <!-- !split -->
 <p>It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-857454a6-2d09-4f40-b2ad-b1f8669ffccf">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-857454a6-2d09-4f40-b2ad-b1f8669ffccf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47359e1c-c680-4267-a2ee-18aa0488f713">
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-47359e1c-c680-4267-a2ee-18aa0488f713" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
 \label{eq:sivia_41}
 \end{equation}\]</div>
@@ -496,8 +496,8 @@ $$</p>
 \[ \begin{align}\begin{aligned}
 is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.\\To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7741c6d9-3599-4e2b-82f8-bf03bbd56e6f">
-<span class="eqno">(18.2)<a class="headerlink" href="#equation-7741c6d9-3599-4e2b-82f8-bf03bbd56e6f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0eb58bd0-5443-488e-a6e3-9a9cde9af751">
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-0eb58bd0-5443-488e-a6e3-9a9cde9af751" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} = \frac{p(D|A,I) p(A|I)}{p(D|B,I) p(B|I)}
 \label{eq:sivia_42}
 \end{equation}\]</div>
@@ -505,8 +505,8 @@ is very much greater than one, then we will prefer A’s theory; if it is very m
 \[ \begin{align}\begin{aligned}
 because the term $p(D|I)$ cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. ([eq:sivia_42](#eq:sivia_42)), to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, $p(D|A,I)$ and $p(D|B,I)$, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for $\lambda$.\\To circumvent this difficulty, we can use the sum and product rule to relate the probability we require to other pdfs which might be easier to assign. In particular, marginalization and the product rule allow us to express $p(D | B , I )$ as
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-52d27c06-9011-430d-b918-a567f209a33c">
-<span class="eqno">(18.3)<a class="headerlink" href="#equation-52d27c06-9011-430d-b918-a567f209a33c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-70dd2cac-806d-41d2-9926-8964972bcc13">
+<span class="eqno">(17.3)<a class="headerlink" href="#equation-70dd2cac-806d-41d2-9926-8964972bcc13" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|B,I) = \int d\lambda p(D,\lambda|B,I) = 
 \int d\lambda p(D|\lambda,B,I) p(\lambda|B,I). 
 \label{eq:sivia_43}
@@ -515,8 +515,8 @@ p(D|B,I) = \int d\lambda p(D,\lambda|B,I) =
 \[ \begin{align}\begin{aligned}
 The first term in the integral $p(D | \lambda, B , I )$, where the value of $\lambda$ is given, is now just an ordinary likelihood function; as such, it is on a par with $p(D|A,I)$. The second term is B’s prior pdf for $\lambda$; the onus is, therefore, on the theorist to articulate his or her state of knowledge, or ignorance, before getting access to the data.\\To proceed further analytically, let us make some simplifying approximations. Assume that, a priori, Prof B is only prepared to say that $\lambda$ must lie between the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$; we can then naively assign a uniform prior within this range:
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-477e5ba8-0db6-4d22-8ec1-ee8d72c8f4d5">
-<span class="eqno">(18.4)<a class="headerlink" href="#equation-477e5ba8-0db6-4d22-8ec1-ee8d72c8f4d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af7804a0-d642-495b-9bdd-0cb48ec76439">
+<span class="eqno">(17.4)<a class="headerlink" href="#equation-af7804a0-d642-495b-9bdd-0cb48ec76439" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text{for } \lambda_\mathrm{min} \leq \lambda \leq \lambda_\mathrm{max}, 
 \label{eq:sivia_44}
 \end{equation}\]</div>
@@ -524,8 +524,8 @@ p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text
 \[
 and zero otherwise. Let us also take it that there is a value $\lambda_0$ which yields the closest agreement with the measurements; the corresponding probability $p(D|\lambda_0,B,I)$ will be the maximum of B’s likelihood function. As long as this adjustable parameter lies in the neighbourhood of the optimal value, $\lambda_0 \pm (\delta\lambda)$, we would expect a reasonable fit to the data; this can be represented by the Gaussian pdf
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-10ba7d41-2472-4338-82d2-511c42469ba3">
-<span class="eqno">(18.5)<a class="headerlink" href="#equation-10ba7d41-2472-4338-82d2-511c42469ba3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-028cc3eb-c48b-44cc-98ee-f4944fff7c1e">
+<span class="eqno">(17.5)<a class="headerlink" href="#equation-028cc3eb-c48b-44cc-98ee-f4944fff7c1e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0)^2}{2(\delta\lambda)^2} \right]. 
 \label{eq:sivia_45}
 \end{equation}\]</div>
@@ -534,8 +534,8 @@ p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0
 The assignments of the prior ([eq:sivia_44](#eq:sivia_44)) and the likelihood ([eq:sivia_45](#eq:sivia_45)) are illustrated in Fig. [fig:sivia_41](#fig:sivia_41). We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.\\&lt;!-- &lt;img src=&quot;fig/fig41.png&quot; width=500&gt;&lt;p&gt;&lt;em&gt;A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. &lt;div id=&quot;fig:sivia_41&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt; --&gt;
 ![&lt;p&gt;&lt;em&gt;A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. &lt;div id=&quot;fig:sivia_41&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt;](fig/fig41.png)\\In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. ([eq:sivia_43](#eq:sivia_43))
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-3b4c3a24-b97d-47e6-9566-7425d82437da">
-<span class="eqno">(18.6)<a class="headerlink" href="#equation-3b4c3a24-b97d-47e6-9566-7425d82437da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5bcb501-a213-45f8-b4d8-ff520df2af20">
+<span class="eqno">(17.6)<a class="headerlink" href="#equation-b5bcb501-a213-45f8-b4d8-ff520df2af20" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} \int_{\lambda_\mathrm{min}}^{\lambda_\mathrm{max}} d\lambda
 p(D|\lambda,B,I),
 \label{eq:sivia_46}
@@ -550,8 +550,8 @@ its integral will be equal to $(\delta\lambda) \sqrt{2\pi}$ times $p(D|\lambda_0
 $<span class="math notranslate nohighlight">\(
 Substituting this into Eq. ([eq:sivia_42](#eq:sivia_42)), we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:
 \)</span>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0b31c57-943e-4d14-97f0-217e63e182e5">
-<span class="eqno">(18.7)<a class="headerlink" href="#equation-b0b31c57-943e-4d14-97f0-217e63e182e5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02f5971f-12ee-4538-9303-1b2246037367">
+<span class="eqno">(17.7)<a class="headerlink" href="#equation-02f5971f-12ee-4538-9303-1b2246037367" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
 \label{eq:sivia_48}
 \end{equation}\]</div>
@@ -561,8 +561,8 @@ The first term on the right-hand side reflects our relative prior preference for
 $(\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda_0,B,I) \approx p(D|A,I)$.\\&lt;!-- !split --&gt;
 #### One adjustable parameter each\\Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it $\mu$. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e9c66c72-11d5-46fc-9e2c-dd0ec9b5c3a2">
-<span class="eqno">(18.8)<a class="headerlink" href="#equation-e9c66c72-11d5-46fc-9e2c-dd0ec9b5c3a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20217d4e-d026-4626-a914-4d630093e227">
+<span class="eqno">(17.8)<a class="headerlink" href="#equation-20217d4e-d026-4626-a914-4d630093e227" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu(\lambda_\mathrm{max} - \lambda_\mathrm{min})}{\delta\lambda(\mu_\mathrm{max} - \mu_\mathrm{min})}. 
 \label{eq:sivia_49}
 \end{equation}\]</div>
@@ -576,7 +576,7 @@ $$</p>
 <p>For data of good quality, the dominant factor will tend to be the best-fit likelihood ratio. If both give comparable agreement with the measurements, however, then the shape with the larger error-bar for its associated parameter will be favoured. At first sight, it might seem rather odd that the less discriminating theory can gain the upper hand. It appears less strange once we realize that, in the context of model selection, a larger ‘error-bar’ means that more parameter values are consistent with the given hypothesis; hence its preferential treatment.</p>
 <!-- !split -->
 <div class="section" id="one-adjustable-parameter-each-different-prior-ranges">
-<h3><span class="section-number">18.1.1. </span>One adjustable parameter each; different prior ranges<a class="headerlink" href="#one-adjustable-parameter-each-different-prior-ranges" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">17.1.1. </span>One adjustable parameter each; different prior ranges<a class="headerlink" href="#one-adjustable-parameter-each-different-prior-ranges" title="Permalink to this headline">¶</a></h3>
 <p>Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for <span class="math notranslate nohighlight">\(\lambda\)</span> (or <span class="math notranslate nohighlight">\(\mu\)</span>). Although Eq. (<a class="reference external" href="#eq:sivia_48">eq:sivia_48</a>) can be seen as representing the case when <span class="math notranslate nohighlight">\((\mu_\mathrm{max} - \mu_\mathrm{min})\)</span> is infinitesimally small, so that A has no flexibility, Eq. (<a class="reference external" href="#eq:sivia_49">eq:sivia_49</a>) is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
 $<span class="math notranslate nohighlight">\(
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{\mu_\mathrm{max} - \mu_\mathrm{min}}. 
@@ -586,11 +586,11 @@ because the best-fit likelihood ratio will be unity (since \)</span>\lambda_0 = 
 </div>
 </div>
 <div class="section" id="comparison-with-parameter-estimation">
-<h2><span class="section-number">18.2. </span>Comparison with parameter estimation<a class="headerlink" href="#comparison-with-parameter-estimation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">17.2. </span>Comparison with parameter estimation<a class="headerlink" href="#comparison-with-parameter-estimation" title="Permalink to this headline">¶</a></h2>
 <p>The dependence of the result in Eq. (<a class="reference external" href="#eq:sivia_48">eq:sivia_48</a>) on the prior range <span class="math notranslate nohighlight">\((\lambda_\mathrm{max} - \lambda_\mathrm{min})\)</span> can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of <span class="math notranslate nohighlight">\(\lambda\)</span> from the data, given that B’s theory is correct, we use Bayes’ theorem:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd561a4e-434c-48ac-a5e7-2b2743025074">
-<span class="eqno">(18.9)<a class="headerlink" href="#equation-bd561a4e-434c-48ac-a5e7-2b2743025074" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d791a57a-d684-41be-a480-36d25dc6a677">
+<span class="eqno">(17.9)<a class="headerlink" href="#equation-d791a57a-d684-41be-a480-36d25dc6a677" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}. 
 \label{eq:sivia_410}
 \end{equation}\]</div>
@@ -675,7 +675,7 @@ The product of the eigenvalues \)</span>\lambda_i<span class="math notranslate n
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-MaxEnt.html" title="previous page"><span class="section-number">16. </span>Assigning probabilities</a>
+    <a class='left-prev' id="prev-link" href="demo-MaxEnt.html" title="previous page"><span class="section-number">15. </span>Assigning probabilities</a>
     <a class='right-next' id="next-link" href="GaussianProcesses.html" title="next page"><span class="section-number">1. </span>Inference using Gaussian processes</a>
 
         </div>
