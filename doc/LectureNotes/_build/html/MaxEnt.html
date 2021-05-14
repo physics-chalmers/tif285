@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>18. Ignorance pdfs: Indifference and translation groups &#8212; Learning from data</title>
+    <title>15. Ignorance pdfs: Indifference and translation groups &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="19. Assigning probabilities" href="demo-MaxEnt.html" />
-    <link rel="prev" title="15. Learning from Data: Error propagation and nuisance parameters (demonstration)" href="demo-ErrorPropagation.html" />
+    <link rel="next" title="16. Assigning probabilities" href="demo-MaxEnt.html" />
+    <link rel="prev" title="12. Learning from Data: Error propagation and nuisance parameters (demonstration)" href="demo-ErrorPropagation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   9. Bayesian parameter estimation demonstration
+   6. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   10. Exercise: Bayesian parameter estimation
+   7. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   11. Why MCMC
+   8. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   14. Why Bayes is Better
+   11. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   18. Ignorance pdfs: Indifference and translation groups
+   15. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   19. Assigning probabilities
+   16. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   20. Frequentist hypothesis testing
+   17. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,17 +361,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#discrete-permutation-invariance">
-   18.1. Discrete permutation invariance
+   15.1. Discrete permutation invariance
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#location-invariance">
-   18.2. Location invariance
+   15.2. Location invariance
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#counting-statistics-and-the-poisson-distribution">
-     18.2.1. Counting statistics and the Poisson distribution
+     15.2.1. Counting statistics and the Poisson distribution
     </a>
    </li>
   </ul>
@@ -390,10 +390,10 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split -->
 <div class="section" id="ignorance-pdfs-indifference-and-translation-groups">
-<h1><span class="section-number">18. </span>Ignorance pdfs: Indifference and translation groups<a class="headerlink" href="#ignorance-pdfs-indifference-and-translation-groups" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">15. </span>Ignorance pdfs: Indifference and translation groups<a class="headerlink" href="#ignorance-pdfs-indifference-and-translation-groups" title="Permalink to this headline">¶</a></h1>
 <!-- !split -->
 <div class="section" id="discrete-permutation-invariance">
-<h2><span class="section-number">18.1. </span>Discrete permutation invariance<a class="headerlink" href="#discrete-permutation-invariance" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">15.1. </span>Discrete permutation invariance<a class="headerlink" href="#discrete-permutation-invariance" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Consider a six-sided die</p></li>
 <li><p>How do we assign <span class="math notranslate nohighlight">\(p_i \equiv p(X_i|I)\)</span>, <span class="math notranslate nohighlight">\(i \in \{1, 2, 3, 4, 5, 6\}\)</span>?</p></li>
@@ -407,7 +407,7 @@
 <!-- !split -->
 </div>
 <div class="section" id="location-invariance">
-<h2><span class="section-number">18.2. </span>Location invariance<a class="headerlink" href="#location-invariance" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">15.2. </span>Location invariance<a class="headerlink" href="#location-invariance" title="Permalink to this headline">¶</a></h2>
 <p>Indifference to a constant shift <span class="math notranslate nohighlight">\(x_0\)</span> for a location parameter <span class="math notranslate nohighlight">\(x\)</span> implies that
 $$</p>
 <p>p(x|I) dx \approx p(x+ x_0|I) d(x+x_0) =  p(x+ x_0|I) dx,</p>
@@ -456,8 +456,8 @@ where the (absolute value of the) determinant of the Jacobian is
 \]</div>
 <p>\left| \frac{d\theta_0 d\theta_1}{d\theta_0’ d\theta_1’} \right|
 = \mathrm{abs} \left(</p>
-<div class="amsmath math notranslate nohighlight" id="equation-25c89c4b-ef79-42db-83c5-369af46b7fe9">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-25c89c4b-ef79-42db-83c5-369af46b7fe9" title="Permalink to this equation">¶</a></span>\[\begin{vmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-da05e88b-76a8-4cdb-a3ee-d213ecbb0d2f">
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-da05e88b-76a8-4cdb-a3ee-d213ecbb0d2f" title="Permalink to this equation">¶</a></span>\[\begin{vmatrix}
 \frac{\partial \theta_0}{\partial \theta_0'} &amp; \frac{\partial \theta_0}{\partial \theta_1'} \\
 \frac{\partial \theta_1}{\partial \theta_0'} &amp; \frac{\partial \theta_1}{\partial \theta_1'} 
 \end{vmatrix}\]</div>
@@ -640,7 +640,7 @@ These arguments extend easily to the case of several parameters. For example, co
 <p>If we had convincing information about the covariance <span class="math notranslate nohighlight">\(\left\langle \left( x_i - \mu_i \right) \left( x_j - \mu_j \right) \right\rangle\)</span>, where <span class="math notranslate nohighlight">\(i \neq j\)</span>, then MaxEnt would assign a correlated, multivariate Gaussian pdf for <span class="math notranslate nohighlight">\(p\left( \{ x_k \} | I \right)\)</span>.</p>
 <!-- !split -->
 <div class="section" id="counting-statistics-and-the-poisson-distribution">
-<h3><span class="section-number">18.2.1. </span>Counting statistics and the Poisson distribution<a class="headerlink" href="#counting-statistics-and-the-poisson-distribution" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">15.2.1. </span>Counting statistics and the Poisson distribution<a class="headerlink" href="#counting-statistics-and-the-poisson-distribution" title="Permalink to this headline">¶</a></h3>
 <p>The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.</p>
 </div>
 </div>
@@ -671,8 +671,8 @@ These arguments extend easily to the case of several parameters. For example, co
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-ErrorPropagation.html" title="previous page"><span class="section-number">15. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)</a>
-    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">19. </span>Assigning probabilities</a>
+    <a class='left-prev' id="prev-link" href="demo-ErrorPropagation.html" title="previous page"><span class="section-number">12. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)</a>
+    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">16. </span>Assigning probabilities</a>
 
         </div>
         

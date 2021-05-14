@@ -1,18 +1,9 @@
-% Learning from data: Bayesian Parameter Estimation
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
-
 <!-- !split -->
 <!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
 ![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](fig/BayesianParameterEstimation/m1m2.png)
 
 <!-- !split -->
-## Inference With Parametric Models
+# Inference With Parametric Models
 Inductive inference with parametric models is a very important tool in the natural sciences.
 * Consider $N$ different models $M_i$ ($i = 1, \ldots, N$), each with a parameter vector $\boldsymbol{\theta}_i$. The number of parameters (length of $\boldsymbol{\theta}_i$) might be different for different models. Each of them implies a sampling distribution for possible data
 
@@ -35,27 +26,34 @@ $$
 
 
 <!-- !split -->
-Parameter Estimation:
-  :    
-  Premise = We have chosen a model (say $M_1$)\n
+```{Admonition} Parameter Estimation:
+  :class: tip
+  Premise = We have chosen a model (say $M_1$)
+  
   $\Rightarrow$ What can we say about its parameters $\boldsymbol{\theta}_1$?
-Model comparison:
-  :    
-  Premise = We have a set of different models $\{M_i\}$\n
+  ```
+```{Admonition} Model comparison:
+  :class: tip
+  Premise = We have a set of different models $\{M_i\}$
+  
   $\Rightarrow$ How do they compare with each other? Do we have evidence to say that, e.g. $M_1$, is better than $M_2$?
-Model adequacy:
-  :    
-  Premise = We have a model $M_1$\n
+  ```
+```{Admonition} Model adequacy:
+  :class: tip
+  Premise = We have a model $M_1$
+  
   $\Rightarrow$ Is $M_1$ adequate?
-Hybrid Uncertainty:
-  :    
-  Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$\n
+  ```
+```{Admonition} Hybrid Uncertainty:
+  :class: tip
+  Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$
+  
   $\Rightarrow$ What can we say about $\boldsymbol{\varphi}$? (Systematic error is an example)
-
+```
 
 
 <!-- !split -->
-### Parameter estimation
+## Parameter estimation
 Overview comments:
 * In general terms, "parameter estimation" in physics means obtaining values for parameters (constants) that appear in a theoretical model which describes data (exceptions to this general definition exist of course).
 * Conventionally this process is known as "parameter fitting" and very often the goal is just to find the "best fit".
@@ -89,31 +87,31 @@ The question is, given this set of measurements $D = \{F_i\}_{i=0}^{N-1}$, and t
 Because the measurements are number counts, a Poisson distribution is a good approximation to the measurement process:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 import emcee
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 np.random.seed(1)      # for repeatability
 F_true = 1000          # true flux, say number of photons measured in 1 second
 N = 50                 # number of measurements
 F = stats.poisson(F_true).rvs(N)
                        # N measurements of the flux
 e = np.sqrt(F)         # errors on Poisson counts estimated via square root
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Now let's make a simple visualization of the "observed" data, see Fig. [fig:flux](#fig:flux).
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 fig, ax = plt.subplots()
 ax.errorbar(F, np.arange(N), xerr=e, fmt='ok', ecolor='gray', alpha=0.5)
 ax.vlines([F_true], 0, N, linewidth=5, alpha=0.2)
 ax.set_xlabel("Flux");ax.set_ylabel("measurement number");
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_1.png" width=400><p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p> -->
 ![<p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_1.png)
@@ -122,7 +120,7 @@ These measurements each have a different error $e_i$ which is estimated from Poi
 
 Let's take a look at the frequentist and Bayesian approaches to solving this.
 
-#### Simple Photon Counts: Frequentist Approach
+### Simple Photon Counts: Frequentist Approach
 
 We'll start with the classical frequentist maximum likelihood approach. Given a single observation $D_i = F_i$, we can compute the probability distribution of the measurement given the true flux $F_\mathrm{true}$ and our assumption of Gaussian errors
 
@@ -183,12 +181,12 @@ We can go further and ask what the error of our estimate is. In the frequentist 
 These results are fairly simple calculations; let's evaluate them for our toy dataset:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```
 w=1./e**2
 print(f"""
 F_true = {F_true}
 F_est = {(w * F).sum() / w.sum():.0f} +/- { w.sum() ** -0.5:.0f} (based on {N} measurements) """)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 `F_true = 1000` \n
 `F_est = 998 +/- 4 (based on 50 measurements)` \n
@@ -196,7 +194,7 @@ F_est = {(w * F).sum() / w.sum():.0f} +/- { w.sum() ** -0.5:.0f} (based on {N} m
 We find that for 50 measurements of the flux, our estimate has an error of about 0.4% and is consistent with the input value.
 
 
-#### Simple Photon Counts: Bayesian Approach
+### Simple Photon Counts: Bayesian Approach
 
 The Bayesian approach, as you might expect, begins and ends with probabilities. Our hypothesis is that the star has a constant flux $F_\mathrm{true}$. It recognizes that what we fundamentally want to compute is our knowledge of the parameter in question given the data and other information (such as our knowledge of uncertainties for the observed values), i.e. in this case, $p(F_\mathrm{true} | D,I)$.
 Note that this formulation of the problem is fundamentally contrary to the frequentist philosophy, which says that probabilities have no meaning for model parameters like $F_\mathrm{true}$. Nevertheless, within the Bayesian philosophy this is perfectly acceptable.
@@ -206,20 +204,20 @@ If we set the prior $p(F_\mathrm{true}|I) \propto 1$ (a flat prior), we find
 $p(F_\mathrm{true}|D,I) \propto p(D | F_\mathrm{true},I) \equiv \mathcal{L}(F_\mathrm{true})$
 and the Bayesian probability is maximized at precisely the same value as the frequentist result! So despite the philosophical differences, we see that (for this simple problem at least) the Bayesian and frequentist point estimates are equivalent.
 
-#### A note about priors
+### A note about priors
 
 The prior allows inclusion of other information into the computation, which becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model. The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.
 A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a noninformative prior like the flat prior mentioned above, there are some [surprisingly subtleties](http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative- priors/comment-page-1/) involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.
 A Bayesian would counter that frequentism doesn't solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it's better to make this implicit choice explicit, even if the choice might include some subjectivity.
 
-#### Simple Photon Counts: Bayesian approach in practice
+### Simple Photon Counts: Bayesian approach in practice
 
 Leaving these philosophical debates aside for the time being, let's address how Bayesian results are generally computed in practice. For a one parameter problem like the one considered here, it's as simple as computing the posterior probability $p(F_\mathrm{true} | D,I)$ as a function of $F_\mathrm{true}$: this is the distribution reflecting our knowledge of the parameter $F_\mathrm{true}$.
 But as the dimension of the model grows, this direct approach becomes increasingly intractable. For this reason, Bayesian calculations often depend on sampling methods such as Markov Chain Monte Carlo (MCMC). For this practical example, let us apply an MCMC approach using Dan Foreman-Mackey's [emcee](http://dan.iel.fm/emcee/current/) package. Keep in mind here that the goal is to generate a set of points drawn from the posterior probability distribution, and to use those points to determine the answer we seek.
 To perform this MCMC, we start by defining Python functions for the prior $p(F_\mathrm{true} | I)$, the likelihood $p(D | F_\mathrm{true},I)$, and the posterior $p(F_\mathrm{true} | D,I)$, noting that none of these need be properly normalized. Our model here is one-dimensional, but to handle multi-dimensional models we'll define the model in terms of an array of parameters $\boldsymbol{\theta}$, which in this case is $\boldsymbol{\theta} = [F_\mathrm{true}]$
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 def log_prior(theta):
     if theta>0 and theta<10000:
         return 0 # flat prior
@@ -232,12 +230,12 @@ def log_likelihood(theta, F, e):
                              
 def log_posterior(theta, F, e):
     return log_prior(theta) + log_likelihood(theta, F, e)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Now we set up the problem, including generating some random starting guesses for the multiple chains of points.
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 ndim = 1      # number of parameters in the model
 nwalkers = 50 # number of MCMC walkers
 nwarm = 1000  # "warm-up" period to let chains stabilize
@@ -249,17 +247,17 @@ sampler.run_mcmc(starting_guesses, nsteps)
 # Shape of sampler.chain  = (nwalkers, nsteps, ndim)
 # Flatten the sampler chain and discard warm-in points:
 samples = sampler.chain[:, nwarm:, :].reshape((-1, ndim))
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 If this all worked correctly, the array sample should contain a series of 50,000 points drawn from the posterior. Let's plot them and check. See results in Fig. [fig:flux-bayesian](#fig:flux-bayesian).
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 fig, ax = plt.subplots()
 ax.hist(samples, bins=50, histtype="stepfilled", alpha=0.3, density=True)
 ax.set_xlabel(r'$F_\mathrm{est}$')
 ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$');
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
 ![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_2.png)
@@ -328,12 +326,12 @@ Let's try again to understand this: If we make a large number of repeated sample
 
 
 
-#### Simple Photon Counts: Best estimates and credible intervals
+### Simple Photon Counts: Best estimates and credible intervals
 
 To compute these numbers for our example, you would run:
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 sampper=np.percentile(samples, [2.5, 16.5, 50, 83.5, 97.5],axis=0).flatten()
 print(f"""
 F_true = {F_true}
@@ -343,7 +341,7 @@ or using credibility intervals:
 ...F_est = {sampper[2]:.0f}          (posterior median) 
 ...F_est in [{sampper[1]:.0f}, {sampper[3]:.0f}] (67% credibility interval) 
 ...F_est in [{sampper[0]:.0f}, {sampper[4]:.0f}] (95% credibility interval) """)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 `F_true = 1000` \n
 `Based on 50 measurements the posterior point estimates are:` \n

@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   6. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   7. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   8. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   11. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   15. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   16. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   17. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -450,26 +450,29 @@
 <div class="section" id="how-do-you-feel-about-statistics">
 <h2><span class="section-number">1.1. </span>How do you feel about statistics?<a class="headerlink" href="#how-do-you-feel-about-statistics" title="Permalink to this headline">¶</a></h2>
 <!-- !bpop -->
-<p>Disraeli (attr.):</p>
-<blockquote>
+<blockquote class="epigraph">
+<div><blockquote>
 <div><p>“There are three kinds of lies: lies, damned lies, and statistics.”</p>
 </div></blockquote>
+<p class="attribution">—Disraeli (attr.): </p>
+</div></blockquote>
 <!-- !epop -->
 <!-- !bpop -->
-<p>Rutherford:</p>
-<blockquote>
+<blockquote class="epigraph">
+<div><blockquote>
 <div><p>“If your result needs a statistician then you should design a better experiment.”</p>
 </div></blockquote>
-<!-- !epop -->
-<!-- !bpop -->
-<p>Laplace:</p>
-<blockquote>
-<div><p>“La théorie des probabilités n’est que le bon sens réduit au calcul”</p>
+<p class="attribution">—Rutherford</p>
 </div></blockquote>
 <!-- !epop -->
 <!-- !bpop -->
-<p>Bayesian Methods: rules of statistical inference are an application of the laws of probability</p>
-<!-- !epop -->
+<blockquote class="epigraph">
+<div><blockquote>
+<div><p>“La théorie des probabilités n’est que le bon sens réduit au calcul”</p>
+<p>(rules of statistical inference are an application of the laws of probability)</p>
+</div></blockquote>
+<p class="attribution">—Laplace</p>
+</div></blockquote>
 <!-- !split -->
 <div class="section" id="inference">
 <h3><span class="section-number">1.1.1. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h3>
@@ -487,7 +490,7 @@
 </div>
 <div class="section" id="some-history">
 <h3><span class="section-number">1.1.2. </span>Some history<a class="headerlink" href="#some-history" title="Permalink to this headline">¶</a></h3>
-<p>Adapted from D.S. Sivia<a class="footnote-reference brackets" href="#sivia" id="id1">1</a>:</p>
+<p>Adapted<a class="footnote-reference brackets" href="#sivia" id="id1">1</a> from D.S. Sivia <span id="id2">[<span>Sivia2006</span>]</span></p>
 <blockquote>
 <div><p>Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].</p>
 </div></blockquote>
@@ -552,8 +555,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18f462dc-e659-4e54-8a47-d94b41a0a2e9">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-18f462dc-e659-4e54-8a47-d94b41a0a2e9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5cd2f92f-e78d-49a3-847b-8947fbae8b7b">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-5cd2f92f-e78d-49a3-847b-8947fbae8b7b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -588,8 +591,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2c4b8ee-2c1e-4629-a6de-bea9906c5d56">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-d2c4b8ee-2c1e-4629-a6de-bea9906c5d56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-904c5d24-63b1-49c7-b26d-fd8d6e10a13b">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-904c5d24-63b1-49c7-b26d-fd8d6e10a13b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>

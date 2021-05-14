@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   6. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   7. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   8. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   11. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   15. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   16. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   17. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -416,8 +416,8 @@ Normalization:
 <div class="math notranslate nohighlight">
 \[p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.\]</div>
 <p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03303eae-fbc4-4794-b138-3a5c1faa7213">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-03303eae-fbc4-4794-b138-3a5c1faa7213" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7869446d-4ea9-4382-b496-0c6c3b1574c7">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-7869446d-4ea9-4382-b496-0c6c3b1574c7" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(H|D,I) &amp;= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
 \label{eq:bayes}
 \end{align}\]</div>
@@ -465,15 +465,15 @@ Given that we had observed 6 heads in 8 flips, would you think it was a fair coi
 <p>In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: <span class="math notranslate nohighlight">\(p(p_H|D,I)\)</span>. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of <span class="math notranslate nohighlight">\(p_H\)</span>; that is to say, the probability that <span class="math notranslate nohighlight">\(p_H\)</span> lies in an infinitesimally narrow range is given by <span class="math notranslate nohighlight">\(p(p_H|D,I) dp_H\)</span>.</p>
 <!-- !split -->
 <p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c1c5360-28f0-425f-b6e1-6f30c9a2996c">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-3c1c5360-28f0-425f-b6e1-6f30c9a2996c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c75aae4-db25-4065-8ac5-0f86b31a3770">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-9c75aae4-db25-4065-8ac5-0f86b31a3770" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \int_0^1 p(p_H|D,I) dp_H = 1.
 \label{eq:coin_posterior_norm}
 \end{equation}\]</div>
 <!-- !split -->
 <p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a520a9c-d43b-4411-b94f-e366d029b372">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-4a520a9c-d43b-4411-b94f-e366d029b372" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a39a35f-d107-49ea-8262-fd737edbaca3">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-2a39a35f-d107-49ea-8262-fd737edbaca3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(p_H|I) = \left\{ \begin{array}{ll}
 1 &amp; 0 \le p_H \le 1, \\
 0 &amp; \mathrm{otherwise}.
@@ -484,8 +484,8 @@ p(p_H|I) = \left\{ \begin{array}{ll}
 <!-- !split -->
 <p>This prior state of knowledge, or ignorance, is modified by the data through the likelihood function <span class="math notranslate nohighlight">\(p(D|p_H,I)\)</span>. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information <span class="math notranslate nohighlight">\(I\)</span>, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses’ is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8930a1aa-7b38-4371-97d0-5af1fe9672f6">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-8930a1aa-7b38-4371-97d0-5af1fe9672f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af196b2f-9859-401b-aa32-ca042fd09383">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-af196b2f-9859-401b-aa32-ca042fd09383" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 \end{equation}\]</div>
 <p>$$</p>

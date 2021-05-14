@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   9. Bayesian parameter estimation demonstration
+   6. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   10. Exercise: Bayesian parameter estimation
+   7. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   11. Why MCMC
+   8. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   14. Why Bayes is Better
+   11. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   18. Ignorance pdfs: Indifference and translation groups
+   15. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   19. Assigning probabilities
+   16. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   20. Frequentist hypothesis testing
+   17. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -425,8 +425,8 @@ where \)</span>\boldsymbol{w} = \left{ w_i \right}_{i=1}^I<span class="math notr
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80386157-db88-4857-b76e-36342dfefd3d">
-<span class="eqno">(13.1)<a class="headerlink" href="#equation-80386157-db88-4857-b76e-36342dfefd3d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a4ddbf9-58cc-420f-a932-ad10cf370845">
+<span class="eqno">(13.1)<a class="headerlink" href="#equation-1a4ddbf9-58cc-420f-a932-ad10cf370845" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
 \end{align}\]</div>
@@ -547,8 +547,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 \[
 Note that the logarithm of the last term has no dependence on $\boldsymbol{w}$ and the integration of $q$ will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the **Evidence Lower Bound** (ELBO)
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-070de2f7-cf18-4c06-b912-3c04f735c48d">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-070de2f7-cf18-4c06-b912-3c04f735c48d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-44ad8872-9f9e-4f01-a01d-a66f0c0bb7f5">
+<span class="eqno">(13.2)<a class="headerlink" href="#equation-44ad8872-9f9e-4f01-a01d-a66f0c0bb7f5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log \, p(\mathcal{D}) \ge 
 - \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
@@ -571,8 +571,8 @@ In the demonstration notebook of this lecture, it is shown how to use Variationa
 ![&lt;p&gt;&lt;em&gt;The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.&lt;/em&gt;&lt;/p&gt;](fig/ADVI-classifier.png)\\See also 
 * Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). *Automatic Differentiation Variational Inference*. arXiv preprint arXiv:&quot;1603.00788&quot;: 'https://arxiv.org/abs/1603.00788&quot;.\\&lt;!-- !split --&gt;
 ### Bayes by Backprop\\The well-cited paper paper: [Weight Uncertainty in Neural Networks](https://arxiv.org/abs/1505.05424) (*Bayes by Backprop*) has been well described in the [blog entry](http://krasserm.github.io/2019/03/14/bayesian-neural-networks/) by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation. \\All three terms in equation ([eq:elbo](#eq:elbo)) are expectations w.r.t. the variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$. In this paper they use the variational free energy $\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})$ as a cost function (since it should be *minimized*). This quantity can be approximated by drawing [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) samples $\boldsymbol{w}^{(i)}$ from $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$.\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9a093354-9c4b-4d19-bb8a-f6b4973cdb97">
-<span class="eqno">(13.3)<a class="headerlink" href="#equation-9a093354-9c4b-4d19-bb8a-f6b4973cdb97" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-d744f87c-a595-453d-bd2c-385da2b9a923">
+<span class="eqno">(13.3)<a class="headerlink" href="#equation-d744f87c-a595-453d-bd2c-385da2b9a923" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
 \log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
 \log \, p(\boldsymbol{w}^{(i)}) -

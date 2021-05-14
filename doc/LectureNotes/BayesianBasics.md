@@ -3,30 +3,31 @@
 <!-- !split -->
 ## How do you feel about statistics?
 <!-- !bpop -->
-Disraeli (attr.): 
+```{epigraph}
 > “There are three kinds of lies: lies, damned lies, and statistics.”
 
+-- Disraeli (attr.): 
+```
 
 <!-- !epop -->
 
 <!-- !bpop -->
-Rutherford:
+```{epigraph}
 > “If your result needs a statistician then you should design a better experiment.”
 
+-- Rutherford
+```
 
 <!-- !epop -->
 
 <!-- !bpop -->
-Laplace:
+```{epigraph}
 > “La théorie des probabilités n'est que le bon sens réduit au calcul”
+>
+> (rules of statistical inference are an application of the laws of probability)
 
-
-<!-- !epop -->
-
-<!-- !bpop -->
-Bayesian Methods: rules of statistical inference are an application of the laws of probability
-<!-- !epop -->
-
+-- Laplace
+```
 
 <!-- !split -->
 ### Inference
@@ -40,7 +41,7 @@ Bayesian Methods: rules of statistical inference are an application of the laws 
 
 <!-- !split -->
 ### Some history
-Adapted from D.S. Sivia[^Sivia]:
+Adapted[^Sivia] from D.S. Sivia {cite}`Sivia2006`
 
 [^Sivia]: Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006
 

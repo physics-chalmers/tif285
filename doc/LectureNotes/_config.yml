@@ -60,6 +60,9 @@ html:
 latex:
   latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
 
+bibtex_bibfiles:
+    - references.bib
+    
 #######################################################################################
 # Launch button settings
 launch_buttons:
