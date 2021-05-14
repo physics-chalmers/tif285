@@ -201,7 +201,7 @@ print(f'100000 [20]:  {np.mean(mean100000c):.3f} +/- {np.std(mean100000c):.3f}')
 #  of the predictions for the mean.
 
 
-# In[23]:
+# In[9]:
 
 
 fig,ax = plt.subplots(1,1)

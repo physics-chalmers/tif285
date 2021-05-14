@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Gaussian processes demonstration &#8212; Learning from data</title>
+    <title>2. Gaussian processes demonstration &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -53,8 +55,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Exercise: Gaussian processes" href="exercise_GP.html" />
-    <link rel="prev" title="1. Inference using Gaussian processes" href="GaussianProcesses.html" />
+    <link rel="next" title="3. Exercise: Gaussian processes" href="exercise_GP.html" />
+    <link rel="prev" title="1. Gaussian processes" href="GaussianProcesses.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -235,62 +237,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Gaussian processes demonstration
+   2. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   4. Exercise: Gaussian processes
+   3. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   5. Logistic Regression
+   4. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   7. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   8. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   9. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   10. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   11. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   14. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   15. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   16. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -384,27 +386,27 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions">
-   3.1. Gaussian processes as infinite-dimensional Gaussian distributions
+   2.1. Gaussian processes as infinite-dimensional Gaussian distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#intuition-by-sampling-and-plotting-multivariate-gaussians">
-     3.1.1. Intuition by sampling and plotting multivariate Gaussians
+     2.1.1. Intuition by sampling and plotting multivariate Gaussians
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mean-and-covariance-function">
-     3.1.2. Mean and covariance function
+     2.1.2. Mean and covariance function
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#covariance-functions-aka-kernels">
-     3.1.3. Covariance functions, aka kernels
+     2.1.3. Covariance functions, aka kernels
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-rbf-kernel-a-k-a-gaussian">
-       3.1.3.1. The RBF kernel (a.k.a Gaussian)
+       2.1.3.1. The RBF kernel (a.k.a Gaussian)
       </a>
      </li>
     </ul>
@@ -413,12 +415,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-gp-models-for-regression">
-   3.2. Example: GP models for regression
+   2.2. Example: GP models for regression
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#no-core-shell-model-hbar-omega-dependence">
-     3.2.1. No-core shell model
+     2.2.1. No-core shell model
      <span class="math notranslate nohighlight">
       \(\hbar\omega\)
      </span>
@@ -439,7 +441,7 @@
               <div>
                 
   <div class="section" id="gaussian-processes-demonstration">
-<h1><span class="section-number">3. </span>Gaussian processes demonstration<a class="headerlink" href="#gaussian-processes-demonstration" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>Gaussian processes demonstration<a class="headerlink" href="#gaussian-processes-demonstration" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 04-Oct-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -459,12 +461,12 @@
 </div>
 </div>
 <div class="section" id="gaussian-processes-as-infinite-dimensional-gaussian-distributions">
-<h2><span class="section-number">3.1. </span>Gaussian processes as infinite-dimensional Gaussian distributions<a class="headerlink" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Gaussian processes as infinite-dimensional Gaussian distributions<a class="headerlink" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions" title="Permalink to this headline">¶</a></h2>
 <p>Adapted partly from a tutorial by <a class="reference external" href="http://adamian.github.io/talks/Brown2016.html">Andreas Damianou</a> (2016).</p>
 <p>A Gaussian process (GP) is a collection of random variables, any finite number of which have a joint Gaussian distribution.</p>
 <p>Equivalently, a GP can be seen as a stochastic process which corresponds to an infinite dimensional Gaussian distribution.</p>
 <div class="section" id="intuition-by-sampling-and-plotting-multivariate-gaussians">
-<h3><span class="section-number">3.1.1. </span>Intuition by sampling and plotting multivariate Gaussians<a class="headerlink" href="#intuition-by-sampling-and-plotting-multivariate-gaussians" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.1. </span>Intuition by sampling and plotting multivariate Gaussians<a class="headerlink" href="#intuition-by-sampling-and-plotting-multivariate-gaussians" title="Permalink to this headline">¶</a></h3>
 <p>Let’s first define some plotting functions that we’ll use later.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,7 +701,7 @@ Eigenvalues all larger than zero
 <p>We see that each sample now starts looking like a “smooth” curve (notice that the random variables are highly correlated). Therefore, we now have a clear intuition as to why a GP can be seen as an <em>infinite dimensional multivariate Gaussian</em> which is used as a <em>prior over functions</em>, since one sample from a GP is a function.</p>
 </div>
 <div class="section" id="mean-and-covariance-function">
-<h3><span class="section-number">3.1.2. </span>Mean and covariance function<a class="headerlink" href="#mean-and-covariance-function" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.2. </span>Mean and covariance function<a class="headerlink" href="#mean-and-covariance-function" title="Permalink to this headline">¶</a></h3>
 <p>Similarly to how a D-dimensional Gaussian is parameterized by its mean vector and its covariance matrix, a GP is parameterized by a mean <em>function</em> and a covariance <em>function</em>. To explain this, we’ll assume (without loss of generality) that the mean function is <span class="math notranslate nohighlight">\(\mu(x) = \mathbf{0}\)</span>. As for the covariance function, <span class="math notranslate nohighlight">\(C(x,x')\)</span>, it is a function that receives as input two locations <span class="math notranslate nohighlight">\(x,x'\)</span> belonging to the input domain, i.e. <span class="math notranslate nohighlight">\(x,x' \in \mathcal{X}\)</span>, and returns the value of their co-variance.</p>
 <p>In this way, if we have a <em>finite</em> set of input locations we can evaluate the covariance function at every pair of locations and obtain a covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. We write:
 $<span class="math notranslate nohighlight">\(
@@ -709,7 +711,7 @@ where \)</span>\mathbf{X}$ is the collection of training inputs.</p>
 <p>More on covariance functions later. For the moment, think of them as kind of a black box.</p>
 </div>
 <div class="section" id="covariance-functions-aka-kernels">
-<h3><span class="section-number">3.1.3. </span>Covariance functions, aka kernels<a class="headerlink" href="#covariance-functions-aka-kernels" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.3. </span>Covariance functions, aka kernels<a class="headerlink" href="#covariance-functions-aka-kernels" title="Permalink to this headline">¶</a></h3>
 <p>We saw above their role for creating covariance matrices from training inputs, thereby allowing us to work with a finite domain when it is potentially infinite.</p>
 <p>We’ll see below that the covariance function is what encodes our assumption about the GP. By selecting a covariance function, we are making implicit assumptions about the shape of the function we wish to encode with the GP, for example how smooth it is.</p>
 <p>Even if the covariance function has a parametric form, combined with the GP it gives us a nonparametric model. In other words, the covariance function is specifying the general properties of the GP function we wish to encode, and not a specific parametric form for it.</p>
@@ -723,7 +725,7 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
 \)</span>$</p>
 <p>Below, we will implement and investigate them.</p>
 <div class="section" id="the-rbf-kernel-a-k-a-gaussian">
-<h4><span class="section-number">3.1.3.1. </span>The RBF kernel (a.k.a Gaussian)<a class="headerlink" href="#the-rbf-kernel-a-k-a-gaussian" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">2.1.3.1. </span>The RBF kernel (a.k.a Gaussian)<a class="headerlink" href="#the-rbf-kernel-a-k-a-gaussian" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cov_RBF</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])):</span>        
@@ -789,9 +791,9 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
 </div>
 </div>
 <div class="section" id="example-gp-models-for-regression">
-<h2><span class="section-number">3.2. </span>Example: GP models for regression<a class="headerlink" href="#example-gp-models-for-regression" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Example: GP models for regression<a class="headerlink" href="#example-gp-models-for-regression" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="no-core-shell-model-hbar-omega-dependence">
-<h3><span class="section-number">3.2.1. </span>No-core shell model <span class="math notranslate nohighlight">\(\hbar\omega\)</span> dependence<a class="headerlink" href="#no-core-shell-model-hbar-omega-dependence" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.1. </span>No-core shell model <span class="math notranslate nohighlight">\(\hbar\omega\)</span> dependence<a class="headerlink" href="#no-core-shell-model-hbar-omega-dependence" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some NCSM data from</span>
@@ -910,8 +912,8 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="GaussianProcesses.html" title="previous page"><span class="section-number">1. </span>Inference using Gaussian processes</a>
-    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">4. </span>Exercise: Gaussian processes</a>
+    <a class='left-prev' id="prev-link" href="GaussianProcesses.html" title="previous page"><span class="section-number">1. </span>Gaussian processes</a>
+    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">3. </span>Exercise: Gaussian processes</a>
 
         </div>
         

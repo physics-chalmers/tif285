@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Convolutional Neural Network 
-# ## Image recognition demonstration
+# # Image recognition demonstration with Convolutional Neural Networks
 # 
 # Last revised: 20-Oct-2019 by Christian Forssén [christian.forssen@chalmers.se]
 
@@ -24,7 +23,7 @@
 # limitations under the License.
 
 
-# # Convolutional Neural Network (CNN)
+# ## Convolutional Neural Network (CNN)
 
 # <table class="tfo-notebook-buttons" align="left">
 #   <td>
@@ -192,7 +191,7 @@ print(test_acc)
 
 # Our simple CNN has achieved a test accuracy of over 70%. Not bad for a few lines of code! For another CNN style, see an example using the Keras subclassing API and a `tf.GradientTape` [here](https://www.tensorflow.org/tutorials/quickstart/advanced).
 
-# # Making predictions
+# ## Making predictions
 # from https://www.tensorflow.org/tutorials/keras/classification
 
 # In[16]:

@@ -25,7 +25,7 @@ sns.set('talk')
 
 # ## Generate data
 
-# In[6]:
+# In[2]:
 
 
 # Let us generate some data from a cubic model with noise
@@ -42,7 +42,7 @@ for order in range(len(theta_true)):
     y += theta_true[order] * x**order
 
 
-# In[8]:
+# In[3]:
 
 
 # Plot the data. It is pretty tricky to see the features
@@ -57,7 +57,7 @@ ax.set_ylabel("$y$");
 
 # We will explore fitting to models that have both too many and too few features.
 
-# In[12]:
+# In[4]:
 
 
 # For these fits we will employ scaling of the data
@@ -105,7 +105,7 @@ ax.set_ylabel("$y$");
 
 # ### Bias-variance tradeoff
 
-# In[13]:
+# In[5]:
 
 
 from sklearn.model_selection import train_test_split
@@ -160,13 +160,13 @@ ax.set_ylabel("Bias-Variance");
 
 # ### Ridge regression
 
-# In[14]:
+# In[6]:
 
 
 from sklearn.linear_model import Ridge
 
 
-# In[15]:
+# In[7]:
 
 
 def train_ridge_model(x_train, y_train, alpha, x_predict=None, degree=1, **model_kargs):
@@ -182,7 +182,7 @@ def train_ridge_model(x_train, y_train, alpha, x_predict=None, degree=1, **model
     return model.predict(x_predict)
 
 
-# In[19]:
+# In[8]:
 
 
 fig,axs = plt.subplots(1,2,figsize=(14,8))
@@ -212,7 +212,7 @@ axs[0].set_ylabel("$y$");
 # 
 # **Learning curves** are plots of the model's performance on both the training and the validation sets, measured by some performance metric such as the mean squared error. This measure is plotted as a function of the size of the training set, or alternatively as a function of the training iterations.
 
-# In[22]:
+# In[9]:
 
 
 # built-in convenience function for computing the MSE metric
@@ -242,7 +242,7 @@ def plot_learning_curves(model, x, y, ax=None):
 
 # Let us use both a first-order and a high-order polynomial to model the training data and plot the learning curve. Recall that a low mean-square error implies that the model predicts the data very well.
 
-# In[23]:
+# In[10]:
 
 
 from sklearn.pipeline import Pipeline

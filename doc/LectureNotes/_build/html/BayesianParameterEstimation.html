@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -235,7 +237,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,42 +257,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -588,45 +590,45 @@ The question is, given this set of measurements <span class="math notranslate no
 <div class="section" id="simple-photon-counts-frequentist-approach">
 <h3><span class="section-number">5.2.1. </span>Simple Photon Counts: Frequentist Approach<a class="headerlink" href="#simple-photon-counts-frequentist-approach" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist maximum likelihood approach. Given a single observation <span class="math notranslate nohighlight">\(D_i = F_i\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and our assumption of Gaussian errors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b94a654-0c81-4eec-98a0-4952c101d770">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-7b94a654-0c81-4eec-98a0-4952c101d770" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6da3ad70-6de6-4a77-b0d4-59d37abbb79c">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-6da3ad70-6de6-4a77-b0d4-59d37abbb79c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}\]</div>
 <p>This should be read “the probability of <span class="math notranslate nohighlight">\(D_i\)</span> given <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>
 equals …”. You should recognize this as a normal distribution with mean <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>.</p>
 <p>We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8beb0391-3598-4c18-9727-438572cd0364">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-8beb0391-3598-4c18-9727-438572cd0364" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-929eec58-4010-4e28-9db5-c0f8635f8504">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-929eec58-4010-4e28-9db5-c0f8635f8504" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}\]</div>
 <p>here <span class="math notranslate nohighlight">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.</p>
 <p><em>Notice.</em>
 In the following we will use <span class="math notranslate nohighlight">\(\log\)</span> to denote the natural logarithm. We will write <span class="math notranslate nohighlight">\(\log_{10}\)</span> if we specifically mean the logarithm with base 10.</p>
 <p>Combining the previous two equations and computing the log, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6236bd6b-7259-4ca7-80ab-6cb9ed6e4765">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-6236bd6b-7259-4ca7-80ab-6cb9ed6e4765" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-04ce0079-5e66-48b8-ad52-d68436639615">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-04ce0079-5e66-48b8-ad52-d68436639615" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}\]</div>
 <p>In this approach we will determine <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3c3f75e-f162-4120-a17c-90627700100c">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-e3c3f75e-f162-4120-a17c-90627700100c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5e9d8055-7284-4ad0-a770-ebdac1b2779c">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-5e9d8055-7284-4ad0-a770-ebdac1b2779c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}\]</div>
 <p>which you should recognize as the chi-squared function encountered in the linear regression model.</p>
 <p>Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting <span class="math notranslate nohighlight">\(d\log\mathcal{L}/d F_\mathrm{true} = 0\)</span>). This results in the following observed estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f56d1f4-aadb-49d6-8cc0-a37ff1f21171">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-7f56d1f4-aadb-49d6-8cc0-a37ff1f21171" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e62194b-5cf8-4caa-9f14-d38e6299763e">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-7e62194b-5cf8-4caa-9f14-d38e6299763e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}\]</div>
 <p>Notice that in the special case of all errors <span class="math notranslate nohighlight">\(e_i\)</span> being equal, this reduces to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9721355-8fa4-4a90-a9cf-cbadb4c460b6">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-d9721355-8fa4-4a90-a9cf-cbadb4c460b6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e37bf650-b846-43e5-a378-6d348ec7db07">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-e37bf650-b846-43e5-a378-6d348ec7db07" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}\]</div>
 <p>That is, in agreement with intuition, <span class="math notranslate nohighlight">\(F_\mathrm{est}\)</span> is simply the mean of the observed data when errors are equal.</p>
 <p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is <span class="math notranslate nohighlight">\(\sigma_\mathrm{est}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0140e66d-1a78-4555-a9e4-d6d004328cdd">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-0140e66d-1a78-4555-a9e4-d6d004328cdd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3194c50f-93d5-4ba6-ae6f-7a5a2d2c07a4">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-3194c50f-93d5-4ba6-ae6f-7a5a2d2c07a4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}\]</div>
 <p>These results are fairly simple calculations; let’s evaluate them for our toy dataset:</p>
@@ -708,8 +710,8 @@ To perform this MCMC, we start by defining Python functions for the prior <span 
 <h4><span class="section-number">5.2.5.1. </span>Symmetric posterior pdfs<a class="headerlink" href="#symmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h4>
 <p>Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by <span class="math notranslate nohighlight">\(\theta\)</span>, with a posterior pdf <span class="math notranslate nohighlight">\(P =p(\theta|D,I)\)</span>, then the best estimate of its value <span class="math notranslate nohighlight">\(\theta_0\)</span> is given by the condition <span class="math notranslate nohighlight">\(dP/d\theta|_{\theta=\theta_0}=0\)</span>. Strictly speaking, we should also check the sign of the second derivative to ensure that <span class="math notranslate nohighlight">\(\theta_0\)</span> represents a maximum.</p>
 <p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df0cd706-0248-4148-9162-57a5ef10f243">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-df0cd706-0248-4148-9162-57a5ef10f243" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfa122bd-635a-42d0-a2a9-dcb8a8530da7">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-cfa122bd-635a-42d0-a2a9-dcb8a8530da7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}\]</div>
 <p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>

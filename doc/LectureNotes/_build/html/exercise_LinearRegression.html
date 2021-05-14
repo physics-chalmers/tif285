@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -235,7 +237,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,42 +257,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -542,6 +544,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_5_0.png" src="_images/exercise_LinearRegression_5_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="linear-regression">
@@ -558,6 +563,11 @@
 <span class="c1"># Print the linear regression parameters (with a specified precision)</span>
 <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">lin_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.2151] [[3.7701]]
 </pre></div>
 </div>
 </div>
@@ -580,6 +590,9 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_10_0.png" src="_images/exercise_LinearRegression_10_0.png" />
 </div>
 </div>
 </div>
@@ -604,6 +617,11 @@ It is a linear model with two features corresponding to the two terms in a polyn
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 2)
 </pre></div>
 </div>
 </div>
@@ -633,11 +651,23 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2.21509616],
+       [3.77011339]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>This function computes <span class="math notranslate nohighlight">\(\mathbf{X}^+\mathbf{y}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{X}^{+}\)</span> is the <em>pseudoinverse</em> of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> (specifically the Moore-Penrose inverse). You can use <code class="docutils literal notranslate"><span class="pre">np.linalg.pinv()</span></code> to compute the pseudoinverse directly:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_d</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2.21509616],
+       [3.77011339]])
 </pre></div>
 </div>
 </div>
@@ -674,12 +704,24 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2.2151]
+ [3.7701]]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
 <span class="n">X_predict_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X_predict</span><span class="p">]</span>  
 <span class="n">X_predict_d</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2.21509616],
+       [9.75532293]])
 </pre></div>
 </div>
 </div>
@@ -771,10 +813,19 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_30_0.png" src="_images/exercise_LinearRegression_30_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2.21140454],
+       [3.74797916]])
 </pre></div>
 </div>
 </div>
@@ -788,10 +839,20 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SGDRegressor(eta0=0.1, max_iter=50, penalty=None, random_state=42, tol=-inf)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">sgd_reg</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([2.16782317]), array([3.7260286]))
 </pre></div>
 </div>
 </div>
@@ -860,6 +921,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_43_0.png" src="_images/exercise_LinearRegression_43_0.png" />
+</div>
 </div>
 <div class="section" id="using-scikit-learn">
 <h3><span class="section-number">5.5.1. </span>using scikit-learn<a class="headerlink" href="#using-scikit-learn" title="Permalink to this headline">¶</a></h3>
@@ -888,6 +952,11 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.49786797])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -895,6 +964,11 @@ It is a linear model with two features corresponding to the two terms in a polyn
 <span class="c1"># NOTE that we have excluded the bias term (x^0). </span>
 <span class="c1"># This term will later be added in the linear regression</span>
 <span class="n">X_poly</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.49786797,  0.24787252, -0.12340779])
 </pre></div>
 </div>
 </div>
@@ -907,6 +981,11 @@ It is a linear model with two features corresponding to the two terms in a polyn
 
 <span class="c1"># note the bias term, which is the attribute `intercept_` from the fit</span>
 <span class="n">lin_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1.96984865]), array([[ 1.02594731,  0.53415279, -0.26334408]]))
 </pre></div>
 </div>
 </div>
@@ -988,6 +1067,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_56_0.png" src="_images/exercise_LinearRegression_56_0.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>Note how the high-degree polynomial produces a very wiggly curve that tries very hard to go through the training data. The model explodes near the edges where there is no more training data.</p></li>
@@ -1024,6 +1106,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_62_0.png" src="_images/exercise_LinearRegression_62_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1089,6 +1174,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_69_0.png" src="_images/exercise_LinearRegression_69_0.png" />
+</div>
 </div>
 <p>Several features deserves to be mentioned:</p>
 <ol class="simple">
@@ -1122,6 +1210,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_73_0.png" src="_images/exercise_LinearRegression_73_0.png" />
 </div>
 </div>
 <p>These learning curves are similar to the underfitting model; but there are some important differences:</p>
@@ -1200,6 +1291,9 @@ It is a linear model with two features corresponding to the two terms in a polyn
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/exercise_LinearRegression_82_0.png" src="_images/exercise_LinearRegression_82_0.png" />
 </div>
 </div>
 </div>

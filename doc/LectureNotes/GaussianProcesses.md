@@ -1,4 +1,6 @@
 <!-- !split -->
+# Gaussian processes
+
 ## Inference using Gaussian processes
 
 Assume that there is a set of input vectors with independent, predictor, variables

@@ -1,13 +1,5 @@
-% Learning from data: Logistic Regression
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden;  **Morten Hjorth-Jensen** at Department of Physics, University of Oslo and Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
 <!-- !split  -->
-## Logistic Regression
+# Logistic Regression
 
 In linear regression our main interest was centered on learning the
 coefficients of a functional fit (say a polynomial) in order to be
@@ -105,11 +97,9 @@ default case $y^{(i)} \leq 0.5$.
 
 We would then have our 
 weighted linear combination, namely 
-$$
 \begin{equation}
 \boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \end{equation}
-$$
 where $\boldsymbol{y}$ is a vector representing the possible outcomes, $\boldsymbol{X}$ is our
 $n\times p$ design matrix and $\boldsymbol{w}$ represents our estimators/predictors.
 
@@ -142,11 +132,13 @@ outputs the probability of being in a category $k$.  Logistic regression
 is the most common example of such a soft classifier. In logistic
 regression, the probability that a data point $\boldsymbol{x}^{(i)}$
 belongs to a category $t^{(i)} \in \{0,1\}$ is given by the so-called *logit* function (an example of a S-shape or *Sigmoid* function) which is meant to represent the likelihood for a given event, 
+
 $$
 
 y(\boldsymbol{x}; \boldsymbol{w}) = y(a) = \frac{1}{1+e^{-a}} = \frac{e^a}{1+e^a},
 
 $$
+
 where the so called *activation* $a = a(\boldsymbol{x}; \boldsymbol{w})$. 
 
 * Most frequently one uses $a = a(\boldsymbol{x}, \boldsymbol{w}) \equiv \boldsymbol{x} \cdot \boldsymbol{w}$.
@@ -156,19 +148,17 @@ where the so called *activation* $a = a(\boldsymbol{x}; \boldsymbol{w})$.
 <!-- !split -->
 ### Standard activation functions
 
-<!-- <img src="fig/logistic_functions.png" width=600><p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p> -->
-![<p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p>](fig/logistic_functions.png)
+<!-- <img src="fig/LogReg/logistic_functions.png" width=600><p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p> -->
+![<p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p>](fig/LogReg/logistic_functions.png)
 
 <!-- !split -->
 ### A binary classifier with two parameters
 
 We assume now that we have two classes with $t^{(i)}$ being either $0$ or $1$. Furthermore we assume also that we have only two parameters $w_0, w_1$ and the predictors $\boldsymbol{x}^{(i)} = \{ 1, x^{(i)} \}$ defining the Sigmoid function. I.e., there is a single independent (input) variable $x$. We can produce probabilities from the classifier output $y^{(i)}$
-$$
 \begin{align*}
 p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &= y(a^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
 p(t^{(i)}=0|x^{(i)},\boldsymbol{w}) &= 1 - p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x^{(i)})}},
 \end{align*}
-$$
 where $\boldsymbol{w} = ( w_0, w_1)$ are the weights we wish to extract from training data. 
 
 Note that $[p(t^{(i)}=0), p(t^{(i)}=1)]$ is a discrete set of probabilities that we will still refer to as a probability distribution.
@@ -187,12 +177,11 @@ dataset $\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}$, with the binary labels
 $t^{(i)}\in\{0,1\}$ and where the data points are drawn independently, we use the binary version of the [Maximum Likelihood Estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) (MLE) principle. 
 We express the 
 likelihood in terms of the product of the individual probabilities of a specific outcome $t^{(i)}$, that is 
-$$
 \begin{align*}
 \mathcal{L} = P(\mathcal{D}|\boldsymbol{w})& = \prod_{i=1}^n \left[p(t^{(i)}=1|x^{(i)},\boldsymbol{w})\right]^{t^{(i)}}\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]^{1-t^{(i)}}\nonumber \\
 \end{align*}
-$$
 from which we obtain the log-likelihood 
+
 $$
 
 L \equiv \log(\mathcal{L}) = \sum_{i=1}^n \left( t^{(i)}\log{p(t^{(i)}=1|x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]\right).
@@ -200,6 +189,7 @@ L \equiv \log(\mathcal{L}) = \sum_{i=1}^n \left( t^{(i)}\log{p(t^{(i)}=1|x^{(i)}
 $$
 
 The **cost/loss** function is then defined as the negative log-likelihood
+
 $$
 
 \mathcal{C}(\boldsymbol{w}) \equiv -L = -\sum_{i=1}^n \left( t^{(i)}\log{p(t^{(i)}=1|x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[1-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}))\right]\right).
@@ -210,15 +200,18 @@ $$
 #### The cost function rewritten as cross entropy
 
 Using the definitions of the probabilities we can rewrite the **cost/loss** function as
+
 $$
 
 \mathcal{C}(\boldsymbol{w}) = -\sum_{i=1}^n \left( t^{(i)}\log{ y(x^{(i)},\boldsymbol{w})} + (1-t^{(i)})\log\left[ 1-y( x^{(i)},\boldsymbol{w}) \right] \right),
 
 $$
+
 which can be recognised as the relative entropy between the empirical probability distribution $(t^{(i)}, 1-t^{(i)})$ and the probability distribution predicted by the classifier $(y^{(i)}, 1-y^{(i)})$.
 Therefore, this cost function is known in statistics as the **cross entropy**. 
 
 Using specifically the logistic sigmoid activation function with two weights, and reordering the logarithms, we can rewrite the log-likelihood as
+
 $$
 
 L(\boldsymbol{w}) = \sum_{i=1}^n  \left[ t^{(i)}(w_0+w_1 x^{(i)}) -\log{(1+\exp{(w_0+w_1x^{(i)})})} \right].
@@ -228,6 +221,7 @@ $$
 The maximum likelihood estimator is defined as the set of parameters (weights) that maximizes the log-likelihood (where we maximize with respect to $w$).
 
 Since the cost (error) function is here defined as the negative log-likelihood, for logistic regression, we have that
+
 $$
 
 \mathcal{C}(\boldsymbol{w})=-\sum_{i=1}^n  \left[ t^{(i)} (w_0+w_1x^{(i)}) -\log{ \left( 1+\exp{(w_0+w_1x^{(i)})} \right) } \right].
@@ -240,11 +234,13 @@ $$
 In practice, just as for linear regression, one often supplements the cross-entropy cost function with additional regularization terms, usually $L_1$ and $L_2$ regularization. This introduces hyperparameters into the classifier.
 
 In particular, Lasso regularization is obtained by defining another cost function
+
 $$
 
 \mathcal{C}_W (\boldsymbol{w}) \equiv \mathcal{C} (\boldsymbol{w}) + \alpha E_W (\boldsymbol{w})
 
 $$
+
 where $E_W (\boldsymbol{w}) = \frac{1}{2} \sum_j w_j^2$ and $\alpha$ is known as the *weight decay*.
 
 *Question.* 
@@ -262,7 +258,6 @@ therefore, any local minimizer is a global minimizer.
 
 Minimizing this cost function (here without regularization term) with respect to the two parameters $w_0$ and $w_1$ we obtain
 
-$$
 \begin{align*}
 \frac{\partial \mathcal{C}(\boldsymbol{w})}{\partial w_0} 
 &= -\sum_{i=1}^n  \left(t^{(i)} -\frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}}\right)
@@ -271,7 +266,6 @@ $$
 &= -\sum_{i=1}^n  \left(t^{(i)} x^{(i)} -x^{(i)}\frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}}\right)
 &= -\sum_{i=1}^n  x^{(i)} \left(t^{(i)} - y^{(i)} \right).
 \end{align*}
-$$
 
 <!-- !split -->
 #### A more compact expression
@@ -306,12 +300,15 @@ Alternatively, one can perform *batch learning* for which multiple instances are
 #### Extending to more predictors
 
 Within a binary classification problem, we can easily expand our model to include multiple predictors. Our activation function is then (with $p$ predictors)
+
 $$
 
 a( \boldsymbol{x}^{(i)}, \boldsymbol{w} ) = w_0 + w_1 x_1^{(i)} + w_2 x_2^{(i)} + \dots + w_p x_p^{(i)}.
 
 $$
+
 Defining $\boldsymbol{x}^{(i)} \equiv [1,x_1^{(i)}, x_2^{(i)}, \dots, x_p^{(i)}]$ and $\boldsymbol{w}=[w_0, w_1, \dots, w_p]$ we get
+
 $$
 
 p(t^{(i)}=1 | \boldsymbol{w}, \boldsymbol{x}^{(i)}) = \frac{ \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}^{(i)} \right) }}{ 1 + \exp{ \left( \boldsymbol{w} \cdot \boldsymbol{x}^{(i)} \right) } }.
@@ -344,6 +341,7 @@ a_2 = w_{2,0}+w_{2,1}x_1,
 $$
 
 and so on until the class $C=K-1$ class
+
 $$
 
 a_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,
@@ -369,12 +367,15 @@ $$
 p(t^{(i)}=k\vert \boldsymbol{x}^{(i)},  \boldsymbol{w} ) = \frac{\exp{(w_{k,0}+w_{k,1}x_1^{(i)})}} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_1^{(i)})}}.
 
 $$
+
 It is easy to extend to more predictors. The probability for the final class is 
+
 $$
 
 p(t^{(i)}=K\vert \boldsymbol{x}^{(i)},  \boldsymbol{w} ) = \frac{1} {1+\sum_{l=1}^{K-1}\exp{(w_{l,0}+w_{l,1}x_1^{(i)})}},
 
 $$
+
 which means that the discrete set of probabilities is properly normalized. 
 
 Our earlier discussions were all specialized to

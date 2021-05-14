@@ -57,7 +57,7 @@ ax.legend(loc='best');
 # 
 # For example, [`make_moons`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html#sklearn.datasets.make_moons) generates two overlapping half cricles with optional Gaussian noise.
 
-# In[4]:
+# In[3]:
 
 
 from sklearn import datasets, linear_model
@@ -65,7 +65,7 @@ from sklearn import datasets, linear_model
 
 # ### Logistic regression using `scikit-learn`
 
-# In[5]:
+# In[4]:
 
 
 np.random.seed(0)
@@ -74,7 +74,7 @@ clf = linear_model.LogisticRegressionCV(cv=5)
 clf.fit(X, y)
 
 
-# In[7]:
+# In[5]:
 
 
 # Helper functions to visualize the data and the decision boundary
@@ -101,7 +101,7 @@ def plot_decision_boundary(pred_func, X, y,ax=[]):
         plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.RdBu)
 
 
-# In[8]:
+# In[6]:
 
 
 fig,ax = plt.subplots(figsize=(8,8))
@@ -131,7 +131,7 @@ ax.set_ylabel(r'$x_1$');
 # 1. Train the binary classifier on the data set. Perform rather many iterations.
 # 1. Plot the decision boundary and compare with the `scikit-learn` implementation above.
 
-# In[12]:
+# In[7]:
 
 
 def sigmoid(a):
@@ -204,7 +204,7 @@ def single_neuron_binary_classifier(x, t, iters=10000, alpha=0.1, eta0=0.01):
 # 1. Plot the decision boundary and compare with the Logistic Regression implementations above.
 # 1. What is the accuracy on the test set?
 
-# In[18]:
+# In[8]:
 
 
 # Install TensorFlow by updating the conda environment

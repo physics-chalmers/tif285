@@ -4,20 +4,25 @@ Assess hypotheses by calculating their probabilities $p(H_i | \ldots)$ condition
 
 
 
-Probability Theory Axioms:
-Product (AND) rule :
-  :    
-  $p(A, B | I) = p(A|I) p(B|A, I) = p(B|I)p(A|B,I)$\n
-  Should read $p(A,B|I)$ as the probability for propositions $A$ AND $B$ being true given that $I$ is true.
-Sum (OR) rule:
-  :    
-  $p(A + B | I) = p(A | I) + p(B | I) - p(A, B | I)$\n
-  $p(A+B|I)$ is the probability that proposition $A$ OR $B$ is true given that $I$ is true.
-Normalization:
-  :    
-  $p(A|I) + p(\bar{A}|I) = 1$\n
-  $\bar{A}$ denotes the proposition that $A$ is false.
+## Probability Theory Axioms:
 
+```{admonition} Product (AND) rule 
+  $p(A, B | I) = p(A|I) p(B|A, I) = p(B|I)p(A|B,I)$
+  
+  Should read $p(A,B|I)$ as the probability for propositions $A$ AND $B$ being true given that $I$ is true.
+  ```
+  
+```{admonition} Sum (OR) rule    
+  $p(A + B | I) = p(A | I) + p(B | I) - p(A, B | I)$
+  
+  $p(A+B|I)$ is the probability that proposition $A$ OR $B$ is true given that $I$ is true.
+  ```
+  
+```{admonition} Normalization
+  $p(A|I) + p(\bar{A}|I) = 1$
+  
+  $\bar{A}$ denotes the proposition that $A$ is false.
+```
 
 
 <!-- !split -->
@@ -52,24 +57,27 @@ In a sense, Bayes’ theorem encapsulates the process of learning.
 
 <!-- !split -->
 ### The friends of Bayes' theorem
-Normalization:
-  :    
+
+```{admonition} Normalization
   $\sum_i p(H_i|I) = 1$.
-Marginalization:
-  :    
+  ```
+  
+```{admonition} Marginalization
   $p(A|I) = \sum_i p(H_i|A,I) p(A|I) = \sum_i p(A,H_i|I)$.
+  ```
 
 In the above, $H_i$ is an exclusive and exhaustive list of hypotheses. For example,let’s imagine that there are five candidates in a presidential election; then $H_1$ could be the proposition that the first candidate will win, and so on. The probability that $A$ is true, for example that unemployment will be lower in a year’s time (given all relevant information $I$, but irrespective of whoever becomes president) is given by $\sum_i p(A,H_i|I)$ as shown by using normalization and applying the product rule.
 
 
 
 <!-- !split -->
-Normalization (continuum limit):
-  :    
+```{admonition} Normalization (continuum limit)
   $\int dx p(x|I) = 1$.
-Marginalization (continuum limit):
-  :    
+  ```
+  
+```{admonition} Marginalization (continuum limit)
   $p(y|I) = \int dx p(x,y|I)$.
+  ```
 
 In the continuum limit of propositions we must understand $p(\ldots)$ as a pdf (probability density function).
 
@@ -124,11 +132,10 @@ We will get back later to the choice of prior and its effect on the analysis.
 
 <!-- !split -->
 This prior state of knowledge, or ignorance, is modified by the data through the likelihood function $p(D|p_H,I)$. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information $I$, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses' is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
-$$
+
 \begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 \end{equation}
-$$
 
 <!-- !split -->
 It seems reasonable because $p_H$ is the chance of obtaining a head on any flip, and there were $H$ of them, and $1-p_H$ is the corresponding probability for a tail, of which there were $N-H$. We note that this binomial distribution also contains a normalization factor, but we will ignore it since it does not depend explicitly on $p_H$, the quantity of interest. It will be absorbed by the normalization condition ([eq:coin_posterior_norm](#eq:coin_posterior_norm)).
@@ -137,7 +144,7 @@ It seems reasonable because $p_H$ is the chance of obtaining a head on any flip,
 We perform the setup of this Bayesian framework on the computer.
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 def prior(pH):
     p=np.zeros_like(pH)
     p[(0<=pH)&(pH<=1)]=1      # allowed range: 0<=pH<=1
@@ -151,13 +158,13 @@ def posterior(pH,data):
     p=prior(pH)*likelihood(pH,data)
     norm=np.trapz(p,pH)
     return p/norm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 <!-- !split -->
 The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. [fig:coinflipping](#fig:coinflipping). 
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 pH=np.linspace(0,1,1000)
 fig, axs = plt.subplots(nrows=4,ncols=3,sharex=True,sharey='row',figsize=(14,14))
 axs_vec=np.reshape(axs,-1)
@@ -168,7 +175,7 @@ for ndouble in range(11):
     ax.text(0.1, 0.8, '$N={0}$'.format(2**ndouble), transform=ax.transAxes)
 for row in range(4): axs[row,0].set_ylabel('$p(p_H|D_\mathrm{obs},I)$')
 for col in range(3): axs[-1,col].set_xlabel('$p_H$')
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 <!-- !split -->
 <!-- <img src="fig/BayesianRecipe/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->

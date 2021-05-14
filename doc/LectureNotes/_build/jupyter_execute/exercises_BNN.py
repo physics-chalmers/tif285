@@ -11,7 +11,7 @@
 # 
 # For example, [`make_blobs`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html) generates two (or more) Gaussian distributions of data that correspond to different classes.
 
-# In[2]:
+# In[1]:
 
 
 from sklearn import datasets, linear_model
@@ -20,13 +20,13 @@ from sklearn.model_selection import train_test_split
 
 # ### Data sets from `scikit-learn`
 
-# In[3]:
+# In[2]:
 
 
 X, t = datasets.make_blobs(n_samples=20, cluster_std = 1.0,                            centers=[(-1.0, 1.0), (1.0,-1.0)], n_features=2,random_state=2019)
 
 
-# In[4]:
+# In[3]:
 
 
 X_train, X_test, t_train, t_test =           train_test_split(X, t, test_size=0.5, random_state=10)

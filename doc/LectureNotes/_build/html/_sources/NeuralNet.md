@@ -1,11 +1,3 @@
-% Learning from data: Neural networks, from the simple perceptron to deep learning
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden;  **Morten Hjorth-Jensen** at Department of Physics, University of Oslo and Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
 <!-- !split -->
 ## Neural networks
 
@@ -21,15 +13,17 @@ a weight variable.
 
 Each time we describe a neural network algorithm we will typically specify three things. 
 
-Architecture:
-  :    
+```{admonition} Architecture
   The architecture specifies what variables are involved in the network and their topological relationships – for example, the variables involved in a neural net might be the weights of the connections between the neurons, along with the activities of the neurons.
-Activity rule:
-  :    
+  ```
+
+```{admonition} Activity rule
   Most neural network models have short time-scale dynamics: local rules define how the activities of the neurons change in response to each other. Typically the activity rule depends on the weights (the parameters) in the network.
-Learning rule:
-  :    
+  ```
+  
+```{admonition} Learning rule
   The learning rule specifies the way in which the neural network’s weights change with time. This learning is usually viewed as taking place on a longer time scale than the time scale of the dynamics under the activity rule. Usually the learning rule will depend on the activities of the neurons. It may also depend on the values of target values supplied by a teacher and on the current value of the weights.
+  ```
 
 <!-- !split -->
 ### Artificial neurons
@@ -47,12 +41,12 @@ output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.
 
 This behaviour has inspired a simple mathematical model for an artificial neuron.
-$$
+
 \begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
 \end{equation}
-$$
+
 where the bias $b$ is sometimes denoted $w_0$.
 Here, the output $y$ of the neuron is the value of its activation function, which have as input
 a weighted sum of signals $x_1, \dots ,x_n$ received by $n$ other neurons.
@@ -213,11 +207,13 @@ as to not restrict the range of output values.
 #### Mathematical model
 
 The output $y$ is produced via the activation function $f$
+
 $$
 
  y = f\left(\sum_{i=1}^n w_ix_i + b \right) = f(z),
 
 $$
+
 This function receives $x_i$ as inputs.
 Here the activation $z=(\sum_{i=1}^n w_ix_i+b)$. 
 In an FFNN of such neurons, the *inputs* $x_i$ are the *outputs* of
@@ -228,10 +224,10 @@ of the outputs of *all* neurons in the previous layer.
 <!-- !split -->
 First, for each node $j$ in the first hidden layer, we calculate a weighted sum $z_j^1$ of the input coordinates $x_i$,
 
-$$
+
 \begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}
-$$
+
 
 Here $b_j^1$ is the so-called bias which is normally needed in
 case of zero activation weights or inputs. How to fix the biases and
@@ -240,22 +236,22 @@ argument to the activation function $f$ of each node $j$, The
 variable $n$ stands for all possible inputs to a given node $j$ in the
 first layer.  We define  the output $y_j^1$ of all neurons in layer 1 as
 
-$$
+
 \begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
 \end{equation}
-$$
+
 where we assume that all nodes in the same layer have identical
 activation functions, hence the notation $f$. In general, we could assume in the more general case that different layers have different activation functions.
 In this case we would identify these functions with a superscript $l$ for the $l$-th layer,
 
-$$
+
 \begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}
-$$
+
 where $N_{l-1}$ is the number of nodes in layer $l-1$. When the output of
 all the nodes in the first hidden layer are computed, the values of
 the subsequent layer can be calculated and so forth until the output
@@ -264,32 +260,32 @@ is obtained.
 
 <!-- !split -->
 The output of neuron $i$ in layer 2 is thus,
-$$
+
 \begin{align}
  y_i^2 &= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
 \end{align}
-$$
+
 where we have substituted $y_k^1$ with the inputs $x_k$. Finally, the ANN output reads
-$$
+
 \begin{align}
  y_i^3 &= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
  &= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
   + b_1^3\right]
 \end{align}
-$$
+
 
 <!-- !split -->
 We can generalize this expression to an MLP with $L$ hidden
 layers. The complete functional form is,
 
-$$
+
 \begin{align}
 &y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &&
  \label{completeNN}
 \end{align}
-$$
+
 which illustrates a basic property of MLPs: The only independent
 variables are the input values $x_n$.
 
@@ -303,11 +299,11 @@ Furthermore, the flexibility and universality of an MLP can be
 illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form
 
-$$
+
 \begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}
-$$
+
 where the parameters $c_i$ are weights and biases. By adjusting these
 parameters, the activation functions can be shifted up and down or
 left and right, change slope or be rescaled which is the key to the
@@ -325,7 +321,7 @@ is the bias $b_i^l$ and activation $y_i^l$ of node $i$ in layer $l$ respectively
 We have that $\boldsymbol{W}_l$ is an $N_{l-1} \times N_l$ matrix, while $\boldsymbol{b}_l$ and $\boldsymbol{y}_l$ are $N_l \times 1$ column vectors. 
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as
-$$
+
 \begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
@@ -344,19 +340,19 @@ $$
            b^2_3 \\
           \end{array}\right]\right).
 \end{equation}
-$$
+
 
 <!-- !split -->
 #### Matrix-vector notation  and activation
 
 The activation of node $i$ in layer 2 is
 
-$$
+
 \begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
 \end{equation}
-$$
+
 
 This is not just a convenient and compact notation, but also a useful
 and intuitive way to think about MLPs: The output is calculated by a
@@ -392,7 +388,9 @@ $$
  f_\mathrm{sigmoid}(z) = \frac{1}{1 + e^{-z}},
 
 $$
+
 and the *hyperbolic tangent* function
+
 $$
 
  f_\mathrm{tanh}(z) = \tanh(z)
@@ -402,6 +400,7 @@ $$
 <!-- !split -->
 *Rectifier activation functions*
 The Rectifier Linear Unit (ReLU) uses the following activation function
+
 $$
 
 f_\mathrm{ReLU}(z) = \max(0,z).
@@ -411,6 +410,7 @@ $$
 To solve a problem of dying ReLU neurons, practitioners often use a  variant of the ReLU
 function, such as the leaky ReLU or the so-called
 exponential linear unit (ELU) function
+
 $$
 
 f_\mathrm{ELU}(z) = \left\{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) & z < 0,\\  z & z \ge 0.\end{array}\right. 
@@ -444,6 +444,7 @@ final output to modify the weights?
 
 To derive these equations let us start with a plain regression problem
 and define our cost function as
+
 $$
 
 {\cal C}(\boldsymbol{W})  =  \frac{1}{2}\sum_{i=1}^n\left(y_i - t_i\right)^2, 
@@ -499,12 +500,15 @@ $$
 #### Derivatives and the chain rule
 
 From the definition of the activation $z_j^l$ we have
+
 $$
 
 \frac{\partial z_j^l}{\partial w_{ij}^l} = a_i^{l-1},
 
 $$
+
 and
+
 $$
 
 \frac{\partial z_j^l}{\partial a_i^{l-1}} = w_{ji}^l. 
@@ -512,6 +516,7 @@ $$
 $$
 
 With our definition of the activation function we have (note that this function depends only on $z_j^l$)
+
 $$
 
 \frac{\partial a_j^l}{\partial z_j^{l}} = a_j^l(1-a_j^l)=f(z_j^l) \left[ 1-f(z_j^l) \right]. 
@@ -525,11 +530,13 @@ $$
 With these definitions we can now compute the derivative of the cost function in terms of the weights.
 
 Let us specialize to the output layer $l=L$. Our cost function is
+
 $$
 
 {\cal C}(\boldsymbol{W^L})  =  \frac{1}{2}\sum_{i=1}^n\left(y_i - t_i\right)^2=\frac{1}{2}\sum_{i=1}^n\left(a_i^L - t_i\right)^2, 
 
 $$
+
 The derivative of this function with respect to the weights is
 
 $$
@@ -537,7 +544,9 @@ $$
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \left(a_j^L - t_j\right)\frac{\partial a_j^L}{\partial w_{jk}^{L}}, 
 
 $$
+
 The last partial derivative can easily be computed and reads (by applying the chain rule)
+
 $$
 
 \frac{\partial a_j^L}{\partial w_{jk}^{L}} = \frac{\partial a_j^L}{\partial z_{j}^{L}}\frac{\partial z_j^L}{\partial w_{jk}^{L}}=a_j^L(1-a_j^L)a_k^{L-1},  
@@ -550,6 +559,7 @@ $$
 #### Bringing it together, first back propagation equation
 
 We have thus
+
 $$
 
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \left(a_j^L - t_j\right)a_j^L(1-a_j^L)a_k^{L-1}, 
@@ -557,12 +567,15 @@ $$
 $$
 
 Defining
+
 $$
 
 \delta_j^L = a_j^L(1-a_j^L)\left(a_j^L - t_j\right) = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 
 $$
+
 and using the Hadamard product of two vectors we can write this as
+
 $$
 
 \boldsymbol{\delta}^L = f'(\boldsymbol{z}^L)\circ\frac{\partial {\cal C}}{\partial (\boldsymbol{a}^L)}.
@@ -592,6 +605,7 @@ $$
 $$
 
 With the definition of $\delta_j^L$ we have a more compact definition of the derivative of the cost function in terms of the weights, namely
+
 $$
 
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1}.
@@ -608,7 +622,9 @@ $$
 \delta_j^L =\frac{\partial {\cal C}}{\partial z_j^L}= \frac{\partial {\cal C}}{\partial a_j^L}\frac{\partial a_j^L}{\partial z_j^L},
 
 $$
+
 which can also be interpreted as the partial derivative of the cost function with respect to the biases $b_j^L$, namely
+
 $$
 
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L}\frac{\partial b_j^L}{\partial z_j^L}=\frac{\partial {\cal C}}{\partial b_j^L},
@@ -622,24 +638,24 @@ We have now three equations that are essential for the computations of the deriv
 
 *The starting equations.* 
 
-$$
+
 \begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
 \end{equation}
-$$
+
 and
-$$
+
 \begin{equation}
 \delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 \end{equation}
-$$
+
 and
 
-$$
+
 \begin{equation}
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
 \end{equation}
-$$
+
 
 
 
@@ -669,11 +685,13 @@ one $L-1$ in terms of the errors in the final output layer.
 #### Final back-propagating equation
 
 We have that (replacing $L$ with a general layer $l$)
+
 $$
 
 \delta_j^l =\frac{\partial {\cal C}}{\partial z_j^l}.
 
 $$
+
 We want to express this in terms of the equations for layer $l+1$. Using the chain rule and summing over all $k$ entries we have
 
 $$
@@ -681,18 +699,23 @@ $$
 \delta_j^l =\sum_k \frac{\partial {\cal C}}{\partial z_k^{l+1}}\frac{\partial z_k^{l+1}}{\partial z_j^{l}}=\sum_k \delta_k^{l+1}\frac{\partial z_k^{l+1}}{\partial z_j^{l}},
 
 $$
+
 and recalling that
+
 $$
 
 z_j^{l+1} = \sum_{i=1}^{M_{l}}w_{ij}^{l+1}a_i^{l}+b_j^{l+1},
 
 $$
+
 with $M_l$ being the number of nodes in layer $l$, we obtain
+
 $$
 
 \delta_j^l =\sum_k \delta_k^{l+1}w_{kj}^{l+1}f'(z_j^l),
 
 $$
+
 This is our final equation.
 
 We are now ready to set up the algorithm for back propagation and learning the weights and biases.
@@ -824,6 +847,7 @@ fast to compute).
 #### The RELU function family
 
 The Rectifier Linear Unit (ReLU) uses the following activation function
+
 $$
 
 f(z) = \max(0,z).

@@ -7,7 +7,7 @@
 
 # ## Import modules
 
-# In[ ]:
+# In[1]:
 
 
 # Common imports
@@ -25,7 +25,7 @@ sns.set('talk')
 
 # ## Generate data
 
-# In[ ]:
+# In[2]:
 
 
 # Let us generate noisy data with a linear feature
@@ -39,7 +39,7 @@ X = 2 * np.random.rand(100, 1)
 y = 2 + 4 * X + np.random.randn(100, 1)
 
 
-# In[ ]:
+# In[3]:
 
 
 fig, ax = plt.subplots(figsize=(10,8))
@@ -52,7 +52,7 @@ ax.set_ylabel(r'$y$');
 
 # ### Linear regression using scikit-learn
 
-# In[ ]:
+# In[4]:
 
 
 # Fit the linear regression model with sklearn
@@ -65,14 +65,14 @@ with np.printoptions(precision=4):
     print(lin_reg.intercept_, lin_reg.coef_)
 
 
-# In[ ]:
+# In[5]:
 
 
 X_predict = np.array([[0], [2]])
 y_predict = lin_reg.predict(X_predict)
 
 
-# In[ ]:
+# In[6]:
 
 
 fig, ax = plt.subplots(figsize=(10,8))
@@ -90,7 +90,7 @@ ax.legend(loc='best');
 # - an X^0 (bias)
 # - an X^1 (linear feature) 
 
-# In[ ]:
+# In[7]:
 
 
 m = len(X) # number of instances
@@ -99,13 +99,13 @@ m = len(X) # number of instances
 X_d = np.c_[np.ones((m, 1)), X]  
 
 
-# In[ ]:
+# In[8]:
 
 
 X_d.shape
 
 
-# In[ ]:
+# In[9]:
 
 
 ### EXERCISE
@@ -122,7 +122,7 @@ X_d.shape
 
 # The `LinearRegression` class is based on the `scipy.linalg.lstsq()` function (the name stands for "least squares"), which you could call directly:
 
-# In[ ]:
+# In[10]:
 
 
 theta_best_svd, residuals, rank, s = np.linalg.lstsq(X_d, y, rcond=1e-6)
@@ -131,7 +131,7 @@ theta_best_svd
 
 # This function computes $\mathbf{X}^+\mathbf{y}$, where $\mathbf{X}^{+}$ is the _pseudoinverse_ of $\mathbf{X}$ (specifically the Moore-Penrose inverse). You can use `np.linalg.pinv()` to compute the pseudoinverse directly:
 
-# In[ ]:
+# In[11]:
 
 
 np.linalg.pinv(X_d).dot(y)
@@ -139,7 +139,7 @@ np.linalg.pinv(X_d).dot(y)
 
 # ### Linear regression using batch gradient descent
 
-# In[ ]:
+# In[12]:
 
 
 # learning hyperparameter
@@ -151,7 +151,7 @@ m = len(X)
 theta = np.random.randn(2,1)
 
 
-# In[ ]:
+# In[13]:
 
 
 for iteration in range(n_iterations):
@@ -159,14 +159,14 @@ for iteration in range(n_iterations):
     theta = theta - eta * gradients
 
 
-# In[ ]:
+# In[14]:
 
 
 with np.printoptions(precision=4):
     print(theta)
 
 
-# In[ ]:
+# In[15]:
 
 
 X_predict = np.array([[0], [2]])
@@ -174,7 +174,7 @@ X_predict_d = np.c_[np.ones((2, 1)), X_predict]
 X_predict_d.dot(theta)
 
 
-# In[ ]:
+# In[16]:
 
 
 # EXERCISE
@@ -186,7 +186,7 @@ X_predict_d.dot(theta)
 # Plot the different learning rates using the `plot_gradient_descent` function defined above.
 
 
-# In[ ]:
+# In[17]:
 
 
 def plot_gradient_descent(theta, X, y, eta=0.1, theta_path=None,ax=None,n_iterations=1000):
@@ -221,7 +221,7 @@ def plot_gradient_descent(theta, X, y, eta=0.1, theta_path=None,ax=None,n_iterat
 # 
 # We will use a learning schedule in which we first take large steps, and then shorter and shorter ones. This approach is similar in spirit to the optimization algorithm *simulated annealing*.
 
-# In[ ]:
+# In[18]:
 
 
 m = len(X)
@@ -261,13 +261,13 @@ ax.set_ylabel("$y$")
 ax.set_title(f"SGD: $\eta = {eta:.3f}$ (10 iter.)");
 
 
-# In[ ]:
+# In[19]:
 
 
 theta
 
 
-# In[ ]:
+# In[20]:
 
 
 # The Stochastic Gradient Descent optimizer is built-in scikit-learn
@@ -276,7 +276,7 @@ sgd_reg = SGDRegressor(max_iter=50, tol=-np.infty, penalty=None, eta0=0.1, rando
 sgd_reg.fit(X, y.ravel())
 
 
-# In[ ]:
+# In[21]:
 
 
 sgd_reg.intercept_, sgd_reg.coef_
@@ -305,13 +305,13 @@ sgd_reg.intercept_, sgd_reg.coef_
 # 
 # Here we will consider a case in which we use at least quadratic features in our model. This is sometimes known as *polynomial regression*, but this label is really a misnomer since it is still a linear regression problem.
 
-# In[ ]:
+# In[22]:
 
 
 import numpy as np
 
 
-# In[ ]:
+# In[23]:
 
 
 # Let us generate some cubic data
@@ -328,7 +328,7 @@ for order in range(len(theta_true)):
     y += theta_true[order] * X**order
 
 
-# In[ ]:
+# In[24]:
 
 
 # Plot the data. It is pretty tricky to see the features
@@ -353,7 +353,7 @@ ax.set_ylabel("$y$");
 # ; $x_2^2$
 # ; $x_1 x_2$
 
-# In[ ]:
+# In[25]:
 
 
 from sklearn.preprocessing import PolynomialFeatures
@@ -361,14 +361,14 @@ poly_features = PolynomialFeatures(degree=3, include_bias=False)
 X_poly = poly_features.fit_transform(X)
 
 
-# In[ ]:
+# In[26]:
 
 
 # Note that the first element of the instance vector is
 X[0]
 
 
-# In[ ]:
+# In[27]:
 
 
 # while the first element of the design matrix is
@@ -377,7 +377,7 @@ X[0]
 X_poly[0]
 
 
-# In[ ]:
+# In[28]:
 
 
 # perform the fit
@@ -388,7 +388,7 @@ lin_reg.fit(X_poly, y)
 lin_reg.intercept_, lin_reg.coef_
 
 
-# In[ ]:
+# In[29]:
 
 
 # EXERCISE
@@ -399,7 +399,7 @@ lin_reg.intercept_, lin_reg.coef_
 #
 
 
-# In[ ]:
+# In[30]:
 
 
 # Make predictions with the linear regression model on a linear grid of new points
@@ -410,7 +410,7 @@ X_new_poly = poly_features.transform(X_new)
 y_new = lin_reg.predict(X_new_poly)
 
 
-# In[ ]:
+# In[31]:
 
 
 # EXERCISE
@@ -424,7 +424,7 @@ y_new = lin_reg.predict(X_new_poly)
 
 # We will explore fitting to models that have both too many and too few features.
 
-# In[ ]:
+# In[32]:
 
 
 # For these fits we will employ scaling of the data
@@ -464,7 +464,7 @@ ax.set_ylabel("$y$");
 # - Note how the high-degree polynomial produces a very wiggly curve that tries very hard to go through the training data. The model explodes near the edges where there is no more training data. 
 # - The first degree polynomial, on the other hand, fails to pick up some trends in the data that is clearly there. 
 
-# In[ ]:
+# In[33]:
 
 
 # EXERCISE
@@ -480,7 +480,7 @@ ax.set_ylabel("$y$");
 
 # #### Performance metric
 
-# In[ ]:
+# In[34]:
 
 
 # EXERCISE
@@ -497,7 +497,7 @@ ax.plot(X, y_predict, "r-",label="Prediction")
 ax.plot(X, y, "b.",label="Data");
 
 
-# In[ ]:
+# In[35]:
 
 
 # EXERCISE
@@ -507,7 +507,7 @@ ax.plot(X, y, "b.",label="Data");
 
 # $\mathrm{MSE} = \frac{1}{m}\sum_{i=1}^m \left(y_i - y_{\mathrm{predict},i} \right)^2$
 
-# In[ ]:
+# In[36]:
 
 
 # EXERCISE
@@ -519,7 +519,7 @@ from sklearn.metrics import mean_squared_error
 
 # #### Learning curves
 
-# In[ ]:
+# In[37]:
 
 
 # built-in convenience function for computing the MSE metric
@@ -549,7 +549,7 @@ def plot_learning_curves(model, X, y, ax=None):
 
 # Let us use a first-order polynomial to model the training data and plot the learning curve. Recall that a low mean-square error implies that the model predicts the data very well.
 
-# In[ ]:
+# In[38]:
 
 
 lin_reg = LinearRegression()
@@ -564,7 +564,7 @@ ax.set_ylim([0,4]);
 # 1. It finally reaches a plateau.
 # 1. The validation error is initially very high, but reaches a plateau that is very close to the training error.
 
-# In[ ]:
+# In[39]:
 
 
 # EXERCISE
@@ -575,7 +575,7 @@ ax.set_ylim([0,4]);
 
 # Now let us try a very high degree polynomial, which should be overfitting the data.
 
-# In[ ]:
+# In[40]:
 
 
 from sklearn.pipeline import Pipeline
@@ -610,13 +610,13 @@ ax.set_ylim([0,4]);
 
 # ### Ridge regression
 
-# In[ ]:
+# In[41]:
 
 
 from sklearn.linear_model import Ridge
 
 
-# In[ ]:
+# In[42]:
 
 
 # Let's generate some noisy data with a linear feature.
@@ -627,7 +627,7 @@ y = 1 + 0.5 * X + 0.5 * np.random.randn(m, 1)
 X_new = np.linspace(0, 3, 100).reshape(100, 1)
 
 
-# In[ ]:
+# In[43]:
 
 
 def train_ridge_model(X_train, y_train, alpha, X_predict=None, degree=1, **model_kargs):
@@ -643,7 +643,7 @@ def train_ridge_model(X_train, y_train, alpha, X_predict=None, degree=1, **model
     return model.predict(X_predict)
 
 
-# In[ ]:
+# In[44]:
 
 
 fig,axs = plt.subplots(1,2,figsize=(12,8))

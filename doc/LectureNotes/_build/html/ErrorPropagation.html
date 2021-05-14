@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -235,7 +237,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,42 +257,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -536,8 +538,8 @@
 <p><strong>Inferring galactic distances with an imprecise knowledge of the Hubble constant</strong>
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to <span class="math notranslate nohighlight">\(v = H_0 x\)</span>. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.</p>
 <p>Here we use marginalization to obtain the desired posterior pdf <span class="math notranslate nohighlight">\(p(x|D,I)\)</span> from the joint distribution of <span class="math notranslate nohighlight">\(p(x,H_0|D,I)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc0ec9ff-61f5-46c7-9496-626a82d3bfd5">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-dc0ec9ff-61f5-46c7-9496-626a82d3bfd5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7443f004-216f-42df-960e-9aef73176e93">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-7443f004-216f-42df-960e-9aef73176e93" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -568,16 +570,16 @@ p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \[p(X=X^*|I) \delta X = p(Y=Y^*|I) \delta Y.\]</div>
 <!-- !split -->
 <p>In the limit of infinitesimally small intervals, and with the realization that this should be true for any point <span class="math notranslate nohighlight">\(X\)</span>, we obtain the relationship</p>
-<div class="amsmath math notranslate nohighlight" id="equation-721e0aec-0a2c-4844-a15c-7c5af1d5ab98">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-721e0aec-0a2c-4844-a15c-7c5af1d5ab98" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca4a2cbf-4181-4628-a7f9-72c68c18be88">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-ca4a2cbf-4181-4628-a7f9-72c68c18be88" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
 <p>where the term on the far right is called the <em>Jacobian</em>.</p>
 <!-- !split -->
 <p>The generalization to several variables, relating the pdf for <span class="math notranslate nohighlight">\(M\)</span> variables <span class="math notranslate nohighlight">\(\{ X_j \}\)</span> in terms of the same number of quantities <span class="math notranslate nohighlight">\(\{ Y_j \}\)</span> related to them, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05c26db5-04f2-49e6-9ee2-2a5cce695505">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-05c26db5-04f2-49e6-9ee2-2a5cce695505" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4fb3cf75-8091-4460-8c96-d03725580197">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-4fb3cf75-8091-4460-8c96-d03725580197" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -601,8 +603,8 @@ We have now seen the basic ingredients required for the propagation of errors: i
 <p>where we have employed the linear property for an integral over a sum of terms.</p>
 <!-- !split -->
 <p>Since we assumed that the pdfs for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> were described by independent Gaussians we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3d17847-80ab-4849-8805-22e85e555925">
-<span class="eqno">(10.4)<a class="headerlink" href="#equation-b3d17847-80ab-4849-8805-22e85e555925" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-99fc822b-259d-4b56-bb2e-5d862c24aaab">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-99fc822b-259d-4b56-bb2e-5d862c24aaab" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>

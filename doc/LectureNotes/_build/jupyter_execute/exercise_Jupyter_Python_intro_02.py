@@ -93,7 +93,7 @@ print(square_cube_list) # Output: [[1, 1], [4, 8], [9, 27]]
 # 
 # Suppose we have a function of $x$ that also depends on a parameter (call it $r$).  We want to plot the function vs. $x$ for multiple values of $r$, either on the same plot or on separate plots.  We can do this with a lot of cutting-and-pasting, but how can we do it based on a list of $r$ values, which we can easily modify?
 
-# In[2]:
+# In[8]:
 
 
 import numpy as np
@@ -101,7 +101,7 @@ import matplotlib.pyplot as plt
 import seaborn; seaborn.set() # for plot formatting
 
 
-# In[3]:
+# In[9]:
 
 
 def sine_map(r, x):
@@ -112,7 +112,7 @@ def sine_map(r, x):
 
 # Suppose the $r$ values initially of interest are 0.3, 0.5, 0.8, and 0.9.  First the multiple copy approach:
 
-# In[4]:
+# In[10]:
 
 
 x_pts = np.linspace(0,1, num=101, endpoint=True)
@@ -140,7 +140,7 @@ fig.tight_layout()
 # 
 # With minor changes we have a much better implementation (try modifying the list of $r$ values):
 
-# In[5]:
+# In[11]:
 
 
 r_list = [0.3, 0.5, 0.8, 0.9]    # this could also be a numpy array
@@ -168,7 +168,7 @@ fig.tight_layout()
 
 # Now suppose we want each the different $r$ values to be plotted on separate graphs?  We could make multiple  copies of the single plot.  Instead, lets make a function to do any single plot and call it for each $r$ in the list.
 
-# In[7]:
+# In[12]:
 
 
 r_list = [0.3, 0.5, 0.8, 0.9]    # this could also be a numpy array
@@ -200,7 +200,7 @@ for r in r_list:
 
 # What if instead of distinct plots we wanted subplots of the same figure?  Then create the figure and subplot axes outside of the function and have the function return the modified axis object.
 
-# In[14]:
+# In[13]:
 
 
 r_list = [0.3, 0.5, 0.8, 0.9]    # this could also be a numpy array

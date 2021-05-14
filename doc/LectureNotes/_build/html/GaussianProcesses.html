@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Inference using Gaussian processes &#8212; Learning from data</title>
+    <title>1. Gaussian processes &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -53,7 +55,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="3. Gaussian processes demonstration" href="demo-GaussianProcesses.html" />
+    <link rel="next" title="2. Gaussian processes demonstration" href="demo-GaussianProcesses.html" />
     <link rel="prev" title="17. Model Selection" href="ModelSelection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -235,62 +237,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   3. Gaussian processes demonstration
+   2. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   4. Exercise: Gaussian processes
+   3. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   5. Logistic Regression
+   4. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   7. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   8. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   9. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   10. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   11. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   14. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   15. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   16. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -382,60 +384,60 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   1. Inference using Gaussian processes
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference-using-gaussian-processes">
+   1.1. Inference using Gaussian processes
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references">
-     1.1. References:
+     1.1.1. References:
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#parametric-approach">
-     1.2. Parametric approach
+     1.1.2. Parametric approach
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#proof">
-       1.2.1. Proof
+       1.1.2.1. Proof
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-covariance-matrix-as-the-central-object">
-       1.2.2. The covariance matrix as the central object
+       1.1.2.2. The covariance matrix as the central object
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#non-parametric-approach-mean-and-covariance-functions">
-     1.3. Non-parametric approach: Mean and covariance functions
+     1.1.3. Non-parametric approach: Mean and covariance functions
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#stationary-kernels">
-       1.3.1. Stationary kernels
+       1.1.3.1. Stationary kernels
       </a>
      </li>
     </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gp-models-for-regression">
-   2. GP models for regression
+   1.2. GP models for regression
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#elegant-approach-using-linear-algebra-tricks">
-     2.1. Elegant approach using linear algebra tricks
+     1.2.1. Elegant approach using linear algebra tricks
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#optimizing-the-gp-model-hyperparameters">
-     2.2. Optimizing the GP model hyperparameters
+     1.2.2. Optimizing the GP model hyperparameters
     </a>
    </li>
   </ul>
@@ -452,8 +454,10 @@
               <div>
                 
   <!-- !split -->
+<div class="section" id="gaussian-processes">
+<h1><span class="section-number">1. </span>Gaussian processes<a class="headerlink" href="#gaussian-processes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="inference-using-gaussian-processes">
-<h1><span class="section-number">1. </span>Inference using Gaussian processes<a class="headerlink" href="#inference-using-gaussian-processes" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">1.1. </span>Inference using Gaussian processes<a class="headerlink" href="#inference-using-gaussian-processes" title="Permalink to this headline">¶</a></h2>
 <p>Assume that there is a set of input vectors with independent, predictor, variables</p>
 <div class="math notranslate nohighlight">
 \[
@@ -502,7 +506,7 @@ However, we will need to consider in particular the second term in the numerator
 A Gaussian process is a stochastic process (a collection of random variables indexed by time or space), such that every finite collection of those random variables has a multivariate normal distribution</p>
 <!-- !split -->
 <div class="section" id="references">
-<h2><span class="section-number">1.1. </span>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">1.1.1. </span>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><a class="reference external" href="http://www.gaussianprocess.org/gpml">Gaussian Processes for Machine Learning</a>, Carl Edward Rasmussen and Chris Williams, the MIT Press, 2006, <a class="reference external" href="http://www.gaussianprocess.org/gpml/chapters">online version</a>.</p></li>
 <li><p><a class="reference external" href="https://sheffieldml.github.io/GPy/">GPy</a>: a Gaussian Process (GP) framework written in python, from the Sheffield machine learning group.</p></li>
@@ -510,7 +514,7 @@ A Gaussian process is a stochastic process (a collection of random variables ind
 <!-- !split -->
 </div>
 <div class="section" id="parametric-approach">
-<h2><span class="section-number">1.2. </span>Parametric approach<a class="headerlink" href="#parametric-approach" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">1.1.2. </span>Parametric approach<a class="headerlink" href="#parametric-approach" title="Permalink to this headline">¶</a></h3>
 <p>Let us express <span class="math notranslate nohighlight">\(y(\boldsymbol{x})\)</span> in terms of a model function <span class="math notranslate nohighlight">\(y(\boldsymbol{x}; \boldsymbol{\theta})\)</span> that depends on a vector of model parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
 <p>For example, using a set of basis functions <span class="math notranslate nohighlight">\(\left\{ \phi^{(h)} (\boldsymbol{x}) \right\}_{h=1}^H\)</span> with linear weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_H\)</span> we have</p>
 <div class="math notranslate nohighlight">
@@ -537,7 +541,7 @@ p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right).\]</di
 <li><p>This implies that the conditional distribution <span class="math notranslate nohighlight">\(p( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N+1})\)</span>, is also a multivariate Gaussian whose mean depends linearly on <span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>.</p></li>
 </ul>
 <div class="section" id="proof">
-<h3><span class="section-number">1.2.1. </span>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">1.1.2.1. </span>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h4>
 <p><em>Sum of normally distributed random variables.</em>
 If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., <span class="math notranslate nohighlight">\(Z=X+Y\)</span> is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.</p>
 <p>Consider the linear model and define the <span class="math notranslate nohighlight">\(N \times H\)</span> design matrix <span class="math notranslate nohighlight">\(\boldsymbol{R}\)</span> with elements</p>
@@ -572,7 +576,7 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 <!-- !split -->
 </div>
 <div class="section" id="the-covariance-matrix-as-the-central-object">
-<h3><span class="section-number">1.2.2. </span>The covariance matrix as the central object<a class="headerlink" href="#the-covariance-matrix-as-the-central-object" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">1.1.2.2. </span>The covariance matrix as the central object<a class="headerlink" href="#the-covariance-matrix-as-the-central-object" title="Permalink to this headline">¶</a></h4>
 <p>The covariance matrices are given by</p>
 <div class="math notranslate nohighlight">
 \[Q_{nn'} = \sigma_\theta^2 \sum_h \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right) \phi^{(h)} \left( \boldsymbol{x}^{(n')} \right),\]</div>
@@ -584,7 +588,7 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 </div>
 </div>
 <div class="section" id="non-parametric-approach-mean-and-covariance-functions">
-<h2><span class="section-number">1.3. </span>Non-parametric approach: Mean and covariance functions<a class="headerlink" href="#non-parametric-approach-mean-and-covariance-functions" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">1.1.3. </span>Non-parametric approach: Mean and covariance functions<a class="headerlink" href="#non-parametric-approach-mean-and-covariance-functions" title="Permalink to this headline">¶</a></h3>
 <p>In fact, we don’t really need the basis functions and their parameters anymore. The influence of these appear only in the covariance matrix that describes the distribution of the targets, which is our key object. We can replace the parametric model altogether with a <strong>covariance function</strong> <span class="math notranslate nohighlight">\(C( \boldsymbol{x}, \boldsymbol{x}' )\)</span> which generates the  elements of the covariance matrix</p>
 <div class="math notranslate nohighlight">
 \[Q_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right),\]</div>
@@ -599,7 +603,7 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 <p>where <span class="math notranslate nohighlight">\(\Delta\)</span> is usually included as a flexible noise model.</p>
 <!-- !split -->
 <div class="section" id="stationary-kernels">
-<h3><span class="section-number">1.3.1. </span>Stationary kernels<a class="headerlink" href="#stationary-kernels" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">1.1.3.1. </span>Stationary kernels<a class="headerlink" href="#stationary-kernels" title="Permalink to this headline">¶</a></h4>
 <p>The most common types of covariance functions are stationary, or translationally invariant, which implies that</p>
 <div class="math notranslate nohighlight">
 \[C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),\]</div>
@@ -615,7 +619,7 @@ C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_
 </div>
 </div>
 <div class="section" id="gp-models-for-regression">
-<h1><span class="section-number">2. </span>GP models for regression<a class="headerlink" href="#gp-models-for-regression" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">1.2. </span>GP models for regression<a class="headerlink" href="#gp-models-for-regression" title="Permalink to this headline">¶</a></h2>
 <p>Let us return to the problem of predicting <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> given <span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>. The independent variables <span class="math notranslate nohighlight">\(\boldsymbol{X}_{N+1}\)</span> are also given, but will be omitted from the conditional pdfs below.</p>
 <p>The joint density is</p>
 <div class="math notranslate nohighlight">
@@ -633,7 +637,7 @@ t^{(N+1)}
 <p><em>Summary.</em>
 The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> requires an inversion of the covariance matrix <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span>.</p>
 <div class="section" id="elegant-approach-using-linear-algebra-tricks">
-<h2><span class="section-number">2.1. </span>Elegant approach using linear algebra tricks<a class="headerlink" href="#elegant-approach-using-linear-algebra-tricks" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">1.2.1. </span>Elegant approach using linear algebra tricks<a class="headerlink" href="#elegant-approach-using-linear-algebra-tricks" title="Permalink to this headline">¶</a></h3>
 <p>Let us split the <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> covariance matrix into four different blocks</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\boldsymbol{C}_{N+1} =
@@ -694,7 +698,7 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 \end{align*}\]</div>
 </div>
 <div class="section" id="optimizing-the-gp-model-hyperparameters">
-<h2><span class="section-number">2.2. </span>Optimizing the GP model hyperparameters<a class="headerlink" href="#optimizing-the-gp-model-hyperparameters" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">1.2.2. </span>Optimizing the GP model hyperparameters<a class="headerlink" href="#optimizing-the-gp-model-hyperparameters" title="Permalink to this headline">¶</a></h3>
 <p>Predictions can be made once we have</p>
 <ol class="simple">
 <li><p>Chosen an appropriate covariance function.</p></li>
@@ -711,6 +715,7 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 <li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead.</p></li>
 </ul>
 <p>The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression.</p>
+</div>
 </div>
 </div>
 
@@ -740,7 +745,7 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="ModelSelection.html" title="previous page"><span class="section-number">17. </span>Model Selection</a>
-    <a class='right-next' id="next-link" href="demo-GaussianProcesses.html" title="next page"><span class="section-number">3. </span>Gaussian processes demonstration</a>
+    <a class='right-next' id="next-link" href="demo-GaussianProcesses.html" title="next page"><span class="section-number">2. </span>Gaussian processes demonstration</a>
 
         </div>
         

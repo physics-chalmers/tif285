@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>16. Exercise: Bayesian neural networks &#8212; Learning from data</title>
+    <title>12. Exercise: Bayesian neural networks &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,7 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="15. Variational Inference: Bayesian Neural Networks" href="demo-bnn.html" />
+    <link rel="prev" title="11. Variational Inference: Bayesian Neural Networks" href="demo-bnn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -234,62 +234,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   3. Gaussian processes demonstration
+   2. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   4. Exercise: Gaussian processes
+   3. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   5. Logistic Regression
+   4. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   7. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   8. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   9. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   10. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   11. Convolutional Neural Network
+   9. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   14. Bayesian neural networks
+   10. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   15. Variational Inference: Bayesian Neural Networks
+   11. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   16. Exercise: Bayesian neural networks
+   12. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -383,12 +383,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-simple-classification-problem">
-   16.1. A simple classification problem
+   12.1. A simple classification problem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#data-sets-from-scikit-learn">
-     16.1.1. Data sets from
+     12.1.1. Data sets from
      <code class="docutils literal notranslate">
       <span class="pre">
        scikit-learn
@@ -400,7 +400,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#task-1-logistic-regression-using-scikit-learn">
-   16.2. Task 1: Logistic regression using
+   12.2. Task 1: Logistic regression using
    <code class="docutils literal notranslate">
     <span class="pre">
      scikit-learn
@@ -410,12 +410,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#task-2-bayesian-logistic-regression-using-mcmc-sampling">
-   16.3. Task 2: Bayesian logistic regression using MCMC sampling
+   12.3. Task 2: Bayesian logistic regression using MCMC sampling
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#task-3-bayesian-logistic-regression-using-variational-inference">
-   16.4. Task 3: Bayesian logistic regression using Variational Inference
+   12.4. Task 3: Bayesian logistic regression using Variational Inference
   </a>
  </li>
 </ul>
@@ -430,10 +430,10 @@
               <div>
                 
   <div class="section" id="exercise-bayesian-neural-networks">
-<h1><span class="section-number">16. </span>Exercise: Bayesian neural networks<a class="headerlink" href="#exercise-bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Exercise: Bayesian neural networks<a class="headerlink" href="#exercise-bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 25-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="a-simple-classification-problem">
-<h2><span class="section-number">16.1. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.1. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> includes various random <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html#generated-datasets">sample generators</a> that can be used to build artificial datasets of controlled size and complexity.</p>
 <p>For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html"><code class="docutils literal notranslate"><span class="pre">make_blobs</span></code></a> generates two (or more) Gaussian distributions of data that correspond to different classes.</p>
 <div class="cell docutils container">
@@ -445,7 +445,7 @@
 </div>
 </div>
 <div class="section" id="data-sets-from-scikit-learn">
-<h3><span class="section-number">16.1.1. </span>Data sets from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#data-sets-from-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">12.1.1. </span>Data sets from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#data-sets-from-scikit-learn" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cluster_std</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> \
@@ -468,7 +468,7 @@
 </div>
 </div>
 <div class="section" id="task-1-logistic-regression-using-scikit-learn">
-<h2><span class="section-number">16.2. </span>Task 1: Logistic regression using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#task-1-logistic-regression-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.2. </span>Task 1: Logistic regression using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#task-1-logistic-regression-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <p>Implement a logistic regression binary classifier using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
 <ul class="simple">
 <li><p>Use an L2 regularizer with weight decay <span class="math notranslate nohighlight">\(\alpha = 1.0\)</span>.</p></li>
@@ -478,7 +478,7 @@
 </ul>
 </div>
 <div class="section" id="task-2-bayesian-logistic-regression-using-mcmc-sampling">
-<h2><span class="section-number">16.3. </span>Task 2: Bayesian logistic regression using MCMC sampling<a class="headerlink" href="#task-2-bayesian-logistic-regression-using-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.3. </span>Task 2: Bayesian logistic regression using MCMC sampling<a class="headerlink" href="#task-2-bayesian-logistic-regression-using-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
 <p>Implement instead a Bayesian binary classifier by considering the probability distributions for the three parameters of the single neuron (bias <span class="math notranslate nohighlight">\(w_0\)</span> and weights <span class="math notranslate nohighlight">\(w_1,w_2\)</span>).</p>
 <ol class="simple">
 <li><p>You will need to define the single neuron as a function that takes data <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> as input and returns the output <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
@@ -495,7 +495,7 @@
 </ol>
 </div>
 <div class="section" id="task-3-bayesian-logistic-regression-using-variational-inference">
-<h2><span class="section-number">16.4. </span>Task 3: Bayesian logistic regression using Variational Inference<a class="headerlink" href="#task-3-bayesian-logistic-regression-using-variational-inference" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.4. </span>Task 3: Bayesian logistic regression using Variational Inference<a class="headerlink" href="#task-3-bayesian-logistic-regression-using-variational-inference" title="Permalink to this headline">¶</a></h2>
 <p>To be added.</p>
 </div>
 </div>
@@ -525,7 +525,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-bnn.html" title="previous page"><span class="section-number">15. </span>Variational Inference: Bayesian Neural Networks</a>
+    <a class='left-prev' id="prev-link" href="demo-bnn.html" title="previous page"><span class="section-number">11. </span>Variational Inference: Bayesian Neural Networks</a>
 
         </div>
         

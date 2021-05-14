@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>15. Variational Inference: Bayesian Neural Networks &#8212; Learning from data</title>
+    <title>11. Variational Inference: Bayesian Neural Networks &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="16. Exercise: Bayesian neural networks" href="exercises_BNN.html" />
-    <link rel="prev" title="14. Bayesian neural networks" href="bnn.html" />
+    <link rel="next" title="12. Exercise: Bayesian neural networks" href="exercises_BNN.html" />
+    <link rel="prev" title="10. Bayesian neural networks" href="bnn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -233,62 +233,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   3. Gaussian processes demonstration
+   2. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   4. Exercise: Gaussian processes
+   3. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   5. Logistic Regression
+   4. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   7. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   8. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   9. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   10. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   11. Convolutional Neural Network
+   9. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   14. Bayesian neural networks
+   10. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   15. Variational Inference: Bayesian Neural Networks
+   11. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   16. Exercise: Bayesian neural networks
+   12. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -382,85 +382,85 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#current-trends-in-machine-learning">
-   15.1. Current trends in Machine Learning
+   11.1. Current trends in Machine Learning
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probabilistic-programming-at-scale">
-     15.1.1. Probabilistic Programming at scale
+     11.1.1. Probabilistic Programming at scale
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#deep-learning">
-     15.1.2. Deep Learning
+     11.1.2. Deep Learning
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bridging-deep-learning-and-probabilistic-programming">
-     15.1.3. Bridging Deep Learning and Probabilistic Programming
+     11.1.3. Bridging Deep Learning and Probabilistic Programming
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#bayesian-neural-networks-in-pymc3">
-   15.2. Bayesian Neural Networks in PyMC3
+   11.2. Bayesian Neural Networks in PyMC3
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#generating-data">
-     15.2.1. Generating data
+     11.2.1. Generating data
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#import-theano-and-pymc3">
-       15.2.1.1. Import theano and pymc3
+       11.2.1.1. Import theano and pymc3
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-specification">
-     15.2.2. Model specification
+     11.2.2. Model specification
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#variational-inference-scaling-model-complexity">
-     15.2.3. Variational Inference: Scaling model complexity
+     11.2.3. Variational Inference: Scaling model complexity
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lets-look-at-what-the-classifier-has-learned">
-   15.3. Lets look at what the classifier has learned
+   11.3. Lets look at what the classifier has learned
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-surface">
-     15.3.1. Probability surface
+     11.3.1. Probability surface
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#uncertainty-in-predicted-value">
-     15.3.2. Uncertainty in predicted value
+     11.3.2. Uncertainty in predicted value
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mini-batch-advi">
-   15.4. Mini-batch ADVI
+   11.4. Mini-batch ADVI
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#next-steps">
-   15.5. Next steps
+   11.5. Next steps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acknowledgements">
-   15.6. Acknowledgements
+   11.6. Acknowledgements
   </a>
  </li>
 </ul>
@@ -475,7 +475,7 @@
               <div>
                 
   <div class="section" id="variational-inference-bayesian-neural-networks">
-<h1><span class="section-number">15. </span>Variational Inference: Bayesian Neural Networks<a class="headerlink" href="#variational-inference-bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">11. </span>Variational Inference: Bayesian Neural Networks<a class="headerlink" href="#variational-inference-bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>(c) 2016-2018 by Thomas Wiecki, updated by Maxim Kochurov
 Comments by Christian Forssén, 2019-2020.</p>
 <p>Original blog post: https://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/
@@ -489,15 +489,15 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 <p>They can be installed with: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;library&gt;</span></code>.</p>
 <p>You might have to specify using the conda-forge channel: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">&lt;library&gt;</span></code>.</p>
 <div class="section" id="current-trends-in-machine-learning">
-<h2><span class="section-number">15.1. </span>Current trends in Machine Learning<a class="headerlink" href="#current-trends-in-machine-learning" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.1. </span>Current trends in Machine Learning<a class="headerlink" href="#current-trends-in-machine-learning" title="Permalink to this headline">¶</a></h2>
 <p>In this demonstration, it is shown how to use <strong>Variational Inference</strong> in PyMC3 to fit a simple Bayesian Neural Network. The authors will also discuss how bridging Probabilistic Programming and Deep Learning can open up very interesting avenues to explore in future research.</p>
 <div class="section" id="probabilistic-programming-at-scale">
-<h3><span class="section-number">15.1.1. </span>Probabilistic Programming at scale<a class="headerlink" href="#probabilistic-programming-at-scale" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.1.1. </span>Probabilistic Programming at scale<a class="headerlink" href="#probabilistic-programming-at-scale" title="Permalink to this headline">¶</a></h3>
 <p><strong>Probabilistic Programming</strong> allows very flexible creation of custom probabilistic models and is mainly concerned with <strong>insight</strong> and learning from your data. The approach is inherently <strong>Bayesian</strong> so we can specify <strong>priors</strong> to inform and constrain our models and get uncertainty estimation in form of a <strong>posterior</strong> distribution. Using <a class="reference external" href="https://twiecki.github.io/blog/2015/11/10/mcmc-sampling/">MCMC sampling algorithms</a> we can draw samples from this posterior to very flexibly estimate these models. PyMC3 and <a class="reference external" href="http://mc-stan.org/">Stan</a> are the current state-of-the-art tools to consruct and estimate these models. One major drawback of sampling, however, is that it’s often very slow, especially for high-dimensional models. That’s why more recently, <strong>variational inference</strong> algorithms have been developed that are almost as flexible as MCMC but much faster. Instead of drawing samples from the posterior, these algorithms instead fit a distribution (e.g. normal) to the posterior turning a sampling problem into and optimization problem. <a class="reference external" href="http://arxiv.org/abs/1506.03431">ADVI</a> – Automatic Differentation Variational Inference – is implemented in PyMC3 and <a class="reference external" href="http://mc-stan.org/">Stan</a>, as well as a new package called <a class="reference external" href="https://github.com/blei-lab/edward/">Edward</a> which is mainly concerned with Variational Inference.</p>
 <p>Unfortunately, when it comes to traditional ML problems like classification or (non-linear) regression, Probabilistic Programming often plays second fiddle (in terms of accuracy and scalability) to more algorithmic approaches like <a class="reference external" href="https://en.wikipedia.org/wiki/Ensemble_learning">ensemble learning</a> (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Random_forest">random forests</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/Boosting_(machine_learning)">gradient boosted regression trees</a>.</p>
 </div>
 <div class="section" id="deep-learning">
-<h3><span class="section-number">15.1.2. </span>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.1.2. </span>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h3>
 <p>Now in its third renaissance, deep learning has been making headlines repeatadly by dominating almost any object recognition benchmark, <a class="reference external" href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">kicking ass at Atari games</a>, and <a class="reference external" href="http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html">beating the world-champion Lee Sedol at Go</a>. From a statistical point, Neural Networks are extremely good non-linear function approximators and representation learners. While mostly known for classification, they have been extended to unsupervised learning with <a class="reference external" href="https://arxiv.org/abs/1312.6114">AutoEncoders</a> and in all sorts of other interesting ways (e.g. <a class="reference external" href="https://en.wikipedia.org/wiki/Recurrent_neural_network">Recurrent Networks</a>, or <a class="reference external" href="http://cbonnett.github.io/MDN_EDWARD_KERAS_TF.html">MDNs</a> to estimate multimodal distributions). Why do they work so well? No one really knows as the statistical properties are still not fully understood.</p>
 <p>A large part of the innoviation in deep learning is the ability to train these extremely complex models. This rests on several pillars:</p>
 <ul class="simple">
@@ -508,7 +508,7 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </ul>
 </div>
 <div class="section" id="bridging-deep-learning-and-probabilistic-programming">
-<h3><span class="section-number">15.1.3. </span>Bridging Deep Learning and Probabilistic Programming<a class="headerlink" href="#bridging-deep-learning-and-probabilistic-programming" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.1.3. </span>Bridging Deep Learning and Probabilistic Programming<a class="headerlink" href="#bridging-deep-learning-and-probabilistic-programming" title="Permalink to this headline">¶</a></h3>
 <p>On one hand we have Probabilistic Programming which allows us to build rather small and focused models in a very principled and well-understood way to gain insight into our data; on the other hand we have deep learning which uses many heuristics to train huge and highly complex models that are amazing at prediction. Recent innovations in variational inference allow probabilistic programming to scale model complexity as well as data size. We are thus at the cusp of being able to combine these two approaches to hopefully unlock new innovations in Machine Learning. For more motivation, see also <a class="reference external" href="https://twitter.com/dustinvtran">Dustin Tran’s</a> recent <a class="reference external" href="http://dustintran.com/blog/a-quick-update-edward-and-some-motivations/">blog post</a>.</p>
 <p>While this would allow Probabilistic Programming to be applied to a much wider set of interesting problems, I believe this bridging also holds great promise for innovations in Deep Learning. Some ideas are:</p>
 <ul class="simple">
@@ -522,9 +522,9 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </div>
 </div>
 <div class="section" id="bayesian-neural-networks-in-pymc3">
-<h2><span class="section-number">15.2. </span>Bayesian Neural Networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.2. </span>Bayesian Neural Networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="generating-data">
-<h3><span class="section-number">15.2.1. </span>Generating data<a class="headerlink" href="#generating-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.2.1. </span>Generating data<a class="headerlink" href="#generating-data" title="Permalink to this headline">¶</a></h3>
 <p>First, lets generate some toy data – a simple binary classification problem that’s not linearly separable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -550,7 +550,7 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </div>
 </div>
 <div class="section" id="import-theano-and-pymc3">
-<h4><span class="section-number">15.2.1.1. </span>Import theano and pymc3<a class="headerlink" href="#import-theano-and-pymc3" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">11.2.1.1. </span>Import theano and pymc3<a class="headerlink" href="#import-theano-and-pymc3" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># suppress some theano compilation errors with MacOSX clang compiler</span>
@@ -592,7 +592,7 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </div>
 </div>
 <div class="section" id="model-specification">
-<h3><span class="section-number">15.2.2. </span>Model specification<a class="headerlink" href="#model-specification" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.2.2. </span>Model specification<a class="headerlink" href="#model-specification" title="Permalink to this headline">¶</a></h3>
 <p>A neural network is quite simple. The basic unit is a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron">perceptron</a> which is nothing more than <a class="reference external" href="http://pymc-devs.github.io/pymc3/notebooks/posterior_predictive.html#Prediction">logistic regression</a>. We use many of these in parallel and then stack them up to get hidden layers. Here we will use 2 hidden layers with 5 neurons each which is sufficient for such a simple problem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -652,7 +652,7 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 <p>That’s not so bad. The <code class="docutils literal notranslate"><span class="pre">Normal</span></code> priors help regularize the weights. Usually we would add a constant <code class="docutils literal notranslate"><span class="pre">b</span></code> to the inputs but I omitted it here to keep the code cleaner.</p>
 </div>
 <div class="section" id="variational-inference-scaling-model-complexity">
-<h3><span class="section-number">15.2.3. </span>Variational Inference: Scaling model complexity<a class="headerlink" href="#variational-inference-scaling-model-complexity" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.2.3. </span>Variational Inference: Scaling model complexity<a class="headerlink" href="#variational-inference-scaling-model-complexity" title="Permalink to this headline">¶</a></h3>
 <p>We could now just run a MCMC sampler like NUTS which works pretty well in this case, but as I already mentioned, this will become very slow as we scale our model up to deeper architectures with more layers.</p>
 <p>Instead, we will use <a class="reference external" href="https://arxiv.org/abs/1603.00788">ADVI</a> variational inference algorithm which was recently added to <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code>, and updated to use the operator variational inference (OPVI) framework. This is much faster and will scale better.</p>
 <p><strong>Note</strong>, however, that this is a mean-field approximation so we <strong>ignore correlations</strong> in the posterior.</p>
@@ -830,7 +830,7 @@ Wall time: 2min 7s
 </div>
 </div>
 <div class="section" id="lets-look-at-what-the-classifier-has-learned">
-<h2><span class="section-number">15.3. </span>Lets look at what the classifier has learned<a class="headerlink" href="#lets-look-at-what-the-classifier-has-learned" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.3. </span>Lets look at what the classifier has learned<a class="headerlink" href="#lets-look-at-what-the-classifier-has-learned" title="Permalink to this headline">¶</a></h2>
 <p>For this, we evaluate the class probability predictions on a grid over the whole input space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -849,7 +849,7 @@ Wall time: 2min 7s
 </div>
 </div>
 <div class="section" id="probability-surface">
-<h3><span class="section-number">15.3.1. </span>Probability surface<a class="headerlink" href="#probability-surface" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.3.1. </span>Probability surface<a class="headerlink" href="#probability-surface" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">85</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -869,7 +869,7 @@ Wall time: 2min 7s
 </div>
 </div>
 <div class="section" id="uncertainty-in-predicted-value">
-<h3><span class="section-number">15.3.2. </span>Uncertainty in predicted value<a class="headerlink" href="#uncertainty-in-predicted-value" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.3.2. </span>Uncertainty in predicted value<a class="headerlink" href="#uncertainty-in-predicted-value" title="Permalink to this headline">¶</a></h3>
 <p>So far, everything I showed we could have done with a non-Bayesian Neural Network. The mean of the posterior predictive for each class-label should be identical to maximum likelihood predicted values. However, we can also look at the standard deviation of the posterior predictive to get a sense for the uncertainty in our predictions. Here is what that looks like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -893,7 +893,7 @@ Wall time: 2min 7s
 </div>
 </div>
 <div class="section" id="mini-batch-advi">
-<h2><span class="section-number">15.4. </span>Mini-batch ADVI<a class="headerlink" href="#mini-batch-advi" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.4. </span>Mini-batch ADVI<a class="headerlink" href="#mini-batch-advi" title="Permalink to this headline">¶</a></h2>
 <p>So far, we have trained our model on all data at once. Obviously this won’t scale to something like ImageNet. Moreover, training on mini-batches of data (stochastic gradient descent) avoids local minima and can lead to faster convergence.</p>
 <p>Fortunately, ADVI can be run on mini-batches as well. It just requires some setting up:</p>
 <div class="cell docutils container">
@@ -942,13 +942,13 @@ Finished [100%]: Average Loss = 188.16
 </div>
 </div>
 <div class="section" id="next-steps">
-<h2><span class="section-number">15.5. </span>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.5. </span>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://deeplearning.net/software/theano/"><code class="docutils literal notranslate"><span class="pre">Theano</span></code></a>, which is used by <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code> as its computational backend, was mainly developed for estimating neural networks and there are great libraries like <a class="reference external" href="https://github.com/Lasagne/Lasagne"><code class="docutils literal notranslate"><span class="pre">Lasagne</span></code></a> that build on top of <code class="docutils literal notranslate"><span class="pre">Theano</span></code> to make construction of the most common neural network architectures easy. There is a <a class="reference external" href="https://twiecki.github.io/blog/2016/07/05/bayesian-deep-learning/">follow-up blog post on how to use Lasagne together with PyMC3</a>.</p>
 <p>You should be able to run this example on the GPU by setting <code class="docutils literal notranslate"><span class="pre">device</span> <span class="pre">=</span> <span class="pre">gpu</span></code> and <code class="docutils literal notranslate"><span class="pre">floatX</span> <span class="pre">=</span> <span class="pre">float32</span></code> in your <code class="docutils literal notranslate"><span class="pre">.theanorc</span></code>.</p>
 <p>You might argue that the above network isn’t really deep, but note that we could easily extend it to have more layers, including convolutional ones to train on more challenging data sets, as demonstrated [here](<a class="reference external" href="https://twiecki.github.io/blog/2016/07/05/bayesian-deep-learning/">follow-up blog post on how to use Lasagne together with PyMC3</a>.</p>
 </div>
 <div class="section" id="acknowledgements">
-<h2><span class="section-number">15.6. </span>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.6. </span>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
 <p>This notebook is very much inspired by a blog post written by Thomas Wiecki (and updated by Maxim Kochurov). The
 original posts are available <a class="reference external" href="http://twiecki.github.io/blog/2016/06/01/bayesian-deep-learning/">here</a> and <a class="reference external" href="https://docs.pymc.io/notebooks/bayesian_neural_network_advi.html">here</a>.</p>
 <p>This example uses the <a class="reference external" href="https://docs.pymc.io/">PyMC3</a> package for probabilistic programming, and relies in particular on the <a class="reference external" href="http://pymc-devs.github.io/pymc3/api.html#advi">ADVI</a> implementation by <a class="reference external" href="https://github.com/taku-y">Taku Yoshioka</a>.</p>
@@ -980,8 +980,8 @@ original posts are available <a class="reference external" href="http://twiecki.
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="bnn.html" title="previous page"><span class="section-number">14. </span>Bayesian neural networks</a>
-    <a class='right-next' id="next-link" href="exercises_BNN.html" title="next page"><span class="section-number">16. </span>Exercise: Bayesian neural networks</a>
+    <a class='left-prev' id="prev-link" href="bnn.html" title="previous page"><span class="section-number">10. </span>Bayesian neural networks</a>
+    <a class='right-next' id="next-link" href="exercises_BNN.html" title="next page"><span class="section-number">12. </span>Exercise: Bayesian neural networks</a>
 
         </div>
         

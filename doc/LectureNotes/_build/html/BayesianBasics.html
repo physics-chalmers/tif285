@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -235,7 +237,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   1. Inference using Gaussian processes
+   1. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,42 +257,42 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   5. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   6. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   7. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   8. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   9. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   11. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   12. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   13. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -578,8 +580,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7fc112d-dec2-4276-8da2-b55e16de4011">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-e7fc112d-dec2-4276-8da2-b55e16de4011" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c471ad73-9047-43cd-a31c-c7e12bd67ecc">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-c471ad73-9047-43cd-a31c-c7e12bd67ecc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -614,8 +616,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4959a7c2-a862-49c3-9a03-9f3a735b607a">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-4959a7c2-a862-49c3-9a03-9f3a735b607a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8bd5a502-a4cc-4b78-9560-db893e8a5f3d">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-8bd5a502-a4cc-4b78-9560-db893e8a5f3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>

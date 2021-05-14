@@ -1,11 +1,3 @@
-% Learning from data: Convolutional Neural Networks
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden;  **Morten Hjorth-Jensen** at Department of Physics, University of Oslo and Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
 <!-- !split -->
 ## Convolutional Neural Networks
 
@@ -41,8 +33,8 @@ We could have several such neurons, and the parameters would add up quickly! Cle
 this full connectivity is wasteful and the huge number of parameters
 would quickly lead to possible overfitting.
 
-<!-- <img src="fig/nn.jpeg" width=500><p><em>A regular 3-layer Neural Network.</em></p> -->
-![<p><em>A regular 3-layer Neural Network.</em></p>](fig/nn.jpeg)
+<!-- <img src="fig/CNN/nn.jpeg" width=500><p><em>A regular 3-layer Neural Network.</em></p> -->
+![<p><em>A regular 3-layer Neural Network.</em></p>](fig/CNN/nn.jpeg)
 
 <!-- !split -->
 ### 3D volumes of neurons
@@ -71,8 +63,8 @@ end of the CNN architecture we will reduce the full image into a
 single vector of class scores, arranged along the depth
 dimension. 
 
-<!-- <img src="fig/cnn.jpeg" width=500><p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p> -->
-![<p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p>](fig/cnn.jpeg)
+<!-- <img src="fig/CNN/cnn.jpeg" width=500><p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p> -->
+![<p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p>](fig/CNN/cnn.jpeg)
 
 
 
@@ -158,7 +150,8 @@ single neuron in the first hidden layer.
 #### Setting it up
 
 It means that to represent the entire
-dataset of images, we require a 4D matrix or **tensor**. This tensor has the dimensions:  
+dataset of images, we require a 4D matrix or **tensor**. This tensor has the dimensions: 
+ 
 $$
   
 (n_\mathrm{inputs},\, n_\mathrm{pixels, width},\, n_\mathrm{pixels, height},\, n_\mathrm{pixels, depth}) .
