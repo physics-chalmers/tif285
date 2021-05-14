@@ -193,22 +193,27 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   9. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   11. Why Bayes is Better
+   10. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   11. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IgnorancePDF.html">
+   14. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   15. Ignorance pdfs: Indifference and translation groups
+   15. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
@@ -549,8 +554,8 @@ p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \bolds
 \[Since both $p \left( t^{(N+1)}, \boldsymbol{t}_N \right)$ and $p \left( \boldsymbol{t}_N \right)$ are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation $\boldsymbol{C}_{N+1}$ for the $(N+1) \times (N+1)$ covariance matrix for $\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)$. This implies that
 \]</div>
 <p>p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}<em>N, t^{(N+1)} \right) \boldsymbol{C}</em>{N+1}^{-1}</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b7947c7-2455-4803-a415-a169ab166703">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-3b7947c7-2455-4803-a415-a169ab166703" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-828893c5-52f9-48ed-b460-7fbcd199202a">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-828893c5-52f9-48ed-b460-7fbcd199202a" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
 \boldsymbol{t}_N \\
 t^{(N+1)}
 \end{pmatrix}\]</div>
@@ -560,8 +565,8 @@ t^{(N+1)}
 The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.\\#### Elegant approach using linear algebra tricks\\Let us split the $\boldsymbol{C}_{N+1}$ covariance matrix into four different blocks
 \end{aligned}\end{align} \]</div>
 <p>\boldsymbol{C}_{N+1} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ded33413-0978-4fcb-beac-67d6fb934cd4">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-ded33413-0978-4fcb-beac-67d6fb934cd4" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-8e289bfa-95a8-402f-a0f6-f0a4bb4523ea">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-8e289bfa-95a8-402f-a0f6-f0a4bb4523ea" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
 \boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \kappa
 \end{pmatrix}\]</div>
@@ -570,8 +575,8 @@ The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of th
 where $\boldsymbol{C}_N$ is the $N \times N$ covariance matrix (which depends on the positions $\boldsymbol{X}_N$), $\boldsymbol{k}$ is an $N \times 1$ vector (that describes the covariance of $\boldsymbol{X}_N$ with $\boldsymbol{x}^{(N+1)}$), while $\kappa$ is the single diagonal element obtained from $\boldsymbol{x}^{(N+1)}$.\\We can use the partitioned inverse equations (Barnett, 1979) to rewrite $\boldsymbol{C}_{N+1}^{-1}$ in terms of $\boldsymbol{C}_{N}^{-1}$ and $\boldsymbol{C}_{N}$ as follows
 \end{aligned}\end{align} \]</div>
 <p>\boldsymbol{C}_{N+1}^{-1} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f6856ce-7df3-4e29-a19a-3c800be98577">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-2f6856ce-7df3-4e29-a19a-3c800be98577" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-1ec84115-76c4-4a4f-86ee-45bb21fb4119">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-1ec84115-76c4-4a4f-86ee-45bb21fb4119" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
 \boldsymbol{M}_N &amp; \boldsymbol{m} \\
 \boldsymbol{m}^T &amp; \mu
 \end{pmatrix}\]</div>
@@ -607,8 +612,8 @@ with
 \[In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
 \]</div>
 <p>\boldsymbol{C}_{N+M} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b703b96a-44d8-47d0-8690-34efcc1359f9">
-<span class="eqno">(1.6)<a class="headerlink" href="#equation-b703b96a-44d8-47d0-8690-34efcc1359f9" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+<div class="amsmath math notranslate nohighlight" id="equation-82930032-c88b-4aa6-9fc6-8a4a0f63f472">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-82930032-c88b-4aa6-9fc6-8a4a0f63f472" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
 \boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \boldsymbol{\kappa}
 \end{pmatrix}\]</div>

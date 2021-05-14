@@ -25,6 +25,7 @@
   - file: demo-MCMC.ipynb
   - file: ErrorPropagation
   - file: demo-ErrorPropagation.ipynb
+  - file: IgnorancePDF
   - file: MaxEnt
   - file: demo-MaxEnt.ipynb
   - file: ModelSelection

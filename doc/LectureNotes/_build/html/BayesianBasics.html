@@ -193,22 +193,27 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   10. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   9. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   11. Why Bayes is Better
+   10. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   12. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   11. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IgnorancePDF.html">
+   14. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   15. Ignorance pdfs: Indifference and translation groups
+   15. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
@@ -555,8 +560,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5cd2f92f-e78d-49a3-847b-8947fbae8b7b">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-5cd2f92f-e78d-49a3-847b-8947fbae8b7b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-10a1b1f0-0cd9-4676-b610-908f8872dd04">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-10a1b1f0-0cd9-4676-b610-908f8872dd04" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -591,8 +596,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-904c5d24-63b1-49c7-b26d-fd8d6e10a13b">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-904c5d24-63b1-49c7-b26d-fd8d6e10a13b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd091124-01fe-49da-9a68-7ff1d7230a9f">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-fd091124-01fe-49da-9a68-7ff1d7230a9f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>

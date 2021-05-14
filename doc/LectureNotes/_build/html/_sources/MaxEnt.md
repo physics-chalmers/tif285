@@ -1,135 +1,3 @@
-% Learning from data: Assigning probabilities
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden;  **Daniel Phillips** at Department of Physics and Astronomy, Ohio University
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
-<!-- !split -->
-## Ignorance pdfs: Indifference and translation groups
-
-<!-- !split -->
-### Discrete permutation invariance
-* Consider a six-sided die
-* How do we assign $p_i \equiv p(X_i|I)$, $i \in \{1, 2, 3, 4, 5, 6\}$?
-* We do know $\sum_i p(X_i|I) = 1$
-* Invariance under labeling $\Rightarrow p(X_i|I)=1/6$
-  * provided that the prior information $I$ says nothing that breaks the permutation symmetry.
-
-
-<!-- !split -->
-### Location invariance
-Indifference to a constant shift $x_0$ for a location parameter $x$ implies that
-$$
-
-p(x|I) dx \approx p(x+ x_0|I) d(x+x_0) =  p(x+ x_0|I) dx,
-
-$$
-in the allowed range.
-
-Location invariance implies that
-$$
-
-p(x|I) =  p(x+ x_0|I) \quad \Rightarrow \quad p(x|I) = \mathrm{constant}.
-
-$$
-
-* Provided that the prior information $I$ says nothing that breaks the symmetry.
-* The pdf will be zero outside the allowed range (specified by $I$).
-
-<!-- !split -->
-### Scale invariance
-
-Indifference to a re-scaling $\lambda$ of a scale parameter $x$ implies that
-$$
-
-p(x|I) dx \approx p(\lambda x|I) d(\lambda x) =  \lambda p(\lambda x|I) dx,
-
-$$
-in the allowed range.
-
-<!-- !split -->
-Invariance under re-scaling implies that
-$$
-
-p(x|I) = \lambda p(\lambda x|I) \quad \Rightarrow \quad p(x|I) \propto 1/x.
-
-$$
-
-* Provided that the prior information $I$ says nothing that breaks the symmetry.
-* The pdf will be zero outside the allowed range (specified by $I$).
-* This prior is often called a *Jeffrey's prior*; it represents a complete ignorance of a scale parameter within an allowed range.
-* It is equivalent to a uniform pdf for the logarithm: $p(\log(x)|I) = \mathrm{constant}$
-  * as can be verified with a change of variable $y=\log(x)$, see lecture notes on error propagation.
-
-
-<!-- !split -->
-#### Example: Straight-line model
-
-Consider the theoretical model 
-$$
-
-y_\mathrm{th}(x) = \theta_1  x  + \theta_0.
-
-$$
-
-* Would you consider the intercept $\theta_0$ a location or a scale parameter, or something else?
-* Would you consider the slope $\theta_1$ a location or a scale parameter, or something else?
-
-Consider also the statistical model for the observed data $y_i = y_\mathrm{th}(x_i) + \epsilon_i$, where we assume independent, Gaussian noise $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$.
-* Would you consider the standard deviation $\sigma$ a location or a scale parameter, or something else?
-
-<!-- !split -->
-### Symmetry invariance
-
-* In fact, by symmetry indifference we could as well have written the linear model as $x_\mathrm{th}(y) = \theta_1'  y  + \theta_0'$
-* We would then equate the probability elements for the two models 
-
-$$
-
-p(\theta_0, \theta_1 | I) d\theta_0 d\theta_1 = q(\theta_0', \theta_1' | I) d\theta_0' d\theta_1'.
-
-$$
-
-* The transformation gives $(\theta_0', \theta_1') = (-\theta_1^{-1}\theta_0, \theta_1^{-1})$.
-
-<!-- !split -->
-This change of variables implies that
-$$
-
-q(\theta_0', \theta_1' | I) = p(\theta_0, \theta_1 | I) \left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right|,
-
-$$
-where the (absolute value of the) determinant of the Jacobian is
-$$
-
-\left| \frac{d\theta_0 d\theta_1}{d\theta_0' d\theta_1'} \right| 
-= \mathrm{abs} \left( 
-\begin{vmatrix}
-\frac{\partial \theta_0}{\partial \theta_0'} & \frac{\partial \theta_0}{\partial \theta_1'} \\
-\frac{\partial \theta_1}{\partial \theta_0'} & \frac{\partial \theta_1}{\partial \theta_1'} 
-\end{vmatrix}
-\right)
-= \frac{1}{\left( \theta_1' \right)^3}.
-
-$$
-
-<!-- !split -->
-* In summary we find that $\theta_1^3 p(\theta_0, \theta_1 | I) = p(-\theta_1^{-1}\theta_0, \theta_1^{-1}|I).$
-* This functional equation is satisfied by
-
-$$
-
-p(\theta_0, \theta_1 | I) \propto \frac{1}{\left( 1 + \theta_1^2 \right)^{3/2}}.
-
-$$
-
-<!-- !split -->
-<!-- <img src="fig/slope_priors.png" width=800><p><em>100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.</em></p> -->
-![<p><em>100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.</em></p>](fig/slope_priors.png)
-
-
 <!-- !split -->
 ## The principle of maximum entropy
 
@@ -139,11 +7,13 @@ Consider a die with the usual six faces that was rolled a very large number of t
 
 <!-- !split -->
 The available information can be summarized as follows
+
 $$
 
 \sum_{i=1}^6 p_i = 1, \qquad \sum_{i=1}^6 i p_i = 2.5
 
 $$
+
 This is obviously not a normal die, with uniform probability $p_i=1/6$, since the average result would then be 3.5. But there are many candidate pdfs that would reproduce the given information. Which one should we prefer?
 
 <!-- !split -->
@@ -160,6 +30,7 @@ Q\left( \{ p_i \} ; \lambda_0, \lambda_1 \right)
 + \lambda_1 \left( 2.5 - \sum_{i=1}^6 i p_i \right),
 
 $$
+
 where the constraints are included via the method of [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).
 
 <!-- !split -->
@@ -234,6 +105,7 @@ $$
 F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}
 
 $$
+
 * The number of micro-states, $W(\{n_i\}))$, in the nominator is equal to $N! / \prod_{i=1}^M n_i!$. 
 * We express the logarithm of this number (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
 
@@ -254,6 +126,7 @@ $$
 $$
 
 Substituting $p_i = n_i/N$, and using the normalization condition finally gives
+
 $$
 
 \log(F(\{p_i\})) \approx -N \log(M) - N \sum_{i=1}^M p_i\log(p_i)
@@ -262,11 +135,13 @@ $$
 
 <!-- !split -->
 We note that $N$ and $M$ are constants so that the preferred pdf is given by the $\{ p_i \}$ that maximizes
+
 $$
 
 S = - \sum_{i=1}^M p_i\log(p_i).
 
 $$
+
 You might recognise this quantity as the *entropy* from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty, which remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied $S = -k_B \sum_i p_i \log(p_i)$, where $k_B$ is the Boltzmann constant.
 
 <!-- !split -->
@@ -300,21 +175,24 @@ $-\sum_i \sqrt{p_i(1-p_i)}$    0.066          Negative
 <!-- !split -->
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
 
-<!-- <img src="fig/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
-![<p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p>](fig/scandinavian_entropy.png)
+<!-- <img src="fig/MaxEnt/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
+![<p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p>](fig/MaxEnt/scandinavian_entropy.png)
 
 <!-- !split -->
 #### Continuous case
 
 Return to monkeys, but now with different probabilities for each bin.Then
+
 $$
 
 S= −\sum_{i=1}^M p_i \log \left( \frac{p_i}{m_i} \right),
 
 $$
+
 which is often known as the *Shannon-Jaynes entropy*, or the *Kullback number*, or the *cross entropy* (with opposite sign).
 
 Jaynes (1963) has pointed out that this generalization of the entropy, including a *Leqesgue measure* $m_i$, is necessary when we consider the limit of continuous parameters. 
+
 $$
 
 S[p]= −\int p(x) \log \left( \frac{p(x)}{m(x)} \right).
@@ -337,6 +215,7 @@ In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and 
 #### Mean and the Exponential pdf
 
 Suppose that we have a pdf $p(x|I)$ that is normalized over some interval $[ x_\mathrm{min}, x_\mathrm{max}]$. Assume that we have information about its mean value, i.e.,
+
 $$
 
 \langle x \rangle = \int x p(x|I) dx = \mu.
@@ -347,6 +226,7 @@ Based only on this information, what functional form should we assign for the pd
 
 <!-- !split -->
 Let us use the principle of MaxEnt and maximize the entropy under the normalization and mean constraints. We will use Lagrange multipliers, and we will perform the optimization as a limiting case of a discrete problem; explicitly, we will maximize
+
 $$
 
 Q = -\sum_i p_i \log \left( \frac{p_i}{m_i} \right) + \lambda_0 \left( 1 - \sum_i p_i \right) + \lambda_1 \left( \mu - \sum_i x_i p_i \right).
@@ -355,6 +235,7 @@ $$
 
 <!-- !split -->
 Setting $\partial Q / \partial p_j = 0$ we obtain
+
 $$
 
 p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
@@ -362,6 +243,7 @@ p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].
 $$
 
 With a uniform measure $m_j = \mathrm{constant}$ we find (in the continuous limit) that
+
 $$
 
 p(x|\mu) = \mathcal{N} \exp \left[ -\lambda_1 x \right].
@@ -372,12 +254,15 @@ $$
 The normalization constant (related to $\lambda_0$) and the remaining Lagrange multiplier, $\lambda_1$, can easily determined by fulfilling the two constraints. 
 
 Assuming, e.g., that the normalization interval is $x \in [0, \infty[$ we obtain
+
 $$
 
 \int_0^\infty p(x|\mu) dx = 1 = \left[ -\frac{\mathcal{N}}{\lambda_1} e^{-\lambda_1 x} \right]_0^\infty = \frac{\mathcal{N}}{\lambda_1} \quad \Rightarrow \quad \mathcal{N} = \lambda_1.
 
 $$
+
 The constraint for the mean then gives
+
 $$
 
 \mu = \lambda_1 \int_0^\infty x  e^{-\lambda_1 x} dx = \lambda_1 \frac{1!}{\lambda_1^2}
@@ -387,6 +272,7 @@ $$
 $$
 
 So that the properly normalized pdf from MaxEnt principles becomes the exponential distribution
+
 $$
 
 p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].
@@ -397,6 +283,7 @@ $$
 #### Variance and the Gaussian pdf
 
 Suppose that we have information not only on the mean $\mu$ but also on the variance
+
 $$
 
 \left\langle (x-\mu)^2 \right\rangle = \int (x-\mu)^2 p(x|I) dx = \sigma^2.
@@ -404,6 +291,7 @@ $$
 $$
 
 The principle of MaxEnt will then result in the continuum assignment
+
 $$
 
 p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].
@@ -412,6 +300,7 @@ $$
 
 <!-- !split -->
 Assuming that the limits of integration are $\pm \infty$ this results in the standard Gaussian pdf
+
 $$
 
 p(x|\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left[ - \frac{( x - \mu )^2}{2\sigma^2} \right].
@@ -423,6 +312,7 @@ This indicates that the normal distribution is the most honest representation of
 <!-- !split -->
 *Notice.* 
 These arguments extend easily to the case of several parameters. For example, considering $\{x_k\}$ as the data $\{ D_k\}$ with error bars $\{\sigma_k\}$ and $\{\mu_k\}$ as the model predictions, this allows us to identify the least-squares likelihood as the pdf which best represents our state of knowledge given only the value of the expected squared-deviation between our predictions and the data
+
 $$
 
 p\left( \{x_k\} | \{\mu_k, \sigma_k\} \right) = \prod_{k=1}^N \frac{1}{\sigma_k \sqrt{2\pi}} \exp \left[ - \frac{( x_k - \mu_k )^2}{2\sigma_k^2} \right].

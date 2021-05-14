@@ -207,18 +207,23 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="MaxEnt.html">
+  <a class="reference internal" href="IgnorancePDF.html">
    14. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="MaxEnt.html">
+   15. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   15. Assigning probabilities
+   16. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   16. Frequentist hypothesis testing
+   17. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -513,8 +518,8 @@
 <p><strong>Inferring galactic distances with an imprecise knowledge of the Hubble constant</strong>
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to <span class="math notranslate nohighlight">\(v = H_0 x\)</span>. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.</p>
 <p>Here we use marginalization to obtain the desired posterior pdf <span class="math notranslate nohighlight">\(p(x|D,I)\)</span> from the joint distribution of <span class="math notranslate nohighlight">\(p(x,H_0|D,I)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-61efaa8d-90de-4725-8652-7c39cc30636f">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-61efaa8d-90de-4725-8652-7c39cc30636f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-810417cd-ae51-4054-b0b7-b6ffceee2f63">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-810417cd-ae51-4054-b0b7-b6ffceee2f63" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -545,16 +550,16 @@ p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \[p(X=X^*|I) \delta X = p(Y=Y^*|I) \delta Y.\]</div>
 <!-- !split -->
 <p>In the limit of infinitesimally small intervals, and with the realization that this should be true for any point <span class="math notranslate nohighlight">\(X\)</span>, we obtain the relationship</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dedbafcc-3f86-475a-b267-b2574094e789">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-dedbafcc-3f86-475a-b267-b2574094e789" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a31455bb-7d6d-4cd7-95ad-0ef7b99244a0">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-a31455bb-7d6d-4cd7-95ad-0ef7b99244a0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
 <p>where the term on the far right is called the <em>Jacobian</em>.</p>
 <!-- !split -->
 <p>The generalization to several variables, relating the pdf for <span class="math notranslate nohighlight">\(M\)</span> variables <span class="math notranslate nohighlight">\(\{ X_j \}\)</span> in terms of the same number of quantities <span class="math notranslate nohighlight">\(\{ Y_j \}\)</span> related to them, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2455de2c-4d50-4ee9-b3b6-b310d8e001b2">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-2455de2c-4d50-4ee9-b3b6-b310d8e001b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2fe4f07-e4fc-4795-8d28-195cca41c749">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-d2fe4f07-e4fc-4795-8d28-195cca41c749" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -578,8 +583,8 @@ We have now seen the basic ingredients required for the propagation of errors: i
 <p>where we have employed the linear property for an integral over a sum of terms.</p>
 <!-- !split -->
 <p>Since we assumed that the pdfs for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> were described by independent Gaussians we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-992c661b-b31a-4484-a044-73465c4bd0fd">
-<span class="eqno">(10.4)<a class="headerlink" href="#equation-992c661b-b31a-4484-a044-73465c4bd0fd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e873e37f-43e5-4d64-ac04-d906d9cf3cb0">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-e873e37f-43e5-4d64-ac04-d906d9cf3cb0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>
