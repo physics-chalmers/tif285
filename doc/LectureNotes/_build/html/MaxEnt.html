@@ -460,24 +460,44 @@ On the basis of this information alone, what proportion of Scandinavians are bot
 <!-- !split -->
 <p>The following 2x2 contingency table
 \n</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>        Left handed  Right handed  
-</pre></div>
-</div>
-<hr class="docutils" />
-<p>Blonde         <span class="math notranslate nohighlight">\(p_1\)</span>        <span class="math notranslate nohighlight">\(p_2\)</span><br />
-Not blonde     <span class="math notranslate nohighlight">\(p_3\)</span>        <span class="math notranslate nohighlight">\(p_4\)</span></p>
-<p>\n</p>
-<!-- !split -->
-<p>can be written in terms of a single variable <span class="math notranslate nohighlight">\(x\)</span> due to the normalization condition <span class="math notranslate nohighlight">\(\sum_{i=1}^4 p_i = 1\)</span>, and the available information <span class="math notranslate nohighlight">\(p_1 + p_2 = 0.7\)</span> and <span class="math notranslate nohighlight">\(p_1 + p_3 = 0.1\)</span>
-\n</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>           Left handed     Right handed  
-</pre></div>
-</div>
-<hr class="docutils" />
-<p>Blonde      <span class="math notranslate nohighlight">\(0 \le x \le 0.1\)</span>    <span class="math notranslate nohighlight">\(0.7-x\)</span><br />
-Not blonde       <span class="math notranslate nohighlight">\(0.1-x\)</span>         <span class="math notranslate nohighlight">\(0.2+x\)</span></p>
-<p>\n
-But which choice of <span class="math notranslate nohighlight">\(x\)</span> is preferred?</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:left head"><p>Left handed</p></th>
+<th class="text-align:left head"><p>Right handed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Not blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_4\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>can be written in terms of a single variable <span class="math notranslate nohighlight">\(x\)</span> due to the normalization condition <span class="math notranslate nohighlight">\(\sum_{i=1}^4 p_i = 1\)</span>, and the available information <span class="math notranslate nohighlight">\(p_1 + p_2 = 0.7\)</span> and <span class="math notranslate nohighlight">\(p_1 + p_3 = 0.1\)</span></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:left head"><p>Left handed</p></th>
+<th class="text-align:left head"><p>Right handed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 \le x \le 0.1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.7-x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Not blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.1-x\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.2+x\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>But which choice of <span class="math notranslate nohighlight">\(x\)</span> is preferred?</p>
 <!-- !split -->
 </div>
 <div class="section" id="the-monkey-argument">
@@ -541,16 +561,32 @@ But which choice of <span class="math notranslate nohighlight">\(x\)</span> is p
 <!-- !split -->
 <p>Let us now empirically consider a few variational functions of <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> and see if any of them gives a maximum that corresponds to the uncorrelated assignment <span class="math notranslate nohighlight">\(x=0.07\)</span>, which implies <span class="math notranslate nohighlight">\(p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27\)</span>. A few variational functions and their prediction for <span class="math notranslate nohighlight">\(x\)</span> are shown in the following table.
 \n</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Variational function     Optimal x  Implied correlation  
-</pre></div>
-</div>
-<hr class="docutils" />
-<p><span class="math notranslate nohighlight">\(-\sum_i p_i \log(p_i)\)</span>      0.070            None<br />
-<span class="math notranslate nohighlight">\(\sum_i \log(p_i)\)</span>        0.053          Negative<br />
-<span class="math notranslate nohighlight">\(-\sum_i p_i^2 \log(p_i)\)</span>     0.100          Positive<br />
-<span class="math notranslate nohighlight">\(-\sum_i \sqrt{p_i(1-p_i)}\)</span>    0.066          Negative</p>
-<p>\n</p>
-<!-- !split -->
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Variational function</p></th>
+<th class="text-align:left head"><p>Optimal x</p></th>
+<th class="text-align:left head"><p>Implied correlation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i p_i \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.070</p></td>
+<td class="text-align:left"><p>None</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\sum_i \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.053</p></td>
+<td class="text-align:left"><p>Negative</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i p_i^2 \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.100</p></td>
+<td class="text-align:left"><p>Positive</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i \sqrt{p_i(1-p_i)}\)</span></p></td>
+<td class="text-align:left"><p>0.066</p></td>
+<td class="text-align:left"><p>Negative</p></td>
+</tr>
+</tbody>
+</table>
 <p>The assignment based on the entropy measure is the only one that respects this lack of correlations.</p>
 <!-- <img src="fig/MaxEnt/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
 <p><img alt="Four different variational functions . The optimal  for each one is shown by a circle. The uncorrelated assignment  is shown by a vertical line." src="_images/scandinavian_entropy.png" /></p>

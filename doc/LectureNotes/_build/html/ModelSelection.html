@@ -492,8 +492,8 @@ The sampling theory hypothesis test is designed to compare a selected statistic 
 <!-- !split -->
 <p>It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a014a484-95a7-4bf5-914e-533176721fd4">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-a014a484-95a7-4bf5-914e-533176721fd4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e88723d7-10e9-4575-a0e3-b0d069610504">
+<span class="eqno">(18.1)<a class="headerlink" href="#equation-e88723d7-10e9-4575-a0e3-b0d069610504" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
 \label{eq:sivia_41}
 \end{equation}\]</div>
@@ -501,8 +501,8 @@ $$</p>
 \[ \begin{align}\begin{aligned}
 is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.\\To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d7218445-2ffc-4bf2-8eee-f332f0c05143">
-<span class="eqno">(18.2)<a class="headerlink" href="#equation-d7218445-2ffc-4bf2-8eee-f332f0c05143" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bdc9666c-c928-4f3c-bee5-d2c2d2d6711d">
+<span class="eqno">(18.2)<a class="headerlink" href="#equation-bdc9666c-c928-4f3c-bee5-d2c2d2d6711d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} = \frac{p(D|A,I) p(A|I)}{p(D|B,I) p(B|I)}
 \label{eq:sivia_42}
 \end{equation}\]</div>
@@ -510,8 +510,8 @@ is very much greater than one, then we will prefer A’s theory; if it is very m
 \[ \begin{align}\begin{aligned}
 because the term $p(D|I)$ cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. ([eq:sivia_42](#eq:sivia_42)), to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, $p(D|A,I)$ and $p(D|B,I)$, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for $\lambda$.\\To circumvent this difficulty, we can use the sum and product rule to relate the probability we require to other pdfs which might be easier to assign. In particular, marginalization and the product rule allow us to express $p(D | B , I )$ as
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a4ea8cac-7fe1-4421-8d3a-ea55bda993ae">
-<span class="eqno">(18.3)<a class="headerlink" href="#equation-a4ea8cac-7fe1-4421-8d3a-ea55bda993ae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6ac90d41-b302-41d7-8110-55f07ec1bcba">
+<span class="eqno">(18.3)<a class="headerlink" href="#equation-6ac90d41-b302-41d7-8110-55f07ec1bcba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|B,I) = \int d\lambda p(D,\lambda|B,I) = 
 \int d\lambda p(D|\lambda,B,I) p(\lambda|B,I). 
 \label{eq:sivia_43}
@@ -520,8 +520,8 @@ p(D|B,I) = \int d\lambda p(D,\lambda|B,I) =
 \[ \begin{align}\begin{aligned}
 The first term in the integral $p(D | \lambda, B , I )$, where the value of $\lambda$ is given, is now just an ordinary likelihood function; as such, it is on a par with $p(D|A,I)$. The second term is B’s prior pdf for $\lambda$; the onus is, therefore, on the theorist to articulate his or her state of knowledge, or ignorance, before getting access to the data.\\To proceed further analytically, let us make some simplifying approximations. Assume that, a priori, Prof B is only prepared to say that $\lambda$ must lie between the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$; we can then naively assign a uniform prior within this range:
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-46748555-da29-458a-a1bc-b505e68a617c">
-<span class="eqno">(18.4)<a class="headerlink" href="#equation-46748555-da29-458a-a1bc-b505e68a617c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2e7ccdc-1c9d-4ea9-9d25-ae0d4de44cb7">
+<span class="eqno">(18.4)<a class="headerlink" href="#equation-d2e7ccdc-1c9d-4ea9-9d25-ae0d4de44cb7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text{for } \lambda_\mathrm{min} \leq \lambda \leq \lambda_\mathrm{max}, 
 \label{eq:sivia_44}
 \end{equation}\]</div>
@@ -529,8 +529,8 @@ p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text
 \[
 and zero otherwise. Let us also take it that there is a value $\lambda_0$ which yields the closest agreement with the measurements; the corresponding probability $p(D|\lambda_0,B,I)$ will be the maximum of B’s likelihood function. As long as this adjustable parameter lies in the neighbourhood of the optimal value, $\lambda_0 \pm (\delta\lambda)$, we would expect a reasonable fit to the data; this can be represented by the Gaussian pdf
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-4d6f8c2f-9551-4d83-8b6b-3dfb9082e4eb">
-<span class="eqno">(18.5)<a class="headerlink" href="#equation-4d6f8c2f-9551-4d83-8b6b-3dfb9082e4eb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff1fe9e1-10cb-4dd1-be6b-ddffacf4f35e">
+<span class="eqno">(18.5)<a class="headerlink" href="#equation-ff1fe9e1-10cb-4dd1-be6b-ddffacf4f35e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0)^2}{2(\delta\lambda)^2} \right]. 
 \label{eq:sivia_45}
 \end{equation}\]</div>
@@ -539,8 +539,8 @@ p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0
 The assignments of the prior ([eq:sivia_44](#eq:sivia_44)) and the likelihood ([eq:sivia_45](#eq:sivia_45)) are illustrated in Fig. [fig:sivia_41](#fig:sivia_41). We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.\\&lt;!-- &lt;img src=&quot;fig/fig41.png&quot; width=500&gt;&lt;p&gt;&lt;em&gt;A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. &lt;div id=&quot;fig:sivia_41&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt; --&gt;
 ![&lt;p&gt;&lt;em&gt;A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. &lt;div id=&quot;fig:sivia_41&quot;&gt;&lt;/div&gt;&lt;/em&gt;&lt;/p&gt;](fig/fig41.png)\\In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. ([eq:sivia_43](#eq:sivia_43))
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b76c2ea7-a9b7-47bd-a669-19920657bd69">
-<span class="eqno">(18.6)<a class="headerlink" href="#equation-b76c2ea7-a9b7-47bd-a669-19920657bd69" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-96d80c11-3940-48c6-aaf8-9aa0cb165f24">
+<span class="eqno">(18.6)<a class="headerlink" href="#equation-96d80c11-3940-48c6-aaf8-9aa0cb165f24" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} \int_{\lambda_\mathrm{min}}^{\lambda_\mathrm{max}} d\lambda
 p(D|\lambda,B,I),
 \label{eq:sivia_46}
@@ -555,8 +555,8 @@ its integral will be equal to $(\delta\lambda) \sqrt{2\pi}$ times $p(D|\lambda_0
 $<span class="math notranslate nohighlight">\(
 Substituting this into Eq. ([eq:sivia_42](#eq:sivia_42)), we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:
 \)</span>$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-334b540f-66ef-4619-a79d-7365c7b6ed69">
-<span class="eqno">(18.7)<a class="headerlink" href="#equation-334b540f-66ef-4619-a79d-7365c7b6ed69" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a8bcffc4-67b0-45fe-85c2-9ad1cb35156c">
+<span class="eqno">(18.7)<a class="headerlink" href="#equation-a8bcffc4-67b0-45fe-85c2-9ad1cb35156c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
 \label{eq:sivia_48}
 \end{equation}\]</div>
@@ -566,8 +566,8 @@ The first term on the right-hand side reflects our relative prior preference for
 $(\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda_0,B,I) \approx p(D|A,I)$.\\&lt;!-- !split --&gt;
 #### One adjustable parameter each\\Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it $\mu$. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-04de3fd5-f682-4fde-ae3b-d6f74256cfb7">
-<span class="eqno">(18.8)<a class="headerlink" href="#equation-04de3fd5-f682-4fde-ae3b-d6f74256cfb7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d3bb75c-683d-47cf-966a-00a180c80f4d">
+<span class="eqno">(18.8)<a class="headerlink" href="#equation-6d3bb75c-683d-47cf-966a-00a180c80f4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu(\lambda_\mathrm{max} - \lambda_\mathrm{min})}{\delta\lambda(\mu_\mathrm{max} - \mu_\mathrm{min})}. 
 \label{eq:sivia_49}
 \end{equation}\]</div>
@@ -594,8 +594,8 @@ because the best-fit likelihood ratio will be unity (since \)</span>\lambda_0 = 
 <h2><span class="section-number">18.2. </span>Comparison with parameter estimation<a class="headerlink" href="#comparison-with-parameter-estimation" title="Permalink to this headline">¶</a></h2>
 <p>The dependence of the result in Eq. (<a class="reference external" href="#eq:sivia_48">eq:sivia_48</a>) on the prior range <span class="math notranslate nohighlight">\((\lambda_\mathrm{max} - \lambda_\mathrm{min})\)</span> can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of <span class="math notranslate nohighlight">\(\lambda\)</span> from the data, given that B’s theory is correct, we use Bayes’ theorem:
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7a5e2d8a-6f6e-4067-a3a3-fbbf19f40207">
-<span class="eqno">(18.9)<a class="headerlink" href="#equation-7a5e2d8a-6f6e-4067-a3a3-fbbf19f40207" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb6b8f5e-8603-4910-9dc8-8285da05b977">
+<span class="eqno">(18.9)<a class="headerlink" href="#equation-cb6b8f5e-8603-4910-9dc8-8285da05b977" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}. 
 \label{eq:sivia_410}
 \end{equation}\]</div>

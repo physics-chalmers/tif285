@@ -57,25 +57,19 @@ The following 2x2 contingency table
 \n
 
 
-            Left handed  Right handed  
-----------  -----------  ------------  
-Blonde         $p_1$        $p_2$      
-Not blonde     $p_3$        $p_4$      
+|           | Left handed  | Right handed  |
+| :----------  | :-----------  | :------------ | 
+|Blonde        | $p_1$         | $p_2$  |    
+|Not blonde    | $p_3$         | $p_4$  |   
 
 
-\n
-<!-- !split -->
 can be written in terms of a single variable $x$ due to the normalization condition $\sum_{i=1}^4 p_i = 1$, and the available information $p_1 + p_2 = 0.7$ and $p_1 + p_3 = 0.1$
-\n
 
+|           | Left handed  | Right handed  |
+| :----------  | :-----------  | :------------ | 
+|Blonde        | $0 \le x \le 0.1$ |   $0.7-x$   |    
+|Not blonde    | $0.1-x$           |  $0.2+x$    |   
 
-               Left handed     Right handed  
-----------  -----------------  ------------  
-Blonde      $0 \le x \le 0.1$    $0.7-x$     
-Not blonde       $0.1-x$         $0.2+x$     
-
-
-\n
 But which choice of $x$ is preferred?
 
 <!-- !split -->
@@ -163,16 +157,13 @@ Let us now empirically consider a few variational functions of $\{ p_i \}$ and s
 \n
 
 
-    Variational function     Optimal x  Implied correlation  
----------------------------  ---------  -------------------  
-  $-\sum_i p_i \log(p_i)$      0.070            None         
-     $\sum_i \log(p_i)$        0.053          Negative       
- $-\sum_i p_i^2 \log(p_i)$     0.100          Positive       
-$-\sum_i \sqrt{p_i(1-p_i)}$    0.066          Negative       
+|    Variational function     | Optimal x  | Implied correlation  |
+| :--------------------------- | :---------  | :------------------- |  
+|  $-\sum_i p_i \log(p_i)$     | 0.070       |     None       |  
+|     $\sum_i \log(p_i)$       |  0.053      |    Negative    |   
+| $-\sum_i p_i^2 \log(p_i)$    |  0.100      |    Positive    |   
+| $-\sum_i \sqrt{p_i(1-p_i)}$  |  0.066      |    Negative    |   
 
-
-\n
-<!-- !split -->
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
 
 <!-- <img src="fig/MaxEnt/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
