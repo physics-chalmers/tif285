@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Why MCMC &#8212; Learning from data</title>
+    <title>11. Why MCMC &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="11. Metropolis-Hasting MCMC sampling of a Poisson distribution" href="demo-MCMC.html" />
-    <link rel="prev" title="8. Exercise: Bayesian parameter estimation" href="exercise_BayesianParameterEstimation.html" />
+    <link rel="next" title="13. Metropolis-Hasting MCMC sampling of a Poisson distribution" href="demo-MCMC.html" />
+    <link rel="prev" title="10. Exercise: Bayesian parameter estimation" href="exercise_BayesianParameterEstimation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   9. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   10. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Why MCMC
+   11. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   14. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   18. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   19. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   20. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,19 +361,19 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   9. Why MCMC
+   11. Why MCMC
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#visualizations-of-mcmc">
-     9.1. Visualizations of MCMC
+     11.1. Visualizations of MCMC
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#challenges-in-mcmc-sampling">
-   10. Challenges in MCMC sampling
+   12. Challenges in MCMC sampling
   </a>
  </li>
 </ul>
@@ -390,7 +390,7 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split -->
 <div class="section" id="why-mcmc">
-<h1><span class="section-number">9. </span>Why MCMC<a class="headerlink" href="#why-mcmc" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">11. </span>Why MCMC<a class="headerlink" href="#why-mcmc" title="Permalink to this headline">¶</a></h1>
 <p>We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> in a model <span class="math notranslate nohighlight">\(M\)</span> given data <span class="math notranslate nohighlight">\(D\)</span> and other information <span class="math notranslate nohighlight">\(I\)</span>
 $$</p>
 <p>p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).</p>
@@ -486,7 +486,7 @@ The Metropolis(-Hastings) ratio is
 </ul>
 <!-- !split -->
 <div class="section" id="visualizations-of-mcmc">
-<h2><span class="section-number">9.1. </span>Visualizations of MCMC<a class="headerlink" href="#visualizations-of-mcmc" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.1. </span>Visualizations of MCMC<a class="headerlink" href="#visualizations-of-mcmc" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>There are excellent javascript visualizations of MCMC sampling on the internet.</p></li>
 <li><p>A particularly useful set of interactive demos was created by Chi Feng, and is available on the github page: <a class="reference external" href="https://chi-feng.github.io/mcmc-demo/">The Markov-chain Monte Carlo Interactive Gallery</a></p></li>
@@ -496,7 +496,7 @@ The Metropolis(-Hastings) ratio is
 </div>
 </div>
 <div class="section" id="challenges-in-mcmc-sampling">
-<h1><span class="section-number">10. </span>Challenges in MCMC sampling<a class="headerlink" href="#challenges-in-mcmc-sampling" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Challenges in MCMC sampling<a class="headerlink" href="#challenges-in-mcmc-sampling" title="Permalink to this headline">¶</a></h1>
 <p>There is much to be written about challenges in performing MCMC sampling and diagnostics that should be made to ascertain that your Markov chain has converged (although it is not really possible to be 100% certain except in special cases.)</p>
 <p>We will not focus on these issues here, but just list a few problematic pdfs:</p>
 <ul class="simple">
@@ -531,8 +531,8 @@ The Metropolis(-Hastings) ratio is
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="exercise_BayesianParameterEstimation.html" title="previous page"><span class="section-number">8. </span>Exercise: Bayesian parameter estimation</a>
-    <a class='right-next' id="next-link" href="demo-MCMC.html" title="next page"><span class="section-number">11. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution</a>
+    <a class='left-prev' id="prev-link" href="exercise_BayesianParameterEstimation.html" title="previous page"><span class="section-number">10. </span>Exercise: Bayesian parameter estimation</a>
+    <a class='right-next' id="next-link" href="demo-MCMC.html" title="next page"><span class="section-number">13. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution</a>
 
         </div>
         

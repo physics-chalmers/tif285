@@ -1,15 +1,6 @@
-% Learning from data: Bayesian Parameter Estimation
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
-
 <!-- !split -->
-<!-- <img src="fig/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
-![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](fig/m1m2.png)
+<!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
+![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](fig/BayesianParameterEstimation/m1m2.png)
 
 <!-- !split -->
 ## Inference With Parametric Models
@@ -115,8 +106,8 @@ ax.vlines([F_true], 0, N, linewidth=5, alpha=0.2)
 ax.set_xlabel("Flux");ax.set_ylabel("measurement number");
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- <img src="fig/singlephotoncount_fig_1.png" width=400><p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p> -->
-![<p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p>](fig/singlephotoncount_fig_1.png)
+<!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_1.png" width=400><p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p> -->
+![<p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_1.png)
 
 These measurements each have a different error $e_i$ which is estimated from Poisson statistics using the standard square-root rule. In this toy example we know the true flux that was used to generate the data, but the question is this: given our measurements and statistical model, what is our best estimate of $F_\mathrm{true}$?
 
@@ -125,20 +116,20 @@ Let's take a look at the frequentist and Bayesian approaches to solving this.
 #### Simple Photon Counts: Frequentist Approach
 
 We'll start with the classical frequentist maximum likelihood approach. Given a single observation $D_i = F_i$, we can compute the probability distribution of the measurement given the true flux $F_\mathrm{true}$ and our assumption of Gaussian errors
-$$
+
 \begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}
-$$
+
 This should be read "the probability of $D_i$ given $F_\mathrm{true}$
 equals ...". You should recognize this as a normal distribution with mean $F_\mathrm{true}$ and standard deviation $e_i$.
 
 We construct the *likelihood function* by computing the product of the probabilities for each data point
-$$
+
 \begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}
-$$
+
 here $D = \{D_i\}$ represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood. 
 
 *Notice.* 
@@ -147,40 +138,39 @@ In the following we will use $\log$ to denote the natural logarithm. We will wri
 
 
 Combining the previous two equations and computing the log, we have
-$$
+
 \begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}
-$$
 
 In this approach we will determine $F_\mathrm{true}$ such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum
-$$
+
 \begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}
-$$
+
 which you should recognize as the chi-squared function encountered in the linear regression model.
 
 Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting $d\log\mathcal{L}/d F_\mathrm{true} = 0$). This results in the following observed estimate of $F_\mathrm{true}$
-$$
+
 \begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}
-$$
+
 Notice that in the special case of all errors $e_i$ being equal, this reduces to
-$$
+
 \begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}
-$$
+
 That is, in agreement with intuition, $F_\mathrm{est}$ is simply the mean of the observed data when errors are equal.
 
 We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is $\sigma_\mathrm{est}$, which is given by
-$$
+
 \begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}
-$$
+
 These results are fairly simple calculations; let's evaluate them for our toy dataset:
 
 
@@ -262,8 +252,8 @@ ax.set_xlabel(r'$F_\mathrm{est}$')
 ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$');
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-<!-- <img src="fig/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
-![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](fig/singlephotoncount_fig_2.png)
+<!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
+![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_2.png)
 
 <!-- !split -->
 ### Aside: Best estimates and credible intervals
@@ -277,16 +267,15 @@ There are a few different options for this. The choice of the most appropriate o
 Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by $\theta$, with a posterior pdf $P =p(\theta|D,I)$, then the best estimate of its value $\theta_0$ is given by the condition $dP/d\theta|_{\theta=\theta_0}=0$. Strictly speaking, we should also check the sign of the second derivative to ensure that $\theta_0$ represents a maximum.
 
 To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about $\theta_0$. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)
-$$
+
 \begin{equation}
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}
-$$
+
 where the mean $\mu = \theta_0$ and the variance $\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}$, where $L$ is the logarithm of the posterior $P$. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval $\theta = \theta_0 \pm \sigma$, and 
+
 $$
-
 p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
-
 $$
 
 <!-- !split -->
@@ -295,11 +284,11 @@ $$
 While the maximum (mode) of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
 Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a *credible interval*. Since the area under the posterior pdf between $\theta_1$ and $\theta_2$ is proportional to how much we believe that $\theta$ lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find $\theta_1$ and $\theta_2$ such that: 
-$$
 
+$$
 p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
-
 $$
+
 where the difference $\theta_2 - \theta_1$ is as small as possible. The region $\theta_1 < \theta < \theta_2$ is then called a 67% credible interval. 
 
 <!-- !split -->
@@ -369,11 +358,11 @@ The example in the demonstration notebook is from Sivia's book. How do we infer 
 
 <!-- !split -->
 Start from Bayes theorem
-$$
 
+$$
 p(\mu,\sigma | D, I) = \frac{p(D|\mu,\sigma,I) p(\mu,\sigma|I)}{p(D|I)}
-
 $$
+
 * Remind yourself about the names of the different terms.
 * It should become intuitive what the different probabilities (pdfs) describe.
 * Bayes theorem tells you how to flip from (hard-to-compute) $p(\mu,\sigma | D, I) \Leftrightarrow p(D|\mu,\sigma,I)$ (easier-to-compute).
@@ -383,26 +372,23 @@ Aside on the denominator, which is known as the "data probability" or "marginali
 * With $\theta$ denoting a general vector of parameters we must have
 
 $$
-
 p(D|I) = \int d\theta p(D|\theta,I) p(\theta|I).
-
 $$
+
 * This integration (or marginalization) over all parameters is often difficult to perform.
 * Fortunately, for **parameter estimation** we don't need $p(D|I)$ since it doesn't depend on $\theta$. We usually only need relative probabilities, or we can determine the normalization $N$ after we have computed the unnormalized posterior 
 
 $$
-
 p(\theta | D,I) = \frac{1}{N} p(D|\theta,I) p(\theta|I).
-
 $$
 
 <!-- !split -->
 If we use a uniform prior $p(\theta | I ) \propto 1$ (in a finite volume), then the posterior is proportional to the **likelihood**
-$$
 
+$$
 p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(\theta)
-
 $$
+
 In this particular situation, the mode of the likelihood (which would correspond to the point estimate of maximum likelihood) is equivalent to the mode of the posterior pdf in the Bayesian analysis.
 
 <!-- !split -->
@@ -417,99 +403,93 @@ The next example that we will study is the well known fit of a straight line.
 * Here the theoretical model is
 
 $$
-
 y_\mathrm{th}(x; \theta) = m x + b,
-
 $$
+
 with parameters $\theta = [b,m]$.
 
 * The statistical model for the data is
 
 $$
-
 y_{\mathrm{exp},i} = y_{\mathrm{th},i} + \delta y_{\mathrm{exp},i},
-
 $$
+
 where we often assume that the experimental errors are independent and normally distributed so that
+
 $$
-
 y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
-
 $$
 
 * Are independent errors always a good approximation?
 * An even better statistical model for theoretical models with a quantified, finite resolution would be
 
 $$
-
 y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
-
 $$
 
 <!-- !split -->
 ### Linear regression revisited
 At this point it is instructive to revisit the linear regression method that we started out with. It corresponds to models that are linear in the parameters such that
-$$
 
+$$
 y_\mathrm{th} = \sum_{j=0}^{p-1} \theta_j g_j(x),
-
 $$
+
 with $p$ parameters and $g_j(x)$ denoting the basis functions.
 
 With a likelihood as before
-$$
 
+$$
 p(D|\theta,I) = \prod_{i=0}^{N-1} \exp \left[ -\frac{\left(y_i - y_\mathrm{th}(x_i;\theta) \right)^2}{2\sigma_i^2} \right],
-
 $$
+
 and assuming a Gaussian prior with a single width $\sigma_\theta$ on the parameters
-$$
 
+$$
 p(\theta|I) \propto \prod_{j=0}^{p-1} \exp \left[ -\frac{\theta_j^2}{2\sigma_\theta^2} \right].
-
 $$
+
 We note that the prior can be written $\exp\left( -|\theta|^2 / 2 \sigma_\theta^2\right)$, such that the log (unnormalized) posterior becomes
-$$
 
+$$
 \log \left[ p(\theta|D,I) \right] = -\frac{1}{2} \left[ \sum_{i=0}^{N-1} \left( \frac{ y_i - y_\mathrm{th}(x_i;\theta)}{\sigma_i}\right)^2 + \frac{|\theta|^2}{\sigma_\theta^2} \right].
-
 $$
+
 The mode of the posterior pdf occurs at the minimum of this log-posterior function. You might recognise it as the modified cost function that we introduced in a rather *ad hoc* fashion when implementing linear regression with Ridge regularisation.  From our Bayesian perspective, linear regression with Ridge regularisation corresponds to the maximum a posteriori (MAP) estimate with a Gaussian prior on the parameters.
 
 
 <!-- !split -->
 ### Why normal distributions?
 Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf $p(\theta | D,I)$. Our best estimate from this pdf will be $\theta_0$ where
-$$
- 
+
+$$ 
 \left. 
 \frac{ \partial p }{ \partial \theta }
 \right|_{\theta_0} = 0, \qquad
 \left. \frac{ \partial^2 p }{ \partial \theta^2 }
 \right|_{\theta_0} < 0.
-
 $$
+
 The distribution usually varies very rapidly so we study $L(\theta) \equiv \log p$ instead.
 Near the peak, it behaves as
-$$
 
+$$
 L(\theta) = L(\theta_0) + \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2 + \ldots,
-
 $$
+
 where the first-order term is zero since we are expanding around a maximum and $\partial L / \partial\theta = 0$.
 
 <!-- !split -->
 If we neglect higher-order terms we find that 
-$$
 
+$$
 p(\theta|D,I) \approx A \exp \left[ \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2  \right],
-
 $$
+
 which is a Gaussian $\mathcal{N}(\mu,\sigma^2)$ with
+
 $$
-
 \mu = \theta_0, \qquad \sigma^2 = \left( - \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \right)^{-1/2}.
-
 $$
 
 <!-- !split -->
@@ -520,28 +500,27 @@ In the "fitting a straight-line" example you should find that the joint pdf for 
 
 Let us explore correlations by studying the behavior of the pdf at the maximum.
 A Taylor expansion for a bivariate pdf $p(x,y)$ around the mode $(x_0,y_0)$ gives
-$$
 
+$$
 p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
 H
 \begin{pmatrix} x-x_0 \\ y-y_0 \end{pmatrix},
-
 $$
+
 where $H$ is the symmetric Hessian matrix
-$$
 
+$$
 \begin{pmatrix}
 A & C \\ C & B
 \end{pmatrix}, 
-
 $$
+
 with elements
-$$
 
+$$
 A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
 B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
 C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
-
 $$
 
 
@@ -550,5 +529,3 @@ $$
 * The principal axes are found from the eigenvectors of $H$.
 * Depending on the skewness of the ellipse, the parameters are either (i) not correlated, (ii) correlated, or (iii) anti-correlated.
 * Take a minute to consider what that implies.
-
-

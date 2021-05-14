@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>17. Assigning probabilities &#8212; Learning from data</title>
+    <title>19. Assigning probabilities &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18. Frequentist hypothesis testing" href="ModelSelection.html" />
-    <link rel="prev" title="16. Ignorance pdfs: Indifference and translation groups" href="MaxEnt.html" />
+    <link rel="next" title="20. Frequentist hypothesis testing" href="ModelSelection.html" />
+    <link rel="prev" title="18. Ignorance pdfs: Indifference and translation groups" href="MaxEnt.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   9. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   10. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   11. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   14. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   18. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   17. Assigning probabilities
+   19. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   20. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,7 +361,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-name-python-python-jupyter-set-up-a">
-   17.1.
+   19.1.
    <a name="Python">
     Python/Jupyter set up
    </a>
@@ -369,12 +369,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prior-pdfs-for-straight-line-model">
-   17.2. Prior pdfs for straight line model
+   19.2. Prior pdfs for straight line model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#entropy-for-scandinavians">
-   17.3. Entropy for Scandinavians
+   19.3. Entropy for Scandinavians
   </a>
  </li>
 </ul>
@@ -389,10 +389,10 @@
               <div>
                 
   <div class="section" id="assigning-probabilities">
-<h1><span class="section-number">17. </span>Assigning probabilities<a class="headerlink" href="#assigning-probabilities" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">19. </span>Assigning probabilities<a class="headerlink" href="#assigning-probabilities" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 27-Sep-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="a-name-python-python-jupyter-set-up-a">
-<h2><span class="section-number">17.1. </span><a name="Python">Python/Jupyter set up</a><a class="headerlink" href="#a-name-python-python-jupyter-set-up-a" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.1. </span><a name="Python">Python/Jupyter set up</a><a class="headerlink" href="#a-name-python-python-jupyter-set-up-a" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline   
@@ -418,7 +418,7 @@
 </div>
 </div>
 <div class="section" id="prior-pdfs-for-straight-line-model">
-<h2><span class="section-number">17.2. </span>Prior pdfs for straight line model<a class="headerlink" href="#prior-pdfs-for-straight-line-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.2. </span>Prior pdfs for straight line model<a class="headerlink" href="#prior-pdfs-for-straight-line-model" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modules needed for Example 1</span>
@@ -529,7 +529,7 @@ Mean acceptance fraction: 0.776 (in total 100000 steps)
 </div>
 </div>
 <div class="section" id="entropy-for-scandinavians">
-<h2><span class="section-number">17.3. </span>Entropy for Scandinavians<a class="headerlink" href="#entropy-for-scandinavians" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.3. </span>Entropy for Scandinavians<a class="headerlink" href="#entropy-for-scandinavians" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following table with probabilities for different traits of Scandinavians. It is based on the knowledge that 70% of Scandinavians are blonde and that 10% are left handed. It should be admitted that these numbers are guesses since no reliable data was found, but it will be considered a fact for this study.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -646,8 +646,8 @@ sum log(p):       x=0.053
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="MaxEnt.html" title="previous page"><span class="section-number">16. </span>Ignorance pdfs: Indifference and translation groups</a>
-    <a class='right-next' id="next-link" href="ModelSelection.html" title="next page"><span class="section-number">18. </span>Frequentist hypothesis testing</a>
+    <a class='left-prev' id="prev-link" href="MaxEnt.html" title="previous page"><span class="section-number">18. </span>Ignorance pdfs: Indifference and translation groups</a>
+    <a class='right-next' id="next-link" href="ModelSelection.html" title="next page"><span class="section-number">20. </span>Frequentist hypothesis testing</a>
 
         </div>
         

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>12. Why Bayes is Better &#8212; Learning from data</title>
+    <title>14. Why Bayes is Better &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. Learning from Data: Error propagation and nuisance parameters (demonstration)" href="demo-ErrorPropagation.html" />
-    <link rel="prev" title="11. Metropolis-Hasting MCMC sampling of a Poisson distribution" href="demo-MCMC.html" />
+    <link rel="next" title="15. Learning from Data: Error propagation and nuisance parameters (demonstration)" href="demo-ErrorPropagation.html" />
+    <link rel="prev" title="13. Metropolis-Hasting MCMC sampling of a Poisson distribution" href="demo-MCMC.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   9. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   10. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   11. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   12. Why Bayes is Better
+   14. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   18. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   19. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   20. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,34 +361,34 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quotes-from-one-pioneering-and-one-renaissance-bayesian-authority">
-   12.1. Quotes from one pioneering and one renaissance Bayesian authority
+   14.1. Quotes from one pioneering and one renaissance Bayesian authority
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#advantages-of-the-bayesian-approach">
-   12.2. Advantages of the Bayesian approach
+   14.2. Advantages of the Bayesian approach
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#occam-s-razor">
-     12.2.1. Occam’s razor
+     14.2.1. Occam’s razor
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nuisance-parameters">
-   12.3. Nuisance parameters
+   14.3. Nuisance parameters
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#nuisance-parameters-i-bayesian-billiard">
-     12.3.1. Nuisance parameters (I): Bayesian Billiard
+     14.3.1. Nuisance parameters (I): Bayesian Billiard
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#nuisance-parameters-ii-marginal-distributions">
-     12.3.2. Nuisance parameters (II): marginal distributions
+     14.3.2. Nuisance parameters (II): marginal distributions
     </a>
    </li>
   </ul>
@@ -407,9 +407,9 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split -->
 <div class="section" id="why-bayes-is-better">
-<h1><span class="section-number">12. </span>Why Bayes is Better<a class="headerlink" href="#why-bayes-is-better" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">14. </span>Why Bayes is Better<a class="headerlink" href="#why-bayes-is-better" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="quotes-from-one-pioneering-and-one-renaissance-bayesian-authority">
-<h2><span class="section-number">12.1. </span>Quotes from one pioneering and one renaissance Bayesian authority<a class="headerlink" href="#quotes-from-one-pioneering-and-one-renaissance-bayesian-authority" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.1. </span>Quotes from one pioneering and one renaissance Bayesian authority<a class="headerlink" href="#quotes-from-one-pioneering-and-one-renaissance-bayesian-authority" title="Permalink to this headline">¶</a></h2>
 <p>Laplace:</p>
 <blockquote>
 <div><p><em>“Probability theory is nothing but common sense reduced to calculation.”</em></p>
@@ -421,7 +421,7 @@
 <!-- !split -->
 </div>
 <div class="section" id="advantages-of-the-bayesian-approach">
-<h2><span class="section-number">12.2. </span>Advantages of the Bayesian approach<a class="headerlink" href="#advantages-of-the-bayesian-approach" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.2. </span>Advantages of the Bayesian approach<a class="headerlink" href="#advantages-of-the-bayesian-approach" title="Permalink to this headline">¶</a></h2>
 <!-- !bpop -->
 <ol class="simple">
 <li><p>Provides an elegantly simple and rational approach for answering, in an optimal way, any scientific question for a given state of information. This contrasts to the recipe or cookbook approach of conventional statistical analysis. The procedure is well-defined:</p></li>
@@ -448,7 +448,7 @@
 <p>The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.</p>
 <!-- !split -->
 <div class="section" id="occam-s-razor">
-<h3><span class="section-number">12.2.1. </span>Occam’s razor<a class="headerlink" href="#occam-s-razor" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.2.1. </span>Occam’s razor<a class="headerlink" href="#occam-s-razor" title="Permalink to this headline">¶</a></h3>
 <p>Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to “shave off” those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.</p>
 <!-- !split -->
 <!-- <img src="fig/Leprechaun_or_Clurichaun.png" width=500><p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p> -->
@@ -457,14 +457,14 @@
 </div>
 </div>
 <div class="section" id="nuisance-parameters">
-<h2><span class="section-number">12.3. </span>Nuisance parameters<a class="headerlink" href="#nuisance-parameters" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.3. </span>Nuisance parameters<a class="headerlink" href="#nuisance-parameters" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nuisance-parameters-i-bayesian-billiard">
-<h3><span class="section-number">12.3.1. </span>Nuisance parameters (I): Bayesian Billiard<a class="headerlink" href="#nuisance-parameters-i-bayesian-billiard" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.3.1. </span>Nuisance parameters (I): Bayesian Billiard<a class="headerlink" href="#nuisance-parameters-i-bayesian-billiard" title="Permalink to this headline">¶</a></h3>
 <p>See demonstration notebook: A Bayesian Billiard game</p>
 <!-- !split -->
 </div>
 <div class="section" id="nuisance-parameters-ii-marginal-distributions">
-<h3><span class="section-number">12.3.2. </span>Nuisance parameters (II): marginal distributions<a class="headerlink" href="#nuisance-parameters-ii-marginal-distributions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">14.3.2. </span>Nuisance parameters (II): marginal distributions<a class="headerlink" href="#nuisance-parameters-ii-marginal-distributions" title="Permalink to this headline">¶</a></h3>
 <p>Assume that we have a model with two parameters, <span class="math notranslate nohighlight">\(\theta_0,\theta_1\)</span>, although only one of them (say <span class="math notranslate nohighlight">\(\theta_1\)</span>) is of physical relevance (the other one is them labeled a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
 $$</p>
 <p>p(\theta_0, \theta_1 | D, I).</p>
@@ -480,8 +480,8 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 **Inferring galactic distances with an imprecise knowledge of the Hubble constant**
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to $v = H_0 x$. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.\\Here we use marginalization to obtain the desired posterior pdf $p(x|D,I)$ from the joint distribution of $p(x,H_0|D,I)$
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7f67077b-ba78-4154-8e61-6f11354c7557">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-7f67077b-ba78-4154-8e61-6f11354c7557" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1fee3ca-8c5d-4afc-b683-730ad277d73d">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-e1fee3ca-8c5d-4afc-b683-730ad277d73d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -512,8 +512,8 @@ Assume now that the function $f$ will map the point $X=X^*$ uniquely onto $Y=Y^*
 \[&lt;!-- !split --&gt;
 In the limit of infinitesimally small intervals, and with the realization that this should be true for any point $X$, we obtain the relationship
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-92b40a37-60eb-4693-9d04-0d41ddbe9d1f">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-92b40a37-60eb-4693-9d04-0d41ddbe9d1f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a7a8eca7-0900-40fb-a39b-5fe108ef1ea9">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-a7a8eca7-0900-40fb-a39b-5fe108ef1ea9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
@@ -522,8 +522,8 @@ p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 where the term on the far right is called the *Jacobian*.\\&lt;!-- !split --&gt;
 The generalization to several variables, relating the pdf for $M$ variables $\{ X_j \}$ in terms of the same number of quantities $\{ Y_j \}$ related to them, is
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d91be45c-b785-4356-a420-4f22cfdc998c">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-d91be45c-b785-4356-a420-4f22cfdc998c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad0d6317-3911-44d4-bbcc-8ede77a60070">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-ad0d6317-3911-44d4-bbcc-8ede77a60070" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -546,8 +546,8 @@ Square both sides and integrate to get the expectation value
 where we have employed the linear property for an integral over a sum of terms.\\&lt;!-- !split --&gt;
 Since we assumed that the pdfs for $X$ and $Y$ were described by independent Gaussians we have
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-93b97ee0-e332-4a58-86b1-846c7d263eb4">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-93b97ee0-e332-4a58-86b1-846c7d263eb4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9389ffa-dda3-4047-b0cc-16a3c88d4f7e">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-b9389ffa-dda3-4047-b0cc-16a3c88d4f7e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>
@@ -657,8 +657,8 @@ f \exp \left[ -\frac{(A-A_0)^2}{2\sigma_A^2} \right], &amp; 0 \le f \le \sqrt{A_
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-MCMC.html" title="previous page"><span class="section-number">11. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution</a>
-    <a class='right-next' id="next-link" href="demo-ErrorPropagation.html" title="next page"><span class="section-number">13. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)</a>
+    <a class='left-prev' id="prev-link" href="demo-MCMC.html" title="previous page"><span class="section-number">13. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution</a>
+    <a class='right-next' id="next-link" href="demo-ErrorPropagation.html" title="next page"><span class="section-number">15. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)</a>
 
         </div>
         

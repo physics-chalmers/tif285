@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7. Bayesian parameter estimation demonstration &#8212; Learning from data</title>
+    <title>9. Bayesian parameter estimation demonstration &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,7 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8. Exercise: Bayesian parameter estimation" href="exercise_BayesianParameterEstimation.html" />
+    <link rel="next" title="10. Exercise: Bayesian parameter estimation" href="exercise_BayesianParameterEstimation.html" />
     <link rel="prev" title="5. Inference With Parametric Models" href="BayesianParameterEstimation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Bayesian parameter estimation demonstration
+   9. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_BayesianParameterEstimation.html">
-   8. Exercise: Bayesian parameter estimation
+   10. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   11. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   14. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   18. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   19. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   20. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,37 +361,37 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-of-modules">
-   7.1. Import of modules
+   9.1. Import of modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-gaussian-noise-and-averages">
-   7.2. Example: Gaussian noise and averages
+   9.2. Example: Gaussian noise and averages
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#frequentist-approach-to-gaussian-parameter-estimation">
-     7.2.1. Frequentist approach to Gaussian parameter estimation
+     9.2.1. Frequentist approach to Gaussian parameter estimation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bayesian-approach-to-gaussian-parameter-estimation">
-     7.2.2. Bayesian approach to Gaussian parameter estimation
+     9.2.2. Bayesian approach to Gaussian parameter estimation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#but-what-about-the-prior">
-     7.2.3. But what about the prior?
+     9.2.3. But what about the prior?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#applying-the-bayesian-approach">
-     7.2.4. Applying the Bayesian approach
+     9.2.4. Applying the Bayesian approach
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#discussion">
-     7.2.5. Discussion
+     9.2.5. Discussion
     </a>
    </li>
   </ul>
@@ -408,10 +408,10 @@
               <div>
                 
   <div class="section" id="bayesian-parameter-estimation-demonstration">
-<h1><span class="section-number">7. </span>Bayesian parameter estimation demonstration<a class="headerlink" href="#bayesian-parameter-estimation-demonstration" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">9. </span>Bayesian parameter estimation demonstration<a class="headerlink" href="#bayesian-parameter-estimation-demonstration" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-of-modules">
-<h2><span class="section-number">7.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -428,7 +428,7 @@
 </div>
 </div>
 <div class="section" id="example-gaussian-noise-and-averages">
-<h2><span class="section-number">7.2. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.2. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
 <p>Adapted from Sivia: <em>Data Analysis: A Bayesian Tutorial</em></p>
 <p>Here we’ll take a look at a simple parameter-estimation problem. We will compare the frequentist and Bayesian approaches. This problem is an extended version of Example 2 in Ch 2.3 of the book by Sivia. This short book is very readable and is highly recommended.</p>
 <div class="cell docutils container">
@@ -511,7 +511,7 @@ is often used as a theoretical model to describe the noise associated with exper
 <p><em>What can you conclude about the tails?</em></p>
 <p><em>Change np.random.seed(1) to a different number so that a different set of random number is generated.</em></p>
 <div class="section" id="frequentist-approach-to-gaussian-parameter-estimation">
-<h3><span class="section-number">7.2.1. </span>Frequentist approach to Gaussian parameter estimation<a class="headerlink" href="#frequentist-approach-to-gaussian-parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.1. </span>Frequentist approach to Gaussian parameter estimation<a class="headerlink" href="#frequentist-approach-to-gaussian-parameter-estimation" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist <strong>maximum likelihood</strong> approach. The probability of a single measurement <span class="math notranslate nohighlight">\(D_i\)</span> having a value <span class="math notranslate nohighlight">\(x_i\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[ p(x_i~|~\mu, \sigma) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp{\left[\frac{-(x_i - \mu)^2}{2 \sigma^2}\right]}, \]</div>
@@ -583,7 +583,7 @@ is often used as a theoretical model to describe the noise associated with exper
 </div>
 </div>
 <div class="section" id="bayesian-approach-to-gaussian-parameter-estimation">
-<h3><span class="section-number">7.2.2. </span>Bayesian approach to Gaussian parameter estimation<a class="headerlink" href="#bayesian-approach-to-gaussian-parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.2. </span>Bayesian approach to Gaussian parameter estimation<a class="headerlink" href="#bayesian-approach-to-gaussian-parameter-estimation" title="Permalink to this headline">¶</a></h3>
 <p>The Bayesian approach begins and ends with probabilities (pdfs).  It recognizes that what we fundamentally want to compute is our knowledge of the parameters in question, i.e. in this case,</p>
 <div class="math notranslate nohighlight">
 \[ p(\mu,\sigma~|~D, I) \]</div>
@@ -605,13 +605,13 @@ is often used as a theoretical model to describe the noise associated with exper
 <p>and the Bayesian probability is maximized at precisely the same value as the frequentist result! So despite the philosophical differences, we see that (for this simple problem at least) the Bayesian and frequentist point estimates are equivalent.</p>
 </div>
 <div class="section" id="but-what-about-the-prior">
-<h3><span class="section-number">7.2.3. </span>But what about the prior?<a class="headerlink" href="#but-what-about-the-prior" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.3. </span>But what about the prior?<a class="headerlink" href="#but-what-about-the-prior" title="Permalink to this headline">¶</a></h3>
 <p>You’ll noticed that we glossed over something here: the prior, <span class="math notranslate nohighlight">\(p(\mu,\sigma)\)</span>. The choice of prior will be discussed <span style="color:red">repeatedly</span> in the course, but we can already note that it allows inclusion of other information into the computation. This feature becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model. The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.</p>
 <p>A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a <strong>noninformative prior</strong> like the flat prior mentioned above, there are some <a class="reference external" href="http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative-priors/comment-page-1/">surprisingly subtleties</a> involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.</p>
 <p>A Bayesian would counter that frequentism doesn’t solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it’s better to make this implicit choice explicit, even if the choice might include some subjectivity.</p>
 </div>
 <div class="section" id="applying-the-bayesian-approach">
-<h3><span class="section-number">7.2.4. </span>Applying the Bayesian approach<a class="headerlink" href="#applying-the-bayesian-approach" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.4. </span>Applying the Bayesian approach<a class="headerlink" href="#applying-the-bayesian-approach" title="Permalink to this headline">¶</a></h3>
 <p>Leaving these philosophical debates aside for the time being, let’s address how Bayesian results are generally computed in practice. For a one parameter problem like the one considered here, it’s as simple as computing the posterior probability <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~D,I)\)</span> as a function of <span class="math notranslate nohighlight">\(\mu,\sigma\)</span>: this is the distribution reflecting our knowledge of the parameter <span class="math notranslate nohighlight">\(\mu,\sigma\)</span>. But as the dimension of the model grows, this direct approach becomes increasingly intractable. For this reason, Bayesian calculations often depend on sampling methods such as <a class="reference external" href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>.</p>
 <p>We won’t go into the details of the theory of MCMC here (again, we will be discussing this topic during the course). Instead we will show a practical example of applying an MCMC approach using Dan Foreman-Mackey’s excellent <a class="reference external" href="http://dan.iel.fm/emcee/current/">emcee</a>  package.  Keep in mind here that the goal is to <em>generate a set of points drawn from the posterior probability distribution</em>, and to use those points to determine the answer we seek.</p>
 <p>To perform this MCMC, we start by defining Python functions for the prior <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~I)\)</span>, the likelihood <span class="math notranslate nohighlight">\(p(D~|~\mu,\sigma, I)\)</span>, and the posterior <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~D,I)\)</span>, noting that none of these need be properly normalized. Our model here is two-dimensional so we’ll define the model in terms of an array of parameters <span class="math notranslate nohighlight">\(\theta\)</span>, which in this case is <span class="math notranslate nohighlight">\(\theta = [\mu,\sigma]\)</span>:</p>
@@ -719,7 +719,7 @@ Mean acceptance fraction: 0.716 (in total 50000 steps)
 <p>The pure Bayesian result for a problem like this, however, would be to report the posterior distribution itself (i.e. its representative sample), and leave it at that. That is, in pure Bayesianism the answer to a question is not a single number with error bars; the answer is the posterior distribution over the model parameters!</p>
 </div>
 <div class="section" id="discussion">
-<h3><span class="section-number">7.2.5. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.5. </span>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
 <p>Now, you might come away with the impression that the Bayesian method is unnecessarily complicated, and in this case it certainly is. Using an Affine Invariant Markov Chain Monte Carlo Ensemble sampler to characterize a two-dimensional normal distribution is a bit like using the Death Star to destroy a beach ball, but we did this here because it demonstrates an approach that can scale to complicated posteriors in many, many dimensions, and can provide nice results in more complicated situations where an analytic likelihood approach is not possible.</p>
 </div>
 </div>
@@ -751,7 +751,7 @@ Mean acceptance fraction: 0.716 (in total 50000 steps)
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="BayesianParameterEstimation.html" title="previous page"><span class="section-number">5. </span>Inference With Parametric Models</a>
-    <a class='right-next' id="next-link" href="exercise_BayesianParameterEstimation.html" title="next page"><span class="section-number">8. </span>Exercise: Bayesian parameter estimation</a>
+    <a class='right-next' id="next-link" href="exercise_BayesianParameterEstimation.html" title="next page"><span class="section-number">10. </span>Exercise: Bayesian parameter estimation</a>
 
         </div>
         

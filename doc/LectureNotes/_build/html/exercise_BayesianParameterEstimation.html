@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Exercise: Bayesian parameter estimation &#8212; Learning from data</title>
+    <title>10. Exercise: Bayesian parameter estimation &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Why MCMC" href="MCMC.html" />
-    <link rel="prev" title="7. Bayesian parameter estimation demonstration" href="demo-BayesianParameterEstimation.html" />
+    <link rel="next" title="11. Why MCMC" href="MCMC.html" />
+    <link rel="prev" title="9. Bayesian parameter estimation demonstration" href="demo-BayesianParameterEstimation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -178,47 +178,47 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-BayesianParameterEstimation.html">
-   7. Bayesian parameter estimation demonstration
+   9. Bayesian parameter estimation demonstration
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Exercise: Bayesian parameter estimation
+   10. Exercise: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   9. Why MCMC
+   11. Why MCMC
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MCMC.html">
-   11. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   13. Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ErrorPropagation.html">
-   12. Why Bayes is Better
+   14. Why Bayes is Better
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-ErrorPropagation.html">
-   13. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   15. Learning from Data: Error propagation and nuisance parameters (demonstration)
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MaxEnt.html">
-   16. Ignorance pdfs: Indifference and translation groups
+   18. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   17. Assigning probabilities
+   19. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   18. Frequentist hypothesis testing
+   20. Frequentist hypothesis testing
   </a>
  </li>
 </ul>
@@ -361,56 +361,56 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-of-modules">
-   8.1. Import of modules
+   10.1. Import of modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameter-estimation-fitting-a-straight-line">
-   8.2. Parameter estimation: fitting a straight line
+   10.2. Parameter estimation: fitting a straight line
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-data">
-     8.2.1. The Data
+     10.2.1. The Data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-model">
-     8.2.2. The Model
+     10.2.2. The Model
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise">
-     8.2.3. Exercise
+     10.2.3. Exercise
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-prior">
-   8.3. The Prior
+   10.3. The Prior
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementation">
-     8.3.1. Implementation
+     10.3.1. Implementation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   8.4. Exercise
+   10.4. Exercise
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   8.5. Exercise
+   10.5. Exercise
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
-     8.5.1. Exercise
+     10.5.1. Exercise
     </a>
    </li>
   </ul>
@@ -427,10 +427,10 @@
               <div>
                 
   <div class="section" id="exercise-bayesian-parameter-estimation">
-<h1><span class="section-number">8. </span>Exercise: Bayesian parameter estimation<a class="headerlink" href="#exercise-bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10. </span>Exercise: Bayesian parameter estimation<a class="headerlink" href="#exercise-bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-of-modules">
-<h2><span class="section-number">8.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -447,13 +447,13 @@
 </div>
 </div>
 <div class="section" id="parameter-estimation-fitting-a-straight-line">
-<h2><span class="section-number">8.2. </span>Parameter estimation: fitting a straight line<a class="headerlink" href="#parameter-estimation-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.2. </span>Parameter estimation: fitting a straight line<a class="headerlink" href="#parameter-estimation-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
 <p>Adapted from BayesianAstronomy.
 <span class="math notranslate nohighlight">\(% Some LaTeX definitions we'll use.
 \newcommand{\pr}{\textrm{p}}
 \)</span></p>
 <div class="section" id="the-data">
-<h3><span class="section-number">8.2.1. </span>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.2.1. </span>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h3>
 <p>Let’s start by creating some data that we will fit with a straight line.  We’ll start with a constant standard deviation of <span class="math notranslate nohighlight">\(\sigma\)</span> on the <span class="math notranslate nohighlight">\(y\)</span> values and no error on <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,7 +495,7 @@
 </div>
 </div>
 <div class="section" id="the-model">
-<h3><span class="section-number">8.2.2. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.2.2. </span>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h3>
 <p>Next we need to specify a model. We’re fitting a straight line to data, so we’ll need a slope and an intercept; i.e.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -531,7 +531,7 @@ y_i \sim \mathcal{N}(y_M(x_i;\theta), \sigma)
 \]</div>
 </div>
 <div class="section" id="exercise">
-<h3><span class="section-number">8.2.3. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.2.3. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><em>Write a Python function which computes the log-likelihood given a parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>, an array of errors <span class="math notranslate nohighlight">\(\varepsilon\)</span>, and an array of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values</em></p></li>
 <li><p><em>Use tools in <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code></a> to maximize this likelihood (i.e. minimize the negative log-likelihood). How close is this result to the input <code class="docutils literal notranslate"><span class="pre">theta_true</span></code> above?</em></p></li>
@@ -546,7 +546,7 @@ y_i \sim \mathcal{N}(y_M(x_i;\theta), \sigma)
 </div>
 </div>
 <div class="section" id="the-prior">
-<h2><span class="section-number">8.3. </span>The Prior<a class="headerlink" href="#the-prior" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.3. </span>The Prior<a class="headerlink" href="#the-prior" title="Permalink to this headline">¶</a></h2>
 <p>We have computed the likelihood, now we need to think about the prior <span class="math notranslate nohighlight">\(\pr(\theta\mid I)\)</span>.</p>
 <p>This is where Bayesianism gets a bit controversial… what can we actually say about the slope and intercept before we fit our data?</p>
 <p>There are several approaches to choosing priors that you’ll come across in practice (more on this later):</p>
@@ -569,7 +569,7 @@ $<span class="math notranslate nohighlight">\(
 For lack of a better term, I like to call this a &quot;symmetric prior&quot; on the slope (because it's the same whether we're fitting \)</span>y = mx + b<span class="math notranslate nohighlight">\( or \)</span>x = m^\prime y + b^\prime$).</p></li>
 </ol>
 <div class="section" id="implementation">
-<h3><span class="section-number">8.3.1. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.3.1. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
 <p>Let’s define two python functions to compute the options for our prior: we’ll use both a (log) flat prior and a (log) symmetric prior.
 In general, we need not worry about the normalization of the prior or the likelihood, which makes our lives easier:</p>
 <div class="cell docutils container">
@@ -596,7 +596,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 </div>
 </div>
 <div class="section" id="id1">
-<h2><span class="section-number">8.4. </span>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.4. </span>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p><em>Plot the posterior probability distribution for the slope and intercept, once for each prior. You might use <code class="docutils literal notranslate"><span class="pre">plt.contourf()</span></code> or <code class="docutils literal notranslate"><span class="pre">plt.pcolor()</span></code>. How different are the distributions?</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -608,7 +608,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 <p>You should find that the form of the prior in this case makes very little difference to the final posterior. In general, this often ends up being the case: for all the worrying about the effect of the prior, when you have enough data to constrain your model well, the prior has very little effect.</p>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">8.5. </span>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.5. </span>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><em>Modify the dataset – how do the results change if you have very few data points or very large errors?</em></p></li>
 <li><p><em>If you finish this quickly, try adding 1-sigma and 2-sigma contours to your plot, keeping in mind that the probabilities are not normalized. You can add them to your plot with <code class="docutils literal notranslate"><span class="pre">plt.contour()</span></code>.</em></p></li>
@@ -626,7 +626,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 </div>
 </div>
 <div class="section" id="id3">
-<h3><span class="section-number">8.5.1. </span>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.5.1. </span>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p><em>Plot the joint pdf for the slope and the intercept in this case</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -666,8 +666,8 @@ This encodes exactly what you would scientifically expect: if you don’t have v
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-BayesianParameterEstimation.html" title="previous page"><span class="section-number">7. </span>Bayesian parameter estimation demonstration</a>
-    <a class='right-next' id="next-link" href="MCMC.html" title="next page"><span class="section-number">9. </span>Why MCMC</a>
+    <a class='left-prev' id="prev-link" href="demo-BayesianParameterEstimation.html" title="previous page"><span class="section-number">9. </span>Bayesian parameter estimation demonstration</a>
+    <a class='right-next' id="next-link" href="MCMC.html" title="next page"><span class="section-number">11. </span>Why MCMC</a>
 
         </div>
         
