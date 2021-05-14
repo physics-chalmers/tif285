@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>10. Convolutional Neural Network &#8212; Learning from data</title>
+    <title>11. Convolutional Neural Network &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="13. Bayesian neural networks" href="bnn.html" />
-    <link rel="prev" title="9. Convolutional Neural Networks" href="cnn.html" />
+    <link rel="next" title="14. Bayesian neural networks" href="bnn.html" />
+    <link rel="prev" title="10. Convolutional Neural Networks" href="cnn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -221,13 +221,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -238,57 +238,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -343,6 +343,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2Fdemo-cnn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/demo-cnn.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -364,17 +382,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#image-recognition-demonstration">
-     10.1. Image recognition demonstration
+     11.1. Image recognition demonstration
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#copyright-2019-the-tensorflow-authors">
-       10.1.1. Copyright 2019 The TensorFlow Authors.
+       11.1.1. Copyright 2019 The TensorFlow Authors.
       </a>
      </li>
     </ul>
@@ -383,54 +401,54 @@
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#convolutional-neural-network-cnn">
-   11. Convolutional Neural Network (CNN)
+   12. Convolutional Neural Network (CNN)
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-tensorflow">
-     11.1. Import TensorFlow
+     12.1. Import TensorFlow
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#download-and-prepare-the-cifar10-dataset">
-     11.2. Download and prepare the CIFAR10 dataset
+     12.2. Download and prepare the CIFAR10 dataset
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#verify-the-data">
-     11.3. Verify the data
+     12.3. Verify the data
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-the-convolutional-base">
-     11.4. Create the convolutional base
+     12.4. Create the convolutional base
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#add-dense-layers-on-top">
-     11.5. Add Dense layers on top
+     12.5. Add Dense layers on top
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compile-and-train-the-model">
-     11.6. Compile and train the model
+     12.6. Compile and train the model
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluate-the-model">
-     11.7. Evaluate the model
+     12.7. Evaluate the model
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-predictions">
-   12. Making predictions
+   13. Making predictions
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#make-predictions">
-     12.1. Make predictions
+     13.1. Make predictions
     </a>
    </li>
   </ul>
@@ -447,12 +465,12 @@
               <div>
                 
   <div class="section" id="convolutional-neural-network">
-<h1><span class="section-number">10. </span>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">11. </span>Convolutional Neural Network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="image-recognition-demonstration">
-<h2><span class="section-number">10.1. </span>Image recognition demonstration<a class="headerlink" href="#image-recognition-demonstration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">11.1. </span>Image recognition demonstration<a class="headerlink" href="#image-recognition-demonstration" title="Permalink to this headline">¶</a></h2>
 <p>Last revised: 20-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="copyright-2019-the-tensorflow-authors">
-<h3><span class="section-number">10.1.1. </span>Copyright 2019 The TensorFlow Authors.<a class="headerlink" href="#copyright-2019-the-tensorflow-authors" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">11.1.1. </span>Copyright 2019 The TensorFlow Authors.<a class="headerlink" href="#copyright-2019-the-tensorflow-authors" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -474,7 +492,7 @@
 </div>
 </div>
 <div class="section" id="convolutional-neural-network-cnn">
-<h1><span class="section-number">11. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">12. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h1>
 <table class="tfo-notebook-buttons" align="left">
   <td>
     <a target="_blank" href="https://www.tensorflow.org/tutorials/images/cnn">
@@ -496,7 +514,7 @@
   </td>
 </table><p>This tutorial demonstrates training a simple <a class="reference external" href="https://developers.google.com/machine-learning/glossary/#convolutional_neural_network">Convolutional Neural Network</a> (CNN) to classify <a class="reference external" href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR images</a>. Because this tutorial uses the <a class="reference external" href="https://www.tensorflow.org/guide/keras/overview">Keras Sequential API</a>, creating and training our model will take just a few lines of code.</p>
 <div class="section" id="import-tensorflow">
-<h2><span class="section-number">11.1. </span>Import TensorFlow<a class="headerlink" href="#import-tensorflow" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.1. </span>Import TensorFlow<a class="headerlink" href="#import-tensorflow" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
@@ -530,7 +548,7 @@
 </div>
 </div>
 <div class="section" id="download-and-prepare-the-cifar10-dataset">
-<h2><span class="section-number">11.2. </span>Download and prepare the CIFAR10 dataset<a class="headerlink" href="#download-and-prepare-the-cifar10-dataset" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.2. </span>Download and prepare the CIFAR10 dataset<a class="headerlink" href="#download-and-prepare-the-cifar10-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The CIFAR10 dataset contains 60,000 color images in 10 classes, with 6,000 images in each class. The dataset is divided into 50,000 training images and 10,000 testing images. The classes are mutually exclusive and there is no overlap between them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,7 +562,7 @@
 </div>
 </div>
 <div class="section" id="verify-the-data">
-<h2><span class="section-number">11.3. </span>Verify the data<a class="headerlink" href="#verify-the-data" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.3. </span>Verify the data<a class="headerlink" href="#verify-the-data" title="Permalink to this headline">¶</a></h2>
 <p>To verify that the dataset looks correct, let’s plot the first 25 images from the training set and display the class name below each image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -571,7 +589,7 @@
 </div>
 </div>
 <div class="section" id="create-the-convolutional-base">
-<h2><span class="section-number">11.4. </span>Create the convolutional base<a class="headerlink" href="#create-the-convolutional-base" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.4. </span>Create the convolutional base<a class="headerlink" href="#create-the-convolutional-base" title="Permalink to this headline">¶</a></h2>
 <p>The 6 lines of code below define the convolutional base using a common pattern: a stack of <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D">Conv2D</a> and <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/MaxPool2D">MaxPooling2D</a> layers.</p>
 <p>As input, a CNN takes tensors of shape (image_height, image_width, color_channels), ignoring the batch size. If you are new to these dimensions, color_channels refers to (R,G,B). In this example, you will configure our CNN to process inputs of shape (32, 32, 3), which is the format of CIFAR images. You can do this by passing the argument <code class="docutils literal notranslate"><span class="pre">input_shape</span></code> to our first layer.</p>
 <div class="cell docutils container">
@@ -619,7 +637,7 @@ _________________________________________________________________
 <p>Above, you can see that the output of every Conv2D and MaxPooling2D layer is a 3D tensor of shape (height, width, channels). The width and height dimensions tend to shrink as you go deeper in the network. The number of output channels for each Conv2D layer is controlled by the first argument (e.g., 32 or 64). Typically,  as the width and height shrink, you can afford (computationally) to add more output channels in each Conv2D layer.</p>
 </div>
 <div class="section" id="add-dense-layers-on-top">
-<h2><span class="section-number">11.5. </span>Add Dense layers on top<a class="headerlink" href="#add-dense-layers-on-top" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.5. </span>Add Dense layers on top<a class="headerlink" href="#add-dense-layers-on-top" title="Permalink to this headline">¶</a></h2>
 <p>To complete our model, you will feed the last output tensor from the convolutional base (of shape (3, 3, 64)) into one or more Dense layers to perform classification. Dense layers take vectors as input (which are 1D), while the current output is a 3D tensor. First, you will flatten (or unroll) the 3D output to 1D,  then add one or more Dense layers on top. CIFAR has 10 output classes, so you use a final Dense layer with 10 outputs and a softmax activation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,7 +687,7 @@ _________________________________________________________________
 <p>As you can see, our (3, 3, 64) outputs were flattened into vectors of shape (576) before going through two Dense layers.</p>
 </div>
 <div class="section" id="compile-and-train-the-model">
-<h2><span class="section-number">11.6. </span>Compile and train the model<a class="headerlink" href="#compile-and-train-the-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.6. </span>Compile and train the model<a class="headerlink" href="#compile-and-train-the-model" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
@@ -699,7 +717,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="evaluate-the-model">
-<h2><span class="section-number">11.7. </span>Evaluate the model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">12.7. </span>Evaluate the model<a class="headerlink" href="#evaluate-the-model" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
@@ -736,7 +754,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="making-predictions">
-<h1><span class="section-number">12. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">13. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h1>
 <p>from https://www.tensorflow.org/tutorials/keras/classification</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -748,7 +766,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="make-predictions">
-<h2><span class="section-number">12.1. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">13.1. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
 <p>With the model trained, you can use it to make predictions about some images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -918,8 +936,8 @@ Epoch 5/5
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="cnn.html" title="previous page"><span class="section-number">9. </span>Convolutional Neural Networks</a>
-    <a class='right-next' id="next-link" href="bnn.html" title="next page"><span class="section-number">13. </span>Bayesian neural networks</a>
+    <a class='left-prev' id="prev-link" href="cnn.html" title="previous page"><span class="section-number">10. </span>Convolutional Neural Networks</a>
+    <a class='right-next' id="next-link" href="bnn.html" title="next page"><span class="section-number">14. </span>Bayesian neural networks</a>
 
         </div>
         

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6. Neural networks &#8212; Learning from data</title>
+    <title>7. Neural networks &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Neural network classifier demonstration" href="demo-NeuralNet.html" />
-    <link rel="prev" title="4. Logistic Regression" href="LogReg.html" />
+    <link rel="next" title="8. Neural network classifier demonstration" href="demo-NeuralNet.html" />
+    <link rel="prev" title="5. Logistic Regression" href="LogReg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,57 +240,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2FNeuralNet.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/NeuralNet.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -366,29 +384,29 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#terminology">
-   6.1. Terminology
+   7.1. Terminology
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#artificial-neurons">
-   6.2. Artificial neurons
+   7.2. Artificial neurons
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#which-activation-function-should-we-use">
-     6.2.1. Which activation function should we use?
+     7.2.1. Which activation function should we use?
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-top-down-perspective-on-neural-networks">
-   6.3. A top-down perspective on Neural networks
+   7.3. A top-down perspective on Neural networks
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-supervised-learning-with-deep-networks">
-   6.4. Limitations of supervised learning with deep networks
+   7.4. Limitations of supervised learning with deep networks
   </a>
  </li>
 </ul>
@@ -405,7 +423,7 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split -->
 <div class="section" id="neural-networks">
-<h1><span class="section-number">6. </span>Neural networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">7. </span>Neural networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Artificial neural networks are computational systems that can learn to
 perform tasks by considering examples, generally without being
 programmed with any task-specific rules. It is supposed to mimic a
@@ -414,7 +432,7 @@ form of mathematical functions between layers. All layers can contain
 an arbitrary number of neurons, and each connection is represented by
 a weight variable.</p>
 <div class="section" id="terminology">
-<h2><span class="section-number">6.1. </span>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.1. </span>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">¶</a></h2>
 <p>Each time we describe a neural network algorithm we will typically specify three things.</p>
 <p>Architecture:
 :<br />
@@ -428,7 +446,7 @@ The learning rule specifies the way in which the neural network’s weights chan
 <!-- !split -->
 </div>
 <div class="section" id="artificial-neurons">
-<h2><span class="section-number">6.2. </span>Artificial neurons<a class="headerlink" href="#artificial-neurons" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.2. </span>Artificial neurons<a class="headerlink" href="#artificial-neurons" title="Permalink to this headline">¶</a></h2>
 <p>The field of artificial neural networks has a long history of
 development, and is closely connected with the advancement of computer
 science and computers in general. A model of artificial neurons was
@@ -442,8 +460,8 @@ output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.</p>
 <p>This behaviour has inspired a simple mathematical model for an artificial neuron.
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-565db7cb-2b55-4c28-bbbb-24508ab45ff9">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-565db7cb-2b55-4c28-bbbb-24508ab45ff9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f8abef05-9b43-4b12-bc2a-042d2bba5e9a">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-f8abef05-9b43-4b12-bc2a-042d2bba5e9a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
 \end{equation}\]</div>
@@ -562,8 +580,8 @@ the neurons in the preceding layer. Furthermore, an MLP is
 fully-connected, which means that each neuron receives a weighted sum
 of the outputs of *all* neurons in the previous layer.\\&lt;!-- !split --&gt;
 First, for each node $j$ in the first hidden layer, we calculate a weighted sum $z_j^1$ of the input coordinates $x_i$,\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a49736a3-f98e-49ba-ab12-8728e2a58df1">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-a49736a3-f98e-49ba-ab12-8728e2a58df1" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
+<div class="amsmath math notranslate nohighlight" id="equation-4b51ed9d-611f-4843-b103-78e4a447b5af">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-4b51ed9d-611f-4843-b103-78e4a447b5af" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[Here $b_j^1$ is the so-called bias which is normally needed in
@@ -572,8 +590,8 @@ the weights will be discussed below.  The value of $z_j^1$ is the
 argument to the activation function $f$ of each node $j$, The
 variable $n$ stands for all possible inputs to a given node $j$ in the
 first layer.  We define  the output $y_j^1$ of all neurons in layer 1 as\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-67407294-fb69-4dea-b54a-a78ed1ed025f">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-67407294-fb69-4dea-b54a-a78ed1ed025f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a5e7af3d-d3dd-4aca-b64c-4a43d35b9957">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-a5e7af3d-d3dd-4aca-b64c-4a43d35b9957" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
 \end{equation}\]</div>
@@ -582,8 +600,8 @@ first layer.  We define  the output $y_j^1$ of all neurons in layer 1 as\]</div>
 where we assume that all nodes in the same layer have identical
 activation functions, hence the notation $f$. In general, we could assume in the more general case that different layers have different activation functions.
 In this case we would identify these functions with a superscript $l$ for the $l$-th layer,\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a6dcf234-b673-40b1-8933-ccd15920b98c">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-a6dcf234-b673-40b1-8933-ccd15920b98c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b78cdef0-7179-4498-a245-a65c75fafb78">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-b78cdef0-7179-4498-a245-a65c75fafb78" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}\]</div>
@@ -596,8 +614,8 @@ is obtained.\\
 &lt;!-- !split --&gt;
 The output of neuron $i$ in layer 2 is thus,
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-d3bc04e8-804d-410c-881c-36b30c8bb0ef">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-d3bc04e8-804d-410c-881c-36b30c8bb0ef" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e9d7eb60-da83-4132-b985-01931e8aee5c">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-e9d7eb60-da83-4132-b985-01931e8aee5c" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^2 &amp;= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &amp;= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
@@ -606,8 +624,8 @@ The output of neuron $i$ in layer 2 is thus,
 \[
 where we have substituted $y_k^1$ with the inputs $x_k$. Finally, the ANN output reads
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5ae0815a-e1b4-4dfe-9393-0ad9f791b455">
-<span class="eqno">(6.6)<a class="headerlink" href="#equation-5ae0815a-e1b4-4dfe-9393-0ad9f791b455" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-df0df228-11c6-48f0-9fce-8835877403b3">
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-df0df228-11c6-48f0-9fce-8835877403b3" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
  &amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
   + b_1^3\right]
@@ -616,8 +634,8 @@ where we have substituted $y_k^1$ with the inputs $x_k$. Finally, the ANN output
 \[&lt;!-- !split --&gt;
 We can generalize this expression to an MLP with $L$ hidden
 layers. The complete functional form is,\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-735a7a05-c402-4e53-9104-1108b465fcbc">
-<span class="eqno">(6.7)<a class="headerlink" href="#equation-735a7a05-c402-4e53-9104-1108b465fcbc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3e7ece7c-4d1a-42ae-9761-1531d6db291b">
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-3e7ece7c-4d1a-42ae-9761-1531d6db291b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &amp;&amp;
  \label{completeNN}
 \end{align}\]</div>
@@ -631,8 +649,8 @@ mapping of real-valued vectors $\boldsymbol{x} \in \mathbb{R}^n \rightarrow
 \boldsymbol{y} \in \mathbb{R}^m$.\\Furthermore, the flexibility and universality of an MLP can be
 illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-10ee2879-6fc1-444f-9d7a-6b725caadde9">
-<span class="eqno">(6.8)<a class="headerlink" href="#equation-10ee2879-6fc1-444f-9d7a-6b725caadde9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-581371df-3c13-4cd1-8476-b4a296fc7a8a">
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-581371df-3c13-4cd1-8476-b4a296fc7a8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
@@ -647,8 +665,8 @@ is the bias $b_i^l$ and activation $y_i^l$ of node $i$ in layer $l$ respectively
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-83f3eeab-dad7-441f-a0df-e1590d07d453">
-<span class="eqno">(6.9)<a class="headerlink" href="#equation-83f3eeab-dad7-441f-a0df-e1590d07d453" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-543a7f1d-782d-4bb0-81d8-5abe4f9479ed">
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-543a7f1d-782d-4bb0-81d8-5abe4f9479ed" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &amp;w^2_{12} &amp;w^2_{13} \\
@@ -669,8 +687,8 @@ the equation for the activations of hidden layer 2 (assuming three nodes for sim
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
 #### Matrix-vector notation  and activation\\The activation of node $i$ in layer 2 is\end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2aa3dc7b-9d67-40c0-ba94-ed1e5b1ad84b">
-<span class="eqno">(6.10)<a class="headerlink" href="#equation-2aa3dc7b-9d67-40c0-ba94-ed1e5b1ad84b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-770c1071-ccdf-49c8-bcd9-881aad35a595">
+<span class="eqno">(7.10)<a class="headerlink" href="#equation-770c1071-ccdf-49c8-bcd9-881aad35a595" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
 \end{equation}\]</div>
@@ -826,23 +844,23 @@ which can also be interpreted as the partial derivative of the cost function wit
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}
 That is, the error $\delta_j^L$ is exactly equal to the rate of change of the cost function as a function of the bias. \\&lt;!-- !split --&gt;\\We have now three equations that are essential for the computations of the derivatives of the cost function at the output layer. These equations are needed to start the algorithm and they are\\*The starting equations.* \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-472b4633-395f-408b-83a9-391ce44a5df1">
-<span class="eqno">(6.11)<a class="headerlink" href="#equation-472b4633-395f-408b-83a9-391ce44a5df1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-15ec1514-d6f3-483a-ab2e-2bdd0d137dce">
+<span class="eqno">(7.11)<a class="headerlink" href="#equation-15ec1514-d6f3-483a-ab2e-2bdd0d137dce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[
 and
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2ce1a98f-7035-4062-94cf-ed23e7788196">
-<span class="eqno">(6.12)<a class="headerlink" href="#equation-2ce1a98f-7035-4062-94cf-ed23e7788196" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ba57aaf-76b0-470a-a76e-6140bc2af34f">
+<span class="eqno">(7.12)<a class="headerlink" href="#equation-4ba57aaf-76b0-470a-a76e-6140bc2af34f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
 \[
 and\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2c876514-2fee-4bfb-b797-a172226b7cd8">
-<span class="eqno">(6.13)<a class="headerlink" href="#equation-2c876514-2fee-4bfb-b797-a172226b7cd8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ece59598-e0e6-4c83-b8a8-cf1becb34cd7">
+<span class="eqno">(7.13)<a class="headerlink" href="#equation-ece59598-e0e6-4c83-b8a8-cf1becb34cd7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
@@ -968,7 +986,7 @@ exponential linear unit (ELU) function\end{aligned}\end{align} \]</div>
 <p>$$</p>
 <!-- !split -->
 <div class="section" id="which-activation-function-should-we-use">
-<h3><span class="section-number">6.2.1. </span>Which activation function should we use?<a class="headerlink" href="#which-activation-function-should-we-use" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">7.2.1. </span>Which activation function should we use?<a class="headerlink" href="#which-activation-function-should-we-use" title="Permalink to this headline">¶</a></h3>
 <p>In general it seems that the ELU activation function is better than
 the leaky ReLU function (and its variants), which is better than
 ReLU. ReLU performs better than <span class="math notranslate nohighlight">\(\tanh\)</span> which in turn performs better
@@ -984,7 +1002,7 @@ bootstrap to evaluate other activation functions.</p>
 </div>
 </div>
 <div class="section" id="a-top-down-perspective-on-neural-networks">
-<h2><span class="section-number">6.3. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.3. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The first thing we would like to do is divide the data into two or three
 parts. A training set, a validation or dev (development) set, and a
 test set.</p>
@@ -1016,7 +1034,7 @@ supervised learning.</p>
 <!-- !split -->
 </div>
 <div class="section" id="limitations-of-supervised-learning-with-deep-networks">
-<h2><span class="section-number">6.4. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">7.4. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
 <p>Like all statistical methods, supervised learning using neural
 networks has important limitations. This is especially important when
 one seeks to apply these methods, especially to physics problems. Like
@@ -1060,8 +1078,8 @@ features).</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="LogReg.html" title="previous page"><span class="section-number">4. </span>Logistic Regression</a>
-    <a class='right-next' id="next-link" href="demo-NeuralNet.html" title="next page"><span class="section-number">7. </span>Neural network classifier demonstration</a>
+    <a class='left-prev' id="prev-link" href="LogReg.html" title="previous page"><span class="section-number">5. </span>Logistic Regression</a>
+    <a class='right-next' id="next-link" href="demo-NeuralNet.html" title="next page"><span class="section-number">8. </span>Neural network classifier demonstration</a>
 
         </div>
         

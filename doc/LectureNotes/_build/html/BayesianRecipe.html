@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2FBayesianRecipe.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/BayesianRecipe.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -421,8 +439,8 @@ Normalization:
 <div class="math notranslate nohighlight">
 \[p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.\]</div>
 <p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41306c72-de58-44c2-be62-2d472e5a8e57">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-41306c72-de58-44c2-be62-2d472e5a8e57" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4ff64671-d47a-4f52-bab9-68126d05b41a">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-4ff64671-d47a-4f52-bab9-68126d05b41a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(H|D,I) &amp;= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
 \label{eq:bayes}
 \end{align}\]</div>
@@ -470,15 +488,15 @@ Given that we had observed 6 heads in 8 flips, would you think it was a fair coi
 <p>In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: <span class="math notranslate nohighlight">\(p(p_H|D,I)\)</span>. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of <span class="math notranslate nohighlight">\(p_H\)</span>; that is to say, the probability that <span class="math notranslate nohighlight">\(p_H\)</span> lies in an infinitesimally narrow range is given by <span class="math notranslate nohighlight">\(p(p_H|D,I) dp_H\)</span>.</p>
 <!-- !split -->
 <p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8550867-42ca-4c70-b96d-67bd7e5f6267">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-f8550867-42ca-4c70-b96d-67bd7e5f6267" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d794517-9103-4383-b6ec-ff4a99ce31b5">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-3d794517-9103-4383-b6ec-ff4a99ce31b5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \int_0^1 p(p_H|D,I) dp_H = 1.
 \label{eq:coin_posterior_norm}
 \end{equation}\]</div>
 <!-- !split -->
 <p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e67ba32-349c-418d-b45d-477bd1603492">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-1e67ba32-349c-418d-b45d-477bd1603492" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7fa85642-7543-403e-aa4e-8a95bb03b904">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-7fa85642-7543-403e-aa4e-8a95bb03b904" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(p_H|I) = \left\{ \begin{array}{ll}
 1 &amp; 0 \le p_H \le 1, \\
 0 &amp; \mathrm{otherwise}.
@@ -489,8 +507,8 @@ p(p_H|I) = \left\{ \begin{array}{ll}
 <!-- !split -->
 <p>This prior state of knowledge, or ignorance, is modified by the data through the likelihood function <span class="math notranslate nohighlight">\(p(D|p_H,I)\)</span>. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information <span class="math notranslate nohighlight">\(I\)</span>, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses’ is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-549665dc-1e9b-4dd8-aefd-0d612f3713c7">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-549665dc-1e9b-4dd8-aefd-0d612f3713c7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e7b2e057-22b3-47c8-8ec6-76c8821bdc6d">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-e7b2e057-22b3-47c8-8ec6-76c8821bdc6d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 \end{equation}\]</div>
 <p>$$</p>

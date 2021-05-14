@@ -1,11 +1,4 @@
-% Learning from data: Hypothesis testing and Bayesian model Selection
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
+# Model Selection
 <!-- !split -->
 So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether another functional form (such as quadratic or cubic) might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as **Model Selection** problems and we will discuss them in some depth.
 
@@ -62,8 +55,8 @@ $$
 * In some cases, a two-sided statistic should be considered instead. 
 
 <!-- !split -->
-<!-- <img src="fig/gregory_7_2.png" width=600><p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p> -->
-![<p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p>](fig/gregory_7_2.png)
+<!-- <img src="fig/ModelSelection/gregory_7_2.png" width=600><p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p> -->
+![<p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p>](fig/ModelSelection/gregory_7_2.png)
 
 
 <!-- !split -->
@@ -86,73 +79,69 @@ At the point of performing this comparison, and making a final statement, the sa
 
 <!-- !split -->
 It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,
-$$
 \begin{equation}
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
 \label{eq:sivia_41}
 \end{equation}
-$$
 is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.
 
 To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives
-$$
 \begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} = \frac{p(D|A,I) p(A|I)}{p(D|B,I) p(B|I)}
 \label{eq:sivia_42}
 \end{equation}
-$$
 because the term $p(D|I)$ cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. ([eq:sivia_42](#eq:sivia_42)), to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, $p(D|A,I)$ and $p(D|B,I)$, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for $\lambda$.
 
 To circumvent this difficulty, we can use the sum and product rule to relate the probability we require to other pdfs which might be easier to assign. In particular, marginalization and the product rule allow us to express $p(D | B , I )$ as
-$$
 \begin{equation}
 p(D|B,I) = \int d\lambda p(D,\lambda|B,I) = 
 \int d\lambda p(D|\lambda,B,I) p(\lambda|B,I). 
 \label{eq:sivia_43}
 \end{equation}
-$$
 The first term in the integral $p(D | \lambda, B , I )$, where the value of $\lambda$ is given, is now just an ordinary likelihood function; as such, it is on a par with $p(D|A,I)$. The second term is B’s prior pdf for $\lambda$; the onus is, therefore, on the theorist to articulate his or her state of knowledge, or ignorance, before getting access to the data.
 
 To proceed further analytically, let us make some simplifying approximations. Assume that, a priori, Prof B is only prepared to say that $\lambda$ must lie between the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$; we can then naively assign a uniform prior within this range:
-$$
+
 \begin{equation}
 p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text{for } \lambda_\mathrm{min} \leq \lambda \leq \lambda_\mathrm{max}, 
 \label{eq:sivia_44}
 \end{equation}
-$$
+
 and zero otherwise. Let us also take it that there is a value $\lambda_0$ which yields the closest agreement with the measurements; the corresponding probability $p(D|\lambda_0,B,I)$ will be the maximum of B’s likelihood function. As long as this adjustable parameter lies in the neighbourhood of the optimal value, $\lambda_0 \pm (\delta\lambda)$, we would expect a reasonable fit to the data; this can be represented by the Gaussian pdf
-$$
+
 \begin{equation}
 p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0)^2}{2(\delta\lambda)^2} \right]. 
 \label{eq:sivia_45}
 \end{equation}
-$$
+
 The assignments of the prior ([eq:sivia_44](#eq:sivia_44)) and the likelihood ([eq:sivia_45](#eq:sivia_45)) are illustrated in Fig. [fig:sivia_41](#fig:sivia_41). We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.
 
-<!-- <img src="fig/fig41.png" width=500><p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p> -->
-![<p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p>](fig/fig41.png)
+<!-- <img src="fig/ModelSelection/fig41.png" width=500><p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p> -->
+![<p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p>](fig/ModelSelection/fig41.png)
 
 In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. ([eq:sivia_43](#eq:sivia_43))
-$$
+
 \begin{equation}
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} \int_{\lambda_\mathrm{min}}^{\lambda_\mathrm{max}} d\lambda
 p(D|\lambda,B,I),
 \label{eq:sivia_46}
 \end{equation}
-$$
+
 having set the limits according to the specified range. Assuming that the sharp cut-offs
 do not cause a significant truncation of the Gaussian pdf of the likelihood,
 its integral will be equal to $(\delta\lambda) \sqrt{2\pi}$ times $p(D|\lambda_0,B,I)$. The troublesome term then reduces to
+
 $$
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} p(D|\lambda_0,B,I) (\delta\lambda) \sqrt{2\pi}.
 $$
+
 Substituting this into Eq. ([eq:sivia_42](#eq:sivia_42)), we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:
-$$
+
 \begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
 \label{eq:sivia_48}
 \end{equation}
-$$
+
 The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, we can take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. ([eq:sivia_43](#eq:sivia_43)), the prior range $\lambda_\mathrm{max} - \lambda_\mathrm{min}$ will generally be much larger than the uncertainty $\pm(\delta\lambda)$ permitted by the data. As such, the final term in Eq. ([eq:sivia_48](#eq:sivia_48)) acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: *‘Frustra fit per plura quod potest fieri per pauciora’* or, in English, *‘it is vain to do with more what can be done with fewer’* .
 
 Although it is satisfying to quantify the everyday guiding principle attributed to the thirteenth-century Franciscan monk William of Ockham (or Occam, in Latin), that we should prefer the simplest theory which agrees with the empirical evidence, we should not get too carried away by it. After all, what do we mean by the simpler theory if alternative models have the same number of adjustable parameters? In the choice between Gaussian and Lorentzian peak shapes, for example, both are defined by the position of the maximum and their width. All that we are obliged to do, and have done, in addressing such questions is to adhere to the rules of probability.
@@ -166,15 +155,16 @@ $(\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda
 #### One adjustable parameter each
 
 Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it $\mu$. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
-$$
+
 \begin{equation}
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu(\lambda_\mathrm{max} - \lambda_\mathrm{min})}{\delta\lambda(\mu_\mathrm{max} - \mu_\mathrm{min})}. 
 \label{eq:sivia_49}
 \end{equation}
-$$
+
 
 <!-- !split -->
 This could represent the situation where we have to choose between a Gaussian and Lorentzian shape for a signal peak, but one associated parameter is not known. The position of the maximum may be fixed at the origin by theory, for example, and the amplitude constrained by the normalization of the data; A and B could then be the hypotheses favouring the alternative lineshapes, where $\delta\mu$ and $\delta\lambda$ are their related full-width-half-maxima. If we give equal weight to A and B before the analysis, and assign a similar large prior range for both $\mu$ and $\lambda$, then Eq. ([eq:sivia_49](#eq:sivia_49)) reduces to
+
 $$
 \frac{p(A|D,I)}{p(B|D,I)} \approx  \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu}{\delta\lambda}. 
 $$
@@ -186,20 +176,22 @@ For data of good quality, the dominant factor will tend to be the best-fit likel
 #### One adjustable parameter each; different prior ranges
 
 Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for $\lambda$ (or $\mu$). Although Eq. ([eq:sivia_48](#eq:sivia_48)) can be seen as representing the case when $(\mu_\mathrm{max} - \mu_\mathrm{min})$ is infinitesimally small, so that A has no flexibility, Eq. ([eq:sivia_49](#eq:sivia_49)) is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
+
 $$
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{\mu_\mathrm{max} - \mu_\mathrm{min}}. 
 $$
+
 because the best-fit likelihood ratio will be unity (since $\lambda_0 = \mu_0$) and $\delta\lambda = \delta\mu$. Thus, our analysis will lead us to prefer the theorist who gives the narrower prior range; this is not unreasonable as he must have had some additional insight to be able to predict the value of the parameter more accurately.
 
 <!-- !split -->
 ### Comparison with parameter estimation
 The dependence of the result in Eq. ([eq:sivia_48](#eq:sivia_48)) on the prior range $(\lambda_\mathrm{max} - \lambda_\mathrm{min})$ can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of $\lambda$ from the data, given that B’s theory is correct, we use Bayes’ theorem:
-$$
+
 \begin{equation}
 p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}. 
 \label{eq:sivia_410}
 \end{equation}
-$$
+
 The numerator is the familiar product of a prior and likelihood, and the denominator is usually omitted since it does not depend explicitly on $\lambda$; hence this relationship is often written as a proportionality. From the story of Dr A and Prof B, however, we find that the neglected term on the bottom plays a crucial role in ascertaining the merit of B’s theory relative to a competing alternative. 
 
 <!-- !split -->
@@ -217,49 +209,64 @@ The actual computation of Bayesian evidences can be a challenging task. Recall t
 <!-- !split -->
 ### Laplace's method
 The idea behind the Laplace approximation is simple. We assume that an unnormalized probability density $P^*(\theta)$ has a peak at a point $\theta_0$. We are interested in the evidence, $Z_P$, which is given by the normalizing constant
+
 $$
 Z_P = \int P^*(\theta) d^K\theta,
 $$ 
+
 where we consider the general case in which $\theta$ is in a $K$-dimensional space. 
 
 <!-- !split -->
 We Taylor-expand the logarithm $\log P^*$ around the peak:
+
 $$
 \log P^*(\theta) = \log P^*(\theta_0) - \frac{1}{2} (\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) + \ldots,
 $$
+
 where $\Sigma^{-1} = H$ is the (Hessian) matrix of second derivatives at the maximum
+
 $$
 H_{ij} = - \left. \frac{\partial^2}{\partial \theta_i \partial \theta_j}  \log P^*(\theta)\right|_{\theta=\theta_0}.
 $$
 
 <!-- !split -->
 We then approximate $P^*(\theta)$ by an unnormalized Gaussian, 
+
 $$
 Q^*(\theta) \equiv P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right],
 $$
+
 and we approximate the normalizing constant $Z_P$ by the normalizing constant
 of this Gaussian,
+
 $$
 Z_P \approx Z_Q = P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
 $$
+
 Predictions can then be made using this approximation. Physicists also call this widely-used approximation the saddle-point approximation.
 
 <!-- !split -->
 Note, in particular, that if we consider a chi-squared pdf: $P^*(\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)$, then we get
+
 $$
 Z_P \approx \exp \left( -\frac{1}{2} \chi^2(\theta_0)\right) \sqrt{\frac{(4\pi)^K}{\det\Sigma^{-1}}},
 $$
+
 where there is a factor $2^{K/2}$ that comes from the extra factor $1/2$ multiplying the covariance matrix $\Sigma^{-1}$ and therefore appearing in all $K$ eigenvalues.
 
 <!-- !split -->
 The fact that the normalizing constant of a Gaussian is given by 
+
 $$
 \int d^K\theta \exp \left[ - \frac{1}{2}\theta^T \Sigma^{-1} \theta \right] = \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}},
 $$
+
 can be proved by making an orthogonal transformation into the basis $u$ in which $\Sigma$ is transformed into a diagonal matrix. The integral then separates into a product of one-dimensional integrals, each of the form
+
 $$
 \int du_i \exp \left[ -\frac{1}{2} \lambda_i u_i^2 \right] = \sqrt{\frac{2\pi}{\lambda_i}}
 $$
+
 The product of the eigenvalues $\lambda_i$ is the determinant of $\Sigma^{-1}$.
 
 <!-- !split -->

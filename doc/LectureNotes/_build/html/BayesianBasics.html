@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -344,6 +344,24 @@
 </div>
 
             <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2FBayesianBasics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/BayesianBasics.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
 
             <!-- Full screen (wrap in <a> to have style consistency -->
 
@@ -560,8 +578,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10a1b1f0-0cd9-4676-b610-908f8872dd04">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-10a1b1f0-0cd9-4676-b610-908f8872dd04" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e7fc112d-dec2-4276-8da2-b55e16de4011">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-e7fc112d-dec2-4276-8da2-b55e16de4011" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -596,8 +614,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd091124-01fe-49da-9a68-7ff1d7230a9f">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-fd091124-01fe-49da-9a68-7ff1d7230a9f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4959a7c2-a862-49c3-9a03-9f3a735b607a">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-4959a7c2-a862-49c3-9a03-9f3a735b607a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>

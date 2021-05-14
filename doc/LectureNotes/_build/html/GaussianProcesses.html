@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Gaussian processes demonstration" href="demo-GaussianProcesses.html" />
-    <link rel="prev" title="17. Frequentist hypothesis testing" href="ModelSelection.html" />
+    <link rel="next" title="3. Gaussian processes demonstration" href="demo-GaussianProcesses.html" />
+    <link rel="prev" title="17. Model Selection" href="ModelSelection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,57 +240,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2FGaussianProcesses.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/GaussianProcesses.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -364,15 +382,63 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   1.1. References:
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Inference using Gaussian processes
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     1.1. References:
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametric-approach">
+     1.2. Parametric approach
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#proof">
+       1.2.1. Proof
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-covariance-matrix-as-the-central-object">
+       1.2.2. The covariance matrix as the central object
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-parametric-approach-mean-and-covariance-functions">
+     1.3. Non-parametric approach: Mean and covariance functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stationary-kernels">
+       1.3.1. Stationary kernels
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parametric-approach">
-   1.2. Parametric approach
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gp-models-for-regression">
+   2. GP models for regression
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elegant-approach-using-linear-algebra-tricks">
+     2.1. Elegant approach using linear algebra tricks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizing-the-gp-model-hyperparameters">
+     2.2. Optimizing the GP model hyperparameters
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -385,18 +451,19 @@
         
               <div>
                 
-  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
-<!-- !split -->
+  <!-- !split -->
 <div class="section" id="inference-using-gaussian-processes">
 <h1><span class="section-number">1. </span>Inference using Gaussian processes<a class="headerlink" href="#inference-using-gaussian-processes" title="Permalink to this headline">¶</a></h1>
-<p>Assume that there is a set of input vectors with independent, predictor, variables
-$<span class="math notranslate nohighlight">\(
+<p>Assume that there is a set of input vectors with independent, predictor, variables</p>
+<div class="math notranslate nohighlight">
+\[
  \boldsymbol{X}_N \equiv \{ \boldsymbol{x}^{(i)}\}_{i=1}^N 
-\)</span><span class="math notranslate nohighlight">\(
-and a set of target values
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>and a set of target values</p>
+<div class="math notranslate nohighlight">
+\[
  \boldsymbol{t}_N \equiv \{ t^{(i)}\}_{i=1}^N. 
-\)</span>$</p>
+\]</div>
 <ul class="simple">
 <li><p>Note that we will use the symbol <span class="math notranslate nohighlight">\(t\)</span> to denote the target, or response, variables in the context of Gaussian Processes. Here we will consider single, scalar outputs <span class="math notranslate nohighlight">\(t^{(i)}\)</span>. The extension to vector outputs <span class="math notranslate nohighlight">\(\boldsymbol{t}^{(i)}\)</span> is straightforward.</p></li>
 <li><p>Furthermore, we will use the subscript <span class="math notranslate nohighlight">\(N\)</span> to denote a set of <span class="math notranslate nohighlight">\(N\)</span> vectors (or scalars): <span class="math notranslate nohighlight">\(\boldsymbol{X}_N\)</span> (<span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>),</p></li>
@@ -409,17 +476,18 @@ and a set of target values
 <li><p>The inference of a <em>model function</em> <span class="math notranslate nohighlight">\(y(\boldsymbol{x})\)</span> from the data <span class="math notranslate nohighlight">\(\boldsymbol{X}_N, \boldsymbol{t}_N\)</span>.</p></li>
 </ol>
 <!-- !split -->
-<p>The former can be expressed with the pdf
-$$</p>
-<p>p\left( t^{(N+1)} | \boldsymbol{t}<em>N, \boldsymbol{X}</em>{N}, \boldsymbol{x}^{(N+1)} \right)</p>
+<p>The former can be expressed with the pdf</p>
 <div class="math notranslate nohighlight">
 \[
-while the latter can be written using Bayes' formula (in these notes we will not be including information $I$ explicitly in the conditional probabilities)
-\]</div>
-<p>p\left( y(\boldsymbol{x}) | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
+ 
+p\left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N}, \boldsymbol{x}^{(N+1)} \right)\]</div>
+<p>while the latter can be written using Bayes’ formula (in these notes we will not be including information <span class="math notranslate nohighlight">\(I\)</span> explicitly in the conditional probabilities)</p>
+<div class="math notranslate nohighlight">
+\[
+ p\left( y(\boldsymbol{x}) | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
 = \frac{p\left( \boldsymbol{t}_N | y(\boldsymbol{x}), \boldsymbol{X}_N \right) p \left( y(\boldsymbol{x}) \right) }
-{p\left( \boldsymbol{t}_N | \boldsymbol{X}_N \right) }
-$$</p>
+{p\left( \boldsymbol{t}_N | \boldsymbol{X}_N \right) } 
+\]</div>
 <!-- !split -->
 <p>The inference of a function will obviously also allow to make predictions for new targets.
 However, we will need to consider in particular the second term in the numerator, which is the <strong>prior</strong> distribution on functions assumed in the model.</p>
@@ -444,207 +512,200 @@ A Gaussian process is a stochastic process (a collection of random variables ind
 <div class="section" id="parametric-approach">
 <h2><span class="section-number">1.2. </span>Parametric approach<a class="headerlink" href="#parametric-approach" title="Permalink to this headline">¶</a></h2>
 <p>Let us express <span class="math notranslate nohighlight">\(y(\boldsymbol{x})\)</span> in terms of a model function <span class="math notranslate nohighlight">\(y(\boldsymbol{x}; \boldsymbol{\theta})\)</span> that depends on a vector of model parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
-<p>For example, using a set of basis functions <span class="math notranslate nohighlight">\(\left\{ \phi^{(h)} (\boldsymbol{x}) \right\}_{h=1}^H\)</span> with linear weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_H\)</span> we have
-$$</p>
-<p>y (\boldsymbol{x}, \boldsymbol{\theta}) = \sum_{h=1}^H \theta^{(h)} \phi^{(h)} (\boldsymbol{x})</p>
+<p>For example, using a set of basis functions <span class="math notranslate nohighlight">\(\left\{ \phi^{(h)} (\boldsymbol{x}) \right\}_{h=1}^H\)</span> with linear weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_H\)</span> we have</p>
 <div class="math notranslate nohighlight">
-\[*Notice.* 
-The basis functions can be non-linear in $\boldsymbol{x}$ such as Gaussians (aka *radial basis functions*)
-\]</div>
-<p>\phi^{(h)} (\boldsymbol{x}) = \exp \left[ -\frac{\left( \boldsymbol{x} - \boldsymbol{c}^{(h)} \right)^2}{2 (\sigma^{(h)})^2} \right].</p>
+\[y (\boldsymbol{x}, \boldsymbol{\theta}) = \sum_{h=1}^H \theta^{(h)} \phi^{(h)} (\boldsymbol{x})\]</div>
+<p><em>Notice.</em>
+The basis functions can be non-linear in <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> such as Gaussians (aka <em>radial basis functions</em>)</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}Still, this constitutes a linear model since $y (\boldsymbol{x}, \boldsymbol{\theta})$ depends linearly on the parameters $\boldsymbol{\theta}$.\\The inference of model parameters should be a well-known problem by now. We state it in terms of Bayes theorem
-\end{aligned}\end{align} \]</div>
-<p>p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
-= \frac{ p \left( \boldsymbol{t}_N | \boldsymbol{\theta}, \boldsymbol{X}_N \right) p \left( \boldsymbol{\theta} \right)}{p \left( \boldsymbol{t}_N | \boldsymbol{X}_N \right)}</p>
+\[\phi^{(h)} (\boldsymbol{x}) = \exp \left[ -\frac{\left( \boldsymbol{x} - \boldsymbol{c}^{(h)} \right)^2}{2 (\sigma^{(h)})^2} \right].\]</div>
+<p>Still, this constitutes a linear model since <span class="math notranslate nohighlight">\(y (\boldsymbol{x}, \boldsymbol{\theta})\)</span> depends linearly on the parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
+<p>The inference of model parameters should be a well-known problem by now. We state it in terms of Bayes theorem</p>
 <div class="math notranslate nohighlight">
-\[Having solved this inference problem (note that the likelihhod is Gaussian, cf linear regression) a prediction can be made through marginalization
-\]</div>
-<p>p\left( t^{(N+1)} | \boldsymbol{t}<em>N, \boldsymbol{X}</em>{N}, \boldsymbol{x}^{(N+1)} \right)
-= \int d^H \boldsymbol{\theta}
+\[p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right)
+= \frac{ p \left( \boldsymbol{t}_N | \boldsymbol{\theta}, \boldsymbol{X}_N \right) p \left( \boldsymbol{\theta} \right)}{p \left( \boldsymbol{t}_N | \boldsymbol{X}_N \right)}\]</div>
+<p>Having solved this inference problem (note that the likelihhod is Gaussian, cf linear regression) a prediction can be made through marginalization</p>
+<div class="math notranslate nohighlight">
+\[p\left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N}, \boldsymbol{x}^{(N+1)} \right) 
+= \int d^H \boldsymbol{\theta} 
 p\left( t^{(N+1)} | \boldsymbol{\theta}, \boldsymbol{x}^{(N+1)} \right)
-p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right).</p>
+p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right).\]</div>
+<p>Here it is important to note that the final answer does not make any explicit reference to our parametric representation of the unknown function <span class="math notranslate nohighlight">\(y(\boldsymbol{x})\)</span>.</p>
+<p>Assuming that we have a fixed set of basis functions and Gaussian prior distributions (with zero mean) on the weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> we will show that:</p>
+<ul class="simple">
+<li><p>The joint pdf of the observed data given the model <span class="math notranslate nohighlight">\(p( \boldsymbol{t}_N |  \boldsymbol{X}_N)\)</span>, is a multivariate Gaussian with mean zero and with a covariance matrix that is determined by the basis functions.</p></li>
+<li><p>This implies that the conditional distribution <span class="math notranslate nohighlight">\(p( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N+1})\)</span>, is also a multivariate Gaussian whose mean depends linearly on <span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>.</p></li>
+</ul>
+<div class="section" id="proof">
+<h3><span class="section-number">1.2.1. </span>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h3>
+<p><em>Sum of normally distributed random variables.</em>
+If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., <span class="math notranslate nohighlight">\(Z=X+Y\)</span> is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.</p>
+<p>Consider the linear model and define the <span class="math notranslate nohighlight">\(N \times H\)</span> design matrix <span class="math notranslate nohighlight">\(\boldsymbol{R}\)</span> with elements</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-Here it is important to note that the final answer does not make any explicit reference to our parametric representation of the unknown function $y(\boldsymbol{x})$.\\Assuming that we have a fixed set of basis functions and Gaussian prior distributions (with zero mean) on the weights $\boldsymbol{\theta}$ we will show that:\\* The joint pdf of the observed data given the model $p( \boldsymbol{t}_N |  \boldsymbol{X}_N)$, is a multivariate Gaussian with mean zero and with a covariance matrix that is determined by the basis functions.
-* This implies that the conditional distribution $p( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N+1})$, is also a multivariate Gaussian whose mean depends linearly on $\boldsymbol{t}_N$.\\#### Proof\\*Sum of normally distributed random variables.* 
-If $X$ and $Y$ are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., $Z=X+Y$ is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.\\Consider the linear model and define the $N \times H$ design matrix $\boldsymbol{R}$ with elements
-\end{aligned}\end{align} \]</div>
-<p>R_{nh} \equiv \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right).</p>
+\[R_{nh} \equiv \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right).\]</div>
+<p>Then <span class="math notranslate nohighlight">\(\boldsymbol{y}_N = \boldsymbol{R} \boldsymbol{\theta}\)</span> is the vector of model predictions, i.e.</p>
 <div class="math notranslate nohighlight">
-\[Then $\boldsymbol{y}_N = \boldsymbol{R} \boldsymbol{\theta}$ is the vector of model predictions, i.e.
-\]</div>
-<p>y^{(n)} = \sum_{h=1}^H R_{nh} \boldsymbol{\theta^{(h)}}.</p>
+\[y^{(n)} = \sum_{h=1}^H R_{nh} \boldsymbol{\theta^{(h)}}.\]</div>
+<p>Assume that we have a Gaussian prior for the linear model weights <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> with zero mean and a diagonal covariance matrix</p>
 <div class="math notranslate nohighlight">
-\[Assume that we have a Gaussian prior for the linear model weights $\boldsymbol{\theta}$ with zero mean and a diagonal covariance matrix
-\]</div>
-<p>p(\boldsymbol{\theta}) = \mathcal{N} \left( \boldsymbol{\theta}; 0, \sigma_\theta^2 \boldsymbol{I} \right).</p>
+\[p(\boldsymbol{\theta}) = \mathcal{N} \left( \boldsymbol{\theta}; 0, \sigma_\theta^2 \boldsymbol{I} \right).\]</div>
+<p>Now, since <span class="math notranslate nohighlight">\(y\)</span> is a linear function of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>, it is also Gaussian distributed with mean zero. Its covariance matrix becomes</p>
 <div class="math notranslate nohighlight">
-\[Now, since $y$ is a linear function of $\boldsymbol{\theta}$, it is also Gaussian distributed with mean zero. Its covariance matrix becomes
-\]</div>
-<p>\boldsymbol{Q} = \langle \boldsymbol{y} \boldsymbol{y}^T \rangle = \langle \boldsymbol{R} \boldsymbol{\theta} \boldsymbol{\theta}^T \boldsymbol{R}^T \rangle
-= \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T,</p>
+\[\boldsymbol{Q} = \langle \boldsymbol{y} \boldsymbol{y}^T \rangle = \langle \boldsymbol{R} \boldsymbol{\theta} \boldsymbol{\theta}^T \boldsymbol{R}^T \rangle
+= \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T,\]</div>
+<p>which implies that</p>
+<div class="math notranslate nohighlight">
+\[p(\boldsymbol{y}) = \mathcal{N} \left( \boldsymbol{y}; 0, \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T \right).\]</div>
+<p>This will be true for any set of points <span class="math notranslate nohighlight">\(\boldsymbol{X}_N\)</span>; which is the defining property of a <strong>Gaussian process</strong>.</p>
+<ul class="simple">
+<li><p>What about the target values <span class="math notranslate nohighlight">\(\boldsymbol{t}\)</span>?</p></li>
+</ul>
+<p>Well, if <span class="math notranslate nohighlight">\(t^{(n)}\)</span> is assumed to differ by additive Gaussian noise, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[t^{(n)} = y^{(n)} + \varepsilon^{(n)}, \]</div>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)\)</span>; then <span class="math notranslate nohighlight">\(\boldsymbol{t}\)</span> also has a Gaussian distribution</p>
+<div class="math notranslate nohighlight">
+\[p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),\]</div>
+<p>where the covariance matrix of this target distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{C} = \boldsymbol{Q} + \sigma_\nu^2 \boldsymbol{I} = \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T + \sigma_\nu^2 \boldsymbol{I}.\]</div>
+<!-- !split -->
+</div>
+<div class="section" id="the-covariance-matrix-as-the-central-object">
+<h3><span class="section-number">1.2.2. </span>The covariance matrix as the central object<a class="headerlink" href="#the-covariance-matrix-as-the-central-object" title="Permalink to this headline">¶</a></h3>
+<p>The covariance matrices are given by</p>
+<div class="math notranslate nohighlight">
+\[Q_{nn'} = \sigma_\theta^2 \sum_h \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right) \phi^{(h)} \left( \boldsymbol{x}^{(n')} \right),\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[C_{nn'} = Q_{nn'} + \delta_{nn'} \sigma_\nu^2.\]</div>
+<p>This means that the correlation between target values <span class="math notranslate nohighlight">\(t^{(n)}\)</span> and <span class="math notranslate nohighlight">\(t^{(n')}\)</span> is determined by the points <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(n)}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(n')}\)</span> and the behaviour of the basis functions.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="non-parametric-approach-mean-and-covariance-functions">
+<h2><span class="section-number">1.3. </span>Non-parametric approach: Mean and covariance functions<a class="headerlink" href="#non-parametric-approach-mean-and-covariance-functions" title="Permalink to this headline">¶</a></h2>
+<p>In fact, we don’t really need the basis functions and their parameters anymore. The influence of these appear only in the covariance matrix that describes the distribution of the targets, which is our key object. We can replace the parametric model altogether with a <strong>covariance function</strong> <span class="math notranslate nohighlight">\(C( \boldsymbol{x}, \boldsymbol{x}' )\)</span> which generates the  elements of the covariance matrix</p>
+<div class="math notranslate nohighlight">
+\[Q_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right),\]</div>
+<p>for any set of points <span class="math notranslate nohighlight">\(\left\{ \boldsymbol{x}^{(n)} \right\}_{n=1}^N\)</span>.</p>
+<p>Note, however, that <span class="math notranslate nohighlight">\(\boldsymbol{Q}\)</span> must be positive-definite. This constrains the set of valid covariance functions.</p>
+<p>Once we have defined a covariance function, the covariance matrix for the target values will be given by</p>
+<div class="math notranslate nohighlight">
+\[C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')} \right) + \sigma_\nu^2 \delta_{nn'}.\]</div>
+<p>A wide range of different covariance contributions can be <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_process#Covariance_functions">constructed</a>. These standard covariance functions are typically parametrized with hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span> so that</p>
+<div class="math notranslate nohighlight">
+\[C_{nn'} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) + \delta_{nn'} \Delta \left( \boldsymbol{x}^{(n)};  \boldsymbol{\alpha} \right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta\)</span> is usually included as a flexible noise model.</p>
+<!-- !split -->
+<div class="section" id="stationary-kernels">
+<h3><span class="section-number">1.3.1. </span>Stationary kernels<a class="headerlink" href="#stationary-kernels" title="Permalink to this headline">¶</a></h3>
+<p>The most common types of covariance functions are stationary, or translationally invariant, which implies that</p>
+<div class="math notranslate nohighlight">
+\[C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),\]</div>
+<p>where the function <span class="math notranslate nohighlight">\(D\)</span> is often referred to as a <em>kernel</em>.</p>
+<p>A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),</p>
 <div class="math notranslate nohighlight">
 \[
-which implies that
-\]</div>
-<p>p(\boldsymbol{y}) = \mathcal{N} \left( \boldsymbol{y}; 0, \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T \right).</p>
+ 
+C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] \]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> denotes the dimensionality of the input space. The hyperparameters are: <span class="math notranslate nohighlight">\(\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}\)</span>. Sometimes, a single correlation length <span class="math notranslate nohighlight">\(r\)</span> is used.</p>
+<!-- !split -->
+</div>
+</div>
+</div>
+<div class="section" id="gp-models-for-regression">
+<h1><span class="section-number">2. </span>GP models for regression<a class="headerlink" href="#gp-models-for-regression" title="Permalink to this headline">¶</a></h1>
+<p>Let us return to the problem of predicting <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> given <span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>. The independent variables <span class="math notranslate nohighlight">\(\boldsymbol{X}_{N+1}\)</span> are also given, but will be omitted from the conditional pdfs below.</p>
+<p>The joint density is</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-This will be true for any set of points $\boldsymbol{X}_N$; which is the defining property of a **Gaussian process**.\\* What about the target values $\boldsymbol{t}$?\\Well, if $t^{(n)}$ is assumed to differ by additive Gaussian noise, i.e., 
-\end{aligned}\end{align} \]</div>
-<p>t^{(n)} = y^{(n)} + \varepsilon^{(n)},</p>
-<div class="math notranslate nohighlight">
-\[
-where $\varepsilon^{(n)} \sim \mathcal{N} \left( 0, \sigma_\nu^2 \right)$; then $\boldsymbol{t}$ also has a Gaussian distribution
-\]</div>
-<p>p(\boldsymbol{t}) = \mathcal{N} \left( \boldsymbol{t}; 0, \boldsymbol{C} \right),</p>
-<div class="math notranslate nohighlight">
-\[
-where the covariance matrix of this target distribution is given by
-\]</div>
-<p>\boldsymbol{C} = \boldsymbol{Q} + \sigma_\nu^2 \boldsymbol{I} = \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T + \sigma_\nu^2 \boldsymbol{I}.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}&lt;!-- !split --&gt;
-#### The covariance matrix as the central object\\The covariance matrices are given by
-\end{aligned}\end{align} \]</div>
-<p>Q_{nn’} = \sigma_\theta^2 \sum_h \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right) \phi^{(h)} \left( \boldsymbol{x}^{(n’)} \right),</p>
-<div class="math notranslate nohighlight">
-\[
-and
-\]</div>
-<p>C_{nn’} = Q_{nn’} + \delta_{nn’} \sigma_\nu^2.</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-This means that the correlation between target values $t^{(n)}$ and $t^{(n')}$ is determined by the points $\boldsymbol{x}^{(n)}$, $\boldsymbol{x}^{(n')}$ and the behaviour of the basis functions.\\&lt;!-- !split --&gt;
-### Non-parametric approach: Mean and covariance functions\\In fact, we don't really need the basis functions and their parameters anymore. The influence of these appear only in the covariance matrix that describes the distribution of the targets, which is our key object. We can replace the parametric model altogether with a **covariance function** $C( \boldsymbol{x}, \boldsymbol{x}' )$ which generates the  elements of the covariance matrix
-\end{aligned}\end{align} \]</div>
-<p>Q_{nn’} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n’)} \right),</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-for any set of points $\left\{ \boldsymbol{x}^{(n)} \right\}_{n=1}^N$.\\Note, however, that $\boldsymbol{Q}$ must be positive-definite. This constrains the set of valid covariance functions.\\Once we have defined a covariance function, the covariance matrix for the target values will be given by
-\end{aligned}\end{align} \]</div>
-<p>C_{nn’} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n’)} \right) + \sigma_\nu^2 \delta_{nn’}.</p>
-<div class="math notranslate nohighlight">
-\[A wide range of different covariance contributions can be [constructed](https://en.wikipedia.org/wiki/Gaussian_process#Covariance_functions). These standard covariance functions are typically parametrized with hyperparameters $\boldsymbol{\alpha}$ so that 
-\]</div>
-<p>C_{nn’} = C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n’)}, \boldsymbol{\alpha} \right) + \delta_{nn’} \Delta \left( \boldsymbol{x}^{(n)};  \boldsymbol{\alpha} \right),</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\Delta$ is usually included as a flexible noise model.\\&lt;!-- !split --&gt;
-#### Stationary kernels\\The most common types of covariance functions are stationary, or translationally invariant, which implies that 
-\end{aligned}\end{align} \]</div>
-<p>C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n’)}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}’; \boldsymbol{\alpha} \right),</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where the function $D$ is often referred to as a *kernel*.\\A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
-\end{aligned}\end{align} \]</div>
-<p>C_\mathrm{RBF}(\mathbf{x},\mathbf{x}’; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}’)^2}{r_i^2} \right]</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.\\
-&lt;!-- !split --&gt;
-## GP models for regression
-Let us return to the problem of predicting $t^{(N+1)}$ given $\boldsymbol{t}_N$. The independent variables $\boldsymbol{X}_{N+1}$ are also given, but will be omitted from the conditional pdfs below.\\The joint density is
-\end{aligned}\end{align} \]</div>
-<p>p \left( t^{(N+1)}, \boldsymbol{t}_N \right) = p \left( t^{(N+1)} | \boldsymbol{t}_N \right) p \left( \boldsymbol{t}_N \right)
+\[p \left( t^{(N+1)}, \boldsymbol{t}_N \right) = p \left( t^{(N+1)} | \boldsymbol{t}_N \right) p \left( \boldsymbol{t}_N \right) 
 \quad \Rightarrow \quad
-p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \boldsymbol{t}_N \right)}{p \left( \boldsymbol{t}_N \right) }.</p>
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \boldsymbol{t}_N \right)}{p \left( \boldsymbol{t}_N \right) }.\]</div>
+<p>Since both <span class="math notranslate nohighlight">\(p \left( t^{(N+1)}, \boldsymbol{t}_N \right)\)</span> and <span class="math notranslate nohighlight">\(p \left( \boldsymbol{t}_N \right)\)</span> are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> for the <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> covariance matrix for <span class="math notranslate nohighlight">\(\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)\)</span>. This implies that</p>
 <div class="math notranslate nohighlight">
-\[Since both $p \left( t^{(N+1)}, \boldsymbol{t}_N \right)$ and $p \left( \boldsymbol{t}_N \right)$ are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation $\boldsymbol{C}_{N+1}$ for the $(N+1) \times (N+1)$ covariance matrix for $\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)$. This implies that
-\]</div>
-<p>p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}<em>N, t^{(N+1)} \right) \boldsymbol{C}</em>{N+1}^{-1}</p>
-<div class="amsmath math notranslate nohighlight" id="equation-828893c5-52f9-48ed-b460-7fbcd199202a">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-828893c5-52f9-48ed-b460-7fbcd199202a" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\[\begin{split}p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+\begin{pmatrix}
 \boldsymbol{t}_N \\
 t^{(N+1)}
-\end{pmatrix}\]</div>
-<p>\right]</p>
+\end{pmatrix}
+\right]\end{split}\]</div>
+<p><em>Summary.</em>
+The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> requires an inversion of the covariance matrix <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span>.</p>
+<div class="section" id="elegant-approach-using-linear-algebra-tricks">
+<h2><span class="section-number">2.1. </span>Elegant approach using linear algebra tricks<a class="headerlink" href="#elegant-approach-using-linear-algebra-tricks" title="Permalink to this headline">¶</a></h2>
+<p>Let us split the <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> covariance matrix into four different blocks</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}*Summary.* 
-The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.\\#### Elegant approach using linear algebra tricks\\Let us split the $\boldsymbol{C}_{N+1}$ covariance matrix into four different blocks
-\end{aligned}\end{align} \]</div>
-<p>\boldsymbol{C}_{N+1} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e289bfa-95a8-402f-a0f6-f0a4bb4523ea">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-8e289bfa-95a8-402f-a0f6-f0a4bb4523ea" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\[\begin{split}\boldsymbol{C}_{N+1} =
+\begin{pmatrix}
 \boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \kappa
-\end{pmatrix}\]</div>
+\end{pmatrix},\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{C}_N\)</span> is the <span class="math notranslate nohighlight">\(N \times N\)</span> covariance matrix (which depends on the positions <span class="math notranslate nohighlight">\(\boldsymbol{X}_N\)</span>), <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span> is an <span class="math notranslate nohighlight">\(N \times 1\)</span> vector (that describes the covariance of <span class="math notranslate nohighlight">\(\boldsymbol{X}_N\)</span> with <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(N+1)}\)</span>), while <span class="math notranslate nohighlight">\(\kappa\)</span> is the single diagonal element obtained from <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(N+1)}\)</span>.</p>
+<p>We can use the partitioned inverse equations (Barnett, 1979) to rewrite <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}^{-1}\)</span> in terms of <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N}^{-1}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N}\)</span> as follows</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\boldsymbol{C}_N$ is the $N \times N$ covariance matrix (which depends on the positions $\boldsymbol{X}_N$), $\boldsymbol{k}$ is an $N \times 1$ vector (that describes the covariance of $\boldsymbol{X}_N$ with $\boldsymbol{x}^{(N+1)}$), while $\kappa$ is the single diagonal element obtained from $\boldsymbol{x}^{(N+1)}$.\\We can use the partitioned inverse equations (Barnett, 1979) to rewrite $\boldsymbol{C}_{N+1}^{-1}$ in terms of $\boldsymbol{C}_{N}^{-1}$ and $\boldsymbol{C}_{N}$ as follows
-\end{aligned}\end{align} \]</div>
-<p>\boldsymbol{C}_{N+1}^{-1} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ec84115-76c4-4a4f-86ee-45bb21fb4119">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-1ec84115-76c4-4a4f-86ee-45bb21fb4119" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\[\begin{split}\boldsymbol{C}_{N+1}^{-1} =
+\begin{pmatrix}
 \boldsymbol{M}_N &amp; \boldsymbol{m} \\
 \boldsymbol{m}^T &amp; \mu
-\end{pmatrix}\]</div>
-<div class="math notranslate nohighlight">
-\[
-where
-\]</div>
+\end{pmatrix},\end{split}\]</div>
+<p>where</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mu &amp;= \left( \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k} \right)^{-1} \\
 \boldsymbol{m} &amp;= -\mu \boldsymbol{C}_N^{-1} \boldsymbol{k} \\
 \boldsymbol{M}_N &amp;= \boldsymbol{C}_N^{-1} + \frac{1}{\mu} \boldsymbol{m} \boldsymbol{m}^T.
 \end{align*}\]</div>
+<p><em>Question.</em>
+What are the dimensions of the different blocks? Check that the answer.</p>
+<p>This implies that we can make a prediction for the Gaussian pdf of <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> (meaning that we predict its value with an associated uncertainty) for an <span class="math notranslate nohighlight">\(N^3\)</span> computational cost (the inversion of an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix).</p>
+<p><em>Summary.</em>
+The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}*Question.* 
-What are the dimensions of the different blocks? Check that the answer.\\This implies that we can make a prediction for the Gaussian pdf of $t^{(N+1)}$ (meaning that we predict its value with an associated uncertainty) for an $N^3$ computational cost (the inversion of an $N \times N$ matrix).\\*Summary.* 
-The prediction for $t^{(N+1)}$ is a Gaussian
-\end{aligned}\end{align} \]</div>
-<p>p \left( t^{(N+1)} | \boldsymbol{t}<em>N \right) = \frac{1}{Z} \exp
+\[p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
--\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma</em>{\hat{t}_{N+1}}^2}
-\right]</p>
-<div class="math notranslate nohighlight">
-\[
-with
-\]</div>
+-\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma_{\hat{t}_{N+1}}^2}
+\right]\]</div>
+<p>with</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mathrm{mean:} &amp; \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \mathrm{variance:} &amp; \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}\]</div>
+<p>In fact, since the prediction only depends on the <span class="math notranslate nohighlight">\(N\)</span> available data we might as well predict several new target values at once. Consider <span class="math notranslate nohighlight">\(\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M\)</span> so that</p>
 <div class="math notranslate nohighlight">
-\[In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
-\]</div>
-<p>\boldsymbol{C}_{N+M} =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82930032-c88b-4aa6-9fc6-8a4a0f63f472">
-<span class="eqno">(1.6)<a class="headerlink" href="#equation-82930032-c88b-4aa6-9fc6-8a4a0f63f472" title="Permalink to this equation">¶</a></span>\[\begin{pmatrix}
+\[\begin{split}\boldsymbol{C}_{N+M} =
+\begin{pmatrix}
 \boldsymbol{C}_N &amp; \boldsymbol{k} \\
 \boldsymbol{k}^T &amp; \boldsymbol{\kappa}
-\end{pmatrix}\]</div>
+\end{pmatrix},\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span> is now an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix and <span class="math notranslate nohighlight">\(\boldsymbol{\kappa}\)</span> an <span class="math notranslate nohighlight">\(M \times M\)</span> matrix.</p>
+<p>The prediction becomes a multivariate Gaussian</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ an $M \times M$ matrix.\\The prediction becomes a multivariate Gaussian
-\end{aligned}\end{align} \]</div>
-<p>p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+\[p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
 -\frac{1}{2} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)^T \boldsymbol{\Sigma}_M^{-1} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)
-\right],</p>
-<div class="math notranslate nohighlight">
-\[
-where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
-\]</div>
+\right],\]</div>
+<p>where the <span class="math notranslate nohighlight">\(M \times 1\)</span> mean vector and <span class="math notranslate nohighlight">\(M \times M\)</span> covariance matrix are</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \hat{\boldsymbol{t}}_M &amp;= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \boldsymbol{\Sigma}_M &amp;= \boldsymbol{\kappa} - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}\]</div>
+</div>
+<div class="section" id="optimizing-the-gp-model-hyperparameters">
+<h2><span class="section-number">2.2. </span>Optimizing the GP model hyperparameters<a class="headerlink" href="#optimizing-the-gp-model-hyperparameters" title="Permalink to this headline">¶</a></h2>
+<p>Predictions can be made once we have</p>
+<ol class="simple">
+<li><p>Chosen an appropriate covariance function.</p></li>
+<li><p>Determined the hyperparameters.</p></li>
+<li><p>Evaluated the relevant blocks in the covariance function and inverted <span class="math notranslate nohighlight">\(\boldsymbol{C}_N\)</span>.</p></li>
+</ol>
+<p>How do we determine the hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span>? Well, recall that</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}
-#### Optimizing the GP model hyperparameters\\Predictions can be made once we have
-1. Chosen an appropriate covariance function.
-2. Determined the hyperparameters.
-3. Evaluated the relevant blocks in the covariance function and inverted $\boldsymbol{C}_N$.\\How do we determine the hyperparameters $\boldsymbol{\alpha}$? Well, recall that
-\end{aligned}\end{align} \]</div>
-<p>p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}<em>N^T \boldsymbol{C}</em>{N}^{-1} \boldsymbol{t}_N
-\right].</p>
-<p>$$
-This pdf is basically a data likelihood.</p>
+\[p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
+\right].\]</div>
+<p>This pdf is basically a data likelihood.</p>
 <ul class="simple">
 <li><p>The frequentist approach would be to find the set of hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}^*\)</span> that maximizes the data likelihood, i.e. that minimizes <span class="math notranslate nohighlight">\(\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N\)</span>.</p></li>
 <li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead.</p></li>
@@ -678,8 +739,8 @@ This pdf is basically a data likelihood.</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="ModelSelection.html" title="previous page"><span class="section-number">17. </span>Frequentist hypothesis testing</a>
-    <a class='right-next' id="next-link" href="demo-GaussianProcesses.html" title="next page"><span class="section-number">2. </span>Gaussian processes demonstration</a>
+    <a class='left-prev' id="prev-link" href="ModelSelection.html" title="previous page"><span class="section-number">17. </span>Model Selection</a>
+    <a class='right-next' id="next-link" href="demo-GaussianProcesses.html" title="next page"><span class="section-number">3. </span>Gaussian processes demonstration</a>
 
         </div>
         

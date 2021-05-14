@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>8. Exercise: Logistic Regression and neural networks &#8212; Learning from data</title>
+    <title>9. Exercise: Logistic Regression and neural networks &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="9. Convolutional Neural Networks" href="cnn.html" />
-    <link rel="prev" title="7. Neural network classifier demonstration" href="demo-NeuralNet.html" />
+    <link rel="next" title="10. Convolutional Neural Networks" href="cnn.html" />
+    <link rel="prev" title="8. Neural network classifier demonstration" href="demo-NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,57 +240,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2Fexercises_LogReg_NeuralNet.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/exercises_LogReg_NeuralNet.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -366,29 +384,29 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-modules">
-   8.1. Import modules
+   9.1. Import modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-   8.2. Examples of classifier functions used in logistic regression and neural networks
+   9.2. Examples of classifier functions used in logistic regression and neural networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise">
-     8.2.1. Exercise
+     9.2.1. Exercise
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-simple-classification-problem">
-   8.3. A simple classification problem
+   9.3. A simple classification problem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#logistic-regression-using-scikit-learn">
-     8.3.1. Logistic regression using
+     9.3.1. Logistic regression using
      <code class="docutils literal notranslate">
       <span class="pre">
        scikit-learn
@@ -398,26 +416,26 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#sub-task">
-       8.3.1.1. Sub-task
+       9.3.1.1. Sub-task
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-develop-your-own-logistic-regression-binary-classifier">
-     8.3.2. Exercise: Develop your own logistic regression binary classifier
+     9.3.2. Exercise: Develop your own logistic regression binary classifier
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#sub-tasks-and-follow-up-questions">
-       8.3.2.1. Sub-tasks and follow-up questions
+       9.3.2.1. Sub-tasks and follow-up questions
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise-create-a-neural-net-binary-classifier">
-     8.3.3. Exercise: Create a neural net binary classifier
+     9.3.3. Exercise: Create a neural net binary classifier
     </a>
    </li>
   </ul>
@@ -434,10 +452,10 @@
               <div>
                 
   <div class="section" id="exercise-logistic-regression-and-neural-networks">
-<h1><span class="section-number">8. </span>Exercise: Logistic Regression and neural networks<a class="headerlink" href="#exercise-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">9. </span>Exercise: Logistic Regression and neural networks<a class="headerlink" href="#exercise-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 16-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-modules">
-<h2><span class="section-number">8.1. </span>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.1. </span>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -454,7 +472,7 @@
 </div>
 </div>
 <div class="section" id="examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-<h2><span class="section-number">8.2. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.2. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The following code plots the sigmoid and the step function, two common classifier functions used in neural networks (and logistic regression).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -484,7 +502,7 @@
 </div>
 </div>
 <div class="section" id="exercise">
-<h3><span class="section-number">8.2.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.2.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Add the tanh function.</p></li>
 <li><p>Add the ReLU, leaky ReLU, and ELU activation functions (find the functional forms online)</p></li>
@@ -492,7 +510,7 @@
 </div>
 </div>
 <div class="section" id="a-simple-classification-problem">
-<h2><span class="section-number">8.3. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">9.3. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> includes various random <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html#generated-datasets">sample generators</a> that can be used to build artificial datasets of controlled size and complexity.</p>
 <p>For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html#sklearn.datasets.make_moons"><code class="docutils literal notranslate"><span class="pre">make_moons</span></code></a> generates two overlapping half cricles with optional Gaussian noise.</p>
 <div class="cell docutils container">
@@ -503,7 +521,7 @@
 </div>
 </div>
 <div class="section" id="logistic-regression-using-scikit-learn">
-<h3><span class="section-number">8.3.1. </span>Logistic regression using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#logistic-regression-using-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.1. </span>Logistic regression using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#logistic-regression-using-scikit-learn" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -565,7 +583,7 @@
 </div>
 </div>
 <div class="section" id="sub-task">
-<h4><span class="section-number">8.3.1.1. </span>Sub-task<a class="headerlink" href="#sub-task" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">9.3.1.1. </span>Sub-task<a class="headerlink" href="#sub-task" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Generate 200 new samples for use as test data.</p></li>
 <li><p>What is the accuracy of your binary classifier on</p>
@@ -578,7 +596,7 @@
 </div>
 </div>
 <div class="section" id="exercise-develop-your-own-logistic-regression-binary-classifier">
-<h3><span class="section-number">8.3.2. </span>Exercise: Develop your own logistic regression binary classifier<a class="headerlink" href="#exercise-develop-your-own-logistic-regression-binary-classifier" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.2. </span>Exercise: Develop your own logistic regression binary classifier<a class="headerlink" href="#exercise-develop-your-own-logistic-regression-binary-classifier" title="Permalink to this headline">¶</a></h3>
 <p>Implement your own logistic regression binary classifier by modifying the function definitions below</p>
 <ol class="simple">
 <li><p>Define the sigmoid activation function.</p></li>
@@ -656,7 +674,7 @@
 </div>
 </div>
 <div class="section" id="sub-tasks-and-follow-up-questions">
-<h4><span class="section-number">8.3.2.1. </span>Sub-tasks and follow-up questions<a class="headerlink" href="#sub-tasks-and-follow-up-questions" title="Permalink to this headline">¶</a></h4>
+<h4><span class="section-number">9.3.2.1. </span>Sub-tasks and follow-up questions<a class="headerlink" href="#sub-tasks-and-follow-up-questions" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Plot the decision boundary <span class="math notranslate nohighlight">\(p(t=1|x_1,x_2,w_0^*, w_1^*) = 0.5\)</span>, where <span class="math notranslate nohighlight">\(w^*\)</span> are the optimized weights.</p></li>
 <li><p>Why does it correspond to a straight line?</p></li>
@@ -667,7 +685,7 @@
 </div>
 </div>
 <div class="section" id="exercise-create-a-neural-net-binary-classifier">
-<h3><span class="section-number">8.3.3. </span>Exercise: Create a neural net binary classifier<a class="headerlink" href="#exercise-create-a-neural-net-binary-classifier" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">9.3.3. </span>Exercise: Create a neural net binary classifier<a class="headerlink" href="#exercise-create-a-neural-net-binary-classifier" title="Permalink to this headline">¶</a></h3>
 <p>Import and use tensorflow to create a (non-linear) binary classifier</p>
 <ol class="simple">
 <li><p>Build a keras sequential model as in the <code class="docutils literal notranslate"><span class="pre">demo-NeuralNet.ipynb</span></code> example. A single hidden layer is sufficient.</p></li>
@@ -718,8 +736,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-NeuralNet.html" title="previous page"><span class="section-number">7. </span>Neural network classifier demonstration</a>
-    <a class='right-next' id="next-link" href="cnn.html" title="next page"><span class="section-number">9. </span>Convolutional Neural Networks</a>
+    <a class='left-prev' id="prev-link" href="demo-NeuralNet.html" title="previous page"><span class="section-number">8. </span>Neural network classifier demonstration</a>
+    <a class='right-next' id="next-link" href="cnn.html" title="next page"><span class="section-number">10. </span>Convolutional Neural Networks</a>
 
         </div>
         

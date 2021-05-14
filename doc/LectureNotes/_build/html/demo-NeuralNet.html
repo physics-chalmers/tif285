@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>7. Neural network classifier demonstration &#8212; Learning from data</title>
+    <title>8. Neural network classifier demonstration &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="8. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
-    <link rel="prev" title="6. Neural networks" href="NeuralNet.html" />
+    <link rel="next" title="9. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
+    <link rel="prev" title="7. Neural networks" href="NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -221,13 +221,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -238,57 +238,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -343,6 +343,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2Fdemo-NeuralNet.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/demo-NeuralNet.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -364,37 +382,37 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#developing-a-code-for-doing-neural-networks-with-back-propagation">
-   7.1. Developing a code for doing neural networks with back propagation
+   8.1. Developing a code for doing neural networks with back propagation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction-to-tensorflow">
-   7.2. Introduction to tensorflow
+   8.2. Introduction to tensorflow
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#explore-the-data">
-     7.2.1. Explore the data
+     8.2.1. Explore the data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#build-the-network">
-     7.2.2. Build the network
+     8.2.2. Build the network
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train-and-evaluate-the-model">
-     7.2.3. Train and evaluate the model:
+     8.2.3. Train and evaluate the model:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#evaluate-accuracy">
-     7.2.4. Evaluate accuracy
+     8.2.4. Evaluate accuracy
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#make-predictions">
-     7.2.5. Make predictions
+     8.2.5. Make predictions
     </a>
    </li>
   </ul>
@@ -411,7 +429,7 @@
               <div>
                 
   <div class="section" id="neural-network-classifier-demonstration">
-<h1><span class="section-number">7. </span>Neural network classifier demonstration<a class="headerlink" href="#neural-network-classifier-demonstration" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">8. </span>Neural network classifier demonstration<a class="headerlink" href="#neural-network-classifier-demonstration" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 10-Oct-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -430,7 +448,7 @@
 </div>
 </div>
 <div class="section" id="developing-a-code-for-doing-neural-networks-with-back-propagation">
-<h2><span class="section-number">7.1. </span>Developing a code for doing neural networks with back propagation<a class="headerlink" href="#developing-a-code-for-doing-neural-networks-with-back-propagation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.1. </span>Developing a code for doing neural networks with back propagation<a class="headerlink" href="#developing-a-code-for-doing-neural-networks-with-back-propagation" title="Permalink to this headline">¶</a></h2>
 <p>One can identify a set of key steps when using neural networks to solve supervised learning problems:</p>
 <ol class="simple">
 <li><p>Collect and pre-process data</p></li>
@@ -443,7 +461,7 @@
 <p>The exercise “build-your-own neural network” provides a step-by-step guided recipe for coding a neural network from scratch in python.</p>
 </div>
 <div class="section" id="introduction-to-tensorflow">
-<h2><span class="section-number">7.2. </span>Introduction to tensorflow<a class="headerlink" href="#introduction-to-tensorflow" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">8.2. </span>Introduction to tensorflow<a class="headerlink" href="#introduction-to-tensorflow" title="Permalink to this headline">¶</a></h2>
 <p>This short introduction uses Keras to:</p>
 <ul class="simple">
 <li><p>Build a neural network that classifies images.</p></li>
@@ -479,7 +497,7 @@
 </div>
 <p>The images are 28x28 NumPy arrays, with pixel values ranging from 0 to 255. The labels are an array of integers, ranging from 0 to 9.</p>
 <div class="section" id="explore-the-data">
-<h3><span class="section-number">7.2.1. </span>Explore the data<a class="headerlink" href="#explore-the-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.1. </span>Explore the data<a class="headerlink" href="#explore-the-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The shape of the training data</span>
@@ -547,7 +565,7 @@
 </div>
 </div>
 <div class="section" id="build-the-network">
-<h3><span class="section-number">7.2.2. </span>Build the network<a class="headerlink" href="#build-the-network" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.2. </span>Build the network<a class="headerlink" href="#build-the-network" title="Permalink to this headline">¶</a></h3>
 <p>The basic building block of a neural network is the layer. Layers extract representations from the data fed into them. Hopefully, these representations are meaningful for the problem at hand.</p>
 <p>Most of deep learning consists of chaining together simple layers. Most layers, such as <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/layers/Dense"><code class="docutils literal notranslate"><span class="pre">tf.keras.layers.Dense</span></code></a>, have parameters that are learned during training.</p>
 <p>Build the <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/keras/Sequential">tf.keras.Sequential</a> model by stacking layers. Choose an optimizer and loss function for training:</p>
@@ -617,7 +635,7 @@ _________________________________________________________________
 </div>
 </div>
 <div class="section" id="train-and-evaluate-the-model">
-<h3><span class="section-number">7.2.3. </span>Train and evaluate the model:<a class="headerlink" href="#train-and-evaluate-the-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.3. </span>Train and evaluate the model:<a class="headerlink" href="#train-and-evaluate-the-model" title="Permalink to this headline">¶</a></h3>
 <p>The simplest way to fit data is to just specify a number of epochs. During training the data will be fed through the network this many times.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -686,7 +704,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="section" id="evaluate-accuracy">
-<h3><span class="section-number">7.2.4. </span>Evaluate accuracy<a class="headerlink" href="#evaluate-accuracy" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.4. </span>Evaluate accuracy<a class="headerlink" href="#evaluate-accuracy" title="Permalink to this headline">¶</a></h3>
 <p>Next, compare how the model performs on the test dataset:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -706,7 +724,7 @@ Test accuracy: 0.9792
 </div>
 </div>
 <div class="section" id="make-predictions">
-<h3><span class="section-number">7.2.5. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">8.2.5. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h3>
 <p>With the model trained, you can use it to make predictions about some images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -851,8 +869,8 @@ Test accuracy: 0.9792
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="NeuralNet.html" title="previous page"><span class="section-number">6. </span>Neural networks</a>
-    <a class='right-next' id="next-link" href="exercises_LogReg_NeuralNet.html" title="next page"><span class="section-number">8. </span>Exercise: Logistic Regression and neural networks</a>
+    <a class='left-prev' id="prev-link" href="NeuralNet.html" title="previous page"><span class="section-number">7. </span>Neural networks</a>
+    <a class='right-next' id="next-link" href="exercises_LogReg_NeuralNet.html" title="next page"><span class="section-number">9. </span>Exercise: Logistic Regression and neural networks</a>
 
         </div>
         

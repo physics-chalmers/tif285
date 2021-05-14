@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Logistic Regression &#8212; Learning from data</title>
+    <title>5. Logistic Regression &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Neural networks" href="NeuralNet.html" />
-    <link rel="prev" title="3. Exercise: Gaussian processes" href="exercise_GP.html" />
+    <link rel="next" title="7. Neural networks" href="NeuralNet.html" />
+    <link rel="prev" title="4. Exercise: Gaussian processes" href="exercise_GP.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,57 +240,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2FLogReg.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/LogReg.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -366,29 +384,29 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#optimization-and-deep-learning">
-     4.1. Optimization and Deep learning
+     5.1. Optimization and Deep learning
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basics-and-notation">
-     4.2. Basics and notation
+     5.2. Basics and notation
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#binary-classification">
-   5. Binary classification
+   6. Binary classification
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linear-classifier">
-     5.1. Linear classifier
+     6.1. Linear classifier
     </a>
    </li>
   </ul>
@@ -407,7 +425,7 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split  -->
 <div class="section" id="logistic-regression">
-<h1><span class="section-number">4. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h1>
 <p>In linear regression our main interest was centered on learning the
 coefficients of a functional fit (say a polynomial) in order to be
 able to predict the response of a continuous variable on some unseen
@@ -435,7 +453,7 @@ binary outcome, true or false, positive or negative, success or
 failure etc.</p>
 <!-- !split -->
 <div class="section" id="optimization-and-deep-learning">
-<h2><span class="section-number">4.1. </span>Optimization and Deep learning<a class="headerlink" href="#optimization-and-deep-learning" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Optimization and Deep learning<a class="headerlink" href="#optimization-and-deep-learning" title="Permalink to this headline">¶</a></h2>
 <p>Logistic regression will also serve as our stepping stone towards
 neural network algorithms and supervised deep learning. For logistic
 learning, the minimization of the cost function leads to a non-linear
@@ -451,7 +469,7 @@ models, as we will see later.</p>
 <!-- !split  -->
 </div>
 <div class="section" id="basics-and-notation">
-<h2><span class="section-number">4.2. </span>Basics and notation<a class="headerlink" href="#basics-and-notation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Basics and notation<a class="headerlink" href="#basics-and-notation" title="Permalink to this headline">¶</a></h2>
 <p>We consider the case where the dependent variables (also called the
 responses, targets, or outcomes) are discrete and only take values
 from <span class="math notranslate nohighlight">\(k=0,\dots,K-1\)</span> (i.e. <span class="math notranslate nohighlight">\(K\)</span> classes).</p>
@@ -473,7 +491,7 @@ We will use the following notation:</p>
 </div>
 </div>
 <div class="section" id="binary-classification">
-<h1><span class="section-number">5. </span>Binary classification<a class="headerlink" href="#binary-classification" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6. </span>Binary classification<a class="headerlink" href="#binary-classification" title="Permalink to this headline">¶</a></h1>
 <p>Let us specialize to the case of two classes only, with outputs
 <span class="math notranslate nohighlight">\(t^{(i)} \in \{0,1\}\)</span>. That is</p>
 <div class="math notranslate nohighlight">
@@ -481,7 +499,7 @@ We will use the following notation:</p>
 = \begin{bmatrix} \mathrm{no}\\  \mathrm{yes} \end{bmatrix}.\end{split}\]</div>
 <!-- !split -->
 <div class="section" id="linear-classifier">
-<h2><span class="section-number">5.1. </span>Linear classifier<a class="headerlink" href="#linear-classifier" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.1. </span>Linear classifier<a class="headerlink" href="#linear-classifier" title="Permalink to this headline">¶</a></h2>
 <p>Before moving to the logistic model, let us try to use our linear
 regression model to classify these two outcomes. We could for example
 fit a linear model to the default case if <span class="math notranslate nohighlight">\(y^{(i)} &gt; 0.5\)</span> and the no
@@ -489,8 +507,8 @@ default case <span class="math notranslate nohighlight">\(y^{(i)} \leq 0.5\)</sp
 <p>We would then have our
 weighted linear combination, namely
 $$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abb4f80d-41bd-44a6-976b-7bf3c0b8cc07">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-abb4f80d-41bd-44a6-976b-7bf3c0b8cc07" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-adc74de4-fa3e-4e39-8556-d59ea65eae65">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-adc74de4-fa3e-4e39-8556-d59ea65eae65" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \end{equation}\]</div>
 <div class="math notranslate nohighlight">
@@ -676,8 +694,8 @@ what we derived earlier is compatible with these equations.</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="exercise_GP.html" title="previous page"><span class="section-number">3. </span>Exercise: Gaussian processes</a>
-    <a class='right-next' id="next-link" href="NeuralNet.html" title="next page"><span class="section-number">6. </span>Neural networks</a>
+    <a class='left-prev' id="prev-link" href="exercise_GP.html" title="previous page"><span class="section-number">4. </span>Exercise: Gaussian processes</a>
+    <a class='right-next' id="next-link" href="NeuralNet.html" title="next page"><span class="section-number">7. </span>Neural networks</a>
 
         </div>
         

@@ -29,7 +29,7 @@
   - file: MaxEnt
   - file: demo-MaxEnt.ipynb
   - file: ModelSelection
-- part: Machine learning---A Bayesian perspective
+- part: Machine learning-A Bayesian perspective
   chapters:
   - file: GaussianProcesses
   - file: demo-GaussianProcesses.ipynb

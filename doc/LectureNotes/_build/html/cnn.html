@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Convolutional Neural Networks &#8212; Learning from data</title>
+    <title>10. Convolutional Neural Networks &#8212; Learning from data</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="10. Convolutional Neural Network" href="demo-cnn.html" />
-    <link rel="prev" title="8. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
+    <link rel="next" title="11. Convolutional Neural Network" href="demo-cnn.html" />
+    <link rel="prev" title="9. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -223,13 +223,13 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="ModelSelection.html">
-   17. Frequentist hypothesis testing
+   17. Model Selection
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Machine learning---A Bayesian perspective
+  Machine learning-A Bayesian perspective
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,57 +240,57 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-GaussianProcesses.html">
-   2. Gaussian processes demonstration
+   3. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   3. Exercise: Gaussian processes
+   4. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="LogReg.html">
-   4. Logistic Regression
+   5. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   6. Neural networks
+   7. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   7. Neural network classifier demonstration
+   8. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   8. Exercise: Logistic Regression and neural networks
+   9. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Convolutional Neural Networks
+   10. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   10. Convolutional Neural Network
+   11. Convolutional Neural Network
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="bnn.html">
-   13. Bayesian neural networks
+   14. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-bnn.html">
-   14. Variational Inference: Bayesian Neural Networks
+   15. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_BNN.html">
-   15. Exercise: Bayesian neural networks
+   16. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -345,6 +345,24 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html/issues/new?title=Issue%20on%20page%20%2Fcnn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/html/index.html/edit/master/cnn.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -366,51 +384,51 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regular-nns-dont-scale-well-to-full-images">
-   9.1. Regular NNs don’t scale well to full images
+   10.1. Regular NNs don’t scale well to full images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-volumes-of-neurons">
-   9.2. 3D volumes of neurons
+   10.2. 3D volumes of neurons
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#layers-used-to-build-cnns">
-   9.3. Layers used to build CNNs
+   10.3. Layers used to build CNNs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-cnn-architecture">
-     9.3.1. Example: CNN architecture
+     10.3.1. Example: CNN architecture
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#systematic-reduction">
-     9.3.2. Systematic reduction
+     10.3.2. Systematic reduction
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transforming-images">
-   9.4. Transforming images
+   10.4. Transforming images
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-the-mnist-dataset">
-     9.4.1. Example: The MNIST dataset
+     10.4.1. Example: The MNIST dataset
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-it-up">
-     9.4.2. Setting it up
+     10.4.2. Setting it up
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cnns-in-brief">
-   9.5. CNNs in brief
+   10.5. CNNs in brief
   </a>
  </li>
 </ul>
@@ -427,7 +445,7 @@
   <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
 <!-- !split -->
 <div class="section" id="convolutional-neural-networks">
-<h1><span class="section-number">9. </span>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">10. </span>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Convolutional Neural Networks (CNNs) are very similar to ordinary Neural Networks, but are particularly adopted for image recognition.</p>
 <ul class="simple">
 <li><p>They are made up of layers that have learnable weights and biases.</p></li>
@@ -444,7 +462,7 @@ the network.</strong></p>
 <p>Here we provide only a superficial overview.</p>
 <!-- !split -->
 <div class="section" id="regular-nns-dont-scale-well-to-full-images">
-<h2><span class="section-number">9.1. </span>Regular NNs don’t scale well to full images<a class="headerlink" href="#regular-nns-dont-scale-well-to-full-images" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.1. </span>Regular NNs don’t scale well to full images<a class="headerlink" href="#regular-nns-dont-scale-well-to-full-images" title="Permalink to this headline">¶</a></h2>
 <p>As an example, consider
 an image of size <span class="math notranslate nohighlight">\(32\times 32\times 3\)</span> (32 wide, 32 high, 3 color channels), so a
 single fully-connected neuron in a first hidden layer of a regular
@@ -461,7 +479,7 @@ would quickly lead to possible overfitting.</p>
 <!-- !split -->
 </div>
 <div class="section" id="d-volumes-of-neurons">
-<h2><span class="section-number">9.2. </span>3D volumes of neurons<a class="headerlink" href="#d-volumes-of-neurons" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.2. </span>3D volumes of neurons<a class="headerlink" href="#d-volumes-of-neurons" title="Permalink to this headline">¶</a></h2>
 <p>CNNs take advantage of the fact that the
 input consists of images and they constrain the architecture in a more
 sensible way.</p>
@@ -487,7 +505,7 @@ dimension.</p>
 <!-- !split  -->
 </div>
 <div class="section" id="layers-used-to-build-cnns">
-<h2><span class="section-number">9.3. </span>Layers used to build CNNs<a class="headerlink" href="#layers-used-to-build-cnns" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.3. </span>Layers used to build CNNs<a class="headerlink" href="#layers-used-to-build-cnns" title="Permalink to this headline">¶</a></h2>
 <p>A simple CNN is a sequence of layers, and every layer of a CNN
 transforms one volume of activations to another through a
 differentiable function. We use three main types of layers to build
@@ -509,7 +527,7 @@ convolutional layer, e.g. by taking the maximum or average across some
 small regions, and this serves as input to the next convolutional
 layer.</p>
 <div class="section" id="example-cnn-architecture">
-<h3><span class="section-number">9.3.1. </span>Example: CNN architecture<a class="headerlink" href="#example-cnn-architecture" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.3.1. </span>Example: CNN architecture<a class="headerlink" href="#example-cnn-architecture" title="Permalink to this headline">¶</a></h3>
 <p>A simple CNN for image classification could have the architecture:</p>
 <ul class="simple">
 <li><p><strong>INPUT</strong> (<span class="math notranslate nohighlight">\(32\times 32 \times 3\)</span>) will hold the raw pixel values of the image, in this case an image of width 32, height 32, and with three color channels R,G,B.</p></li>
@@ -521,7 +539,7 @@ layer.</p>
 <!-- !split -->
 </div>
 <div class="section" id="systematic-reduction">
-<h3><span class="section-number">9.3.2. </span>Systematic reduction<a class="headerlink" href="#systematic-reduction" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.3.2. </span>Systematic reduction<a class="headerlink" href="#systematic-reduction" title="Permalink to this headline">¶</a></h3>
 <p>By systematically reducing the size of the input volume, through
 convolution and pooling, the network should create representations of
 small parts of the input, and then from them assemble representations
@@ -534,7 +552,7 @@ classification.</p>
 </div>
 </div>
 <div class="section" id="transforming-images">
-<h2><span class="section-number">9.4. </span>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.4. </span>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
 <p>CNNs transform the original image layer by layer from the original
 pixel values to the final class scores.</p>
 <p>Observe that some layers contain
@@ -547,7 +565,7 @@ with gradient descent so that the class scores that the CNN computes
 are consistent with the labels in the training set for each image.</p>
 <!-- !split -->
 <div class="section" id="example-the-mnist-dataset">
-<h3><span class="section-number">9.4.1. </span>Example: The MNIST dataset<a class="headerlink" href="#example-the-mnist-dataset" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.4.1. </span>Example: The MNIST dataset<a class="headerlink" href="#example-the-mnist-dataset" title="Permalink to this headline">¶</a></h3>
 <p>The MNIST dataset consists of grayscale images with a pixel size of
 <span class="math notranslate nohighlight">\(28\times 28\)</span>, meaning we require <span class="math notranslate nohighlight">\(28 \times 28 = 724\)</span> weights to each
 neuron in the first hidden layer.</p>
@@ -560,7 +578,7 @@ single neuron in the first hidden layer.</p>
 <!-- !split -->
 </div>
 <div class="section" id="setting-it-up">
-<h3><span class="section-number">9.4.2. </span>Setting it up<a class="headerlink" href="#setting-it-up" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">10.4.2. </span>Setting it up<a class="headerlink" href="#setting-it-up" title="Permalink to this headline">¶</a></h3>
 <p>It means that to represent the entire
 dataset of images, we require a 4D matrix or <strong>tensor</strong>. This tensor has the dimensions:<br />
 $$</p>
@@ -570,7 +588,7 @@ $$</p>
 </div>
 </div>
 <div class="section" id="cnns-in-brief">
-<h2><span class="section-number">9.5. </span>CNNs in brief<a class="headerlink" href="#cnns-in-brief" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">10.5. </span>CNNs in brief<a class="headerlink" href="#cnns-in-brief" title="Permalink to this headline">¶</a></h2>
 <p>In summary:</p>
 <ul class="simple">
 <li><p>A CNN architecture is in the simplest case a list of layers that transform the image volume into an output volume (e.g. holding the class scores)</p></li>
@@ -609,8 +627,8 @@ the slides of <a class="reference external" href="http://cs231n.github.io/convol
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="exercises_LogReg_NeuralNet.html" title="previous page"><span class="section-number">8. </span>Exercise: Logistic Regression and neural networks</a>
-    <a class='right-next' id="next-link" href="demo-cnn.html" title="next page"><span class="section-number">10. </span>Convolutional Neural Network</a>
+    <a class='left-prev' id="prev-link" href="exercises_LogReg_NeuralNet.html" title="previous page"><span class="section-number">9. </span>Exercise: Logistic Regression and neural networks</a>
+    <a class='right-next' id="next-link" href="demo-cnn.html" title="next page"><span class="section-number">11. </span>Convolutional Neural Network</a>
 
         </div>
         
