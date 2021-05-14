@@ -188,8 +188,8 @@ F_true = {F_true}
 F_est = {(w * F).sum() / w.sum():.0f} +/- { w.sum() ** -0.5:.0f} (based on {N} measurements) """)
 ```
 
-`F_true = 1000` \n
-`F_est = 998 +/- 4 (based on 50 measurements)` \n
+`F_true = 1000` <br/>
+`F_est = 998 +/- 4 (based on 50 measurements)` <br/>
 
 We find that for 50 measurements of the flux, our estimate has an error of about 0.4% and is consistent with the input value.
 
@@ -343,13 +343,13 @@ or using credibility intervals:
 ...F_est in [{sampper[0]:.0f}, {sampper[4]:.0f}] (95% credibility interval) """)
 ```
 
-`F_true = 1000` \n
-`Based on 50 measurements the posterior point estimates are:` \n
-`...F_est = 998 +/- 4` \n
-`or using credibility intervals:` \n
-`...F_est = 998          (posterior median)`  \n
-`...F_est in [993, 1002] (67% credibility interval)`  \n
-`...F_est in [989, 1006] (95% credibility interval)`  \n
+`F_true = 1000` <br/>
+`Based on 50 measurements the posterior point estimates are:` <br/>
+`...F_est = 998 +/- 4` <br/>
+`or using credibility intervals:` <br/>
+`...F_est = 998          (posterior median)`  <br/>
+`...F_est in [993, 1002] (67% credibility interval)`  <br/>
+`...F_est in [989, 1006] (95% credibility interval)`  <br/>
 
 In this particular example, the posterior pdf is actually a Gaussian (since it is constructed as a product of Gaussians), and the mean and variance from the quadratic approximation will agree exactly with the frequentist approach.
 

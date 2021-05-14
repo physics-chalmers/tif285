@@ -480,8 +480,8 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 **Inferring galactic distances with an imprecise knowledge of the Hubble constant**
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to $v = H_0 x$. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.\\Here we use marginalization to obtain the desired posterior pdf $p(x|D,I)$ from the joint distribution of $p(x,H_0|D,I)$
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-21a6b0e0-a863-47e5-865b-d2ad55983120">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-21a6b0e0-a863-47e5-865b-d2ad55983120" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2cfbec62-8a77-43c5-bf25-6d7e1e106e55">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-2cfbec62-8a77-43c5-bf25-6d7e1e106e55" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -512,8 +512,8 @@ Assume now that the function $f$ will map the point $X=X^*$ uniquely onto $Y=Y^*
 \[&lt;!-- !split --&gt;
 In the limit of infinitesimally small intervals, and with the realization that this should be true for any point $X$, we obtain the relationship
 \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b7bf8139-6f49-49ee-a621-4de7b6ab6b64">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-b7bf8139-6f49-49ee-a621-4de7b6ab6b64" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6ab82cc-96ac-4e67-9332-5937d8e1ed46">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-b6ab82cc-96ac-4e67-9332-5937d8e1ed46" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
@@ -522,8 +522,8 @@ p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 where the term on the far right is called the *Jacobian*.\\&lt;!-- !split --&gt;
 The generalization to several variables, relating the pdf for $M$ variables $\{ X_j \}$ in terms of the same number of quantities $\{ Y_j \}$ related to them, is
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-434b4ded-da12-4b66-a5e1-37bf6e6f0628">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-434b4ded-da12-4b66-a5e1-37bf6e6f0628" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4bb8a71-cc45-429a-a56f-fb20db1dfa25">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-d4bb8a71-cc45-429a-a56f-fb20db1dfa25" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -546,8 +546,8 @@ Square both sides and integrate to get the expectation value
 where we have employed the linear property for an integral over a sum of terms.\\&lt;!-- !split --&gt;
 Since we assumed that the pdfs for $X$ and $Y$ were described by independent Gaussians we have
 \end{aligned}\end{align} \]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7300569b-ca1f-4128-b9ea-e2252d7adcfa">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-7300569b-ca1f-4128-b9ea-e2252d7adcfa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0795ce99-3a6a-47f4-99f8-154bab4b6d3d">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-0795ce99-3a6a-47f4-99f8-154bab4b6d3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>
