@@ -8,13 +8,13 @@ function inIframe () {
 }
 
 // course-specific URL
-var courseURL = "https://chalmers.instructure.com/courses/10188/";
+var courseURL = "https://chalmers.instructure.com/courses/15029/";
 
 // Course-specific url if the current page is within an iFrame.
 // Relative link to file if the current page is the top window
 var material = "";
 if (inIframe()) {
-	material = courseURL + "external_tools/440";
+	material = courseURL + "external_tools/770";
 } else {
 	material = 'material.html';
 }
@@ -28,14 +28,14 @@ if (inIframe()) {
 
 var schedule = "";
 if (inIframe()) {
-	schedule = courseURL + "external_tools/441";
+	schedule = courseURL + "external_tools/771";
 } else {
 	schedule = 'schedule.html';
 }
 
 var gettingstarted = "";
 if (inIframe()) {
-	gettingstarted = courseURL + "external_tools/442";
+	gettingstarted = courseURL + "external_tools/772";
 } else {
 	gettingstarted = 'gettingstarted.html';
 }
