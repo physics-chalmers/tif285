@@ -1,7 +1,7 @@
 # Book settings
 title: Learning from data
 author: Christian Forssén
-logo: logo.png
+logo: ./fig/logo.png
 
 latex:
   latex_documents:
@@ -31,7 +31,7 @@ parse:
 # HTML-specific settings
 html:
   favicon                   : ""  # A path to a favicon image
-  use_edit_page_button      : true  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
+  use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
   use_repository_button     : true  # Whether to add a link to your repository button
   use_issues_button         : true  # Whether to add an "open an issue" button
   extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
@@ -48,17 +48,17 @@ html:
 latex:
   latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
 
-bibtex_bibfiles             : ["references.bib"]
+bibtex_bibfiles             : ["./references.bib"]
     
 #######################################################################################
 # Launch button settings
 launch_buttons:
-  colab_url                 : "https://colab.research.google.com"
+  #colab_url                 : "https://colab.research.google.com"
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
-  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
 
 repository:
-  url                       : https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/index.html  # The URL to your book's repository
-#  path_to_book              : ""  # A path to your book's folder, relative to the repository root.
+  url                       : https://physics-chalmers.github.io/tif285  # The URL to your book's repository
+  path_to_book              : "./doc/LectureNotes"  # A path to your book's folder, relative to the repository root.
   branch                    : master  # Which branch of the repository should be used when creating links

@@ -1,46 +1,46 @@
-- file: welcome
+- file: content/Intro/welcome
   numbered: true
 - part: Introduction
   chapters:
-  - file: Intro
-  - file: demo-Intro.ipynb
-  - file: exercise_Jupyter_Python_intro_01.ipynb
-  - file: exercise_Jupyter_Python_intro_02.ipynb
+  - file: content/Intro/Intro.md
+  - file: content/Intro/demo-Intro.ipynb
+  - file: content/Intro/exercise_Jupyter_Python_intro_01.ipynb
+  - file: content/Intro/exercise_Jupyter_Python_intro_02.ipynb
 - part: Linear regression
   chapters:
-  - file: LinearRegression
-  - file: ModelValidation
-  - file: demo-ModelValidation.ipynb
-  - file: exercise_LinearRegression.ipynb
+  - file: content/LinearRegression/LinearRegression.md
+  - file: content/LinearRegression/ModelValidation.md
+  - file: content/LinearRegression/demo-ModelValidation.ipynb
+  - file: content/LinearRegression/exercise_LinearRegression.ipynb
 - part: Bayesian statistics
   chapters:
-  - file: BayesianBasics
-  - file: BayesianRecipe
-  - file: demo-BayesianBasics.ipynb
-  - file: exercise_sum_product_rule.ipynb
-  - file: BayesianParameterEstimation
-  - file: demo-BayesianParameterEstimation.ipynb
-  - file: exercise_BayesianParameterEstimation.ipynb
-  - file: MCMC
-  - file: demo-MCMC.ipynb
-  - file: ErrorPropagation
-  - file: demo-ErrorPropagation.ipynb
-  - file: IgnorancePDF
-  - file: MaxEnt
-  - file: demo-MaxEnt.ipynb
-  - file: ModelSelection
+  - file: content/BayesianStatistics/BayesianBasics/BayesianBasics.md
+  - file: content/BayesianStatistics/BayesianBasics/BayesianRecipe.md
+  - file: content/BayesianStatistics/BayesianBasics/demo-BayesianBasics.ipynb
+  - file: content/BayesianStatistics/BayesianBasics/exercise_sum_product_rule.ipynb
+  - file: content/BayesianStatistics/BayesianParameterEstimation/BayesianParameterEstimation.md
+  - file: content/BayesianStatistics/BayesianParameterEstimation/demo-BayesianParameterEstimation.ipynb
+  - file: content/BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.ipynb
+  - file: content/BayesianStatistics/MCMC/MCMC.md
+  - file: content/BayesianStatistics/MCMC/demo-MCMC.ipynb
+  - file: content/BayesianStatistics/ErrorPropagation/ErrorPropagation.md
+  - file: content/BayesianStatistics/ErrorPropagation/demo-ErrorPropagation.ipynb
+  - file: content/BayesianStatistics/MaxEnt/IgnorancePDF.md
+  - file: content/BayesianStatistics/MaxEnt/MaxEnt.md
+  - file: content/BayesianStatistics/MaxEnt/demo-MaxEnt.ipynb
+  - file: content/BayesianStatistics/ModelSelection/ModelSelection.md
 - part: Machine learning-A Bayesian perspective
   chapters:
-  - file: GaussianProcesses
-  - file: demo-GaussianProcesses.ipynb
-  - file: exercise_GP.ipynb
-  - file: LogReg
-  - file: NeuralNet
-  - file: demo-NeuralNet.ipynb
-  - file: exercises_LogReg_NeuralNet.ipynb
-  - file: cnn
-  - file: demo-cnn.ipynb
-  - file: bnn
-  - file: demo-bnn.ipynb
-  - file: exercises_BNN.ipynb
+  - file: content/MachineLearning/GP/GaussianProcesses.md
+  - file: content/MachineLearning/GP/demo-GaussianProcesses.ipynb
+  - file: content/MachineLearning/GP/exercise_GP.ipynb
+  - file: content/MachineLearning/LogReg/LogReg.md
+  - file: content/MachineLearning/NeuralNet/NeuralNet.md
+  - file: content/MachineLearning/NeuralNet/demo-NeuralNet.ipynb
+  - file: content/MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.ipynb
+  - file: content/MachineLearning/CNN/cnn.md
+  - file: content/MachineLearning/CNN/demo-cnn.ipynb
+  - file: content/MachineLearning/BNN/bnn.md
+  - file: content/MachineLearning/BNN/demo-bnn.ipynb
+  - file: content/MachineLearning/BNN/exercises_BNN.ipynb
   
