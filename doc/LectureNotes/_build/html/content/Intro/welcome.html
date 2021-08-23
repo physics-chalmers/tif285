@@ -42,8 +42,6 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -399,16 +397,19 @@
      Instructors
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#about-these-lecture-notes">
-   About these lecture notes
-  </a>
-  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about-these-lecture-notes">
+     About these lecture notes
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#acknowledgements">
      Acknowledgements
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#brief-guide-to-online-jupyter-book-features">
+     Brief guide to online Jupyter Book features
     </a>
    </li>
   </ul>
@@ -463,37 +464,32 @@
 <li><p><em>Office</em>: floor 5, Forskarhuset</p></li>
 </ul>
 </li>
-<li><p><em>Teaching assistant</em>: Erik Fransson</p>
-<ul>
-<li><p><em>Email</em>: erikfr&#64;chalmers.se</p></li>
-<li><p><em>Office</em>: floor 7, Origo N</p></li>
-</ul>
-</li>
 <li><p><em>Teaching assistant</em>: Isak Svensson</p>
 <ul>
 <li><p><em>Email</em>: isak.svensson&#64;chalmers.se</p></li>
 <li><p><em>Office</em>: floor 6, Origo N</p></li>
 </ul>
 </li>
+<li><p><em>Teaching assistant</em>: Oliver Thim</p>
+<ul>
+<li><p><em>Email</em>: toliver&#64;chalmers.se</p></li>
+<li><p><em>Office</em>: floor 6, Origo N</p></li>
+</ul>
+</li>
 </ul>
 <!-- !split -->
 </div>
-</div>
 <div class="section" id="about-these-lecture-notes">
-<h1>About these lecture notes<a class="headerlink" href="#about-these-lecture-notes" title="Permalink to this headline">¶</a></h1>
-<p>These lecture notes have been authored by Christian Forssén and are released under an … License. The book format is powered by Jupyter Book.</p>
+<h2>About these lecture notes<a class="headerlink" href="#about-these-lecture-notes" title="Permalink to this headline">¶</a></h2>
+<p>These lecture notes have been authored by <span class="xref myst">Christian Forssén</span> and are released under a <a class="reference external" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons BY-NC license</a>. The book format is powered by <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a>.</p>
+<p>:::{admonition}Open an issue
+If you find a problem or have a suggestion when using this Jupyter Book (on physics, statistics, python, or formatting), from any page go under the github icon <img src="/_images/GitHub-Mark-32px.png" alt="github download icon" width="20px"> at the top-middle-right and select “open issue” (you may want to open in a new tab by <em>right-clicking</em> on “open issue”). This will take you to the Issues section of the Github repository for the book. You can either use the title already there or write your own, and then describe in the bigger box your problem or suggestion.
+:::</p>
 <!-- ======= Acknowledgements ======= -->
+</div>
 <div class="section" id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
-<p>The development of this course would not have been possible without the knowledge that has been gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found the most influential and inspirational:</p>
-<ol class="simple">
-<li><p>Phil Gregory, <em>“Bayesian Logical Data Analysis for the Physical Sciences”</em>, Cambridge University Press (2005).</p></li>
-<li><p>E. T. Jaynes, <em>“Probability Theory: The Logic of Science”</em>, Cambridge University Press (2003).</p></li>
-<li><p>David J.C. MacKay, <em>“Information Theory, Inference, and Learning Algorithms”</em>, Cambridge University Press (2005).</p></li>
-<li><p>D.S. Sivia, <em>“Data Analysis : A Bayesian Tutorial”</em>, Oxford University Press (2006).</p></li>
-</ol>
-<p>Even more importantly I would like to thank a number of colleagues and friends that have been paramount for the evolution of this course and for the
-development of the course material that is an integral part. In particular, I am in deep gratitude to:</p>
+<p>These notes originated from an intensive three-week summer school course taught at the <a class="reference external" href="https://www.york.ac.uk/">University of York</a> in 2019 by Christian Forssén, Dick Furnstahl, and Daniel Phillips as part of the <a class="reference external" href="https://fribtheoryalliance.org/TALENT/">TALENT</a> initiative. The original notes and subsequent revisions have been informed by interactions with many colleagues; I am particularly grateful to:</p>
 <ul class="simple">
 <li><p>Prof. Richard Furnstahl, Ohio State University</p></li>
 <li><p>Prof. Morten Hjorth-Jensen, Oslo University and Michigan State University</p></li>
@@ -501,8 +497,26 @@ development of the course material that is an integral part. In particular, I am
 <li><p>Dr. Ian Vernon, Durham University</p></li>
 <li><p>Dr. Sarah Wesolowski, Salisbury University</p></li>
 </ul>
-<p>The list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than taking the risk of forgetting someone, I would just like to say thank you all. I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.</p>
-<p>The last statement extends obviously to the open-source communities that make so many great computing tools publicly available. In this course we take much advantage of open-source python libraries.</p>
+<p>The full list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than inadvertently omitting someone, I simply say thank you to all. More generally, I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.</p>
+<p>The last statement extends to the open-source communities that make so many great computing tools publicly available. In this course we take great advantage of open-source python libraries.</p>
+<p>The development of this course also would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and machine learning:</p>
+<ol class="simple">
+<li><p>Phil Gregory, <em>“Bayesian Logical Data Analysis for the Physical Sciences”</em>, Cambridge University Press (2005).</p></li>
+<li><p>E. T. Jaynes, <em>“Probability Theory: The Logic of Science”</em>, Cambridge University Press (2003).</p></li>
+<li><p>David J.C. MacKay, <em>“Information Theory, Inference, and Learning Algorithms”</em>, Cambridge University Press (2005).</p></li>
+<li><p>D.S. Sivia, <em>“Data Analysis : A Bayesian Tutorial”</em>, Oxford University Press (2006).</p></li>
+</ol>
+</div>
+<div class="section" id="brief-guide-to-online-jupyter-book-features">
+<h2>Brief guide to online Jupyter Book features<a class="headerlink" href="#brief-guide-to-online-jupyter-book-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A clickable high-level table of contents (TOC) is available in the panel at the left of each page. (You can close this panel with the left arrow at the top-left-middle of the page or open it with the contents icon at the upper left.)
+:::{admonition}Searching the book
+The “Search this book…” box just below the title in the TOC panel is a great tool.     Try it! (And enhancements are expected in the near future as the Jupyter Book project matures.)
+:::</p></li>
+<li><p>For each section that has subsections, a clickable table of contents appears in the rightmost panel.</p></li>
+<li><p>On pages that are not generated from Jupyter notebooks, the three icons at the top-middle-right will put you into full-screen mode; take you to the github repository for the book or let you open an issue (see the top of this page); or show you the markdown source (.md) of the page or generate a pdf version of the page.</p></li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 </div>
