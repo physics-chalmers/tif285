@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>6. Linear regression &#8212; Learning from data</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7. Model validation" href="ModelValidation.html" />
+    <link rel="prev" title="5. Python and Jupyter notebooks: part 02" href="../Intro/exercise_Jupyter_Python_intro_02.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Intro/exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   6. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ModelValidation.html">
+   7. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-ModelValidation.html">
+   9. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_LinearRegression.html">
+   10. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianBasics/BayesianBasics.html">
+   11. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianBasics/BayesianRecipe.html">
+   12. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianBasics/demo-BayesianBasics.html">
+   13. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianBasics/exercise_sum_product_rule.html">
+   14. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianParameterEstimation/BayesianParameterEstimation.html">
+   15. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
+   16. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.html">
+   17. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/MCMC/MCMC.html">
+   18. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/MCMC/demo-MCMC.html">
+   19. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/ErrorPropagation/ErrorPropagation.html">
+   20. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/ErrorPropagation/demo-ErrorPropagation.html">
+   21. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/MaxEnt/IgnorancePDF.html">
+   24. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/MaxEnt/MaxEnt.html">
+   25. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
+   26. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianStatistics/ModelSelection/ModelSelection.html">
+   27. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/GP/GaussianProcesses.html">
+   28. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/GP/demo-GaussianProcesses.html">
+   29. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/GP/exercise_GP.html">
+   30. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/LogReg/LogReg.html">
+   31. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/NeuralNet/NeuralNet.html">
+   32. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/NeuralNet/demo-NeuralNet.html">
+   33. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
+   34. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/CNN/cnn.html">
+   35. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/CNN/demo-cnn.html">
+   36. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/BNN/bnn.html">
+   37. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/BNN/demo-bnn.html">
+   38. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MachineLearning/BNN/exercises_BNN.html">
+   39. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/LinearRegression/LinearRegression.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/LinearRegression/LinearRegression.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-linear-regression-aka-ordinary-least-squares">
+   6.1. Why Linear Regression (aka Ordinary Least Squares)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-analysis-overarching-aims">
+     6.1.1. Regression analysis, overarching aims
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-liquid-drop-model-for-nuclear-binding-energies">
+     6.1.2. Example: Liquid-drop model for nuclear binding energies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomial-basis-functions">
+   6.2. Polynomial basis functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-basis-functions">
+     6.2.1. General basis functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-scores">
+   6.3. Training scores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-chi-2-function">
+   6.4. The
+   <span class="math notranslate nohighlight">
+    \(\chi^2\)
+   </span>
+   function
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
+<!-- !split -->
+<div class="section" id="linear-regression">
+<h1><span class="section-number">6. </span>Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
+<!-- !split -->
+<div class="section" id="why-linear-regression-aka-ordinary-least-squares">
+<h2><span class="section-number">6.1. </span>Why Linear Regression (aka Ordinary Least Squares)<a class="headerlink" href="#why-linear-regression-aka-ordinary-least-squares" title="Permalink to this headline">¶</a></h2>
+<p>Fitting a continuous function with linear parameterization in terms of the parameters  <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
+<ul class="simple">
+<li><p>Often used for fitting a continuous function!</p></li>
+<li><p>Gives an excellent introduction to central Machine Learning features with <strong>understandable pedagogical</strong> links to other methods like <strong>Neural Networks</strong>, <strong>Support Vector Machines</strong> etc</p></li>
+<li><p>Analytical expression for the fitting parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span></p></li>
+<li><p>Analytical expressions for statistical propertiers like mean values, variances, confidence intervals and more</p></li>
+<li><p>Analytical relation with probabilistic interpretations</p></li>
+<li><p>Easy to introduce basic concepts like bias-variance tradeoff, cross-validation, resampling and regularization techniques and many other ML topics</p></li>
+<li><p>Easy to code! And links well with classification problems and logistic regression and neural networks</p></li>
+<li><p>Allows for <strong>easy</strong> hands-on understanding of gradient descent methods</p></li>
+</ul>
+<!-- !split -->
+<div class="section" id="regression-analysis-overarching-aims">
+<h3><span class="section-number">6.1.1. </span>Regression analysis, overarching aims<a class="headerlink" href="#regression-analysis-overarching-aims" title="Permalink to this headline">¶</a></h3>
+<p>Regression modeling deals with the description of a <strong>response</strong> variable(s) <span class="math notranslate nohighlight">\(y\)</span> and how it varies as function of some <strong>predictor</strong> variable(s) <span class="math notranslate nohighlight">\(x\)</span>. The first variable is also often called the <strong>dependent</strong>, or the <strong>outcome</strong> variable while the second one can be called the <strong>independent</strong> variable, or the <strong>explanatory</strong> variable. Note also that each of these might be a vector of variables, meaning that there could be more than one response variable and more than one predictor variable.</p>
+<p>In general we will try to find a model <span class="math notranslate nohighlight">\(M\)</span> that corresponds to a function <span class="math notranslate nohighlight">\(f_\theta(x)\)</span> such that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y \approx f_\theta(x)
+\end{equation*}\]</div>
+<p>In <strong>linear regression</strong> the dependence on the model parameters is <strong>linear</strong>, and this fact will make it possible to find an analytical expression for the optimal set of model parameters (as we will see below).</p>
+<!-- !split -->
+<p>When performing a regression analysis we will have access to a set of data <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> that consists of:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> cases <span class="math notranslate nohighlight">\(i = 0, 1, 2, \dots, n-1\)</span></p></li>
+</ul>
+<p>For each case there is a</p>
+<ul class="simple">
+<li><p>(vector of) response variable(s) <span class="math notranslate nohighlight">\(y_i\)</span> (observations);</p></li>
+<li><p>(vector of) independent variable(s) <span class="math notranslate nohighlight">\(x_i\)</span>.</p></li>
+</ul>
+<p>Below, we will use boldface to denote the set of data, i.e., <span class="math notranslate nohighlight">\(\boldsymbol{y} = (y_0, y_1,\ldots, y_{n-1})\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_0, x_1,\ldots, x_{n-1})\)</span>.</p>
+<p>The independent variables can be turned into a number of <strong>features</strong>, and the key to a successful regression analysis is to identify the most relevant features. In physics, these would correspond to a set of <strong>basis functions</strong>.</p>
+<p>Assume that there are <span class="math notranslate nohighlight">\(p\)</span> features and we will use the (possibly confusing) notation</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_i=[x_{i0}, x_{i1}, \dots, x_{ip-1}]\)</span> and from now on let <span class="math notranslate nohighlight">\(x\)</span> denote the vector of features. See below for more explicit examples.</p></li>
+</ul>
+<p>As our model will (in general) not predict the observations perfectly, we will write the relationship as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y_i = f_\theta(x_i) + \epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error (or the <strong>residual</strong>).</p>
+<!-- !split -->
+<p>A regression analysis aims at finding the model parameters <span class="math notranslate nohighlight">\(\theta\)</span> of a specified model <span class="math notranslate nohighlight">\(M\)</span> such that the vector of errors <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> is minimized. You might ask the very relevant question what is specifically meant by minimizing a vector, and you will find that this is often achieved by minimizing a <strong>cost</strong> function that has been introduced without much motivation. This function might also be called a <strong>loss</strong> function or an <strong>objective</strong> function.</p>
+<p>Alternatively, we could introduce the likelihood function <span class="math notranslate nohighlight">\(p(\boldsymbol{y} \vert \boldsymbol{x}, M(\theta))\)</span>.  It is the conditional distribution for the probability of making the observations <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> given the independent variable <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and a model <span class="math notranslate nohighlight">\(M\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> are contained in our data set <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>. The parameters <span class="math notranslate nohighlight">\(\theta\)</span> that maximizes this likelihood function is then our optimal set. We will later discuss likelihood functions in much more detail.</p>
+<p>Having access to this “optimal” model, we have extracted a relationship between <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> that we can exploit to infer causal dependencies, make predictions, and many other things.</p>
+<!-- !split -->
+<p>The <span class="math notranslate nohighlight">\(p\)</span> explanatory variables for the <span class="math notranslate nohighlight">\(n\)</span> cases in the data set are normally represented by a matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. The matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is called the <em>design
+matrix</em>.</p>
+<!-- !split -->
+</div>
+<div class="section" id="example-liquid-drop-model-for-nuclear-binding-energies">
+<h3><span class="section-number">6.1.2. </span>Example: Liquid-drop model for nuclear binding energies<a class="headerlink" href="#example-liquid-drop-model-for-nuclear-binding-energies" title="Permalink to this headline">¶</a></h3>
+<p>In order to understand the relation among the predictors <span class="math notranslate nohighlight">\(p\)</span>, the set of data <span class="math notranslate nohighlight">\(\mathcal{D}_n\)</span> and the target (outcome, output etc) <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>,
+consider the model we discussed for describing nuclear binding energies.</p>
+<p>There we assumed that we could parametrize the data using a polynomial approximation based on the liquid drop model.
+Assuming</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+BE(A,N,Z) = a_0+a_1A+a_2A^{2/3}+a_3 Z^2 A^{-1/3}+a_4 (N-Z)^2 A^{-1},
+\end{equation*}\]</div>
+<p>we have five features, that is the intercept (constant term, aka bias), the <span class="math notranslate nohighlight">\(A\)</span> dependent term, the <span class="math notranslate nohighlight">\(A^{2/3}\)</span> term and the <span class="math notranslate nohighlight">\(Z^2 A^{-1/3}\)</span> and <span class="math notranslate nohighlight">\((N-Z)^2 A^{-1}\)</span> terms. Although the features are somewhat complicated functions of the independent variables <span class="math notranslate nohighlight">\(A,N,Z\)</span>, we note that the <span class="math notranslate nohighlight">\(p=5\)</span> regression parameters <span class="math notranslate nohighlight">\(\theta = (a_0, a_1, a_2, a_3, a_4)\)</span> enter linearly. Furthermore we have <span class="math notranslate nohighlight">\(n\)</span> cases. It means that our design matrix is a
+<span class="math notranslate nohighlight">\(p\times n\)</span> matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="polynomial-basis-functions">
+<h2><span class="section-number">6.2. </span>Polynomial basis functions<a class="headerlink" href="#polynomial-basis-functions" title="Permalink to this headline">¶</a></h2>
+<p>The perhaps simplest linear-regression approach is to assume we can parametrize our function in terms of a polynomial <span class="math notranslate nohighlight">\(f(x)\)</span> of degree <span class="math notranslate nohighlight">\(p-1\)</span>. I.e.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y(x_i)=f({x}_i)+\epsilon_i=\sum_{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_i\)</span> is the error in our approximation.</p>
+<!-- !split -->
+<p>For every set of values <span class="math notranslate nohighlight">\(y_i,x_i\)</span> we have thus the corresponding set of equations</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0+\theta_1x_0^1+\theta_2x_0^2+\dots+\theta_{p-1}x_0^{p-1}+\epsilon_0\\
+y_1&amp;=\theta_0+\theta_1x_1^1+\theta_2x_1^2+\dots+\theta_{p-1}x_1^{p-1}+\epsilon_1\\
+y_2&amp;=\theta_0+\theta_1x_2^1+\theta_2x_2^2+\dots+\theta_{p-1}x_2^{p-1}+\epsilon_2\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0+\theta_1x_{n-1}^1+\theta_2x_{n-1}^2+\dots+\theta_{p-1}x_{n-1}^{p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
+<!-- !split -->
+<p>Defining the vectors</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = [y_0,y_1, y_2,\dots, y_{n-1}]^T,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} = [\theta_0,\theta_1, \theta_2,\dots, \theta_{p-1}]^T,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\epsilon} = [\epsilon_0,\epsilon_1, \epsilon_2,\dots, \epsilon_{n-1}]^T,
+\end{equation*}\]</div>
+<p>and the design matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}=
+\begin{bmatrix} 
+1&amp; x_{0}^1 &amp;x_{0}^2&amp; \dots &amp; \dots &amp;x_{0}^{p-1}\\
+1&amp; x_{1}^1 &amp;x_{1}^2&amp; \dots &amp; \dots &amp;x_{1}^{p-1}\\
+1&amp; x_{2}^1 &amp;x_{2}^2&amp; \dots &amp; \dots &amp;x_{2}^{p-1}\\                      
+\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\\
+1&amp; x_{n-1}^1 &amp;x_{n-1}^2&amp; \dots &amp; \dots &amp;x_{n-1}^{p-1}\\
+\end{bmatrix} 
+\end{equation*}\]</div>
+<p>we can rewrite our equations as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.
+\end{equation*}\]</div>
+<p>The above design matrix is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</a>.</p>
+<!-- !split -->
+<div class="section" id="general-basis-functions">
+<h3><span class="section-number">6.2.1. </span>General basis functions<a class="headerlink" href="#general-basis-functions" title="Permalink to this headline">¶</a></h3>
+<p>We are obviously not limited to the above polynomial expansions.  We
+could replace the various powers of <span class="math notranslate nohighlight">\(x\)</span> with elements of Fourier
+series or instead of <span class="math notranslate nohighlight">\(x_i^j\)</span> we could have <span class="math notranslate nohighlight">\(\cos{(j x_i)}\)</span> or <span class="math notranslate nohighlight">\(\sin{(j
+x_i)}\)</span>, or time series or other orthogonal functions.  For every set
+of values <span class="math notranslate nohighlight">\(y_i,x_i\)</span> we can then generalize the equations to</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\\
+y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\\
+y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_2\\
+\dots &amp; \dots \\
+y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_i\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
+<!-- !split -->
+<p>We redefine in turn the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}=
+\begin{bmatrix} 
+x_{00}&amp; x_{01} &amp;x_{02}&amp; \dots &amp; \dots &amp;x_{0,p-1}\\
+x_{10}&amp; x_{11} &amp;x_{12}&amp; \dots &amp; \dots &amp;x_{1,p-1}\\
+x_{20}&amp; x_{21} &amp;x_{22}&amp; \dots &amp; \dots &amp;x_{2,p-1}\\                      
+\dots&amp; \dots &amp;\dots&amp; \dots &amp; \dots &amp;\dots\\
+x_{n-1,0}&amp; x_{n-1,1} &amp;x_{n-1,2}&amp; \dots &amp; \dots &amp;x_{n-1,p-1}\\
+\end{bmatrix} 
+\end{equation*}\]</div>
+<p>and without loss of generality we rewrite again our equations as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{y} = \boldsymbol{X}\boldsymbol{\theta}+\boldsymbol{\epsilon}.
+\end{equation*}\]</div>
+<p>The left-hand side of this equation is kwown. The error vector <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> and the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> are unknown quantities. How can we obtain the optimal set of <span class="math notranslate nohighlight">\(\theta_i\)</span> values?</p>
+<!-- !split -->
+<p>We have defined the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> via the equations</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_0&amp;=\theta_0x_{00}+\theta_1x_{01}+\theta_2x_{02}+\dots+\theta_{p-1}x_{0p-1}+\epsilon_0\\
+y_1&amp;=\theta_0x_{10}+\theta_1x_{11}+\theta_2x_{12}+\dots+\theta_{p-1}x_{1p-1}+\epsilon_1\\
+y_2&amp;=\theta_0x_{20}+\theta_1x_{21}+\theta_2x_{22}+\dots+\theta_{p-1}x_{2p-1}+\epsilon_1\\
+\dots &amp; \dots \\
+y_{i}&amp;=\theta_0x_{i0}+\theta_1x_{i1}+\theta_2x_{i2}+\dots+\theta_{p-1}x_{ip-1}+\epsilon_1\\
+\dots &amp; \dots \\
+y_{n-1}&amp;=\theta_0x_{n-1,0}+\theta_1x_{n-1,2}+\theta_2x_{n-1,2}+\dots+\theta_{p-1}x_{n-1,p-1}+\epsilon_{n-1}.\\
+\end{align*}\]</div>
+<p>Note that the design matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{X}\in {\mathbb{R}}^{n\times p}\)</span>, with the predictors refering to the column numbers and the entries <span class="math notranslate nohighlight">\(n\)</span> being the row elements.</p>
+<!-- !split -->
+<p>With the above we use the design matrix to define the approximation <span class="math notranslate nohighlight">\(\boldsymbol{\tilde{y}}\)</span> via the unknown quantity <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\tilde{y}}= \boldsymbol{X}\boldsymbol{\theta},
+\end{equation*}\]</div>
+<p>and in order to find the optimal parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> instead of solving the above linear algebra problem, we define a function which gives a measure of the spread between the values <span class="math notranslate nohighlight">\(y_i\)</span> (which represent hopefully the exact values) and the parameterized values <span class="math notranslate nohighlight">\(\tilde{y}_i\)</span>, namely</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
+\end{equation*}\]</div>
+<p>or using the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> and in a more compact matrix-vector notation as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
+\end{equation*}\]</div>
+<p>This function is one possible way to define the so-called <strong>cost function</strong>.</p>
+<p>It is also common to define
+the cost function as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{2n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2,
+\end{equation*}\]</div>
+<p>since when taking the first derivative with respect to the unknown parameters <span class="math notranslate nohighlight">\(\theta\)</span>, the factor of <span class="math notranslate nohighlight">\(2\)</span> cancels out.</p>
+<!-- !split -->
+<p>The function</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+C(\boldsymbol{\theta})=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\},
+\end{equation*}\]</div>
+<p>can be linked to the variance of the quantity <span class="math notranslate nohighlight">\(y_i\)</span> if we interpret the latter as the mean value.
+When linking (see the discussion below) with the maximum likelihood approach, we will indeed interpret <span class="math notranslate nohighlight">\(y_i\)</span> as a mean value</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dots+\theta_{n-1}x_{i,n-1}+\epsilon_i,
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle y_i \rangle\)</span> is the mean value. Keep in mind also that
+till now we have treated <span class="math notranslate nohighlight">\(y_i\)</span> as the exact value. Normally, the
+response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> the outcome of a
+numerical experiment or another type of experiment and is thus only an
+approximation to the true value. It is then always accompanied by an
+error estimate, often limited to a statistical error estimate. For now, we
+will treat <span class="math notranslate nohighlight">\(y_i\)</span> as our exact value for the response variable.</p>
+<p>In order to find the parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> we will then minimize the spread of <span class="math notranslate nohighlight">\(C(\boldsymbol{\theta})\)</span>, that is we are going to solve the problem</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+{\displaystyle \min_{\boldsymbol{\theta}\in
+{\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.
+\end{equation*}\]</div>
+<p>In practical terms it means we will require</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)^2\right]=0, 
+\end{equation*}\]</div>
+<p>which results in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}x_{ij}\left(y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}\right)\right]=0, 
+\end{equation*}\]</div>
+<p>or in a matrix-vector form as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right).  
+\end{equation*}\]</div>
+<!-- !split -->
+<p>We can rewrite</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial C(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{X}^T\left( \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right),  
+\end{equation*}\]</div>
+<p>as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{X}^T\boldsymbol{y} = \boldsymbol{X}^T\boldsymbol{X}\boldsymbol{\theta},  
+\end{equation*}\]</div>
+<p>and if the matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span> is invertible we have the solution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} =\left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}\boldsymbol{X}^T\boldsymbol{y}.
+\end{equation*}\]</div>
+<p>We note also that since our design matrix is defined as <span class="math notranslate nohighlight">\(\boldsymbol{X}\in
+{\mathbb{R}}^{n\times p}\)</span>, the product <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X} \in
+{\mathbb{R}}^{p\times p}\)</span>.  In the liquid drop model example from the Intro lecture, we had <span class="math notranslate nohighlight">\(p=5\)</span> (<span class="math notranslate nohighlight">\(p \ll n\)</span>) meaning that we end up with inverting a small
+<span class="math notranslate nohighlight">\(5\times 5\)</span> matrix. This is a rather common situation, in many cases we end up with low-dimensional
+matrices to invert, which
+allow for the usage of direct linear algebra methods such as <strong>LU</strong> decomposition or <strong>Singular Value Decomposition</strong> (SVD) for finding the inverse of the matrix
+<span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>.</p>
+<p><strong>Small question</strong>: What kind of problems can we expect when inverting the matrix  <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>?</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="training-scores">
+<h2><span class="section-number">6.3. </span>Training scores<a class="headerlink" href="#training-scores" title="Permalink to this headline">¶</a></h2>
+<p>We can easily test our fit by computing various <strong>training scores</strong>. Several such measures are used in machine learning applications. First we have the <strong>Mean-Squared Error</strong> (MSE)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{MSE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2,
+\end{equation*}\]</div>
+<p>where we have <span class="math notranslate nohighlight">\(n\)</span> training data and our model is a function of the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
+<p>Furthermore, we have the <strong>mean absolute error</strong> (MAE) defined as.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{MAE}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n \left| y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right|,
+\end{equation*}\]</div>
+<p>And the <span class="math notranslate nohighlight">\(R2\)</span> score, also known as <em>coefficient of determination</em> is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathrm{R2}(\boldsymbol{\theta}) = 1 - \frac{\sum_{i=1}^n \left( y_{\mathrm{data},i} - y_{\mathrm{model},i}(\boldsymbol{\theta}) \right)^2}{\sum_{i=1}^n \left( y_{\mathrm{data},i} - \bar{y}_\mathrm{model}(\boldsymbol{\theta}) \right)^2},
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n y_{\mathrm{model},i} (\boldsymbol{\theta})\)</span> is the mean of the model predictions.</p>
+<!-- !split -->
+</div>
+<div class="section" id="the-chi-2-function">
+<h2><span class="section-number">6.4. </span>The <span class="math notranslate nohighlight">\(\chi^2\)</span> function<a class="headerlink" href="#the-chi-2-function" title="Permalink to this headline">¶</a></h2>
+<p>Normally, the response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> is the
+outcome of a numerical experiment or another type of experiment and is
+thus only an approximation to the true value. It is then always
+accompanied by an error estimate, often limited to a statistical error
+estimate given by a <strong>standard deviation</strong>.</p>
+<p>Introducing the standard deviation <span class="math notranslate nohighlight">\(\sigma_i\)</span> for each measurement
+<span class="math notranslate nohighlight">\(y_i\)</span> (assuming uncorrelated errors), we define the so called <span class="math notranslate nohighlight">\(\chi^2\)</span> function as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
+\end{equation*}\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is a diagonal <span class="math notranslate nohighlight">\(n \times n\)</span> matrix with <span class="math notranslate nohighlight">\(\sigma_i^2\)</span> as matrix elements.</p>
+<!-- !split -->
+<p>In order to find the parameters <span class="math notranslate nohighlight">\(\theta_i\)</span> we will then minimize the <span class="math notranslate nohighlight">\(\chi^2(\boldsymbol{\theta})\)</span> function by requiring</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = \frac{\partial }{\partial \theta_j}\left[ \frac{1}{n}\sum_{i=0}^{n-1}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)^2\right]=0, 
+\end{equation*}\]</div>
+<p>which results in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \theta_j} = -\frac{2}{n}\left[ \sum_{i=0}^{n-1}\frac{x_{ij}}{\sigma_i}\left(\frac{y_i-\theta_0x_{i,0}-\theta_1x_{i,1}-\theta_2x_{i,2}-\dots-\theta_{n-1}x_{i,n-1}}{\sigma_i}\right)\right]=0, 
+\end{equation*}\]</div>
+<p>or in a matrix-vector form as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right).  
+\end{equation*}\]</div>
+<p>where we have defined the matrix <span class="math notranslate nohighlight">\(\boldsymbol{A} =\boldsymbol{X} \boldsymbol{\Sigma}^{-1/2}\)</span> with matrix elements <span class="math notranslate nohighlight">\(a_{ij} = x_{ij}/\sigma_i\)</span> and the vector <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span> with elements <span class="math notranslate nohighlight">\(b_i = y_i/\sigma_i\)</span>.</p>
+<!-- !split -->
+<p>We can rewrite</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial \chi^2(\boldsymbol{\theta})}{\partial \boldsymbol{\theta}} = 0 = \boldsymbol{A}^T\left( \boldsymbol{b}-\boldsymbol{A}\boldsymbol{\theta}\right),  
+\end{equation*}\]</div>
+<p>as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{A}^T\boldsymbol{b} = \boldsymbol{A}^T\boldsymbol{A}\boldsymbol{\theta},  
+\end{equation*}\]</div>
+<p>and if the matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}^T\boldsymbol{A}\)</span> is invertible we have the solution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\theta} =\left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1}\boldsymbol{A}^T\boldsymbol{b}.
+\end{equation*}\]</div>
+<!-- !split -->
+<p>If we then introduce the matrix</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{H} =  \left(\boldsymbol{A}^T\boldsymbol{A}\right)^{-1},
+\end{equation*}\]</div>
+<p>we have then the following expression for the parameters <span class="math notranslate nohighlight">\(\theta_j\)</span> (the matrix elements of <span class="math notranslate nohighlight">\(\boldsymbol{H}\)</span> are <span class="math notranslate nohighlight">\(h_{ij}\)</span>)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\theta_j = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}\frac{y_i}{\sigma_i}\frac{x_{ik}}{\sigma_i} = \sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}b_ia_{ik}
+\end{equation*}\]</div>
+<p>We state without proof the expression for the uncertainty  in the parameters <span class="math notranslate nohighlight">\(\theta_j\)</span> as (we leave this as an exercise)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sigma^2(\theta_j) = \sum_{i=0}^{n-1}\sigma_i^2\left( \frac{\partial \theta_j}{\partial y_i}\right)^2, 
+\end{equation*}\]</div>
+<p>resulting in</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sigma^2(\theta_j) = \left(\sum_{k=0}^{p-1}h_{jk}\sum_{i=0}^{n-1}a_{ik}\right)\left(\sum_{l=0}^{p-1}h_{jl}\sum_{m=0}^{n-1}a_{ml}\right) = h_{jj}!
+\end{equation*}\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/LinearRegression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../Intro/exercise_Jupyter_Python_intro_02.html" title="previous page"><span class="section-number">5. </span>Python and Jupyter notebooks: part 02</a>
+    <a class='right-next' id="next-link" href="ModelValidation.html" title="next page"><span class="section-number">7. </span>Model validation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

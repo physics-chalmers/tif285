@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. The Bayesian recipe &#8212; Learning from data</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="13. Interactive Bayesian Coin Tossing" href="demo-BayesianBasics.html" />
+    <link rel="prev" title="11. Statistical inference" href="BayesianBasics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_01.html">
+   4. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_02.html">
+   5. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/LinearRegression.html">
+   6. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/ModelValidation.html">
+   7. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
+   9. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/exercise_LinearRegression.html">
+   10. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianBasics.html">
+   11. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   12. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianBasics.html">
+   13. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercise_sum_product_rule.html">
+   14. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/BayesianParameterEstimation.html">
+   15. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
+   16. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/exercise_BayesianParameterEstimation.html">
+   17. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/MCMC.html">
+   18. Why MCMC
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/demo-MCMC.html">
+   19. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/ErrorPropagation.html">
+   20. Why Bayes is Better
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/demo-ErrorPropagation.html">
+   21. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/IgnorancePDF.html">
+   24. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/MaxEnt.html">
+   25. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/demo-MaxEnt.html">
+   26. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ModelSelection/ModelSelection.html">
+   27. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
+   28. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
+   29. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
+   30. Exercise: Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
+   31. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
+   32. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
+   33. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
+   34. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
+   35. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
+   36. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
+   37. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
+   38. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
+   39. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/BayesianStatistics/BayesianBasics/BayesianRecipe.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/BayesianStatistics/BayesianBasics/BayesianRecipe.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-theory-axioms">
+   12.1. Probability Theory Axioms:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayes-theorem">
+   12.2. Bayes’ theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-friends-of-bayes-theorem">
+     The friends of Bayes’ theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-is-this-a-fair-coin">
+   12.3. Example: Is this a fair coin?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#take-aways-coin-tossing">
+   12.4. Take aways: Coin tossing
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- !split -->
+<div class="section" id="the-bayesian-recipe">
+<h1><span class="section-number">12. </span>The Bayesian recipe<a class="headerlink" href="#the-bayesian-recipe" title="Permalink to this headline">¶</a></h1>
+<p>Assess hypotheses by calculating their probabilities <span class="math notranslate nohighlight">\(p(H_i | \ldots)\)</span> conditional on known and/or presumed information using the rules of probability theory.</p>
+<div class="section" id="probability-theory-axioms">
+<h2><span class="section-number">12.1. </span>Probability Theory Axioms:<a class="headerlink" href="#probability-theory-axioms" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-product-and-rule admonition">
+<p class="admonition-title">Product (AND) rule</p>
+<p><span class="math notranslate nohighlight">\(p(A, B | I) = p(A|I) p(B|A, I) = p(B|I)p(A|B,I)\)</span></p>
+<p>Should read <span class="math notranslate nohighlight">\(p(A,B|I)\)</span> as the probability for propositions <span class="math notranslate nohighlight">\(A\)</span> AND <span class="math notranslate nohighlight">\(B\)</span> being true given that <span class="math notranslate nohighlight">\(I\)</span> is true.</p>
+</div>
+<div class="admonition-sum-or-rule admonition">
+<p class="admonition-title">Sum (OR) rule</p>
+<p><span class="math notranslate nohighlight">\(p(A + B | I) = p(A | I) + p(B | I) - p(A, B | I)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(A+B|I)\)</span> is the probability that proposition <span class="math notranslate nohighlight">\(A\)</span> OR <span class="math notranslate nohighlight">\(B\)</span> is true given that <span class="math notranslate nohighlight">\(I\)</span> is true.</p>
+</div>
+<div class="admonition-normalization admonition">
+<p class="admonition-title">Normalization</p>
+<p><span class="math notranslate nohighlight">\(p(A|I) + p(\bar{A}|I) = 1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\bar{A}\)</span> denotes the proposition that <span class="math notranslate nohighlight">\(A\)</span> is false.</p>
+</div>
+<!-- !split -->
+</div>
+<div class="section" id="bayes-theorem">
+<h2><span class="section-number">12.2. </span>Bayes’ theorem<a class="headerlink" href="#bayes-theorem" title="Permalink to this headline">¶</a></h2>
+<p>Bayes’ theorem follows directly from the product rule</p>
+<div class="math notranslate nohighlight">
+\[p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.\]</div>
+<p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-122c190a-c620-453e-b4f1-3824164c863b">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-122c190a-c620-453e-b4f1-3824164c863b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+p(H|D,I) &amp;= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
+\label{eq:bayes}
+\end{align}\]</div>
+<p>The power of Bayes’ theorem lies in the fact that it relates the quantity of interest, the probability that the hypothesis is true given the data, to the term we have a better chance of being able to assign, the probability that we would have observed the measured data if the hypothesis was true.</p>
+<!-- !split -->
+<p>The various terms in Bayes’ theorem have formal names.</p>
+<ul class="simple">
+<li><p>The quantity on the far right, <span class="math notranslate nohighlight">\(p(H|I)\)</span>, is called the <em>prior</em> probability; it represents our state of knowledge (or ignorance) about the truth of the hypothesis before we have analysed the current data.</p></li>
+<li><p>This is modified by the experimental measurements through <span class="math notranslate nohighlight">\(p(D|H,I)\)</span>, the <em>likelihood</em> function,</p></li>
+<li><p>The denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> is called the <em>evidence</em>. It does not depend on the hypothesis and can be regarded as a normalization constant.</p></li>
+<li><p>Together, these yield the <em>posterior</em> probability, <span class="math notranslate nohighlight">\(p(H|D, I )\)</span>, representing our state of knowledge about the truth of the hypothesis in the light of the data.</p></li>
+</ul>
+<p>In a sense, Bayes’ theorem encapsulates the process of learning.</p>
+<!-- !split -->
+<div class="section" id="the-friends-of-bayes-theorem">
+<h3>The friends of Bayes’ theorem<a class="headerlink" href="#the-friends-of-bayes-theorem" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-normalization admonition">
+<p class="admonition-title">Normalization</p>
+<p><span class="math notranslate nohighlight">\(\sum_i p(H_i|I) = 1\)</span>.</p>
+</div>
+<div class="admonition-marginalization admonition">
+<p class="admonition-title">Marginalization</p>
+<p><span class="math notranslate nohighlight">\(p(A|I) = \sum_i p(H_i|A,I) p(A|I) = \sum_i p(A,H_i|I)\)</span>.</p>
+</div>
+<p>In the above, <span class="math notranslate nohighlight">\(H_i\)</span> is an exclusive and exhaustive list of hypotheses. For example,let’s imagine that there are five candidates in a presidential election; then <span class="math notranslate nohighlight">\(H_1\)</span> could be the proposition that the first candidate will win, and so on. The probability that <span class="math notranslate nohighlight">\(A\)</span> is true, for example that unemployment will be lower in a year’s time (given all relevant information <span class="math notranslate nohighlight">\(I\)</span>, but irrespective of whoever becomes president) is given by <span class="math notranslate nohighlight">\(\sum_i p(A,H_i|I)\)</span> as shown by using normalization and applying the product rule.</p>
+<!-- !split -->
+<div class="admonition-normalization-continuum-limit admonition">
+<p class="admonition-title">Normalization (continuum limit)</p>
+<p><span class="math notranslate nohighlight">\(\int dx p(x|I) = 1\)</span>.</p>
+</div>
+<div class="admonition-marginalization-continuum-limit admonition">
+<p class="admonition-title">Marginalization (continuum limit)</p>
+<p><span class="math notranslate nohighlight">\(p(y|I) = \int dx p(x,y|I)\)</span>.</p>
+</div>
+<p>In the continuum limit of propositions we must understand <span class="math notranslate nohighlight">\(p(\ldots)\)</span> as a pdf (probability density function).</p>
+<p>Marginalization is a very powerful device in data analysis because it enables us to deal with nuisance parameters; that is, quantities which necessarily enter the analysis but are of no intrinsic interest. The unwanted background signal present in many experimental measurements are examples of nuisance parameters.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="example-is-this-a-fair-coin">
+<h2><span class="section-number">12.3. </span>Example: Is this a fair coin?<a class="headerlink" href="#example-is-this-a-fair-coin" title="Permalink to this headline">¶</a></h2>
+<p>Let us begin with the analysis of data from a simple coin-tossing experiment.
+Given that we had observed 6 heads in 8 flips, would you think it was a fair coin? By fair, we mean that we would be prepared to lay an even 1 : 1 bet on the outcome of a flip being a head or a tail. If we decide that the coin was fair, the question which follows naturally is how sure are we that this was so; if it was not fair, how unfair do we think it was? Furthermore, if we were to continue collecting data for this particular coin, observing the outcomes of additional flips, how would we update our belief on the fairness of the coin?</p>
+<!-- !split -->
+<p>A sensible way of formulating this problem is to consider a large number of hypotheses about the range in which the bias-weighting of the coin might lie. If we denote the bias-weighting by <span class="math notranslate nohighlight">\(p_H\)</span>, then <span class="math notranslate nohighlight">\(p_H = 0\)</span> and <span class="math notranslate nohighlight">\(p_H = 1\)</span> can represent a coin which produces a tail or a head on every flip, respectively. There is a continuum of possibilities for the value of <span class="math notranslate nohighlight">\(p_H\)</span> between these limits, with <span class="math notranslate nohighlight">\(p_H = 0.5\)</span> indicating a fair coin. Our state of knowledge about the fairness, or the degree of unfairness, of the coin is then completely summarized by specifying how much we believe these various propositions to be true.</p>
+<!-- !split -->
+<p>Let us perform a computer simulation of a coin-tossing experiment. This provides the data that we will be analysing.</p>
+<!-- !split -->
+<p>In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: <span class="math notranslate nohighlight">\(p(p_H|D,I)\)</span>. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of <span class="math notranslate nohighlight">\(p_H\)</span>; that is to say, the probability that <span class="math notranslate nohighlight">\(p_H\)</span> lies in an infinitesimally narrow range is given by <span class="math notranslate nohighlight">\(p(p_H|D,I) dp_H\)</span>.</p>
+<!-- !split -->
+<p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3d3de092-ad0c-4016-9c37-823d3ab34ab0">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-3d3de092-ad0c-4016-9c37-823d3ab34ab0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\int_0^1 p(p_H|D,I) dp_H = 1.
+\label{eq:coin_posterior_norm}
+\end{equation}\]</div>
+<!-- !split -->
+<p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior</p>
+<div class="amsmath math notranslate nohighlight" id="equation-af2aec51-3d69-48e9-9651-86e3c55c5537">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-af2aec51-3d69-48e9-9651-86e3c55c5537" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+p(p_H|I) = \left\{ \begin{array}{ll}
+1 &amp; 0 \le p_H \le 1, \\
+0 &amp; \mathrm{otherwise}.
+\end{array} \right.
+\label{eq:coin_prior_uniform}
+\end{equation}\]</div>
+<p>We will get back later to the choice of prior and its effect on the analysis.</p>
+<!-- !split -->
+<p>This prior state of knowledge, or ignorance, is modified by the data through the likelihood function <span class="math notranslate nohighlight">\(p(D|p_H,I)\)</span>. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information <span class="math notranslate nohighlight">\(I\)</span>, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses’ is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a3ec9165-1bea-45ed-8521-e3dfab9f1e5b">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-a3ec9165-1bea-45ed-8521-e3dfab9f1e5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
+\end{equation}\]</div>
+<!-- !split -->
+<p>It seems reasonable because <span class="math notranslate nohighlight">\(p_H\)</span> is the chance of obtaining a head on any flip, and there were <span class="math notranslate nohighlight">\(H\)</span> of them, and <span class="math notranslate nohighlight">\(1-p_H\)</span> is the corresponding probability for a tail, of which there were <span class="math notranslate nohighlight">\(N-H\)</span>. We note that this binomial distribution also contains a normalization factor, but we will ignore it since it does not depend explicitly on <span class="math notranslate nohighlight">\(p_H\)</span>, the quantity of interest. It will be absorbed by the normalization condition (<a class="reference external" href="#eq:coin_posterior_norm">eq:coin_posterior_norm</a>).</p>
+<!-- !split -->
+<p>We perform the setup of this Bayesian framework on the computer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="n">pH</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">pH</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[(</span><span class="mi">0</span><span class="o">&lt;=</span><span class="n">pH</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pH</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="mi">1</span>      <span class="c1"># allowed range: 0&lt;=pH&lt;=1</span>
+    <span class="k">return</span> <span class="n">p</span>                <span class="c1"># uniform prior</span>
+<span class="k">def</span> <span class="nf">likelihood</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">no_of_heads</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">no_of_tails</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="n">no_of_heads</span>
+    <span class="k">return</span> <span class="n">pH</span><span class="o">**</span><span class="n">no_of_heads</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">pH</span><span class="p">)</span><span class="o">**</span><span class="n">no_of_tails</span>
+<span class="k">def</span> <span class="nf">posterior</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">prior</span><span class="p">(</span><span class="n">pH</span><span class="p">)</span><span class="o">*</span><span class="n">likelihood</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">norm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">pH</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span><span class="o">/</span><span class="n">norm</span>
+</pre></div>
+</div>
+<!-- !split -->
+<p>The next step is to confront this setup with the simulated data. To get a feel for the result, it is instructive to see how the posterior pdf evolves as we obtain more and more data pertaining to the coin. The results of such an analyses is shown in Fig. <a class="reference external" href="#fig:coinflipping">fig:coinflipping</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pH</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+<span class="n">axs_vec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axs_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">prior</span><span class="p">(</span><span class="n">pH</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ndouble</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axs_vec</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">ndouble</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">posterior</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span><span class="n">heads</span><span class="p">[:</span><span class="mi">2</span><span class="o">**</span><span class="n">ndouble</span><span class="p">]))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s1">&#39;$N=</span><span class="si">{0}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">ndouble</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> <span class="n">axs</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(p_H|D_\mathrm</span><span class="si">{obs}</span><span class="s1">,I)$&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span> <span class="n">axs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_H$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<!-- !split -->
+<!-- <img src="fig/BayesianRecipe/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
+<p><img alt="The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. " src="content/BayesianStatistics/BayesianBasics/fig/BayesianRecipe/coinflipping_fig_1.png" /></p>
+<!-- !split -->
+<p>The panel in the top left-hand corner shows the posterior pdf for <span class="math notranslate nohighlight">\(p_H\)</span> given no data, i.e., it is the same as the prior pdf of Eq. (<a class="reference external" href="#eq:coin_prior_uniform">eq:coin_prior_uniform</a>). It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.</p>
+<!-- !split -->
+<p>The first flip is obviously tails. At this point we have no evidence that the coin has a side with heads, as indicated by the pdf going to zero as <span class="math notranslate nohighlight">\(p_H \to 1\)</span>. The second flip is obviously heads and we have now excluded both extreme options <span class="math notranslate nohighlight">\(p_H=0\)</span> (double-tailed) and <span class="math notranslate nohighlight">\(p_H=1\)</span> (double-headed). We can note that the posterior at this point has the simple form <span class="math notranslate nohighlight">\(p(p_H|D,I) = p_H(1-p_H)\)</span> for <span class="math notranslate nohighlight">\(0 \le p_H \le 1\)</span>.</p>
+<!-- !split -->
+<p>The remainder of Fig. <a class="reference external" href="#fig:coinflipping">fig:coinflipping</a> shows how the posterior pdf evolves as the number of data analysed becomes larger and larger. We see that the position of the maximum moves around, but that the amount by which it does so decreases with the increasing number of observations. The width of the posterior pdf also becomes narrower with more data, indicating that we are becoming increasingly confident in our estimate of the bias-weighting. For the coin in this example, the best estimate of <span class="math notranslate nohighlight">\(p_H\)</span> eventually converges to 0.6, which, of course, was the value chosen to simulate the flips.</p>
+<!-- !split -->
+</div>
+<div class="section" id="take-aways-coin-tossing">
+<h2><span class="section-number">12.4. </span>Take aways: Coin tossing<a class="headerlink" href="#take-aways-coin-tossing" title="Permalink to this headline">¶</a></h2>
+<!-- !bpop -->
+<ul class="simple">
+<li><p>The Bayesian posterior <span class="math notranslate nohighlight">\(p(p_H | D, I)\)</span> is proportional to the product of the prior and the likelihood (which is given by a binomial distribution in this case).</p></li>
+<li><p>We can do this analysis sequentially (updating the prior after each toss and then adding new data; but don’t use the same data more than once!). Or we can analyze all data at once.</p></li>
+<li><p>Why (and when) are these two approaches equivalent, and why should we not use the same data more than once?</p></li>
+</ul>
+<!-- !epop -->
+<!-- !split -->
+<!-- !bpop -->
+<ul class="simple">
+<li><p>Possible point estimates for the value of <span class="math notranslate nohighlight">\(p_H\)</span> could be the maximum (mode), mean, or median of this posterior pdf.</p></li>
+<li><p>Bayesian p-precent degree-of-belief (DoB) intervals correspond to ranges in which we would give a p-percent odds of finding the true value for <span class="math notranslate nohighlight">\(p_H\)</span> based on the data and the information that we have.</p></li>
+<li><p>The frequentist point estimate is <span class="math notranslate nohighlight">\(p_H^* = \frac{H}{N}\)</span>. It actually corresponds to one of the point estimates from the Bayesian analysis for a specific prior? Which point estimate and which prior?</p></li>
+</ul>
+<!-- !epop -->
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/BayesianStatistics/BayesianBasics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="BayesianBasics.html" title="previous page"><span class="section-number">11. </span>Statistical inference</a>
+    <a class='right-next' id="next-link" href="demo-BayesianBasics.html" title="next page"><span class="section-number">13. </span>Interactive Bayesian Coin Tossing</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
