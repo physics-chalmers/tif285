@@ -35,6 +35,9 @@ temp*
 .DS_Store
 *default.profraw
 
+# jupyter-book build files
+doc/LectureNotes/_build/*
+
 # reveal
 reveal.js
 *-reveal.html

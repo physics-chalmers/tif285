@@ -1,18 +1,22 @@
-- file: content/Intro/welcome
-  numbered: true
-- part: Introduction
+format: jb-book
+root: content/Intro/welcome
+parts:
+- caption: Introduction
+  numbered: 2
   chapters:
   - file: content/Intro/Intro.md
   - file: content/Intro/demo-Intro.ipynb
   - file: content/Intro/exercise_Jupyter_Python_intro_01.ipynb
   - file: content/Intro/exercise_Jupyter_Python_intro_02.ipynb
-- part: Linear regression
+- caption: Linear regression
+  numbered: true
   chapters:
   - file: content/LinearRegression/LinearRegression.md
   - file: content/LinearRegression/ModelValidation.md
   - file: content/LinearRegression/demo-ModelValidation.ipynb
   - file: content/LinearRegression/exercise_LinearRegression.ipynb
-- part: Bayesian statistics
+- caption: Bayesian statistics
+  numbered: 2
   chapters:
   - file: content/BayesianStatistics/BayesianBasics/BayesianBasics.md
   - file: content/BayesianStatistics/BayesianBasics/BayesianRecipe.md
@@ -29,7 +33,8 @@
   - file: content/BayesianStatistics/MaxEnt/MaxEnt.md
   - file: content/BayesianStatistics/MaxEnt/demo-MaxEnt.ipynb
   - file: content/BayesianStatistics/ModelSelection/ModelSelection.md
-- part: Machine learning-A Bayesian perspective
+- caption: Machine learning-A Bayesian perspective
+  numbered: 2
   chapters:
   - file: content/MachineLearning/GP/GaussianProcesses.md
   - file: content/MachineLearning/GP/demo-GaussianProcesses.ipynb
@@ -43,4 +48,3 @@
   - file: content/MachineLearning/BNN/bnn.md
   - file: content/MachineLearning/BNN/demo-bnn.ipynb
   - file: content/MachineLearning/BNN/exercises_BNN.ipynb
-  
