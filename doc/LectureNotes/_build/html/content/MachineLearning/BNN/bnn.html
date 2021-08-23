@@ -42,6 +42,8 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -462,8 +464,8 @@
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I\)</span> are the weights of the neuron and we have included a bias (<span class="math notranslate nohighlight">\(b \equiv w_0\)</span>).</p>
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c3e0bb4-e23d-4ed0-a913-0c9f1a1c167f">
-<span class="eqno">(37.1)<a class="headerlink" href="#equation-2c3e0bb4-e23d-4ed0-a913-0c9f1a1c167f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9da53f3-2d0c-47d8-afc4-f57eccee2e14">
+<span class="eqno">(37.1)<a class="headerlink" href="#equation-c9da53f3-2d0c-47d8-afc4-f57eccee2e14" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
 \end{align}\]</div>
@@ -592,8 +594,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 + \log \, p(\mathcal{D}).
 \end{align*}\]</div>
 <p>Note that the logarithm of the last term has no dependence on <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> and the integration of <span class="math notranslate nohighlight">\(q\)</span> will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the <strong>Evidence Lower Bound</strong> (ELBO)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3746e2c2-b86d-41ed-815f-88c35bcf24d4">
-<span class="eqno">(37.2)<a class="headerlink" href="#equation-3746e2c2-b86d-41ed-815f-88c35bcf24d4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ccd4eee9-1cfb-42e5-ba1c-83c1c273e6b2">
+<span class="eqno">(37.2)<a class="headerlink" href="#equation-ccd4eee9-1cfb-42e5-ba1c-83c1c273e6b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log \, p(\mathcal{D}) \ge 
 - \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
@@ -627,8 +629,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 <h2><span class="section-number">37.6. </span>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h2>
 <p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
 <p>All three terms in equation (<a class="reference external" href="#eq:elbo">eq:elbo</a>) are expectations w.r.t. the variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>. In this paper they use the variational free energy <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> as a cost function (since it should be <em>minimized</em>). This quantity can be approximated by drawing <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> samples <span class="math notranslate nohighlight">\(\boldsymbol{w}^{(i)}\)</span> from <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-639055c2-ff43-462e-816d-a6064b168fa4">
-<span class="eqno">(37.3)<a class="headerlink" href="#equation-639055c2-ff43-462e-816d-a6064b168fa4" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-705e3080-5aeb-4db5-aa00-5442dd3e2574">
+<span class="eqno">(37.3)<a class="headerlink" href="#equation-705e3080-5aeb-4db5-aa00-5442dd3e2574" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
 \log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
 \log \, p(\boldsymbol{w}^{(i)}) -

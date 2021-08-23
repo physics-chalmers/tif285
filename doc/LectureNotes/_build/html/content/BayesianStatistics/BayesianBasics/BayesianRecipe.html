@@ -42,6 +42,8 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -447,8 +449,8 @@
 <div class="math notranslate nohighlight">
 \[p(A|B,I) = \frac{p(B|A,I) p(A|I)}{p(B|I)}.\]</div>
 <p>The importance of this property to data analysis becomes apparent if we replace <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> by hypothesis(<span class="math notranslate nohighlight">\(H\)</span>) and data(<span class="math notranslate nohighlight">\(D\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-122c190a-c620-453e-b4f1-3824164c863b">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-122c190a-c620-453e-b4f1-3824164c863b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2a948a33-5caa-49e2-b718-1407273474fd">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-2a948a33-5caa-49e2-b718-1407273474fd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p(H|D,I) &amp;= \frac{p(D|H,I) p(H|I)}{p(D|I)}.
 \label{eq:bayes}
 \end{align}\]</div>
@@ -500,15 +502,15 @@ Given that we had observed 6 heads in 8 flips, would you think it was a fair coi
 <p>In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: <span class="math notranslate nohighlight">\(p(p_H|D,I)\)</span>. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of <span class="math notranslate nohighlight">\(p_H\)</span>; that is to say, the probability that <span class="math notranslate nohighlight">\(p_H\)</span> lies in an infinitesimally narrow range is given by <span class="math notranslate nohighlight">\(p(p_H|D,I) dp_H\)</span>.</p>
 <!-- !split -->
 <p>To estimate this posterior pdf, we need to use Bayes’ theorem (<a class="reference external" href="#eq:bayes">eq:bayes</a>). We will ignore the denominator <span class="math notranslate nohighlight">\(p(D|I)\)</span> as it does not involve bias-weighting explicitly, and it will therefore not affect the shape of the desired pdf. At the end we can evaluate the missing constant subsequently from the normalization condition</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d3de092-ad0c-4016-9c37-823d3ab34ab0">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-3d3de092-ad0c-4016-9c37-823d3ab34ab0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dd3b0e87-06eb-4930-9575-35d1269066fc">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-dd3b0e87-06eb-4930-9575-35d1269066fc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \int_0^1 p(p_H|D,I) dp_H = 1.
 \label{eq:coin_posterior_norm}
 \end{equation}\]</div>
 <!-- !split -->
 <p>The prior pdf, <span class="math notranslate nohighlight">\(p(p_H|I)\)</span>, represents what we know about the coin given only the information <span class="math notranslate nohighlight">\(I\)</span> that we are dealing with a ‘strange coin’. We could keep a very open mind about the nature of the coin; a simple probability assignment which reflects this is a uniform, or flat, prior</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af2aec51-3d69-48e9-9651-86e3c55c5537">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-af2aec51-3d69-48e9-9651-86e3c55c5537" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a9190812-cc98-438b-9ca8-fa4c061a2064">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-a9190812-cc98-438b-9ca8-fa4c061a2064" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(p_H|I) = \left\{ \begin{array}{ll}
 1 &amp; 0 \le p_H \le 1, \\
 0 &amp; \mathrm{otherwise}.
@@ -518,8 +520,8 @@ p(p_H|I) = \left\{ \begin{array}{ll}
 <p>We will get back later to the choice of prior and its effect on the analysis.</p>
 <!-- !split -->
 <p>This prior state of knowledge, or ignorance, is modified by the data through the likelihood function <span class="math notranslate nohighlight">\(p(D|p_H,I)\)</span>. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information <span class="math notranslate nohighlight">\(I\)</span>, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses’ is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3ec9165-1bea-45ed-8521-e3dfab9f1e5b">
-<span class="eqno">(12.4)<a class="headerlink" href="#equation-a3ec9165-1bea-45ed-8521-e3dfab9f1e5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6f143cee-de93-415b-82e9-b6f23e08f508">
+<span class="eqno">(12.4)<a class="headerlink" href="#equation-6f143cee-de93-415b-82e9-b6f23e08f508" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
 \end{equation}\]</div>
 <!-- !split -->

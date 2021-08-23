@@ -42,6 +42,8 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -576,8 +578,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da91c8e6-828d-4162-b9b0-b12f8c135e02">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-da91c8e6-828d-4162-b9b0-b12f8c135e02" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e741a6b-1650-470f-9063-d6ba0c65c606">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-8e741a6b-1650-470f-9063-d6ba0c65c606" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -612,8 +614,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12a1724f-dca0-455d-9273-fd947b5d3128">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-12a1724f-dca0-455d-9273-fd947b5d3128" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c47180fd-78b6-459d-9846-b8bfaffc0831">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-c47180fd-78b6-459d-9846-b8bfaffc0831" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>
