@@ -8,6 +8,18 @@ function inIframe () {
 }
 
 // course-specific URL
+var bookURL = "https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/";
+var bookIntroURL = "https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/content/Intro/";
+var bookLinRegURL = "https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/content/LinearRegression/";
+var bookBayesStatURL = "https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/content/BayesianStatistics/";
+var bookMLURL = "https://physics-chalmers.github.io/tif285/doc/LectureNotes/_build/html/content/MachineLearning/";
+var gitURL = "https://github.com/physics-chalmers/tif285/";
+var gitIntroURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/Intro/";
+var gitLinRegURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/LinearRegression/";
+var gitBayesStatURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/BayesianStatistics/";
+var gitMLURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/MachineLearning/";
+
+// course-specific URL
 var courseURL = "https://chalmers.instructure.com/courses/15029/";
 
 // Course-specific url if the current page is within an iFrame.
