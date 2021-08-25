@@ -21,8 +21,6 @@
 
 <div id="content">
 
-  <h3>These are the instructions from the 2020 edition. <br/>Stay tuned for updates.</h3><br/>
-
  <div class='main_box'>
    <h3>Downloading course material</h3>
    <p>
@@ -83,7 +81,7 @@ should give the path to the conda python executable <code>~/miniconda3/bin/pytho
 and
 <pre class="prettyprint"><code class="language-java">$ python --version
 </code></pre>
-should show that you are using a Python3 version (probably 3.7.x).
+should show that you are using a Python3 version.
 </li>
 
 <li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.
@@ -129,16 +127,16 @@ file (as done here), or add them to the default conda channel configuration via,
 <p><a href="https://jupyter.org/">Jupyter notebooks</a> will be used extensively in this course. It is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
 </p>
 
-<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the first week exercises. In the directory tree from the github repository:
+<p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the lecture contents. In the directory tree from the github repository:
 
-<pre class="prettyprint"><code class="language-java">$ cd doc/pub/Exercises/Week1/
+<pre class="prettyprint"><code class="language-java">$ cd doc/LectureNotes/content/
 $ jupyter notebook
 </code></pre>
 
-The Jupyter Notebook will open in your default browser. It should show a list of the files in your current directory. It is recommended that you start with the two Jupyter-Python-intro notebooks. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
+The Jupyter Notebook will open in your default browser. It should show a list of the subdirectories. It is recommended that you start with the two Jupyter-Python-intro notebooks in the Intro directory. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
 </p>
 
-<p>However, a word of warning is needed: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
+<p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git. One possibility is to create a separate git branch for your work.</p>
 
 <p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank">Google's Colab</a> is a free Jupyter notebook environment that requires 
 no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>

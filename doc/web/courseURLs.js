@@ -59,4 +59,11 @@ if (inIframe()) {
 	remoteteaching = 'remoteteaching.html';
 }
 
+var discussions = "";
+if (inIframe()) {
+	discussions = courseURL + "external_tools/809";
+} else {
+	discussions = 'https://app.yata.se/course/74c641f1-b5de-46da-8a91-444c5bb45709/posts';
+}
+
 // var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
