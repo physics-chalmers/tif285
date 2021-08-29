@@ -3,7 +3,7 @@
 
 # # Linear Regression exercise
 # 
-# Last revised: 30-Aug-2020 by Christian Forssén [christian.forssen@chalmers.se]
+# Last revised: 29-Aug-2021 by Christian Forssén [christian.forssen@chalmers.se]
 
 # ## Import modules
 
@@ -241,13 +241,16 @@ theta = np.random.randn(2,1)  # random initialization
 fig,ax = plt.subplots(1,1)
 
 for epoch in range(n_epochs):
+    random_indices=np.arange(m)
+    # shuffle the order of indices randomly
+    np.random.shuffle(random_indices)
     for i in range(m):
         if epoch == 0 and i < 10:                    
             y_predict = X_predict_d.dot(theta) 
             style = "b-" if i > 0 else "r--" 
             ax.plot(X_predict, y_predict, style) 
         # pick a random instance
-        random_index = np.random.randint(m)
+        random_index = random_indices[i]
         xi = X_d[random_index:random_index+1]
         yi = y[random_index:random_index+1]
         gradients = 2 * xi.T.dot(xi.dot(theta) - yi)
