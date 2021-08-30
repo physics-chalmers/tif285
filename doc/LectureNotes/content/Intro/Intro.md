@@ -2,8 +2,8 @@
 The general problem that will be adressed in this series of lectures is illustrated in the following figure. The learning process depicted there is known as **inference** and involves steps in reasoning to move from premises to logical consequences. 
 
 
-<!-- <img src="fig/Intro/inference.png" width=600><p><em>Learning from data is an inference process. <div id="fig-inference"></div></em></p> -->
-![<p><em>Learning from data is an inference process. <div id="fig-inference"></div></em></p>](fig/Intro/inference.png)
+<img src="./figs/inference.png" width=600><p><em>Learning from data is an inference process. <div id="fig-inference"></div></em></p> 
+<!-- ![<p><em>Learning from data is an inference process. <div id="fig-inference"></div></em></p>](./figs/inference.png) -->
 
 <!-- !split -->
 ## Inference
@@ -28,8 +28,8 @@ Inductive inference:
 In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
 
 This process of learning from data is fundamental to the scientific wheel of progress.
-<!-- <img src="fig/Intro/scientific_wheel_data.png" width=400> -->
-![](fig/Intro/scientific_wheel_data.png)
+<img src="./figs/scientific_wheel_data.png" width=400> 
+<!-- ![](./figs/scientific_wheel_data.png)-->
 
 <!-- !split -->
 ## Statistical Inference
@@ -45,8 +45,8 @@ This process of learning from data is fundamental to the scientific wheel of pro
 ## Machine learning
 
 The basic process illustrated in Fig. [fig-inference](#fig-inference) is employed also in the field of machine learning. Here, the learning part might take place when confronting a large set of data with a machine learning algorithm, and the specific aim might be tasks such as classification or clusterization. 
-<!-- <img src="fig/Intro/MLinference.png" width=600> -->
-![](fig/Intro/MLinference.png)
+<img src="./figs/MLinference.png" width=600> 
+<!-- ![](./figs/MLinference.png) -->
 
 Thus, we will be able to study statistical inference methods for learning from data and use them in scientific applications. In particular, we will use **Bayesian statistics**. Simultaneously we will slowly develop a deeper understanding and probabilistic interpretation of machine learning algorithms through a statistical foundation. 
 

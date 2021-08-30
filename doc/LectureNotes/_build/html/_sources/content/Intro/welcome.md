@@ -33,7 +33,7 @@ The course is project-based, and the students will be exposed to fundamental res
 These lecture notes have been authored by [Christian Forssén](hhttps://www.chalmers.se/en/Staff/Pages/Christian-Forssen.aspx) and are released under a [Creative Commons BY-NC license](https://creativecommons.org/licenses/by-nc/4.0/). The book format is powered by [Jupyter Book](https://jupyterbook.org/).
 
 ```{admonition} Open an issue
-  If you find a problem or have a suggestion when using this Jupyter Book (on physics, statistics, python, or formatting), from any page go under the github icon <img src="/_images/GitHub-Mark-32px.png" alt="github download icon" width="20px"> at the top-middle-right and select "open issue" (you may want to open in a new tab by *right-clicking* on "open issue"). This will take you to the Issues section of the Github repository for the book. You can either use the title already there or write your own, and then describe in the bigger box your problem or suggestion.
+  If you find a problem or have a suggestion when using this Jupyter Book (on physics, statistics, python, or formatting), from any page go under the github icon ![github download icon](./figs/GitHub-Mark-32px.png) at the top-middle-right and select "open issue" (you may want to open in a new tab by *right-clicking* on "open issue"). This will take you to the Issues section of the Github repository for the book. You can either use the title already there or write your own, and then describe in the bigger box your problem or suggestion.
   ```
 
 <!-- ======= Acknowledgements ======= -->

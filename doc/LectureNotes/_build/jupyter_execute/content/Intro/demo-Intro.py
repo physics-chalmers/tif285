@@ -23,7 +23,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # <!-- begin figure -->
 # 
 # <p></p>
-# <img src="fig/pandas.jpg" width=600>
+# <img src="./figs/pandas.jpg" width=600>
 # 
 # <!-- end figure -->
 # 
@@ -33,7 +33,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # analysis tools for Python. 
 
 # **pandas** stands for panel data, a term borrowed from econometrics and is an efficient library for data analysis with an emphasis on tabular data.
-# **pandas** has two major classes, the **DataFrame** class with two-dimensional data objects and tabular data organized in columns and the class **Series** with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below. 
+# **pandas** has two major classes, the **DataFrame** class with two-dimensional data objects such as tabular data organized in columns and the class **Series** with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below. 
 # **pandas** allows you also to perform mathematical operations on the data, spanning from simple reshaping of vectors and matrices to statistical operations. 
 
 # The following simple example shows how we can make tables of our data. Here we define a data set which includes names, place of birth and date of birth, and displays the data in an easy to read way.
