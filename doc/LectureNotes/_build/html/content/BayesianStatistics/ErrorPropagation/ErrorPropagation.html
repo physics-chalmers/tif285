@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -534,8 +534,8 @@
 <p><strong>Inferring galactic distances with an imprecise knowledge of the Hubble constant</strong>
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to <span class="math notranslate nohighlight">\(v = H_0 x\)</span>. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.</p>
 <p>Here we use marginalization to obtain the desired posterior pdf <span class="math notranslate nohighlight">\(p(x|D,I)\)</span> from the joint distribution of <span class="math notranslate nohighlight">\(p(x,H_0|D,I)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc2cbe72-ea4c-429f-8efc-c0967cd56d1e">
-<span class="eqno">(20.1)<a class="headerlink" href="#equation-bc2cbe72-ea4c-429f-8efc-c0967cd56d1e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ebb1ad07-acfe-49d9-ac21-2d534de49408">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-ebb1ad07-acfe-49d9-ac21-2d534de49408" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -566,16 +566,16 @@ p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \[p(X=X^*|I) \delta X = p(Y=Y^*|I) \delta Y.\]</div>
 <!-- !split -->
 <p>In the limit of infinitesimally small intervals, and with the realization that this should be true for any point <span class="math notranslate nohighlight">\(X\)</span>, we obtain the relationship</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e8a8c33-5c94-40f3-85b8-46986279e79d">
-<span class="eqno">(20.2)<a class="headerlink" href="#equation-7e8a8c33-5c94-40f3-85b8-46986279e79d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6499d6a9-4ecf-4f61-9ce5-a3e0594e622f">
+<span class="eqno">(20.2)<a class="headerlink" href="#equation-6499d6a9-4ecf-4f61-9ce5-a3e0594e622f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
 <p>where the term on the far right is called the <em>Jacobian</em>.</p>
 <!-- !split -->
 <p>The generalization to several variables, relating the pdf for <span class="math notranslate nohighlight">\(M\)</span> variables <span class="math notranslate nohighlight">\(\{ X_j \}\)</span> in terms of the same number of quantities <span class="math notranslate nohighlight">\(\{ Y_j \}\)</span> related to them, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6477649-8348-4635-b02e-ba95eb1761a8">
-<span class="eqno">(20.3)<a class="headerlink" href="#equation-d6477649-8348-4635-b02e-ba95eb1761a8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a16ef8d-9873-4012-b5e7-b99a6bb2a369">
+<span class="eqno">(20.3)<a class="headerlink" href="#equation-2a16ef8d-9873-4012-b5e7-b99a6bb2a369" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -599,8 +599,8 @@ We have now seen the basic ingredients required for the propagation of errors: i
 <p>where we have employed the linear property for an integral over a sum of terms.</p>
 <!-- !split -->
 <p>Since we assumed that the pdfs for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> were described by independent Gaussians we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-584c33c4-264c-481e-8f6b-40be6a023109">
-<span class="eqno">(20.4)<a class="headerlink" href="#equation-584c33c4-264c-481e-8f6b-40be6a023109" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ebd70ca6-2526-48b6-b09b-9d59a6bb1ae1">
+<span class="eqno">(20.4)<a class="headerlink" href="#equation-ebd70ca6-2526-48b6-b09b-9d59a6bb1ae1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>

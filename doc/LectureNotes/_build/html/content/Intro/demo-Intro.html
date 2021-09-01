@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -469,7 +469,7 @@ specific functions using linear regression first. First, however, we need to mee
 providing high-performance, easy-to-use data structures and data
 analysis tools for Python.</p>
 <p><strong>pandas</strong> stands for panel data, a term borrowed from econometrics and is an efficient library for data analysis with an emphasis on tabular data.
-<strong>pandas</strong> has two major classes, the <strong>DataFrame</strong> class with two-dimensional data objects such as tabular data organized in columns and the class <strong>Series</strong> with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below.
+<strong>pandas</strong> has two major classes, the <strong>DataFrame</strong> class with two-dimensional data objects such as tabular data organized in columns, and the class <strong>Series</strong> with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below.
 <strong>pandas</strong> allows you also to perform mathematical operations on the data, spanning from simple reshaping of vectors and matrices to statistical operations.</p>
 <p>The following simple example shows how we can make tables of our data. Here we define a data set which includes names, place of birth and date of birth, and displays the data in an easy to read way.</p>
 <div class="cell docutils container">
@@ -544,8 +544,8 @@ analysis tools for Python.</p>
 </table>
 </div></div></div>
 </div>
-<p>In the above example we have imported <strong>pandas</strong> with the shorthand <strong>pd</strong>, the latter has become the standard way to import <strong>pandas</strong>. We then make a list of various variables
-and reorganize the aboves lists into a <strong>DataFrame</strong> and then print out  a neat table with specific column labels as <em>Name</em>, <em>place of birth</em> and <em>date of birth</em>.
+<p>In the above example we have imported <strong>pandas</strong> with the shorthand <strong>pd</strong>, the latter has become the standard way to import <strong>pandas</strong>. We then make a dictionary with various variables
+and reorganize the lists of values into a <strong>DataFrame</strong> and then print out  a neat table with specific column labels as <em>Name</em>, <em>place of birth</em> and <em>date of birth</em>.
 Displaying these results, we see that the indices are given by the default numbers from zero to three.
 <strong>pandas</strong> is extremely flexible and we can easily change the above indices by defining a new type of indexing as</p>
 <div class="cell docutils container">
@@ -1095,11 +1095,13 @@ dtype: float64
 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 Int64Index: 10 entries, 0 to 9
 Data columns (total 5 columns):
-First     10 non-null float64
-Second    10 non-null float64
-Third     10 non-null float64
-Fourth    10 non-null float64
-Fifth     10 non-null float64
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   First   10 non-null     float64
+ 1   Second  10 non-null     float64
+ 2   Third   10 non-null     float64
+ 3   Fourth  10 non-null     float64
+ 4   Fifth   10 non-null     float64
 dtypes: float64(5)
 memory usage: 480.0 bytes
 None

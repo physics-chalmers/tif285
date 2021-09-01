@@ -10,7 +10,7 @@
 # strengths of packages like **Scikit-Learn** in fitting nuclear binding energies to
 # specific functions using linear regression first. First, however, we need to meet the **Pandas**.
 
-# In[10]:
+# In[1]:
 
 
 # For showing plots inline
@@ -33,7 +33,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 # analysis tools for Python. 
 
 # **pandas** stands for panel data, a term borrowed from econometrics and is an efficient library for data analysis with an emphasis on tabular data.
-# **pandas** has two major classes, the **DataFrame** class with two-dimensional data objects such as tabular data organized in columns and the class **Series** with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below. 
+# **pandas** has two major classes, the **DataFrame** class with two-dimensional data objects such as tabular data organized in columns, and the class **Series** with a focus on one-dimensional data objects. Both classes allow you to index data easily as we will see in the examples below. 
 # **pandas** allows you also to perform mathematical operations on the data, spanning from simple reshaping of vectors and matrices to statistical operations. 
 
 # The following simple example shows how we can make tables of our data. Here we define a data set which includes names, place of birth and date of birth, and displays the data in an easy to read way.
@@ -52,8 +52,8 @@ data_pandas = pd.DataFrame(data)
 display(data_pandas)
 
 
-# In the above example we have imported **pandas** with the shorthand **pd**, the latter has become the standard way to import **pandas**. We then make a list of various variables
-# and reorganize the aboves lists into a **DataFrame** and then print out  a neat table with specific column labels as *Name*, *place of birth* and *date of birth*.
+# In the above example we have imported **pandas** with the shorthand **pd**, the latter has become the standard way to import **pandas**. We then make a dictionary with various variables
+# and reorganize the lists of values into a **DataFrame** and then print out  a neat table with specific column labels as *Name*, *place of birth* and *date of birth*.
 # Displaying these results, we see that the indices are given by the default numbers from zero to three.
 # **pandas** is extremely flexible and we can easily change the above indices by defining a new type of indexing as
 
@@ -109,7 +109,7 @@ display(df**2)
 
 # Thereafter we can select specific columns only and plot final results
 
-# In[12]:
+# In[7]:
 
 
 df.columns = ['First', 'Second', 'Third', 'Fourth', 'Fifth']
@@ -131,7 +131,7 @@ df.plot.bar(figsize=(10,6), rot=15);
 
 # We can produce a $4\times 4$ matrix
 
-# In[13]:
+# In[8]:
 
 
 b = np.arange(16).reshape((4,4))
@@ -230,7 +230,7 @@ print(df1)
 # 
 # We import also various modules that we will find useful in order to present various Machine Learning methods. Here we focus mainly on the functionality of **scikit-learn**.
 
-# In[14]:
+# In[9]:
 
 
 get_ipython().run_line_magic('matplotlib', 'inline')
@@ -245,7 +245,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import os
 
 
-# In[15]:
+# In[10]:
 
 
 # Nicer plots
@@ -262,7 +262,7 @@ sns.set('talk')
 # 
 # We start with preparing folders for storing our calculations and the data file over masses and binding energies. 
 
-# In[16]:
+# In[11]:
 
 
 # Where to save the figures and data files
@@ -295,13 +295,13 @@ def save_fig(fig_id):
 # always useful (unless you have a binary file or other types of compressed
 # data) to actually open the file and simply take a look at it!
 
-# In[17]:
+# In[12]:
 
 
 infile = open(data_path("MassEval2016.dat"),'r')
 
 
-# In[18]:
+# In[13]:
 
 
 head = [next(infile) for x in np.arange(42)]
@@ -310,7 +310,7 @@ print("".join(head))
 
 # In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with **pandas**. The file begins with some basic format information.
 
-# In[19]:
+# In[14]:
 
 
 print("""                                                                                                                         
@@ -330,7 +330,7 @@ All files are 3436 lines long with 124 character per line.
 # respectively. We add also for the sake of completeness the element name. The data are in fixed-width formatted lines and we will
 # covert them into the **pandas** DataFrame structure.
 
-# In[20]:
+# In[15]:
 
 
 # Read the experimental data with Pandas
@@ -364,7 +364,7 @@ Masses = Masses.apply(lambda t: t[t.Ebinding==t.Ebinding.max()])
 # Now we define five variables which contain
 # the number of nucleons $A$, the number of protons $Z$ and the number of neutrons $N$, the element name and finally the energies themselves.
 
-# In[21]:
+# In[16]:
 
 
 A = Masses['A']
@@ -378,7 +378,7 @@ print(Masses)
 # The next step, and we will define this mathematically later, is to set up the so-called **design matrix**. We will throughout call this matrix $\boldsymbol{X}$.
 # It has dimensionality $p\times n$, where $n$ is the number of data points and $p$ are the so-called predictors. In our case here they are given by the number of polynomials in $A$ (and $N$, $Z$) we wish to include in the fit.
 
-# In[51]:
+# In[17]:
 
 
 # Now we set up the design matrix X
@@ -392,7 +392,7 @@ X[:,4] = (N-Z)**2 * A**(-1.0)
 
 # With **scikitlearn** we are now ready to use linear regression and fit our data. Note that we have included an intercept column into our design matrix, which corresponds to a constant predictor term in our model. It is very common to have such a term in a linear regression fit and we include it here although our model actually does not have such a predictor. In fact, the built-in linear regression function that we will use does usually add such an offset automatically and we need to explicitly turn it off using the argument  `fit_intercept=False` since we already have it in our design matrix.
 
-# In[52]:
+# In[18]:
 
 
 clf = skl.LinearRegression(fit_intercept=False).fit(X, Energies)
@@ -402,7 +402,7 @@ fity = clf.predict(X)
 # Pretty simple!
 # Now we can print measures of how our fit is doing, the coefficients from the fits and plot the final fit together with our data.
 
-# In[53]:
+# In[19]:
 
 
 # The mean squared error                               
@@ -413,7 +413,7 @@ print('Variance score: %.2f' % r2_score(Energies, fity))
 print('Mean absolute error: %.2f' % mean_absolute_error(Energies, fity))
 
 
-# In[54]:
+# In[20]:
 
 
 print(clf.coef_)
@@ -423,7 +423,7 @@ print('intercept  volume    surface    coulomb     asymmetry')
 print("     ".join(["%.3f"%coef for coef in clf.coef_]))
 
 
-# In[55]:
+# In[21]:
 
 
 # Generate a plot comparing the experimental with the fitted values values.
