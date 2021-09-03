@@ -53,7 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="23. Ignorance pdfs: Indifference and translation groups" href="../MaxEnt/IgnorancePDF.html" />
+    <link rel="next" title="21. Ignorance pdfs: Indifference and translation groups" href="../MaxEnt/IgnorancePDF.html" />
     <link rel="prev" title="19. Why Bayes is Better" href="ErrorPropagation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -405,51 +405,44 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-of-modules">
+   20.1. Import of modules
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import-of-modules">
-     20.1. Import of modules
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nuisance-parameters-i">
-   21. Nuisance parameters (I)
+   20.2. Nuisance parameters (I)
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-bayesian-billiard-game">
-     21.1. A Bayesian billiard game
+     A Bayesian billiard game
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#a-naive-frequentist-approach">
        A Naive Frequentist Approach
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#bayesian-approach">
        Bayesian approach
       </a>
       <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
+       <li class="toc-h5 nav-item toc-entry">
         <a class="reference internal nav-link" href="#building-our-bayesian-expression">
          Building our Bayesian Expression
         </a>
        </li>
       </ul>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#brute-force-monte-carlo-approach">
        Brute-force (Monte Carlo) approach
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#discussion">
        Discussion
       </a>
@@ -458,14 +451,14 @@
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#error-propagation-prior-information">
-   22. Error propagation: prior information
+   20.3. Error propagation: prior information
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-3-6-2-in-sivia">
-     22.1. Example 3.6.2 in Sivia
+     Example 3.6.2 in Sivia
     </a>
    </li>
   </ul>
@@ -483,7 +476,6 @@
                 
   <div class="section" id="learning-from-data-error-propagation-and-nuisance-parameters-demonstration">
 <h1><span class="section-number">20. </span>Learning from Data: Error propagation and nuisance parameters (demonstration)<a class="headerlink" href="#learning-from-data-error-propagation-and-nuisance-parameters-demonstration" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 21-Sep-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-of-modules">
 <h2><span class="section-number">20.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -503,11 +495,10 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="nuisance-parameters-i">
-<h1><span class="section-number">21. </span>Nuisance parameters (I)<a class="headerlink" href="#nuisance-parameters-i" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">20.2. </span>Nuisance parameters (I)<a class="headerlink" href="#nuisance-parameters-i" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="a-bayesian-billiard-game">
-<h2><span class="section-number">21.1. </span>A Bayesian billiard game<a class="headerlink" href="#a-bayesian-billiard-game" title="Permalink to this headline">¶</a></h2>
+<h3>A Bayesian billiard game<a class="headerlink" href="#a-bayesian-billiard-game" title="Permalink to this headline">¶</a></h3>
 <p>Adapted from the blog post <a class="reference external" href="http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/">Frequentism and Bayesianism II: When Results Differ</a></p>
 <p>This example of nuisance parameters dates all the way back to the posthumous <a class="reference external" href="http://www.stat.ucla.edu/history/essay.pdf">1763 paper</a> written by Thomas Bayes himself. The particular version of this problem used here is borrowed from <span class="xref myst">Eddy 2004</span>.</p>
 <p>The setting is a rather contrived game in which Alice and Bob bet on the outcome of a process they can’t directly observe:</p>
@@ -519,7 +510,7 @@
 </div></blockquote>
 <p>Intuitively, you probably realize that because Alice received five of the eight points, the marker placement likely favors her. And given this, it’s more likely that the next roll will go her way as well. And she has three opportunities to get a favorable roll before Bob can win; she seems to have clinched it.  But, <strong>quantitatively</strong>, what is the probability that Bob will squeak-out a win?</p>
 <div class="section" id="a-naive-frequentist-approach">
-<h3>A Naive Frequentist Approach<a class="headerlink" href="#a-naive-frequentist-approach" title="Permalink to this headline">¶</a></h3>
+<h4>A Naive Frequentist Approach<a class="headerlink" href="#a-naive-frequentist-approach" title="Permalink to this headline">¶</a></h4>
 <p>Someone following a classical frequentist approach might reason as follows:</p>
 <p>To determine the result, we need an intermediate estimate of where the marker sits. We’ll quantify this marker placement as a probability <span class="math notranslate nohighlight">\(\alpha\)</span> that any given roll lands in Alice’s favor.  Because five balls out of eight fell on Alice’s side of the marker, we can quickly show that the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\alpha\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
@@ -552,7 +543,7 @@ Odds against Bob winning: 18 to 1
 <p>So we’ve estimated using frequentist ideas that Alice will win about 17 times for each time Bob wins. Let’s try a Bayesian approach next.</p>
 </div>
 <div class="section" id="bayesian-approach">
-<h3>Bayesian approach<a class="headerlink" href="#bayesian-approach" title="Permalink to this headline">¶</a></h3>
+<h4>Bayesian approach<a class="headerlink" href="#bayesian-approach" title="Permalink to this headline">¶</a></h4>
 <p>We can also approach this problem from a Bayesian standpoint. This is slightly more involved, and requires us to first define some notation.</p>
 <p>We’ll consider the following random variables:</p>
 <ul class="simple">
@@ -577,7 +568,7 @@ p(B~|~D) \equiv \int_{-\infty}^\infty p(B,\alpha~|~D) {\mathrm d}\alpha
 \]</div>
 <p>This identity follows from the definition of conditional probability, and the law of total probability: that is, it is a fundamental consequence of probability axioms and will always be true. Even a frequentist would recognize this; they would simply disagree with our interpretation of <span class="math notranslate nohighlight">\(p(\alpha|I)\)</span> (appearing below) as being a measure of uncertainty of our own knowledge.</p>
 <div class="section" id="building-our-bayesian-expression">
-<h4>Building our Bayesian Expression<a class="headerlink" href="#building-our-bayesian-expression" title="Permalink to this headline">¶</a></h4>
+<h5>Building our Bayesian Expression<a class="headerlink" href="#building-our-bayesian-expression" title="Permalink to this headline">¶</a></h5>
 <p>To compute this result, we will manipulate the above expression for <span class="math notranslate nohighlight">\(p(B~|~D)\)</span> until we can express it in terms of other quantities that we can compute.</p>
 <p>We’ll start by applying the following definition of <a class="reference external" href="http://en.wikipedia.org/wiki/Conditional_probability#Definition">conditional probability</a> to expand the term <span class="math notranslate nohighlight">\(p(B,\alpha~|~D)\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -632,7 +623,7 @@ Bayesian odds against Bob winning: 10 to 1
 </div>
 </div>
 <div class="section" id="brute-force-monte-carlo-approach">
-<h3>Brute-force (Monte Carlo) approach<a class="headerlink" href="#brute-force-monte-carlo-approach" title="Permalink to this headline">¶</a></h3>
+<h4>Brute-force (Monte Carlo) approach<a class="headerlink" href="#brute-force-monte-carlo-approach" title="Permalink to this headline">¶</a></h4>
 <p>For this type of well-defined and simple setup, it is actually relatively easy to use a Monte Carlo simulation to determine the correct answer. This is essentially a brute-force tabulation of possible outcomes: we generate a large number of random games, and simply count the fraction of relevant games that Bob goes on to win. The current problem is especially simple because so many of the random variables involved are uniformly distributed.  We can use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package to do this as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -696,7 +687,7 @@ MC Odds against Bob winning: 10 to 1
 <p>The Monte Carlo approach gives 10-to-1 odds on Bob, which agrees with the Bayesian result. Apparently, our naive frequentist approach above was flawed.</p>
 </div>
 <div class="section" id="discussion">
-<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<h4>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h4>
 <p>This example shows different approaches to dealing with the presence of a nuisance parameter <span class="math notranslate nohighlight">\(\alpha\)</span>. The Monte Carlo simulation gives us a close brute-force estimate of the true probability (assuming the validity of our assumptions), which the Bayesian approach matches. The naive frequentist approach, by utilizing a single maximum likelihood estimate of the nuisance parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, arrives at the wrong result.</p>
 <p>We should emphasize that <strong>this does not imply frequentism itself is incorrect</strong>. The incorrect result above is more a matter of the approach being “naive” than it being “frequentist”. There certainly exist frequentist methods for handling this sort of nuisance parameter – for example, it is theoretically possible to apply a transformation and conditioning of the data to isolate the dependence on <span class="math notranslate nohighlight">\(\alpha\)</span> – but it’s hard to find any approach to this particular problem that does not somehow take advantage of Bayesian-like marginalization over <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <p>Another potential point of contention is that the question itself is posed in a way that is perhaps unfair to the classical, frequentist approach. A frequentist might instead hope to give the answer in terms of null tests or confidence intervals: that is, they might devise a procedure to construct limits which would provably bound the correct answer in <span class="math notranslate nohighlight">\(100\times(1 - p)\)</span> percent of similar trials, for some value of <span class="math notranslate nohighlight">\(p\)</span> – say, 0.05. This might be classically accurate, but it doesn’t quite answer the question at hand.</p>
@@ -705,9 +696,9 @@ MC Odds against Bob winning: 10 to 1
 </div>
 </div>
 <div class="section" id="error-propagation-prior-information">
-<h1><span class="section-number">22. </span>Error propagation: prior information<a class="headerlink" href="#error-propagation-prior-information" title="Permalink to this headline">¶</a></h1>
+<h2><span class="section-number">20.3. </span>Error propagation: prior information<a class="headerlink" href="#error-propagation-prior-information" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="example-3-6-2-in-sivia">
-<h2><span class="section-number">22.1. </span>Example 3.6.2 in Sivia<a class="headerlink" href="#example-3-6-2-in-sivia" title="Permalink to this headline">¶</a></h2>
+<h3>Example 3.6.2 in Sivia<a class="headerlink" href="#example-3-6-2-in-sivia" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Consider a Bragg peak amplitude that is proportional to the square of a complex structure function: <span class="math notranslate nohighlight">\(A = f^2\)</span>.</p></li>
 <li><p>The amplitude is measured with an uncertainty <span class="math notranslate nohighlight">\(A = A_0 \pm \sigma_A\)</span> from a least-squares fit to experimental data.</p></li>
@@ -768,6 +759,7 @@ MC Odds against Bob winning: 10 to 1
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -795,7 +787,7 @@ MC Odds against Bob winning: 10 to 1
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="ErrorPropagation.html" title="previous page"><span class="section-number">19. </span>Why Bayes is Better</a>
-    <a class='right-next' id="next-link" href="../MaxEnt/IgnorancePDF.html" title="next page"><span class="section-number">23. </span>Ignorance pdfs: Indifference and translation groups</a>
+    <a class='right-next' id="next-link" href="../MaxEnt/IgnorancePDF.html" title="next page"><span class="section-number">21. </span>Ignorance pdfs: Indifference and translation groups</a>
 
         </div>
         

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Learning from Data: Error propagation and nuisance parameters (demonstration)
-# Last revised: 21-Sep-2020 by Christian Forssén [christian.forssen@chalmers.se]
+# # Learning from Data: Error propagation and nuisance parameters (demonstration)
 
-# ### Import of modules
+# ## Import of modules
 
 # In[1]:
 

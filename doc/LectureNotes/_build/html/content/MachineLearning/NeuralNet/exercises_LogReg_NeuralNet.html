@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>33. Exercise: Logistic Regression and neural networks &#8212; Learning from data</title>
+    <title>31. Exercise: Logistic Regression and neural networks &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="34. Convolutional Neural Networks" href="../CNN/cnn.html" />
-    <link rel="prev" title="32. Neural network classifier demonstration" href="demo-NeuralNet.html" />
+    <link rel="next" title="32. Convolutional Neural Networks" href="../CNN/cnn.html" />
+    <link rel="prev" title="30. Neural network classifier demonstration" href="demo-NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -407,12 +407,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-modules">
-   33.1. Import modules
+   31.1. Import modules
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-   33.2. Examples of classifier functions used in logistic regression and neural networks
+   31.2. Examples of classifier functions used in logistic regression and neural networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -424,7 +424,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-simple-classification-problem">
-   33.3. A simple classification problem
+   31.3. A simple classification problem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -475,10 +475,10 @@
               <div>
                 
   <div class="section" id="exercise-logistic-regression-and-neural-networks">
-<h1><span class="section-number">33. </span>Exercise: Logistic Regression and neural networks<a class="headerlink" href="#exercise-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">31. </span>Exercise: Logistic Regression and neural networks<a class="headerlink" href="#exercise-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 16-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-modules">
-<h2><span class="section-number">33.1. </span>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">31.1. </span>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -495,7 +495,7 @@
 </div>
 </div>
 <div class="section" id="examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-<h2><span class="section-number">33.2. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">31.2. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The following code plots the sigmoid and the step function, two common classifier functions used in neural networks (and logistic regression).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -533,7 +533,7 @@
 </div>
 </div>
 <div class="section" id="a-simple-classification-problem">
-<h2><span class="section-number">33.3. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">31.3. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> includes various random <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html#generated-datasets">sample generators</a> that can be used to build artificial datasets of controlled size and complexity.</p>
 <p>For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html#sklearn.datasets.make_moons"><code class="docutils literal notranslate"><span class="pre">make_moons</span></code></a> generates two overlapping half cricles with optional Gaussian noise.</p>
 <div class="cell docutils container">
@@ -755,8 +755,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-NeuralNet.html" title="previous page"><span class="section-number">32. </span>Neural network classifier demonstration</a>
-    <a class='right-next' id="next-link" href="../CNN/cnn.html" title="next page"><span class="section-number">34. </span>Convolutional Neural Networks</a>
+    <a class='left-prev' id="prev-link" href="demo-NeuralNet.html" title="previous page"><span class="section-number">30. </span>Neural network classifier demonstration</a>
+    <a class='right-next' id="next-link" href="../CNN/cnn.html" title="next page"><span class="section-number">32. </span>Convolutional Neural Networks</a>
 
         </div>
         

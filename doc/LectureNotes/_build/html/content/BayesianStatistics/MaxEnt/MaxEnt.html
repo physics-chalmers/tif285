@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>24. The principle of maximum entropy &#8212; Learning from data</title>
+    <title>22. The principle of maximum entropy &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="25. Assigning probabilities" href="demo-MaxEnt.html" />
-    <link rel="prev" title="23. Ignorance pdfs: Indifference and translation groups" href="IgnorancePDF.html" />
+    <link rel="next" title="23. Assigning probabilities" href="demo-MaxEnt.html" />
+    <link rel="prev" title="21. Ignorance pdfs: Indifference and translation groups" href="IgnorancePDF.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -387,17 +387,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-entropy-of-scandinavians">
-   24.1. The entropy of Scandinavians
+   22.1. The entropy of Scandinavians
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-monkey-argument">
-   24.2. The monkey argument
+   22.2. The monkey argument
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-maximize-the-entropy">
-   24.3. Why maximize the entropy?
+   22.3. Why maximize the entropy?
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -409,7 +409,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#derivation-of-common-pdfs-using-maxent">
-   24.4. Derivation of common pdfs using MaxEnt
+   22.4. Derivation of common pdfs using MaxEnt
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -442,7 +442,7 @@
                 
   <!-- !split -->
 <div class="section" id="the-principle-of-maximum-entropy">
-<h1><span class="section-number">24. </span>The principle of maximum entropy<a class="headerlink" href="#the-principle-of-maximum-entropy" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22. </span>The principle of maximum entropy<a class="headerlink" href="#the-principle-of-maximum-entropy" title="Permalink to this headline">¶</a></h1>
 <p>Having dealt with ignorance, let us move on to more enlightened situations.</p>
 <p>Consider a die with the usual six faces that was rolled a very large number of times. Suppose that we were only told that the average number of dots was 2.5. What (discrete) pdf would we assign? I.e. what are the probabilities <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> that the face on top had <span class="math notranslate nohighlight">\(i\)</span> dots after a single throw?</p>
 <!-- !split -->
@@ -462,7 +462,7 @@
 <p>where the constraints are included via the method of <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multipliers</a>.</p>
 <!-- !split -->
 <div class="section" id="the-entropy-of-scandinavians">
-<h2><span class="section-number">24.1. </span>The entropy of Scandinavians<a class="headerlink" href="#the-entropy-of-scandinavians" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.1. </span>The entropy of Scandinavians<a class="headerlink" href="#the-entropy-of-scandinavians" title="Permalink to this headline">¶</a></h2>
 <p>Let’s consider another pdf assignment problem. This is originally the <em>kangaroo problem</em> (Gull and Skilling, 1984), but translated here into a local context. The problem is stated as follows:</p>
 <p>Information:
 :<br />
@@ -522,7 +522,7 @@ On the basis of this information alone, what proportion of Scandinavians are bot
 <!-- !split -->
 </div>
 <div class="section" id="the-monkey-argument">
-<h2><span class="section-number">24.2. </span>The monkey argument<a class="headerlink" href="#the-monkey-argument" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2. </span>The monkey argument<a class="headerlink" href="#the-monkey-argument" title="Permalink to this headline">¶</a></h2>
 <p>The monkey argument is a model for assigning probabilities to <span class="math notranslate nohighlight">\(M\)</span> different alternatives that satisfy some constraint as described by <span class="math notranslate nohighlight">\(I\)</span>:</p>
 <ul class="simple">
 <li><p>Monkeys throwing <span class="math notranslate nohighlight">\(N\)</span> balls into <span class="math notranslate nohighlight">\(M\)</span> equally sized boxes.</p></li>
@@ -570,7 +570,7 @@ On the basis of this information alone, what proportion of Scandinavians are bot
 <!-- !split -->
 </div>
 <div class="section" id="why-maximize-the-entropy">
-<h2><span class="section-number">24.3. </span>Why maximize the entropy?<a class="headerlink" href="#why-maximize-the-entropy" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.3. </span>Why maximize the entropy?<a class="headerlink" href="#why-maximize-the-entropy" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Information theory: maximum entropy=minimum information (Shannon, 1948).</p></li>
 <li><p>Logical consistency (Shore &amp; Johnson, 1960).</p></li>
@@ -632,7 +632,7 @@ On the basis of this information alone, what proportion of Scandinavians are bot
 </div>
 </div>
 <div class="section" id="derivation-of-common-pdfs-using-maxent">
-<h2><span class="section-number">24.4. </span>Derivation of common pdfs using MaxEnt<a class="headerlink" href="#derivation-of-common-pdfs-using-maxent" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.4. </span>Derivation of common pdfs using MaxEnt<a class="headerlink" href="#derivation-of-common-pdfs-using-maxent" title="Permalink to this headline">¶</a></h2>
 <p>The principle of maximum entropy (MaxEnt) allows incorporation of further information, e.g. constraints on the mean, variance, etc, into the assignment of probability distributions.</p>
 <p>In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and generates smooth functions.</p>
 <!-- !split -->
@@ -721,8 +721,8 @@ These arguments extend easily to the case of several parameters. For example, co
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="IgnorancePDF.html" title="previous page"><span class="section-number">23. </span>Ignorance pdfs: Indifference and translation groups</a>
-    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">25. </span>Assigning probabilities</a>
+    <a class='left-prev' id="prev-link" href="IgnorancePDF.html" title="previous page"><span class="section-number">21. </span>Ignorance pdfs: Indifference and translation groups</a>
+    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">23. </span>Assigning probabilities</a>
 
         </div>
         

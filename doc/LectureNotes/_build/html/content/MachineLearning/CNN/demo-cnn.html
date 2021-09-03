@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>35. Image recognition demonstration with Convolutional Neural Networks &#8212; Learning from data</title>
+    <title>33. Image recognition demonstration with Convolutional Neural Networks &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="36. Bayesian neural networks" href="../BNN/bnn.html" />
-    <link rel="prev" title="34. Convolutional Neural Networks" href="cnn.html" />
+    <link rel="next" title="34. Bayesian neural networks" href="../BNN/bnn.html" />
+    <link rel="prev" title="32. Convolutional Neural Networks" href="cnn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -211,22 +211,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -238,62 +238,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -405,12 +405,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#copyright-2019-the-tensorflow-authors">
-   35.1. Copyright 2019 The TensorFlow Authors.
+   33.1. Copyright 2019 The TensorFlow Authors.
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#convolutional-neural-network-cnn">
-   35.2. Convolutional Neural Network (CNN)
+   33.2. Convolutional Neural Network (CNN)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -452,12 +452,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-predictions">
-   35.3. Making predictions
+   33.3. Making predictions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#make-predictions">
-   35.4. Make predictions
+   33.4. Make predictions
   </a>
  </li>
 </ul>
@@ -472,10 +472,10 @@
               <div>
                 
   <div class="section" id="image-recognition-demonstration-with-convolutional-neural-networks">
-<h1><span class="section-number">35. </span>Image recognition demonstration with Convolutional Neural Networks<a class="headerlink" href="#image-recognition-demonstration-with-convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">33. </span>Image recognition demonstration with Convolutional Neural Networks<a class="headerlink" href="#image-recognition-demonstration-with-convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 20-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="copyright-2019-the-tensorflow-authors">
-<h2><span class="section-number">35.1. </span>Copyright 2019 The TensorFlow Authors.<a class="headerlink" href="#copyright-2019-the-tensorflow-authors" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.1. </span>Copyright 2019 The TensorFlow Authors.<a class="headerlink" href="#copyright-2019-the-tensorflow-authors" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -495,7 +495,7 @@
 </div>
 </div>
 <div class="section" id="convolutional-neural-network-cnn">
-<h2><span class="section-number">35.2. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.2. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h2>
 <table class="tfo-notebook-buttons" align="left">
   <td>
     <a target="_blank" href="https://www.tensorflow.org/tutorials/images/cnn">
@@ -757,7 +757,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="making-predictions">
-<h2><span class="section-number">35.3. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.3. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h2>
 <p>from https://www.tensorflow.org/tutorials/keras/classification</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,7 +770,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="make-predictions">
-<h2><span class="section-number">35.4. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.4. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
 <p>With the model trained, you can use it to make predictions about some images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -940,8 +940,8 @@ Epoch 5/5
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="cnn.html" title="previous page"><span class="section-number">34. </span>Convolutional Neural Networks</a>
-    <a class='right-next' id="next-link" href="../BNN/bnn.html" title="next page"><span class="section-number">36. </span>Bayesian neural networks</a>
+    <a class='left-prev' id="prev-link" href="cnn.html" title="previous page"><span class="section-number">32. </span>Convolutional Neural Networks</a>
+    <a class='right-next' id="next-link" href="../BNN/bnn.html" title="next page"><span class="section-number">34. </span>Bayesian neural networks</a>
 
         </div>
         

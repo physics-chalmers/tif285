@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>34. Convolutional Neural Networks &#8212; Learning from data</title>
+    <title>32. Convolutional Neural Networks &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="35. Image recognition demonstration with Convolutional Neural Networks" href="demo-cnn.html" />
-    <link rel="prev" title="33. Exercise: Logistic Regression and neural networks" href="../NeuralNet/exercises_LogReg_NeuralNet.html" />
+    <link rel="next" title="33. Image recognition demonstration with Convolutional Neural Networks" href="demo-cnn.html" />
+    <link rel="prev" title="31. Exercise: Logistic Regression and neural networks" href="../NeuralNet/exercises_LogReg_NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -387,17 +387,17 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regular-nns-dont-scale-well-to-full-images">
-   34.1. Regular NNs don’t scale well to full images
+   32.1. Regular NNs don’t scale well to full images
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-volumes-of-neurons">
-   34.2. 3D volumes of neurons
+   32.2. 3D volumes of neurons
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#layers-used-to-build-cnns">
-   34.3. Layers used to build CNNs
+   32.3. Layers used to build CNNs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -414,7 +414,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transforming-images">
-   34.4. Transforming images
+   32.4. Transforming images
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -431,7 +431,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cnns-in-brief">
-   34.5. CNNs in brief
+   32.5. CNNs in brief
   </a>
  </li>
 </ul>
@@ -447,7 +447,7 @@
                 
   <!-- !split -->
 <div class="section" id="convolutional-neural-networks">
-<h1><span class="section-number">34. </span>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">32. </span>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>Convolutional Neural Networks (CNNs) are very similar to ordinary Neural Networks, but are particularly adopted for image recognition.</p>
 <ul class="simple">
 <li><p>They are made up of layers that have learnable weights and biases.</p></li>
@@ -464,7 +464,7 @@ the network.</strong></p>
 <p>Here we provide only a superficial overview.</p>
 <!-- !split -->
 <div class="section" id="regular-nns-dont-scale-well-to-full-images">
-<h2><span class="section-number">34.1. </span>Regular NNs don’t scale well to full images<a class="headerlink" href="#regular-nns-dont-scale-well-to-full-images" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">32.1. </span>Regular NNs don’t scale well to full images<a class="headerlink" href="#regular-nns-dont-scale-well-to-full-images" title="Permalink to this headline">¶</a></h2>
 <p>As an example, consider
 an image of size <span class="math notranslate nohighlight">\(32\times 32\times 3\)</span> (32 wide, 32 high, 3 color channels), so a
 single fully-connected neuron in a first hidden layer of a regular
@@ -481,7 +481,7 @@ would quickly lead to possible overfitting.</p>
 <!-- !split -->
 </div>
 <div class="section" id="d-volumes-of-neurons">
-<h2><span class="section-number">34.2. </span>3D volumes of neurons<a class="headerlink" href="#d-volumes-of-neurons" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">32.2. </span>3D volumes of neurons<a class="headerlink" href="#d-volumes-of-neurons" title="Permalink to this headline">¶</a></h2>
 <p>CNNs take advantage of the fact that the
 input consists of images and they constrain the architecture in a more
 sensible way.</p>
@@ -507,7 +507,7 @@ dimension.</p>
 <!-- !split  -->
 </div>
 <div class="section" id="layers-used-to-build-cnns">
-<h2><span class="section-number">34.3. </span>Layers used to build CNNs<a class="headerlink" href="#layers-used-to-build-cnns" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">32.3. </span>Layers used to build CNNs<a class="headerlink" href="#layers-used-to-build-cnns" title="Permalink to this headline">¶</a></h2>
 <p>A simple CNN is a sequence of layers, and every layer of a CNN
 transforms one volume of activations to another through a
 differentiable function. We use three main types of layers to build
@@ -554,7 +554,7 @@ classification.</p>
 </div>
 </div>
 <div class="section" id="transforming-images">
-<h2><span class="section-number">34.4. </span>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">32.4. </span>Transforming images<a class="headerlink" href="#transforming-images" title="Permalink to this headline">¶</a></h2>
 <p>CNNs transform the original image layer by layer from the original
 pixel values to the final class scores.</p>
 <p>Observe that some layers contain
@@ -591,7 +591,7 @@ dataset of images, we require a 4D matrix or <strong>tensor</strong>. This tenso
 </div>
 </div>
 <div class="section" id="cnns-in-brief">
-<h2><span class="section-number">34.5. </span>CNNs in brief<a class="headerlink" href="#cnns-in-brief" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">32.5. </span>CNNs in brief<a class="headerlink" href="#cnns-in-brief" title="Permalink to this headline">¶</a></h2>
 <p>In summary:</p>
 <ul class="simple">
 <li><p>A CNN architecture is in the simplest case a list of layers that transform the image volume into an output volume (e.g. holding the class scores)</p></li>
@@ -630,8 +630,8 @@ the slides of <a class="reference external" href="http://cs231n.github.io/convol
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../NeuralNet/exercises_LogReg_NeuralNet.html" title="previous page"><span class="section-number">33. </span>Exercise: Logistic Regression and neural networks</a>
-    <a class='right-next' id="next-link" href="demo-cnn.html" title="next page"><span class="section-number">35. </span>Image recognition demonstration with Convolutional Neural Networks</a>
+    <a class='left-prev' id="prev-link" href="../NeuralNet/exercises_LogReg_NeuralNet.html" title="previous page"><span class="section-number">31. </span>Exercise: Logistic Regression and neural networks</a>
+    <a class='right-next' id="next-link" href="demo-cnn.html" title="next page"><span class="section-number">33. </span>Image recognition demonstration with Convolutional Neural Networks</a>
 
         </div>
         

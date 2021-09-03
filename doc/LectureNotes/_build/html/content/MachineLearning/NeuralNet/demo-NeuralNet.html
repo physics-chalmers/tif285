@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>32. Neural network classifier demonstration &#8212; Learning from data</title>
+    <title>30. Neural network classifier demonstration &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="33. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
-    <link rel="prev" title="31. Neural networks" href="NeuralNet.html" />
+    <link rel="next" title="31. Exercise: Logistic Regression and neural networks" href="exercises_LogReg_NeuralNet.html" />
+    <link rel="prev" title="29. Neural networks" href="NeuralNet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -211,22 +211,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -238,62 +238,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -405,12 +405,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#developing-a-code-for-doing-neural-networks-with-back-propagation">
-   32.1. Developing a code for doing neural networks with back propagation
+   30.1. Developing a code for doing neural networks with back propagation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction-to-tensorflow">
-   32.2. Introduction to tensorflow
+   30.2. Introduction to tensorflow
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -452,7 +452,7 @@
               <div>
                 
   <div class="section" id="neural-network-classifier-demonstration">
-<h1><span class="section-number">32. </span>Neural network classifier demonstration<a class="headerlink" href="#neural-network-classifier-demonstration" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">30. </span>Neural network classifier demonstration<a class="headerlink" href="#neural-network-classifier-demonstration" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 10-Oct-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -471,7 +471,7 @@
 </div>
 </div>
 <div class="section" id="developing-a-code-for-doing-neural-networks-with-back-propagation">
-<h2><span class="section-number">32.1. </span>Developing a code for doing neural networks with back propagation<a class="headerlink" href="#developing-a-code-for-doing-neural-networks-with-back-propagation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">30.1. </span>Developing a code for doing neural networks with back propagation<a class="headerlink" href="#developing-a-code-for-doing-neural-networks-with-back-propagation" title="Permalink to this headline">¶</a></h2>
 <p>One can identify a set of key steps when using neural networks to solve supervised learning problems:</p>
 <ol class="simple">
 <li><p>Collect and pre-process data</p></li>
@@ -484,7 +484,7 @@
 <p>The exercise “build-your-own neural network” provides a step-by-step guided recipe for coding a neural network from scratch in python.</p>
 </div>
 <div class="section" id="introduction-to-tensorflow">
-<h2><span class="section-number">32.2. </span>Introduction to tensorflow<a class="headerlink" href="#introduction-to-tensorflow" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">30.2. </span>Introduction to tensorflow<a class="headerlink" href="#introduction-to-tensorflow" title="Permalink to this headline">¶</a></h2>
 <p>This short introduction uses Keras to:</p>
 <ul class="simple">
 <li><p>Build a neural network that classifies images.</p></li>
@@ -3161,8 +3161,8 @@ _________________________________________________________________
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="NeuralNet.html" title="previous page"><span class="section-number">31. </span>Neural networks</a>
-    <a class='right-next' id="next-link" href="exercises_LogReg_NeuralNet.html" title="next page"><span class="section-number">33. </span>Exercise: Logistic Regression and neural networks</a>
+    <a class='left-prev' id="prev-link" href="NeuralNet.html" title="previous page"><span class="section-number">29. </span>Neural networks</a>
+    <a class='right-next' id="next-link" href="exercises_LogReg_NeuralNet.html" title="next page"><span class="section-number">31. </span>Exercise: Logistic Regression and neural networks</a>
 
         </div>
         

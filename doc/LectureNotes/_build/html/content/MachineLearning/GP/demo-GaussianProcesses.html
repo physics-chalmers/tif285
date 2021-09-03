@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>28. Gaussian processes demonstration &#8212; Learning from data</title>
+    <title>26. Gaussian processes demonstration &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="29. Exercise: Gaussian processes" href="exercise_GP.html" />
-    <link rel="prev" title="27. Gaussian processes" href="GaussianProcesses.html" />
+    <link rel="next" title="27. Exercise: Gaussian processes" href="exercise_GP.html" />
+    <link rel="prev" title="25. Gaussian processes" href="GaussianProcesses.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -407,7 +407,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions">
-   28.1. Gaussian processes as infinite-dimensional Gaussian distributions
+   26.1. Gaussian processes as infinite-dimensional Gaussian distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -436,7 +436,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-gp-models-for-regression">
-   28.2. Example: GP models for regression
+   26.2. Example: GP models for regression
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -462,7 +462,7 @@
               <div>
                 
   <div class="section" id="gaussian-processes-demonstration">
-<h1><span class="section-number">28. </span>Gaussian processes demonstration<a class="headerlink" href="#gaussian-processes-demonstration" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">26. </span>Gaussian processes demonstration<a class="headerlink" href="#gaussian-processes-demonstration" title="Permalink to this headline">¶</a></h1>
 <p>Last revised: 04-Oct-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -482,7 +482,7 @@
 </div>
 </div>
 <div class="section" id="gaussian-processes-as-infinite-dimensional-gaussian-distributions">
-<h2><span class="section-number">28.1. </span>Gaussian processes as infinite-dimensional Gaussian distributions<a class="headerlink" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.1. </span>Gaussian processes as infinite-dimensional Gaussian distributions<a class="headerlink" href="#gaussian-processes-as-infinite-dimensional-gaussian-distributions" title="Permalink to this headline">¶</a></h2>
 <p>Adapted partly from a tutorial by <a class="reference external" href="http://adamian.github.io/talks/Brown2016.html">Andreas Damianou</a> (2016).</p>
 <p>A Gaussian process (GP) is a collection of random variables, any finite number of which have a joint Gaussian distribution.</p>
 <p>Equivalently, a GP can be seen as a stochastic process which corresponds to an infinite dimensional Gaussian distribution.</p>
@@ -812,7 +812,7 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
 </div>
 </div>
 <div class="section" id="example-gp-models-for-regression">
-<h2><span class="section-number">28.2. </span>Example: GP models for regression<a class="headerlink" href="#example-gp-models-for-regression" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">26.2. </span>Example: GP models for regression<a class="headerlink" href="#example-gp-models-for-regression" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="no-core-shell-model-hbar-omega-dependence">
 <h3>No-core shell model <span class="math notranslate nohighlight">\(\hbar\omega\)</span> dependence<a class="headerlink" href="#no-core-shell-model-hbar-omega-dependence" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -933,8 +933,8 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="GaussianProcesses.html" title="previous page"><span class="section-number">27. </span>Gaussian processes</a>
-    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">29. </span>Exercise: Gaussian processes</a>
+    <a class='left-prev' id="prev-link" href="GaussianProcesses.html" title="previous page"><span class="section-number">25. </span>Gaussian processes</a>
+    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">27. </span>Exercise: Gaussian processes</a>
 
         </div>
         
