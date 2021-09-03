@@ -251,7 +251,7 @@ y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dot
 
 where $\langle y_i \rangle$ is the mean value. Keep in mind also that
 till now we have treated $y_i$ as the exact value. Normally, the
-response (dependent or outcome) variable $y_i$ the outcome of a
+response (dependent or outcome) variable $y_i$ is the outcome of a
 numerical experiment or another type of experiment and is thus only an
 approximation to the true value. It is then always accompanied by an
 error estimate, often limited to a statistical error estimate. For now, we
