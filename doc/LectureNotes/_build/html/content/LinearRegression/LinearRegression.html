@@ -135,6 +135,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="GradientDescent.html">
+   8. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="demo-ModelValidation.html">
    9. Linear Regression and Model Validation demonstration
   </a>
@@ -401,22 +406,20 @@
   <a class="reference internal nav-link" href="#polynomial-basis-functions">
    6.2. Polynomial basis functions
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-basis-functions">
-     6.2.1. General basis functions
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-basis-functions">
+   6.3. General basis functions
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-scores">
-   6.3. Training scores
+   6.4. Training scores
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-chi-2-function">
-   6.4. The
+   6.5. The
    <span class="math notranslate nohighlight">
     \(\chi^2\)
    </span>
@@ -434,8 +437,7 @@
         
               <div>
                 
-  <p>Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license</p>
-<!-- !split -->
+  <!-- !split -->
 <div class="section" id="linear-regression">
 <h1><span class="section-number">6. </span>Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h1>
 <!-- !split -->
@@ -561,8 +563,9 @@ y_{n-1}&amp;=\theta_0+\theta_1x_{n-1}^1+\theta_2x_{n-1}^2+\dots+\theta_{p-1}x_{n
 \end{equation*}\]</div>
 <p>The above design matrix is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</a>.</p>
 <!-- !split -->
+</div>
 <div class="section" id="general-basis-functions">
-<h3><span class="section-number">6.2.1. </span>General basis functions<a class="headerlink" href="#general-basis-functions" title="Permalink to this headline">¶</a></h3>
+<h2><span class="section-number">6.3. </span>General basis functions<a class="headerlink" href="#general-basis-functions" title="Permalink to this headline">¶</a></h2>
 <p>We are obviously not limited to the above polynomial expansions.  We
 could replace the various powers of <span class="math notranslate nohighlight">\(x\)</span> with elements of Fourier
 series or instead of <span class="math notranslate nohighlight">\(x_i^j\)</span> we could have <span class="math notranslate nohighlight">\(\cos{(j x_i)}\)</span> or <span class="math notranslate nohighlight">\(\sin{(j
@@ -649,7 +652,7 @@ y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dot
 \end{equation*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\langle y_i \rangle\)</span> is the mean value. Keep in mind also that
 till now we have treated <span class="math notranslate nohighlight">\(y_i\)</span> as the exact value. Normally, the
-response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> the outcome of a
+response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> is the outcome of a
 numerical experiment or another type of experiment and is thus only an
 approximation to the true value. It is then always accompanied by an
 error estimate, often limited to a statistical error estimate. For now, we
@@ -701,9 +704,8 @@ allow for the usage of direct linear algebra methods such as <strong>LU</strong>
 <p><strong>Small question</strong>: What kind of problems can we expect when inverting the matrix  <span class="math notranslate nohighlight">\(\boldsymbol{X}^T\boldsymbol{X}\)</span>?</p>
 <!-- !split -->
 </div>
-</div>
 <div class="section" id="training-scores">
-<h2><span class="section-number">6.3. </span>Training scores<a class="headerlink" href="#training-scores" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4. </span>Training scores<a class="headerlink" href="#training-scores" title="Permalink to this headline">¶</a></h2>
 <p>We can easily test our fit by computing various <strong>training scores</strong>. Several such measures are used in machine learning applications. First we have the <strong>Mean-Squared Error</strong> (MSE)</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -724,7 +726,7 @@ allow for the usage of direct linear algebra methods such as <strong>LU</strong>
 <!-- !split -->
 </div>
 <div class="section" id="the-chi-2-function">
-<h2><span class="section-number">6.4. </span>The <span class="math notranslate nohighlight">\(\chi^2\)</span> function<a class="headerlink" href="#the-chi-2-function" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.5. </span>The <span class="math notranslate nohighlight">\(\chi^2\)</span> function<a class="headerlink" href="#the-chi-2-function" title="Permalink to this headline">¶</a></h2>
 <p>Normally, the response (dependent or outcome) variable <span class="math notranslate nohighlight">\(y_i\)</span> is the
 outcome of a numerical experiment or another type of experiment and is
 thus only an approximation to the true value. It is then always

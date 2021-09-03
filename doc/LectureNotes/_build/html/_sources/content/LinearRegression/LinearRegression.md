@@ -1,17 +1,8 @@
-% Learning from data: Linear Regression
-% **Christian Forssén** at Department of Physics, Chalmers University of Technology, Sweden;  **Morten Hjorth-Jensen** at Department of Physics, University of Oslo and Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-% May 10, 2021
-
-Copyright 2018-2021, Christian Forssén. Released under CC Attribution-NonCommercial 4.0 license
-
-
-
+<!-- !split -->
+# Linear regression
 
 <!-- !split -->
-## Linear regression
-
-<!-- !split -->
-### Why Linear Regression (aka Ordinary Least Squares)
+## Why Linear Regression (aka Ordinary Least Squares)
 
 Fitting a continuous function with linear parameterization in terms of the parameters  $\boldsymbol{\theta}$.
 * Often used for fitting a continuous function!
@@ -24,7 +15,7 @@ Fitting a continuous function with linear parameterization in terms of the param
 * Allows for **easy** hands-on understanding of gradient descent methods
 
 <!-- !split -->
-#### Regression analysis, overarching aims
+### Regression analysis, overarching aims
 
 
 Regression modeling deals with the description of a **response** variable(s) $y$ and how it varies as function of some **predictor** variable(s) $x$. The first variable is also often called the **dependent**, or the **outcome** variable while the second one can be called the **independent** variable, or the **explanatory** variable. Note also that each of these might be a vector of variables, meaning that there could be more than one response variable and more than one predictor variable. 
@@ -80,7 +71,7 @@ matrix*.
 
 
 <!-- !split -->
-#### Example: Liquid-drop model for nuclear binding energies
+### Example: Liquid-drop model for nuclear binding energies
 
 In order to understand the relation among the predictors $p$, the set of data $\mathcal{D}_n$ and the target (outcome, output etc) $\boldsymbol{y}$,
 consider the model we discussed for describing nuclear binding energies. 
@@ -97,7 +88,7 @@ $n\times p$ matrix $\boldsymbol{X}$.
 
 
 <!-- !split -->
-### Polynomial basis functions
+## Polynomial basis functions
 The perhaps simplest linear-regression approach is to assume we can parametrize our function in terms of a polynomial $f(x)$ of degree $p-1$. I.e.
 \begin{equation*}
 y(x_i)=f({x}_i)+\epsilon_i=\sum_{j=0}^{p-1} \theta_j x_i^j+\epsilon_i,
@@ -150,7 +141,7 @@ The above design matrix is called a [Vandermonde matrix](https://en.wikipedia.or
 
 
 <!-- !split -->
-#### General basis functions
+## General basis functions
 
 
 We are obviously not limited to the above polynomial expansions.  We
@@ -251,7 +242,7 @@ y_{i}=\langle y_i \rangle = \theta_0x_{i,0}+\theta_1x_{i,1}+\theta_2x_{i,2}+\dot
 
 where $\langle y_i \rangle$ is the mean value. Keep in mind also that
 till now we have treated $y_i$ as the exact value. Normally, the
-response (dependent or outcome) variable $y_i$ the outcome of a
+response (dependent or outcome) variable $y_i$ is the outcome of a
 numerical experiment or another type of experiment and is thus only an
 approximation to the true value. It is then always accompanied by an
 error estimate, often limited to a statistical error estimate. For now, we
@@ -307,7 +298,7 @@ $\boldsymbol{X}^T\boldsymbol{X}$.
 
 
 <!-- !split -->
-### Training scores
+## Training scores
 
 We can easily test our fit by computing various **training scores**. Several such measures are used in machine learning applications. First we have the **Mean-Squared Error** (MSE)
 \begin{equation*}
@@ -328,7 +319,7 @@ where $\bar{y}_\mathrm{model}(\boldsymbol{\theta}) = \frac{1}{n} \sum_{i=1}^n y_
 
 
 <!-- !split -->
-### The $\chi^2$ function
+## The $\chi^2$ function
 
 Normally, the response (dependent or outcome) variable $y_i$ is the
 outcome of a numerical experiment or another type of experiment and is
