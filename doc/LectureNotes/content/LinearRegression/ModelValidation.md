@@ -218,7 +218,7 @@ method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
 variance of the chosen model and finally the last terms is the irreducible error $\epsilon_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
 
-To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\tilde{y}$.
+To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable.
 We use a more compact notation in terms of the expectation value 
 
 $$
