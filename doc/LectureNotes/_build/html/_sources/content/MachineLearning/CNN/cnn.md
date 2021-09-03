@@ -1,5 +1,5 @@
 <!-- !split -->
-## Convolutional Neural Networks
+# Convolutional Neural Networks
 
 Convolutional Neural Networks (CNNs) are very similar to ordinary Neural Networks, but are particularly adopted for image recognition.
 
@@ -18,7 +18,7 @@ the network.**
 Here we provide only a superficial overview.
 
 <!-- !split -->
-### Regular NNs don’t scale well to full images
+## Regular NNs don’t scale well to full images
 
 As an example, consider
 an image of size $32\times 32\times 3$ (32 wide, 32 high, 3 color channels), so a
@@ -34,10 +34,10 @@ this full connectivity is wasteful and the huge number of parameters
 would quickly lead to possible overfitting.
 
 <!-- <img src="fig/CNN/nn.jpeg" width=500><p><em>A regular 3-layer Neural Network.</em></p> -->
-![<p><em>A regular 3-layer Neural Network.</em></p>](fig/CNN/nn.jpeg)
+![<p><em>A regular 3-layer Neural Network.</em></p>](./figs/nn.jpeg)
 
 <!-- !split -->
-### 3D volumes of neurons
+## 3D volumes of neurons
 
 CNNs take advantage of the fact that the
 input consists of images and they constrain the architecture in a more
@@ -64,12 +64,12 @@ single vector of class scores, arranged along the depth
 dimension. 
 
 <!-- <img src="fig/CNN/cnn.jpeg" width=500><p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p> -->
-![<p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p>](fig/CNN/cnn.jpeg)
+![<p><em>A CNN arranges its neurons in three dimensions (width, height, depth), as visualized in one of the layers. Every layer of a CNN transforms the 3D input volume to a 3D output volume of neuron activations. In this example, the red input layer holds the image, so its width and height would be the dimensions of the image, and the depth would be 3 (Red, Green, Blue channels).</em></p>](./figs/cnn.jpeg)
 
 
 
 <!-- !split  -->
-### Layers used to build CNNs
+## Layers used to build CNNs
 
 A simple CNN is a sequence of layers, and every layer of a CNN
 transforms one volume of activations to another through a
@@ -95,7 +95,7 @@ convolutional layer, e.g. by taking the maximum or average across some
 small regions, and this serves as input to the next convolutional
 layer.
 
-#### Example: CNN architecture
+### Example: CNN architecture
 
 A simple CNN for image classification could have the architecture:
 
@@ -106,7 +106,7 @@ A simple CNN for image classification could have the architecture:
 * **FC** (i.e. fully-connected) layer will compute the class scores, resulting in volume of size $[1\times 1\times 10]$, where each of the 10 numbers correspond to a class score, such as among the 10 categories of the MNIST images we considered above . As with ordinary Neural Networks and as the name implies, each neuron in this layer will be connected to all the numbers in the previous volume.
 
 <!-- !split -->
-#### Systematic reduction
+### Systematic reduction
 
 By systematically reducing the size of the input volume, through
 convolution and pooling, the network should create representations of
@@ -118,7 +118,7 @@ then serves as input to the output layer, e.g. a softmax output for
 classification.
 
 <!-- !split -->
-### Transforming images
+## Transforming images
 
 CNNs transform the original image layer by layer from the original
 pixel values to the final class scores. 
@@ -133,7 +133,7 @@ with gradient descent so that the class scores that the CNN computes
 are consistent with the labels in the training set for each image.
 
 <!-- !split -->
-#### Example: The MNIST dataset
+### Example: The MNIST dataset
 
 The MNIST dataset consists of grayscale images with a pixel size of
 $28\times 28$, meaning we require $28 \times 28 = 724$ weights to each
@@ -147,7 +147,7 @@ meaning 3 times the number of weights $= 49152$ are required for every
 single neuron in the first hidden layer.
 
 <!-- !split -->
-#### Setting it up
+### Setting it up
 
 It means that to represent the entire
 dataset of images, we require a 4D matrix or **tensor**. This tensor has the dimensions: 
@@ -159,7 +159,7 @@ $$
 $$
 
 <!-- !split -->
-### CNNs in brief
+## CNNs in brief
 
 In summary:
 

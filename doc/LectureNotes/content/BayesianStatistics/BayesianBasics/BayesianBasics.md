@@ -51,7 +51,7 @@ Adapted[^Sivia] from D.S. Sivia {cite}`Sivia2006`
 
 <!-- !split -->
 <!-- <img src="fig/BayesianBasics/sivia_fig_1_2.png" width=700> -->
-![](fig/BayesianBasics/sivia_fig_1_2.png)
+![](./figs/sivia_fig_1_2.png)
 
 <!-- !split -->
 > To Laplace, the (shaded) area under the posterior pdf curve between $m_1$ and $m_2$ was a measure of how much he believed that the mass of Saturn lay in the range $m_1 \le M \le m_2$. As such, the position of the maximum of the posterior pdf represents a best estimate of the mass; its width, or spread, about this optimal value gives an indication of the uncertainty in the estimate. Laplace stated that: ‘ . . . it is a bet of 11,000 to 1 that the error of this result is not 1/100th of its value.’ He would have won the bet, as another 150 years’ accumulation of data has changed the estimate by only 0.63%!
@@ -187,7 +187,7 @@ The values of the **mode**, **mean**, **median** can all be used as point estima
 
 
 <!-- <img src="fig/BayesianBasics/pdfs.png" width=800><p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p> -->
-![<p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p>](fig/BayesianBasics/pdfs.png)
+![<p><em>The 68/95 percent probability regions are shown in dark/light shading. When applied to Bayesian posteriors, these are known as credible intervals or DoBs (degree of belief intervals) or Bayesian confidence intervals. The horizontal extent on the $x$-axis translates into the vertical extent of the error bar or error band for $x$.</em></p>](./figs/pdfs.png)
 
 <!-- !split -->
 ### Stochastic variables and the main concepts, central moments, the variance

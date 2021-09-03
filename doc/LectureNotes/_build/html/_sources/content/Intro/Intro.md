@@ -8,22 +8,20 @@ The general problem that will be adressed in this series of lectures is illustra
 <!-- !split -->
 ## Inference
 
-Inference:
-  :    
-  "the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former" (Webster) \n
+```{admonition} Inference
+  *"the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former"* (Webster)<br/>
   Do premises $A, B, \ldots \Rightarrow$ hypothesis, $H$? 
-Deductive inference:
-  :    
-  Premises allow definite determination of truth/falsity of $H$ (Boolean algebra) \n
-  $p(H|A,B,...) = 0$ or $1$
-Inductive inference:
-  :    
-  Premises bear on truth/falsity of $H$, but don’t allow its definite determination\n
-  $A, B, C, D$ share properties $x, y, z$; $E$ has properties $x, y$\n
-  $\Rightarrow E$ probably has property $z$.
-
-
-
+  ```
+```{admonition} Deductive inference
+  Premises allow definite determination of truth/falsity of $H$ (Boolean algebra)<br/>
+  $p(H|A,B,...) = 0$ or $1$ 
+  ```
+```{admonition} Inductive inference
+  Premises bear on truth/falsity of $H$, but don’t allow its definite determination<br/>
+  $A, B, C, D$ share properties $x, y, z$; $E$ has properties $x, y$<br/>
+  $\Rightarrow E$ probably has property $z$. 
+  ```
+  
 <!-- !split -->
 In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.
 
@@ -209,24 +207,21 @@ Another way to categorize machine learning tasks is to consider the
 desired output of a system. What kind of inference are you hoping to see in your data? Is the aim to classify a result into categories, to predict a continuous value, or to simply observe patterns within the data? Let’s briefly introduce each class:
 
 <!-- !split -->
-Classification algorithms:
-  :    
+```{admonition} Classification algorithms
   are used to predict whether a dataset’s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.
-
+  ```  
 <!-- !split -->
-Clustering algorithms:
-  :    
+```{admonition} Clustering algorithms
   can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don’t require output labels, making them unsupervised algorithms.
-
+  ```
 <!-- !split -->
-Dimensionality reduction algorithms:
-  :    
+```{admonition} Dimensionality reduction algorithms
   focuses on decreasing the number of features from your dataset, preventing your models from “overfitting” or generalizing on previously unseen data. They are also unsupervised.
-
+  ```
 <!-- !split -->
-Regression algorithms:
-  :    
+```{admonition} Regression algorithms
   Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.
+  ```
 
 <!-- !split -->
 In the natural sciences, where we often confront scientific models with observations, there is certainly a large interest in regression algorithms. However, there are also many examples where other classes of machine-learning algorithms are being used.
@@ -234,15 +229,19 @@ In the natural sciences, where we often confront scientific models with observat
 <!-- !split -->
 All methods have three main ingredients in common, irrespective of whether we deal with supervised or unsupervised learning. 
 
-Data set:
-  :    
-  The first, and most important, one is normally our data set (which can be subdivided into training and test data). 
-Model:
-  :    
+<!-- !split -->
+```{admonition} Data set
+  The first, and most important, one is normally our data set (which can be subdivided into training and test data).
+  ```
+<!-- !split -->
+```{admonition} Model
   The second item is a model, which is normally a function of some parameters. The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determine our model. 
-Cost function:
-  :    
+  ```
+<!-- !split -->
+```{admonition} Cost function
   The last ingredient is a so-called cost function, which allows us to present an estimate on how good our model is in reproducing the data it is supposed to describe.  
+  ```
+  
 
 <!-- !split -->
 ### Choice of programming language

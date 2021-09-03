@@ -1,8 +1,8 @@
 <!-- !split -->
-## Ignorance pdfs: Indifference and translation groups
+# Ignorance pdfs: Indifference and translation groups
 
 <!-- !split -->
-### Discrete permutation invariance
+## Discrete permutation invariance
 * Consider a six-sided die
 * How do we assign $p_i \equiv p(X_i|I)$, $i \in \{1, 2, 3, 4, 5, 6\}$?
 * We do know $\sum_i p(X_i|I) = 1$
@@ -11,7 +11,7 @@
 
 
 <!-- !split -->
-### Location invariance
+## Location invariance
 Indifference to a constant shift $x_0$ for a location parameter $x$ implies that
 
 $$
@@ -34,7 +34,7 @@ $$
 * The pdf will be zero outside the allowed range (specified by $I$).
 
 <!-- !split -->
-### Scale invariance
+## Scale invariance
 
 Indifference to a re-scaling $\lambda$ of a scale parameter $x$ implies that
 
@@ -63,7 +63,7 @@ $$
 
 
 <!-- !split -->
-#### Example: Straight-line model
+### Example: Straight-line model
 
 Consider the theoretical model 
 
@@ -80,7 +80,7 @@ Consider also the statistical model for the observed data $y_i = y_\mathrm{th}(x
 * Would you consider the standard deviation $\sigma$ a location or a scale parameter, or something else?
 
 <!-- !split -->
-### Symmetry invariance
+## Symmetry invariance
 
 * In fact, by symmetry indifference we could as well have written the linear model as $x_\mathrm{th}(y) = \theta_1'  y  + \theta_0'$
 * We would then equate the probability elements for the two models 
@@ -129,6 +129,6 @@ $$
 
 <!-- !split -->
 <!-- <img src="fig/MaxEnt/slope_priors.png" width=800><p><em>100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.</em></p> -->
-![<p><em>100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.</em></p>](fig/MaxEnt/slope_priors.png)
+![<p><em>100 samples of straight lines with fixed intercept equal to 0 and slopes sampled from three different pdfs. Note in particular the  prior preference for large slopes that results from using a uniform pdf.</em></p>](./figs/slope_priors.png)
 
 

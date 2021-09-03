@@ -1,3 +1,6 @@
+<!-- !split -->
+# Model validation
+
 In this lecture we will continue to explore linear regression and we will encounter several concepts that are common for machine learning methods. These concepts are:
   * Model validation
   * Overfitting and underfitting
@@ -14,15 +17,12 @@ The lecture is based and inspired by material in several good textbooks: in part
 The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University. 
 
 <!-- !split -->
-## Model validation
-
-<!-- !split -->
-### Over- and underfitting
+## Over- and underfitting
 
 Overfitting and underfitting are common problems in data analysis and machine learning. Both extremes are illustrated in Fig. [fig-over_under_fitting](#fig-over_under_fitting) from the demonstration notebook.
 
 <!-- <img src="fig/ModelValidation/over_under_fitting.png" width=600><p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p> -->
-![<p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p>](fig/ModelValidation/over_under_fitting.png)
+![<p><em>The first-order polynomial model is clearly underfitting the data, while the very high degree model is overfitting it trying to reproduce variations that are clearly noise. <div id="fig-over_under_fitting"></div></em></p>](./figs/over_under_fitting.png)
 
 The following quote from an unknown source provides a concise definition of overfitting and underfitting:
 > A model overfits if it fits noise as much as data and underfits if it considers variability in data to be noise while it is actually not.
@@ -31,11 +31,11 @@ The following quote from an unknown source provides a concise definition of over
 
 The question is then: How do we detect these problems and how can we reduce them.
 
-We can detect over- and underfitting by employing holdout sets, also known as *validation* sets. This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the model parameters to best fit the training data, and then measure e.g. the mean-square error (MSE) of the model predictions for the validation set. 
+We can detect over- and underfitting by employing holdout sets, also known as *validation* sets. This means that we only use a fraction of the data for training the model, and save the rest for validation purposes. I.e. we optimize the model parameters to best fit the training data, and then measure e.g. the mean-square error (MSE) of the model predictions for the validation set (sometimes called "test set"). 
 
 An underfit model has a *high bias*, which means that it gives a rather poor fit and the performance metric will be rather bad (large error). This will be true for both the training and the validation sets.
 
-An overfit model typically has a very *large varianc*, i.e. the model predictions reveal larger variance than the data itself. We will discuss this in more detail further down. High variance models typically perform much better on the training set than on the validation set. 
+An overfit model typically has a very *large variance*, i.e. the model predictions reveal larger variance than the data itself. We will discuss this in more detail further down. High variance models typically perform much better on the training set than on the validation set. 
 
 Alternatively, a telltale sign for overfitting is the appearance of very large fit parameters that are needed for the fine tunings of cancellations of different terms in the model. The fits from our example has the following root-mean-square parameters
 
@@ -55,7 +55,7 @@ $$
 
 
 <!-- !split -->
-### Regularization: Ridge and Lasso
+## Regularization: Ridge and Lasso
 
 Assuming that overfitting is characterized by large fit parameters, we can attempt to avoid this scenario by *regularizing* the model parameters. We will introduce two kinds of regularization: Ridge and Lasso. In addition, so called elastic net regularization is also in use and basically corresponds to a linear combination of the Ridge and Lasso penalty functions.
 
@@ -71,7 +71,9 @@ or we can state it as
 
 $$
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
-\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2=\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2,
+\frac{1}{n}\sum_{i=0}^{n-1}\left(y_i-\tilde{y}_i\right)^2
+= \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
+\frac{1}{n}\vert\vert \boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\vert\vert_2^2,
 $$
 
 where we have used the definition of  a norm-2 vector, that is
@@ -97,7 +99,7 @@ constrain the parameters via $\vert\vert \boldsymbol{\theta}\vert\vert_2^2$ and 
 
 $$
 \boldsymbol{\theta}^* = \underset{\boldsymbol{\theta}\in {\mathbb{R}}^{p}}{\operatorname{argmin}}
-C_{\lambda,2}
+C_{\lambda,2}\left( \boldsymbol{X}, \boldsymbol{\theta} \right)
 .
 $$
 
@@ -121,7 +123,7 @@ $$
 Lasso stands for least absolute shrinkage and selection operator.
 
 <!-- <img src="fig/ModelValidation/ridge_reg.png" width=900><p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p> -->
-![<p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p>](fig/ModelValidation/ridge_reg.png)
+![<p><em>Ridge regularization with different penalty parameters $\lambda$ for different polynomial models of our noisy data set. <div id="fig-ridge_reg"></div></em></p>](./figs/ridge_reg.png)
 
 
 
@@ -162,7 +164,7 @@ with $t$ a finite positive number.
 For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's](https://arxiv.org/abs/1509.09169) article or [Mehta et al's article](https://arxiv.org/abs/1803.08823).
 
 <!-- !split -->
-### The bias-variance tradeoff
+## The bias-variance tradeoff
 
 We will discuss the bias-variance tradeoff in the context of
 continuous predictions such as regression. However, many of the
@@ -218,7 +220,7 @@ method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
 variance of the chosen model and finally the last terms is the irreducible error $\epsilon_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
 
-To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable, idem for $\tilde{y}$.
+To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable.
 We use a more compact notation in terms of the expectation value 
 
 $$
@@ -253,11 +255,11 @@ $$
 The tradeoff between bias and variance is illustrated in Fig. [fig-bias_variance](#fig-bias_variance) from the demonstration notebook.
 
 <!-- <img src="fig/ModelValidation/bias_variance.png" width=600><p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p> -->
-![<p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p>](fig/ModelValidation/bias_variance.png)
+![<p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p>](./figs/bias_variance.png)
 
 
 <!-- !split  -->
-### Summing up
+## Summing up
 
 
 The bias-variance tradeoff summarizes the fundamental tension in
@@ -291,7 +293,7 @@ flexible statistical methods have higher variance.
 
 
 <!-- !split  -->
-### Model validation strategy
+## Model validation strategy
 
 Let us summarize the basic recipe for applying a supervise machine-learning model:
 
@@ -313,7 +315,7 @@ Why is it important not to train and evaluate the model on the same data?
 
 
 <!-- !split  -->
-### Cross-validation
+## Cross-validation
 
 Cross-validation is a strategy to find model hyperparameters that yield a model with good prediction
 performance. A common practice is to hold back some subset of the data from the training of the model and then use this holdout set to check the model performance. The splitting of data can be performed using the the `train_test_split` utility in Scikit-Learn.
@@ -340,7 +342,7 @@ evaluated on the corresponding validation set. The hyperparameter that performs 
 
 
 <!-- !split  -->
-#### $k$-fold cross validation cross-validation
+### $k$-fold cross validation cross-validation
 
 When the repetitive splitting of the data set is done randomly,
 samples may accidently end up in a fast majority of the splits in
@@ -358,7 +360,7 @@ choosing $k=n$. This particular case is referred to as leave-one-out
 cross-validation (LOOCV). 
 
 <!-- !split  -->
-#### How to set up cross-validation
+#### How to set up k-fold cross-validation
 
 * Define a range of interest for the  model hyperparameter(s) $\lambda$.
 * Divide the data set $\mathcal{D} = \{1, \ldots, n\}$ into $k$ exhaustive and mutually exclusive subsets $\mathcal{D}_{i} \subset \mathcal{D}$ for $i=1,\ldots,k$, and $\mathcal{D}_{i} \cap \mathcal{D}_{j} = \emptyset$ for $i \neq j$.
@@ -382,67 +384,3 @@ $$
 \mathrm{CV}_k(\lambda)
 .
 $$
-
-
-
-<!-- !split -->
-## Gradient-descent optimization
-
-With the linear regression model we could find the best fit parameters by solving the normal equation. Although we could encounter problems associated with inverting a matrix, we do in principle have a closed-form expression for the model parameters.
-
-In general, the problem of optimizing the model parameters is a very difficult one. We will return to the optimization problem later in this course, but will just briefly introduce the most common class of optimization algorithms: *Gradient descent* methods. The general idea of Gradient descent is to tweak parameters iteratively in order to minimize a cost function.
-
-Let us start with a cost function for our model such as the chi-squared function that was introduced in the Linear Regression lecture:
-
-$$
-
-\chi^2(\boldsymbol{\theta})=\frac{1}{n}\sum_{i=0}^{n-1}\frac{\left(y_i-\tilde{y}_i\right)^2}{\sigma_i^2}=\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)^T \boldsymbol{\Sigma}^{-1}\left(\boldsymbol{y}-\boldsymbol{\tilde{y}}\right)\right\},
-
-$$
-
-Instead of finding a matrix equation for the vector $\boldsymbol{\theta}$ that minimizes this measure we will describe an iterative procedure:
-
-* Make a *random initialization* of the parameter vector $\boldsymbol{\theta}_0$.
-* Compute the gradient of the cost function with respect to the parameters (note that this can be done analytically for the linear regression model). Let us denote this gradient vector $\boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)$.
-* Once you have the gradient vector, which points uphill, just go in the opposite direction to go downhill. This means subtracting $\eta \boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)$ from $\boldsymbol{\theta}_0$. Note that the magnitude of the step, $\eta$ is known as the learning rate and becomes another hyperparameter that needs to be tuned.
-* Continue this process iteratively until the gradient vector $\boldsymbol{\nabla}_{\boldsymbol{\theta}} \left( \chi^2 \right)$ is close to zero.
-
-Gradient descent is a general optimization algorithm. However, there are several important issues that should be known before using it:
-
-1. It requires the computation of partial derivatives of the cost function. This is straight-forward for the linear regression method, but can be difficult for other models. The use of *automatic differentiation* is very popular in the ML community,and is well worth exploring. 
-2. In principle, gradient descent works well for convex cost functions, i.e. where the gradient will eventually direct you to the position of the global minimum. Again, the linear regression problem is favorable because you can show that the cost function has that property. However, most cost functions&mdash;in particular in many dimensions&mdash;correspond to very *complicated surfaces with many local minima*. In those cases, gradient descent is often not a good method.
-
-There are variations of gradient descent that uses only fractions of the training set for computation of the gradient. In particular, stochastic gradient descent and mini-batch gradient descent.
-
-<!-- !split -->
-### Learning curves
-
-The performance of your model will depend on the amount of data that is used for training. When using iterative optimization approaches, such as gradient descent, it will also depend on the number of training iterations. In order to monitor this dependence one usually plots *learning curves*.
-
-Learning curves are plots of the model's performance on both the training and the validation sets, measured by some performance metric such as the mean squared error. This measure is plotted as a function of the size of the training set, or alternatively as a function of the training iterations.
-
-<!-- <img src="fig/ModelValidation/learning_curve.png" width=600><p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p> -->
-![<p><em>Learning curves for different polynomial models of our noisy data set as a function of the size of the training data set. <div id="fig-learning_curve"></div></em></p>](fig/ModelValidation/learning_curve.png)
-
-Several features in the left-hand panel deserves to be mentioned:
-
-1. The performance on the training set starts at zero when only 1-2 data are in the training set.
-2. The error on the training set then increases steadily as more data is added. 
-3. It finally reaches a plateau.
-4. The validation error is initially very high, but reaches a plateau that is very close to the training error.
-
-The learning curves in the right hand panel are similar to the underfitting model; but there are some important differences:
-
-1. The training error is much smaller than with the linear model.
-2. There is no clear plateau.
-3. There is a gap between the curves, which implies that the model performs significantly better on the training data than on the validation set.
-
-Both these examples that we have just studied demonstrate again the so called *bias-variance tradeoff*.
-
- * A high bias model has a relatively large error, most probably due to wrong assumptions about the data features.
- * A high variance model is excessively sensitive to small variations in the training data.
- * The irreducible error is due to the noisiness of the data itself. It can only be reduced by obtaining better data.
-
-We seek a more systematic way of distinguishing between under- and overfitting models, and for quantification of the different kinds of errors. We will find that **Bayesian statistics** has the promise to deliver on that ultimate goal.
-
-

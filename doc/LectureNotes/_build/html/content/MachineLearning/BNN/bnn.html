@@ -135,6 +135,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   8. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
    9. Linear Regression and Model Validation demonstration
   </a>
@@ -394,38 +399,40 @@
   <a class="reference internal nav-link" href="#bayesian-neural-networks-in-practice">
    37.3. Bayesian neural networks in practice
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variational-inference-for-bayesian-neural-networks">
-   37.4. Variational inference for Bayesian neural networks
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-kullback-leibler-divergence">
-     The Kullback-Leibler divergence
+    <a class="reference internal nav-link" href="#variational-inference-for-bayesian-neural-networks">
+     Variational inference for Bayesian neural networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-kullback-leibler-divergence">
+       The Kullback-Leibler divergence
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evidence-lower-bound">
+       Evidence Lower Bound
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-neural-networks-in-pymc3">
+     Bayesian neural networks in PyMC3
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#evidence-lower-bound">
-     Evidence Lower Bound
+    <a class="reference internal nav-link" href="#bayes-by-backprop">
+     Bayes by Backprop
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bayesian-neural-networks-in-pymc3">
-   37.5. Bayesian neural networks in PyMC3
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bayes-by-backprop">
-   37.6. Bayes by Backprop
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#network-training">
-     Network training
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#network-training">
+       Network training
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -462,8 +469,8 @@
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I\)</span> are the weights of the neuron and we have included a bias (<span class="math notranslate nohighlight">\(b \equiv w_0\)</span>).</p>
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e6dbd22-34f8-49c9-b15d-acd3be3f8ec3">
-<span class="eqno">(37.1)<a class="headerlink" href="#equation-7e6dbd22-34f8-49c9-b15d-acd3be3f8ec3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d7e2fe4c-6ec9-472e-a672-e17b4e84265b">
+<span class="eqno">(37.1)<a class="headerlink" href="#equation-d7e2fe4c-6ec9-472e-a672-e17b4e84265b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
 \end{align}\]</div>
@@ -501,7 +508,7 @@ The objective function <span class="math notranslate nohighlight">\(C_W(w)\)</sp
 \]</div>
 <p>We show the evolution of the probability distribution for a sequence of an increasing number of training data in the following figure. The network parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> that are found by minimizing <span class="math notranslate nohighlight">\(C_W(\boldsymbol{w})\)</span> can be interpreted as the (locally) most probable parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{w}^*\)</span>.</p>
 <!-- <img src="fig/BNN/scatter_joint_bnn_plot.png" width=800><p><em>Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights $p(w_1, w_2 | \mathcal{D}, \alpha)$ (i.e. marginalized over the bias $w_0$) for a sequence of $N=0,2,6,10$ training data.</em></p> -->
-<p><img alt="Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights  (i.e. marginalized over the bias ) for a sequence of  training data." src="content/MachineLearning/BNN/fig/BNN/scatter_joint_bnn_plot.png" /></p>
+<p><img alt="Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights  (i.e. marginalized over the bias ) for a sequence of  training data." src="../../../_images/scatter_joint_bnn_plot.png" /></p>
 <p>Instead, we will use the Bayesian approach and consider the information that is contained in the actual probability distribution. In fact, there are different uncertainties that should be addressed:</p>
 <div class="admonition-epistemic-uncertainties admonition">
 <p class="admonition-title">Epistemic uncertainties</p>
@@ -529,11 +536,11 @@ We will use <span class="math notranslate nohighlight">\(y\)</span> to denote th
 <p>where we have also included the weight decay hyperparameter <span class="math notranslate nohighlight">\(\alpha\)</span> from the prior (regularizer). Marginalization could, of course, also be performed over this parameter.</p>
 <p>We show an example of such inference, comparing the point estimate <span class="math notranslate nohighlight">\(y(x; w^*, \alpha)\)</span> and the Bayesian approach, in the following figure.</p>
 <!-- <img src="fig/BNN/bnn_binary_classifier_mean.png" width=800><p><em>The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay $\alpha = 1.0$. The decision boundary ($y=0.5$, i.e. the activation $a=0$) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation $a=\pm1,\pm2$). Test data is shown as plus symbols.</em></p> -->
-<p><img alt="The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay . The decision boundary (, i.e. the activation ) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation ). Test data is shown as plus symbols." src="content/MachineLearning/BNN/fig/BNN/bnn_binary_classifier_mean.png" /></p>
+<p><img alt="The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay . The decision boundary (, i.e. the activation ) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation ). Test data is shown as plus symbols." src="../../../_images/bnn_binary_classifier_mean.png" /></p>
 <p>The Bayesian classifier is based on sampling a very large ensamble of single neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data.</p>
 <p>This becomes even more clear when we plot the standard deviation of the predictions of the Bayesian classifier.</p>
 <!-- <img src="fig/BNN/bnn_binary_classifier_stddev.png" width=600><p><em>The standard deviation of the class label predictions for a Bayesian binary classifier.</em></p> -->
-<p><img alt="The standard deviation of the class label predictions for a Bayesian binary classifier." src="content/MachineLearning/BNN/fig/BNN/bnn_binary_classifier_stddev.png" /></p>
+<p><img alt="The standard deviation of the class label predictions for a Bayesian binary classifier." src="../../../_images/bnn_binary_classifier_stddev.png" /></p>
 <p>The predictions are rather certain along a diagonal line (close to the training data). Note that the interpretation of the prediction in the center of the figure (near <span class="math notranslate nohighlight">\(x_1,x_2 = 0,0\)</span>) is the following: The Bayesian binary classifier predicts a probability of <span class="math notranslate nohighlight">\(\sim 0.5\)</span> for this point in the input parameter space to belong to class 1 (i.e. the decision is very uncertain). The Baysian classifier is also very certain about this uncertainty (the standard deviation is small).</p>
 <p>In contrast, predictions for points in the upper left or lower right corners are very certain about the class label (and there is little uncertainty about this certainty).</p>
 <!-- !split -->
@@ -549,16 +556,15 @@ We will use <span class="math notranslate nohighlight">\(y\)</span> to denote th
 </ol>
 <p>The first two are discussed in MacKay’s book, while we will focus on the variational methods in the following.</p>
 <!-- !split -->
-</div>
 <div class="section" id="variational-inference-for-bayesian-neural-networks">
-<h2><span class="section-number">37.4. </span>Variational inference for Bayesian neural networks<a class="headerlink" href="#variational-inference-for-bayesian-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h3>Variational inference for Bayesian neural networks<a class="headerlink" href="#variational-inference-for-bayesian-neural-networks" title="Permalink to this headline">¶</a></h3>
 <p>Bayesian neural networks differ from plain neural networks in that their weights are assigned a probability distribution instead of a single value or point estimate. These probability distributions describe the uncertainty in weights and can be used to estimate uncertainty in predictions. Training a Bayesian neural network via variational inference learns the parameters of these distributions instead of the weights directly.</p>
 <p>Unfortunately, an analytical solution for the weight posterior <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span> in neural networks is intractable. We therefore have to approximate the true posterior with a proxy variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span> whose parameters we want to estimate.</p>
 <p>This can be done by minimizing the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> between <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span> and the true posterior <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span>  w.r.t. <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
 <p>The specific goal is then to replace <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span>, which we don’t know, with the known proxy distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta}^*)\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span> is the optimal set of variational parameters.</p>
 <!-- !split -->
 <div class="section" id="the-kullback-leibler-divergence">
-<h3>The Kullback-Leibler divergence<a class="headerlink" href="#the-kullback-leibler-divergence" title="Permalink to this headline">¶</a></h3>
+<h4>The Kullback-Leibler divergence<a class="headerlink" href="#the-kullback-leibler-divergence" title="Permalink to this headline">¶</a></h4>
 <p>The KL divergence is a numeric measure of the difference between two distributions. For two probability distributions <span class="math notranslate nohighlight">\(q(\boldsymbol{w})\)</span> and <span class="math notranslate nohighlight">\(p(\boldsymbol{w})\)</span>, the KL divergence in a continuous case,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -581,7 +587,7 @@ D_\mathrm{KL}(q||p) = \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\
 <!-- !split -->
 </div>
 <div class="section" id="evidence-lower-bound">
-<h3>Evidence Lower Bound<a class="headerlink" href="#evidence-lower-bound" title="Permalink to this headline">¶</a></h3>
+<h4>Evidence Lower Bound<a class="headerlink" href="#evidence-lower-bound" title="Permalink to this headline">¶</a></h4>
 <p>Let us rewrite the posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span> using Bayes theorem</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -592,8 +598,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 + \log \, p(\mathcal{D}).
 \end{align*}\]</div>
 <p>Note that the logarithm of the last term has no dependence on <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> and the integration of <span class="math notranslate nohighlight">\(q\)</span> will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the <strong>Evidence Lower Bound</strong> (ELBO)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-511322c4-8489-4299-81d3-357ab417a0cf">
-<span class="eqno">(37.2)<a class="headerlink" href="#equation-511322c4-8489-4299-81d3-357ab417a0cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3414a36e-5e0e-465b-82f7-9337c724c037">
+<span class="eqno">(37.2)<a class="headerlink" href="#equation-3414a36e-5e0e-465b-82f7-9337c724c037" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log \, p(\mathcal{D}) \ge 
 - \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
@@ -611,12 +617,12 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 </div>
 </div>
 <div class="section" id="bayesian-neural-networks-in-pymc3">
-<h2><span class="section-number">37.5. </span>Bayesian neural networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h2>
+<h3>Bayesian neural networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h3>
 <p>In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the <strong>Automatic Differentation Variational Inference</strong> (ADVI) approach, described e.g. in <a class="reference external" href="https://arxiv.org/abs/1506.03431">Automatic Variational Inference in Stan</a>.</p>
 <!-- <img src="fig/BNN/ADVI-classifier_ELBO.png" width=500><p><em>The training of the Bayesian binary classifier, that employs ADVI implemented in `pymc3`, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).</em></p> -->
-<p><img alt="The training of the Bayesian binary classifier, that employs ADVI implemented in , corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO)." src="content/MachineLearning/BNN/fig/BNN/ADVI-classifier_ELBO.png" /></p>
+<p><img alt="The training of the Bayesian binary classifier, that employs ADVI implemented in , corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO)." src="../../../_images/ADVI-classifier_ELBO.png" /></p>
 <!-- <img src="fig/BNN/ADVI-classifier.png" width=800><p><em>The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.</em></p> -->
-<p><img alt="The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in . The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown." src="content/MachineLearning/BNN/fig/BNN/ADVI-classifier.png" /></p>
+<p><img alt="The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in . The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown." src="../../../_images/ADVI-classifier.png" /></p>
 <p>See also</p>
 <ul class="simple">
 <li><p>Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). <em>Automatic Differentiation Variational Inference</em>. arXiv preprint arXiv:”1603.00788”: ‘https://arxiv.org/abs/1603.00788”.</p></li>
@@ -624,11 +630,11 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 <!-- !split -->
 </div>
 <div class="section" id="bayes-by-backprop">
-<h2><span class="section-number">37.6. </span>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h2>
+<h3>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h3>
 <p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
 <p>All three terms in equation (<a class="reference external" href="#eq:elbo">eq:elbo</a>) are expectations w.r.t. the variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>. In this paper they use the variational free energy <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> as a cost function (since it should be <em>minimized</em>). This quantity can be approximated by drawing <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> samples <span class="math notranslate nohighlight">\(\boldsymbol{w}^{(i)}\)</span> from <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49c6a292-a22d-40ee-93bd-6df750f83ebe">
-<span class="eqno">(37.3)<a class="headerlink" href="#equation-49c6a292-a22d-40ee-93bd-6df750f83ebe" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-97872be8-560c-423b-99bb-065f9398ca24">
+<span class="eqno">(37.3)<a class="headerlink" href="#equation-97872be8-560c-423b-99bb-065f9398ca24" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
 \log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
 \log \, p(\boldsymbol{w}^{(i)}) -
@@ -638,11 +644,12 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 <p>In the example used in the blog post, they use a Gaussian distribution for the variational posterior, parameterized by <span class="math notranslate nohighlight">\(\boldsymbol{\theta} = (\boldsymbol{\mu}, \boldsymbol{\sigma})\)</span> where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the mean vector of the distribution and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> the standard deviation vector. The elements of <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> are the elements of a diagonal covariance matrix which means that weights are assumed to be uncorrelated. Instead of parameterizing the neural network with weights <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> directly, it is parameterized with <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> and therefore the number of parameters are doubled compared to a plain neural network.</p>
 <!-- !split -->
 <div class="section" id="network-training">
-<h3>Network training<a class="headerlink" href="#network-training" title="Permalink to this headline">¶</a></h3>
+<h4>Network training<a class="headerlink" href="#network-training" title="Permalink to this headline">¶</a></h4>
 <p>A training iteration consists of a forward-pass and and backward-pass. During a forward pass a single sample is drawn from the variational posterior distribution. It is used to evaluate the approximate cost function defined by equation (<a class="reference external" href="#eq:VariationalFreeEnergy">eq:VariationalFreeEnergy</a>). The first two terms of the cost function are data-independent and can be evaluated layer-wise, the last term is data-dependent and is evaluated at the end of the forward-pass. During a backward-pass, gradients of <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> are calculated via backpropagation so that their values can be updated by an optimizer.</p>
 <p>Since a forward pass involves a stochastic sampling step we have to apply the so-called <em>re-parameterization trick</em> for backpropagation to work. The trick is to sample from a parameter-free distribution and then transform the sampled <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> with a deterministic function <span class="math notranslate nohighlight">\(t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon})\)</span> for which a gradient can be defined. In the blog post they choose <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> to be drawn from a standard normal distribution i.e. <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{I})\)</span> and the function <span class="math notranslate nohighlight">\(t\)</span> is taken to be <span class="math notranslate nohighlight">\(t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon}) = \boldsymbol{\mu} + \boldsymbol{\sigma} \odot \boldsymbol{\epsilon}\)</span>, i.e., it shifts the sample by mean <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and scales it with <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> where <span class="math notranslate nohighlight">\(\odot\)</span> is element-wise multiplication.</p>
 <p>For numerical stability the network is parametrized with <span class="math notranslate nohighlight">\(\boldsymbol{\rho}\)</span> instead of <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\rho}\)</span> is transformed with the softplus function to obtain <span class="math notranslate nohighlight">\(\boldsymbol{\sigma} = \log(1 + \exp(\boldsymbol{\rho}))\)</span>. This ensures that <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> is always positive. As prior, a scale mixture of two Gaussians is used <span class="math notranslate nohighlight">\(p(\boldsymbol{w}) = \pi \mathcal{N}(\boldsymbol{w} \lvert 0,\sigma_1^2) + (1 - \pi) \mathcal{N}(\boldsymbol{w} \lvert 0,\sigma_2^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_1\)</span>, <span class="math notranslate nohighlight">\(\sigma_2\)</span> and <span class="math notranslate nohighlight">\(\pi\)</span> are shared parameters. Their values are learned during training (which is in contrast to the paper where a fixed prior is used).</p>
 <p>See Martin Krasser’s <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> for results and further details.</p>
+</div>
 </div>
 </div>
 </div>

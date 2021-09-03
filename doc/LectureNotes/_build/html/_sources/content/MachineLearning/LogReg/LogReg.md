@@ -31,7 +31,7 @@ binary outcome, true or false, positive or negative, success or
 failure etc.
 
 <!-- !split -->
-### Optimization and Deep learning
+## Optimization and Deep learning
 
 Logistic regression will also serve as our stepping stone towards
 neural network algorithms and supervised deep learning. For logistic
@@ -49,7 +49,7 @@ models, as we will see later.
 
 
 <!-- !split  -->
-### Basics and notation
+## Basics and notation
 
 We consider the case where the dependent variables (also called the
 responses, targets, or outcomes) are discrete and only take values
@@ -149,7 +149,7 @@ where the so called *activation* $a = a(\boldsymbol{x}; \boldsymbol{w})$.
 ### Standard activation functions
 
 <!-- <img src="fig/LogReg/logistic_functions.png" width=600><p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p> -->
-![<p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p>](fig/LogReg/logistic_functions.png)
+![<p><em>The sigmoid, step,and (normalized) tanh functions; three common classifier functions used in classification and neural networks. <div id="fig:logistic"></div></em></p>](./figs/logistic_functions.png)
 
 <!-- !split -->
 ### A binary classifier with two parameters
@@ -352,7 +352,7 @@ and the model is specified in term of $K-1$ so-called log-odds or **logit** tran
 
 
 <!-- !split -->
-#### Class probabilities: The Softmax function
+### Class probabilities: The Softmax function
 
 The transformation of the multiple outputs, as described above, to probabilities for belonging to any of $K$ different classes can be achieved via the so-called *Softmax* function.
 

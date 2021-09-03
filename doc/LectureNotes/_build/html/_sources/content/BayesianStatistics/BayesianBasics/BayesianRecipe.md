@@ -97,17 +97,17 @@ A sensible way of formulating this problem is to consider a large number of hypo
 Let us perform a computer simulation of a coin-tossing experiment. This provides the data that we will be analysing.
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 import numpy as np
 import matplotlib.pyplot as plt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.Python}
+```python
 np.random.seed(999)         # for reproducibility
 pH=0.6                       # biased coin
 flips=np.random.rand(2**12) # simulates 4096 coin flips
 heads=flips<pH              # boolean array, heads[i]=True if flip i is heads
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 <!-- !split -->
 In the light of this data, our inference about the fairness of this coin is summarized by the conditional pdf: $p(p_H|D,I)$. This is, of course, shorthand for the limiting case of a continuum of propositions for the value of $p_H$; that is to say, the probability that $p_H$ lies in an infinitesimally narrow range is given by $p(p_H|D,I) dp_H$. 
@@ -131,7 +131,7 @@ p(p_H|I) = \left\{ \begin{array}{ll}
 We will get back later to the choice of prior and its effect on the analysis.
 
 <!-- !split -->
-This prior state of knowledge, or ignorance, is modified by the data through the likelihood function $p(D|p_H,I)$. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information $I$, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data `H heads in N tosses' is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
+This prior state of knowledge, or ignorance, is modified by the data through the likelihood function $p(D|p_H,I)$. It is a measure of the chance that we would have obtained the data that we actually observed, if the value of the bias-weighting was given (as known). If, in the conditioning information $I$, we assume that the flips of the coin were independent events, so that the outcome of one did not influence that of another, then the probability of obtaining the data "H heads in N tosses" is given by the binomial distribution (we leave a formal definition of this to a statistics textbook)
 
 \begin{equation}
 p(D|p_H,I) \propto p_H^H (1-p_H)^{N-H}.
@@ -179,7 +179,7 @@ for col in range(3): axs[-1,col].set_xlabel('$p_H$')
 
 <!-- !split -->
 <!-- <img src="fig/BayesianRecipe/coinflipping_fig_1.png" width=500><p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p> -->
-![<p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p>](fig/BayesianRecipe/coinflipping_fig_1.png)
+![<p><em>The evolution of the posterior pdf for the bias-weighting of a coin, as the number of data available increases. The figure on the top left-hand corner of each panel shows the number of data included in the analysis. <div id="fig:coinflipping"></div></em></p>](./figs/coinflipping_fig_1.png)
 
 <!-- !split -->
 The panel in the top left-hand corner shows the posterior pdf for $p_H$ given no data, i.e., it is the same as the prior pdf of Eq. ([eq:coin_prior_uniform](#eq:coin_prior_uniform)). It indicates that we have no more reason to believe that the coin is fair than we have to think that it is double-headed, double-tailed, or of any other intermediate bias-weighting.

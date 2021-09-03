@@ -19,13 +19,8 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 # ### Meet the Pandas
 # 
-# <!-- dom:FIGURE: [fig/pandas.jpg, width=600 frac=0.8] -->
-# <!-- begin figure -->
-# 
 # <p></p>
-# <img src="./figs/pandas.jpg" width=600>
-# 
-# <!-- end figure -->
+# <img src="figs/pandas.jpg" width=600>
 # 
 # 
 # [Pandas](https://pandas.pydata.org/) is a very useful Python package for reading and organizing data. It is an open source library

@@ -1,5 +1,5 @@
 <!-- !split -->
-## The principle of maximum entropy
+# The principle of maximum entropy
 
 Having dealt with ignorance, let us move on to more enlightened situations.
 
@@ -34,7 +34,7 @@ $$
 where the constraints are included via the method of [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).
 
 <!-- !split -->
-### The entropy of Scandinavians
+## The entropy of Scandinavians
 
 Let's consider another pdf assignment problem. This is originally the *kangaroo problem* (Gull and Skilling, 1984), but translated here into a local context. The problem is stated as follows:
 
@@ -73,7 +73,7 @@ can be written in terms of a single variable $x$ due to the normalization condit
 But which choice of $x$ is preferred?
 
 <!-- !split -->
-### The monkey argument
+## The monkey argument
 
 The monkey argument is a model for assigning probabilities to $M$ different alternatives that satisfy some constraint as described by $I$: 
 * Monkeys throwing $N$ balls into $M$ equally sized boxes.
@@ -139,7 +139,7 @@ $$
 You might recognise this quantity as the *entropy* from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty, which remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied $S = -k_B \sum_i p_i \log(p_i)$, where $k_B$ is the Boltzmann constant.
 
 <!-- !split -->
-#### Why maximize the entropy?
+## Why maximize the entropy?
 
 * Information theory: maximum entropy=minimum information (Shannon, 1948).
 * Logical consistency (Shore & Johnson, 1960).
@@ -167,10 +167,10 @@ Let us now empirically consider a few variational functions of $\{ p_i \}$ and s
 The assignment based on the entropy measure is the only one that respects this lack of correlations.
 
 <!-- <img src="fig/MaxEnt/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
-![<p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p>](fig/MaxEnt/scandinavian_entropy.png)
+![<p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p>](./figs/scandinavian_entropy.png)
 
 <!-- !split -->
-#### Continuous case
+### Continuous case
 
 Return to monkeys, but now with different probabilities for each bin.Then
 
@@ -196,14 +196,14 @@ $$
 * However, there are situations where other assignments for $m$ represent the most ignorance. For example, in counting experiments one might assign $m(N) = M^N / N!$ for the number of observed events $N$ and a very large number of intervals $M$.
 
 <!-- !split -->
-### Derivation of common pdfs using MaxEnt
+## Derivation of common pdfs using MaxEnt
 
 The principle of maximum entropy (MaxEnt) allows incorporation of further information, e.g. constraints on the mean, variance, etc, into the assignment of probability distributions.
 
 In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and generates smooth functions.
 
 <!-- !split -->
-#### Mean and the Exponential pdf
+### Mean and the Exponential pdf
 
 Suppose that we have a pdf $p(x|I)$ that is normalized over some interval $[ x_\mathrm{min}, x_\mathrm{max}]$. Assume that we have information about its mean value, i.e.,
 
@@ -271,7 +271,7 @@ p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].
 $$
 
 <!-- !split -->
-#### Variance and the Gaussian pdf
+### Variance and the Gaussian pdf
 
 Suppose that we have information not only on the mean $\mu$ but also on the variance
 
@@ -315,7 +315,7 @@ If we had convincing information about the covariance $\left\langle \left( x_i -
 
 
 <!-- !split -->
-#### Counting statistics and the Poisson distribution
+### Counting statistics and the Poisson distribution
 
 The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.
 

@@ -1,7 +1,7 @@
 <!-- !split -->
-## Why Bayes is Better
+# Why Bayes is Better
 
-#### Quotes from one pioneering and one renaissance Bayesian authority
+## Quotes from one pioneering and one renaissance Bayesian authority
 
 ```{epigraph}
 > *"Probability theory is nothing but common sense reduced to calculation."*
@@ -17,7 +17,7 @@
 
 
 <!-- !split -->
-### Advantages of the Bayesian approach
+## Advantages of the Bayesian approach
 <!-- !bpop -->
 1. Provides an elegantly simple and rational approach for answering, in an optimal way, any scientific question for a given state of information. This contrasts to the recipe or cookbook approach of conventional statistical analysis. The procedure is well-defined:
    * Clearly state your question and prior information.
@@ -36,23 +36,23 @@
 The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.
 
 <!-- !split -->
-#### Occam's razor
+### Occam's razor
 
 Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to "shave off" those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.
 
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/Leprechaun_or_Clurichaun.png" width=500><p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p> -->
-![<p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p>](fig/ErrorPropagation/Leprechaun_or_Clurichaun.png)
+![<p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p>](./figs/Leprechaun_or_Clurichaun.png)
 
 <!-- !split -->
-### Nuisance parameters
+## Nuisance parameters
 
-#### Nuisance parameters (I): Bayesian Billiard
+### Nuisance parameters (I): Bayesian Billiard
 
 See demonstration notebook: A Bayesian Billiard game
 
 <!-- !split -->
-#### Nuisance parameters (II): marginal distributions
+### Nuisance parameters (II): marginal distributions
 
 Assume that we have a model with two parameters, $\theta_0,\theta_1$, although only one of them (say $\theta_1$) is of physical relevance (the other one is them labeled a nuisance parameter). Through a Bayesian data analysis we have the joint, posterior pdf
 
@@ -75,9 +75,9 @@ Assume that we have $N$ samples from the joint pdf. This might be the Markov Cha
 See the interactive demos created by Chi Feng for an illustration of this: [The Markov-chain Monte Carlo Interactive Gallery](https://chi-feng.github.io/mcmc-demo/).
 
 <!-- !split -->
-### Error propagation
+## Error propagation
 
-#### Error propagation (I): marginalization
+### Error propagation (I): marginalization
 
 The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example \n
 
@@ -115,7 +115,7 @@ where we have used a uniform prior for the distance $p(x|I) \propto 1$.
 
 
 <!-- !split -->
-#### Error propagation (II): changing variables and prior information
+### Error propagation (II): changing variables and prior information
 
 (Based on Sivia, ch 3.6.)
 
@@ -165,7 +165,7 @@ We have now seen the basic ingredients required for the propagation of errors: i
 
 
 <!-- !split -->
-#### A useful short cut
+### A useful short cut
 
 For practical purposes, we are often satisfied to approximate pdfs with Gaussians. Within such limits there is an easier method that is often used for error propagation. Note, however, that there are instances when this method fails miserably as will be shown in the example further down.
 
@@ -237,7 +237,7 @@ Despite its virtues, let us end our discussion of error-propagation with a salut
 
 
 <!-- !split -->
-#### Example: Taking the square root of a number
+### Example: Taking the square root of a number
 
 (Example 3.6.2 in Sivia)
 
@@ -353,13 +353,13 @@ for (A0,sigA) in [(9,1),(1,9),(-20,9)]:
 
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_9_1.png" width=700><p><em>The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor $f=\sqrt{A}$. The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation.</em></p> -->
-![<p><em>The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor $f=\sqrt{A}$. The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation.</em></p>](fig/ErrorPropagation/error_square_root_9_1.png)
+![<p><em>The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor $f=\sqrt{A}$. The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation.</em></p>](./figs/error_square_root_9_1.png)
 
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_1_9.png" width=700> -->
-![](fig/ErrorPropagation/error_square_root_1_9.png)
+![](./figs/error_square_root_1_9.png)
 
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_-20_9.png" width=700> -->
-![](fig/ErrorPropagation/error_square_root_-20_9.png)
+![](./figs/error_square_root_-20_9.png)
 

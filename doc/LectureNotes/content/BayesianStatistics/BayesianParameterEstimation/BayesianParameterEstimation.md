@@ -1,6 +1,6 @@
 <!-- !split -->
 <!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
-![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](fig/BayesianParameterEstimation/m1m2.png)
+![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](./figs/m1m2.png)
 
 <!-- !split -->
 # Inference With Parametric Models
@@ -114,7 +114,7 @@ ax.set_xlabel("Flux");ax.set_ylabel("measurement number");
 ```
 
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_1.png" width=400><p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p> -->
-![<p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_1.png)
+![<p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p>](./figs/singlephotoncount_fig_1.png)
 
 These measurements each have a different error $e_i$ which is estimated from Poisson statistics using the standard square-root rule. In this toy example we know the true flux that was used to generate the data, but the question is this: given our measurements and statistical model, what is our best estimate of $F_\mathrm{true}$?
 
@@ -260,7 +260,7 @@ ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$');
 ```
 
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
-![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](fig/BayesianParameterEstimation/singlephotoncount_fig_2.png)
+![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](./figs/singlephotoncount_fig_2.png)
 
 <!-- !split -->
 ### Aside: Best estimates and credible intervals

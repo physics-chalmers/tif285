@@ -491,7 +491,7 @@
                 
   <!-- !split -->
 <!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
-<p><img alt="Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. " src="content/BayesianStatistics/BayesianParameterEstimation/fig/BayesianParameterEstimation/m1m2.png" /></p>
+<p><img alt="Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. " src="../../../_images/m1m2.png" /></p>
 <!-- !split -->
 <div class="section" id="inference-with-parametric-models">
 <h1><span class="section-number">15. </span>Inference With Parametric Models<a class="headerlink" href="#inference-with-parametric-models" title="Permalink to this headline">¶</a></h1>
@@ -580,51 +580,51 @@ The question is, given this set of measurements <span class="math notranslate no
 </pre></div>
 </div>
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_1.png" width=400><p><em>Single photon counts (flux measurements). <div id="fig:flux"></div></em></p> -->
-<p><img alt="Single photon counts (flux measurements). " src="content/BayesianStatistics/BayesianParameterEstimation/fig/BayesianParameterEstimation/singlephotoncount_fig_1.png" /></p>
+<p><img alt="Single photon counts (flux measurements). " src="../../../_images/singlephotoncount_fig_1.png" /></p>
 <p>These measurements each have a different error <span class="math notranslate nohighlight">\(e_i\)</span> which is estimated from Poisson statistics using the standard square-root rule. In this toy example we know the true flux that was used to generate the data, but the question is this: given our measurements and statistical model, what is our best estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>?</p>
 <p>Let’s take a look at the frequentist and Bayesian approaches to solving this.</p>
 <div class="section" id="simple-photon-counts-frequentist-approach">
 <h3>Simple Photon Counts: Frequentist Approach<a class="headerlink" href="#simple-photon-counts-frequentist-approach" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist maximum likelihood approach. Given a single observation <span class="math notranslate nohighlight">\(D_i = F_i\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and our assumption of Gaussian errors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e638c0ea-6fac-4e5c-a561-db9a2460bc15">
-<span class="eqno">(15.1)<a class="headerlink" href="#equation-e638c0ea-6fac-4e5c-a561-db9a2460bc15" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-56279af5-a95e-46f5-803f-c6a0fbd2b4bf">
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-56279af5-a95e-46f5-803f-c6a0fbd2b4bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}\]</div>
 <p>This should be read “the probability of <span class="math notranslate nohighlight">\(D_i\)</span> given <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>
 equals …”. You should recognize this as a normal distribution with mean <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>.</p>
 <p>We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ad4a714-8f35-4fe3-8671-5c1605cc35ee">
-<span class="eqno">(15.2)<a class="headerlink" href="#equation-3ad4a714-8f35-4fe3-8671-5c1605cc35ee" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b1894a16-27e0-488e-ba30-40f1972787ba">
+<span class="eqno">(15.2)<a class="headerlink" href="#equation-b1894a16-27e0-488e-ba30-40f1972787ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}\]</div>
 <p>here <span class="math notranslate nohighlight">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.</p>
 <p><em>Notice.</em>
 In the following we will use <span class="math notranslate nohighlight">\(\log\)</span> to denote the natural logarithm. We will write <span class="math notranslate nohighlight">\(\log_{10}\)</span> if we specifically mean the logarithm with base 10.</p>
 <p>Combining the previous two equations and computing the log, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67b835de-1e71-49f8-ba73-eff7eec87813">
-<span class="eqno">(15.3)<a class="headerlink" href="#equation-67b835de-1e71-49f8-ba73-eff7eec87813" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1e36aba-a46c-4174-af1f-68981e099f39">
+<span class="eqno">(15.3)<a class="headerlink" href="#equation-f1e36aba-a46c-4174-af1f-68981e099f39" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}\]</div>
 <p>In this approach we will determine <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1211df8e-46a1-4281-a72a-f18c7da2db23">
-<span class="eqno">(15.4)<a class="headerlink" href="#equation-1211df8e-46a1-4281-a72a-f18c7da2db23" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5cbc43d4-a9ad-4f86-aa4a-014253e2a3d6">
+<span class="eqno">(15.4)<a class="headerlink" href="#equation-5cbc43d4-a9ad-4f86-aa4a-014253e2a3d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}\]</div>
 <p>which you should recognize as the chi-squared function encountered in the linear regression model.</p>
 <p>Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting <span class="math notranslate nohighlight">\(d\log\mathcal{L}/d F_\mathrm{true} = 0\)</span>). This results in the following observed estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f500c1b-f3fa-4136-84b0-0e5770e35b74">
-<span class="eqno">(15.5)<a class="headerlink" href="#equation-8f500c1b-f3fa-4136-84b0-0e5770e35b74" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-edd4f3a2-61ee-4ba8-ad3b-4757503bdf7c">
+<span class="eqno">(15.5)<a class="headerlink" href="#equation-edd4f3a2-61ee-4ba8-ad3b-4757503bdf7c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}\]</div>
 <p>Notice that in the special case of all errors <span class="math notranslate nohighlight">\(e_i\)</span> being equal, this reduces to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d145d347-fcc8-44e4-b074-0dbc69a03ce4">
-<span class="eqno">(15.6)<a class="headerlink" href="#equation-d145d347-fcc8-44e4-b074-0dbc69a03ce4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ac64815-f7ce-4c9e-b3fd-e4d1865a23c6">
+<span class="eqno">(15.6)<a class="headerlink" href="#equation-0ac64815-f7ce-4c9e-b3fd-e4d1865a23c6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}\]</div>
 <p>That is, in agreement with intuition, <span class="math notranslate nohighlight">\(F_\mathrm{est}\)</span> is simply the mean of the observed data when errors are equal.</p>
 <p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is <span class="math notranslate nohighlight">\(\sigma_\mathrm{est}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f886a462-3907-4947-af75-061b235fde56">
-<span class="eqno">(15.7)<a class="headerlink" href="#equation-f886a462-3907-4947-af75-061b235fde56" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68526da7-9589-40a8-8c25-3a25b250cc84">
+<span class="eqno">(15.7)<a class="headerlink" href="#equation-68526da7-9589-40a8-8c25-3a25b250cc84" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}\]</div>
 <p>These results are fairly simple calculations; let’s evaluate them for our toy dataset:</p>
@@ -694,7 +694,7 @@ To perform this MCMC, we start by defining Python functions for the prior <span 
 </pre></div>
 </div>
 <!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
-<p><img alt="Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. " src="content/BayesianStatistics/BayesianParameterEstimation/fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" /></p>
+<p><img alt="Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. " src="../../../_images/singlephotoncount_fig_2.png" /></p>
 <!-- !split -->
 </div>
 <div class="section" id="aside-best-estimates-and-credible-intervals">
@@ -706,8 +706,8 @@ To perform this MCMC, we start by defining Python functions for the prior <span 
 <h4>Symmetric posterior pdfs<a class="headerlink" href="#symmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h4>
 <p>Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by <span class="math notranslate nohighlight">\(\theta\)</span>, with a posterior pdf <span class="math notranslate nohighlight">\(P =p(\theta|D,I)\)</span>, then the best estimate of its value <span class="math notranslate nohighlight">\(\theta_0\)</span> is given by the condition <span class="math notranslate nohighlight">\(dP/d\theta|_{\theta=\theta_0}=0\)</span>. Strictly speaking, we should also check the sign of the second derivative to ensure that <span class="math notranslate nohighlight">\(\theta_0\)</span> represents a maximum.</p>
 <p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78fd2435-defc-4a4a-918a-1e023394db88">
-<span class="eqno">(15.8)<a class="headerlink" href="#equation-78fd2435-defc-4a4a-918a-1e023394db88" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c4c8269-5439-4d3a-a3b8-4b9f409b19f0">
+<span class="eqno">(15.8)<a class="headerlink" href="#equation-7c4c8269-5439-4d3a-a3b8-4b9f409b19f0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}\]</div>
 <p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>

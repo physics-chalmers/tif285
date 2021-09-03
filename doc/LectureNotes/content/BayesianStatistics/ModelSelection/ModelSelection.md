@@ -56,7 +56,7 @@ $$
 
 <!-- !split -->
 <!-- <img src="fig/ModelSelection/gregory_7_2.png" width=600><p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p> -->
-![<p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p>](fig/ModelSelection/gregory_7_2.png)
+![<p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p>](./figs/gregory_7_2.png)
 
 
 <!-- !split -->
@@ -117,7 +117,7 @@ p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0
 The assignments of the prior ([eq:sivia_44](#eq:sivia_44)) and the likelihood ([eq:sivia_45](#eq:sivia_45)) are illustrated in Fig. [fig:sivia_41](#fig:sivia_41). We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.
 
 <!-- <img src="fig/ModelSelection/fig41.png" width=500><p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p> -->
-![<p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p>](fig/ModelSelection/fig41.png)
+![<p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p>](./figs/fig41.png)
 
 In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. ([eq:sivia_43](#eq:sivia_43))
 

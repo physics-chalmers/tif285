@@ -257,7 +257,7 @@ approximation to the true value. It is then always accompanied by an
 error estimate, often limited to a statistical error estimate. For now, we
 will treat $y_i$ as our exact value for the response variable.
 
-In order to find the parameters $\theta_i$ we will then minimize the spread of $C(\boldsymbol{\theta})$, that is we are going to solve the problem
+In order to find the parameters $\theta_i$ we will then minimize $C(\boldsymbol{\theta})$, that is we are going to solve the problem
 \begin{equation*}
 {\displaystyle \min_{\boldsymbol{\theta}\in
 {\mathbb{R}}^{p}}}\frac{1}{n}\left\{\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)^T\left(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\theta}\right)\right\}.

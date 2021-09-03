@@ -463,19 +463,22 @@
 <!-- !split -->
 <div class="section" id="inference">
 <h2><span class="section-number">1.1. </span>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h2>
-<p>Inference:
-:<br />
-“the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former” (Webster) \n
-Do premises <span class="math notranslate nohighlight">\(A, B, \ldots \Rightarrow\)</span> hypothesis, <span class="math notranslate nohighlight">\(H\)</span>?
-Deductive inference:
-:<br />
-Premises allow definite determination of truth/falsity of <span class="math notranslate nohighlight">\(H\)</span> (Boolean algebra) \n
-<span class="math notranslate nohighlight">\(p(H|A,B,...) = 0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>
-Inductive inference:
-:<br />
-Premises bear on truth/falsity of <span class="math notranslate nohighlight">\(H\)</span>, but don’t allow its definite determination\n
-<span class="math notranslate nohighlight">\(A, B, C, D\)</span> share properties <span class="math notranslate nohighlight">\(x, y, z\)</span>; <span class="math notranslate nohighlight">\(E\)</span> has properties <span class="math notranslate nohighlight">\(x, y\)</span>\n
+<div class="admonition-inference admonition">
+<p class="admonition-title">Inference</p>
+<p><em>“the act of passing from one proposition, statement or judgment considered as true to another whose truth is believed to follow from that of the former”</em> (Webster)<br/>
+Do premises <span class="math notranslate nohighlight">\(A, B, \ldots \Rightarrow\)</span> hypothesis, <span class="math notranslate nohighlight">\(H\)</span>?</p>
+</div>
+<div class="admonition-deductive-inference admonition">
+<p class="admonition-title">Deductive inference</p>
+<p>Premises allow definite determination of truth/falsity of <span class="math notranslate nohighlight">\(H\)</span> (Boolean algebra)<br/>
+<span class="math notranslate nohighlight">\(p(H|A,B,...) = 0\)</span> or <span class="math notranslate nohighlight">\(1\)</span></p>
+</div>
+<div class="admonition-inductive-inference admonition">
+<p class="admonition-title">Inductive inference</p>
+<p>Premises bear on truth/falsity of <span class="math notranslate nohighlight">\(H\)</span>, but don’t allow its definite determination<br/>
+<span class="math notranslate nohighlight">\(A, B, C, D\)</span> share properties <span class="math notranslate nohighlight">\(x, y, z\)</span>; <span class="math notranslate nohighlight">\(E\)</span> has properties <span class="math notranslate nohighlight">\(x, y\)</span><br/>
 <span class="math notranslate nohighlight">\(\Rightarrow E\)</span> probably has property <span class="math notranslate nohighlight">\(z\)</span>.</p>
+</div>
 <!-- !split -->
 <p>In the natural sciences, data is often a finite set of measurements while the process of learning is usually achieved by confronting that data with scientific theories and models. The conclusion might ultimately be falsification of an hypothesis underlying a theory or a model. However, it will not be an ultimate determination of the truth of an hypothesis. More commonly, the conclusion might be an improved model that can be used for predictions of new phenomena. Thus, we are typically dealing with inductive inference.</p>
 <p>This process of learning from data is fundamental to the scientific wheel of progress.
@@ -657,34 +660,44 @@ solely from rewards and punishment.</p>
 <p>Another way to categorize machine learning tasks is to consider the
 desired output of a system. What kind of inference are you hoping to see in your data? Is the aim to classify a result into categories, to predict a continuous value, or to simply observe patterns within the data? Let’s briefly introduce each class:</p>
 <!-- !split -->
-<p>Classification algorithms:
-:<br />
-are used to predict whether a dataset’s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.</p>
+<div class="admonition-classification-algorithms admonition">
+<p class="admonition-title">Classification algorithms</p>
+<p>are used to predict whether a dataset’s outputs can be separated into separate classes, binary or otherwise. These output values are discrete and represent target classes. An example is to identify  digits based on pictures of hand-written ones. Classification algorithms undergo supervised training, which means they require labelled true output data in order to measure prediction accuracy.</p>
+</div>
 <!-- !split -->
-<p>Clustering algorithms:
-:<br />
-can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don’t require output labels, making them unsupervised algorithms.</p>
+<div class="admonition-clustering-algorithms admonition">
+<p class="admonition-title">Clustering algorithms</p>
+<p>can also be used for classification or simply to observe data patterns. By observing how the data is arranged within the feature space, clustering algorithms can utilize physical separation to create clusters. As such, some algorithms of this class don’t require output labels, making them unsupervised algorithms.</p>
+</div>
 <!-- !split -->
-<p>Dimensionality reduction algorithms:
-:<br />
-focuses on decreasing the number of features from your dataset, preventing your models from “overfitting” or generalizing on previously unseen data. They are also unsupervised.</p>
+<div class="admonition-dimensionality-reduction-algorithms admonition">
+<p class="admonition-title">Dimensionality reduction algorithms</p>
+<p>focuses on decreasing the number of features from your dataset, preventing your models from “overfitting” or generalizing on previously unseen data. They are also unsupervised.</p>
+</div>
 <!-- !split -->
-<p>Regression algorithms:
-:<br />
-Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.</p>
+<div class="admonition-regression-algorithms admonition">
+<p class="admonition-title">Regression algorithms</p>
+<p>Finding a functional relationship between an input data set and a reference data set. The goal is to construct a function that maps input data to continuous output values. These algorithms also require labelled true output data in order to measure prediction accuracy.</p>
+</div>
 <!-- !split -->
 <p>In the natural sciences, where we often confront scientific models with observations, there is certainly a large interest in regression algorithms. However, there are also many examples where other classes of machine-learning algorithms are being used.</p>
 <!-- !split -->
 <p>All methods have three main ingredients in common, irrespective of whether we deal with supervised or unsupervised learning.</p>
-<p>Data set:
-:<br />
-The first, and most important, one is normally our data set (which can be subdivided into training and test data).
-Model:
-:<br />
-The second item is a model, which is normally a function of some parameters. The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determine our model.
-Cost function:
-:<br />
-The last ingredient is a so-called cost function, which allows us to present an estimate on how good our model is in reproducing the data it is supposed to describe.</p>
+<!-- !split -->
+<div class="admonition-data-set admonition">
+<p class="admonition-title">Data set</p>
+<p>The first, and most important, one is normally our data set (which can be subdivided into training and test data).</p>
+</div>
+<!-- !split -->
+<div class="admonition-model admonition">
+<p class="admonition-title">Model</p>
+<p>The second item is a model, which is normally a function of some parameters. The model reflects our knowledge of the system (or lack thereof). As an example, if we know that our data show a behavior similar to what would be predicted by a polynomial, fitting our data to a polynomial of some degree would then determine our model.</p>
+</div>
+<!-- !split -->
+<div class="admonition-cost-function admonition">
+<p class="admonition-title">Cost function</p>
+<p>The last ingredient is a so-called cost function, which allows us to present an estimate on how good our model is in reproducing the data it is supposed to describe.</p>
+</div>
 <!-- !split -->
 </div>
 <div class="section" id="choice-of-programming-language">

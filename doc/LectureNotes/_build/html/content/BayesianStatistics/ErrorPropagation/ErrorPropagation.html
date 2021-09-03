@@ -135,6 +135,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   8. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
    9. Linear Regression and Model Validation demonstration
   </a>
@@ -501,7 +506,7 @@
 <p>Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to “shave off” those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.</p>
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/Leprechaun_or_Clurichaun.png" width=500><p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p> -->
-<p><img alt="Did the Leprechaun drink your wine, or is there a simpler explanation?" src="content/BayesianStatistics/ErrorPropagation/fig/ErrorPropagation/Leprechaun_or_Clurichaun.png" /></p>
+<p><img alt="Did the Leprechaun drink your wine, or is there a simpler explanation?" src="../../../_images/Leprechaun_or_Clurichaun.png" /></p>
 <!-- !split -->
 </div>
 </div>
@@ -534,8 +539,8 @@
 <p><strong>Inferring galactic distances with an imprecise knowledge of the Hubble constant</strong>
 The Hubble constant acts as a galactic ruler as it is used to measure astronomical distances according to <span class="math notranslate nohighlight">\(v = H_0 x\)</span>. An error in this ruler will therefore correspond to a systematic uncertainty in such measurements.</p>
 <p>Here we use marginalization to obtain the desired posterior pdf <span class="math notranslate nohighlight">\(p(x|D,I)\)</span> from the joint distribution of <span class="math notranslate nohighlight">\(p(x,H_0|D,I)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebb1ad07-acfe-49d9-ac21-2d534de49408">
-<span class="eqno">(20.1)<a class="headerlink" href="#equation-ebb1ad07-acfe-49d9-ac21-2d534de49408" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ab21194-04c0-4223-8de3-eb3195210ad9">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-8ab21194-04c0-4223-8de3-eb3195210ad9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \label{eq:marginalization}
 \end{equation}\]</div>
@@ -566,16 +571,16 @@ p(x|D,I) = \int_{-\infty}^\infty dH_0 p(x,H_0|D,I).
 \[p(X=X^*|I) \delta X = p(Y=Y^*|I) \delta Y.\]</div>
 <!-- !split -->
 <p>In the limit of infinitesimally small intervals, and with the realization that this should be true for any point <span class="math notranslate nohighlight">\(X\)</span>, we obtain the relationship</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6499d6a9-4ecf-4f61-9ce5-a3e0594e622f">
-<span class="eqno">(20.2)<a class="headerlink" href="#equation-6499d6a9-4ecf-4f61-9ce5-a3e0594e622f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5ed19602-ecb6-4d97-aea8-a3f9e5c688f6">
+<span class="eqno">(20.2)<a class="headerlink" href="#equation-5ed19602-ecb6-4d97-aea8-a3f9e5c688f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(X|I) = p(Y=Y|I) \left| \frac{dY}{dX} \right|,
 \label{eq:transformation}
 \end{equation}\]</div>
 <p>where the term on the far right is called the <em>Jacobian</em>.</p>
 <!-- !split -->
 <p>The generalization to several variables, relating the pdf for <span class="math notranslate nohighlight">\(M\)</span> variables <span class="math notranslate nohighlight">\(\{ X_j \}\)</span> in terms of the same number of quantities <span class="math notranslate nohighlight">\(\{ Y_j \}\)</span> related to them, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2a16ef8d-9873-4012-b5e7-b99a6bb2a369">
-<span class="eqno">(20.3)<a class="headerlink" href="#equation-2a16ef8d-9873-4012-b5e7-b99a6bb2a369" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d041030a-e759-4b71-a25b-cf44152197cd">
+<span class="eqno">(20.3)<a class="headerlink" href="#equation-d041030a-e759-4b71-a25b-cf44152197cd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\partial (X_1, X_2, \ldots, X_M)} \right|,
 \label{eq:multivariate-transformation}
 \end{equation}\]</div>
@@ -599,8 +604,8 @@ We have now seen the basic ingredients required for the propagation of errors: i
 <p>where we have employed the linear property for an integral over a sum of terms.</p>
 <!-- !split -->
 <p>Since we assumed that the pdfs for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> were described by independent Gaussians we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebd70ca6-2526-48b6-b09b-9d59a6bb1ae1">
-<span class="eqno">(20.4)<a class="headerlink" href="#equation-ebd70ca6-2526-48b6-b09b-9d59a6bb1ae1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0209478c-adac-4c3f-b385-a77ff1f45c7d">
+<span class="eqno">(20.4)<a class="headerlink" href="#equation-0209478c-adac-4c3f-b385-a77ff1f45c7d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \langle \delta X^2 \rangle = \sigma_x^2; \qquad \langle \delta Y^2 \rangle = \sigma_y^2; \qquad \langle \delta X \delta Y \rangle = 0,
 \label{eq:stddev}
 \end{equation}\]</div>
@@ -707,13 +712,13 @@ f \exp \left[ -\frac{(A-A_0)^2}{2\sigma_A^2} \right], &amp; 0 \le f \le \sqrt{A_
 </div>
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_9_1.png" width=700><p><em>The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor $f=\sqrt{A}$. The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation.</em></p> -->
-<p><img alt="The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor . The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation." src="content/BayesianStatistics/ErrorPropagation/fig/ErrorPropagation/error_square_root_9_1.png" /></p>
+<p><img alt="The left-hand panels show the posterior pdf for the amplitude of a Bragg peak in three different scenarios. The right-hand plots are the corresponding pdfs for the modulus of the structure factor . The solid lines correspond to a full bayesian error propagation, while the dashed lines are obtained with the short-cut error propagation." src="../../../_images/error_square_root_9_1.png" /></p>
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_1_9.png" width=700> -->
-<p><img alt="" src="content/BayesianStatistics/ErrorPropagation/fig/ErrorPropagation/error_square_root_1_9.png" /></p>
+<p><img alt="" src="../../../_images/error_square_root_1_9.png" /></p>
 <!-- !split -->
 <!-- <img src="fig/ErrorPropagation/error_square_root_-20_9.png" width=700> -->
-<p><img alt="" src="content/BayesianStatistics/ErrorPropagation/fig/ErrorPropagation/error_square_root_-20_9.png" /></p>
+<p><img alt="" src="../../../_images/error_square_root_-20_9.png" /></p>
 </div>
 </div>
 </div>
