@@ -91,7 +91,7 @@ Assuming
 BE(A,N,Z) = a_0+a_1A+a_2A^{2/3}+a_3 Z^2 A^{-1/3}+a_4 (N-Z)^2 A^{-1},
 \end{equation*}
 we have five features, that is the intercept (constant term, aka bias), the $A$ dependent term, the $A^{2/3}$ term and the $Z^2 A^{-1/3}$ and $(N-Z)^2 A^{-1}$ terms. Although the features are somewhat complicated functions of the independent variables $A,N,Z$, we note that the $p=5$ regression parameters $\theta = (a_0, a_1, a_2, a_3, a_4)$ enter linearly. Furthermore we have $n$ cases. It means that our design matrix is a 
-$p\times n$ matrix $\boldsymbol{X}$.
+$n\times p$ matrix $\boldsymbol{X}$.
 
 
 
