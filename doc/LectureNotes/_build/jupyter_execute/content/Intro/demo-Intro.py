@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Reading Data and fitting
+# # Reading Data and fitting
 # 
 # Our first data set is going to be a classic from nuclear physics, namely all
 # available data on binding energies. Don't be intimidated if you are not familiar with nuclear physics. It serves simply as an example here of a data set.
@@ -17,7 +17,7 @@
 get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# ### Meet the Pandas
+# ## Meet the Pandas
 # 
 # <p></p>
 # <img src="figs/pandas.jpg" width=600>
@@ -144,7 +144,7 @@ print(df1)
 # As we will see below it leads also to a very concice code close to the mathematical operations we may be interested in.
 # For multidimensional arrays, we recommend strongly [xarray](http://xarray.pydata.org/en/stable/). **xarray** has much of the same flexibility as **pandas**, but allows for the extension to higher dimensions than two. 
 
-# ### To our real data: nuclear binding energies. Brief reminder on masses and binding energies
+# ## To our real data: nuclear binding energies. Brief reminder on masses and binding energies
 # 
 # Let us now dive into  nuclear physics and remind ourselves briefly about some basic features about binding
 # energies.  A basic quantity which can be measured for the ground
