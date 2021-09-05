@@ -289,50 +289,34 @@ def save_fig(fig_id):
 # protons $Z$ and neutrons $N$ using **pandas**.  Before we do this it is
 # always useful (unless you have a binary file or other types of compressed
 # data) to actually open the file and simply take a look at it!
+# 
+# **Note**: In the cell below, `infile` is an iterator and after you show the first 42 lines, the iterator will point to the 43rd line. In order to avoid reading the file from a non-expected start point, we put the iteration and print commands within a `with` block which means that `infile` is only defined inside this block and will then be forgotten. Thanks to (@Daniel Berg} for finding this bug.
 
 # In[12]:
 
 
-infile = open(data_path("MassEval2016.dat"),'r')
+with open(data_path("MassEval2016.dat"),'r') as infile:
+    head = [next(infile) for x in np.arange(42)]
+    print("".join(head))
 
+
+# In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with **pandas**. 
+
+# - The file begins with some basic format information in the header (that is 39 lines long).
+# - The data we are interested in are in columns 2, 3, 4 and 11, giving us the number of neutrons, protons, mass numbers and binding energies, respectively. 
+# - We add also for the sake of completeness the element name. 
+# - The data are in fixed-width formatted lines and we will convert them into the **pandas** DataFrame structure.
+# - The liquid drop model does not work well for the lightest elements so we skip the first few lines of data in the file (we could as well have made this cut after actually reading the data).
 
 # In[13]:
 
 
-head = [next(infile) for x in np.arange(42)]
-print("".join(head))
-
-
-# In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with **pandas**. The file begins with some basic format information.
-
-# In[14]:
-
-
-print("""                                                                                                                         
-This is taken from the data file of the mass 2016 evaluation.                                                               
-All files are 3436 lines long with 124 character per line.                                                                  
-       Headers are 39 lines long.                                                                                           
-   col 1     :  Fortran character control: 1 = page feed  0 = line feed                                                     
-   format    :  a1,i3,i5,i5,i5,1x,a3,a4,1x,f13.5,f11.5,f11.3,f9.3,1x,a2,f11.3,f9.3,1x,i3,1x,f12.5,f11.5                     
-   These formats are reflected in the pandas widths variable below, see the statement                                       
-   widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),                                                            
-   Pandas has also a variable header, with length 39 in this case.                                                          
-""")
-
-
-# The data we are interested in are in columns 2, 3, 4 and 11, giving us
-# the number of neutrons, protons, mass numbers and binding energies,
-# respectively. We add also for the sake of completeness the element name. The data are in fixed-width formatted lines and we will
-# covert them into the **pandas** DataFrame structure.
-
-# In[15]:
-
-
-# Read the experimental data with Pandas
-Masses = pd.read_fwf(infile, usecols=(2,3,4,6,11),
+# Open the file again and read the experimental data with Pandas
+with open(data_path("MassEval2016.dat"),'r') as infile:
+    Masses = pd.read_fwf(infile, usecols=(2,3,4,6,11),
               names=('N', 'Z', 'A', 'Element', 'Ebinding'),
               widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),
-              header=39,
+              header=64,
               index_col=False)
 
 # Extrapolated values are indicated by '#' in place of the decimal place, so
@@ -359,7 +343,7 @@ Masses = Masses.apply(lambda t: t[t.Ebinding==t.Ebinding.max()])
 # Now we define five variables which contain
 # the number of nucleons $A$, the number of protons $Z$ and the number of neutrons $N$, the element name and finally the energies themselves.
 
-# In[16]:
+# In[14]:
 
 
 A = Masses['A']
@@ -373,7 +357,7 @@ print(Masses)
 # The next step, and we will define this mathematically later, is to set up the so-called **design matrix**. We will throughout call this matrix $\boldsymbol{X}$.
 # It has dimensionality $p\times n$, where $n$ is the number of data points and $p$ are the so-called predictors. In our case here they are given by the number of polynomials in $A$ (and $N$, $Z$) we wish to include in the fit.
 
-# In[17]:
+# In[15]:
 
 
 # Now we set up the design matrix X
@@ -387,7 +371,7 @@ X[:,4] = (N-Z)**2 * A**(-1.0)
 
 # With **scikitlearn** we are now ready to use linear regression and fit our data. Note that we have included an intercept column into our design matrix, which corresponds to a constant predictor term in our model. It is very common to have such a term in a linear regression fit and we include it here although our model actually does not have such a predictor. In fact, the built-in linear regression function that we will use does usually add such an offset automatically and we need to explicitly turn it off using the argument  `fit_intercept=False` since we already have it in our design matrix.
 
-# In[18]:
+# In[16]:
 
 
 clf = skl.LinearRegression(fit_intercept=False).fit(X, Energies)
@@ -397,7 +381,7 @@ fity = clf.predict(X)
 # Pretty simple!
 # Now we can print measures of how our fit is doing, the coefficients from the fits and plot the final fit together with our data.
 
-# In[19]:
+# In[17]:
 
 
 # The mean squared error                               
@@ -408,7 +392,7 @@ print('Variance score: %.2f' % r2_score(Energies, fity))
 print('Mean absolute error: %.2f' % mean_absolute_error(Energies, fity))
 
 
-# In[20]:
+# In[18]:
 
 
 print(clf.coef_)
@@ -418,7 +402,7 @@ print('intercept  volume    surface    coulomb     asymmetry')
 print("     ".join(["%.3f"%coef for coef in clf.coef_]))
 
 
-# In[21]:
+# In[19]:
 
 
 # Generate a plot comparing the experimental with the fitted values values.
@@ -443,6 +427,8 @@ save_fig("Masses2016")
 # 
 # Furthermore, **Scikit-Learn** allows us with few lines of code to implement popular
 # Machine Learning algorithms for supervised learning.
+# 
+# A physics remark that concerns the liquid drop model for nuclear binding energies is that we fail to reproduce some slow variations in the target data. In fact, we know that these variations are due to shell effects, with local maxima appearing in binding energies as different shells and subshells are filled.
 
 # In[ ]:
 

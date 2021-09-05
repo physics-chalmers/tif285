@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -1285,17 +1285,12 @@ reorganize them as functions of the mass number <span class="math notranslate no
 protons <span class="math notranslate nohighlight">\(Z\)</span> and neutrons <span class="math notranslate nohighlight">\(N\)</span> using <strong>pandas</strong>.  Before we do this it is
 always useful (unless you have a binary file or other types of compressed
 data) to actually open the file and simply take a look at it!</p>
+<p><strong>Note</strong>: In the cell below, <code class="docutils literal notranslate"><span class="pre">infile</span></code> is an iterator and after you show the first 42 lines, the iterator will point to the 43rd line. In order to avoid reading the file from a non-expected start point, we put the iteration and print commands within a <code class="docutils literal notranslate"><span class="pre">with</span></code> block which means that <code class="docutils literal notranslate"><span class="pre">infile</span></code> is only defined inside this block and will then be forgotten. Thanks to (&#64;Daniel Berg} for finding this bug.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">(</span><span class="s2">&quot;MassEval2016.dat&quot;</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="o">=</span> <span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">42</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">head</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">(</span><span class="s2">&quot;MassEval2016.dat&quot;</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">42</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">head</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1346,47 +1341,22 @@ data) to actually open the file and simply take a look at it!</p>
 </div>
 </div>
 </div>
-<p>In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with <strong>pandas</strong>. The file begins with some basic format information.</p>
+<p>In particular, the program that outputs the final nuclear masses is written in Fortran with a specific format. It means that we need to figure out the format and which columns contain the data we are interested in. Pandas comes with a function that reads formatted output. After having admired the file, we are now ready to start massaging it with <strong>pandas</strong>.</p>
+<ul class="simple">
+<li><p>The file begins with some basic format information in the header (that is 39 lines long).</p></li>
+<li><p>The data we are interested in are in columns 2, 3, 4 and 11, giving us the number of neutrons, protons, mass numbers and binding energies, respectively.</p></li>
+<li><p>We add also for the sake of completeness the element name.</p></li>
+<li><p>The data are in fixed-width formatted lines and we will convert them into the <strong>pandas</strong> DataFrame structure.</p></li>
+<li><p>The liquid drop model does not work well for the lightest elements so we skip the first few lines of data in the file (we could as well have made this cut after actually reading the data).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;                                                                                                                         </span>
-<span class="s2">This is taken from the data file of the mass 2016 evaluation.                                                               </span>
-<span class="s2">All files are 3436 lines long with 124 character per line.                                                                  </span>
-<span class="s2">       Headers are 39 lines long.                                                                                           </span>
-<span class="s2">   col 1     :  Fortran character control: 1 = page feed  0 = line feed                                                     </span>
-<span class="s2">   format    :  a1,i3,i5,i5,i5,1x,a3,a4,1x,f13.5,f11.5,f11.3,f9.3,1x,a2,f11.3,f9.3,1x,i3,1x,f12.5,f11.5                     </span>
-<span class="s2">   These formats are reflected in the pandas widths variable below, see the statement                                       </span>
-<span class="s2">   widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),                                                            </span>
-<span class="s2">   Pandas has also a variable header, with length 39 in this case.                                                          </span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                                                                                         
-This is taken from the data file of the mass 2016 evaluation.                                                               
-All files are 3436 lines long with 124 character per line.                                                                  
-       Headers are 39 lines long.                                                                                           
-   col 1     :  Fortran character control: 1 = page feed  0 = line feed                                                     
-   format    :  a1,i3,i5,i5,i5,1x,a3,a4,1x,f13.5,f11.5,f11.3,f9.3,1x,a2,f11.3,f9.3,1x,i3,1x,f12.5,f11.5                     
-   These formats are reflected in the pandas widths variable below, see the statement                                       
-   widths=(1,3,5,5,5,1,3,4,1,13,11,11,9,1,2,11,9,1,3,1,12,11,1),                                                            
-   Pandas has also a variable header, with length 39 in this case.                                                          
-</pre></div>
-</div>
-</div>
-</div>
-<p>The data we are interested in are in columns 2, 3, 4 and 11, giving us
-the number of neutrons, protons, mass numbers and binding energies,
-respectively. We add also for the sake of completeness the element name. The data are in fixed-width formatted lines and we will
-covert them into the <strong>pandas</strong> DataFrame structure.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the experimental data with Pandas</span>
-<span class="n">Masses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_fwf</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the file again and read the experimental data with Pandas</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">(</span><span class="s2">&quot;MassEval2016.dat&quot;</span><span class="p">),</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">Masses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_fwf</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span>
               <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;Element&#39;</span><span class="p">,</span> <span class="s1">&#39;Ebinding&#39;</span><span class="p">),</span>
               <span class="n">widths</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-              <span class="n">header</span><span class="o">=</span><span class="mi">39</span><span class="p">,</span>
+              <span class="n">header</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
               <span class="n">index_col</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># Extrapolated values are indicated by &#39;#&#39; in place of the decimal place, so</span>
@@ -1427,19 +1397,19 @@ the number of nucleons <span class="math notranslate nohighlight">\(A\)</span>, 
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            N    Z    A Element  Ebinding
 A                                        
-11  0       4    7   11       N  5.364046
-12  4       6    6   12       C  7.680144
-13  10      7    6   13       C  7.469849
-14  15      8    6   14       C  7.520319
-15  22      8    7   15       N  7.699460
+10  2       6    4   10      Be  6.497630
+11  8       6    5   11       B  6.927732
+12  14      6    6   12       C  7.680144
+13  20      7    6   13       C  7.469849
+14  25      8    6   14       C  7.520319
 ...       ...  ...  ...     ...       ...
-264 3262  156  108  264      Hs  7.298375
-265 3268  157  108  265      Hs  7.296247
-266 3275  158  108  266      Hs  7.298273
-269 3296  159  110  269      Ds  7.250154
-270 3302  160  110  270      Ds  7.253775
+264 3272  156  108  264      Hs  7.298375
+265 3278  157  108  265      Hs  7.296247
+266 3285  158  108  266      Hs  7.298273
+269 3306  159  110  269      Ds  7.250154
+270 3312  160  110  270      Ds  7.253775
 
-[257 rows x 5 columns]
+[258 rows x 5 columns]
 </pre></div>
 </div>
 </div>
@@ -1482,9 +1452,9 @@ Now we can print measures of how our fit is doing, the coefficients from the fit
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean squared error: 0.02
-Variance score: 0.90
-Mean absolute error: 0.05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean squared error: 0.01
+Variance score: 0.97
+Mean absolute error: 0.04
 </pre></div>
 </div>
 </div>
@@ -1500,10 +1470,10 @@ Mean absolute error: 0.05
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 4.72922061 -0.19684447  0.93158472  0.00756687  0.30377802]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 4.74783699 -0.20173376  0.94655788  0.00783107  0.32286627]
 ***
 intercept  volume    surface    coulomb     asymmetry
-4.729     -0.197     0.932     0.008     0.304
+4.748     -0.202     0.947     0.008     0.323
 </pre></div>
 </div>
 </div>
@@ -1525,7 +1495,7 @@ intercept  volume    surface    coulomb     asymmetry
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/demo-Intro_64_0.png" src="../../_images/demo-Intro_64_0.png" />
+<img alt="../../_images/demo-Intro_62_0.png" src="../../_images/demo-Intro_62_0.png" />
 </div>
 </div>
 </div>
@@ -1538,6 +1508,7 @@ Python libraries and their functionalities, in particular libraries like
 in handling various data sets and visualizing data.</p>
 <p>Furthermore, <strong>Scikit-Learn</strong> allows us with few lines of code to implement popular
 Machine Learning algorithms for supervised learning.</p>
+<p>A physics remark that concerns the liquid drop model for nuclear binding energies is that we fail to reproduce some slow variations in the target data. In fact, we know that these variations are due to shell effects, with local maxima appearing in binding energies as different shells and subshells are filled.</p>
 </div>
 </div>
 
