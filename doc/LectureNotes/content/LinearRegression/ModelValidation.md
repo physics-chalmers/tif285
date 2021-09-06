@@ -169,50 +169,47 @@ For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's
 We will discuss the bias-variance tradeoff in the context of
 continuous predictions such as regression. However, many of the
 intuitions and ideas discussed here also carry over to classification
-tasks. Consider a dataset $\mathcal{L}$ consisting of the data
-$\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}$. 
+tasks. 
 
-Let us assume that the data with experimental noise is generated from a true model
+Consider a dataset $\mathcal{D}$ consisting of the data
+$\{(x_j, y_j), j=1\ldots n\}$. Let us assume that the data is generated from a true model plus experimental noise 
 
 $$
-\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp},
+{y}_j = f({x_j}) + {\epsilon}_{j,\mathrm{exp}},
 $$
 
-where $\boldsymbol{\epsilon}_\mathrm{exp}$ is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance $\sigma^2_\mathrm{exp}$.
+where ${\epsilon}_{j,\mathrm{exp}}$ is a random variable. We will assume that these are drawn from a distribution with expectation value $\mathbb{E}[{\epsilon}_\mathrm{exp}] = 0$ and variance $\mathrm{Var}[{\epsilon}_\mathrm{exp}] = \sigma^2_\mathrm{exp}$. 
+(Remember that $\mathbb{E}(t)$ denotes the expectation value for the random variable $t$. and that the variance is given by $\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]$.)
 
-In our derivation of the ordinary least squares method we defined then
-an approximation to the function $f$ in terms of the parameters
-$\boldsymbol{\theta}$ and the design matrix $\boldsymbol{X}$ which embody our model,
+Our model $\tilde{y}(x)$ is an approximation to the function $f(x)$.
+In our study of linear regression we defined this model in terms of some parameters
+$\boldsymbol{\theta}$ and a design matrix $\boldsymbol{X}$,
 that is 
 
 $$
-\boldsymbol{f}(\boldsymbol{x}) \approx \boldsymbol{\tilde{f}}(\boldsymbol{\theta}) \equiv \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta}. 
+{f}({x}_j) = f_j \approx  {\tilde{y}_j} = {\tilde{y}}({x}_j) =(\boldsymbol{X}\boldsymbol{\theta})_j. 
 $$
 
-The relation between the true description and our model is
+Thereafter we found the optimum set of model parameters $\boldsymbol{\theta}^*$ by minimizing the mean-squared residuals via the so-called cost function
 
 $$
-f_i = \tilde{y}_i + \boldsymbol{\epsilon}_{\mathrm{model},i}.
+C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=1}^{n}(y_i-\tilde{y}_i)^2.
 $$
 
-Thereafter we found the optimum set of model parameters $\boldsymbol{\theta}$ by minimizing the mean-squared (model) error via the so-called cost function
+However, the arguments given here are not restricted to linear-regression models. In fact, the bias-variance-tradeoff is more often discussed in the context of highly non-linear models such as neural networks.
+
+Let us now consider the situation of making a prediction with our trained model at a new point $x_0$, that is ${\tilde{y}}_0 = {\tilde{y}}({x}_0)$. This prediction should be compared with a new observation $y_0 = y(x_0) = f(x_0)+{\epsilon}_{0,\mathrm{exp}} = f_0+{\epsilon}_0$ and we are interested in the error $y_0 - {\tilde{y}}_0 = f_0+{\epsilon}_0 - {\tilde{y}}_0$ to judge the predictive power of our model.
+
+We will make the following experiment:
+1. Draw a size $n$ sample, $\mathcal{D} = \{(x_j, y_j), j=1\ldots n\}$
+2. Train your model ${\tilde{y}}$ using $\mathcal{D}$.
+3. Make the prediction at $x_0$ and evaluate $y_0 - {\tilde{y}}_0$
+Repeat this multiple times, using different sets of data $\mathcal{D}$ to fit your model. What is the expectation value $\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right]$?
+
+We will show that we can rewrite this expectation value as 
 
 $$
-C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = 
-\left[ \begin{array}{c}
-\mathrm{assume}\\
-\mathrm{i.i.d.~samples}
-\end{array} \right]
-\approx
-\mathbb{E}\left[(y-\tilde{y})^2\right],
-$$
-
-where we have made the key assumption that the residuals $(\boldsymbol{y}-\boldsymbol{\tilde{y}})$ are independent and identically distributed (i.i.d.) random variables, i.e. these are samples from a single underlying probability distribution. Remember that $\mathbb{E}(t)$ denotes the expectation value for the random variable $t$. In this context we also remind that the variance is given by $\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]$.
-
-We can rewrite this expectation value as 
-
-$$
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\tilde{y}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\tilde{y}\right])^2+\sigma^2_\mathrm{exp}.
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = (f_0-\mathbb{E}\left[\tilde{y}_0\right])^2 + (\tilde{y}_0-\mathbb{E}\left[\tilde{y}_0\right])^2+\sigma^2_\mathrm{exp}.
 $$
 
 The first of the three terms represents the square of the bias of the learning
@@ -220,36 +217,36 @@ method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
 variance of the chosen model and finally the last terms is the irreducible error $\epsilon_\mathrm{exp}$. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.
 
-To derive this equation, we need to recall that the variance of $y$ and $\epsilon_\mathrm{exp}$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_\mathrm{exp}$ is by definition equal to zero. Furthermore, the function $f$ is not a stochastic variable.
+To derive this equation, we need to recall that the variance of $y_0$ and $\epsilon_0$ are both equal to $\sigma^2_\mathrm{exp}$. The mean value of $\epsilon_0$ is by definition equal to zero. Furthermore, the function evaluation $f_0 = f(x_0)$ is not a stochastic variable.
 We use a more compact notation in terms of the expectation value 
 
 $$
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y})^2\right],
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = \mathbb{E}\left[({f}_0+\epsilon_0-\tilde{y}_0)^2\right],
 $$
 
-and adding and subtracting $\mathbb{E}\left[\tilde{y}\right]$ we get
+and adding and subtracting $\mathbb{E}\left[\tilde{y}_0\right]$ we get
 
 $$
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y}+\mathbb{E}\left[\tilde{y}\right]-\mathbb{E}\left[\tilde{y}\right])^2\right].
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right]=\mathbb{E}\left[({f}_0+\epsilon_0-\tilde{y}_0+\mathbb{E}\left[\tilde{y}_0\right]-\mathbb{E}\left[\tilde{y}_0\right])^2\right].
 $$
 
 We can rewrite this expression as a sum of three terms:
 * The first one is the (squared) bias of the model plus the irreducible data error $\sigma_\mathrm{exp}^2$
 
 $$
-\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\mathbb{E}\left[\tilde{y}\right])^2\right] = \mathbb{E}\left[({f}-\mathbb{E}\left[\tilde{y}\right])^2\right] + \mathbb{E}\left[\epsilon_\mathrm{exp}^2\right]+0.
+\mathbb{E}\left[({f}_0+\epsilon_0-\mathbb{E}\left[\tilde{y}_0\right])^2\right] = \mathbb{E}\left[({f}_0-\mathbb{E}\left[\tilde{y}_0\right])^2\right] + \mathbb{E}\left[\epsilon_0^2\right]+0.
 $$
 
-* The second one is the variance of the model $\mathrm{Var}\left[ \tilde{y} \right]$
+* The second one is the variance of the model $\mathrm{Var}\left[ \tilde{y}_0 \right]$
 
 $$
-\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}\right] - \tilde{y})^2\right],
+\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}_0\right] - \tilde{y}_0)^2\right],
 $$
 
 * and the last one is zero
 
 $$
-2\mathbb{E}\left[(y-\mathbb{E}\left[\tilde{y}\right])(\mathbb{E}\left[\tilde{y}\right]-\tilde{y})\right] = 2\mathbb{E}\left[y-\mathbb{E}\left[\tilde{y}\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}\right]\right] - \mathbb{E}\left[\tilde{y}\right]\right) = 0.
+2\mathbb{E}\left[(y_0-\mathbb{E}\left[\tilde{y}_0\right])(\mathbb{E}\left[\tilde{y}_0\right]-\tilde{y}_0)\right] = 2\mathbb{E}\left[y_0-\mathbb{E}\left[\tilde{y}_0\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}_0\right]\right] - \mathbb{E}\left[\tilde{y}_0\right]\right) = 0.
 $$
 
 The tradeoff between bias and variance is illustrated in Fig. [fig-bias_variance](#fig-bias_variance) from the demonstration notebook.

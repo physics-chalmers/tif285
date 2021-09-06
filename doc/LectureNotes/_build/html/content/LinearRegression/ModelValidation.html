@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -213,22 +213,22 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/IgnorancePDF.html">
-   23. Ignorance pdfs: Indifference and translation groups
+   21. Ignorance pdfs: Indifference and translation groups
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/MaxEnt.html">
-   24. The principle of maximum entropy
+   22. The principle of maximum entropy
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   25. Assigning probabilities
+   23. Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/ModelSelection/ModelSelection.html">
-   26. Model Selection
+   24. Model Selection
   </a>
  </li>
 </ul>
@@ -240,62 +240,62 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/GaussianProcesses.html">
-   27. Gaussian processes
+   25. Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/demo-GaussianProcesses.html">
-   28. Gaussian processes demonstration
+   26. Gaussian processes demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/exercise_GP.html">
-   29. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/LogReg/LogReg.html">
-   30. Logistic Regression
+   28. Logistic Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/NeuralNet.html">
-   31. Neural networks
+   29. Neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/demo-NeuralNet.html">
-   32. Neural network classifier demonstration
+   30. Neural network classifier demonstration
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
-   33. Exercise: Logistic Regression and neural networks
+   31. Exercise: Logistic Regression and neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/CNN/cnn.html">
-   34. Convolutional Neural Networks
+   32. Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/CNN/demo-cnn.html">
-   35. Image recognition demonstration with Convolutional Neural Networks
+   33. Image recognition demonstration with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/bnn.html">
-   36. Bayesian neural networks
+   34. Bayesian neural networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/demo-bnn.html">
-   37. Variational Inference: Bayesian Neural Networks
+   35. Variational Inference: Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/exercises_BNN.html">
-   38. Exercise: Bayesian neural networks
+   36. Exercise: Bayesian neural networks
   </a>
  </li>
 </ul>
@@ -579,58 +579,56 @@ are rather interesting. Ridge regression imposes a constraint on the model param
 <p>We will discuss the bias-variance tradeoff in the context of
 continuous predictions such as regression. However, many of the
 intuitions and ideas discussed here also carry over to classification
-tasks. Consider a dataset <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> consisting of the data
-<span class="math notranslate nohighlight">\(\mathbf{X}_\mathcal{L}=\{(y_j, \boldsymbol{x}_j), j=0\ldots n-1\}\)</span>.</p>
-<p>Let us assume that the data with experimental noise is generated from a true model</p>
+tasks.</p>
+<p>Consider a dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> consisting of the data
+<span class="math notranslate nohighlight">\(\{(x_j, y_j), j=1\ldots n\}\)</span>. Let us assume that the data is generated from a true model plus experimental noise</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{y}=f(\boldsymbol{x}) + \boldsymbol{\epsilon}_\mathrm{exp},
+{y}_j = f({x_j}) + {\epsilon}_{j,\mathrm{exp}},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}_\mathrm{exp}\)</span> is a vector of random variables. We will assume that these are independent and identically distributed (i.i.d), each one described by a normal (Gaussian) distribution with expectation (mean) value zero and variance <span class="math notranslate nohighlight">\(\sigma^2_\mathrm{exp}\)</span>.</p>
-<p>In our derivation of the ordinary least squares method we defined then
-an approximation to the function <span class="math notranslate nohighlight">\(f\)</span> in terms of the parameters
-<span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> and the design matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> which embody our model,
+<p>where <span class="math notranslate nohighlight">\({\epsilon}_{j,\mathrm{exp}}\)</span> is a random variable. We will assume that these are drawn from a distribution with expectation value <span class="math notranslate nohighlight">\(\mathbb{E}[{\epsilon}_\mathrm{exp}] = 0\)</span> and variance <span class="math notranslate nohighlight">\(\mathrm{Var}[{\epsilon}_\mathrm{exp}] = \sigma^2_\mathrm{exp}\)</span>.
+(Remember that <span class="math notranslate nohighlight">\(\mathbb{E}(t)\)</span> denotes the expectation value for the random variable <span class="math notranslate nohighlight">\(t\)</span>. and that the variance is given by <span class="math notranslate nohighlight">\(\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]\)</span>.)</p>
+<p>Our model <span class="math notranslate nohighlight">\(\tilde{y}(x)\)</span> is an approximation to the function <span class="math notranslate nohighlight">\(f(x)\)</span>.
+In our study of linear regression we defined this model in terms of some parameters
+<span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> and a design matrix <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>,
 that is</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{f}(\boldsymbol{x}) \approx \boldsymbol{\tilde{f}}(\boldsymbol{\theta}) \equiv \boldsymbol{\tilde{y}}=\boldsymbol{X}\boldsymbol{\theta}. 
+{f}({x}_j) = f_j \approx  {\tilde{y}_j} = {\tilde{y}}({x}_j) =(\boldsymbol{X}\boldsymbol{\theta})_j. 
 \]</div>
-<p>The relation between the true description and our model is</p>
+<p>Thereafter we found the optimum set of model parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span> by minimizing the mean-squared residuals via the so-called cost function</p>
 <div class="math notranslate nohighlight">
 \[
-f_i = \tilde{y}_i + \boldsymbol{\epsilon}_{\mathrm{model},i}.
+C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=1}^{n}(y_i-\tilde{y}_i)^2.
 \]</div>
-<p>Thereafter we found the optimum set of model parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> by minimizing the mean-squared (model) error via the so-called cost function</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-C(\boldsymbol{X},\boldsymbol{\theta}) =\frac{1}{n}\sum_{i=0}^{n-1}(y_i-\tilde{y}_i)^2 = 
-\left[ \begin{array}{c}
-\mathrm{assume}\\
-\mathrm{i.i.d.~samples}
-\end{array} \right]
-\approx
-\mathbb{E}\left[(y-\tilde{y})^2\right],
-\end{split}\]</div>
-<p>where we have made the key assumption that the residuals <span class="math notranslate nohighlight">\((\boldsymbol{y}-\boldsymbol{\tilde{y}})\)</span> are independent and identically distributed (i.i.d.) random variables, i.e. these are samples from a single underlying probability distribution. Remember that <span class="math notranslate nohighlight">\(\mathbb{E}(t)\)</span> denotes the expectation value for the random variable <span class="math notranslate nohighlight">\(t\)</span>. In this context we also remind that the variance is given by <span class="math notranslate nohighlight">\(\mathrm{Var}(t) = \mathbb{E} \left[ \left(t -  \mathbb{E}(t)\right)^2 \right]\)</span>.</p>
-<p>We can rewrite this expectation value as</p>
+<p>However, the arguments given here are not restricted to linear-regression models. In fact, the bias-variance-tradeoff is more often discussed in the context of highly non-linear models such as neural networks.</p>
+<p>Let us now consider the situation of making a prediction with our trained model at a new point <span class="math notranslate nohighlight">\(x_0\)</span>, that is <span class="math notranslate nohighlight">\({\tilde{y}}_0 = {\tilde{y}}({x}_0)\)</span>. This prediction should be compared with a new observation <span class="math notranslate nohighlight">\(y_0 = y(x_0) = f(x_0)+{\epsilon}_{0,\mathrm{exp}} = f_0+{\epsilon}_0\)</span> and we are interested in the error <span class="math notranslate nohighlight">\(y_0 - {\tilde{y}}_0 = f_0+{\epsilon}_0 - {\tilde{y}}_0\)</span> to judge the predictive power of our model.</p>
+<p>We will make the following experiment:</p>
+<ol class="simple">
+<li><p>Draw a size <span class="math notranslate nohighlight">\(n\)</span> sample, <span class="math notranslate nohighlight">\(\mathcal{D} = \{(x_j, y_j), j=1\ldots n\}\)</span></p></li>
+<li><p>Train your model <span class="math notranslate nohighlight">\({\tilde{y}}\)</span> using <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>.</p></li>
+<li><p>Make the prediction at <span class="math notranslate nohighlight">\(x_0\)</span> and evaluate <span class="math notranslate nohighlight">\(y_0 - {\tilde{y}}_0\)</span>
+Repeat this multiple times, using different sets of data <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> to fit your model. What is the expectation value <span class="math notranslate nohighlight">\(\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right]\)</span>?</p></li>
+</ol>
+<p>We will show that we can rewrite this expectation value as</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\frac{1}{n}\sum_i(f_i-\mathbb{E}\left[\tilde{y}\right])^2+\frac{1}{n}\sum_i(\tilde{y}_i-\mathbb{E}\left[\tilde{y}\right])^2+\sigma^2_\mathrm{exp}.
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = (f_0-\mathbb{E}\left[\tilde{y}_0\right])^2 + (\tilde{y}_0-\mathbb{E}\left[\tilde{y}_0\right])^2+\sigma^2_\mathrm{exp}.
 \]</div>
 <p>The first of the three terms represents the square of the bias of the learning
 method, which can be thought of as the error caused by the simplifying
 assumptions built into the method. The second term represents the
 variance of the chosen model and finally the last terms is the irreducible error <span class="math notranslate nohighlight">\(\epsilon_\mathrm{exp}\)</span>. We will view these terms from a slightly different angle once we familiarise ourselves with Bayesian methods.</p>
-<p>To derive this equation, we need to recall that the variance of <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\epsilon_\mathrm{exp}\)</span> are both equal to <span class="math notranslate nohighlight">\(\sigma^2_\mathrm{exp}\)</span>. The mean value of <span class="math notranslate nohighlight">\(\epsilon_\mathrm{exp}\)</span> is by definition equal to zero. Furthermore, the function <span class="math notranslate nohighlight">\(f\)</span> is not a stochastic variable.
+<p>To derive this equation, we need to recall that the variance of <span class="math notranslate nohighlight">\(y_0\)</span> and <span class="math notranslate nohighlight">\(\epsilon_0\)</span> are both equal to <span class="math notranslate nohighlight">\(\sigma^2_\mathrm{exp}\)</span>. The mean value of <span class="math notranslate nohighlight">\(\epsilon_0\)</span> is by definition equal to zero. Furthermore, the function evaluation <span class="math notranslate nohighlight">\(f_0 = f(x_0)\)</span> is not a stochastic variable.
 We use a more compact notation in terms of the expectation value</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y})^2\right],
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = \mathbb{E}\left[({f}_0+\epsilon_0-\tilde{y}_0)^2\right],
 \]</div>
-<p>and adding and subtracting <span class="math notranslate nohighlight">\(\mathbb{E}\left[\tilde{y}\right]\)</span> we get</p>
+<p>and adding and subtracting <span class="math notranslate nohighlight">\(\mathbb{E}\left[\tilde{y}_0\right]\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}\left[(y-\tilde{y})^2\right]=\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\tilde{y}+\mathbb{E}\left[\tilde{y}\right]-\mathbb{E}\left[\tilde{y}\right])^2\right].
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right]=\mathbb{E}\left[({f}_0+\epsilon_0-\tilde{y}_0+\mathbb{E}\left[\tilde{y}_0\right]-\mathbb{E}\left[\tilde{y}_0\right])^2\right].
 \]</div>
 <p>We can rewrite this expression as a sum of three terms:</p>
 <ul class="simple">
@@ -638,21 +636,21 @@ We use a more compact notation in terms of the expectation value</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}\left[({f}+\epsilon_\mathrm{exp}-\mathbb{E}\left[\tilde{y}\right])^2\right] = \mathbb{E}\left[({f}-\mathbb{E}\left[\tilde{y}\right])^2\right] + \mathbb{E}\left[\epsilon_\mathrm{exp}^2\right]+0.
+\mathbb{E}\left[({f}_0+\epsilon_0-\mathbb{E}\left[\tilde{y}_0\right])^2\right] = \mathbb{E}\left[({f}_0-\mathbb{E}\left[\tilde{y}_0\right])^2\right] + \mathbb{E}\left[\epsilon_0^2\right]+0.
 \]</div>
 <ul class="simple">
-<li><p>The second one is the variance of the model <span class="math notranslate nohighlight">\(\mathrm{Var}\left[ \tilde{y} \right]\)</span></p></li>
+<li><p>The second one is the variance of the model <span class="math notranslate nohighlight">\(\mathrm{Var}\left[ \tilde{y}_0 \right]\)</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}\right] - \tilde{y})^2\right],
+\mathbb{E}\left[(\mathbb{E}\left[\tilde{y}_0\right] - \tilde{y}_0)^2\right],
 \]</div>
 <ul class="simple">
 <li><p>and the last one is zero</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-2\mathbb{E}\left[(y-\mathbb{E}\left[\tilde{y}\right])(\mathbb{E}\left[\tilde{y}\right]-\tilde{y})\right] = 2\mathbb{E}\left[y-\mathbb{E}\left[\tilde{y}\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}\right]\right] - \mathbb{E}\left[\tilde{y}\right]\right) = 0.
+2\mathbb{E}\left[(y_0-\mathbb{E}\left[\tilde{y}_0\right])(\mathbb{E}\left[\tilde{y}_0\right]-\tilde{y}_0)\right] = 2\mathbb{E}\left[y_0-\mathbb{E}\left[\tilde{y}_0\right]\right] \left( \mathbb{E}\left[\mathbb{E}\left[\tilde{y}_0\right]\right] - \mathbb{E}\left[\tilde{y}_0\right]\right) = 0.
 \]</div>
 <p>The tradeoff between bias and variance is illustrated in Fig. <a class="reference external" href="#fig-bias_variance">fig-bias_variance</a> from the demonstration notebook.</p>
 <!-- <img src="fig/ModelValidation/bias_variance.png" width=600><p><em>The bias-variance for different polynomial models of our noisy data set. <div id="fig-bias_variance"></div></em></p> -->
