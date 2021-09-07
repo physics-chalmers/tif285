@@ -209,7 +209,7 @@ Repeat this multiple times, using different sets of data $\mathcal{D}$ to fit yo
 We will show that we can rewrite this expectation value as 
 
 $$
-\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = (f_0-\mathbb{E}\left[\tilde{y}_0\right])^2 + (\tilde{y}_0-\mathbb{E}\left[\tilde{y}_0\right])^2+\sigma^2_\mathrm{exp}.
+\mathbb{E}\left[(y_0-\tilde{y}_0)^2\right] = (f_0-\mathbb{E}\left[\tilde{y}_0\right])^2 + \mathbb{E}\left[ (\tilde{y}_0-\mathbb{E}\left[\tilde{y}_0\right])^2\right] +\sigma^2_\mathrm{exp}.
 $$
 
 The first of the three terms represents the square of the bias of the learning
