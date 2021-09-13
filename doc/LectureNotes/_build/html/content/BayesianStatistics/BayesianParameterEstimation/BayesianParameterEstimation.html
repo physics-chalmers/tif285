@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,9 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -424,32 +422,32 @@
      Simple Photon Counts: Bayesian approach in practice
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#best-estimates-and-credible-intervals">
+   14.3. Best estimates and credible intervals
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aside-best-estimates-and-credible-intervals">
-     Aside: Best estimates and credible intervals
+    <a class="reference internal nav-link" href="#symmetric-posterior-pdfs">
+     Symmetric posterior pdfs
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#symmetric-posterior-pdfs">
-       Symmetric posterior pdfs
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#asymmetric-posterior-pdfs">
-       Asymmetric posterior pdfs
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#multimodal-posterior-pdfs">
-       Multimodal posterior pdfs
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#different-views-on-credible-confidence-intervals">
-       Different views on credible/confidence intervals
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#asymmetric-posterior-pdfs">
+     Asymmetric posterior pdfs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multimodal-posterior-pdfs">
+     Multimodal posterior pdfs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-views-on-credible-confidence-intervals">
+     Different views on credible/confidence intervals
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#simple-photon-counts-best-estimates-and-credible-intervals">
@@ -460,12 +458,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-gaussian-noise-and-averages">
-   14.3. Example: Gaussian noise and averages
+   14.4. Example: Gaussian noise and averages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-fitting-a-straight-line">
-   14.4. Example: Fitting a straight line
+   14.5. Example: Fitting a straight line
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -497,9 +495,6 @@
               <div>
                 
   <!-- !split -->
-<!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
-<p><img alt="Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. " src="../../../_images/m1m2.png" /></p>
-<!-- !split -->
 <div class="section" id="inference-with-parametric-models">
 <h1><span class="section-number">14. </span>Inference With Parametric Models<a class="headerlink" href="#inference-with-parametric-models" title="Permalink to this headline">¶</a></h1>
 <p>Inductive inference with parametric models is a very important tool in the natural sciences.</p>
@@ -520,22 +515,22 @@
 <!-- !split -->
 <div class="tip admonition">
 <p class="admonition-title">Parameter Estimation:</p>
-<p>Premise = We have chosen a model (say <span class="math notranslate nohighlight">\(M_1\)</span>)</p>
+<p>Premise: We have chosen a model (say <span class="math notranslate nohighlight">\(M_1\)</span>)</p>
 <p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> What can we say about its parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_1\)</span>?</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Model comparison:</p>
-<p>Premise = We have a set of different models <span class="math notranslate nohighlight">\(\{M_i\}\)</span></p>
+<p>Premise: We have a set of different models <span class="math notranslate nohighlight">\(\{M_i\}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> How do they compare with each other? Do we have evidence to say that, e.g. <span class="math notranslate nohighlight">\(M_1\)</span>, is better than <span class="math notranslate nohighlight">\(M_2\)</span>?</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Model adequacy:</p>
-<p>Premise = We have a model <span class="math notranslate nohighlight">\(M_1\)</span></p>
+<p>Premise: We have a model <span class="math notranslate nohighlight">\(M_1\)</span></p>
 <p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> Is <span class="math notranslate nohighlight">\(M_1\)</span> adequate?</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Hybrid Uncertainty:</p>
-<p>Models share some common params: <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}\)</span></p>
+<p>Premise: Models share some common params: <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> What can we say about <span class="math notranslate nohighlight">\(\boldsymbol{\varphi}\)</span>? (Systematic error is an example)</p>
 </div>
 <!-- !split -->
@@ -554,6 +549,7 @@
 <h3>Bayesian parameter estimation<a class="headerlink" href="#bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h3>
 <p>We will now consider the Bayesian approach to the very important task of model parameter estimation using statistical inference.</p>
 <p>Let us first remind ourselves what can go wrong in a fit. We have encountered both <strong>underfitting</strong> (model is not complex enough to describe the variability in the data) and <strong>overfitting</strong> (model tunes to data fluctuations, or terms are underdetermined causing them playing off each other). Bayesian methods can prevent/identify both these situations.</p>
+<p><a class="reference internal" href="../../../_images/m1m2.png"><img alt="../../../_images/m1m2.png" src="../../../_images/m1m2.png" style="width: 600px;" /></a><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot.  <div id="fig-gw"></div></em></p></p>
 <!-- !split -->
 <!-- ===== Example: Measured flux from a star (single parameter) ===== -->
 </div>
@@ -593,45 +589,45 @@ The question is, given this set of measurements <span class="math notranslate no
 <div class="section" id="simple-photon-counts-frequentist-approach">
 <h3>Simple Photon Counts: Frequentist Approach<a class="headerlink" href="#simple-photon-counts-frequentist-approach" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist maximum likelihood approach. Given a single observation <span class="math notranslate nohighlight">\(D_i = F_i\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and our assumption of Gaussian errors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56279af5-a95e-46f5-803f-c6a0fbd2b4bf">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-56279af5-a95e-46f5-803f-c6a0fbd2b4bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c15e5b24-df23-48e9-b362-84a9de1c0e5b">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-c15e5b24-df23-48e9-b362-84a9de1c0e5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}\]</div>
 <p>This should be read “the probability of <span class="math notranslate nohighlight">\(D_i\)</span> given <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>
 equals …”. You should recognize this as a normal distribution with mean <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>.</p>
 <p>We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1894a16-27e0-488e-ba30-40f1972787ba">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-b1894a16-27e0-488e-ba30-40f1972787ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f2eb16b-42a2-4bf1-9a5d-c92d6dc47c0e">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-2f2eb16b-42a2-4bf1-9a5d-c92d6dc47c0e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}\]</div>
 <p>here <span class="math notranslate nohighlight">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.</p>
 <p><em>Notice.</em>
 In the following we will use <span class="math notranslate nohighlight">\(\log\)</span> to denote the natural logarithm. We will write <span class="math notranslate nohighlight">\(\log_{10}\)</span> if we specifically mean the logarithm with base 10.</p>
 <p>Combining the previous two equations and computing the log, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1e36aba-a46c-4174-af1f-68981e099f39">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-f1e36aba-a46c-4174-af1f-68981e099f39" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-387e499b-e97e-4fc3-872e-0fcd5aa57da9">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-387e499b-e97e-4fc3-872e-0fcd5aa57da9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}\]</div>
 <p>In this approach we will determine <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5cbc43d4-a9ad-4f86-aa4a-014253e2a3d6">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-5cbc43d4-a9ad-4f86-aa4a-014253e2a3d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c00be253-34d6-488b-8a15-373259b5b46f">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-c00be253-34d6-488b-8a15-373259b5b46f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}\]</div>
 <p>which you should recognize as the chi-squared function encountered in the linear regression model.</p>
 <p>Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting <span class="math notranslate nohighlight">\(d\log\mathcal{L}/d F_\mathrm{true} = 0\)</span>). This results in the following observed estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-edd4f3a2-61ee-4ba8-ad3b-4757503bdf7c">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-edd4f3a2-61ee-4ba8-ad3b-4757503bdf7c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-08f3f6c0-203d-46f0-85b0-8bd03ac5deb5">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-08f3f6c0-203d-46f0-85b0-8bd03ac5deb5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}\]</div>
 <p>Notice that in the special case of all errors <span class="math notranslate nohighlight">\(e_i\)</span> being equal, this reduces to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ac64815-f7ce-4c9e-b3fd-e4d1865a23c6">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-0ac64815-f7ce-4c9e-b3fd-e4d1865a23c6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a98d56df-f8f9-4db5-aefb-e6daae0b6dd9">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-a98d56df-f8f9-4db5-aefb-e6daae0b6dd9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}\]</div>
 <p>That is, in agreement with intuition, <span class="math notranslate nohighlight">\(F_\mathrm{est}\)</span> is simply the mean of the observed data when errors are equal.</p>
 <p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is <span class="math notranslate nohighlight">\(\sigma_\mathrm{est}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68526da7-9589-40a8-8c25-3a25b250cc84">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-68526da7-9589-40a8-8c25-3a25b250cc84" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-da1d4722-a23a-49b4-8109-d3545ee83eb5">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-da1d4722-a23a-49b4-8109-d3545ee83eb5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}\]</div>
 <p>These results are fairly simple calculations; let’s evaluate them for our toy dataset:</p>
@@ -657,7 +653,9 @@ and the Bayesian probability is maximized at precisely the same value as the fre
 <div class="section" id="a-note-about-priors">
 <h3>A note about priors<a class="headerlink" href="#a-note-about-priors" title="Permalink to this headline">¶</a></h3>
 <p>The prior allows inclusion of other information into the computation, which becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model. The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.
-A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a noninformative prior like the flat prior mentioned above, there are some [surprisingly subtleties](http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative- priors/comment-page-1/) involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.
+A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a noninformative prior like the flat prior mentioned above, there are some surprising
+<a class="reference external" href="https://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative-priors/comment-page-1/">subtleties</a>
+involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.
 A Bayesian would counter that frequentism doesn’t solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it’s better to make this implicit choice explicit, even if the choice might include some subjectivity.</p>
 </div>
 <div class="section" id="simple-photon-counts-bayesian-approach-in-practice">
@@ -700,21 +698,21 @@ To perform this MCMC, we start by defining Python functions for the prior <span 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(F_\mathrm</span><span class="si">{est}</span><span class="s1">|D,I)$&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
-<p><img alt="Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. " src="../../../_images/singlephotoncount_fig_2.png" /></p>
+<p><a class="reference internal" href="../../../_images/singlephotoncount_fig_2.png"><img alt="../../../_images/singlephotoncount_fig_2.png" src="../../../_images/singlephotoncount_fig_2.png" style="width: 600px;" /></a><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements.<div id="fig:flux-bayesian"></div></em></p></p>
 <!-- !split -->
 </div>
-<div class="section" id="aside-best-estimates-and-credible-intervals">
-<h3>Aside: Best estimates and credible intervals<a class="headerlink" href="#aside-best-estimates-and-credible-intervals" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="best-estimates-and-credible-intervals">
+<h2><span class="section-number">14.3. </span>Best estimates and credible intervals<a class="headerlink" href="#best-estimates-and-credible-intervals" title="Permalink to this headline">¶</a></h2>
 <p>The posterior distribution from our Bayesian data analysis is the key quantity that encodes our inference about the values of the model parameters, given the data and the relevant background information. Often, however, we wish to summarize this result with just a few numbers: the best estimate and a measure of its reliability.</p>
 <p>There are a few different options for this. The choice of the most appropriate one depends mainly on the shape of the posterior distribution:</p>
 <!-- !split -->
 <div class="section" id="symmetric-posterior-pdfs">
-<h4>Symmetric posterior pdfs<a class="headerlink" href="#symmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h4>
+<h3>Symmetric posterior pdfs<a class="headerlink" href="#symmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h3>
 <p>Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by <span class="math notranslate nohighlight">\(\theta\)</span>, with a posterior pdf <span class="math notranslate nohighlight">\(P =p(\theta|D,I)\)</span>, then the best estimate of its value <span class="math notranslate nohighlight">\(\theta_0\)</span> is given by the condition <span class="math notranslate nohighlight">\(dP/d\theta|_{\theta=\theta_0}=0\)</span>. Strictly speaking, we should also check the sign of the second derivative to ensure that <span class="math notranslate nohighlight">\(\theta_0\)</span> represents a maximum.</p>
 <p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c4c8269-5439-4d3a-a3b8-4b9f409b19f0">
-<span class="eqno">(14.8)<a class="headerlink" href="#equation-7c4c8269-5439-4d3a-a3b8-4b9f409b19f0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-930fd6ff-c91f-4d21-aba7-56cd432bc0cf">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-930fd6ff-c91f-4d21-aba7-56cd432bc0cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}\]</div>
 <p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>
@@ -725,18 +723,18 @@ p(\theta_0-\sigma &lt; \theta &lt; \theta_0+\sigma | D,I) = \int_{\theta_0-\sigm
 <!-- !split -->
 </div>
 <div class="section" id="asymmetric-posterior-pdfs">
-<h4>Asymmetric posterior pdfs<a class="headerlink" href="#asymmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h4>
+<h3>Asymmetric posterior pdfs<a class="headerlink" href="#asymmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h3>
 <p>While the maximum (mode) of the posterior (<span class="math notranslate nohighlight">\(\theta_0\)</span>) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, <span class="math notranslate nohighlight">\(\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta\)</span>, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.</p>
 <p>Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>credible interval</em>. Since the area under the posterior pdf between <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> is proportional to how much we believe that <span class="math notranslate nohighlight">\(\theta\)</span> lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[
 p(\theta_1 &lt; \theta &lt; \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
 \]</div>
-<p>where the difference <span class="math notranslate nohighlight">\(\theta_2 - \theta_1\)</span> is as small as possible. The region <span class="math notranslate nohighlight">\(\theta_1 &lt; \theta &lt; \theta_2\)</span> is then called a 67% credible interval.</p>
+<p>The region <span class="math notranslate nohighlight">\(\theta_1 &lt; \theta &lt; \theta_2\)</span> is then called a 67% credible interval. Note that the choice of <span class="math notranslate nohighlight">\([\theta_1,\theta_2]\)</span> is not unique. The choice for which the distance <span class="math notranslate nohighlight">\(\theta_2 - \theta_1\)</span> is as small as possible is usually called the highest posterior density (HPD) interval.</p>
 <!-- !split -->
 </div>
 <div class="section" id="multimodal-posterior-pdfs">
-<h4>Multimodal posterior pdfs<a class="headerlink" href="#multimodal-posterior-pdfs" title="Permalink to this headline">¶</a></h4>
+<h3>Multimodal posterior pdfs<a class="headerlink" href="#multimodal-posterior-pdfs" title="Permalink to this headline">¶</a></h3>
 <p>We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a credible interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can’t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint credible intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.</p>
 <p>Two options for assigning credible intervals to asymmetric and multimodal pdfs:</p>
 <ul class="simple">
@@ -746,13 +744,21 @@ p(\theta_1 &lt; \theta &lt; \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\thet
 <!-- !split -->
 </div>
 <div class="section" id="different-views-on-credible-confidence-intervals">
-<h4>Different views on credible/confidence intervals<a class="headerlink" href="#different-views-on-credible-confidence-intervals" title="Permalink to this headline">¶</a></h4>
-<p>A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following: Given this data and other information there is <span class="math notranslate nohighlight">\(d \%\)</span> probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.</p>
-<!-- !split -->
-<p>A frequentist 95% <em>confidence interval</em> should be understood as follows:
-“There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations”. So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data.</p>
-<p>Let’s try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.</p>
+<h3>Different views on credible/confidence intervals<a class="headerlink" href="#different-views-on-credible-confidence-intervals" title="Permalink to this headline">¶</a></h3>
+<p>A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following:</p>
+<div class="admonition-bayesian-credible-interval admonition">
+<p class="admonition-title">Bayesian credible interval</p>
+<p><em>Given this data and other information there is <span class="math notranslate nohighlight">\(d \%\)</span> probability that this interval contains the true value of the parameter.</em></p>
 </div>
+<p>E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.</p>
+<!-- !split -->
+<p>A frequentist <span class="math notranslate nohighlight">\(d \%\)</span> <em>confidence interval</em> should be understood as follows:</p>
+<div class="admonition-frequentist-confidence-interval admonition">
+<p class="admonition-title">Frequentist confidence interval</p>
+<p><em>There is a <span class="math notranslate nohighlight">\(d \%\)</span> probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations</em></p>
+</div>
+<p>So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data.</p>
+<p>Let’s try again to understand this for the special case of a 95% confidence interval: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.</p>
 </div>
 <div class="section" id="simple-photon-counts-best-estimates-and-credible-intervals">
 <h3>Simple Photon Counts: Best estimates and credible intervals<a class="headerlink" href="#simple-photon-counts-best-estimates-and-credible-intervals" title="Permalink to this headline">¶</a></h3>
@@ -782,7 +788,7 @@ p(\theta_1 &lt; \theta &lt; \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\thet
 </div>
 </div>
 <div class="section" id="example-gaussian-noise-and-averages">
-<h2><span class="section-number">14.3. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.4. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
 <p>The example in the demonstration notebook is from Sivia’s book. How do we infer the mean and standard deviation from <span class="math notranslate nohighlight">\(M\)</span> measurements <span class="math notranslate nohighlight">\(D \in \{ x_k \}_{k=0}^{M-1}\)</span> that should be distributed according to a normal distribution <span class="math notranslate nohighlight">\(p( D | \mu,\sigma,I)\)</span>?</p>
 <!-- !split -->
 <p>Start from Bayes theorem</p>
@@ -825,7 +831,7 @@ p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(\theta)
 <!-- !split -->
 </div>
 <div class="section" id="example-fitting-a-straight-line">
-<h2><span class="section-number">14.4. </span>Example: Fitting a straight line<a class="headerlink" href="#example-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">14.5. </span>Example: Fitting a straight line<a class="headerlink" href="#example-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
 <p>The next example that we will study is the well known fit of a straight line.</p>
 <ul class="simple">
 <li><p>Here the theoretical model is</p></li>
@@ -834,27 +840,26 @@ p(\theta | D,I) \propto p(D|\theta,I) = \mathcal{L}(\theta)
 \[
 y_\mathrm{th}(x; \theta) = m x + b,
 \]</div>
-<p>with parameters <span class="math notranslate nohighlight">\(\theta = [b,m]\)</span>.</p>
-<ul class="simple">
-<li><p>The statistical model for the data is</p></li>
-</ul>
+<p>with parameters <span class="math notranslate nohighlight">\(\theta = [b,m]\)</span>. The theoretical model is related to reality via the statistical model</p>
 <div class="math notranslate nohighlight">
 \[
-y_{\mathrm{exp},i} = y_{\mathrm{th},i} + \delta y_{\mathrm{exp},i},
+y_{i} = y_{\mathrm{th},i} + \varepsilon_i, 
 \]</div>
-<p>where we often assume that the experimental errors are independent and normally distributed so that</p>
+<p>where we often assume that the experimental errors are independent and normally distributed (with a standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>) so that</p>
 <div class="math notranslate nohighlight">
 \[
 y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 \]</div>
 <ul class="simple">
-<li><p>Are independent errors always a good approximation?</p></li>
-<li><p>An even better statistical model for theoretical models with a quantified, finite resolution would be</p></li>
+<li><p>The statistical model for the data is</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
-y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
+y_{\mathrm{exp},i} = y_{i} + \delta y_{\mathrm{exp},i},
 \]</div>
+<ul class="simple">
+<li><p>Are independent errors always a good approximation?</p></li>
+</ul>
 <!-- !split -->
 <div class="section" id="linear-regression-revisited">
 <h3>Linear regression revisited<a class="headerlink" href="#linear-regression-revisited" title="Permalink to this headline">¶</a></h3>

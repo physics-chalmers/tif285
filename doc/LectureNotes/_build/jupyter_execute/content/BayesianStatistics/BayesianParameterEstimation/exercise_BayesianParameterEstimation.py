@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # # Exercise: Bayesian parameter estimation
-# 
-# Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen@chalmers.se]
 
 # ### Import of modules
 
@@ -148,9 +146,11 @@ fig.tight_layout()
 # Perhaps the most principled approach to choosing non-informative priors was the *principle of maximum entropy* advocated by Jaynes ([book](http://omega.albany.edu:8008/JaynesBook.html)).
 # Similar in spirit is the commonly-used [Jeffreys Prior](https://en.wikipedia.org/wiki/Jeffreys_prior), which in many cases of interest amounts to a "scale invariant" prior: a flat prior on the logarithm of the parameter.
 # In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see http://arxiv.org/abs/1411.5018 for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives
+# 
 # $$
 # \pr(m) \propto (1 + m^2)^{-3/2}
 # $$
+# 
 # For lack of a better term, I like to call this a "symmetric prior" on the slope (because it's the same whether we're fitting $y = mx + b$ or $x = m^\prime y + b^\prime$).
 
 # ### Implementation

@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # # Bayesian parameter estimation demonstration
-# 
-# Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen@chalmers.se]
 
 # ### Import of modules
 
@@ -36,11 +34,13 @@ import corner
 
 
 # Let us consider the problem of estimating the mean and the variance of a normal distribution that is associated with a collection of random variables. The normal distribution
+# 
 # $$
 # p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sigma^2} \right),
 # $$
-# is often used as a theoretical model to describe the noise associated with experimental data.
 # 
+# is often used as a theoretical model to describe the noise associated with experimental data.
+
 # *Why is a normal (Gaussian) distribution so often a good statistical model?* 
 # 
 # Let us assume that we have a series of $M$ measurements $D \equiv \{ x_k \} = (x_1, \ldots, x_M)$, that are samples from a normal $\mathcal{N}(\mu, \sigma^2)$ population, from which we would like to learn the approximate values of the parameters $\mu$ and $\sigma$. The standard frequentist approach to this problem is the maximum likelihood method, The Bayesian approach is to compute the posterior distribution for the model parameters $\mu$ and $\sigma$.

@@ -1,6 +1,3 @@
-<!-- !split -->
-<!-- <img src="fig/BayesianParameterEstimation/m1m2.png" width=400><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p> -->
-![<p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot. <div id="fig:gw"></div></em></p>](./figs/m1m2.png)
 
 <!-- !split -->
 # Inference With Parametric Models
@@ -28,25 +25,25 @@ $$
 <!-- !split -->
 ```{Admonition} Parameter Estimation:
   :class: tip
-  Premise = We have chosen a model (say $M_1$)
+  Premise: We have chosen a model (say $M_1$)
   
   $\Rightarrow$ What can we say about its parameters $\boldsymbol{\theta}_1$?
   ```
 ```{Admonition} Model comparison:
   :class: tip
-  Premise = We have a set of different models $\{M_i\}$
+  Premise: We have a set of different models $\{M_i\}$
   
   $\Rightarrow$ How do they compare with each other? Do we have evidence to say that, e.g. $M_1$, is better than $M_2$?
   ```
 ```{Admonition} Model adequacy:
   :class: tip
-  Premise = We have a model $M_1$
+  Premise: We have a model $M_1$
   
   $\Rightarrow$ Is $M_1$ adequate?
   ```
 ```{Admonition} Hybrid Uncertainty:
   :class: tip
-  Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$
+  Premise: Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$
   
   $\Rightarrow$ What can we say about $\boldsymbol{\varphi}$? (Systematic error is an example)
 ```
@@ -70,6 +67,7 @@ We will now consider the Bayesian approach to the very important task of model p
 
 Let us first remind ourselves what can go wrong in a fit. We have encountered both **underfitting** (model is not complex enough to describe the variability in the data) and **overfitting** (model tunes to data fluctuations, or terms are underdetermined causing them playing off each other). Bayesian methods can prevent/identify both these situations.
 
+<img src="./figs/m1m2.png" width=600><p><em>Joint pdf for the masses of two black holes merging obtained from the data analysis of a gravitational wave signal. This representation of a joint pdf is known as a corner plot.  <div id="fig-gw"></div></em></p> 
 
 
 <!-- !split -->
@@ -207,7 +205,9 @@ and the Bayesian probability is maximized at precisely the same value as the fre
 ### A note about priors
 
 The prior allows inclusion of other information into the computation, which becomes very useful in cases where multiple measurement strategies are being combined to constrain a single model. The necessity to specify a prior, however, is one of the more controversial pieces of Bayesian analysis.
-A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a noninformative prior like the flat prior mentioned above, there are some [surprisingly subtleties](http://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative- priors/comment-page-1/) involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.
+A frequentist will point out that the prior is problematic when no true prior information is available. Though it might seem straightforward to use a noninformative prior like the flat prior mentioned above, there are some surprising
+[subtleties](https://normaldeviate.wordpress.com/2013/07/13/lost-causes-in-statistics-ii-noninformative-priors/comment-page-1/)
+involved. It turns out that in many situations, a truly noninformative prior does not exist! Frequentists point out that the subjective choice of a prior which necessarily biases your result has no place in statistical data analysis.
 A Bayesian would counter that frequentism doesn't solve this problem, but simply skirts the question. Frequentism can often be viewed as simply a special case of the Bayesian approach for some (implicit) choice of the prior: a Bayesian would say that it's better to make this implicit choice explicit, even if the choice might include some subjectivity.
 
 ### Simple Photon Counts: Bayesian approach in practice
@@ -259,17 +259,16 @@ ax.set_xlabel(r'$F_\mathrm{est}$')
 ax.set_ylabel(r'$p(F_\mathrm{est}|D,I)$');
 ```
 
-<!-- <img src="fig/BayesianParameterEstimation/singlephotoncount_fig_2.png" width=400><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p> -->
-![<p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements. <div id="fig:flux-bayesian"></div></em></p>](./figs/singlephotoncount_fig_2.png)
+<img src="./figs/singlephotoncount_fig_2.png" width=600><p><em>Bayesian posterior pdf (represented by a histogram of MCMC samples) from flux measurements.<div id="fig:flux-bayesian"></div></em></p> 
 
 <!-- !split -->
-### Aside: Best estimates and credible intervals
+## Best estimates and credible intervals
 The posterior distribution from our Bayesian data analysis is the key quantity that encodes our inference about the values of the model parameters, given the data and the relevant background information. Often, however, we wish to summarize this result with just a few numbers: the best estimate and a measure of its reliability. 
 
 There are a few different options for this. The choice of the most appropriate one depends mainly on the shape of the posterior distribution:
 
 <!-- !split -->
-#### Symmetric posterior pdfs
+### Symmetric posterior pdfs
 
 Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by $\theta$, with a posterior pdf $P =p(\theta|D,I)$, then the best estimate of its value $\theta_0$ is given by the condition $dP/d\theta|_{\theta=\theta_0}=0$. Strictly speaking, we should also check the sign of the second derivative to ensure that $\theta_0$ represents a maximum.
 
@@ -286,7 +285,7 @@ p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\t
 $$
 
 <!-- !split -->
-#### Asymmetric posterior pdfs
+### Asymmetric posterior pdfs
 
 While the maximum (mode) of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
@@ -296,10 +295,10 @@ $$
 p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
 $$
 
-where the difference $\theta_2 - \theta_1$ is as small as possible. The region $\theta_1 < \theta < \theta_2$ is then called a 67% credible interval. 
+The region $\theta_1 < \theta < \theta_2$ is then called a 67% credible interval. Note that the choice of $[\theta_1,\theta_2]$ is not unique. The choice for which the distance $\theta_2 - \theta_1$ is as small as possible is usually called the highest posterior density (HPD) interval.  
 
 <!-- !split -->
-#### Multimodal posterior pdfs
+### Multimodal posterior pdfs
 
 We can sometimes obtain posteriors which are multimodal; i.e. contains several disconnected regions with large probabilities. There is no difficulty when one of the maxima is very much larger than the others: we can simply ignore the subsidiary solutions, to a good approximation, and concentrate on the global maximum. The problem arises when there are several maxima of comparable magnitude. What do we now mean by a best estimate, and how should we quantify its reliability? The idea of a best estimate and an error-bar, or even a credible interval, is merely an attempt to summarize the posterior with just two or three numbers; sometimes this just can’t be done, and so these concepts are not valid. For the bimodal case we might be able to characterize the posterior in terms of a few numbers: two best estimates and their associated error-bars, or disjoint credible intervals. For a general multimodal pdf, the most honest thing we can do is just display the posterior itself.
 
@@ -309,20 +308,29 @@ Two options for assigning credible intervals to asymmetric and multimodal pdfs:
 
 
 
+<!-- !split -->
+### Different views on credible/confidence intervals
+
+A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following: 
+
+```{admonition} Bayesian credible interval
+  *Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter.*
+  ```
+
+E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+
+
 
 <!-- !split -->
-#### Different views on credible/confidence intervals
+A frequentist $d \%$ *confidence interval* should be understood as follows: 
 
-A Bayesian credible interval, or degree-of-belief (DOB) interval, is the following: Given this data and other information there is $d \%$ probability that this interval contains the true value of the parameter. E.g. a 95% DOB interval implies that the Baysian data analyser would bet 20-to-1 that the true result is inside the interval.
+```{admonition} Frequentist confidence interval
+  *There is a $d \%$ probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations*
+  ```
 
+So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data. 
 
-
-<!-- !split -->
-A frequentist 95% *confidence interval* should be understood as follows: 
-"There is a 95% probability that when I compute a confidence interval from data of this sort that he true value of the parameter will fall within the (hypothetical) space of observations". So the parameter is fixed (no pdf) and the confidence interval is based on random sampling of data. 
-
-Let's try again to understand this: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.
-
+Let's try again to understand this for the special case of a 95% confidence interval: If we make a large number of repeated samples, then 95% of the intervals extracted in this way will include the true value of the parameter.
 
 
 
@@ -413,26 +421,26 @@ $$
 y_\mathrm{th}(x; \theta) = m x + b,
 $$
 
-with parameters $\theta = [b,m]$.
-
-* The statistical model for the data is
+with parameters $\theta = [b,m]$. The theoretical model is related to reality via the statistical model
 
 $$
-y_{\mathrm{exp},i} = y_{\mathrm{th},i} + \delta y_{\mathrm{exp},i},
+y_{i} = y_{\mathrm{th},i} + \varepsilon_i, 
 $$
 
-where we often assume that the experimental errors are independent and normally distributed so that
+where we often assume that the experimental errors are independent and normally distributed (with a standard deviation $e_i$) so that
 
 $$
 y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 $$
 
-* Are independent errors always a good approximation?
-* An even better statistical model for theoretical models with a quantified, finite resolution would be
+
+* The statistical model for the data is
 
 $$
-y_\mathrm{exp} = y_\mathrm{th} + \delta y_\mathrm{exp} + \delta y_\mathrm{th}.
+y_{\mathrm{exp},i} = y_{i} + \delta y_{\mathrm{exp},i},
 $$
+
+* Are independent errors always a good approximation?
 
 <!-- !split -->
 ### Linear regression revisited

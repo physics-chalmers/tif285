@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,9 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -476,7 +474,6 @@
                 
   <div class="section" id="exercise-bayesian-parameter-estimation">
 <h1><span class="section-number">16. </span>Exercise: Bayesian parameter estimation<a class="headerlink" href="#exercise-bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-of-modules">
 <h2><span class="section-number">16.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -610,12 +607,13 @@ If you don’t have an empirical prior, you might be tempted to simply use a <em
 What we <em>really</em> want in cases where no empirical prior is available is a <strong>non-informative prior</strong>. Among other things, such a prior should not depend on the units of the data.
 Perhaps the most principled approach to choosing non-informative priors was the <em>principle of maximum entropy</em> advocated by Jaynes (<a class="reference external" href="http://omega.albany.edu:8008/JaynesBook.html">book</a>).
 Similar in spirit is the commonly-used <a class="reference external" href="https://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a>, which in many cases of interest amounts to a “scale invariant” prior: a flat prior on the logarithm of the parameter.
-In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see http://arxiv.org/abs/1411.5018 for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives
-$<span class="math notranslate nohighlight">\(
-\pr(m) \propto (1 + m^2)^{-3/2}
-\)</span><span class="math notranslate nohighlight">\(
-For lack of a better term, I like to call this a &quot;symmetric prior&quot; on the slope (because it's the same whether we're fitting \)</span>y = mx + b<span class="math notranslate nohighlight">\( or \)</span>x = m^\prime y + b^\prime$).</p></li>
+In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see http://arxiv.org/abs/1411.5018 for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[
+\pr(m) \propto (1 + m^2)^{-3/2}
+\]</div>
+<p>For lack of a better term, I like to call this a “symmetric prior” on the slope (because it’s the same whether we’re fitting <span class="math notranslate nohighlight">\(y = mx + b\)</span> or <span class="math notranslate nohighlight">\(x = m^\prime y + b^\prime\)</span>).</p>
 <div class="section" id="implementation">
 <h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
 <p>Let’s define two python functions to compute the options for our prior: we’ll use both a (log) flat prior and a (log) symmetric prior.

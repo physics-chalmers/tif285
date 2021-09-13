@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,9 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -457,7 +455,6 @@
                 
   <div class="section" id="bayesian-parameter-estimation-demonstration">
 <h1><span class="section-number">15. </span>Bayesian parameter estimation demonstration<a class="headerlink" href="#bayesian-parameter-estimation-demonstration" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 15-Sep-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="import-of-modules">
 <h2><span class="section-number">15.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -489,11 +486,12 @@
 </div>
 </div>
 </div>
-<p>Let us consider the problem of estimating the mean and the variance of a normal distribution that is associated with a collection of random variables. The normal distribution
-$<span class="math notranslate nohighlight">\(
+<p>Let us consider the problem of estimating the mean and the variance of a normal distribution that is associated with a collection of random variables. The normal distribution</p>
+<div class="math notranslate nohighlight">
+\[
 p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sigma^2} \right),
-\)</span>$
-is often used as a theoretical model to describe the noise associated with experimental data.</p>
+\]</div>
+<p>is often used as a theoretical model to describe the noise associated with experimental data.</p>
 <p><em>Why is a normal (Gaussian) distribution so often a good statistical model?</em></p>
 <p>Let us assume that we have a series of <span class="math notranslate nohighlight">\(M\)</span> measurements <span class="math notranslate nohighlight">\(D \equiv \{ x_k \} = (x_1, \ldots, x_M)\)</span>, that are samples from a normal <span class="math notranslate nohighlight">\(\mathcal{N}(\mu, \sigma^2)\)</span> population, from which we would like to learn the approximate values of the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. The standard frequentist approach to this problem is the maximum likelihood method, The Bayesian approach is to compute the posterior distribution for the model parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <p>Here we’ll use Python to generate some toy data to demonstrate the two approaches to the problem.</p>
@@ -530,8 +528,8 @@ is often used as a theoretical model to describe the noise associated with exper
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_12_0.png" src="../../../_images/demo-BayesianParameterEstimation_12_0.png" />
-<img alt="../../../_images/demo-BayesianParameterEstimation_12_1.png" src="../../../_images/demo-BayesianParameterEstimation_12_1.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_13_0.png" src="../../../_images/demo-BayesianParameterEstimation_13_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_13_1.png" src="../../../_images/demo-BayesianParameterEstimation_13_1.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code> alternative: one figure with two subplots using an array of axes.</p>
@@ -553,7 +551,7 @@ is often used as a theoretical model to describe the noise associated with exper
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_14_0.png" src="../../../_images/demo-BayesianParameterEstimation_14_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_15_0.png" src="../../../_images/demo-BayesianParameterEstimation_15_0.png" />
 </div>
 </div>
 <p><em>What can you conclude about the tails?</em></p>
@@ -761,7 +759,7 @@ is often used as a theoretical model to describe the noise associated with exper
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_27_0.png" src="../../../_images/demo-BayesianParameterEstimation_27_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_28_0.png" src="../../../_images/demo-BayesianParameterEstimation_28_0.png" />
 </div>
 </div>
 <p>The lower left panel in the corner plot shows the joint probability distribution for the two model parameters. The two plots on the diagonal show marginalized distributions (with one parameter integrated out) for the two model parameters. The blue lines indicate the <em>true</em> values of the model parameters, while the title and the dashed lines indicate the most probable value as well as a 68% confidence interval. We will be discussing these representative measures of a posterior distribution during the course.</p>
