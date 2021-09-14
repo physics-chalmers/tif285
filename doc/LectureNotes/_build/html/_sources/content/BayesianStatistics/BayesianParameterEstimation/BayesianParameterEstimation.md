@@ -272,30 +272,26 @@ There are a few different options for this. The choice of the most appropriate o
 
 Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by $\theta$, with a posterior pdf $P =p(\theta|D,I)$, then the best estimate of its value $\theta_0$ is given by the condition $dP/d\theta|_{\theta=\theta_0}=0$. Strictly speaking, we should also check the sign of the second derivative to ensure that $\theta_0$ represents a maximum.
 
-To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about $\theta_0$. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)
-
-\begin{equation}
-p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
-\end{equation}
-
-where the mean $\mu = \theta_0$ and the variance $\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}$, where $L$ is the logarithm of the posterior $P$. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval $\theta = \theta_0 \pm \sigma$, and 
+For a pdf that is symmetric around the mode $\theta_0$ we can find a positive number $\Delta \theta$ such that
 
 $$
-p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
+p(\theta_0-\Delta\theta < \theta < \theta_0+\Delta\theta | D,I) = \int_{\theta_0-\Delta\theta}^{\theta_0+\Delta\theta} p(\theta|D,I) d\theta = m.
 $$
+
+The single error bar $\Delta\theta$, or $\theta_0 \pm \Delta\theta$, then defines an $100 \times m\%$ *credible interval*.
 
 <!-- !split -->
 ### Asymmetric posterior pdfs
 
-While the maximum (mode) of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
+While the maximum (mode) of the posterior ($\theta_0$) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side than the other. Alternatively one can compute the mean value, $\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta$, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.
 
-Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a *credible interval*. Since the area under the posterior pdf between $\theta_1$ and $\theta_2$ is proportional to how much we believe that $\theta$ lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find $\theta_1$ and $\theta_2$ such that: 
+Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through specifying the *credible interval*. Since the area under the posterior pdf between $[\theta_1,\theta_2]$ is proportional to how much we believe that $\theta$ lies in that range, the shortest interval that encloses $m$ probability mass represents an $100 \times m\%$ credible interval for the estimate. Obviously we can choose to provide any degree-of-belief intervals that we think are relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find $\theta_1$ and $\theta_2$ such that: 
 
 $$
-p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
+p(\theta_1 < \theta < \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta = m.
 $$
 
-The region $\theta_1 < \theta < \theta_2$ is then called a 67% credible interval. Note that the choice of $[\theta_1,\theta_2]$ is not unique. The choice for which the distance $\theta_2 - \theta_1$ is as small as possible is usually called the highest posterior density (HPD) interval.  
+Note that oen can come up with other choices for the interval $[\theta_1,\theta_2]$ that still gives $m$ integrated probability mass. The choice for which the distance $\theta_2 - \theta_1$ is as small as possible is usually called the highest posterior density (HPD) interval.  
 
 <!-- !split -->
 ### Multimodal posterior pdfs
@@ -475,36 +471,79 @@ The mode of the posterior pdf occurs at the minimum of this log-posterior functi
 
 <!-- !split -->
 ### Why normal distributions?
-Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf $p(\theta | D,I)$. Our best estimate from this pdf will be $\theta_0$ where
+Let us give a quick motivation why Gaussian distributions show up so often. In fact, most distributions look like a Gaussian one in the vicinity of a mode (as will be shown below). Replacing a general pdf by a Gaussian one is called the *Laplace approximation*. It helps by providing analytical expressions for various quantities, but it is not always a very good approximations as you move further away from the mode.
+
+#### One-dimensional normal distributions
+The expression for a one-dimensional normal distribution is
+
+$$
+p(\theta) = \frac{1}{N} \exp \left[ -\frac{1}{2} \frac{(\theta-\theta_0)^2}{\sigma^2} \right],
+$$
+
+where the normalization is $N=\sqrt{2\pi\sigma^2}$.
+
+The mode of this distribution is at $\theta=\theta_0$. The probability density at the mode is $p(\theta_0) = 1/N$, while it is a factor $e^{-1/2}$ smaller a distance $\sigma$ away. Furthermore, the integral
+
+$$
+p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.68,
+$$
+
+which implies that the interval $[\theta_0-\sigma, \theta_0+\sigma]$ is a Bayesian 68% credible interval.
+
+
+
+To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about $\theta_0$. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)
+
+\begin{equation}
+p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
+\end{equation}
+
+where the mean $\mu = \theta_0$ and the variance $\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}$, where $L$ is the logarithm of the posterior $P$. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval $\theta = \theta_0 \pm \sigma$, and 
+
+$$
+p(\theta_0-\sigma < \theta < \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
+$$
+
+
+#### The Laplace approximation
+
+Say that we have a general pdf $p(\theta | D,I)$ with a mode at $\theta = \theta_0$ where
 
 $$ 
 \left. 
 \frac{ \partial p }{ \partial \theta }
-\right|_{\theta_0} = 0, \qquad
+\right|_{\theta=\theta_0} = 0, \qquad
 \left. \frac{ \partial^2 p }{ \partial \theta^2 }
-\right|_{\theta_0} < 0.
+\right|_{\theta=\theta_0} < 0.
 $$
 
-The distribution usually varies very rapidly so we study $L(\theta) \equiv \log p$ instead.
-Near the peak, it behaves as
+The distribution usually varies very rapidly so we study $L(\theta) \equiv \log \left( p(\theta) \right)$ instead.
+
+When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. Near the peak, our pdf behaves as
 
 $$
 L(\theta) = L(\theta_0) + \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2 + \ldots,
 $$
 
-where the first-order term is zero since we are expanding around a maximum and $\partial L / \partial\theta = 0$.
-
-<!-- !split -->
-If we neglect higher-order terms we find that 
+where the first-order term is zero since we are expanding around a maximum and $\partial L / \partial\theta = 0$. The second term is negative since the curvature is negative at the peak,which we indicate by writing $-\frac{1}{2} \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0}$. Furthermore, higher order terms can be neglected **if**
 
 $$
-p(\theta|D,I) \approx A \exp \left[ \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2  \right],
+(\theta-\theta_0)^k \frac{ \partial^{2+k} L }{ \partial \theta^{2+k} } \ll \frac{ \partial^2 L }{ \partial \theta^2 },
+$$
+
+for $k=1,2,\ldots$. This will often be true for small distances $\theta-\theta_0$.
+
+<!-- !split -->
+Consequently, if we neglect higher-order terms we find that 
+
+$$
+p(\theta|D,I) \approx A \exp \left[ -\frac{1}{2} \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0} \left( \theta - \theta_0 \right)^2  \right],
 $$
 
 which is a Gaussian $\mathcal{N}(\mu,\sigma^2)$ with
 
 $$
-\mu = \theta_0, \qquad \sigma^2 = \left( - \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \right)^{-1/2}.
+\mu = \theta_0, \qquad \frac{1}{\sigma^2} = \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0} .
 $$
 
 <!-- !split -->
@@ -513,11 +552,46 @@ In the "fitting a straight-line" example you should find that the joint pdf for 
 
 * Try to understand the correlation that you find in this example.
 
-Let us explore correlations by studying the behavior of the pdf at the maximum.
-A Taylor expansion for a bivariate pdf $p(x,y)$ around the mode $(x_0,y_0)$ gives
+Let us explore correlations by studying the behavior of a bivariate pdf near the maximum where we employ the Laplace approximation (neglecting terms beyond the quadratic one in a Taylor expansion). We start by considering two independent parameters $x$ and $y$, before studying the dependent case.
+
+#### Two independent parameters
+
+Independence implies that $p(x,y) = p_x(x) p_y(y)$. We will again consider the log-pdf $L(x,y) = \log\left( p(x,y) \right)$ which will then be
 
 $$
-p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
+L(x,y) = L_x(x) + L_y(y).
+$$
+
+At the mode we will have $\partial p / \partial x = \partial p_x / \partial x = \partial L_x / \partial x = 0$, and similarly $\partial L_y / \partial y = 0$.
+
+The second derivatives will be
+
+$$
+A \equiv \left. \frac{\partial^2 L_x}{\partial x^2} \right|_{x=x_0} < 0, \quad
+B \equiv \left. \frac{\partial^2 L_y}{\partial y^2} \right|_{y=y_0} < 0, \quad
+C \equiv \left. \frac{\partial L(x,y)}{\partial x \partial y} \right|_{x=x_0,y=y_0} = 0.
+$$
+
+such that our approximated (log) pdf near the mode will be
+
+$$
+L(x,y) = L(x_0, y_0) - \frac{1}{2} |A| (x-x_0)^2 - \frac{1}{2} |B| (y-y_0)^2.
+$$
+
+We could visualize this bivariate pdf by plotting iso-probability contours. Or, equivalently, iso-log-probability contours which correspond to
+
+$$
+|A| (x-x_0)^2 + |B| (y-y_0)^2 = \mathrm{constant}.
+$$
+
+This you should recognize as the equation for an ellipse with its center in $(x_0, y_0)$, the principal axes corresponding to the $x$ and $y$ directions, and with the width and height parameters $\sigma_x = 1/\sqrt{|A|}$ and $\sigma_y = 1/\sqrt{|B|}$, respectively.
+
+#### Two dependent parameters
+
+For two dependent parameters we cannot separate $p(x,y)$ into a product of one-dimensional pdf:s. Instead, the Taylor expansion for the bivariate log-pdf $L(x,y)$ around the mode $(x_0,y_0)$ gives
+
+$$
+L(x,y) \approx L(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 & y-y_0 \end{pmatrix}
 H
 \begin{pmatrix} x-x_0 \\ y-y_0 \end{pmatrix},
 $$
@@ -533,14 +607,37 @@ $$
 with elements
 
 $$
-A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
-B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
-C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
+A = \left. \frac{\partial^2 L}{\partial x^2} \right|_{x_0,y_0} < 0, \quad
+B = \left. \frac{\partial^2 L}{\partial y^2} \right|_{x_0,y_0} < 0, \quad
+C = \left. \frac{\partial^2 L}{\partial x \partial y} \right|_{x_0,y_0} \neq 0.
 $$
-
 
 <!-- !split -->
 * So in this quadratic approximation the contour is an ellipse centered at $(x_0,y_0)$ with orientation and eccentricity determined by $A,B,C$.
 * The principal axes are found from the eigenvectors of $H$.
 * Depending on the skewness of the ellipse, the parameters are either (i) not correlated, (ii) correlated, or (iii) anti-correlated.
 * Take a minute to consider what that implies.
+
+Let us be explicit. The Hessian can be diagonalized (we will also change sign)
+
+$$
+-H = U \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} U^{-1},
+$$
+
+where $a$, $b$ are the (positive) eigenvalues of $-H$, and $U = \begin{pmatrix} a_x & b_x \\ a_y & b_y \end{pmatrix}$ is constructed from the eigenvectors. Defining a new set of translated and linearly combined parameters
+
+$$
+x' = a_x (x - x_0) + a_y (y - y_0) \\
+y' = b_x (x - x_0) + b_y (y - y_0) 
+$$
+
+we find that the pdf becomes independent in this new pair of parameters
+
+$$
+L(x',y') = L(0,0) - \frac{1}{2} \begin{pmatrix} x' & y' \end{pmatrix}
+\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix}
+\begin{pmatrix} x' \\ y' \end{pmatrix} \\
+\qquad = L(0, 0) - \frac{1}{2} a (x')^2 - \frac{1}{2} b (y')^2.
+$$
+
+* Take a minute to consider what has been achieved by this change of variables.

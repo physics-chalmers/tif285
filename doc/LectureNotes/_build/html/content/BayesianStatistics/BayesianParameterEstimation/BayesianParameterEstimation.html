@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -475,11 +475,35 @@
     <a class="reference internal nav-link" href="#why-normal-distributions">
      Why normal distributions?
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-dimensional-normal-distributions">
+       One-dimensional normal distributions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-laplace-approximation">
+       The Laplace approximation
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#correlations">
      Correlations
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#two-independent-parameters">
+       Two independent parameters
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#two-dependent-parameters">
+       Two dependent parameters
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -589,45 +613,45 @@ The question is, given this set of measurements <span class="math notranslate no
 <div class="section" id="simple-photon-counts-frequentist-approach">
 <h3>Simple Photon Counts: Frequentist Approach<a class="headerlink" href="#simple-photon-counts-frequentist-approach" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist maximum likelihood approach. Given a single observation <span class="math notranslate nohighlight">\(D_i = F_i\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and our assumption of Gaussian errors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c15e5b24-df23-48e9-b362-84a9de1c0e5b">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-c15e5b24-df23-48e9-b362-84a9de1c0e5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20ef39c9-4f2b-40b2-a1fe-8e070bd88db7">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-20ef39c9-4f2b-40b2-a1fe-8e070bd88db7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}\]</div>
 <p>This should be read “the probability of <span class="math notranslate nohighlight">\(D_i\)</span> given <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>
 equals …”. You should recognize this as a normal distribution with mean <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>.</p>
 <p>We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f2eb16b-42a2-4bf1-9a5d-c92d6dc47c0e">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-2f2eb16b-42a2-4bf1-9a5d-c92d6dc47c0e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f8cae51-c030-4e1b-b4e2-69ff636dd5a2">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-5f8cae51-c030-4e1b-b4e2-69ff636dd5a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}\]</div>
 <p>here <span class="math notranslate nohighlight">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.</p>
 <p><em>Notice.</em>
 In the following we will use <span class="math notranslate nohighlight">\(\log\)</span> to denote the natural logarithm. We will write <span class="math notranslate nohighlight">\(\log_{10}\)</span> if we specifically mean the logarithm with base 10.</p>
 <p>Combining the previous two equations and computing the log, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-387e499b-e97e-4fc3-872e-0fcd5aa57da9">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-387e499b-e97e-4fc3-872e-0fcd5aa57da9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcd89664-0ddd-4a4e-b8bf-d93b930a5e7a">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-dcd89664-0ddd-4a4e-b8bf-d93b930a5e7a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}\]</div>
 <p>In this approach we will determine <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c00be253-34d6-488b-8a15-373259b5b46f">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-c00be253-34d6-488b-8a15-373259b5b46f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a01d6504-ef87-42db-bc8f-648998553687">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-a01d6504-ef87-42db-bc8f-648998553687" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}\]</div>
 <p>which you should recognize as the chi-squared function encountered in the linear regression model.</p>
 <p>Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting <span class="math notranslate nohighlight">\(d\log\mathcal{L}/d F_\mathrm{true} = 0\)</span>). This results in the following observed estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-08f3f6c0-203d-46f0-85b0-8bd03ac5deb5">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-08f3f6c0-203d-46f0-85b0-8bd03ac5deb5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f42ea595-76f5-4568-8985-77349a742c25">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-f42ea595-76f5-4568-8985-77349a742c25" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}\]</div>
 <p>Notice that in the special case of all errors <span class="math notranslate nohighlight">\(e_i\)</span> being equal, this reduces to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a98d56df-f8f9-4db5-aefb-e6daae0b6dd9">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-a98d56df-f8f9-4db5-aefb-e6daae0b6dd9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72702097-f3eb-432e-83c1-187ce011e51b">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-72702097-f3eb-432e-83c1-187ce011e51b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}\]</div>
 <p>That is, in agreement with intuition, <span class="math notranslate nohighlight">\(F_\mathrm{est}\)</span> is simply the mean of the observed data when errors are equal.</p>
 <p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is <span class="math notranslate nohighlight">\(\sigma_\mathrm{est}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da1d4722-a23a-49b4-8109-d3545ee83eb5">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-da1d4722-a23a-49b4-8109-d3545ee83eb5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aaaaaf60-8159-48a2-ae2f-3e29320e702a">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-aaaaaf60-8159-48a2-ae2f-3e29320e702a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}\]</div>
 <p>These results are fairly simple calculations; let’s evaluate them for our toy dataset:</p>
@@ -710,27 +734,23 @@ To perform this MCMC, we start by defining Python functions for the prior <span 
 <div class="section" id="symmetric-posterior-pdfs">
 <h3>Symmetric posterior pdfs<a class="headerlink" href="#symmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h3>
 <p>Since the probability (density) associated with any particular value of the parameter is a measure of how much we believe that it lies in the neighbourhood of that point, our best estimate is given by the maximum of the posterior pdf. If we denote the quantity of interest by <span class="math notranslate nohighlight">\(\theta\)</span>, with a posterior pdf <span class="math notranslate nohighlight">\(P =p(\theta|D,I)\)</span>, then the best estimate of its value <span class="math notranslate nohighlight">\(\theta_0\)</span> is given by the condition <span class="math notranslate nohighlight">\(dP/d\theta|_{\theta=\theta_0}=0\)</span>. Strictly speaking, we should also check the sign of the second derivative to ensure that <span class="math notranslate nohighlight">\(\theta_0\)</span> represents a maximum.</p>
-<p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-930fd6ff-c91f-4d21-aba7-56cd432bc0cf">
-<span class="eqno">(14.8)<a class="headerlink" href="#equation-930fd6ff-c91f-4d21-aba7-56cd432bc0cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
-\end{equation}\]</div>
-<p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>
+<p>For a pdf that is symmetric around the mode <span class="math notranslate nohighlight">\(\theta_0\)</span> we can find a positive number <span class="math notranslate nohighlight">\(\Delta \theta\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-p(\theta_0-\sigma &lt; \theta &lt; \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
+p(\theta_0-\Delta\theta &lt; \theta &lt; \theta_0+\Delta\theta | D,I) = \int_{\theta_0-\Delta\theta}^{\theta_0+\Delta\theta} p(\theta|D,I) d\theta = m.
 \]</div>
+<p>The single error bar <span class="math notranslate nohighlight">\(\Delta\theta\)</span>, or <span class="math notranslate nohighlight">\(\theta_0 \pm \Delta\theta\)</span>, then defines an <span class="math notranslate nohighlight">\(100 \times m\%\)</span> <em>credible interval</em>.</p>
 <!-- !split -->
 </div>
 <div class="section" id="asymmetric-posterior-pdfs">
 <h3>Asymmetric posterior pdfs<a class="headerlink" href="#asymmetric-posterior-pdfs" title="Permalink to this headline">¶</a></h3>
-<p>While the maximum (mode) of the posterior (<span class="math notranslate nohighlight">\(\theta_0\)</span>) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side of this rather than the other. Alternatively one can compute the mean value, <span class="math notranslate nohighlight">\(\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta\)</span>, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.</p>
-<p>Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through a <em>credible interval</em>. Since the area under the posterior pdf between <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> is proportional to how much we believe that <span class="math notranslate nohighlight">\(\theta\)</span> lies in that range, the shortest interval that encloses 67% of the area represents a sensible measure of the uncertainty of the estimate. Obviously we can choose to provide some other degree-of-belief that we think is relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> such that:</p>
+<p>While the maximum (mode) of the posterior (<span class="math notranslate nohighlight">\(\theta_0\)</span>) can still be regarded as giving the best estimate, the integrated probability mass is larger on one side than the other. Alternatively one can compute the mean value, <span class="math notranslate nohighlight">\(\langle \theta \rangle = \int \theta p(\theta|D,I) d\theta\)</span>, although this tends to overemphasise very long tails. The best option is probably a compromise that can be employed when having access to a large sample from the posterior (as provided by an MCMC), namely to give the median of this ensemble.</p>
+<p>Furthermore, the concept of a single error bar does not seem appropriate in this case, as it implicitly entails the idea of symmetry. A good way of expressing the reliability with which a parameter can be inferred, for an asymmetric posterior pdf, is rather through specifying the <em>credible interval</em>. Since the area under the posterior pdf between <span class="math notranslate nohighlight">\([\theta_1,\theta_2]\)</span> is proportional to how much we believe that <span class="math notranslate nohighlight">\(\theta\)</span> lies in that range, the shortest interval that encloses <span class="math notranslate nohighlight">\(m\)</span> probability mass represents an <span class="math notranslate nohighlight">\(100 \times m\%\)</span> credible interval for the estimate. Obviously we can choose to provide any degree-of-belief intervals that we think are relevant for the case at hand. Assuming that the posterior pdf has been normalized, to have unit area, we need to find <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> such that:</p>
 <div class="math notranslate nohighlight">
 \[
-p(\theta_1 &lt; \theta &lt; \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta \approx 0.67, 
+p(\theta_1 &lt; \theta &lt; \theta_2 | D,I) = \int_{\theta_1}^{\theta_2} p(\theta|D,I) d\theta = m.
 \]</div>
-<p>The region <span class="math notranslate nohighlight">\(\theta_1 &lt; \theta &lt; \theta_2\)</span> is then called a 67% credible interval. Note that the choice of <span class="math notranslate nohighlight">\([\theta_1,\theta_2]\)</span> is not unique. The choice for which the distance <span class="math notranslate nohighlight">\(\theta_2 - \theta_1\)</span> is as small as possible is usually called the highest posterior density (HPD) interval.</p>
+<p>Note that oen can come up with other choices for the interval <span class="math notranslate nohighlight">\([\theta_1,\theta_2]\)</span> that still gives <span class="math notranslate nohighlight">\(m\)</span> integrated probability mass. The choice for which the distance <span class="math notranslate nohighlight">\(\theta_2 - \theta_1\)</span> is as small as possible is usually called the highest posterior density (HPD) interval.</p>
 <!-- !split -->
 </div>
 <div class="section" id="multimodal-posterior-pdfs">
@@ -889,34 +909,68 @@ p(\theta|I) \propto \prod_{j=0}^{p-1} \exp \left[ -\frac{\theta_j^2}{2\sigma_\th
 </div>
 <div class="section" id="why-normal-distributions">
 <h3>Why normal distributions?<a class="headerlink" href="#why-normal-distributions" title="Permalink to this headline">¶</a></h3>
-<p>Let us give a quick motivation why Gaussian distributions show up so often. Say that we have a pdf <span class="math notranslate nohighlight">\(p(\theta | D,I)\)</span>. Our best estimate from this pdf will be <span class="math notranslate nohighlight">\(\theta_0\)</span> where</p>
+<p>Let us give a quick motivation why Gaussian distributions show up so often. In fact, most distributions look like a Gaussian one in the vicinity of a mode (as will be shown below). Replacing a general pdf by a Gaussian one is called the <em>Laplace approximation</em>. It helps by providing analytical expressions for various quantities, but it is not always a very good approximations as you move further away from the mode.</p>
+<div class="section" id="one-dimensional-normal-distributions">
+<h4>One-dimensional normal distributions<a class="headerlink" href="#one-dimensional-normal-distributions" title="Permalink to this headline">¶</a></h4>
+<p>The expression for a one-dimensional normal distribution is</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta) = \frac{1}{N} \exp \left[ -\frac{1}{2} \frac{(\theta-\theta_0)^2}{\sigma^2} \right],
+\]</div>
+<p>where the normalization is <span class="math notranslate nohighlight">\(N=\sqrt{2\pi\sigma^2}\)</span>.</p>
+<p>The mode of this distribution is at <span class="math notranslate nohighlight">\(\theta=\theta_0\)</span>. The probability density at the mode is <span class="math notranslate nohighlight">\(p(\theta_0) = 1/N\)</span>, while it is a factor <span class="math notranslate nohighlight">\(e^{-1/2}\)</span> smaller a distance <span class="math notranslate nohighlight">\(\sigma\)</span> away. Furthermore, the integral</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta_0-\sigma &lt; \theta &lt; \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.68,
+\]</div>
+<p>which implies that the interval <span class="math notranslate nohighlight">\([\theta_0-\sigma, \theta_0+\sigma]\)</span> is a Bayesian 68% credible interval.</p>
+<p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3c5661a7-f997-4fe0-ad2a-0d373380ba18">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-3c5661a7-f997-4fe0-ad2a-0d373380ba18" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
+\end{equation}\]</div>
+<p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta_0-\sigma &lt; \theta &lt; \theta_0+\sigma | D,I) = \int_{\theta_0-\sigma}^{\theta_0+\sigma} p(\theta|D,I) d\theta \approx 0.67.
+\]</div>
+</div>
+<div class="section" id="the-laplace-approximation">
+<h4>The Laplace approximation<a class="headerlink" href="#the-laplace-approximation" title="Permalink to this headline">¶</a></h4>
+<p>Say that we have a general pdf <span class="math notranslate nohighlight">\(p(\theta | D,I)\)</span> with a mode at <span class="math notranslate nohighlight">\(\theta = \theta_0\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[ 
 \left. 
 \frac{ \partial p }{ \partial \theta }
-\right|_{\theta_0} = 0, \qquad
+\right|_{\theta=\theta_0} = 0, \qquad
 \left. \frac{ \partial^2 p }{ \partial \theta^2 }
-\right|_{\theta_0} &lt; 0.
+\right|_{\theta=\theta_0} &lt; 0.
 \]</div>
-<p>The distribution usually varies very rapidly so we study <span class="math notranslate nohighlight">\(L(\theta) \equiv \log p\)</span> instead.
-Near the peak, it behaves as</p>
+<p>The distribution usually varies very rapidly so we study <span class="math notranslate nohighlight">\(L(\theta) \equiv \log \left( p(\theta) \right)\)</span> instead.</p>
+<p>When considering the behaviour of any function in the neighbourhood of a particular point, it is often helpful to carry out a Taylor series expansion; this is simply a standard tool for (locally) approximating a complicated function by a low-order polynomial. Near the peak, our pdf behaves as</p>
 <div class="math notranslate nohighlight">
 \[
 L(\theta) = L(\theta_0) + \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2 + \ldots,
 \]</div>
-<p>where the first-order term is zero since we are expanding around a maximum and <span class="math notranslate nohighlight">\(\partial L / \partial\theta = 0\)</span>.</p>
-<!-- !split -->
-<p>If we neglect higher-order terms we find that</p>
+<p>where the first-order term is zero since we are expanding around a maximum and <span class="math notranslate nohighlight">\(\partial L / \partial\theta = 0\)</span>. The second term is negative since the curvature is negative at the peak,which we indicate by writing <span class="math notranslate nohighlight">\(-\frac{1}{2} \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0}\)</span>. Furthermore, higher order terms can be neglected <strong>if</strong></p>
 <div class="math notranslate nohighlight">
 \[
-p(\theta|D,I) \approx A \exp \left[ \frac{1}{2} \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \left( \theta - \theta_0 \right)^2  \right],
+(\theta-\theta_0)^k \frac{ \partial^{2+k} L }{ \partial \theta^{2+k} } \ll \frac{ \partial^2 L }{ \partial \theta^2 },
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(k=1,2,\ldots\)</span>. This will often be true for small distances <span class="math notranslate nohighlight">\(\theta-\theta_0\)</span>.</p>
+<!-- !split -->
+<p>Consequently, if we neglect higher-order terms we find that</p>
+<div class="math notranslate nohighlight">
+\[
+p(\theta|D,I) \approx A \exp \left[ -\frac{1}{2} \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0} \left( \theta - \theta_0 \right)^2  \right],
 \]</div>
 <p>which is a Gaussian <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma^2)\)</span> with</p>
 <div class="math notranslate nohighlight">
 \[
-\mu = \theta_0, \qquad \sigma^2 = \left( - \left. \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta_0} \right)^{-1/2}.
+\mu = \theta_0, \qquad \frac{1}{\sigma^2} = \left| \frac{\partial^2 L}{\partial \theta^2} \right|_{\theta=\theta_0} .
 \]</div>
 <!-- !split -->
+</div>
 </div>
 <div class="section" id="correlations">
 <h3>Correlations<a class="headerlink" href="#correlations" title="Permalink to this headline">¶</a></h3>
@@ -924,11 +978,40 @@ p(\theta|D,I) \approx A \exp \left[ \frac{1}{2} \left. \frac{\partial^2 L}{\part
 <ul class="simple">
 <li><p>Try to understand the correlation that you find in this example.</p></li>
 </ul>
-<p>Let us explore correlations by studying the behavior of the pdf at the maximum.
-A Taylor expansion for a bivariate pdf <span class="math notranslate nohighlight">\(p(x,y)\)</span> around the mode <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> gives</p>
+<p>Let us explore correlations by studying the behavior of a bivariate pdf near the maximum where we employ the Laplace approximation (neglecting terms beyond the quadratic one in a Taylor expansion). We start by considering two independent parameters <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, before studying the dependent case.</p>
+<div class="section" id="two-independent-parameters">
+<h4>Two independent parameters<a class="headerlink" href="#two-independent-parameters" title="Permalink to this headline">¶</a></h4>
+<p>Independence implies that <span class="math notranslate nohighlight">\(p(x,y) = p_x(x) p_y(y)\)</span>. We will again consider the log-pdf <span class="math notranslate nohighlight">\(L(x,y) = \log\left( p(x,y) \right)\)</span> which will then be</p>
+<div class="math notranslate nohighlight">
+\[
+L(x,y) = L_x(x) + L_y(y).
+\]</div>
+<p>At the mode we will have <span class="math notranslate nohighlight">\(\partial p / \partial x = \partial p_x / \partial x = \partial L_x / \partial x = 0\)</span>, and similarly <span class="math notranslate nohighlight">\(\partial L_y / \partial y = 0\)</span>.</p>
+<p>The second derivatives will be</p>
+<div class="math notranslate nohighlight">
+\[
+A \equiv \left. \frac{\partial^2 L_x}{\partial x^2} \right|_{x=x_0} &lt; 0, \quad
+B \equiv \left. \frac{\partial^2 L_y}{\partial y^2} \right|_{y=y_0} &lt; 0, \quad
+C \equiv \left. \frac{\partial L(x,y)}{\partial x \partial y} \right|_{x=x_0,y=y_0} = 0.
+\]</div>
+<p>such that our approximated (log) pdf near the mode will be</p>
+<div class="math notranslate nohighlight">
+\[
+L(x,y) = L(x_0, y_0) - \frac{1}{2} |A| (x-x_0)^2 - \frac{1}{2} |B| (y-y_0)^2.
+\]</div>
+<p>We could visualize this bivariate pdf by plotting iso-probability contours. Or, equivalently, iso-log-probability contours which correspond to</p>
+<div class="math notranslate nohighlight">
+\[
+|A| (x-x_0)^2 + |B| (y-y_0)^2 = \mathrm{constant}.
+\]</div>
+<p>This you should recognize as the equation for an ellipse with its center in <span class="math notranslate nohighlight">\((x_0, y_0)\)</span>, the principal axes corresponding to the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, and with the width and height parameters <span class="math notranslate nohighlight">\(\sigma_x = 1/\sqrt{|A|}\)</span> and <span class="math notranslate nohighlight">\(\sigma_y = 1/\sqrt{|B|}\)</span>, respectively.</p>
+</div>
+<div class="section" id="two-dependent-parameters">
+<h4>Two dependent parameters<a class="headerlink" href="#two-dependent-parameters" title="Permalink to this headline">¶</a></h4>
+<p>For two dependent parameters we cannot separate <span class="math notranslate nohighlight">\(p(x,y)\)</span> into a product of one-dimensional pdf:s. Instead, the Taylor expansion for the bivariate log-pdf <span class="math notranslate nohighlight">\(L(x,y)\)</span> around the mode <span class="math notranslate nohighlight">\((x_0,y_0)\)</span> gives</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-p(x,y) \approx p(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 &amp; y-y_0 \end{pmatrix}
+L(x,y) \approx L(x_0,y_0) + \frac{1}{2} \begin{pmatrix} x-x_0 &amp; y-y_0 \end{pmatrix}
 H
 \begin{pmatrix} x-x_0 \\ y-y_0 \end{pmatrix},
 \end{split}\]</div>
@@ -942,9 +1025,9 @@ A &amp; C \\ C &amp; B
 <p>with elements</p>
 <div class="math notranslate nohighlight">
 \[
-A = \left. \frac{\partial^2 p}{\partial x^2} \right|_{x_0,y_0}, \quad
-B = \left. \frac{\partial^2 p}{\partial y^2} \right|_{x_0,y_0}, \quad
-C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
+A = \left. \frac{\partial^2 L}{\partial x^2} \right|_{x_0,y_0} &lt; 0, \quad
+B = \left. \frac{\partial^2 L}{\partial y^2} \right|_{x_0,y_0} &lt; 0, \quad
+C = \left. \frac{\partial^2 L}{\partial x \partial y} \right|_{x_0,y_0} \neq 0.
 \]</div>
 <!-- !split -->
 <ul class="simple">
@@ -953,12 +1036,35 @@ C = \left. \frac{\partial^2 p}{\partial x \partial y} \right|_{x_0,y_0}.
 <li><p>Depending on the skewness of the ellipse, the parameters are either (i) not correlated, (ii) correlated, or (iii) anti-correlated.</p></li>
 <li><p>Take a minute to consider what that implies.</p></li>
 </ul>
+<p>Let us be explicit. The Hessian can be diagonalized (we will also change sign)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+-H = U \begin{pmatrix} a &amp; 0 \\ 0 &amp; b \end{pmatrix} U^{-1},
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> are the (positive) eigenvalues of <span class="math notranslate nohighlight">\(-H\)</span>, and <span class="math notranslate nohighlight">\(U = \begin{pmatrix} a_x &amp; b_x \\ a_y &amp; b_y \end{pmatrix}\)</span> is constructed from the eigenvectors. Defining a new set of translated and linearly combined parameters</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x' = a_x (x - x_0) + a_y (y - y_0) \\
+y' = b_x (x - x_0) + b_y (y - y_0) 
+\end{split}\]</div>
+<p>we find that the pdf becomes independent in this new pair of parameters</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+L(x',y') = L(0,0) - \frac{1}{2} \begin{pmatrix} x' &amp; y' \end{pmatrix}
+\begin{pmatrix} a &amp; 0 \\ 0 &amp; b \end{pmatrix}
+\begin{pmatrix} x' \\ y' \end{pmatrix} \\
+\qquad = L(0, 0) - \frac{1}{2} a (x')^2 - \frac{1}{2} b (y')^2.
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Take a minute to consider what has been achieved by this change of variables.</p></li>
+</ul>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="errors"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>We’ll make the reasonable assumption that errors are Gaussian. In a Frequentist perspective, <span class="math notranslate nohighlight">\(e_i\)</span> is the standard deviation of the results of a single measurement event in the limit of repetitions of <em>that event</em>. In the Bayesian perspective, <span class="math notranslate nohighlight">\(e_i\)</span> is the standard deviation of the (Gaussian) probability distribution describing our knowledge of that particular measurement given its observed value.</p>
 </dd>
 </dl>
+</div>
 </div>
 </div>
 </div>
