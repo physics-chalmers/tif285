@@ -88,10 +88,10 @@ fig.tight_layout()
 # or, in other words,
 # 
 # $$
-# \pr(x_i,y_i\mid\theta) = \frac{1}{\sqrt{2\pi\varepsilon_i^2}} \exp\left(\frac{-\left[y_i - y_M(x_i;\theta)\right]^2}{2\varepsilon_i^2}\right)
+# \pr(y_i\mid\theta) = \frac{1}{\sqrt{2\pi\varepsilon_i^2}} \exp\left(\frac{-\left[y_i - y_M(x_i;\theta)\right]^2}{2\varepsilon_i^2}\right)
 # $$
 # 
-# where $\varepsilon_i$ are the (known) measurement errors indicated by the error bars.
+# where $\varepsilon_i$ are the (known) standard deviations of the measurement errors (indicated by the error bars in the above figure). Note that $y_i$ indicates a measurement at $x_i$.
 
 # Assuming all the points are independent, we can find the full likelihood by multiplying the individual likelihoods together:
 # 
