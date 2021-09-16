@@ -43,7 +43,7 @@ $$
   ```
 ```{Admonition} Hybrid Uncertainty:
   :class: tip
-  Premise: Models share some common params: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$
+  Premise: Models share some common parameters: $\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}$
   
   $\Rightarrow$ What can we say about $\boldsymbol{\varphi}$? (Systematic error is an example)
 ```
@@ -426,7 +426,7 @@ $$
 where we often assume that the experimental errors are independent and normally distributed (with a standard deviation $e_i$) so that
 
 $$
-y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
+y_i \sim \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 $$
 
 
