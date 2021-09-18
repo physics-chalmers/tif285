@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="19. Why Bayes is Better" href="../ErrorPropagation/ErrorPropagation.html" />
-    <link rel="prev" title="17. Why MCMC" href="MCMC.html" />
+    <link rel="prev" title="17. Markov Chain Monte Carlo sampling" href="MCMC.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -193,7 +193,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="MCMC.html">
-   17. Why MCMC
+   17. Markov Chain Monte Carlo sampling
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -410,7 +410,6 @@
                 
   <div class="section" id="metropolis-hasting-mcmc-sampling-of-a-poisson-distribution">
 <h1><span class="section-number">18. </span>Metropolis-Hasting MCMC sampling of a Poisson distribution<a class="headerlink" href="#metropolis-hasting-mcmc-sampling-of-a-poisson-distribution" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 20-Sep-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <p>This notebook was adapted from Example 1, section 12.2 in Gregory’s <em>Bayesian Logical Data Analysis for the Physical Sciences</em>.</p>
 <p>The Poisson discrete random variable from scipy.stats is defined by (see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html">documentation</a>)</p>
 <div class="math notranslate nohighlight">
@@ -561,9 +560,9 @@ p(k|\mu) = \frac{\mu^k e^{-\mu}}{k!} \quad \mbox{for }k\geq 0 \;.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> MCMC mean = 2.83
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> MCMC mean = 2.66
 Exact mean = 3.00
-   MCMC sd = 1.87
+   MCMC sd = 1.55
   Exact sd = 1.73
 </pre></div>
 </div>
@@ -684,7 +683,7 @@ Exact mean = 3.00
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="MCMC.html" title="previous page"><span class="section-number">17. </span>Why MCMC</a>
+    <a class='left-prev' id="prev-link" href="MCMC.html" title="previous page"><span class="section-number">17. </span>Markov Chain Monte Carlo sampling</a>
     <a class='right-next' id="next-link" href="../ErrorPropagation/ErrorPropagation.html" title="next page"><span class="section-number">19. </span>Why Bayes is Better</a>
 
         </div>

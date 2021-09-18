@@ -1,5 +1,5 @@
 <!-- !split -->
-# Why MCMC
+# Markov Chain Monte Carlo sampling
 We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters $\boldsymbol{\theta}$ in a model $M$ given data $D$ and other information $I$
 
 $$
@@ -7,20 +7,29 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 $$
 
 <!-- !split -->
-Suppose that this parametrized model can make predictions for some quantity $y = f(\boldsymbol{\theta})$ and that we would like to compute the expectation value of this prediction given our knowledge of the model parameters
+Suppose that this parametrized model can make predictions for some quantity $y = f(\boldsymbol{\theta})$ that was not part of the original data set $D$ used to constrain the model. The result of such a prediction is best represented by a posterior *predictive distribution** (ppd)
+
+$$
+\{f(\boldsymbol{\theta}) : \boldsymbol{\theta} \sim p(\boldsymbol{\theta} | D, I) \}.
+$$
+
+The ppd is the set of all predictions computed over likely values of the model parameters, i.e., drawing from the posterior pdf for $\boldsymbol{\theta}$. Let us express the expectation value of this prediction, which turns into a multidimensional integral
 
 $$
 \langle f(\boldsymbol{\theta}) \rangle = \int f(\boldsymbol{\theta}) p(\boldsymbol{\theta} | D,I) d \boldsymbol{\theta} \equiv \int g( \boldsymbol{\theta} ) d\boldsymbol{\theta}.
+$$ 
+
+<!-- !split -->
+Note that this is much more involved than traditional calculations in which we would use a single vector of parameters, e.g., denoted $\boldsymbol{\theta}^*$, that we might have found by maximizing a likelihood. Instead, $\langle f( \boldsymbol{\theta} ) \rangle$ means that we do a multidimensional integral over the full range of possible $\boldsymbol{\theta}$ values, weighted by the probability density function, $p(\boldsymbol{\theta} |D,I)$ that we have inferred.
+
+* This is a lot more work!
+* The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters $\boldsymbol{\theta}_B$ to find a pdf for the rest, $\boldsymbol{\theta}_A$ 
+
+$$
+p(\boldsymbol{\theta}_A | D, I) = \int p(\boldsymbol{\theta}_A, \boldsymbol{\theta}_B | D, I) d\boldsymbol{\theta}_B.
 $$
 
-The function $f(\boldsymbol{\theta})$ might represent the prediction of some new data that was not part of the original data set $D$ used to constrain the model.
-
-<!-- !split -->
-Note that this is more involved than traditional calculations in which we would use a single vector of parameters, e.g. denoted $\boldsymbol{\theta}^*$, that we might have found by maximizing a likelihood (minimizing a chi-squared function). Instead, $\langle f( \boldsymbol{\theta} ) \rangle$ means that we do a multidimensional integral over the full range of possible $\boldsymbol{\theta}$ values, weighted by the probability density function, $p(\boldsymbol{\theta} |D,I)$ that we have worked out.
-
-<!-- !split -->
-* This is a lot more work!
-* The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters $\boldsymbol{\theta}_B$ to find a pdf for the rest, $\boldsymbol{\theta}_A$. E.g., when extracting the masses of binary black holes from gravitational-wave signals there are many (nuisance) parameters that characterize, e.g.,   background noise that should be integrated out.
+* An example of such a marginalization procedure would be the inference of the masses of binary black holes from gravitational-wave signals. In such a data analysis there are many (nuisance) parameters that characterize, e.g., background noise which should be integrated out.
 * Therefore, in the Bayesian approach we will frequently encounter these multidimensional integrals. However, conventional methods for low dimensions (Gaussian quadrature or Simpson's rule) become inadequate rapidly with the increase of dimension.
 * In particular, the integrals are problematic because the posterior pdfs are usually very small in much of the integration volume so that the relevant region has a very complicated shape.
 
@@ -41,11 +50,7 @@ where
 
 $$
 
-\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )
-
-$$
-
-$$
+\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i ), \qquad
 
 \langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )
 
@@ -62,7 +67,7 @@ $$
 
 $$
 
-from calculus. However, we can estimate $\bar{g(\theta)}$ by averaging over a set of random samples
+from calculus. However, we can estimate $\overline{g(\theta)}$ by averaging over a set of random samples
 
 $$
 
@@ -87,7 +92,7 @@ where $b-a$ is the volume $V$.
 The main uncertainty lies in assuming that a Gaussian approximation is valid. Note the dependence on $a/\sqrt{n}$, which means that you can get a more precise answer by increasing $n$. However, the result only gets better very slowly. Each additional decimal point accuracy costs you a factor of 100 in $n$.
 
 <!-- !split -->
-The key problem is that too much time is wasted in sampling regions where $p( \boldsymbol{\theta} |D,I )$ is very small. Consider the situation where the significant fraction for one parameter is $10^{-1}$. For a $m$-parameter problem the significant fraction of the volume is $10^{-m}$! This necessitates *importance sampling* which reweights the integrand to more appropriately distribute points (e.g. the [VEGAS algorithm](https://en.wikipedia.org/wiki/VEGAS_algorithm)), but this is difficult to accomplish.
+The key problem is that too much time is wasted in sampling regions where $p( \boldsymbol{\theta} |D,I )$ is very small. Consider a situation in which the significant region of the pdf is concentrated in a $10^{-1}$ fraction of the full range for one of the parameters. With such a concentration in $m$ dimensions, the significant fraction of the total volume would be $10^{-m}$! This situation necessitates *importance sampling* which reweighs the integrand to more appropriately distribute points (e.g. the [VEGAS algorithm](https://en.wikipedia.org/wiki/VEGAS_algorithm)), but this is difficult to accomplish.
 
 <!-- !split -->
 The bottom line is that its not feasible to draw a series of independent random samples from $p ( \boldsymbol{\theta} | D,I )$ from large $\boldsymbol{\theta}$ dimensions. Independence means if $\boldsymbol{\theta}_0, \boldsymbol{\theta}_1, \ldots$ is the series, knowing $\boldsymbol{\theta}_1$ doesn't tell us anything about $\boldsymbol{\theta}_2$.
@@ -97,7 +102,7 @@ However, the samples don't actually need to be independent. they just need to ge
 
 <!-- !split -->
 ## Markov Chain Monte Carlo
-A solution is therefore to do a *random walk* in the parameter space of $\boldsymbol{\theta}$ so that the probability for being in a region is proportional to $p( \boldsymbol{\theta} | D,I)$ in that region.
+A solution is therefore to do a *random walk* in the parameter space of $\boldsymbol{\theta}$ such that the probability for being in a region is proportional to the value of $p( \boldsymbol{\theta} | D,I)$ in that region.
 * The position $\boldsymbol{\theta}_{i+1}$ follows from $\boldsymbol{\theta}_i$ by a transition probability (kernel) $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$.
 * The transition probability is *time independent*, which means that $t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )$ is always the same.
 
@@ -122,7 +127,7 @@ Before describing the most basic implementation of the MCMC, namely the Metropol
   [PyMultiNest](https://johannesbuchner.github.io/PyMultiNest/) interacts with [MultiNest](https://github.com/farhanferoz/MultiNest), a Nested Sampling Monte Carlo library.
   ```
 
-We have been using emcee extensively in this course. It is based on ensamble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some [lecture notes](http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html)
+We have been using emcee extensively in this course. It is based on ensemble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some [lecture notes](http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html)
 
 
 <!-- !split -->
@@ -131,14 +136,14 @@ The basic structure of the Metropolis (and Metropolis-Hastings) algorithm is the
 
 1. Initialize the sampling by choosing a starting point $\boldsymbol{\theta}_0$.
 2. Collect samples by repeating the following:
-   1. Given $\boldsymbol{\theta}_i$, *propose* a new point $\boldsymbol{\theta}_{i+1}$, call it $\boldsymbol{\phi}$, sampled from a proposal distribution $q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )$. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by $\boldsymbol{\theta}_i$ and variance $\boldsymbol{\sigma}^2$.
+   1. Given $\boldsymbol{\theta}_i$, *propose* a new point $\boldsymbol{\phi}$, sampled from a proposal distribution $q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )$. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by $\boldsymbol{\theta}_i$ and variance $\boldsymbol{\sigma}^2$ specified by the user.
       * The transition density will (usually) give a smaller probability for visiting positions that are far from the current position.
       * The width $\boldsymbol{\sigma}$ determines the average step size and is known as the proposal width.
-   2. Compute the Metropolis(-Hastings) ratio $r$ (defined below). Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
+   2. Compute the Metropolis(-Hastings) ratio $r$ (defined below). Note that the second factor is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.
    3. Decide whether or not to accept candidate $\boldsymbol{\phi}$ for $\boldsymbol{\theta}_{i+1}$. 
       * If $r \geq 1$: accept the proposal position and set $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$.
-      * If $r < 1$: accept the position with probability $r$ (remember that now we have $0 \leq r < 1$) by sampling a uniform $\mathrm{U}(0,1)$ distribution. If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject). Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.
-   4. Loop until the chain has reached a predetermined length.
+      * If $r < 1$: accept the position with probability $r$ by sampling a uniform $\mathrm{U}(0,1)$ distribution (note that now we have $0 \leq r < 1$). If $u \sim \mathrm{U}(0,1) \leq r$, then $\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}$ (accept); else $\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i$ (reject). Note that the chain always grows since you add the current position again if the proposed step is rejected.
+   4. Iterate until the chain has reached a predetermined length or passes some convergence tests.
 
 
 <!-- !split -->
@@ -147,7 +152,7 @@ The Metropolis(-Hastings) ratio is
 $$
     
     r = \frac{p( \boldsymbol{\phi} | D,I)}{p( \boldsymbol{\theta}_i | D,I)}
-    \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
+    \times \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
     
 $$
 

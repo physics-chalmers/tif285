@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>17. Why MCMC &#8212; Learning from data</title>
+    <title>17. Markov Chain Monte Carlo sampling &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -193,7 +193,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   17. Why MCMC
+   17. Markov Chain Monte Carlo sampling
   </a>
  </li>
  <li class="toctree-l1">
@@ -434,26 +434,36 @@
               <div>
                 
   <!-- !split -->
-<div class="section" id="why-mcmc">
-<h1><span class="section-number">17. </span>Why MCMC<a class="headerlink" href="#why-mcmc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="markov-chain-monte-carlo-sampling">
+<h1><span class="section-number">17. </span>Markov Chain Monte Carlo sampling<a class="headerlink" href="#markov-chain-monte-carlo-sampling" title="Permalink to this headline">¶</a></h1>
 <p>We have been emphasizing that everything is a pdf in the Bayesian approach. In particular, we studied parameter estimation for which we were interested in the posterior pdf of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> in a model <span class="math notranslate nohighlight">\(M\)</span> given data <span class="math notranslate nohighlight">\(D\)</span> and other information <span class="math notranslate nohighlight">\(I\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 \]</div>
 <!-- !split -->
-<p>Suppose that this parametrized model can make predictions for some quantity <span class="math notranslate nohighlight">\(y = f(\boldsymbol{\theta})\)</span> and that we would like to compute the expectation value of this prediction given our knowledge of the model parameters</p>
+<p>Suppose that this parametrized model can make predictions for some quantity <span class="math notranslate nohighlight">\(y = f(\boldsymbol{\theta})\)</span> that was not part of the original data set <span class="math notranslate nohighlight">\(D\)</span> used to constrain the model. The result of such a prediction is best represented by a posterior <em>predictive distribution</em>* (ppd)</p>
+<div class="math notranslate nohighlight">
+\[
+\{f(\boldsymbol{\theta}) : \boldsymbol{\theta} \sim p(\boldsymbol{\theta} | D, I) \}.
+\]</div>
+<p>The ppd is the set of all predictions computed over likely values of the model parameters, i.e., drawing from the posterior pdf for <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Let us express the expectation value of this prediction, which turns into a multidimensional integral</p>
 <div class="math notranslate nohighlight">
 \[
 \langle f(\boldsymbol{\theta}) \rangle = \int f(\boldsymbol{\theta}) p(\boldsymbol{\theta} | D,I) d \boldsymbol{\theta} \equiv \int g( \boldsymbol{\theta} ) d\boldsymbol{\theta}.
 \]</div>
-<p>The function <span class="math notranslate nohighlight">\(f(\boldsymbol{\theta})\)</span> might represent the prediction of some new data that was not part of the original data set <span class="math notranslate nohighlight">\(D\)</span> used to constrain the model.</p>
 <!-- !split -->
-<p>Note that this is more involved than traditional calculations in which we would use a single vector of parameters, e.g. denoted <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span>, that we might have found by maximizing a likelihood (minimizing a chi-squared function). Instead, <span class="math notranslate nohighlight">\(\langle f( \boldsymbol{\theta} ) \rangle\)</span> means that we do a multidimensional integral over the full range of possible <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> values, weighted by the probability density function, <span class="math notranslate nohighlight">\(p(\boldsymbol{\theta} |D,I)\)</span> that we have worked out.</p>
-<!-- !split -->
+<p>Note that this is much more involved than traditional calculations in which we would use a single vector of parameters, e.g., denoted <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span>, that we might have found by maximizing a likelihood. Instead, <span class="math notranslate nohighlight">\(\langle f( \boldsymbol{\theta} ) \rangle\)</span> means that we do a multidimensional integral over the full range of possible <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> values, weighted by the probability density function, <span class="math notranslate nohighlight">\(p(\boldsymbol{\theta} |D,I)\)</span> that we have inferred.</p>
 <ul class="simple">
 <li><p>This is a lot more work!</p></li>
-<li><p>The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_B\)</span> to find a pdf for the rest, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_A\)</span>. E.g., when extracting the masses of binary black holes from gravitational-wave signals there are many (nuisance) parameters that characterize, e.g.,   background noise that should be integrated out.</p></li>
+<li><p>The same sort of multidimensional integrals appear when we want to marginalize over a subset of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_B\)</span> to find a pdf for the rest, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_A\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(\boldsymbol{\theta}_A | D, I) = \int p(\boldsymbol{\theta}_A, \boldsymbol{\theta}_B | D, I) d\boldsymbol{\theta}_B.
+\]</div>
+<ul class="simple">
+<li><p>An example of such a marginalization procedure would be the inference of the masses of binary black holes from gravitational-wave signals. In such a data analysis there are many (nuisance) parameters that characterize, e.g., background noise which should be integrated out.</p></li>
 <li><p>Therefore, in the Bayesian approach we will frequently encounter these multidimensional integrals. However, conventional methods for low dimensions (Gaussian quadrature or Simpson’s rule) become inadequate rapidly with the increase of dimension.</p></li>
 <li><p>In particular, the integrals are problematic because the posterior pdfs are usually very small in much of the integration volume so that the relevant region has a very complicated shape.</p></li>
 </ul>
@@ -467,16 +477,14 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 \pm V \sqrt{ \frac{\langle g^2( \boldsymbol{\theta} ) \rangle - \langle g( \boldsymbol{\theta} ) \rangle^2 }{n} },\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
-\[\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i )\]</div>
-<div class="math notranslate nohighlight">
-\[\langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )\]</div>
+\[ \begin{align}\begin{aligned}\langle g( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g(\boldsymbol{\theta}_i ), \qquad\\\langle g^2( \boldsymbol{\theta} ) \rangle = \frac{1}{n} \sum_{i=0}^{n-1} g^2(\boldsymbol{\theta}_i )\end{aligned}\end{align} \]</div>
 <!-- !split -->
 <div class="section" id="example-one-dimensional-integration">
 <h3>Example: One-dimensional integration<a class="headerlink" href="#example-one-dimensional-integration" title="Permalink to this headline">¶</a></h3>
 <p>The average of a function <span class="math notranslate nohighlight">\(g(\theta)\)</span> on <span class="math notranslate nohighlight">\(\theta \in [a,b]\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[\overline{g(\theta)} = \frac{1}{b-a} \int_a^b g(\theta) d\theta,\]</div>
-<p>from calculus. However, we can estimate <span class="math notranslate nohighlight">\(\bar{g(\theta)}\)</span> by averaging over a set of random samples</p>
+<p>from calculus. However, we can estimate <span class="math notranslate nohighlight">\(\overline{g(\theta)}\)</span> by averaging over a set of random samples</p>
 <div class="math notranslate nohighlight">
 \[\overline{g(\theta)} \approx \frac{1}{n} \sum_{i=0}^{n-1} g(\theta_i).\]</div>
 <p>Let us consider the integral</p>
@@ -490,7 +498,7 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 <h3>Slow convergence<a class="headerlink" href="#slow-convergence" title="Permalink to this headline">¶</a></h3>
 <p>The main uncertainty lies in assuming that a Gaussian approximation is valid. Note the dependence on <span class="math notranslate nohighlight">\(a/\sqrt{n}\)</span>, which means that you can get a more precise answer by increasing <span class="math notranslate nohighlight">\(n\)</span>. However, the result only gets better very slowly. Each additional decimal point accuracy costs you a factor of 100 in <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <!-- !split -->
-<p>The key problem is that too much time is wasted in sampling regions where <span class="math notranslate nohighlight">\(p( \boldsymbol{\theta} |D,I )\)</span> is very small. Consider the situation where the significant fraction for one parameter is <span class="math notranslate nohighlight">\(10^{-1}\)</span>. For a <span class="math notranslate nohighlight">\(m\)</span>-parameter problem the significant fraction of the volume is <span class="math notranslate nohighlight">\(10^{-m}\)</span>! This necessitates <em>importance sampling</em> which reweights the integrand to more appropriately distribute points (e.g. the <a class="reference external" href="https://en.wikipedia.org/wiki/VEGAS_algorithm">VEGAS algorithm</a>), but this is difficult to accomplish.</p>
+<p>The key problem is that too much time is wasted in sampling regions where <span class="math notranslate nohighlight">\(p( \boldsymbol{\theta} |D,I )\)</span> is very small. Consider a situation in which the significant region of the pdf is concentrated in a <span class="math notranslate nohighlight">\(10^{-1}\)</span> fraction of the full range for one of the parameters. With such a concentration in <span class="math notranslate nohighlight">\(m\)</span> dimensions, the significant fraction of the total volume would be <span class="math notranslate nohighlight">\(10^{-m}\)</span>! This situation necessitates <em>importance sampling</em> which reweighs the integrand to more appropriately distribute points (e.g. the <a class="reference external" href="https://en.wikipedia.org/wiki/VEGAS_algorithm">VEGAS algorithm</a>), but this is difficult to accomplish.</p>
 <!-- !split -->
 <p>The bottom line is that its not feasible to draw a series of independent random samples from <span class="math notranslate nohighlight">\(p ( \boldsymbol{\theta} | D,I )\)</span> from large <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> dimensions. Independence means if <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_0, \boldsymbol{\theta}_1, \ldots\)</span> is the series, knowing <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_1\)</span> doesn’t tell us anything about <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_2\)</span>.</p>
 <!-- !split -->
@@ -500,7 +508,7 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 </div>
 <div class="section" id="markov-chain-monte-carlo">
 <h2><span class="section-number">17.2. </span>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h2>
-<p>A solution is therefore to do a <em>random walk</em> in the parameter space of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> so that the probability for being in a region is proportional to <span class="math notranslate nohighlight">\(p( \boldsymbol{\theta} | D,I)\)</span> in that region.</p>
+<p>A solution is therefore to do a <em>random walk</em> in the parameter space of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> such that the probability for being in a region is proportional to the value of <span class="math notranslate nohighlight">\(p( \boldsymbol{\theta} | D,I)\)</span> in that region.</p>
 <ul class="simple">
 <li><p>The position <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1}\)</span> follows from <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i\)</span> by a transition probability (kernel) <span class="math notranslate nohighlight">\(t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )\)</span>.</p></li>
 <li><p>The transition probability is <em>time independent</em>, which means that <span class="math notranslate nohighlight">\(t ( \boldsymbol{\theta}_{i+1} | \boldsymbol{\theta}_i )\)</span> is always the same.</p></li>
@@ -524,7 +532,7 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 <p class="admonition-title">PyMultiNest:</p>
 <p><a class="reference external" href="https://johannesbuchner.github.io/PyMultiNest/">PyMultiNest</a> interacts with <a class="reference external" href="https://github.com/farhanferoz/MultiNest">MultiNest</a>, a Nested Sampling Monte Carlo library.</p>
 </div>
-<p>We have been using emcee extensively in this course. It is based on ensamble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some <a class="reference external" href="http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html">lecture notes</a></p>
+<p>We have been using emcee extensively in this course. It is based on ensemble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some <a class="reference external" href="http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html">lecture notes</a></p>
 <!-- !split -->
 </div>
 <div class="section" id="the-metropolis-hastings-algorithm">
@@ -534,20 +542,20 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 <li><p>Initialize the sampling by choosing a starting point <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_0\)</span>.</p></li>
 <li><p>Collect samples by repeating the following:</p>
 <ol class="simple">
-<li><p>Given <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i\)</span>, <em>propose</em> a new point <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1}\)</span>, call it <span class="math notranslate nohighlight">\(\boldsymbol{\phi}\)</span>, sampled from a proposal distribution <span class="math notranslate nohighlight">\(q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )\)</span>. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i\)</span> and variance <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}^2\)</span>.</p>
+<li><p>Given <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i\)</span>, <em>propose</em> a new point <span class="math notranslate nohighlight">\(\boldsymbol{\phi}\)</span>, sampled from a proposal distribution <span class="math notranslate nohighlight">\(q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )\)</span>. This proposal distribution could take many forms. However, for concreteness you can imagine it as a multivariate normal with mean given by <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i\)</span> and variance <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}^2\)</span> specified by the user.</p>
 <ul class="simple">
 <li><p>The transition density will (usually) give a smaller probability for visiting positions that are far from the current position.</p></li>
 <li><p>The width <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> determines the average step size and is known as the proposal width.</p></li>
 </ul>
 </li>
-<li><p>Compute the Metropolis(-Hastings) ratio <span class="math notranslate nohighlight">\(r\)</span> (defined below). Note that the second ratio is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.</p></li>
+<li><p>Compute the Metropolis(-Hastings) ratio <span class="math notranslate nohighlight">\(r\)</span> (defined below). Note that the second factor is equal to one if the proposal distribution is symmetric. It is then known as the Metropolis algorithm.</p></li>
 <li><p>Decide whether or not to accept candidate <span class="math notranslate nohighlight">\(\boldsymbol{\phi}\)</span> for <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1}\)</span>.</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(r \geq 1\)</span>: accept the proposal position and set <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(r &lt; 1\)</span>: accept the position with probability <span class="math notranslate nohighlight">\(r\)</span> (remember that now we have <span class="math notranslate nohighlight">\(0 \leq r &lt; 1\)</span>) by sampling a uniform <span class="math notranslate nohighlight">\(\mathrm{U}(0,1)\)</span> distribution. If <span class="math notranslate nohighlight">\(u \sim \mathrm{U}(0,1) \leq r\)</span>, then <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}\)</span> (accept); else <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i\)</span> (reject). Note that the chain always grows (even if the proposed step is rejected in which case you add the current position again.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(r &lt; 1\)</span>: accept the position with probability <span class="math notranslate nohighlight">\(r\)</span> by sampling a uniform <span class="math notranslate nohighlight">\(\mathrm{U}(0,1)\)</span> distribution (note that now we have <span class="math notranslate nohighlight">\(0 \leq r &lt; 1\)</span>). If <span class="math notranslate nohighlight">\(u \sim \mathrm{U}(0,1) \leq r\)</span>, then <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1} = \boldsymbol{\phi}\)</span> (accept); else <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_{i+1} = \boldsymbol{\theta}_i\)</span> (reject). Note that the chain always grows since you add the current position again if the proposed step is rejected.</p></li>
 </ul>
 </li>
-<li><p>Loop until the chain has reached a predetermined length.</p></li>
+<li><p>Iterate until the chain has reached a predetermined length or passes some convergence tests.</p></li>
 </ol>
 </li>
 </ol>
@@ -557,7 +565,7 @@ p(\boldsymbol{\theta} | D, I) \equiv p(\boldsymbol{\theta}).
 \[
     
     r = \frac{p( \boldsymbol{\phi} | D,I)}{p( \boldsymbol{\theta}_i | D,I)}
-    \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
+    \times \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
     
 \]</div>
 <ul class="simple">

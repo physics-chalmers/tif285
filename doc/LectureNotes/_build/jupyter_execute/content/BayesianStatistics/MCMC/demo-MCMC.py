@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # # Metropolis-Hasting MCMC sampling of a Poisson distribution 
-# 
-# Last revised: 20-Sep-2020 by Christian Forssén [christian.forssen@chalmers.se]
 
 # This notebook was adapted from Example 1, section 12.2 in Gregory's *Bayesian Logical Data Analysis for the Physical Sciences*.
 
