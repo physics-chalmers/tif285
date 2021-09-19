@@ -152,7 +152,7 @@ The Metropolis(-Hastings) ratio is
 $$
     
     r = \frac{p( \boldsymbol{\phi} | D,I)}{p( \boldsymbol{\theta}_i | D,I)}
-    \times \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta} )}.
+    \times \frac{q( \boldsymbol{\theta}_i | \boldsymbol{\phi} )}{q( \boldsymbol{\phi} | \boldsymbol{\theta}_i )}.
     
 $$
 
