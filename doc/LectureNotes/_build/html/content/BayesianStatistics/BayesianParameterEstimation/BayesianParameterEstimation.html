@@ -49,7 +49,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -193,7 +193,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MCMC/MCMC.html">
-   17. Why MCMC
+   17. Markov Chain Monte Carlo sampling
   </a>
  </li>
  <li class="toctree-l1">
@@ -554,7 +554,7 @@
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Hybrid Uncertainty:</p>
-<p>Premise: Models share some common params: <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}\)</span></p>
+<p>Premise: Models share some common parameters: <span class="math notranslate nohighlight">\(\boldsymbol{\theta}_i = \{ \boldsymbol{\varphi}, \boldsymbol{\eta}_i\}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\Rightarrow\)</span> What can we say about <span class="math notranslate nohighlight">\(\boldsymbol{\varphi}\)</span>? (Systematic error is an example)</p>
 </div>
 <!-- !split -->
@@ -613,45 +613,45 @@ The question is, given this set of measurements <span class="math notranslate no
 <div class="section" id="simple-photon-counts-frequentist-approach">
 <h3>Simple Photon Counts: Frequentist Approach<a class="headerlink" href="#simple-photon-counts-frequentist-approach" title="Permalink to this headline">¶</a></h3>
 <p>We’ll start with the classical frequentist maximum likelihood approach. Given a single observation <span class="math notranslate nohighlight">\(D_i = F_i\)</span>, we can compute the probability distribution of the measurement given the true flux <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and our assumption of Gaussian errors</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20ef39c9-4f2b-40b2-a1fe-8e070bd88db7">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-20ef39c9-4f2b-40b2-a1fe-8e070bd88db7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c55a229-70db-41e3-b856-2aa85fb7ce9a">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-8c55a229-70db-41e3-b856-2aa85fb7ce9a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(D_i | F_\mathrm{true}, I) = \frac{1}{\sqrt{2\pi e_i^2}} \exp \left( \frac{-(F_i-F_\mathrm{true})^2}{2e_i^2} \right).
 \end{equation}\]</div>
 <p>This should be read “the probability of <span class="math notranslate nohighlight">\(D_i\)</span> given <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span>
 equals …”. You should recognize this as a normal distribution with mean <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> and standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>.</p>
 <p>We construct the <em>likelihood function</em> by computing the product of the probabilities for each data point</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f8cae51-c030-4e1b-b4e2-69ff636dd5a2">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-5f8cae51-c030-4e1b-b4e2-69ff636dd5a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-539a14d9-5185-4fd7-bc25-7208246e3fdc">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-539a14d9-5185-4fd7-bc25-7208246e3fdc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathcal{L}(F_\mathrm{true}) = \prod_{i=1}^N p(D_i | F_\mathrm{true}, I),
 \end{equation}\]</div>
 <p>here <span class="math notranslate nohighlight">\(D = \{D_i\}\)</span> represents the entire set of measurements. Because the value of the likelihood can become very small, it is often more convenient to instead compute the log-likelihood.</p>
 <p><em>Notice.</em>
 In the following we will use <span class="math notranslate nohighlight">\(\log\)</span> to denote the natural logarithm. We will write <span class="math notranslate nohighlight">\(\log_{10}\)</span> if we specifically mean the logarithm with base 10.</p>
 <p>Combining the previous two equations and computing the log, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dcd89664-0ddd-4a4e-b8bf-d93b930a5e7a">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-dcd89664-0ddd-4a4e-b8bf-d93b930a5e7a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e68679b3-a4f3-4ce2-b12c-1e7fd3375cb9">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-e68679b3-a4f3-4ce2-b12c-1e7fd3375cb9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log\mathcal{L} = -\frac{1}{2} \sum_{i=1}^N \left[ \log(2\pi e_i^2) +  \frac{(F_i-F_\mathrm{true})^2}{e_i^2} \right].
 \end{equation}\]</div>
 <p>In this approach we will determine <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span> such that the likelihood is maximized. At this pont we can note that that problem of maximizing the likelihood is equivalent to the minimization of the sum</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a01d6504-ef87-42db-bc8f-648998553687">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-a01d6504-ef87-42db-bc8f-648998553687" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c76d6f9-5206-4e03-a222-a6995ed634a3">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-5c76d6f9-5206-4e03-a222-a6995ed634a3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \sum_{i=1}^N \frac{(F_i-F_\mathrm{true})^2}{e_i^2},
 \end{equation}\]</div>
 <p>which you should recognize as the chi-squared function encountered in the linear regression model.</p>
 <p>Therefore, it is not surprising that this particular maximization problem can be solved analytically (i.e. by setting <span class="math notranslate nohighlight">\(d\log\mathcal{L}/d F_\mathrm{true} = 0\)</span>). This results in the following observed estimate of <span class="math notranslate nohighlight">\(F_\mathrm{true}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f42ea595-76f5-4568-8985-77349a742c25">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-f42ea595-76f5-4568-8985-77349a742c25" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-50bd1b4a-53ce-4ab1-9e37-85cf5a1d3642">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-50bd1b4a-53ce-4ab1-9e37-85cf5a1d3642" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{ \sum_{i=1}^N w_i F_i }{ \sum_{i=1}^N w_i}, \quad w_i = 1/e_i^2.
 \end{equation}\]</div>
 <p>Notice that in the special case of all errors <span class="math notranslate nohighlight">\(e_i\)</span> being equal, this reduces to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72702097-f3eb-432e-83c1-187ce011e51b">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-72702097-f3eb-432e-83c1-187ce011e51b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48e62629-c809-4edb-85fd-172e78aa808d">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-48e62629-c809-4edb-85fd-172e78aa808d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 F_\mathrm{est} = \frac{1}{N} \sum_{i=1} F_i.
 \end{equation}\]</div>
 <p>That is, in agreement with intuition, <span class="math notranslate nohighlight">\(F_\mathrm{est}\)</span> is simply the mean of the observed data when errors are equal.</p>
 <p>We can go further and ask what the error of our estimate is. In the frequentist approach, this can be accomplished by fitting a Gaussian approximation to the likelihood curve at maximum; in this simple case this can also be solved analytically (the sum of Gaussians is also a Gaussian). It can be shown that the standard deviation of this Gaussian approximation is <span class="math notranslate nohighlight">\(\sigma_\mathrm{est}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aaaaaf60-8159-48a2-ae2f-3e29320e702a">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-aaaaaf60-8159-48a2-ae2f-3e29320e702a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-90fda138-b788-4bbd-bf37-f11f8e4927d1">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-90fda138-b788-4bbd-bf37-f11f8e4927d1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{ 1 } {\sigma_\mathrm{est}^2} = \sum_{i=1}^N w_i .
 \end{equation}\]</div>
 <p>These results are fairly simple calculations; let’s evaluate them for our toy dataset:</p>
@@ -868,7 +868,7 @@ y_{i} = y_{\mathrm{th},i} + \varepsilon_i,
 <p>where we often assume that the experimental errors are independent and normally distributed (with a standard deviation <span class="math notranslate nohighlight">\(e_i\)</span>) so that</p>
 <div class="math notranslate nohighlight">
 \[
-y_i = \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
+y_i \sim \mathcal{N} \left( y_\mathrm{th}(x_i; \theta), e_i^2 \right).
 \]</div>
 <ul class="simple">
 <li><p>The statistical model for the data is</p></li>
@@ -925,8 +925,8 @@ p(\theta_0-\sigma &lt; \theta &lt; \theta_0+\sigma | D,I) = \int_{\theta_0-\sigm
 \]</div>
 <p>which implies that the interval <span class="math notranslate nohighlight">\([\theta_0-\sigma, \theta_0+\sigma]\)</span> is a Bayesian 68% credible interval.</p>
 <p>To obtain a measure of the reliability of this best estimate, we need to look at the width or spread of the posterior pdf about <span class="math notranslate nohighlight">\(\theta_0\)</span>. The linear term is zero at the maximum and the quadratic term is often the dominating one determining the width of the posterior pdf. Ignoring all the higher-order terms we arrive at the Gaussian approximation (see more details below)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c5661a7-f997-4fe0-ad2a-0d373380ba18">
-<span class="eqno">(14.8)<a class="headerlink" href="#equation-3c5661a7-f997-4fe0-ad2a-0d373380ba18" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e03c14c3-8cfb-4d9a-ab40-89037f3bec38">
+<span class="eqno">(14.8)<a class="headerlink" href="#equation-e03c14c3-8cfb-4d9a-ab40-89037f3bec38" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(\theta|D,I) \approx \frac{1}{\sigma\sqrt{2\pi}} \exp \left[ -\frac{(\theta-\mu)^2}{2\sigma^2} \right],
 \end{equation}\]</div>
 <p>where the mean <span class="math notranslate nohighlight">\(\mu = \theta_0\)</span> and the variance <span class="math notranslate nohighlight">\(\sigma = \left( - \left. \frac{d^2L}{d\theta^2} \right|_{\theta_0} \right)^{-1/2}\)</span>, where <span class="math notranslate nohighlight">\(L\)</span> is the logarithm of the posterior <span class="math notranslate nohighlight">\(P\)</span>. Our inference about the quantity of interest is conveyed very concisely, therefore, by the 67% Bayesian credible interval <span class="math notranslate nohighlight">\(\theta = \theta_0 \pm \sigma\)</span>, and</p>

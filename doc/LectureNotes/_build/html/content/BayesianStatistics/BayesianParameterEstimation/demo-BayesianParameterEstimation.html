@@ -49,7 +49,7 @@
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -193,7 +193,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MCMC/MCMC.html">
-   17. Why MCMC
+   17. Markov Chain Monte Carlo sampling
   </a>
  </li>
  <li class="toctree-l1">
@@ -659,7 +659,7 @@ p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sig
 <div class="section" id="applying-the-bayesian-approach">
 <h3>Applying the Bayesian approach<a class="headerlink" href="#applying-the-bayesian-approach" title="Permalink to this headline">¶</a></h3>
 <p>Leaving these philosophical debates aside for the time being, let’s address how Bayesian results are generally computed in practice. For a one parameter problem like the one considered here, it’s as simple as computing the posterior probability <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~D,I)\)</span> as a function of <span class="math notranslate nohighlight">\(\mu,\sigma\)</span>: this is the distribution reflecting our knowledge of the parameter <span class="math notranslate nohighlight">\(\mu,\sigma\)</span>. But as the dimension of the model grows, this direct approach becomes increasingly intractable. For this reason, Bayesian calculations often depend on sampling methods such as <a class="reference external" href="http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov Chain Monte Carlo (MCMC)</a>.</p>
-<p>We won’t go into the details of the theory of MCMC here (again, we will be discussing this topic during the course). Instead we will show a practical example of applying an MCMC approach using Dan Foreman-Mackey’s excellent <a class="reference external" href="http://dan.iel.fm/emcee/current/">emcee</a>  package.  Keep in mind here that the goal is to <em>generate a set of points drawn from the posterior probability distribution</em>, and to use those points to determine the answer we seek.</p>
+<p>We won’t go into the details of the theory of MCMC here (again, we will be discussing this topic during the course). Instead we will show a practical example of applying an MCMC approach using Dan Foreman-Mackey’s excellent <a class="reference external" href="https://emcee.readthedocs.io/en/stable/">emcee</a> package.  Keep in mind here that the goal is to <em>generate a set of points drawn from the posterior probability distribution</em>, and to use those points to determine the answer we seek.</p>
 <p>To perform this MCMC, we start by defining Python functions for the prior <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~I)\)</span>, the likelihood <span class="math notranslate nohighlight">\(p(D~|~\mu,\sigma, I)\)</span>, and the posterior <span class="math notranslate nohighlight">\(p(\mu,\sigma~|~D,I)\)</span>, noting that none of these need be properly normalized. Our model here is two-dimensional so we’ll define the model in terms of an array of parameters <span class="math notranslate nohighlight">\(\theta\)</span>, which in this case is <span class="math notranslate nohighlight">\(\theta = [\mu,\sigma]\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
