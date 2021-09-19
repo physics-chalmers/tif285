@@ -158,7 +158,7 @@ $$
 
 * The Metropolis algorithm dates back to the 1950s in physics, but didn't become widespread in statistics until almost 1980.
 * It enabled Bayesian methods to become feasible.
-* Note, however, that novadays there are much more sophisticated samplers than the original Metropolis one.
+* Note, however, that nowdays there are much more sophisticated samplers than the original Metropolis one.
 
 <!-- !split -->
 ## Visualizations of MCMC
@@ -174,5 +174,3 @@ We will not focus on these issues here, but just list a few problematic pdfs:
 * Correlated distributions that are very narrow in certain directions. (scaled parameters needed)
 * Donut or banana shapes. (very low acceptance ratios)
 * Multimodal distributions. (might easily get stuck in local region of high probability and completely miss other regions.)
-
-
