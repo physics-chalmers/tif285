@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -627,7 +627,7 @@ Bayesian odds against Bob winning: 10 to 1
 <p>For this type of well-defined and simple setup, it is actually relatively easy to use a Monte Carlo simulation to determine the correct answer. This is essentially a brute-force tabulation of possible outcomes: we generate a large number of random games, and simply count the fraction of relevant games that Bob goes on to win. The current problem is especially simple because so many of the random variables involved are uniformly distributed.  We can use the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package to do this as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># play 100000 games with randomly-drawn p, between 0 and 1</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
@@ -676,8 +676,8 @@ Bayesian odds against Bob winning: 10 to 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of suitable games: 11068 (out of 100000 simulated ones)
-Number of these games Bob won: 979
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of suitable games: 11207 (out of 100000 simulated ones)
+Number of these games Bob won: 990
 Monte Carlo Probability of Bob winning: 0.09
 MC Odds against Bob winning: 10 to 1
 </pre></div>
@@ -740,7 +740,7 @@ MC Odds against Bob winning: 10 to 1
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;p(f|D,I)&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;error_square_root_</span><span class="si">{</span><span class="n">A0</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">sigA</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+    <span class="c1">#fig.savefig(f&#39;error_square_root_{A0}_{sigA}.png&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -748,13 +748,6 @@ MC Odds against Bob winning: 10 to 1
 <img alt="../../../_images/demo-ErrorPropagation_35_0.png" src="../../../_images/demo-ErrorPropagation_35_0.png" />
 <img alt="../../../_images/demo-ErrorPropagation_35_1.png" src="../../../_images/demo-ErrorPropagation_35_1.png" />
 <img alt="../../../_images/demo-ErrorPropagation_35_2.png" src="../../../_images/demo-ErrorPropagation_35_2.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;error_square_root.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
