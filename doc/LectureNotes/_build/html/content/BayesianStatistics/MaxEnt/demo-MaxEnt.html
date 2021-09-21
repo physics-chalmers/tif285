@@ -436,7 +436,6 @@
                 
   <div class="section" id="assigning-probabilities">
 <h1><span class="section-number">23. </span>Assigning probabilities<a class="headerlink" href="#assigning-probabilities" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 27-Sep-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="section" id="a-name-python-python-jupyter-set-up-a">
 <h2><span class="section-number">23.1. </span><a name="Python">Python/Jupyter set up</a><a class="headerlink" href="#a-name-python-python-jupyter-set-up-a" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
@@ -540,8 +539,8 @@ Since the intercept is uniformly distributed in all three prior alternatives, we
     <span class="c1"># sampling period</span>
     <span class="n">sampler</span><span class="o">.</span><span class="n">run_mcmc</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">nsteps</span><span class="p">)</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean acceptance fraction: </span><span class="si">{0:.3f}</span><span class="s2"> (in total </span><span class="si">{1}</span><span class="s2"> steps)&quot;</span>
-                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sampler</span><span class="o">.</span><span class="n">acceptance_fraction</span><span class="p">),</span><span class="n">nwalkers</span><span class="o">*</span><span class="n">nsteps</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean acceptance fraction: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sampler</span><span class="o">.</span><span class="n">acceptance_fraction</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>\
+        <span class="sa">f</span><span class="s2">&quot; (in total </span><span class="si">{</span><span class="n">nwalkers</span><span class="o">*</span><span class="n">nsteps</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> steps)&quot;</span><span class="p">)</span>
 
     <span class="c1"># discard burn-in points and flatten the walkers; the shape of samples is (nwalkers*nsteps, ndim)</span>
     <span class="n">samples</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ndim</span><span class="p">))</span>
@@ -569,19 +568,19 @@ Since the intercept is uniformly distributed in all three prior alternatives, we
   
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.827 (in total 100000 steps)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.827  (in total 100000 steps)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MCMC sampling of log_jeffreys_prior using emcee with 10 walkers
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.441 (in total 100000 steps)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.441  (in total 100000 steps)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MCMC sampling of log_symmetric_prior using emcee with 10 walkers
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.776 (in total 100000 steps)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean acceptance fraction: 0.776  (in total 100000 steps)
 </pre></div>
 </div>
 <img alt="../../../_images/demo-MaxEnt_11_7.png" src="../../../_images/demo-MaxEnt_11_7.png" />
