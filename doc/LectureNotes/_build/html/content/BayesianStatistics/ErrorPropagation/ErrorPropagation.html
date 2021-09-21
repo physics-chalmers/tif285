@@ -418,6 +418,14 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-z-x-y">
+     Example:
+     <span class="math notranslate nohighlight">
+      \(Z = X + Y\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-useful-short-cut">
      A useful short cut
     </a>
@@ -573,6 +581,30 @@ p(\{X_j\}|I) = p(\{Y_j\}|I) \left| \frac{\partial (Y_1, Y_2, \ldots, Y_M)}{\part
 <!-- !split -->
 <p><em>Summary.</em>
 We have now seen the basic ingredients required for the propagation of errors: it either involves a transformation in the sense of Eq. <a class="reference internal" href="#equation-eq-multivariate-transformation">(19.3)</a> or an integration as in Eq. <a class="reference internal" href="#equation-eq-marginalization">(19.1)</a>.</p>
+</div>
+<div class="section" id="example-z-x-y">
+<h3>Example: <span class="math notranslate nohighlight">\(Z = X + Y\)</span><a class="headerlink" href="#example-z-x-y" title="Permalink to this headline">¶</a></h3>
+<p>Let us consider the situation where you are interested in the quantity <span class="math notranslate nohighlight">\(Z = X + Y\)</span>, and you have information <span class="math notranslate nohighlight">\(I\)</span> about <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> which tells you that <span class="math notranslate nohighlight">\(X = x_0 \pm \sigma_x\)</span> and <span class="math notranslate nohighlight">\(Y = y_0 \pm \sigma_y\)</span>. If this is all the information that we have, it is reasonable to assume that <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent and that we should assign Gaussian pdf:s (see the chapter on the Maximum Entropy principle)</p>
+<div class="math notranslate nohighlight">
+\[
+p(X,Y|I) = p(X|I)p(Y|I) = \frac{1}{2\pi\sigma_x\sigma_y} \exp\left[ - \frac{(X-x_0)^2}{2\sigma_x^2} \right] \exp\left[ - \frac{(Y-y_0)^2}{2\sigma_y^2} \right].
+\]</div>
+<p>Let us now use marginalization and the product rule to find</p>
+<div class="math notranslate nohighlight">
+\[
+p(Z|I) = \int p(Z,X,Y|I)dXdY = \int p(Z|X,Y,I) p(X,Y|I)dXdY.
+\]</div>
+<p>We realize that <span class="math notranslate nohighlight">\(p(Z|X,Y,I) = \delta(Z-(X+Y))\)</span> due to the functional relationship between the parameters, and we have <span class="math notranslate nohighlight">\(p(X,Y|I)\)</span> as a product of Gaussian pdf:s from above. The delta function can be used to evaluate one of the integrals, and the pdf for <span class="math notranslate nohighlight">\(Z\)</span> becomes a convolution</p>
+<div class="math notranslate nohighlight">
+\[
+p(Z|I) = \int p(X|I) p(Y=Z-X|I) dX = \frac{1}{2\pi\sigma_x\sigma_y} \int \exp\left[ - \frac{(X-x_0)^2}{2\sigma_x^2} \right] \exp\left[ - \frac{(Z - X - y_0)^2}{2\sigma_y^2} \right] dX.
+\]</div>
+<p>After some tedious algebra that involves completing the square for <span class="math notranslate nohighlight">\(X\)</span> in the exponent we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+p(Z|I) = \frac{1}{\sqrt{2\pi}\sigma_z} \exp\left[ - \frac{(Z-z_0)^2}{2\sigma_z^2} \right], 
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(z_0 = x_0 + y_0\)</span> and <span class="math notranslate nohighlight">\(\sigma_z^2 = \sigma_x^2 + \sigma_y^2\)</span>. Thus, the pdf for the sum <span class="math notranslate nohighlight">\(Z=X+Y\)</span>, with <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> being described by Gaussian pdf:s, is another Gaussian.</p>
 <!-- !split -->
 </div>
 <div class="section" id="a-useful-short-cut">
