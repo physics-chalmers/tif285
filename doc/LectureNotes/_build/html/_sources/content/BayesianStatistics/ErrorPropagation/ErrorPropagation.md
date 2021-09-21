@@ -1,7 +1,5 @@
 <!-- !split -->
-# Why Bayes is Better
-
-## Quotes from one pioneering and one renaissance Bayesian authority
+# Advantages of the Bayesian approach
 
 ```{epigraph}
 > *"Probability theory is nothing but common sense reduced to calculation."*
@@ -16,33 +14,31 @@
 ```
 
 
-<!-- !split -->
-## Advantages of the Bayesian approach
-<!-- !bpop -->
-1. Provides an elegantly simple and rational approach for answering, in an optimal way, any scientific question for a given state of information. This contrasts to the recipe or cookbook approach of conventional statistical analysis. The procedure is well-defined:
+```{admonition} Why Bayes is Better
+1. Provides an elegantly simple and rational approach for answering any scientific question for a given state of information. The procedure is well-defined:
    * Clearly state your question and prior information.
    * Apply the sum and product rules. The starting point is always Bayes’ theorem.
-2. For some problems, a Bayesian analysis may simply lead to a familiar statistic. Even in this situation it often provides a powerful new insight concerning the interpretation of the statistic.
-3. Incorporates relevant prior (e.g., known signal model or known theory model expansion) information through Bayes’ theorem. This is one of the great strengths of Bayesian analysis.
+2. Provides a way of eliminating nuisance parameters through marginalization. 
+   * For some problems, the marginalization can be performed analytically, permitting certain calculations to become computationally tractable.
+3. Provides a well-defined procedure for propagating errors,
+   * E.g., incorporating the effects of systematic errors arising from both the measurement operation and theoretical model predictions.
+4. Incorporates relevant prior (e.g., known signal model or known theory model expansion) information through Bayes’ theorem. 
+   * This is one of the great strengths of Bayesian analysis.
+   * Enforces explicit assumptions.
    * For data with a small signal-to-noise ratio, a Bayesian analysis can frequently yield many orders of magnitude improvement in model parameter estimation, through the incorporation of relevant prior information about the signal model.
-4. Provides a way of eliminating nuisance parameters through marginalization. For some problems, the marginalization can be performed analytically, permitting certain calculations to become computationally tractable.
-5. Provides a way for incorporating the effects of systematic errors arising from both the measurement operation and theoretical model predictions.
-6. Calculates probability of hypothesis directly: $p(H_i|D, I)$.
-7. Provides a more powerful way of assessing competing theories at the forefront of science by automatically quantifying Occam’s razor.
+5. For some problems, a Bayesian analysis may simply lead to a familiar statistic. Even in this situation it often provides a powerful new insight concerning the interpretation of the statistic.
+6. Provides a more powerful way of assessing competing theories at the forefront of science by automatically quantifying Occam’s razor. 
+   * The evidence for two hypotheses, $H_i$ and $H_j$, can be compared by evaluating the ratio $p(H_i|D, I) / (H_j|D, I)$.
+   * The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.
+```
 
-<!-- !epop -->
 
-<!-- !split -->
-The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.
-
-<!-- !split -->
-### Occam's razor
-
+```{admonition} Occam's razor
+:class: tip
 Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to "shave off" those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.
 
-<!-- !split -->
-<!-- <img src="fig/ErrorPropagation/Leprechaun_or_Clurichaun.png" width=500><p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p> -->
 ![<p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p>](./figs/Leprechaun_or_Clurichaun.png)
+```
 
 <!-- !split -->
 ## Nuisance parameters

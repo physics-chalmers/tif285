@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>19. Why Bayes is Better &#8212; Learning from data</title>
+    <title>19. Advantages of the Bayesian approach &#8212; Learning from data</title>
     
   <link href="../../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -203,7 +203,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   19. Why Bayes is Better
+   19. Advantages of the Bayesian approach
   </a>
  </li>
  <li class="toctree-l1">
@@ -386,25 +386,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#quotes-from-one-pioneering-and-one-renaissance-bayesian-authority">
-   19.1. Quotes from one pioneering and one renaissance Bayesian authority
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advantages-of-the-bayesian-approach">
-   19.2. Advantages of the Bayesian approach
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#occam-s-razor">
-     Occam’s razor
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nuisance-parameters">
-   19.3. Nuisance parameters
+   19.1. Nuisance parameters
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -421,7 +404,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#error-propagation">
-   19.4. Error propagation
+   19.2. Error propagation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -458,10 +441,8 @@
               <div>
                 
   <!-- !split -->
-<div class="section" id="why-bayes-is-better">
-<h1><span class="section-number">19. </span>Why Bayes is Better<a class="headerlink" href="#why-bayes-is-better" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="quotes-from-one-pioneering-and-one-renaissance-bayesian-authority">
-<h2><span class="section-number">19.1. </span>Quotes from one pioneering and one renaissance Bayesian authority<a class="headerlink" href="#quotes-from-one-pioneering-and-one-renaissance-bayesian-authority" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="advantages-of-the-bayesian-approach">
+<h1><span class="section-number">19. </span>Advantages of the Bayesian approach<a class="headerlink" href="#advantages-of-the-bayesian-approach" title="Permalink to this headline">¶</a></h1>
 <blockquote class="epigraph">
 <div><blockquote>
 <div><p><em>“Probability theory is nothing but common sense reduced to calculation.”</em></p>
@@ -474,44 +455,49 @@
 </div></blockquote>
 <p class="attribution">—Sivia</p>
 </div></blockquote>
-<!-- !split -->
-</div>
-<div class="section" id="advantages-of-the-bayesian-approach">
-<h2><span class="section-number">19.2. </span>Advantages of the Bayesian approach<a class="headerlink" href="#advantages-of-the-bayesian-approach" title="Permalink to this headline">¶</a></h2>
-<!-- !bpop -->
+<div class="admonition-why-bayes-is-better admonition">
+<p class="admonition-title">Why Bayes is Better</p>
 <ol class="simple">
-<li><p>Provides an elegantly simple and rational approach for answering, in an optimal way, any scientific question for a given state of information. This contrasts to the recipe or cookbook approach of conventional statistical analysis. The procedure is well-defined:</p>
+<li><p>Provides an elegantly simple and rational approach for answering any scientific question for a given state of information. The procedure is well-defined:</p>
 <ul class="simple">
 <li><p>Clearly state your question and prior information.</p></li>
 <li><p>Apply the sum and product rules. The starting point is always Bayes’ theorem.</p></li>
 </ul>
 </li>
-<li><p>For some problems, a Bayesian analysis may simply lead to a familiar statistic. Even in this situation it often provides a powerful new insight concerning the interpretation of the statistic.</p></li>
-<li><p>Incorporates relevant prior (e.g., known signal model or known theory model expansion) information through Bayes’ theorem. This is one of the great strengths of Bayesian analysis.</p>
+<li><p>Provides a way of eliminating nuisance parameters through marginalization.</p>
 <ul class="simple">
+<li><p>For some problems, the marginalization can be performed analytically, permitting certain calculations to become computationally tractable.</p></li>
+</ul>
+</li>
+<li><p>Provides a well-defined procedure for propagating errors,</p>
+<ul class="simple">
+<li><p>E.g., incorporating the effects of systematic errors arising from both the measurement operation and theoretical model predictions.</p></li>
+</ul>
+</li>
+<li><p>Incorporates relevant prior (e.g., known signal model or known theory model expansion) information through Bayes’ theorem.</p>
+<ul class="simple">
+<li><p>This is one of the great strengths of Bayesian analysis.</p></li>
+<li><p>Enforces explicit assumptions.</p></li>
 <li><p>For data with a small signal-to-noise ratio, a Bayesian analysis can frequently yield many orders of magnitude improvement in model parameter estimation, through the incorporation of relevant prior information about the signal model.</p></li>
 </ul>
 </li>
-<li><p>Provides a way of eliminating nuisance parameters through marginalization. For some problems, the marginalization can be performed analytically, permitting certain calculations to become computationally tractable.</p></li>
-<li><p>Provides a way for incorporating the effects of systematic errors arising from both the measurement operation and theoretical model predictions.</p></li>
-<li><p>Calculates probability of hypothesis directly: <span class="math notranslate nohighlight">\(p(H_i|D, I)\)</span>.</p></li>
-<li><p>Provides a more powerful way of assessing competing theories at the forefront of science by automatically quantifying Occam’s razor.</p></li>
+<li><p>For some problems, a Bayesian analysis may simply lead to a familiar statistic. Even in this situation it often provides a powerful new insight concerning the interpretation of the statistic.</p></li>
+<li><p>Provides a more powerful way of assessing competing theories at the forefront of science by automatically quantifying Occam’s razor.</p>
+<ul class="simple">
+<li><p>The evidence for two hypotheses, <span class="math notranslate nohighlight">\(H_i\)</span> and <span class="math notranslate nohighlight">\(H_j\)</span>, can be compared by evaluating the ratio <span class="math notranslate nohighlight">\(p(H_i|D, I) / (H_j|D, I)\)</span>.</p></li>
+<li><p>The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.</p></li>
+</ul>
+</li>
 </ol>
-<!-- !epop -->
-<!-- !split -->
-<p>The Bayesian quantitative Occam’s razor can also save a lot of time that might otherwise be spent chasing noise artifacts that masquerade as possible detections of real phenomena.</p>
-<!-- !split -->
-<div class="section" id="occam-s-razor">
-<h3>Occam’s razor<a class="headerlink" href="#occam-s-razor" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Occam’s razor</p>
 <p>Occam’s razor is a principle attributed to the medieval philosopher William of Occam (or Ockham). The principle states that one should not make more assumptions than the minimum needed. It underlies all scientific modeling and theory building. It cautions us to choose from a set of otherwise equivalent models of a given phenomenon the simplest one. In any given model, Occam’s razor helps us to “shave off” those variables that are not really needed to explain the phenomenon. It was previously thought to be only a qualitative principle.</p>
-<!-- !split -->
-<!-- <img src="fig/ErrorPropagation/Leprechaun_or_Clurichaun.png" width=500><p><em>Did the Leprechaun drink your wine, or is there a simpler explanation?</em></p> -->
 <p><img alt="Did the Leprechaun drink your wine, or is there a simpler explanation?" src="../../../_images/Leprechaun_or_Clurichaun.png" /></p>
+</div>
 <!-- !split -->
-</div>
-</div>
 <div class="section" id="nuisance-parameters">
-<h2><span class="section-number">19.3. </span>Nuisance parameters<a class="headerlink" href="#nuisance-parameters" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.1. </span>Nuisance parameters<a class="headerlink" href="#nuisance-parameters" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nuisance-parameters-i-bayesian-billiard">
 <h3>Nuisance parameters (I): Bayesian Billiard<a class="headerlink" href="#nuisance-parameters-i-bayesian-billiard" title="Permalink to this headline">¶</a></h3>
 <p>See demonstration notebook: A Bayesian Billiard game</p>
@@ -531,7 +517,7 @@
 </div>
 </div>
 <div class="section" id="error-propagation">
-<h2><span class="section-number">19.4. </span>Error propagation<a class="headerlink" href="#error-propagation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">19.2. </span>Error propagation<a class="headerlink" href="#error-propagation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="error-propagation-i-marginalization">
 <h3>Error propagation (I): marginalization<a class="headerlink" href="#error-propagation-i-marginalization" title="Permalink to this headline">¶</a></h3>
 <p>The Bayesian approach offers a straight-forward approach for dealing with (known) systematic uncertainties; namely by marginalization. Let us demonstrate this with an example</p>
