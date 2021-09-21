@@ -158,7 +158,33 @@ where the multivariate Jacobian is given by the determinant of the $M \times M$ 
 *Summary.* 
 We have now seen the basic ingredients required for the propagation of errors: it either involves a transformation in the sense of Eq. {eq}`eq:multivariate-transformation` or an integration as in Eq. {eq}`eq:marginalization`.
 
+### Example: $Z = X + Y$
 
+Let us consider the situation where you are interested in the quantity $Z = X + Y$, and you have information $I$ about $X$ and $Y$ which tells you that $X = x_0 \pm \sigma_x$ and $Y = y_0 \pm \sigma_y$. If this is all the information that we have, it is reasonable to assume that $X$ and $Y$ are independent and that we should assign Gaussian pdf:s (see the chapter on the Maximum Entropy principle)
+
+$$
+p(X,Y|I) = p(X|I)p(Y|I) = \frac{1}{2\pi\sigma_x\sigma_y} \exp\left[ - \frac{(X-x_0)^2}{2\sigma_x^2} \right] \exp\left[ - \frac{(Y-y_0)^2}{2\sigma_y^2} \right].
+$$
+
+Let us now use marginalization and the product rule to find
+
+$$
+p(Z|I) = \int p(Z,X,Y|I)dXdY = \int p(Z|X,Y,I) p(X,Y|I)dXdY.
+$$
+
+We realize that $p(Z|X,Y,I) = \delta(Z-(X+Y))$ due to the functional relationship between the parameters, and we have $p(X,Y|I)$ as a product of Gaussian pdf:s from above. The delta function can be used to evaluate one of the integrals, and the pdf for $Z$ becomes a convolution
+
+$$
+p(Z|I) = \int p(X|I) p(Y=Z-X|I) dX = \frac{1}{2\pi\sigma_x\sigma_y} \int \exp\left[ - \frac{(X-x_0)^2}{2\sigma_x^2} \right] \exp\left[ - \frac{(Z - X - y_0)^2}{2\sigma_y^2} \right] dX.
+$$
+
+After some tedious algebra that involves completing the square for $X$ in the exponent we obtain
+
+$$
+p(Z|I) = \frac{1}{\sqrt{2\pi}\sigma_z} \exp\left[ - \frac{(Z-z_0)^2}{2\sigma_z^2} \right], 
+$$
+
+with $z_0 = x_0 + y_0$ and $\sigma_z^2 = \sigma_x^2 + \sigma_y^2$. Thus, the pdf for the sum $Z=X+Y$, with $X$ and $Y$ being described by Gaussian pdf:s, is another Gaussian.
 
 <!-- !split -->
 ### A useful short cut
