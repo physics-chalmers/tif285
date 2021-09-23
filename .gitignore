@@ -37,9 +37,9 @@ temp*
 
 # jupyter-book build files
 #doc/LectureNotes/_build/*
-doc/LectureNotes/_build/jupyter_execute
-doc/LectureNotes/_build/.jupyter_cache
-doc/LectureNotes/_build/.doctrees
+#doc/LectureNotes/_build/jupyter_execute
+#doc/LectureNotes/_build/.jupyter_cache
+#doc/LectureNotes/_build/.doctrees
 
 # reveal
 reveal.js
