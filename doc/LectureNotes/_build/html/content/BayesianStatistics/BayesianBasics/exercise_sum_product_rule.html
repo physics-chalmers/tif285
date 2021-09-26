@@ -42,8 +42,6 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -438,9 +436,9 @@
 <p>Physicist-friendly references:</p>
 <ul class="simple">
 <li><p>R. Trotta, <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/00107510802066753"><em>Bayes in the sky: Bayesian inference and model selection in cosmology</em></a>, Contemp. Phys. <strong>49</strong>, 71 (2008)  <a class="reference external" href="https://arxiv.org/abs/0803.4089">arXiv:0803.4089</a>.</p></li>
-<li><p>D.S. Sivia and J. Skilling, <span class="xref myst"><em>Data Analysis: A Bayesian Tutorial, 2nd edition</em></span>, (Oxford University Press, 2006).</p></li>
+<li><p>D.S. Sivia and J. Skilling, <a class="reference external" href="https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320/ref=mt_paperback?_encoding=UTF8&amp;me=&amp;qid="><em>Data Analysis: A Bayesian Tutorial, 2nd edition</em></a>, (Oxford University Press, 2006).</p></li>
 <li><p>P. Gregory,
-<span class="xref myst"><em>Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support</em></span>, (Cambridge University Press, 2010).</p></li>
+<a class="reference external" href="https://www.amazon.com/Bayesian-Logical-Analysis-Physical-Sciences/dp/0521150124/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1538587731&amp;sr=1-1&amp;keywords=gregory+bayesian"><em>Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support</em></a>, (Cambridge University Press, 2010).</p></li>
 </ul>
 <p><span class="math notranslate nohighlight">\(% Some LaTeX definitions we'll use.
 \newcommand{\pr}{\textrm{p}}
@@ -450,63 +448,49 @@
 <p>Notation: <span class="math notranslate nohighlight">\(p(x \mid I)\)</span> is the probability (or pdf) of <span class="math notranslate nohighlight">\(x\)</span> being true
 given information <span class="math notranslate nohighlight">\(I\)</span></p>
 <ol class="simple">
-<li><p><strong>Sum rule:</strong> If set <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is exhaustive and exclusive,
-$<span class="math notranslate nohighlight">\( \sum_i p(x_i  \mid  I) = 1   \quad \longrightarrow \quad       \color{red}{\int\!dx\, p(x \mid I) = 1} 
-\)</span>$</p>
+<li><p><strong>Sum rule:</strong> If set <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is exhaustive and exclusive,</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ 
+  \sum_i p(x_i  \mid  I) = 1   \quad \longrightarrow \quad       \color{red}{\int\!dx\, p(x \mid I) = 1} 
+  \]</div>
 <ul class="simple">
 <li><p>cf. complete and orthonormal</p></li>
-<li><p>implies <em>marginalization</em> (cf. inserting complete set of states or integrating out variables - but be careful!)
-$<span class="math notranslate nohighlight">\(
-p(x \mid  I) = \sum_j p(x,y_j \mid I) 
-\quad \longrightarrow \quad
-\color{red}{p(x \mid I) = \int\!dy\, p(x,y \mid I)} 
-\)</span>$</p></li>
+<li><p>implies <em>marginalization</em> (cf. inserting complete set of states or integrating out variables - but be careful!)</p></li>
 </ul>
-</li>
-<li><p><strong>Product rule:</strong> expanding a joint probability of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span><br />
-$<span class="math notranslate nohighlight">\(
-      \color{red}{ p(x,y \mid I) = p(x \mid y,I)\,p(y \mid I)
-           = p(y \mid x,I)\,p(x \mid I)}
-  \)</span>$</p>
-<ul class="simple">
-<li><p>If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are <em>mutually independent</em>:  <span class="math notranslate nohighlight">\(p(x \mid y,I)
-= p(x \mid I)\)</span>, then<br />
-$<span class="math notranslate nohighlight">\(
- p(x,y \mid I) \longrightarrow p(x \mid I)\,p(y \mid I)
-\)</span>$</p></li>
-<li><p>Rearranging the second equality yields <em> Bayes’ Rule (or Theorem)</em>
-$<span class="math notranslate nohighlight">\(
-\color{blue}{p(x  \mid y,I) = \frac{p(y \mid x,I)\, 
- p(x \mid I)}{p(y \mid I)}}
-\)</span>$</p></li>
-</ul>
-</li>
+<div class="math notranslate nohighlight">
+\[
+   p(x \mid  I) = \sum_j p(x,y_j \mid I) 
+    \quad \longrightarrow \quad
+   \color{red}{p(x \mid I) = \int\!dy\, p(x,y \mid I)} 
+  \]</div>
+<ol class="simple">
+<li><p><strong>Product rule:</strong> expanding a joint probability of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[
+         \color{red}{ p(x,y \mid I) = p(x \mid y,I)\,p(y \mid I)
+              = p(y \mid x,I)\,p(x \mid I)}
+  \]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are <em>mutually independent</em>:  <span class="math notranslate nohighlight">\(p(x \mid y,I) = p(x \mid I)\)</span>, then</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+       p(x,y \mid I) \longrightarrow p(x \mid I)\,p(y \mid I)
+  \]</div>
+<ul class="simple">
+<li><p>Rearranging the second equality yields <em> Bayes’ Rule (or Theorem)</em></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+      \color{blue}{p(x  \mid y,I) = \frac{p(y \mid x,I)\, 
+       p(x \mid I)}{p(y \mid I)}}
+   \]</div>
 <p>See <a href="https://www.amazon.com/Algebra-Probable-Inference-Richard-Cox/dp/080186982X/ref=sr_1_1?s=books&ie=UTF8&qid=1538835666&sr=1-1">Cox</a> for the proof.</p>
 </div>
 <div class="section" id="answer-the-questions-in-italics-check-answers-with-your-neighbors-ask-for-help-if-you-get-stuck-or-are-unsure">
 <h2><span class="section-number">13.2. </span>Answer the questions in <em>italics</em>. Check answers with your neighbors. Ask for help if you get stuck or are unsure.<a class="headerlink" href="#answer-the-questions-in-italics-check-answers-with-your-neighbors-ask-for-help-if-you-get-stuck-or-are-unsure" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
- <span class="nt">table</span> <span class="p">{</span> <span class="k">width</span><span class="p">:</span><span class="mi">80</span><span class="kt">%</span> <span class="cp">!important</span><span class="p">;</span> <span class="p">}</span>
- <span class="nt">table</span> <span class="nt">td</span><span class="o">,</span> <span class="nt">th</span> <span class="p">{</span> <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">black</span> <span class="cp">!important</span><span class="p">;</span> 
-         <span class="k">text-align</span><span class="p">:</span><span class="kc">center</span> <span class="cp">!important</span><span class="p">;</span>
-         <span class="k">font-size</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span> <span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>
- table { width:80% !important; }
- table td, th { border: 1px solid black !important; 
-         text-align:center !important;
-         font-size: 20px }
-</style>
-</div></div>
-</div>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-align:center head"><p>TABLE 1</p></th>

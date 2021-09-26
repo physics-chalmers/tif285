@@ -9,25 +9,29 @@
 # 
 # * R. Trotta, [*Bayes in the sky: Bayesian inference and model selection in cosmology*](https://www.tandfonline.com/doi/abs/10.1080/00107510802066753), Contemp. Phys. **49**, 71 (2008)  [arXiv:0803.4089](https://arxiv.org/abs/0803.4089).
 #         
-# * D.S. Sivia and J. Skilling, [*Data Analysis: A Bayesian Tutorial, 2nd edition*]("https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320/ref=mt_paperback?_encoding=UTF8&me=&qid="), (Oxford University Press, 2006).
+# * D.S. Sivia and J. Skilling, [*Data Analysis: A Bayesian Tutorial, 2nd edition*](https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320/ref=mt_paperback?_encoding=UTF8&me=&qid=), (Oxford University Press, 2006).
 #     
 # * P. Gregory,
-#      [*Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support*]("https://www.amazon.com/Bayesian-Logical-Analysis-Physical-Sciences/dp/0521150124/ref=sr_1_1?s=books&ie=UTF8&qid=1538587731&sr=1-1&keywords=gregory+bayesian"), (Cambridge University Press, 2010).
+#      [*Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support*](https://www.amazon.com/Bayesian-Logical-Analysis-Physical-Sciences/dp/0521150124/ref=sr_1_1?s=books&ie=UTF8&qid=1538587731&sr=1-1&keywords=gregory+bayesian), (Cambridge University Press, 2010).
 # 
 # $% Some LaTeX definitions we'll use.
 # \newcommand{\pr}{\textrm{p}}
 # $
 
-# ### Bayesian rules of probability as principles of logic 
+# ## Bayesian rules of probability as principles of logic 
 # 
 # Notation: $p(x \mid I)$ is the probability (or pdf) of $x$ being true
 # given information $I$
 # 
 # 1. **Sum rule:** If set $\{x_i\}$ is exhaustive and exclusive, 
-#   $$ \sum_i p(x_i  \mid  I) = 1   \quad \longrightarrow \quad       \color{red}{\int\!dx\, p(x \mid I) = 1} 
+#   
 #   $$ 
-#     * cf. complete and orthonormal 
-#     * implies *marginalization* (cf. inserting complete set of states or integrating out variables - but be careful!)
+#   \sum_i p(x_i  \mid  I) = 1   \quad \longrightarrow \quad       \color{red}{\int\!dx\, p(x \mid I) = 1} 
+#   $$ 
+#   
+#   * cf. complete and orthonormal 
+#   * implies *marginalization* (cf. inserting complete set of states or integrating out variables - but be careful!)
+#     
 #   $$
 #    p(x \mid  I) = \sum_j p(x,y_j \mid I) 
 #     \quad \longrightarrow \quad
@@ -35,32 +39,29 @@
 #   $$
 #    
 #   
-# 2. **Product rule:** expanding a joint probability of $x$ and $y$         
-#      $$
+# 2. **Product rule:** expanding a joint probability of $x$ and $y$  
+# 
+#   $$
 #          \color{red}{ p(x,y \mid I) = p(x \mid y,I)\,p(y \mid I)
 #               = p(y \mid x,I)\,p(x \mid I)}
-#      $$
+#   $$
 # 
-#     * If $x$ and $y$ are <em>mutually independent</em>:  $p(x \mid y,I)
-#       = p(x \mid I)$, then        
-#     $$
+#   * If $x$ and $y$ are <em>mutually independent</em>:  $p(x \mid y,I) = p(x \mid I)$, then  
+#       
+#   $$
 #        p(x,y \mid I) \longrightarrow p(x \mid I)\,p(y \mid I)
-#     $$
-#     * Rearranging the second equality yields <em> Bayes' Rule (or Theorem)</em>
-#      $$
+#   $$
+#     
+#   * Rearranging the second equality yields <em> Bayes' Rule (or Theorem)</em>
+#     
+#    $$
 #       \color{blue}{p(x  \mid y,I) = \frac{p(y \mid x,I)\, 
 #        p(x \mid I)}{p(y \mid I)}}
-#      $$
+#    $$
 # 
 # See <a href="https://www.amazon.com/Algebra-Probable-Inference-Richard-Cox/dp/080186982X/ref=sr_1_1?s=books&ie=UTF8&qid=1538835666&sr=1-1">Cox</a> for the proof.
 
 # ## Answer the questions in *italics*. Check answers with your neighbors. Ask for help if you get stuck or are unsure.
-
-# In[1]:
-
-
-get_ipython().run_cell_magic('html', '', '<style>\n table { width:80% !important; }\n table td, th { border: 1px solid black !important; \n         text-align:center !important;\n         font-size: 20px }\n</style>')
-
 
 # |     TABLE 1     | Blue         | Brown         |  Total        |
 # | :-------------: | :----------: | :-----------: | :-----------: |
