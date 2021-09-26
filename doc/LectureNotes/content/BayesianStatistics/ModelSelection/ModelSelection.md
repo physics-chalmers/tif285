@@ -79,53 +79,52 @@ At the point of performing this comparison, and making a final statement, the sa
 
 <!-- !split -->
 It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,
-\begin{equation}
+
+$$
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
-\label{eq:sivia_41}
-\end{equation}
+$$ (eq:sivia_41)
+
 is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.
 
 To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives
-\begin{equation}
+
+$$
 \frac{p(A|D,I)}{p(B|D,I)} = \frac{p(D|A,I) p(A|I)}{p(D|B,I) p(B|I)}
-\label{eq:sivia_42}
-\end{equation}
-because the term $p(D|I)$ cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. ([eq:sivia_42](#eq:sivia_42)), to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, $p(D|A,I)$ and $p(D|B,I)$, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for $\lambda$.
+$$ (eq:sivia_42)
+
+because the term $p(D|I)$ cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. {eq}`eq:sivia_42`, to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, $p(D|A,I)$ and $p(D|B,I)$, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for $\lambda$.
 
 To circumvent this difficulty, we can use the sum and product rule to relate the probability we require to other pdfs which might be easier to assign. In particular, marginalization and the product rule allow us to express $p(D | B , I )$ as
-\begin{equation}
+
+$$
 p(D|B,I) = \int d\lambda p(D,\lambda|B,I) = 
 \int d\lambda p(D|\lambda,B,I) p(\lambda|B,I). 
-\label{eq:sivia_43}
-\end{equation}
+$$ (eq:sivia_43)
+
 The first term in the integral $p(D | \lambda, B , I )$, where the value of $\lambda$ is given, is now just an ordinary likelihood function; as such, it is on a par with $p(D|A,I)$. The second term is B’s prior pdf for $\lambda$; the onus is, therefore, on the theorist to articulate his or her state of knowledge, or ignorance, before getting access to the data.
 
 To proceed further analytically, let us make some simplifying approximations. Assume that, a priori, Prof B is only prepared to say that $\lambda$ must lie between the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$; we can then naively assign a uniform prior within this range:
 
-\begin{equation}
+$$
 p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text{for } \lambda_\mathrm{min} \leq \lambda \leq \lambda_\mathrm{max}, 
-\label{eq:sivia_44}
-\end{equation}
+$$ (eq:sivia_44)
 
 and zero otherwise. Let us also take it that there is a value $\lambda_0$ which yields the closest agreement with the measurements; the corresponding probability $p(D|\lambda_0,B,I)$ will be the maximum of B’s likelihood function. As long as this adjustable parameter lies in the neighbourhood of the optimal value, $\lambda_0 \pm (\delta\lambda)$, we would expect a reasonable fit to the data; this can be represented by the Gaussian pdf
 
-\begin{equation}
+$$
 p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0)^2}{2(\delta\lambda)^2} \right]. 
-\label{eq:sivia_45}
-\end{equation}
+$$ (eq:sivia_45)
 
-The assignments of the prior ([eq:sivia_44](#eq:sivia_44)) and the likelihood ([eq:sivia_45](#eq:sivia_45)) are illustrated in Fig. [fig:sivia_41](#fig:sivia_41). We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.
+The assignments of the prior {eq}`eq:sivia_44` and the likelihood {eq}`eq:sivia_45` are illustrated in the figure below. We may note that, unlike the prior pdf $p(\lambda|B,I)$, B’s likelihood function need not be normalized with respect to $\lambda$; in other words, $p(D|\lambda_0,B,I)$ need not equal $1/ (\delta\lambda) \sqrt{2\pi}$ . This is because the $\lambda$ in $p(D|\lambda,B,I)$ appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.
 
-<!-- <img src="fig/ModelSelection/fig41.png" width=500><p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p> -->
 ![<p><em>A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter $\lambda$ in Prof B’s theory. <div id="fig:sivia_41"></div></em></p>](./figs/fig41.png)
 
-In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. ([eq:sivia_43](#eq:sivia_43))
+In the evaluation of $p(D | B , I )$, we can make use of the fact that the prior does not depend explicitly on $\lambda$; this enables us to take $p(\lambda|B,I)$ outside the integral in Eq. {eq}`eq:sivia_43`.
 
-\begin{equation}
+$$
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} \int_{\lambda_\mathrm{min}}^{\lambda_\mathrm{max}} d\lambda
 p(D|\lambda,B,I),
-\label{eq:sivia_46}
-\end{equation}
+$$ (eq:sivia_46)
 
 having set the limits according to the specified range. Assuming that the sharp cut-offs
 do not cause a significant truncation of the Gaussian pdf of the likelihood,
@@ -135,20 +134,19 @@ $$
 p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} p(D|\lambda_0,B,I) (\delta\lambda) \sqrt{2\pi}.
 $$
 
-Substituting this into Eq. ([eq:sivia_42](#eq:sivia_42)), we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:
+Substituting this into Eq. {eq}`eq:sivia_42`, we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:
 
-\begin{equation}
+$$
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
-\label{eq:sivia_48}
-\end{equation}
+$$ (eq:sivia_48)
 
-The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, we can take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. ([eq:sivia_43](#eq:sivia_43)), the prior range $\lambda_\mathrm{max} - \lambda_\mathrm{min}$ will generally be much larger than the uncertainty $\pm(\delta\lambda)$ permitted by the data. As such, the final term in Eq. ([eq:sivia_48](#eq:sivia_48)) acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: *‘Frustra fit per plura quod potest fieri per pauciora’* or, in English, *‘it is vain to do with more what can be done with fewer’* .
+The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, we can take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. {eq}`eq:sivia_43`, the prior range $\lambda_\mathrm{max} - \lambda_\mathrm{min}$ will generally be much larger than the uncertainty $\pm(\delta\lambda)$ permitted by the data. As such, the final term in Eq. {eq}`eq:sivia_48` acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: *‘Frustra fit per plura quod potest fieri per pauciora’* or, in English, *‘it is vain to do with more what can be done with fewer’* .
 
 Although it is satisfying to quantify the everyday guiding principle attributed to the thirteenth-century Franciscan monk William of Ockham (or Occam, in Latin), that we should prefer the simplest theory which agrees with the empirical evidence, we should not get too carried away by it. After all, what do we mean by the simpler theory if alternative models have the same number of adjustable parameters? In the choice between Gaussian and Lorentzian peak shapes, for example, both are defined by the position of the maximum and their width. All that we are obliged to do, and have done, in addressing such questions is to adhere to the rules of probability.
 
-While accepting the clear logic leading to Eq ([eq:sivia_48](#eq:sivia_48)), many people rightly worry about the question of the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$. Jeffreys (1939) himself was concerned and pointed out that there would be an infinite penalty for any new parameter if the range was allowed to go to $\pm\infty$. Stated in the abstract, this would appear to be a severe limitation. In practice, however, it is not generally such a problem: since the analysis is always used in specific contexts, a suitable choice can usually be made on the basis of the relevant background information. Even in uncharted territory, a small amount of thought soon reveals that our state of ignorance is always far from the $\pm\infty$ scenario. If $\lambda$ was the coupling constant (or strength) for a possible fifth force, for example, then we could put an upper bound on its magnitude because everybody would have noticed it by now if it had been large enough! We should also not lose sight of the fact that the precise form of Eq ([eq:sivia_48](#eq:sivia_48)) stems from our stated simplifying approximations; if these are not appropriate, then eqns ([eq:sivia_42](#eq:sivia_42)) and ([eq:sivia_43](#eq:sivia_43)) will lead us to a somewhat different formula.
+While accepting the clear logic leading to Eq {eq}`eq:sivia_48`, many people rightly worry about the question of the limits $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$. Jeffreys (1939) himself was concerned and pointed out that there would be an infinite penalty for any new parameter if the range was allowed to go to $\pm\infty$. Stated in the abstract, this would appear to be a severe limitation. In practice, however, it is not generally such a problem: since the analysis is always used in specific contexts, a suitable choice can usually be made on the basis of the relevant background information. Even in uncharted territory, a small amount of thought soon reveals that our state of ignorance is always far from the $\pm\infty$ scenario. If $\lambda$ was the coupling constant (or strength) for a possible fifth force, for example, then we could put an upper bound on its magnitude because everybody would have noticed it by now if it had been large enough! We should also not lose sight of the fact that the precise form of Eq {eq}`eq:sivia_48` stems from our stated simplifying approximations; if these are not appropriate, then Eqs. {eq}`eq:sivia_42` and {eq}`eq:sivia_43` will lead us to a somewhat different formula.
 
-In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn ([eq:sivia_48](#eq:sivia_48)) tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B’s theory fails to give a significantly better fit as the quality of the data improves. In that case, $(\delta\lambda)$ continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. ([eq:sivia_48](#eq:sivia_48)), therefore, A’s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. ([eq:sivia_48](#eq:sivia_48)) is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A’s theory unless it is explicitly encoded in $p(A|I)/p(B|I)$. This property can be verified formally by going back to Eqs. ([eq:sivia_42](#eq:sivia_42)), ([eq:sivia_45](#eq:sivia_45)) and ([eq:sivia_46](#eq:sivia_46)), and considering the poor-data limit in which 
+In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn {eq}`eq:sivia_48` tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B’s theory fails to give a significantly better fit as the quality of the data improves. In that case, $(\delta\lambda)$ continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. {eq}`eq:sivia_48`, therefore, A’s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. {eq}`eq:sivia_48` is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A’s theory unless it is explicitly encoded in $p(A|I)/p(B|I)$. This property can be verified formally by going back to Eqs. {eq}`eq:sivia_42`, {eq}`eq:sivia_45` and {eq}`eq:sivia_46`, and considering the poor-data limit in which 
 $(\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda_0,B,I) \approx p(D|A,I)$.
 
 <!-- !split -->
@@ -156,14 +154,12 @@ $(\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}$ and $p(D|\lambda
 
 Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it $\mu$. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that
 
-\begin{equation}
+$$
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu(\lambda_\mathrm{max} - \lambda_\mathrm{min})}{\delta\lambda(\mu_\mathrm{max} - \mu_\mathrm{min})}. 
-\label{eq:sivia_49}
-\end{equation}
-
+$$ (eq:sivia_49)
 
 <!-- !split -->
-This could represent the situation where we have to choose between a Gaussian and Lorentzian shape for a signal peak, but one associated parameter is not known. The position of the maximum may be fixed at the origin by theory, for example, and the amplitude constrained by the normalization of the data; A and B could then be the hypotheses favouring the alternative lineshapes, where $\delta\mu$ and $\delta\lambda$ are their related full-width-half-maxima. If we give equal weight to A and B before the analysis, and assign a similar large prior range for both $\mu$ and $\lambda$, then Eq. ([eq:sivia_49](#eq:sivia_49)) reduces to
+This could represent the situation where we have to choose between a Gaussian and Lorentzian shape for a signal peak, but one associated parameter is not known. The position of the maximum may be fixed at the origin by theory, for example, and the amplitude constrained by the normalization of the data; A and B could then be the hypotheses favouring the alternative lineshapes, where $\delta\mu$ and $\delta\lambda$ are their related full-width-half-maxima. If we give equal weight to A and B before the analysis, and assign a similar large prior range for both $\mu$ and $\lambda$, then Eq. {eq}`eq:sivia_49` reduces to
 
 $$
 \frac{p(A|D,I)}{p(B|D,I)} \approx  \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu}{\delta\lambda}. 
@@ -175,7 +171,7 @@ For data of good quality, the dominant factor will tend to be the best-fit likel
 <!-- !split -->
 #### One adjustable parameter each; different prior ranges
 
-Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for $\lambda$ (or $\mu$). Although Eq. ([eq:sivia_48](#eq:sivia_48)) can be seen as representing the case when $(\mu_\mathrm{max} - \mu_\mathrm{min})$ is infinitesimally small, so that A has no flexibility, Eq. ([eq:sivia_49](#eq:sivia_49)) is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
+Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for $\lambda$ (or $\mu$). Although Eq. {eq}`eq:sivia_48` can be seen as representing the case when $(\mu_\mathrm{max} - \mu_\mathrm{min})$ is infinitesimally small, so that A has no flexibility, Eq. {eq}`eq:sivia_49` is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to
 
 $$
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{\mu_\mathrm{max} - \mu_\mathrm{min}}. 
@@ -185,18 +181,17 @@ because the best-fit likelihood ratio will be unity (since $\lambda_0 = \mu_0$) 
 
 <!-- !split -->
 ### Comparison with parameter estimation
-The dependence of the result in Eq. ([eq:sivia_48](#eq:sivia_48)) on the prior range $(\lambda_\mathrm{max} - \lambda_\mathrm{min})$ can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of $\lambda$ from the data, given that B’s theory is correct, we use Bayes’ theorem:
+The dependence of the result in Eq. {eq}`eq:sivia_48` on the prior range $(\lambda_\mathrm{max} - \lambda_\mathrm{min})$ can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of $\lambda$ from the data, given that B’s theory is correct, we use Bayes’ theorem:
 
-\begin{equation}
+$$
 p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}. 
-\label{eq:sivia_410}
-\end{equation}
+$$ (eq:sivia_410)
 
 The numerator is the familiar product of a prior and likelihood, and the denominator is usually omitted since it does not depend explicitly on $\lambda$; hence this relationship is often written as a proportionality. From the story of Dr A and Prof B, however, we find that the neglected term on the bottom plays a crucial role in ascertaining the merit of B’s theory relative to a competing alternative. 
 
 <!-- !split -->
 * In recognition of its new-found importance, the denominator in Bayes’ theorem is sometimes called the **‘evidence’** for B; it is also referred to as the ‘marginal likelihood’, the ‘global likelihood’ and the ‘prior predictive’. 
-* Since all the components necessary for both parameter estimation and model selection appear in Eq. ([eq:sivia_410](#eq:sivia_410)), we are not dealing with any new principles; the only thing that sets them apart is that we are asking different questions of the data.
+* Since all the components necessary for both parameter estimation and model selection appear in Eq. {eq}`eq:sivia_410`, we are not dealing with any new principles; the only thing that sets them apart is that we are asking different questions of the data.
 
 <!-- !split -->
 A simple way to think about the difference between parameter estimation and model selection is to note that, to a good approximation, the former requires the location of the maximum of the likelihood function whereas the latter entails the calculation of its average value. As long as $\lambda_\mathrm{min}$ and $\lambda_\mathrm{max}$ encompass the significant region of $p(D|\lambda,B,I)$ around $\lambda_0$, the precise bounds do not matter for estimating the optimal parameter and need not be specified. Since the prior range defines the domain over which the mean likelihood is computed, due thought is necessary when dealing with model selection. Indeed, it is precisely this act of comparing ‘average’ likelihoods rather than ‘maximum’ ones which introduces the desired Ockham balance to the goodness- of-fit criterion. Any likelihood gain from a better agreement with the data, allowed by the greater flexibility of a more complicated model, has to be weighed against the additional cost of averaging it over a larger parameter space.

@@ -54,14 +54,11 @@ We note that for any one given Scandinavian there are four distinct possibilitie
 
 <!-- !split -->
 The following 2x2 contingency table
-\n
-
 
 |           | Left handed  | Right handed  |
 | :----------  | :-----------  | :------------ | 
 |Blonde        | $p_1$         | $p_2$  |    
 |Not blonde    | $p_3$         | $p_4$  |   
-
 
 can be written in terms of a single variable $x$ due to the normalization condition $\sum_{i=1}^4 p_i = 1$, and the available information $p_1 + p_2 = 0.7$ and $p_1 + p_3 = 0.1$
 
@@ -70,29 +67,32 @@ can be written in terms of a single variable $x$ due to the normalization condit
 |Blonde        | $0 \le x \le 0.1$ |   $0.7-x$   |    
 |Not blonde    | $0.1-x$           |  $0.2+x$    |   
 
-But which choice of $x$ is preferred?
+But which choice of $x$ is preferred? 
+
+Here we will introduce the monkey argument to decide how to assign $x$. We will then show that this argument is equivalent to the principle of maximum entropy, which can be  formulated for more general scenarios and used to derive a number of commonly used pdfs.
 
 <!-- !split -->
 ## The monkey argument
 
-The monkey argument is a model for assigning probabilities to $M$ different alternatives that satisfy some constraint as described by $I$: 
-* Monkeys throwing $N$ balls into $M$ equally sized boxes.
-* The normalization condition $N = \sum_{i=1}^M n_i$.
-* The fraction of balls in each box gives a possible assignment for the corresponding probability $p_i = n_i / N$.
-* The distribution of balls $\{ n_i \}$ divided by $N$ is therefore a candidate pdf $\{ p_i \}$.
+The monkey argument is a model for assigning probabilities to $M$ different (discrete) alternatives that satisfy some constraints described by $I$. The argument goes as follows:
+ 
+1. Imagine a very large number of monkeys throwing $N$ balls into $M$ equally sized boxes. The final number of balls in box $i$ is $n_i$.
+   * The normalization condition is satisfied via $N = \sum_{i=1}^M n_i$.
+   * The fraction of balls in each box gives a possible assignment for the corresponding probability $p_i = n_i / N$.
+   * The distribution of balls $\{ n_i \}$ divided by $N$ is therefore a candidate pdf $\{ p_i \}$.
+2. After one round the monkeys have distributed their (huge number of) balls over the $M$ boxes.
+   * The resulting pdf might not be consistent with the constraints in $I$, however, in which case it must be rejected as a possible candidate.
+   * The candidate pdf is recorded by an independent observer in the scenario that the constraints are in fact fulfilled.
+3. After many such rounds, some distributions will be found to come up more often than others. 
+   * The one that appears most frequently (and satisfies $I$) would be a sensible choice for $p(\{p_i\}|I)$.
+   * Since our ideal monkeys have no agenda of their own to influence the distribution, this most favoured distribution can be regarded as the one that best represents our given state of knowledge.
+   * No bananas are allowed!
 
-<!-- !split -->
-After one round the monkeys have distributed their (large number of) balls over the $M$ boxes.
-* The resulting pdf might not be consistent with the constraints of $I$, however, in which case it should be rejected as a possible candidate.
-* After many such rounds, some distributions will be found to come up more often than others. The one that appears most frequently (and satisfies $I$) would be a sensible choice for $p(\{p_i\}|I)$.
-* Since our ideal monkeys have no agenda of their own to influence the distribution, this most favoured distribution can be regarded as the one that best represents our given state of knowledge.
-
-<!-- !split -->
 Now, let us see how this preferred solution corresponds to the pdf with the largest `entropy`. Remember in the following that $N$ (and $n_i$) are considered to be very large numbers ($N/M \gg 1$)
 
 <!-- !split -->
 * There are $M^N$ different ways to distribute the balls.
-* The micro-states $\{ n_i\}$ are connected to the pdf $\{ p_i \}$ and the frequency of a given pdf is given by
+* The micro-states corresponding to a particular distribution $\{ n_i\}$ are all connected to the same pdf $\{ p_i \}$. Therefore, the frequency of a given pdf is given by
 
 $$
 
@@ -101,7 +101,7 @@ F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}
 $$
 
 * The number of micro-states, $W(\{n_i\}))$, in the nominator is equal to $N! / \prod_{i=1}^M n_i!$. 
-* We express the logarithm of this number (where we use the Stirling approximation $\log(n!) \approx n\log(n) - n$ for large numbers, and there is a cancellation of two terms)
+* We express the logarithm of this number using the Stirling approximation for factorials of large numbers, $\log(n!) \approx n\log(n) - n$, and finding a cancellation of $N-\sum_i n_i$.
 
 $$
 
@@ -128,7 +128,8 @@ $$
 $$
 
 <!-- !split -->
-We note that $N$ and $M$ are constants so that the preferred pdf is given by the $\{ p_i \}$ that maximizes
+Recall that the preferred pdf is the one that appears most frequently, i.e., that maximizes the above expression.
+We further note that $N$ and $M$ are constants such that the preferred pdf is given by the $\{ p_i \}$ that maximizes
 
 $$
 
@@ -136,28 +137,35 @@ S = - \sum_{i=1}^M p_i\log(p_i).
 
 $$
 
-You might recognise this quantity as the *entropy* from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty, which remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied $S = -k_B \sum_i p_i \log(p_i)$, where $k_B$ is the Boltzmann constant.
+You might recognise this quantity as the *entropy* measure from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty that remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been properly taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied $S = -k_B \sum_i p_i \log(p_i)$, where $k_B$ is the Boltzmann constant.
 
 <!-- !split -->
 ## Why maximize the entropy?
 
-* Information theory: maximum entropy=minimum information (Shannon, 1948).
-* Logical consistency (Shore & Johnson, 1960).
-* Uncorrelated assignments related monotonically to $S$ (Skilling, 1988).
+There are a few different arguments for why the entropy should be maximized when assigning probability distributions given some limited information:
 
-Consider the third argument. Let us check it empirically to the problem of hair colour and handedness of Scandinavians. We are interested in determining $p_1 \equiv p(L,B|I) \equiv x$, the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment $p_1=0.07$ is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.
+1. Information theory: maximum entropy=minimum information (Shannon, 1948).
+2. Logical consistency (Shore & Johnson, 1960).
+3. Uncorrelated assignments related monotonically to $S$ (Skilling, 1988).
+
+Consider the third argument. Let us check it empirically in the context of the problem of hair colour and handedness of Scandinavians. We are interested in determining $p_1 \equiv p(L,B|I) \equiv x$, the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment $p_1=0.07$ is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.
+
+```{admonition} Uncorrelated assignments
+Unless you have specific information about the existence of a correlation, you should better not build it into the assignment of the probability distribution. 
+```
+
+As argued, any assignment $p_1 \neq 0.07$ corresponds to the existence of a correlation that was not explicitly specified in the provided information.
+
+```{admonition} Question
+:class: tip
+Can you show why $p_1 < 0.07$ and $p_1 > 0.07$ corresponds to left-handedness and blondeness being dependent variables?
+```
 
 <!-- !split -->
-So unless you have specific information about the existence of such a correlation, you should better not build it into the assignment of the probability $p_1$. 
-
-**Question**: Can you show why $p_1 < 0.07$ and $p_1 > 0.07$ corresponds to left-handedness and blondeness being dependent variables?
-
-<!-- !split -->
-Let us now empirically consider a few variational functions of $\{ p_i \}$ and see if any of them gives a maximum that corresponds to the uncorrelated assignment $x=0.07$, which implies $p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27$. A few variational functions and their prediction for $x$ are shown in the following table.
-\n
+Let us now empirically consider a few variational functions of $\{ p_i \}$ and see if any of them gives a maximum that corresponds to the uncorrelated assignment $x=0.07$. Note that $x=0.07$ implies $p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27$. A few variational functions and their prediction for $x$ are shown in the following table.
 
 
-|    Variational function     | Optimal x  | Implied correlation  |
+|    Variational function     | argmax $x$  | Implied correlation  |
 | :--------------------------- | :---------  | :------------------- |  
 |  $-\sum_i p_i \log(p_i)$     | 0.070       |     None       |  
 |     $\sum_i \log(p_i)$       |  0.053      |    Negative    |   
@@ -172,7 +180,7 @@ The assignment based on the entropy measure is the only one that respects this l
 <!-- !split -->
 ### Continuous case
 
-Return to monkeys, but now with different probabilities for each bin.Then
+Let us return to the monkeys, but now with different probabilities for each bin. Then
 
 $$
 
@@ -290,7 +298,7 @@ p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].
 $$
 
 <!-- !split -->
-Assuming that the limits of integration are $\pm \infty$ this results in the standard Gaussian pdf
+Assuming that the limits of integration are $\pm \infty$ we can determine both the normalization coefficient and the Lagrange multiplier. After some integration this results in the standard Gaussian pdf
 
 $$
 
@@ -298,7 +306,10 @@ p(x|\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left[ - \frac{( x - \mu )^2
 
 $$
 
+```{admonition} The normal distribution
 This indicates that the normal distribution is the most honest representation of our state of knowledge when we only have information about the mean and the variance.
+```
+
 
 <!-- !split -->
 *Notice.* 
