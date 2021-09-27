@@ -443,6 +443,11 @@
      Laplace’s method
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalization-of-a-multivariate-gaussian">
+     Normalization of a multivariate Gaussian
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -534,7 +539,7 @@ The sampling theory hypothesis test is designed to compare a selected statistic 
 <span class="eqno">(24.1)<a class="headerlink" href="#equation-eq-sivia-41" title="Permalink to this equation">¶</a></span>\[
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
 \]</div>
-<p>is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.</p>
+<p>is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data is insufficient to make an informed judgement.</p>
 <p>To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives</p>
 <div class="math notranslate nohighlight" id="equation-eq-sivia-42">
 <span class="eqno">(24.2)<a class="headerlink" href="#equation-eq-sivia-42" title="Permalink to this equation">¶</a></span>\[
@@ -578,7 +583,7 @@ p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} p(D|\lambda_0,B
 <span class="eqno">(24.7)<a class="headerlink" href="#equation-eq-sivia-48" title="Permalink to this equation">¶</a></span>\[
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
 \]</div>
-<p>The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, we can take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a>, the prior range <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} - \lambda_\mathrm{min}\)</span> will generally be much larger than the uncertainty <span class="math notranslate nohighlight">\(\pm(\delta\lambda)\)</span> permitted by the data. As such, the final term in Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: <em>‘Frustra fit per plura quod potest fieri per pauciora’</em> or, in English, <em>‘it is vain to do with more what can be done with fewer’</em> .</p>
+<p>The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, let us take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a>, the prior range <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} - \lambda_\mathrm{min}\)</span> will generally be much larger than the uncertainty <span class="math notranslate nohighlight">\(\pm(\delta\lambda)\)</span> permitted by the data. As such, the final term in Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: <em>‘Frustra fit per plura quod potest fieri per pauciora’</em> or, in English, <em>‘it is vain to do with more what can be done with fewer’</em> .</p>
 <p>Although it is satisfying to quantify the everyday guiding principle attributed to the thirteenth-century Franciscan monk William of Ockham (or Occam, in Latin), that we should prefer the simplest theory which agrees with the empirical evidence, we should not get too carried away by it. After all, what do we mean by the simpler theory if alternative models have the same number of adjustable parameters? In the choice between Gaussian and Lorentzian peak shapes, for example, both are defined by the position of the maximum and their width. All that we are obliged to do, and have done, in addressing such questions is to adhere to the rules of probability.</p>
 <p>While accepting the clear logic leading to Eq <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a>, many people rightly worry about the question of the limits <span class="math notranslate nohighlight">\(\lambda_\mathrm{min}\)</span> and <span class="math notranslate nohighlight">\(\lambda_\mathrm{max}\)</span>. Jeffreys (1939) himself was concerned and pointed out that there would be an infinite penalty for any new parameter if the range was allowed to go to <span class="math notranslate nohighlight">\(\pm\infty\)</span>. Stated in the abstract, this would appear to be a severe limitation. In practice, however, it is not generally such a problem: since the analysis is always used in specific contexts, a suitable choice can usually be made on the basis of the relevant background information. Even in uncharted territory, a small amount of thought soon reveals that our state of ignorance is always far from the <span class="math notranslate nohighlight">\(\pm\infty\)</span> scenario. If <span class="math notranslate nohighlight">\(\lambda\)</span> was the coupling constant (or strength) for a possible fifth force, for example, then we could put an upper bound on its magnitude because everybody would have noticed it by now if it had been large enough! We should also not lose sight of the fact that the precise form of Eq <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> stems from our stated simplifying approximations; if these are not appropriate, then Eqs. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a> and <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a> will lead us to a somewhat different formula.</p>
 <p>In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B’s theory fails to give a significantly better fit as the quality of the data improves. In that case, <span class="math notranslate nohighlight">\((\delta\lambda)\)</span> continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a>, therefore, A’s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A’s theory unless it is explicitly encoded in <span class="math notranslate nohighlight">\(p(A|I)/p(B|I)\)</span>. This property can be verified formally by going back to Eqs. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a>, <a class="reference internal" href="#equation-eq-sivia-45">(24.5)</a> and <a class="reference internal" href="#equation-eq-sivia-46">(24.6)</a>, and considering the poor-data limit in which
@@ -637,57 +642,61 @@ p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}.
 <!-- !split -->
 <div class="section" id="laplace-s-method">
 <h3>Laplace’s method<a class="headerlink" href="#laplace-s-method" title="Permalink to this headline">¶</a></h3>
-<p>The idea behind the Laplace approximation is simple. We assume that an unnormalized probability density <span class="math notranslate nohighlight">\(P^*(\theta)\)</span> has a peak at a point <span class="math notranslate nohighlight">\(\theta_0\)</span>. We are interested in the evidence, <span class="math notranslate nohighlight">\(Z_P\)</span>, which is given by the normalizing constant</p>
+<p>The idea behind Laplace’s method is simple, namely to use the Taylor expansion of a function around its peak to construct a Gaussian approximation which can be easily integrated. Let us consider an unnormalized density <span class="math notranslate nohighlight">\(P^*(\theta)\)</span> that has a peak at a point <span class="math notranslate nohighlight">\(\theta_0\)</span>.
+We are interested in the evidence, <span class="math notranslate nohighlight">\(Z_P\)</span>, which is given by the integral</p>
 <div class="math notranslate nohighlight">
 \[
 Z_P = \int P^*(\theta) d^K\theta,
 \]</div>
-<p>where we consider the general case in which <span class="math notranslate nohighlight">\(\theta\)</span> is in a <span class="math notranslate nohighlight">\(K\)</span>-dimensional space.</p>
+<p>where we consider the general case in which <span class="math notranslate nohighlight">\(\theta\)</span> is a <span class="math notranslate nohighlight">\(K\)</span>-dimensional vector of parameters.</p>
 <!-- !split -->
 <p>We Taylor-expand the logarithm <span class="math notranslate nohighlight">\(\log P^*\)</span> around the peak:</p>
 <div class="math notranslate nohighlight">
 \[
 \log P^*(\theta) = \log P^*(\theta_0) - \frac{1}{2} (\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) + \ldots,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\Sigma^{-1} = H\)</span> is the (Hessian) matrix of second derivatives at the maximum</p>
+<p>where <span class="math notranslate nohighlight">\(\Sigma^{-1} \equiv H\)</span> is the (Hessian) matrix of second derivatives at the maximum</p>
 <div class="math notranslate nohighlight">
 \[
 H_{ij} = - \left. \frac{\partial^2}{\partial \theta_i \partial \theta_j}  \log P^*(\theta)\right|_{\theta=\theta_0}.
 \]</div>
 <!-- !split -->
-<p>We then approximate <span class="math notranslate nohighlight">\(P^*(\theta)\)</span> by an unnormalized Gaussian,</p>
+<p>By truncating the Taylor expansion at the second order we find that <span class="math notranslate nohighlight">\(P^*(\theta)\)</span>
+is approximated by an unnormalized Gaussian,</p>
 <div class="math notranslate nohighlight">
 \[
-Q^*(\theta) \equiv P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right],
+P^*(\theta) \approx P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right].
 \]</div>
-<p>and we approximate the normalizing constant <span class="math notranslate nohighlight">\(Z_P\)</span> by the normalizing constant
-of this Gaussian,</p>
+<p>The integral of this Gaussian is given by <span class="math notranslate nohighlight">\(P^*(\theta_0)\)</span> times (the inverse of) its normalization constant. Thus we approximate <span class="math notranslate nohighlight">\(Z_P\)</span> by</p>
 <div class="math notranslate nohighlight">
 \[
-Z_P \approx Z_Q = P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
+Z_P \approx P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
 \]</div>
 <p>Predictions can then be made using this approximation. Physicists also call this widely-used approximation the saddle-point approximation.</p>
 <!-- !split -->
-<p>Note, in particular, that if we consider a chi-squared pdf: <span class="math notranslate nohighlight">\(P^*(\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)\)</span>, then we get</p>
+<p>Note, in particular, that if we consider a chi-squared likelihood: <span class="math notranslate nohighlight">\(P^*(\theta) = \mathcal{L}(D|\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)\)</span>, then we get</p>
 <div class="math notranslate nohighlight">
 \[
 Z_P \approx \exp \left( -\frac{1}{2} \chi^2(\theta_0)\right) \sqrt{\frac{(4\pi)^K}{\det\Sigma^{-1}}},
 \]</div>
 <p>where there is a factor <span class="math notranslate nohighlight">\(2^{K/2}\)</span> that comes from the extra factor <span class="math notranslate nohighlight">\(1/2\)</span> multiplying the covariance matrix <span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span> and therefore appearing in all <span class="math notranslate nohighlight">\(K\)</span> eigenvalues.</p>
 <!-- !split -->
+<p>Note that the Laplace approximation is basis-dependent: if <span class="math notranslate nohighlight">\(\theta\)</span> is transformed to a nonlinear function <span class="math notranslate nohighlight">\(u(\theta)\)</span> and the density is transformed to <span class="math notranslate nohighlight">\(P(u) = P(\theta) |d\theta/du|\)</span> then in general the approximate normalizing constants <span class="math notranslate nohighlight">\(Z_Q\)</span> will be different. This can be viewed as a defect—since the true value <span class="math notranslate nohighlight">\(Z_P\)</span> is basis-independent in this approximation—or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.</p>
+<!-- !split -->
+</div>
+<div class="section" id="normalization-of-a-multivariate-gaussian">
+<h3>Normalization of a multivariate Gaussian<a class="headerlink" href="#normalization-of-a-multivariate-gaussian" title="Permalink to this headline">¶</a></h3>
 <p>The fact that the normalizing constant of a Gaussian is given by</p>
 <div class="math notranslate nohighlight">
 \[
 \int d^K\theta \exp \left[ - \frac{1}{2}\theta^T \Sigma^{-1} \theta \right] = \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}},
 \]</div>
-<p>can be proved by making an orthogonal transformation into the basis <span class="math notranslate nohighlight">\(u\)</span> in which <span class="math notranslate nohighlight">\(\Sigma\)</span> is transformed into a diagonal matrix. The integral then separates into a product of one-dimensional integrals, each of the form</p>
+<p>can be proved by making an orthogonal transformation into the basis <span class="math notranslate nohighlight">\(u\)</span> in which <span class="math notranslate nohighlight">\(\Sigma\)</span> is transformed into a diagonal matrix of eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span>. The integral then separates into a product of one-dimensional integrals, each of the form</p>
 <div class="math notranslate nohighlight">
 \[
 \int du_i \exp \left[ -\frac{1}{2} \lambda_i u_i^2 \right] = \sqrt{\frac{2\pi}{\lambda_i}}
 \]</div>
 <p>The product of the eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> is the determinant of <span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span>.</p>
-<!-- !split -->
-<p>Note that the Laplace approximation is basis-dependent: if <span class="math notranslate nohighlight">\(\theta\)</span> is transformed to a nonlinear function <span class="math notranslate nohighlight">\(u(\theta)\)</span> and the density is transformed to <span class="math notranslate nohighlight">\(P(u) = P(\theta) |d\theta/du|\)</span> then in general the approximate normalizing constants <span class="math notranslate nohighlight">\(Z_Q\)</span> will be different. This can be viewed as a defect—since the true value <span class="math notranslate nohighlight">\(Z_P\)</span> is basis-independent in this approximation—or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.</p>
 </div>
 </div>
 </div>

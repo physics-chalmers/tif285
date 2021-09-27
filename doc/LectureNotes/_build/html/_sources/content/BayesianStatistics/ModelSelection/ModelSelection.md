@@ -84,7 +84,7 @@ $$
 \text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
 $$ (eq:sivia_41)
 
-is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data are insufficient to make an informed judgement.
+is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data is insufficient to make an informed judgement.
 
 To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives
 
@@ -140,7 +140,7 @@ $$
 \frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
 $$ (eq:sivia_48)
 
-The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, we can take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. {eq}`eq:sivia_43`, the prior range $\lambda_\mathrm{max} - \lambda_\mathrm{min}$ will generally be much larger than the uncertainty $\pm(\delta\lambda)$ permitted by the data. As such, the final term in Eq. {eq}`eq:sivia_48` acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: *‘Frustra fit per plura quod potest fieri per pauciora’* or, in English, *‘it is vain to do with more what can be done with fewer’* .
+The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, let us take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. {eq}`eq:sivia_43`, the prior range $\lambda_\mathrm{max} - \lambda_\mathrm{min}$ will generally be much larger than the uncertainty $\pm(\delta\lambda)$ permitted by the data. As such, the final term in Eq. {eq}`eq:sivia_48` acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: *‘Frustra fit per plura quod potest fieri per pauciora’* or, in English, *‘it is vain to do with more what can be done with fewer’* .
 
 Although it is satisfying to quantify the everyday guiding principle attributed to the thirteenth-century Franciscan monk William of Ockham (or Occam, in Latin), that we should prefer the simplest theory which agrees with the empirical evidence, we should not get too carried away by it. After all, what do we mean by the simpler theory if alternative models have the same number of adjustable parameters? In the choice between Gaussian and Lorentzian peak shapes, for example, both are defined by the position of the maximum and their width. All that we are obliged to do, and have done, in addressing such questions is to adhere to the rules of probability.
 
@@ -203,13 +203,14 @@ The actual computation of Bayesian evidences can be a challenging task. Recall t
 <!-- ===== Laplace's method ===== -->
 <!-- !split -->
 ### Laplace's method
-The idea behind the Laplace approximation is simple. We assume that an unnormalized probability density $P^*(\theta)$ has a peak at a point $\theta_0$. We are interested in the evidence, $Z_P$, which is given by the normalizing constant
+The idea behind Laplace's method is simple, namely to use the Taylor expansion of a function around its peak to construct a Gaussian approximation which can be easily integrated. Let us consider an unnormalized density $P^*(\theta)$ that has a peak at a point $\theta_0$. 
+We are interested in the evidence, $Z_P$, which is given by the integral
 
 $$
 Z_P = \int P^*(\theta) d^K\theta,
 $$ 
 
-where we consider the general case in which $\theta$ is in a $K$-dimensional space. 
+where we consider the general case in which $\theta$ is a $K$-dimensional vector of parameters. 
 
 <!-- !split -->
 We Taylor-expand the logarithm $\log P^*$ around the peak:
@@ -218,30 +219,30 @@ $$
 \log P^*(\theta) = \log P^*(\theta_0) - \frac{1}{2} (\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) + \ldots,
 $$
 
-where $\Sigma^{-1} = H$ is the (Hessian) matrix of second derivatives at the maximum
+where $\Sigma^{-1} \equiv H$ is the (Hessian) matrix of second derivatives at the maximum
 
 $$
 H_{ij} = - \left. \frac{\partial^2}{\partial \theta_i \partial \theta_j}  \log P^*(\theta)\right|_{\theta=\theta_0}.
 $$
 
 <!-- !split -->
-We then approximate $P^*(\theta)$ by an unnormalized Gaussian, 
+By truncating the Taylor expansion at the second order we find that $P^*(\theta)$
+is approximated by an unnormalized Gaussian, 
 
 $$
-Q^*(\theta) \equiv P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right],
+P^*(\theta) \approx P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right].
 $$
 
-and we approximate the normalizing constant $Z_P$ by the normalizing constant
-of this Gaussian,
+The integral of this Gaussian is given by $P^*(\theta_0)$ times (the inverse of) its normalization constant. Thus we approximate $Z_P$ by
 
 $$
-Z_P \approx Z_Q = P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
+Z_P \approx P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
 $$
 
 Predictions can then be made using this approximation. Physicists also call this widely-used approximation the saddle-point approximation.
 
 <!-- !split -->
-Note, in particular, that if we consider a chi-squared pdf: $P^*(\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)$, then we get
+Note, in particular, that if we consider a chi-squared likelihood: $P^*(\theta) = \mathcal{L}(D|\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)$, then we get
 
 $$
 Z_P \approx \exp \left( -\frac{1}{2} \chi^2(\theta_0)\right) \sqrt{\frac{(4\pi)^K}{\det\Sigma^{-1}}},
@@ -250,21 +251,20 @@ $$
 where there is a factor $2^{K/2}$ that comes from the extra factor $1/2$ multiplying the covariance matrix $\Sigma^{-1}$ and therefore appearing in all $K$ eigenvalues.
 
 <!-- !split -->
+Note that the Laplace approximation is basis-dependent: if $\theta$ is transformed to a nonlinear function $u(\theta)$ and the density is transformed to $P(u) = P(\theta) |d\theta/du|$ then in general the approximate normalizing constants $Z_Q$ will be different. This can be viewed as a defect&mdash;since the true value $Z_P$ is basis-independent in this approximation&mdash;or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.
+
+<!-- !split -->
+### Normalization of a multivariate Gaussian
 The fact that the normalizing constant of a Gaussian is given by 
 
 $$
 \int d^K\theta \exp \left[ - \frac{1}{2}\theta^T \Sigma^{-1} \theta \right] = \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}},
 $$
 
-can be proved by making an orthogonal transformation into the basis $u$ in which $\Sigma$ is transformed into a diagonal matrix. The integral then separates into a product of one-dimensional integrals, each of the form
+can be proved by making an orthogonal transformation into the basis $u$ in which $\Sigma$ is transformed into a diagonal matrix of eigenvalues $\lambda_i$. The integral then separates into a product of one-dimensional integrals, each of the form
 
 $$
 \int du_i \exp \left[ -\frac{1}{2} \lambda_i u_i^2 \right] = \sqrt{\frac{2\pi}{\lambda_i}}
 $$
 
 The product of the eigenvalues $\lambda_i$ is the determinant of $\Sigma^{-1}$.
-
-<!-- !split -->
-Note that the Laplace approximation is basis-dependent: if $\theta$ is transformed to a nonlinear function $u(\theta)$ and the density is transformed to $P(u) = P(\theta) |d\theta/du|$ then in general the approximate normalizing constants $Z_Q$ will be different. This can be viewed as a defect&mdash;since the true value $Z_P$ is basis-independent in this approximation&mdash;or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.
-
-
