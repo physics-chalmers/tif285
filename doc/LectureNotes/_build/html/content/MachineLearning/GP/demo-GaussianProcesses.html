@@ -42,8 +42,6 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -55,7 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="27. Exercise: Gaussian processes" href="exercise_GP.html" />
+    <link rel="next" title="27. Exercise: Gaussian processes using GPy" href="exercise_GP.html" />
     <link rel="prev" title="25. Gaussian processes" href="GaussianProcesses.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -252,7 +250,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -465,7 +468,6 @@
                 
   <div class="section" id="gaussian-processes-demonstration">
 <h1><span class="section-number">26. </span>Gaussian processes demonstration<a class="headerlink" href="#gaussian-processes-demonstration" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 04-Oct-2020 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -540,11 +542,11 @@
         <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">markers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">markers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="n">ms</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">0.2</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="n">samples</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">samples</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mf">0.3</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;d = {&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span><span class="p">)</span>
@@ -580,7 +582,7 @@
 
 <span class="c1"># Plot samples</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">samples</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> samples of a bivariate Gaussian.&#39;</span><span class="p">)</span>
 
 <span class="n">ax2</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">autoscale_on</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="c1">#, aspect=&#39;equal&#39;)</span>
@@ -681,16 +683,16 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Covariance matrix:
-[[ 5.04  5.06  5.11  5.16  5.17  5.21  5.3   5.39]
- [ 5.06  5.1   5.17  5.24  5.26  5.32  5.47  5.61]
- [ 5.11  5.17  5.33  5.47  5.51  5.61  5.93  6.26]
- [ 5.16  5.24  5.47  5.69  5.75  5.91  6.42  6.98]
- [ 5.17  5.26  5.51  5.75  5.82  6.    6.57  7.2 ]
- [ 5.21  5.32  5.61  5.91  6.    6.24  6.98  7.83]
- [ 5.3   5.47  5.93  6.42  6.57  6.98  8.38 10.12]
- [ 5.39  5.61  6.26  6.98  7.2   7.83 10.12 13.21]]
+[[ 5.02  5.03  5.06  5.07  5.08  5.12  5.24  5.29]
+ [ 5.03  5.06  5.11  5.13  5.15  5.22  5.44  5.53]
+ [ 5.06  5.11  5.24  5.27  5.32  5.47  5.98  6.2 ]
+ [ 5.07  5.13  5.27  5.31  5.36  5.53  6.12  6.39]
+ [ 5.08  5.15  5.32  5.36  5.43  5.63  6.36  6.7 ]
+ [ 5.12  5.22  5.47  5.53  5.63  5.96  7.2   7.81]
+ [ 5.24  5.44  5.98  6.12  6.36  7.2  11.33 13.82]
+ [ 5.29  5.53  6.2   6.39  6.7   7.81 13.82 17.7 ]]
 Eigenvalues all larger than zero
-[49.62  4.94  0.22  0.01  0.01  0.    0.01  0.01]
+[51.66  9.12  0.25  0.01  0.01  0.01  0.    0.  ]
 </pre></div>
 </div>
 <img alt="../../../_images/demo-GaussianProcesses_14_1.png" src="../../../_images/demo-GaussianProcesses_14_1.png" />
@@ -936,7 +938,7 @@ k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="GaussianProcesses.html" title="previous page"><span class="section-number">25. </span>Gaussian processes</a>
-    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">27. </span>Exercise: Gaussian processes</a>
+    <a class='right-next' id="next-link" href="exercise_GP.html" title="next page"><span class="section-number">27. </span>Exercise: Gaussian processes using <code class="docutils literal notranslate"><span class="pre">GPy</span></code></a>
 
         </div>
         

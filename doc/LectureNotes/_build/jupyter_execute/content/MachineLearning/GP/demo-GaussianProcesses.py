@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # # Gaussian processes demonstration
-# 
-# Last revised: 04-Oct-2020 by Christian Forssén [christian.forssen@chalmers.se]
 
 # In[1]:
 
@@ -32,7 +30,7 @@ sns.set_context("talk")
 
 # Let's first define some plotting functions that we'll use later. 
 
-# In[2]:
+# In[5]:
 
 
 def gen_Gaussian_samples(mu, sigma, N=200):
@@ -82,11 +80,11 @@ def plot_sample_dimensions(samples, colors=None, markers=None, ms=10):
         if colors is None and markers is None:
             plt.plot(t,samples[i,:], '-o',ms=ms)
         elif colors is None:
-            plt.plot(t,samples[i,:], '-o',marker=markers[i],ms=ms)
+            plt.plot(t,samples[i,:], '-',marker=markers[i],ms=ms)
         elif markers is None:
             plt.plot(t,samples[i,:], '-o',color=colors[i],ms=ms)
         else:
-            plt.plot(t,samples[i,:], '-o',color=colors[i],marker=markers[i],ms=ms)
+            plt.plot(t,samples[i,:], '-',color=colors[i],marker=markers[i],ms=ms)
     plt.xlim([0.8,t[-1]+0.2])
     plt.ylim([samples.min()-0.3, samples.max()+0.3])
     plt.xlabel('d = {' + str(t) + '}')
@@ -101,7 +99,7 @@ def set_limits(samples):
 
 # Test two different ways of plotting a bivariate Gaussian.
 
-# In[3]:
+# In[6]:
 
 
 colors = ['r','g','b','m','k']
@@ -122,7 +120,7 @@ plot_Gaussian_contours(samples[:,0],samples[:,1],mu,sigma)
 
 # Plot samples
 for i in np.arange(N):
-    plt.plot(samples[i,0],samples[i,1], 'o', color=colors[i], marker=markers[i],ms=10)
+    plt.plot(samples[i,0],samples[i,1], color=colors[i], marker=markers[i],ms=10)
 plt.gca().set_title(f'{N} samples of a bivariate Gaussian.')
 
 ax2=plt.subplot(1, 2, 2,autoscale_on=True)#, aspect='equal')
@@ -134,7 +132,7 @@ plt.tight_layout()
 
 # Repeat as before, but now we'll plot many samples from two kinds of Gaussians: one which with strongly correlated dimensions and one with weak correlations
 
-# In[4]:
+# In[7]:
 
 
 # Plot with contours. Compare a correlated vs almost uncorrelated Gaussian
@@ -161,7 +159,7 @@ ax.set_title('Stongly correlated Gaussian');
 # 
 # > Which one is which?
 
-# In[5]:
+# In[8]:
 
 
 f=plt.figure(figsize=(18,5)); 
@@ -185,7 +183,7 @@ plt.ylim([samplesUncor.min()-0.3, samplesUncor.max()+0.3]);
 # 
 # * Because I don't want to write down the full 8x8 covariance matrix, I define a "random" one through a mathematical procedure that is guaranteed to give me back a positive definite and symmetric matrix (i.e. a valid covariance). More on this later.
 
-# In[6]:
+# In[11]:
 
 
 N=5
@@ -212,7 +210,7 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 
 # Taking this even further, we can plot samples from a 200-dimensional Gaussian in the dimension-wise plot. 
 
-# In[7]:
+# In[12]:
 
 
 N=5
@@ -267,7 +265,7 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 
 # #### The RBF kernel (a.k.a Gaussian)
 
-# In[9]:
+# In[13]:
 
 
 def cov_RBF(x, x2=None, alpha=np.array([1,1])):        
@@ -292,7 +290,7 @@ def cov_RBF(x, x2=None, alpha=np.array([1,1])):
 
 # Given hyperparameters $\theta$, we plot the resulting covariance matrix and samples from a GP with this covariance function.
 
-# In[10]:
+# In[14]:
 
 
 X = np.sort(np.random.rand(400, 1) * 6 , axis=0)
@@ -327,7 +325,7 @@ plt.tight_layout()
 # ## Example: GP models for regression
 # ### No-core shell model $\hbar\omega$ dependence
 
-# In[11]:
+# In[15]:
 
 
 # import some NCSM data from
@@ -335,7 +333,7 @@ plt.tight_layout()
 (E,Nmax,hw)=np.loadtxt('data/Li6E_NNLOopt_Nmax10.txt',unpack=True)
 
 
-# In[12]:
+# In[16]:
 
 
 fig,ax = plt.subplots(nrows=1,ncols=1)

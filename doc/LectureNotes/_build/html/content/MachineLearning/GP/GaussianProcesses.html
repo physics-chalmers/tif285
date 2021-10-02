@@ -42,8 +42,6 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -609,14 +607,14 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 <h4>Stationary kernels<a class="headerlink" href="#stationary-kernels" title="Permalink to this headline">¶</a></h4>
 <p>The most common types of covariance functions are stationary, or translationally invariant, which implies that</p>
 <div class="math notranslate nohighlight">
-\[C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),\]</div>
+\[C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),\]</div>
 <p>where the function <span class="math notranslate nohighlight">\(D\)</span> is often referred to as a <em>kernel</em>.</p>
 <p>A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),</p>
 <div class="math notranslate nohighlight">
 \[
  
 C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_1 \exp \left[ -\frac{1}{2} \sum_{i=1}^I \frac{(x_{i} - x_{i}')^2}{r_i^2} \right] \]</div>
-<p>where <span class="math notranslate nohighlight">\(I\)</span> denotes the dimensionality of the input space. The hyperparameters are: <span class="math notranslate nohighlight">\(\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}\)</span>. Sometimes, a single correlation length <span class="math notranslate nohighlight">\(r\)</span> is used.</p>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> denotes the dimensionality of the input space. The hyperparameters of the RBF kernel, <span class="math notranslate nohighlight">\(\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}\)</span>, are known, respectively, as the noise, the variance and the correlation length(s). Sometimes, a single correlation length <span class="math notranslate nohighlight">\(r_i=r\)</span> is used.</p>
 <!-- !split -->
 </div>
 </div>
@@ -663,11 +661,14 @@ The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlig
 \boldsymbol{m} &amp;= -\mu \boldsymbol{C}_N^{-1} \boldsymbol{k} \\
 \boldsymbol{M}_N &amp;= \boldsymbol{C}_N^{-1} + \frac{1}{\mu} \boldsymbol{m} \boldsymbol{m}^T.
 \end{align*}\]</div>
-<p><em>Question.</em>
-What are the dimensions of the different blocks? Check that the answer.</p>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>Check that the dimensions of the different blocks are correct.</p>
+</div>
 <p>This implies that we can make a prediction for the Gaussian pdf of <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> (meaning that we predict its value with an associated uncertainty) for an <span class="math notranslate nohighlight">\(N^3\)</span> computational cost (the inversion of an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix).</p>
-<p><em>Summary.</em>
-The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian</p>
+<div class="tip admonition">
+<p class="admonition-title">A new target prediction using a GP</p>
+<p>The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian</p>
 <div class="math notranslate nohighlight">
 \[p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
@@ -679,6 +680,7 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 \mathrm{mean:} &amp; \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \mathrm{variance:} &amp; \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}\]</div>
+</div>
 <p>In fact, since the prediction only depends on the <span class="math notranslate nohighlight">\(N\)</span> available data we might as well predict several new target values at once. Consider <span class="math notranslate nohighlight">\(\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M\)</span> so that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\boldsymbol{C}_{N+M} =
@@ -687,7 +689,9 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 \boldsymbol{k}^T &amp; \boldsymbol{\kappa}
 \end{pmatrix},\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{k}\)</span> is now an <span class="math notranslate nohighlight">\(N \times M\)</span> matrix and <span class="math notranslate nohighlight">\(\boldsymbol{\kappa}\)</span> an <span class="math notranslate nohighlight">\(M \times M\)</span> matrix.</p>
-<p>The prediction becomes a multivariate Gaussian</p>
+<div class="tip admonition">
+<p class="admonition-title">Many new target predictions using a GP</p>
+<p>The prediction for <span class="math notranslate nohighlight">\(M\)</span> new targets <span class="math notranslate nohighlight">\(\boldsymbol{t}_M\)</span> becomes a multivariate Gaussian</p>
 <div class="math notranslate nohighlight">
 \[p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
@@ -699,6 +703,7 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 \hat{\boldsymbol{t}}_M &amp;= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \boldsymbol{\Sigma}_M &amp;= \boldsymbol{\kappa} - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}\]</div>
+</div>
 </div>
 <div class="section" id="optimizing-the-gp-model-hyperparameters">
 <h3>Optimizing the GP model hyperparameters<a class="headerlink" href="#optimizing-the-gp-model-hyperparameters" title="Permalink to this headline">¶</a></h3>
@@ -715,9 +720,14 @@ The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</spa
 <p>This pdf is basically a data likelihood.</p>
 <ul class="simple">
 <li><p>The frequentist approach would be to find the set of hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}^*\)</span> that maximizes the data likelihood, i.e. that minimizes <span class="math notranslate nohighlight">\(\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N\)</span>.</p></li>
-<li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead.</p></li>
+<li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead which is then propagated using marginalization</p></li>
 </ul>
-<p>The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression.</p>
+<div class="math notranslate nohighlight">
+\[
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \int d\boldsymbol{\alpha} p \left( t^{(N+1)}, \boldsymbol{\alpha} | \boldsymbol{t}_N \right)
+= \int d\boldsymbol{\alpha} p \left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{\alpha} \right) p(\boldsymbol{\alpha} | \boldsymbol{t}_N)
+\]</div>
+<p>The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression. The second approach gives a better quantification of the uncertainties, but is much more computationally demanding.</p>
 </div>
 </div>
 </div>

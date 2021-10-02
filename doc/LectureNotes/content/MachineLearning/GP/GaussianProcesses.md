@@ -253,7 +253,7 @@ The most common types of covariance functions are stationary, or translationally
 
 $$
 
-C \left( \boldsymbol{x}^{(n)}, \boldsymbol{x}^{(n')}, \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),
+C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),
 
 $$
 
@@ -267,7 +267,7 @@ C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_
 
 $$
 
-where $I$ denotes the dimensionality of the input space. The hyperparameters are: $\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}$. Sometimes, a single correlation length $r$ is used.
+where $I$ denotes the dimensionality of the input space. The hyperparameters of the RBF kernel, $\boldsymbol{\alpha} = \{ \alpha_0, \alpha_1, \vec{r} \}$, are known, respectively, as the noise, the variance and the correlation length(s). Sometimes, a single correlation length $r_i=r$ is used.
 
 
 <!-- !split -->
@@ -338,14 +338,14 @@ where
 \boldsymbol{M}_N &= \boldsymbol{C}_N^{-1} + \frac{1}{\mu} \boldsymbol{m} \boldsymbol{m}^T.
 \end{align*}
 
-*Question.* 
-What are the dimensions of the different blocks? Check that the answer.
-
-
+```{admonition} Question
+Check that the dimensions of the different blocks are correct.
+```
 
 This implies that we can make a prediction for the Gaussian pdf of $t^{(N+1)}$ (meaning that we predict its value with an associated uncertainty) for an $N^3$ computational cost (the inversion of an $N \times N$ matrix).
 
-*Summary.* 
+```{admonition} A new target prediction using a GP
+:class: tip
 The prediction for $t^{(N+1)}$ is a Gaussian
 
 $$
@@ -362,8 +362,7 @@ with
 \mathrm{mean:} & \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \mathrm{variance:} & \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}
-
-
+```
 
 In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
 
@@ -379,7 +378,9 @@ $$
 
 where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ an $M \times M$ matrix.
 
-The prediction becomes a multivariate Gaussian
+```{admonition} Many new target predictions using a GP
+:class: tip
+The prediction for $M$ new targets $\boldsymbol{t}_M$ becomes a multivariate Gaussian
 
 $$
 
@@ -395,6 +396,7 @@ where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
 \hat{\boldsymbol{t}}_M &= \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \boldsymbol{\Sigma}_M &= \boldsymbol{\kappa} - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}
+```
 
 
 #### Optimizing the GP model hyperparameters
@@ -416,8 +418,13 @@ $$
 This pdf is basically a data likelihood.
 
 * The frequentist approach would be to find the set of hyperparameters $\boldsymbol{\alpha}^*$ that maximizes the data likelihood, i.e. that minimizes $\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N$.
-* A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf $p(\boldsymbol{\alpha} | \boldsymbol{t}_N)$ instead.
+* A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf $p(\boldsymbol{\alpha} | \boldsymbol{t}_N)$ instead which is then propagated using marginalization
 
-The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression.
+$$
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \int d\boldsymbol{\alpha} p \left( t^{(N+1)}, \boldsymbol{\alpha} | \boldsymbol{t}_N \right)
+= \int d\boldsymbol{\alpha} p \left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{\alpha} \right) p(\boldsymbol{\alpha} | \boldsymbol{t}_N)
+$$
+
+The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression. The second approach gives a better quantification of the uncertainties, but is much more computationally demanding.
 
 
