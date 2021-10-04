@@ -116,12 +116,11 @@ Assuming that we have a fixed set of basis functions and Gaussian prior distribu
 * The joint pdf of the observed data given the model $p( \boldsymbol{t}_N |  \boldsymbol{X}_N)$, is a multivariate Gaussian with mean zero and with a covariance matrix that is determined by the basis functions.
 * This implies that the conditional distribution $p( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N+1})$, is also a multivariate Gaussian whose mean depends linearly on $\boldsymbol{t}_N$.
 
-#### Proof
 
-*Sum of normally distributed random variables.* 
+```{admonition} Sum of normally distributed random variables.
+:class: tip
 If $X$ and $Y$ are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., $Z=X+Y$ is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.
-
-
+```
 
 Consider the linear model and define the $N \times H$ design matrix $\boldsymbol{R}$ with elements
 
@@ -253,7 +252,7 @@ The most common types of covariance functions are stationary, or translationally
 
 $$
 
-C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),
+C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \left| \boldsymbol{x} - \boldsymbol{x}' \right|; \boldsymbol{\alpha} \right),
 
 $$
 
@@ -284,11 +283,13 @@ p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \bolds
 
 $$
 
-Since both $p \left( t^{(N+1)}, \boldsymbol{t}_N \right)$ and $p \left( \boldsymbol{t}_N \right)$ are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation $\boldsymbol{C}_{N+1}$ for the $(N+1) \times (N+1)$ covariance matrix for $\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)$. This implies that
+First, let us note that $\boldsymbol{t}_{N+1} = \left\{ \boldsymbol{t}_N, t^{(N+1)} \right\}$
+
+Since both $p \left( \boldsymbol{t}_{N+1} \right)$ and $p \left( \boldsymbol{t}_N \right)$ are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation $\boldsymbol{C}_{N+1}$ for the $(N+1) \times (N+1)$ covariance matrix for $\boldsymbol{t}_{N+1}$. This implies that
 
 $$
 
-p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+p \left( \boldsymbol{t}_{N+1} \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
 \begin{pmatrix}
 \boldsymbol{t}_N \\
 t^{(N+1)}
@@ -297,12 +298,11 @@ t^{(N+1)}
 
 $$
 
-*Summary.* 
+```{admonition} Summary
 The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.
+```
 
-
-
-#### Elegant approach using linear algebra tricks
+#### Elegant linear algebra tricks to obtain $\boldsymbol{C}_{N+1}^{-1}$
 
 Let us split the $\boldsymbol{C}_{N+1}$ covariance matrix into four different blocks
 
@@ -342,27 +342,43 @@ where
 Check that the dimensions of the different blocks are correct.
 ```
 
-This implies that we can make a prediction for the Gaussian pdf of $t^{(N+1)}$ (meaning that we predict its value with an associated uncertainty) for an $N^3$ computational cost (the inversion of an $N \times N$ matrix).
+The prediction for $t^{(N+1)}$ is a Gaussian
+
+$$
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) 
+= \frac{p \left( \boldsymbol{t}_{N+1} \right) }{p \left( \boldsymbol{t}_N \right) }
+\propto \frac{\exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+\begin{pmatrix}
+\boldsymbol{t}_N \\
+t^{(N+1)}
+\end{pmatrix}
+\right]}{\exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} 
+\boldsymbol{t}_N \right]},
+$$ (eq:ptN1ratio)
+
+which can be written as a univariate Gaussian (see below).
 
 ```{admonition} A new target prediction using a GP
 :class: tip
 The prediction for $t^{(N+1)}$ is a Gaussian
 
 $$
-
-p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) 
+= \frac{1}{Z} \exp
 \left[
 -\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma_{\hat{t}_{N+1}}^2}
-\right]
+\right].
+$$ (eq:ptN1)
 
-$$
+The mean and variance are obtained from {eq}`eq:ptN1ratio` after some algebra
 
-with
 \begin{align*}
 \mathrm{mean:} & \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \mathrm{variance:} & \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}
 ```
+
+This implies that we can make a prediction for the Gaussian pdf of $t^{(N+1)}$ (meaning that we predict its value with an associated uncertainty) for an $N^3$ computational cost (the inversion of an $N \times N$ matrix).
 
 In fact, since the prediction only depends on the $N$ available data we might as well predict several new target values at once. Consider $\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M$ so that
 
@@ -383,13 +399,11 @@ where $\boldsymbol{k}$ is now an $N \times M$ matrix and $\boldsymbol{\kappa}$ a
 The prediction for $M$ new targets $\boldsymbol{t}_M$ becomes a multivariate Gaussian
 
 $$
-
 p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
 -\frac{1}{2} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)^T \boldsymbol{\Sigma}_M^{-1} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)
 \right],
-
-$$
+$$ (eq:ptM)
 
 where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
 \begin{align*}
@@ -410,20 +424,25 @@ How do we determine the hyperparameters $\boldsymbol{\alpha}$? Well, recall that
 
 $$
 
-p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
+p \left( \boldsymbol{t}_N \right) = \frac{1}{Z_N} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
 \right].
 
 $$
 
 This pdf is basically a data likelihood.
 
-* The frequentist approach would be to find the set of hyperparameters $\boldsymbol{\alpha}^*$ that maximizes the data likelihood, i.e. that minimizes $\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N$.
+* The frequentist approach would be to find the set of hyperparameters $\boldsymbol{\alpha}^*$ that maximizes the data likelihood, i.e.,
+
+$$
+\boldsymbol{\alpha}^* = \underset{\alpha}{\operatorname{argmin}}  \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1}(\alpha) \boldsymbol{t}_N
+$$ (eq:alphastar)
+
 * A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf $p(\boldsymbol{\alpha} | \boldsymbol{t}_N)$ instead which is then propagated using marginalization
 
 $$
 p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \int d\boldsymbol{\alpha} p \left( t^{(N+1)}, \boldsymbol{\alpha} | \boldsymbol{t}_N \right)
 = \int d\boldsymbol{\alpha} p \left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{\alpha} \right) p(\boldsymbol{\alpha} | \boldsymbol{t}_N)
-$$
+$$ (eq:tN1marg)
 
 The former approach is absolutely dominating the literature on GP regression. The covariance function hyperparameters are first optimized and then used for regression. The second approach gives a better quantification of the uncertainties, but is much more computationally demanding.
 

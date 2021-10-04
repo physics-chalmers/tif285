@@ -30,7 +30,7 @@ sns.set_context("talk")
 
 # Let's first define some plotting functions that we'll use later. 
 
-# In[5]:
+# In[2]:
 
 
 def gen_Gaussian_samples(mu, sigma, N=200):
@@ -99,7 +99,7 @@ def set_limits(samples):
 
 # Test two different ways of plotting a bivariate Gaussian.
 
-# In[6]:
+# In[3]:
 
 
 colors = ['r','g','b','m','k']
@@ -132,7 +132,7 @@ plt.tight_layout()
 
 # Repeat as before, but now we'll plot many samples from two kinds of Gaussians: one which with strongly correlated dimensions and one with weak correlations
 
-# In[7]:
+# In[4]:
 
 
 # Plot with contours. Compare a correlated vs almost uncorrelated Gaussian
@@ -159,7 +159,7 @@ ax.set_title('Stongly correlated Gaussian');
 # 
 # > Which one is which?
 
-# In[8]:
+# In[5]:
 
 
 f=plt.figure(figsize=(18,5)); 
@@ -183,7 +183,7 @@ plt.ylim([samplesUncor.min()-0.3, samplesUncor.max()+0.3]);
 # 
 # * Because I don't want to write down the full 8x8 covariance matrix, I define a "random" one through a mathematical procedure that is guaranteed to give me back a positive definite and symmetric matrix (i.e. a valid covariance). More on this later.
 
-# In[11]:
+# In[6]:
 
 
 N=5
@@ -210,7 +210,7 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 
 # Taking this even further, we can plot samples from a 200-dimensional Gaussian in the dimension-wise plot. 
 
-# In[12]:
+# In[7]:
 
 
 N=5

@@ -250,7 +250,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -401,11 +406,6 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#proof">
-       Proof
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#the-covariance-matrix-as-the-central-object">
        The covariance matrix as the central object
       </a>
@@ -432,8 +432,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#elegant-approach-using-linear-algebra-tricks">
-     Elegant approach using linear algebra tricks
+    <a class="reference internal nav-link" href="#elegant-linear-algebra-tricks-to-obtain-boldsymbol-c-n-1-1">
+     Elegant linear algebra tricks to obtain
+     <span class="math notranslate nohighlight">
+      \(\boldsymbol{C}_{N+1}^{-1}\)
+     </span>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -541,10 +544,10 @@ p \left( \boldsymbol{\theta} | \boldsymbol{t}_N, \boldsymbol{X}_N \right).\]</di
 <li><p>The joint pdf of the observed data given the model <span class="math notranslate nohighlight">\(p( \boldsymbol{t}_N |  \boldsymbol{X}_N)\)</span>, is a multivariate Gaussian with mean zero and with a covariance matrix that is determined by the basis functions.</p></li>
 <li><p>This implies that the conditional distribution <span class="math notranslate nohighlight">\(p( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{X}_{N+1})\)</span>, is also a multivariate Gaussian whose mean depends linearly on <span class="math notranslate nohighlight">\(\boldsymbol{t}_N\)</span>.</p></li>
 </ul>
-<div class="section" id="proof">
-<h4>Proof<a class="headerlink" href="#proof" title="Permalink to this headline">¶</a></h4>
-<p><em>Sum of normally distributed random variables.</em>
-If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., <span class="math notranslate nohighlight">\(Z=X+Y\)</span> is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.</p>
+<div class="tip admonition">
+<p class="admonition-title">Sum of normally distributed random variables.</p>
+<p>If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent random variables that are normally distributed (and therefore also jointly so), then their sum is also normally distributed. i.e., <span class="math notranslate nohighlight">\(Z=X+Y\)</span> is normally distributed with its mean being the sum of the two means, and its variance being the sum of the two variances.</p>
+</div>
 <p>Consider the linear model and define the <span class="math notranslate nohighlight">\(N \times H\)</span> design matrix <span class="math notranslate nohighlight">\(\boldsymbol{R}\)</span> with elements</p>
 <div class="math notranslate nohighlight">
 \[R_{nh} \equiv \phi^{(h)} \left( \boldsymbol{x}^{(n)} \right).\]</div>
@@ -575,7 +578,6 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 <div class="math notranslate nohighlight">
 \[\boldsymbol{C} = \boldsymbol{Q} + \sigma_\nu^2 \boldsymbol{I} = \sigma_\theta^2 \boldsymbol{R} \boldsymbol{R}^T + \sigma_\nu^2 \boldsymbol{I}.\]</div>
 <!-- !split -->
-</div>
 <div class="section" id="the-covariance-matrix-as-the-central-object">
 <h4>The covariance matrix as the central object<a class="headerlink" href="#the-covariance-matrix-as-the-central-object" title="Permalink to this headline">¶</a></h4>
 <p>The covariance matrices are given by</p>
@@ -607,7 +609,7 @@ If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math
 <h4>Stationary kernels<a class="headerlink" href="#stationary-kernels" title="Permalink to this headline">¶</a></h4>
 <p>The most common types of covariance functions are stationary, or translationally invariant, which implies that</p>
 <div class="math notranslate nohighlight">
-\[C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \boldsymbol{x} - \boldsymbol{x}'; \boldsymbol{\alpha} \right),\]</div>
+\[C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \left| \boldsymbol{x} - \boldsymbol{x}' \right|; \boldsymbol{\alpha} \right),\]</div>
 <p>where the function <span class="math notranslate nohighlight">\(D\)</span> is often referred to as a <em>kernel</em>.</p>
 <p>A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),</p>
 <div class="math notranslate nohighlight">
@@ -627,18 +629,21 @@ C_\mathrm{RBF}(\mathbf{x},\mathbf{x}'; \boldsymbol{\alpha}) = \alpha_0 + \alpha_
 \[p \left( t^{(N+1)}, \boldsymbol{t}_N \right) = p \left( t^{(N+1)} | \boldsymbol{t}_N \right) p \left( \boldsymbol{t}_N \right) 
 \quad \Rightarrow \quad
 p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{p \left( t^{(N+1)}, \boldsymbol{t}_N \right)}{p \left( \boldsymbol{t}_N \right) }.\]</div>
-<p>Since both <span class="math notranslate nohighlight">\(p \left( t^{(N+1)}, \boldsymbol{t}_N \right)\)</span> and <span class="math notranslate nohighlight">\(p \left( \boldsymbol{t}_N \right)\)</span> are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> for the <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> covariance matrix for <span class="math notranslate nohighlight">\(\boldsymbol{t}_{N+1} = \left( \boldsymbol{t}_N, t^{(N+1)} \right)\)</span>. This implies that</p>
+<p>First, let us note that <span class="math notranslate nohighlight">\(\boldsymbol{t}_{N+1} = \left\{ \boldsymbol{t}_N, t^{(N+1)} \right\}\)</span></p>
+<p>Since both <span class="math notranslate nohighlight">\(p \left( \boldsymbol{t}_{N+1} \right)\)</span> and <span class="math notranslate nohighlight">\(p \left( \boldsymbol{t}_N \right)\)</span> are Gaussian distributions, then the conditional distribution, obtained by the ratio, must also be a Gaussian. Let us use the notation <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> for the <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> covariance matrix for <span class="math notranslate nohighlight">\(\boldsymbol{t}_{N+1}\)</span>. This implies that</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}p \left( t^{(N+1)} | \boldsymbol{t}_N \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+\[\begin{split}p \left( \boldsymbol{t}_{N+1} \right) \propto \exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
 \begin{pmatrix}
 \boldsymbol{t}_N \\
 t^{(N+1)}
 \end{pmatrix}
 \right]\end{split}\]</div>
-<p><em>Summary.</em>
-The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> requires an inversion of the covariance matrix <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span>.</p>
-<div class="section" id="elegant-approach-using-linear-algebra-tricks">
-<h3>Elegant approach using linear algebra tricks<a class="headerlink" href="#elegant-approach-using-linear-algebra-tricks" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-summary admonition">
+<p class="admonition-title">Summary</p>
+<p>The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> requires an inversion of the covariance matrix <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span>.</p>
+</div>
+<div class="section" id="elegant-linear-algebra-tricks-to-obtain-boldsymbol-c-n-1-1">
+<h3>Elegant linear algebra tricks to obtain <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}^{-1}\)</span><a class="headerlink" href="#elegant-linear-algebra-tricks-to-obtain-boldsymbol-c-n-1-1" title="Permalink to this headline">¶</a></h3>
 <p>Let us split the <span class="math notranslate nohighlight">\(\boldsymbol{C}_{N+1}\)</span> covariance matrix into four different blocks</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\boldsymbol{C}_{N+1} =
@@ -665,22 +670,39 @@ The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlig
 <p class="admonition-title">Question</p>
 <p>Check that the dimensions of the different blocks are correct.</p>
 </div>
-<p>This implies that we can make a prediction for the Gaussian pdf of <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> (meaning that we predict its value with an associated uncertainty) for an <span class="math notranslate nohighlight">\(N^3\)</span> computational cost (the inversion of an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix).</p>
+<p>The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian</p>
+<div class="math notranslate nohighlight" id="equation-eq-ptn1ratio">
+<span class="eqno">(25.1)<a class="headerlink" href="#equation-eq-ptn1ratio" title="Permalink to this equation">¶</a></span>\[\begin{split}
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) 
+= \frac{p \left( \boldsymbol{t}_{N+1} \right) }{p \left( \boldsymbol{t}_N \right) }
+\propto \frac{\exp \left[ -\frac{1}{2} \left( \boldsymbol{t}_N, t^{(N+1)} \right) \boldsymbol{C}_{N+1}^{-1} 
+\begin{pmatrix}
+\boldsymbol{t}_N \\
+t^{(N+1)}
+\end{pmatrix}
+\right]}{\exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} 
+\boldsymbol{t}_N \right]},
+\end{split}\]</div>
+<p>which can be written as a univariate Gaussian (see below).</p>
 <div class="tip admonition">
 <p class="admonition-title">A new target prediction using a GP</p>
 <p>The prediction for <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> is a Gaussian</p>
-<div class="math notranslate nohighlight">
-\[p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+<div class="math notranslate nohighlight" id="equation-eq-ptn1">
+<span class="eqno">(25.2)<a class="headerlink" href="#equation-eq-ptn1" title="Permalink to this equation">¶</a></span>\[
+p \left( t^{(N+1)} | \boldsymbol{t}_N \right) 
+= \frac{1}{Z} \exp
 \left[
 -\frac{\left( t^{(N+1)} - \hat{t}^{(N+1)} \right)^2}{2 \sigma_{\hat{t}_{N+1}}^2}
-\right]\]</div>
-<p>with</p>
+\right].
+\]</div>
+<p>The mean and variance are obtained from <a class="reference internal" href="#equation-eq-ptn1ratio">(25.1)</a> after some algebra</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mathrm{mean:} &amp; \quad \hat{t}^{(N+1)} = \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{t}_N \\
 \mathrm{variance:} &amp; \quad \sigma_{\hat{t}_{N+1}}^2 = \kappa - \boldsymbol{k}^T \boldsymbol{C}_N^{-1} \boldsymbol{k}.
 \end{align*}\]</div>
 </div>
+<p>This implies that we can make a prediction for the Gaussian pdf of <span class="math notranslate nohighlight">\(t^{(N+1)}\)</span> (meaning that we predict its value with an associated uncertainty) for an <span class="math notranslate nohighlight">\(N^3\)</span> computational cost (the inversion of an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix).</p>
 <p>In fact, since the prediction only depends on the <span class="math notranslate nohighlight">\(N\)</span> available data we might as well predict several new target values at once. Consider <span class="math notranslate nohighlight">\(\boldsymbol{t}_M = \{ t^{(N+i)} \}_{i=1}^M\)</span> so that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\boldsymbol{C}_{N+M} =
@@ -692,11 +714,13 @@ The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlig
 <div class="tip admonition">
 <p class="admonition-title">Many new target predictions using a GP</p>
 <p>The prediction for <span class="math notranslate nohighlight">\(M\)</span> new targets <span class="math notranslate nohighlight">\(\boldsymbol{t}_M\)</span> becomes a multivariate Gaussian</p>
-<div class="math notranslate nohighlight">
-\[p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
+<div class="math notranslate nohighlight" id="equation-eq-ptm">
+<span class="eqno">(25.3)<a class="headerlink" href="#equation-eq-ptm" title="Permalink to this equation">¶</a></span>\[
+p \left( \boldsymbol{t}_{N+M} | \boldsymbol{t}_N \right) = \frac{1}{Z} \exp
 \left[
 -\frac{1}{2} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)^T \boldsymbol{\Sigma}_M^{-1} \left( \boldsymbol{t}_M - \hat{\boldsymbol{t}}_M \right)
-\right],\]</div>
+\right],
+\]</div>
 <p>where the <span class="math notranslate nohighlight">\(M \times 1\)</span> mean vector and <span class="math notranslate nohighlight">\(M \times M\)</span> covariance matrix are</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -715,15 +739,21 @@ The prediction of the (Gaussian) pdf for <span class="math notranslate nohighlig
 </ol>
 <p>How do we determine the hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span>? Well, recall that</p>
 <div class="math notranslate nohighlight">
-\[p \left( \boldsymbol{t}_N \right) = \frac{1}{Z} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
+\[p \left( \boldsymbol{t}_N \right) = \frac{1}{Z_N} \exp \left[ -\frac{1}{2} \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N 
 \right].\]</div>
 <p>This pdf is basically a data likelihood.</p>
 <ul class="simple">
-<li><p>The frequentist approach would be to find the set of hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}^*\)</span> that maximizes the data likelihood, i.e. that minimizes <span class="math notranslate nohighlight">\(\boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1} \boldsymbol{t}_N\)</span>.</p></li>
+<li><p>The frequentist approach would be to find the set of hyperparameters <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}^*\)</span> that maximizes the data likelihood, i.e.,</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-eq-alphastar">
+<span class="eqno">(25.4)<a class="headerlink" href="#equation-eq-alphastar" title="Permalink to this equation">¶</a></span>\[
+\boldsymbol{\alpha}^* = \underset{\alpha}{\operatorname{argmin}}  \boldsymbol{t}_N^T \boldsymbol{C}_{N}^{-1}(\alpha) \boldsymbol{t}_N
+\]</div>
+<ul class="simple">
 <li><p>A Bayesian approach would be to assign a prior to the hyperparameters and seek a posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{\alpha} | \boldsymbol{t}_N)\)</span> instead which is then propagated using marginalization</p></li>
 </ul>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-tn1marg">
+<span class="eqno">(25.5)<a class="headerlink" href="#equation-eq-tn1marg" title="Permalink to this equation">¶</a></span>\[
 p \left( t^{(N+1)} | \boldsymbol{t}_N \right) = \int d\boldsymbol{\alpha} p \left( t^{(N+1)}, \boldsymbol{\alpha} | \boldsymbol{t}_N \right)
 = \int d\boldsymbol{\alpha} p \left( t^{(N+1)} | \boldsymbol{t}_N, \boldsymbol{\alpha} \right) p(\boldsymbol{\alpha} | \boldsymbol{t}_N)
 \]</div>
