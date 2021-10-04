@@ -237,12 +237,10 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 # Similarly to how a D-dimensional Gaussian is parameterized by its mean vector and its covariance matrix, a GP is parameterized by a mean *function* and a covariance *function*. To explain this, we'll assume (without loss of generality) that the mean function is $\mu(x) = \mathbf{0}$. As for the covariance function, $C(x,x')$, it is a function that receives as input two locations $x,x'$ belonging to the input domain, i.e. $x,x' \in \mathcal{X}$, and returns the value of their co-variance.
 # 
 # In this way, if we have a *finite* set of input locations we can evaluate the covariance function at every pair of locations and obtain a covariance matrix $\mathbf{C}$. We write:
-# $$
-# \mathbf{C} = C(\mathbf{X}, \mathbf{X}),
-# $$
-# where $\mathbf{X}$ is the collection of training inputs.
 # 
-# More on covariance functions later. For the moment, think of them as kind of a black box.
+# $$
+# \mathbf{C} = C(\mathbf{x}, \mathbf{x}').
+# $$
 
 # ### Covariance functions, aka kernels
 # 
@@ -253,19 +251,24 @@ plt.gca().set_title(f'{N} samples of a {D} dimensional Gaussian');
 # Even if the covariance function has a parametric form, combined with the GP it gives us a nonparametric model. In other words, the covariance function is specifying the general properties of the GP function we wish to encode, and not a specific parametric form for it.
 # 
 # Below we define two very common covariance functions: The RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
+# 
 # $$
-# k_{RBF}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \exp \left( -\frac{1}{2\ell^2} \sum_{q=1}^Q (x_{i,q} - x_{j,q})^2\right)
+# C_\mathrm{RBF}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \exp \left( -\frac{1}{2\ell^2} \sum_{q=1}^Q (x_{i,q} - x_{j,q})^2\right)
 # $$
-# where $Q$ denotes the dimensionality of the input space. Its parameters are: the *lengthscale*, $\ell$ and the variance $\sigma^2$. Furthermore, the linear kernel:
+# 
+# where $Q$ denotes the dimensionality of the input space. Its parameters are: the *lengthscale*, $\ell$ and the variance $\sigma^2$. We also note that this kernel is *stationary*, meaning that it only depends on the distance $\left| \mathbf{x}_{i} - \mathbf{x}_{j} \right|$. 
+# 
+# There are many other kinds of kernels. An example of a non-stationary one is the linear kernel:
+# 
 # $$
-# k_{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j}
+# C_\mathrm{lin}(\mathbf{x}_{i},\mathbf{x}_{j}) = \sigma^2 \mathbf{x}_{i}^T \mathbf{x}_{j}
 # $$
 # 
 # Below, we will implement and investigate them.
 
 # #### The RBF kernel (a.k.a Gaussian)
 
-# In[13]:
+# In[8]:
 
 
 def cov_RBF(x, x2=None, alpha=np.array([1,1])):        
@@ -290,7 +293,7 @@ def cov_RBF(x, x2=None, alpha=np.array([1,1])):
 
 # Given hyperparameters $\theta$, we plot the resulting covariance matrix and samples from a GP with this covariance function.
 
-# In[14]:
+# In[9]:
 
 
 X = np.sort(np.random.rand(400, 1) * 6 , axis=0)
@@ -306,7 +309,7 @@ for i in range(K):
     K_rbf = cov_RBF(X,X,alpha=np.array([1,params_rbf[i]]))
     plt.imshow(K_rbf)
     plt.colorbar()
-    plt.gca().set_title(rf'RBF Cov. Matrix ($\theta={params_rbf[i]}$)')
+    plt.gca().set_title(rf'RBF Cov. Matrix ($\ell={params_rbf[i]}$)')
     
     plt.subplot(K,2,j+1)
     # Assume a GP with zero mean
@@ -316,7 +319,7 @@ for i in range(K):
         jitter = 1e-5*np.eye(K_rbf.shape[0])
         sample = np.random.multivariate_normal(mean=mu, cov=K_rbf+jitter)
         plt.plot(sample)
-    plt.gca().set_title(rf'GP Samples from RBF ($\theta={params_rbf[i]}$)')
+    plt.gca().set_title(rf'GP Samples from RBF ($\ell={params_rbf[i]}$)')
     j+=2
     
 plt.tight_layout()
@@ -325,7 +328,7 @@ plt.tight_layout()
 # ## Example: GP models for regression
 # ### No-core shell model $\hbar\omega$ dependence
 
-# In[15]:
+# In[10]:
 
 
 # import some NCSM data from
@@ -333,7 +336,7 @@ plt.tight_layout()
 (E,Nmax,hw)=np.loadtxt('data/Li6E_NNLOopt_Nmax10.txt',unpack=True)
 
 
-# In[16]:
+# In[11]:
 
 
 fig,ax = plt.subplots(nrows=1,ncols=1)
@@ -341,6 +344,22 @@ ax.set_ylabel(r'$E$ (MeV)');
 ax.set_xlabel(r'$\hbar\omega$ (MeV)');
 ax.set_title(r'NCSM results for Li-6 energy with NNLOopt at $N_\mathrm{max}=10$')
 ax.scatter(hw,E,s=10);
+
+
+# In[12]:
+
+
+# Let us scale the target data such that it has mean zero and variance one.
+x=hw
+mE = np.mean(E)
+sE = np.std(E)
+y= (E - mE)/sE
+
+fig,ax = plt.subplots(nrows=1,ncols=1)
+ax.set_ylabel(r'$e$');
+ax.set_xlabel(r'$x$');
+ax.set_title(r'Scaled target data')
+ax.scatter(hw,y,s=10);
 
 
 # In[13]:
@@ -351,28 +370,36 @@ ax.scatter(hw,E,s=10);
 ratio_min=1.
 ratio_max=1.
 
-x=hw
-mE = np.mean(E)
-sE = np.std(E)
-y= (E - mE)/sE
 xt = x[::3, np.newaxis]
 yt = y[::3, np.newaxis]
 
 kernel = GPy.kern.RBF(input_dim=1, variance=5., lengthscale=10.)
+display(kernel)
+
+
+# In[14]:
+
+
+# Now we optimize the kernel hyperparameters to the target data
 m = GPy.models.GPRegression(xt,yt,kernel)
 m.optimize(messages=False)
 display(m)
+
+
+# In[15]:
+
+
 xp = x[:, np.newaxis]
 yp,vp=m.predict(xp)
 for i,yi in enumerate(yp):
     ratio_min=min(ratio_min,np.abs((y[i]+mE)/(yi+mE)))
     ratio_max=max(ratio_max,np.abs((y[i]+mE)/(yi+mE)))
-fig = m.plot(plot_density=True,figsize=(8,6))
+fig = m.plot(figsize=(8,6))
 ax=plt.gca()
-ax.scatter(hw,(E-mE)/sE,s=20);
+ax.scatter(hw,(E-mE)/sE,s=30,label='test');
 ax.set(xlabel=r'$\hbar\omega$ (MeV)',ylabel=r'${e}$ (a.u.)')
 ax.set_title(r'GP versus NCSM (scaled energies)')
-print('Validation result: Ratio true/predict in [%8.6f,%8.6f]' %(ratio_min,ratio_max))
+print(f'Validation result: Ratio true/predict in [{ratio_min},{ratio_max}]')
 
 
 # In[ ]:
