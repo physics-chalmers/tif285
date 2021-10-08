@@ -377,7 +377,7 @@ kernel = GPy.kern.RBF(input_dim=1, variance=5., lengthscale=10.)
 display(kernel)
 
 
-# In[14]:
+# In[20]:
 
 
 # Now we optimize the kernel hyperparameters to the target data
@@ -386,7 +386,7 @@ m.optimize(messages=False)
 display(m)
 
 
-# In[15]:
+# In[34]:
 
 
 xp = x[:, np.newaxis]
