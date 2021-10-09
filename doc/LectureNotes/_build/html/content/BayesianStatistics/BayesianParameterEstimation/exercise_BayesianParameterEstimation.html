@@ -1,0 +1,741 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16. Exercise: Bayesian parameter estimation &#8212; Learning from data</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="17. Markov Chain Monte Carlo sampling" href="../MCMC/MCMC.html" />
+    <link rel="prev" title="15. Bayesian parameter estimation demonstration" href="demo-BayesianParameterEstimation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_01.html">
+   3. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_02.html">
+   4. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/LinearRegression.html">
+   5. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/ModelValidation.html">
+   6. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   7. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
+   8. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/exercise_LinearRegression.html">
+   9. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianBasics.html">
+   10. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianRecipe.html">
+   11. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/demo-BayesianBasics.html">
+   12. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/exercise_sum_product_rule.html">
+   13. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="BayesianParameterEstimation.html">
+   14. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-BayesianParameterEstimation.html">
+   15. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   16. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/MCMC.html">
+   17. Markov Chain Monte Carlo sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/demo-MCMC.html">
+   18. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/ErrorPropagation.html">
+   19. Advantages of the Bayesian approach
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/demo-ErrorPropagation.html">
+   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/IgnorancePDF.html">
+   21. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/MaxEnt.html">
+   22. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/demo-MaxEnt.html">
+   23. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ModelSelection/ModelSelection.html">
+   24. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
+   25. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
+   26. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
+   28. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
+   29. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
+   30. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
+   31. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
+   32. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
+   33. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
+   34. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
+   35. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
+   36. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/physics-chalmers/tif285/master?urlpath=tree/./doc/LectureNotes/content/BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameter-estimation-fitting-a-straight-line">
+   16.1. Parameter estimation: fitting a straight line
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-data">
+     The Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-model">
+     The Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-prior">
+   16.2. The Prior
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementation">
+     Implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   16.3. Exercise
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   16.4. Exercise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="exercise-bayesian-parameter-estimation">
+<h1><span class="section-number">16. </span>Exercise: Bayesian parameter estimation<a class="headerlink" href="#exercise-bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># Not really needed, but nicer plots</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>      
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="parameter-estimation-fitting-a-straight-line">
+<h2><span class="section-number">16.1. </span>Parameter estimation: fitting a straight line<a class="headerlink" href="#parameter-estimation-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
+<p>Adapted from BayesianAstronomy.
+<span class="math notranslate nohighlight">\(% Some LaTeX definitions we'll use.
+\newcommand{\pr}{\textrm{p}}
+\)</span></p>
+<div class="section" id="the-data">
+<h3>The Data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start by creating some data that we will fit with a straight line.  We’ll start with a constant standard deviation of <span class="math notranslate nohighlight">\(\sigma\)</span> on the <span class="math notranslate nohighlight">\(y\)</span> values and no error on <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_data</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a straight line defined by intercept and slope:</span>
+<span class="sd">          y = slope * x + intercept</span>
+<span class="sd">       generate N points randomly spaced points from x=0 to x=100</span>
+<span class="sd">       with Gaussian (i.e., normal) error with mean zero and standard</span>
+<span class="sd">       deviation dy.</span>
+<span class="sd">       </span>
+<span class="sd">       Return the x and y arrays and an array of standard deviations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">rseed</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">rand</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">intercept</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">x</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">rand</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">intercept</span> <span class="o">=</span> <span class="mf">25.</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">theta_true</span> <span class="o">=</span> <span class="p">[</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">]</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">(</span><span class="o">*</span><span class="n">theta_true</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plot_title</span> <span class="o">=</span> <span class="sa">rf</span><span class="s1">&#39;intercept $= </span><span class="si">{</span><span class="n">intercept</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$, slope $= </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$, &#39;</span> \
+              <span class="o">+</span> <span class="sa">rf</span><span class="s1">&#39; $\sigma = </span><span class="si">{</span><span class="n">dy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">plot_title</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/exercise_BayesianParameterEstimation_4_0.png" src="../../../_images/exercise_BayesianParameterEstimation_4_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="the-model">
+<h3>The Model<a class="headerlink" href="#the-model" title="Permalink to this headline">¶</a></h3>
+<p>Next we need to specify a model. We’re fitting a straight line to data, so we’ll need a slope and an intercept; i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+y_M(x) = mx + b
+\]</div>
+<p>where our parameter vector will be</p>
+<div class="math notranslate nohighlight">
+\[
+\theta = [b, m]
+\]</div>
+<p>But this is only half the picture: what we mean by a “model” in a Bayesian sense is not only this expected value <span class="math notranslate nohighlight">\(y_M(x;\theta)\)</span>, but a <strong>probability distribution</strong> for our data.
+That is, we need an expression to compute the likelihood <span class="math notranslate nohighlight">\(\pr(D\mid\theta)\)</span> for our data as a function of the parameters <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Here we are given data with simple error bars, which imply that the probability for any <em>single</em> data point is a normal distribution about the true value. That is,</p>
+<div class="math notranslate nohighlight">
+\[
+y_i \sim \mathcal{N}(y_M(x_i;\theta), \sigma)
+\]</div>
+<p>or, in other words,</p>
+<div class="math notranslate nohighlight">
+\[
+\pr(y_i\mid\theta) = \frac{1}{\sqrt{2\pi\varepsilon_i^2}} \exp\left(\frac{-\left[y_i - y_M(x_i;\theta)\right]^2}{2\varepsilon_i^2}\right)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> are the (known) standard deviations of the measurement errors (indicated by the error bars in the above figure). Note that <span class="math notranslate nohighlight">\(y_i\)</span> indicates a measurement at <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
+<p>Assuming all the points are independent, we can find the full likelihood by multiplying the individual likelihoods together:</p>
+<div class="math notranslate nohighlight">
+\[
+\pr(D\mid\theta) = \prod_{i=1}^N \pr(x_i,y_i\mid\theta)
+\]</div>
+<p>For convenience (and also for numerical accuracy) this is often expressed in terms of the log-likelihood:</p>
+<div class="math notranslate nohighlight">
+\[
+\log \pr(D\mid\theta) = -\frac{1}{2}\sum_{i=1}^N\left(\log(2\pi\varepsilon_i^2) + \frac{\left[y_i - y_M(x_i;\theta)\right]^2}{\varepsilon_i^2}\right)
+\]</div>
+</div>
+<div class="section" id="exercise">
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><em>Write a Python function which computes the log-likelihood given a parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>, an array of errors <span class="math notranslate nohighlight">\(\varepsilon\)</span>, and an array of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values</em></p></li>
+<li><p><em>Use tools in <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/optimize.html"><code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code></a> to maximize this likelihood (i.e. minimize the negative log-likelihood). How close is this result to the input <code class="docutils literal notranslate"><span class="pre">theta_true</span></code> above?</em></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-prior">
+<h2><span class="section-number">16.2. </span>The Prior<a class="headerlink" href="#the-prior" title="Permalink to this headline">¶</a></h2>
+<p>We have computed the likelihood, now we need to think about the prior <span class="math notranslate nohighlight">\(\pr(\theta\mid I)\)</span>.</p>
+<p>This is where Bayesianism gets a bit controversial… what can we actually say about the slope and intercept before we fit our data?</p>
+<p>There are several approaches to choosing priors that you’ll come across in practice (more on this later):</p>
+<ol class="simple">
+<li><p><strong>Conjugate priors.</strong>
+A <a class="reference external" href="https://en.wikipedia.org/wiki/Conjugate_prior">conjugate prior</a> is a prior which, due to its mathematical relation to the likelihood, makes the result analytically computable.</p></li>
+<li><p><strong>Empirical priors.</strong>
+Empirical Priors are priors which are actually posteriors from previous studies of the same phenomenon. For example, it’s common in Supernova cosmology studies to use the WMAP results as a prior: that is, to actually plug-in a <em>real result</em> and use the new data to improve on that. This situation is where Bayesian approaches really shine.  For the linear fit, you might imagine that the <span class="math notranslate nohighlight">\(x, y\)</span> data is a more accurate version of a previous experiment, where we’ve found that the intercept is <span class="math notranslate nohighlight">\(\theta_0 = 50 \pm 30\)</span> and the slope is <span class="math notranslate nohighlight">\(\theta_1 = 1.0 \pm 0.5\)</span>.
+In this case, we’d encode this prior knowledge in the prior distribution itself.</p></li>
+<li><p><strong>Flat priors.</strong>
+If you don’t have an empirical prior, you might be tempted to simply use a <em>flat prior</em> – i.e. a prior that is constant between two reasonable limits (i.e. equal probability slopes from -1000 to +1000).  The problem is that flat priors are not always non-informative! For example, a flat prior on the slope will effectively give a higher weight to larger slopes.</p></li>
+<li><p><strong>Non-informative priors.</strong>
+What we <em>really</em> want in cases where no empirical prior is available is a <strong>non-informative prior</strong>. Among other things, such a prior should not depend on the units of the data.
+Perhaps the most principled approach to choosing non-informative priors was the <em>principle of maximum entropy</em> advocated by Jaynes (<a class="reference external" href="http://omega.albany.edu:8008/JaynesBook.html">book</a>).
+Similar in spirit is the commonly-used <a class="reference external" href="https://en.wikipedia.org/wiki/Jeffreys_prior">Jeffreys Prior</a>, which in many cases of interest amounts to a “scale invariant” prior: a flat prior on the logarithm of the parameter.
+In the case of the linear slope, we often want a prior which does not artificially over-weight large slopes: there are a couple possible approaches to this (see http://arxiv.org/abs/1411.5018 for some discussion). For our situation, we might use a flat prior on the angle the line makes with the x-axis, which gives</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\pr(m) \propto (1 + m^2)^{-3/2}
+\]</div>
+<p>For lack of a better term, I like to call this a “symmetric prior” on the slope (because it’s the same whether we’re fitting <span class="math notranslate nohighlight">\(y = mx + b\)</span> or <span class="math notranslate nohighlight">\(x = m^\prime y + b^\prime\)</span>).</p>
+<div class="section" id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<p>Let’s define two python functions to compute the options for our prior: we’ll use both a (log) flat prior and a (log) symmetric prior.
+In general, we need not worry about the normalization of the prior or the likelihood, which makes our lives easier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_flat_prior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="c1"># log(1)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>  <span class="c1"># log(0)</span>
+    
+<span class="k">def</span> <span class="nf">log_symmetric_prior</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">theta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>  <span class="c1"># log(0)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With these defined, we now have what we need to compute the log posterior as a function of the model parameters.
+You might be tempted to maximize this posterior in the same way that we did with the likelihood above, but this is not a Bayesian result! The Bayesian result is a (possibly marginalized) posterior probability for our parameters.
+The mode of a probability distribution is perhaps slightly informative, but it is in no way a Bayesian result.</p>
+<p>Next you will plot the posterior probability as a function of the slope and intercept.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><span class="section-number">16.3. </span>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><em>Plot the posterior probability distribution for the slope and intercept, once for each prior. You might use <code class="docutils literal notranslate"><span class="pre">plt.contourf()</span></code> or <code class="docutils literal notranslate"><span class="pre">plt.pcolor()</span></code>. How different are the distributions?</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should find that the form of the prior in this case makes very little difference to the final posterior. In general, this often ends up being the case: for all the worrying about the effect of the prior, when you have enough data to constrain your model well, the prior has very little effect.</p>
+</div>
+<div class="section" id="id2">
+<h2><span class="section-number">16.4. </span>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><em>Modify the dataset – how do the results change if you have very few data points or very large errors?</em></p></li>
+<li><p><em>If you finish this quickly, try adding 1-sigma and 2-sigma contours to your plot, keeping in mind that the probabilities are not normalized. You can add them to your plot with <code class="docutils literal notranslate"><span class="pre">plt.contour()</span></code>.</em></p></li>
+</ol>
+<p>Let’s use a different data with few measurements and see what happens:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">dy2</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">(</span><span class="o">*</span><span class="n">theta_true</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">dy2</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/exercise_BayesianParameterEstimation_22_0.png" src="../../../_images/exercise_BayesianParameterEstimation_22_0.png" />
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Exercise<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><em>Plot the joint pdf for the slope and the intercept in this case</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should find that the form of the prior <strong>does</strong> have a clear effect in the case where the data don’t constrain the model well (in this case, three points with very large error bars).
+This encodes exactly what you would scientifically expect: if you don’t have very good data, it is unlikely to change your views of the world (which are of course encoded in the prior).</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/BayesianStatistics/BayesianParameterEstimation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="demo-BayesianParameterEstimation.html" title="previous page"><span class="section-number">15. </span>Bayesian parameter estimation demonstration</a>
+    <a class='right-next' id="next-link" href="../MCMC/MCMC.html" title="next page"><span class="section-number">17. </span>Markov Chain Monte Carlo sampling</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

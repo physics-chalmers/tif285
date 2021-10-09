@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>34. Bayesian neural networks &#8212; Learning from data</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="35. Variational Inference: Bayesian Neural Networks" href="demo-bnn.html" />
+    <link rel="prev" title="33. Image recognition demonstration with Convolutional Neural Networks" href="../CNN/demo-cnn.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/welcome.html">
+   Course aim
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_01.html">
+   3. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_02.html">
+   4. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/LinearRegression.html">
+   5. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/ModelValidation.html">
+   6. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   7. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
+   8. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/exercise_LinearRegression.html">
+   9. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianBasics/BayesianBasics.html">
+   10. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianBasics/BayesianRecipe.html">
+   11. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianBasics/demo-BayesianBasics.html">
+   12. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianBasics/exercise_sum_product_rule.html">
+   13. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianParameterEstimation/BayesianParameterEstimation.html">
+   14. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
+   15. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/BayesianParameterEstimation/exercise_BayesianParameterEstimation.html">
+   16. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/MCMC/MCMC.html">
+   17. Markov Chain Monte Carlo sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/MCMC/demo-MCMC.html">
+   18. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/ErrorPropagation/ErrorPropagation.html">
+   19. Advantages of the Bayesian approach
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/ErrorPropagation/demo-ErrorPropagation.html">
+   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/MaxEnt/IgnorancePDF.html">
+   21. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/MaxEnt/MaxEnt.html">
+   22. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
+   23. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../BayesianStatistics/ModelSelection/ModelSelection.html">
+   24. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../GP/GaussianProcesses.html">
+   25. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../GP/demo-GaussianProcesses.html">
+   26. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../GP/exercise_GP.html">
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LogReg/LogReg.html">
+   28. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NeuralNet/NeuralNet.html">
+   29. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NeuralNet/demo-NeuralNet.html">
+   30. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../NeuralNet/exercises_LogReg_NeuralNet.html">
+   31. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CNN/cnn.html">
+   32. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../CNN/demo-cnn.html">
+   33. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   34. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-bnn.html">
+   35. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercises_BNN.html">
+   36. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/MachineLearning/BNN/bnn.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/MachineLearning/BNN/bnn.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-neural-network">
+   34.1. Basic neural network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probabilistic-model">
+   34.2. Probabilistic model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-neural-networks-in-practice">
+   34.3. Bayesian neural networks in practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variational-inference-for-bayesian-neural-networks">
+     Variational inference for Bayesian neural networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-kullback-leibler-divergence">
+       The Kullback-Leibler divergence
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#evidence-lower-bound">
+       Evidence Lower Bound
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-neural-networks-in-pymc3">
+     Bayesian neural networks in PyMC3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayes-by-backprop">
+     Bayes by Backprop
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#network-training">
+       Network training
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- !split -->
+<div class="section" id="bayesian-neural-networks">
+<h1><span class="section-number">34. </span>Bayesian neural networks<a class="headerlink" href="#bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>The introduction part of this lecture is inspired by the chapter <em>“Learning as Inference”</em> in the excellent book <a class="reference external" href="http://www.inference.org.uk/mackay/itila/">Information Theory, Inference, and Learning Algorithms</a> by David MacKay.</p>
+<p>Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming in Machine Learning) are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.pymc.io/">PyMC3</a></p></li>
+<li><p><a class="reference external" href="https://www.tensorflow.org/probability">Tensorflow Probability</a></p></li>
+<li><p><a class="reference external" href="https://keras.io/">Keras</a> (for constructing tensorflow models).</p></li>
+<li><p><a class="reference external" href="http://edwardlib.org/">Edward</a></p></li>
+</ul>
+<!-- !split -->
+<div class="section" id="basic-neural-network">
+<h2><span class="section-number">34.1. </span>Basic neural network<a class="headerlink" href="#basic-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>We will consider a neuron with a vector of <span class="math notranslate nohighlight">\(I\)</span> input signals <span class="math notranslate nohighlight">\(\boldsymbol{x} = \left\{ \boldsymbol{x}^{(i)} \right\}_{i=1}^I\)</span>, and an output signal <span class="math notranslate nohighlight">\(y^{(i)}\)</span>, which is given by the non-linear function <span class="math notranslate nohighlight">\(y(a)\)</span> of the <em>activation</em></p>
+<div class="math notranslate nohighlight">
+\[
+ a = w_0 +  \sum_{i=1}^I w_i x_i, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I\)</span> are the weights of the neuron and we have included a bias (<span class="math notranslate nohighlight">\(b \equiv w_0\)</span>).</p>
+<p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
+Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f92286ac-f896-4b21-942c-1f11aaa97580">
+<span class="eqno">(34.1)<a class="headerlink" href="#equation-f92286ac-f896-4b21-942c-1f11aaa97580" title="Permalink to this equation">¶</a></span>\[\begin{align}
+p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
+p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
+\end{align}\]</div>
+<p>A simple binary classifier can be trained by minimizing the loss function</p>
+<div class="math notranslate nohighlight">
+\[
+ C_W(\boldsymbol{w}) = C(\boldsymbol{w}) +  \alpha E_W(\boldsymbol{w}), 
+\]</div>
+<p>made up of an error function</p>
+<div class="math notranslate nohighlight">
+\[
+ C(\boldsymbol{w}) = -\sum_n \left[ t^{(n)} \log ( y(\boldsymbol{x}^{(n)},\boldsymbol{w})) + (1 - t^{(n)}) \log (1 - y(\boldsymbol{x}^{(n)},\boldsymbol{w})) \right], 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(t^{(n)}\)</span> is the training data, and the regularizer</p>
+<div class="math notranslate nohighlight">
+\[
+ E_W(\boldsymbol{w}) = \frac{1}{2} \sum_i w_i^2, 
+\]</div>
+<p>that is designed to avoid overfitting.
+The error function can be interpreted as minus the log likelihood</p>
+<div class="math notranslate nohighlight">
+\[
+ p(\mathcal{D}|\boldsymbol{w}) = \exp\left[ - C(\boldsymbol{w}) \right]. 
+\]</div>
+<p>Similarly the regularizer can be interpreted in terms of a log prior probability distribution over the parameters</p>
+<div class="math notranslate nohighlight">
+\[
+ p(\boldsymbol{w} | \alpha) = \frac{1}{Z_W(\alpha)} \exp \left[ -\alpha E_W \right]. 
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(E_W\)</span> is quadratic as given above, then the corresponding prior distribution is a Gaussian with variance <span class="math notranslate nohighlight">\(\sigma_W^2 = 1/\alpha\)</span> and <span class="math notranslate nohighlight">\(1/Z_W = (\alpha/2\pi)^{K/2}\)</span>, where <span class="math notranslate nohighlight">\(K\)</span> is the number of parameters in <span class="math notranslate nohighlight">\(w\)</span>.
+The objective function <span class="math notranslate nohighlight">\(C_W(w)\)</span> then corresponds to the inference of the parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> given the data</p>
+<div class="math notranslate nohighlight">
+\[
+ p(\boldsymbol{w} | \mathcal{D}, \alpha) = \frac{p(D|\boldsymbol{w}) p(\boldsymbol{w}|\alpha)}{p(\mathcal{D}|\alpha)} = \frac{1}{Z_M} \exp [ -C_W(\boldsymbol{w}) ]. 
+\]</div>
+<p>We show the evolution of the probability distribution for a sequence of an increasing number of training data in the following figure. The network parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> that are found by minimizing <span class="math notranslate nohighlight">\(C_W(\boldsymbol{w})\)</span> can be interpreted as the (locally) most probable parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{w}^*\)</span>.</p>
+<!-- <img src="fig/BNN/scatter_joint_bnn_plot.png" width=800><p><em>Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights $p(w_1, w_2 | \mathcal{D}, \alpha)$ (i.e. marginalized over the bias $w_0$) for a sequence of $N=0,2,6,10$ training data.</em></p> -->
+<p><img alt="Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights  (i.e. marginalized over the bias ) for a sequence of  training data." src="../../../_images/scatter_joint_bnn_plot.png" /></p>
+<p>Instead, we will use the Bayesian approach and consider the information that is contained in the actual probability distribution. In fact, there are different uncertainties that should be addressed:</p>
+<div class="admonition-epistemic-uncertainties admonition">
+<p class="admonition-title">Epistemic uncertainties</p>
+<p>from uncertainties in the model. For a neural network, this uncertainty can, in principle, be reduced with more data and quantified using the Bayesian approach. Epistemic uncertainty is also known as <strong>systematic uncertainty</strong>.</p>
+</div>
+<div class="admonition-aleatoric-uncertainties admonition">
+<p class="admonition-title">Aleatoric uncertainties</p>
+<p>from inherent noise in the training data. This should be included in the likelihood function (and is therefore part of the Bayesian approach). It can, however, not be reduced with more data of the same quality. Aleatoric uncertainty is also known as <strong>statistical uncertainty</strong>. Aleatoric is derived from the Latin <em>alea</em> or dice, referring to a game of chance.</p>
+</div>
+<p><em>Notice.</em>
+We will use <span class="math notranslate nohighlight">\(y\)</span> to denote the output from the neural network. For classification problems, <span class="math notranslate nohighlight">\(y\)</span> will give the categorical (discrete) distribution of probabilities <span class="math notranslate nohighlight">\(p_{t=c}\)</span> of belonging to class <span class="math notranslate nohighlight">\(c\)</span>. For regression problems, <span class="math notranslate nohighlight">\(y\)</span> is a continuous variable. It could also, in general, be a vector of outputs. The neural network can be seen as a non-linear mapping <span class="math notranslate nohighlight">\(y(x; w)\)</span>: <span class="math notranslate nohighlight">\(x \in \mathbb{R}^p \to y \in \mathbb{R}^m\)</span>.</p>
+<!-- !split -->
+</div>
+<div class="section" id="probabilistic-model">
+<h2><span class="section-number">34.2. </span>Probabilistic model<a class="headerlink" href="#probabilistic-model" title="Permalink to this headline">¶</a></h2>
+<p>A Bayesian neural network can be viewed as probabilistic model in which we want to infer <span class="math notranslate nohighlight">\(p(y \lvert \boldsymbol{x},\mathcal{D})\)</span> where <span class="math notranslate nohighlight">\(\mathcal{D} = \left\{\boldsymbol{x}^{(i)}, y^{(i)}\right\}\)</span> is a given training dataset.</p>
+<p>We construct the likelihood function <span class="math notranslate nohighlight">\(p(\mathcal{D} \lvert \boldsymbol{w}) = \prod_i p(y^{(i)} \lvert \boldsymbol{x}^{(i)}, \boldsymbol{w})\)</span> which is a function of parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>. Maximizing the likelihood function gives the maximimum likelihood estimate (MLE) of <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>. The usual optimization objective during training is the negative log likelihood. For a categorical distribution this is the <em>cross entropy</em> error function, for a Gaussian distribution this is proportional to the <em>sum of squares</em> error function. MLE can lead to severe overfitting though.</p>
+<p>Multiplying the likelihood with a prior distribution <span class="math notranslate nohighlight">\(p(\boldsymbol{w})\)</span> is, by Bayes theorem, proportional to the posterior distribution <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D}) \propto p(\mathcal{D} \lvert \boldsymbol{w}) p(\boldsymbol{w})\)</span>. Maximizing <span class="math notranslate nohighlight">\(p(\mathcal{D} \lvert \boldsymbol{w}) p(\boldsymbol{w})\)</span> gives the maximum a posteriori (MAP) estimate of <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>. Computing the MAP estimate has a regularizing effect and can prevent overfitting. The optimization objectives here are the same as for MLE plus a regularization term coming from the log prior.</p>
+<p>Both MLE and MAP give point estimates of parameters. If we instead had a full posterior distribution over parameters we could make predictions that take weight uncertainty into account. This is covered by the posterior predictive distribution <span class="math notranslate nohighlight">\(p(y \lvert \boldsymbol{x},\mathcal{D}) = \int p(y \lvert \boldsymbol{x}, \boldsymbol{w}) p(\boldsymbol{w} \lvert \mathcal{D}) d\boldsymbol{w}\)</span> in which the parameters have been marginalized out. This is equivalent to averaging predictions from an ensemble of neural networks weighted by the posterior probabilities of their parameters <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>.</p>
+<p>Returning to the binary classification problem, <span class="math notranslate nohighlight">\(y^{(n+1)}\)</span> corresponds to the probability <span class="math notranslate nohighlight">\(p_{t^{(n+1)}=1}\)</span> and a Bayesian prediction of a new datum <span class="math notranslate nohighlight">\(y^{(n+1)}\)</span> will correspond to a pdf and involves <em>marginalizing</em> over the weight and bias parameters</p>
+<div class="math notranslate nohighlight">
+\[
+ p(y^{(n+1)} | x^{(n+1)}, D, \alpha) = \int d \boldsymbol{w} p( y^{(n+1)} | x^{(n+1)}, w, \alpha) p(w|D,\alpha), 
+\]</div>
+<p>where we have also included the weight decay hyperparameter <span class="math notranslate nohighlight">\(\alpha\)</span> from the prior (regularizer). Marginalization could, of course, also be performed over this parameter.</p>
+<p>We show an example of such inference, comparing the point estimate <span class="math notranslate nohighlight">\(y(x; w^*, \alpha)\)</span> and the Bayesian approach, in the following figure.</p>
+<!-- <img src="fig/BNN/bnn_binary_classifier_mean.png" width=800><p><em>The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay $\alpha = 1.0$. The decision boundary ($y=0.5$, i.e. the activation $a=0$) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation $a=\pm1,\pm2$). Test data is shown as plus symbols.</em></p> -->
+<p><img alt="The predictions for a Bayesian (left panel) and regular (right panel) binary classifier that has been learning from ten training data (circles) with a weight decay . The decision boundary (, i.e. the activation ) is shown together with the levels 0.12,0.27,0.73,0.88 (corresponding to the activation ). Test data is shown as plus symbols." src="../../../_images/bnn_binary_classifier_mean.png" /></p>
+<p>The Bayesian classifier is based on sampling a very large ensamble of single neurons with different parameters. The distribution of these samples will be proportional to the posterior pdf for the parameters. The decision boundary shown in the figure is obtained as the mean of the predictions of the sampled neurons evaluated on a grid. It is clear that the Bayesian classifier is more uncertain about its predictions in the lower left and upper right corners, where there is little training data.</p>
+<p>This becomes even more clear when we plot the standard deviation of the predictions of the Bayesian classifier.</p>
+<!-- <img src="fig/BNN/bnn_binary_classifier_stddev.png" width=600><p><em>The standard deviation of the class label predictions for a Bayesian binary classifier.</em></p> -->
+<p><img alt="The standard deviation of the class label predictions for a Bayesian binary classifier." src="../../../_images/bnn_binary_classifier_stddev.png" /></p>
+<p>The predictions are rather certain along a diagonal line (close to the training data). Note that the interpretation of the prediction in the center of the figure (near <span class="math notranslate nohighlight">\(x_1,x_2 = 0,0\)</span>) is the following: The Bayesian binary classifier predicts a probability of <span class="math notranslate nohighlight">\(\sim 0.5\)</span> for this point in the input parameter space to belong to class 1 (i.e. the decision is very uncertain). The Baysian classifier is also very certain about this uncertainty (the standard deviation is small).</p>
+<p>In contrast, predictions for points in the upper left or lower right corners are very certain about the class label (and there is little uncertainty about this certainty).</p>
+<!-- !split -->
+</div>
+<div class="section" id="bayesian-neural-networks-in-practice">
+<h2><span class="section-number">34.3. </span>Bayesian neural networks in practice<a class="headerlink" href="#bayesian-neural-networks-in-practice" title="Permalink to this headline">¶</a></h2>
+<p>But how shall we compute the marginalization integral for serious neural networks with thousands of parameters?</p>
+<p>In short, there are three different approaches:</p>
+<ol class="simple">
+<li><p><strong>Sampling methods</strong>, e.g. MCMC sampling (this approach would be exact as the number of samples <span class="math notranslate nohighlight">\(\rightarrow \infty\)</span>);</p></li>
+<li><p><strong>Deterministic approximate methods</strong>, for example using Gaussian approximations with the Laplace method;</p></li>
+<li><p><strong>Variational methods</strong>.</p></li>
+</ol>
+<p>The first two are discussed in MacKay’s book, while we will focus on the variational methods in the following.</p>
+<!-- !split -->
+<div class="section" id="variational-inference-for-bayesian-neural-networks">
+<h3>Variational inference for Bayesian neural networks<a class="headerlink" href="#variational-inference-for-bayesian-neural-networks" title="Permalink to this headline">¶</a></h3>
+<p>Bayesian neural networks differ from plain neural networks in that their weights are assigned a probability distribution instead of a single value or point estimate. These probability distributions describe the uncertainty in weights and can be used to estimate uncertainty in predictions. Training a Bayesian neural network via variational inference learns the parameters of these distributions instead of the weights directly.</p>
+<p>Unfortunately, an analytical solution for the weight posterior <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span> in neural networks is intractable. We therefore have to approximate the true posterior with a proxy variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span> whose parameters we want to estimate.</p>
+<p>This can be done by minimizing the <a class="reference external" href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Leibler divergence</a> between <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span> and the true posterior <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span>  w.r.t. <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>.</p>
+<p>The specific goal is then to replace <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span>, which we don’t know, with the known proxy distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta}^*)\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span> is the optimal set of variational parameters.</p>
+<!-- !split -->
+<div class="section" id="the-kullback-leibler-divergence">
+<h4>The Kullback-Leibler divergence<a class="headerlink" href="#the-kullback-leibler-divergence" title="Permalink to this headline">¶</a></h4>
+<p>The KL divergence is a numeric measure of the difference between two distributions. For two probability distributions <span class="math notranslate nohighlight">\(q(\boldsymbol{w})\)</span> and <span class="math notranslate nohighlight">\(p(\boldsymbol{w})\)</span>, the KL divergence in a continuous case,</p>
+<div class="math notranslate nohighlight">
+\[
+ D_\mathrm{KL}(q||p) = \int d \boldsymbol{w} q(\boldsymbol{w}) \log \frac{q(\boldsymbol{w})}{p(\boldsymbol{w})} \equiv \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w}) - \log \, p(\boldsymbol{w}) \right] 
+\]</div>
+<p>As we can see, the KL divergence calculates the expected log differences in between two distributions with respect to distribution q. It is a non-negative quantity and it is equal to zero only when the two distributions are identical.</p>
+<p>Intuitively there are three scenarios:</p>
+<ul class="simple">
+<li><p>if both <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(p\)</span> are high at the same positions, then we are happy;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(q\)</span> is high where <span class="math notranslate nohighlight">\(p\)</span> is low, we pay a price;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(q\)</span> is low we don’t care (because of the expectation).</p></li>
+</ul>
+<p>The divergence measure is not symmetric, i.e., <span class="math notranslate nohighlight">\(D_\mathrm{KL}(p||q) \neq D_\mathrm{KL}(q||p)\)</span>. In fact, it is possibly more natural to reverse the arguments and compute <span class="math notranslate nohighlight">\(D_\mathrm{KL}(p||q)\)</span>. However, we choose <span class="math notranslate nohighlight">\(\mathrm{KL}(q||p)\)</span> so that we can take expectations with respect to the known <span class="math notranslate nohighlight">\(q(\boldsymbol{w})\)</span> distribution. In addition, the minimization of this KL divergence will encourage the fit to concentrate on plausible parameters since</p>
+<div class="math notranslate nohighlight">
+\[
+D_\mathrm{KL}(q||p) = \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \log \frac{q(\boldsymbol{w} \lvert \boldsymbol{\theta})}{p(\boldsymbol{w} \lvert \mathcal{D})} 
+= -\int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \log \, p(\boldsymbol{w} \lvert \mathcal{D}) + \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}).
+\]</div>
+<p>To minimize the first term we have to avoid putting probability mass into regions of implausible parameters. To minimize the second term we have to maximize the entropy of the variational distribution <span class="math notranslate nohighlight">\(q\)</span> as this term corresponds to its negative entropy.</p>
+<!-- !split -->
+</div>
+<div class="section" id="evidence-lower-bound">
+<h4>Evidence Lower Bound<a class="headerlink" href="#evidence-lower-bound" title="Permalink to this headline">¶</a></h4>
+<p>Let us rewrite the posterior pdf <span class="math notranslate nohighlight">\(p(\boldsymbol{w} \lvert \mathcal{D})\)</span> using Bayes theorem</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{\theta}) \left[ \log \, q(\boldsymbol{w}\lvert \boldsymbol{\theta})  - p( \mathcal{D} \lvert \boldsymbol{w}) - p(\boldsymbol{w}) + p(\mathcal{D}) \right] \\
+&amp;= \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
+- \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
+- \mathbb{E}_{q} \left[ \log \, p(\boldsymbol{w}) \right]
++ \log \, p(\mathcal{D}).
+\end{align*}\]</div>
+<p>Note that the logarithm of the last term has no dependence on <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> and the integration of <span class="math notranslate nohighlight">\(q\)</span> will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the <strong>Evidence Lower Bound</strong> (ELBO)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fd9e83b2-d8a8-4989-9adc-9a7875174853">
+<span class="eqno">(34.2)<a class="headerlink" href="#equation-fd9e83b2-d8a8-4989-9adc-9a7875174853" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\log \, p(\mathcal{D}) \ge 
+- \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
++ \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
++ \mathbb{E}_{q} \left[ \log \, p(\boldsymbol{w}) \right]
+\equiv J_\mathrm{ELBO}(\boldsymbol{\theta})
+\label{eq:elbo}
+\end{equation}\]</div>
+<p>Variational inference was originally inspired by work in statistical physics, and with that analogy, <span class="math notranslate nohighlight">\(-J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> is also called the <strong>variational free energy</strong> and sometimes denoted <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta})\)</span>.</p>
+<p>The task at hand is therefore to find the set of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^*\)</span> that maximizes <span class="math notranslate nohighlight">\(J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span>. The hardest term to evaluate is obviously the expectation of the log-likelihood</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
+= \sum{i=1}^N \mathbb{E}_{q} \left[ \log \, p( y^{(i)} \lvert \boldsymbol{x}^{(i)}, \boldsymbol{w}) \right].\]</div>
+<p>This problem constitutes a new and active area of research in machine learning and it permeates well with the overarching theme of this course which is inference from data. We will end by giving two pointers to further readings on this subject.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="bayesian-neural-networks-in-pymc3">
+<h3>Bayesian neural networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h3>
+<p>In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the <strong>Automatic Differentation Variational Inference</strong> (ADVI) approach, described e.g. in <a class="reference external" href="https://arxiv.org/abs/1506.03431">Automatic Variational Inference in Stan</a>.</p>
+<!-- <img src="fig/BNN/ADVI-classifier_ELBO.png" width=500><p><em>The training of the Bayesian binary classifier, that employs ADVI implemented in `pymc3`, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).</em></p> -->
+<p><img alt="The training of the Bayesian binary classifier, that employs ADVI implemented in , corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO)." src="../../../_images/ADVI-classifier_ELBO.png" /></p>
+<!-- <img src="fig/BNN/ADVI-classifier.png" width=800><p><em>The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.</em></p> -->
+<p><img alt="The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in . The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown." src="../../../_images/ADVI-classifier.png" /></p>
+<p>See also</p>
+<ul class="simple">
+<li><p>Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). <em>Automatic Differentiation Variational Inference</em>. arXiv preprint arXiv:”1603.00788”: ‘https://arxiv.org/abs/1603.00788”.</p></li>
+</ul>
+<!-- !split -->
+</div>
+<div class="section" id="bayes-by-backprop">
+<h3>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h3>
+<p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
+<p>All three terms in equation (<a class="reference external" href="#eq:elbo">eq:elbo</a>) are expectations w.r.t. the variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>. In this paper they use the variational free energy <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> as a cost function (since it should be <em>minimized</em>). This quantity can be approximated by drawing <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> samples <span class="math notranslate nohighlight">\(\boldsymbol{w}^{(i)}\)</span> from <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4f46b002-71ff-41f5-b35d-3b3c0e736156">
+<span class="eqno">(34.3)<a class="headerlink" href="#equation-4f46b002-71ff-41f5-b35d-3b3c0e736156" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
+\log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
+\log \, p(\boldsymbol{w}^{(i)}) -
+\log \, p(\mathcal{D} \lvert \boldsymbol{w}^{(i)})\right]
+\label{eq:VariationalFreeEnergy}
+\end{equation}\]</div>
+<p>In the example used in the blog post, they use a Gaussian distribution for the variational posterior, parameterized by <span class="math notranslate nohighlight">\(\boldsymbol{\theta} = (\boldsymbol{\mu}, \boldsymbol{\sigma})\)</span> where <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> is the mean vector of the distribution and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> the standard deviation vector. The elements of <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> are the elements of a diagonal covariance matrix which means that weights are assumed to be uncorrelated. Instead of parameterizing the neural network with weights <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> directly, it is parameterized with <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> and therefore the number of parameters are doubled compared to a plain neural network.</p>
+<!-- !split -->
+<div class="section" id="network-training">
+<h4>Network training<a class="headerlink" href="#network-training" title="Permalink to this headline">¶</a></h4>
+<p>A training iteration consists of a forward-pass and and backward-pass. During a forward pass a single sample is drawn from the variational posterior distribution. It is used to evaluate the approximate cost function defined by equation (<a class="reference external" href="#eq:VariationalFreeEnergy">eq:VariationalFreeEnergy</a>). The first two terms of the cost function are data-independent and can be evaluated layer-wise, the last term is data-dependent and is evaluated at the end of the forward-pass. During a backward-pass, gradients of <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> are calculated via backpropagation so that their values can be updated by an optimizer.</p>
+<p>Since a forward pass involves a stochastic sampling step we have to apply the so-called <em>re-parameterization trick</em> for backpropagation to work. The trick is to sample from a parameter-free distribution and then transform the sampled <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> with a deterministic function <span class="math notranslate nohighlight">\(t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon})\)</span> for which a gradient can be defined. In the blog post they choose <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> to be drawn from a standard normal distribution i.e. <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{I})\)</span> and the function <span class="math notranslate nohighlight">\(t\)</span> is taken to be <span class="math notranslate nohighlight">\(t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon}) = \boldsymbol{\mu} + \boldsymbol{\sigma} \odot \boldsymbol{\epsilon}\)</span>, i.e., it shifts the sample by mean <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span> and scales it with <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> where <span class="math notranslate nohighlight">\(\odot\)</span> is element-wise multiplication.</p>
+<p>For numerical stability the network is parametrized with <span class="math notranslate nohighlight">\(\boldsymbol{\rho}\)</span> instead of <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{\rho}\)</span> is transformed with the softplus function to obtain <span class="math notranslate nohighlight">\(\boldsymbol{\sigma} = \log(1 + \exp(\boldsymbol{\rho}))\)</span>. This ensures that <span class="math notranslate nohighlight">\(\boldsymbol{\sigma}\)</span> is always positive. As prior, a scale mixture of two Gaussians is used <span class="math notranslate nohighlight">\(p(\boldsymbol{w}) = \pi \mathcal{N}(\boldsymbol{w} \lvert 0,\sigma_1^2) + (1 - \pi) \mathcal{N}(\boldsymbol{w} \lvert 0,\sigma_2^2)\)</span> where <span class="math notranslate nohighlight">\(\sigma_1\)</span>, <span class="math notranslate nohighlight">\(\sigma_2\)</span> and <span class="math notranslate nohighlight">\(\pi\)</span> are shared parameters. Their values are learned during training (which is in contrast to the paper where a fixed prior is used).</p>
+<p>See Martin Krasser’s <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> for results and further details.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/MachineLearning/BNN"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../CNN/demo-cnn.html" title="previous page"><span class="section-number">33. </span>Image recognition demonstration with Convolutional Neural Networks</a>
+    <a class='right-next' id="next-link" href="demo-bnn.html" title="next page"><span class="section-number">35. </span>Variational Inference: Bayesian Neural Networks</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
