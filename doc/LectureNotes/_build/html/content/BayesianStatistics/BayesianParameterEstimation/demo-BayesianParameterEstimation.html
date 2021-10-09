@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,13 +413,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-of-modules">
-   15.1. Import of modules
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-gaussian-noise-and-averages">
-   15.2. Example: Gaussian noise and averages
+   15.1. Example: Gaussian noise and averages
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -457,8 +457,6 @@
                 
   <div class="section" id="bayesian-parameter-estimation-demonstration">
 <h1><span class="section-number">15. </span>Bayesian parameter estimation demonstration<a class="headerlink" href="#bayesian-parameter-estimation-demonstration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="import-of-modules">
-<h2><span class="section-number">15.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -473,9 +471,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="example-gaussian-noise-and-averages">
-<h2><span class="section-number">15.2. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">15.1. </span>Example: Gaussian noise and averages<a class="headerlink" href="#example-gaussian-noise-and-averages" title="Permalink to this headline">¶</a></h2>
 <p>Adapted from Sivia: <em>Data Analysis: A Bayesian Tutorial</em></p>
 <p>Here we’ll take a look at a simple parameter-estimation problem. We will compare the frequentist and Bayesian approaches. This problem is an extended version of Example 2 in Ch 2.3 of the book by Sivia. This short book is very readable and is highly recommended.</p>
 <div class="cell docutils container">
@@ -530,8 +527,8 @@ p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sig
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_13_0.png" src="../../../_images/demo-BayesianParameterEstimation_13_0.png" />
-<img alt="../../../_images/demo-BayesianParameterEstimation_13_1.png" src="../../../_images/demo-BayesianParameterEstimation_13_1.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_12_0.png" src="../../../_images/demo-BayesianParameterEstimation_12_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_12_1.png" src="../../../_images/demo-BayesianParameterEstimation_12_1.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code> alternative: one figure with two subplots using an array of axes.</p>
@@ -553,7 +550,7 @@ p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sig
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_15_0.png" src="../../../_images/demo-BayesianParameterEstimation_15_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_14_0.png" src="../../../_images/demo-BayesianParameterEstimation_14_0.png" />
 </div>
 </div>
 <p><em>What can you conclude about the tails?</em></p>
@@ -761,7 +758,7 @@ p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left(-\frac{(x-\mu)^2}{2\sig
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/demo-BayesianParameterEstimation_28_0.png" src="../../../_images/demo-BayesianParameterEstimation_28_0.png" />
+<img alt="../../../_images/demo-BayesianParameterEstimation_27_0.png" src="../../../_images/demo-BayesianParameterEstimation_27_0.png" />
 </div>
 </div>
 <p>The lower left panel in the corner plot shows the joint probability distribution for the two model parameters. The two plots on the diagonal show marginalized distributions (with one parameter integrated out) for the two model parameters. The blue lines indicate the <em>true</em> values of the model parameters, while the title and the dashed lines indicate the most probable value as well as a 68% confidence interval. We will be discussing these representative measures of a posterior distribution during the course.</p>

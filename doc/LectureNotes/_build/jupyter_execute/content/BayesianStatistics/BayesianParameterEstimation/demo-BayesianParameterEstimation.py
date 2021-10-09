@@ -3,8 +3,6 @@
 
 # # Bayesian parameter estimation demonstration
 
-# ### Import of modules
-
 # In[1]:
 
 

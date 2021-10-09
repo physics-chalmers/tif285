@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,13 +413,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-modules">
-   31.1. Import modules
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-   31.2. Examples of classifier functions used in logistic regression and neural networks
+   31.1. Examples of classifier functions used in logistic regression and neural networks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -426,7 +426,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-simple-classification-problem">
-   31.3. A simple classification problem
+   31.2. A simple classification problem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -478,9 +478,6 @@
                 
   <div class="section" id="exercise-logistic-regression-and-neural-networks">
 <h1><span class="section-number">31. </span>Exercise: Logistic Regression and neural networks<a class="headerlink" href="#exercise-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 16-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
-<div class="section" id="import-modules">
-<h2><span class="section-number">31.1. </span>Import modules<a class="headerlink" href="#import-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -495,9 +492,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks">
-<h2><span class="section-number">31.2. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">31.1. </span>Examples of classifier functions used in logistic regression and neural networks<a class="headerlink" href="#examples-of-classifier-functions-used-in-logistic-regression-and-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The following code plots the sigmoid and the step function, two common classifier functions used in neural networks (and logistic regression).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -523,7 +519,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/exercises_LogReg_NeuralNet_4_0.png" src="../../../_images/exercises_LogReg_NeuralNet_4_0.png" />
+<img alt="../../../_images/exercises_LogReg_NeuralNet_3_0.png" src="../../../_images/exercises_LogReg_NeuralNet_3_0.png" />
 </div>
 </div>
 <div class="section" id="exercise">
@@ -535,7 +531,7 @@
 </div>
 </div>
 <div class="section" id="a-simple-classification-problem">
-<h2><span class="section-number">31.3. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">31.2. </span>A simple classification problem<a class="headerlink" href="#a-simple-classification-problem" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> includes various random <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html#generated-datasets">sample generators</a> that can be used to build artificial datasets of controlled size and complexity.</p>
 <p>For example, <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_moons.html#sklearn.datasets.make_moons"><code class="docutils literal notranslate"><span class="pre">make_moons</span></code></a> generates two overlapping half cricles with optional Gaussian noise.</p>
 <div class="cell docutils container">
@@ -600,7 +596,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/exercises_LogReg_NeuralNet_12_0.png" src="../../../_images/exercises_LogReg_NeuralNet_12_0.png" />
+<img alt="../../../_images/exercises_LogReg_NeuralNet_11_0.png" src="../../../_images/exercises_LogReg_NeuralNet_11_0.png" />
 </div>
 </div>
 <div class="section" id="sub-task">

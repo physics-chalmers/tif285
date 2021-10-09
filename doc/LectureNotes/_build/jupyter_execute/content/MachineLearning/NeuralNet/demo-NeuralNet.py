@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # # Neural network classifier demonstration
-# 
-# Last revised: 10-Oct-2020 by Christian Forssén [christian.forssen@chalmers.se]
 
 # In[1]:
 

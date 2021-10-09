@@ -2,10 +2,6 @@
 # coding: utf-8
 
 # # Exercise: Logistic Regression and neural networks
-# 
-# Last revised: 16-Oct-2019 by Christian Forssén [christian.forssen@chalmers.se]
-
-# ### Import modules
 
 # In[1]:
 
@@ -47,7 +43,7 @@ ax.set_xlabel(r'activation $a$')
 ax.legend(loc='best');
 
 
-# #### Exercise
+# ### Exercise
 # * Add the tanh function. 
 # * Add the ReLU, leaky ReLU, and ELU activation functions (find the functional forms online)
 

@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -583,8 +588,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04d7e3fd-a071-4bfb-9d0a-2788e5bd60fa">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-04d7e3fd-a071-4bfb-9d0a-2788e5bd60fa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-78f81278-dadf-47ba-93b9-e5a89f50c75f">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-78f81278-dadf-47ba-93b9-e5a89f50c75f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -619,8 +624,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-59ab2d14-3469-481b-b702-3058f52bd07d">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-59ab2d14-3469-481b-b702-3058f52bd07d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9cc9f54-23cd-4a58-905e-e6d360bd5391">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-b9cc9f54-23cd-4a58-905e-e6d360bd5391" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>

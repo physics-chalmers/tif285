@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -408,13 +413,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#import-of-modules">
-   16.1. Import of modules
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parameter-estimation-fitting-a-straight-line">
-   16.2. Parameter estimation: fitting a straight line
+   16.1. Parameter estimation: fitting a straight line
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -436,7 +436,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-prior">
-   16.3. The Prior
+   16.2. The Prior
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -448,12 +448,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
-   16.4. Exercise
+   16.3. Exercise
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id2">
-   16.5. Exercise
+   16.4. Exercise
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -476,8 +476,6 @@
                 
   <div class="section" id="exercise-bayesian-parameter-estimation">
 <h1><span class="section-number">16. </span>Exercise: Bayesian parameter estimation<a class="headerlink" href="#exercise-bayesian-parameter-estimation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="import-of-modules">
-<h2><span class="section-number">16.1. </span>Import of modules<a class="headerlink" href="#import-of-modules" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -492,9 +490,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="parameter-estimation-fitting-a-straight-line">
-<h2><span class="section-number">16.2. </span>Parameter estimation: fitting a straight line<a class="headerlink" href="#parameter-estimation-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.1. </span>Parameter estimation: fitting a straight line<a class="headerlink" href="#parameter-estimation-fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
 <p>Adapted from BayesianAstronomy.
 <span class="math notranslate nohighlight">\(% Some LaTeX definitions we'll use.
 \newcommand{\pr}{\textrm{p}}
@@ -537,7 +534,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/exercise_BayesianParameterEstimation_5_0.png" src="../../../_images/exercise_BayesianParameterEstimation_5_0.png" />
+<img alt="../../../_images/exercise_BayesianParameterEstimation_4_0.png" src="../../../_images/exercise_BayesianParameterEstimation_4_0.png" />
 </div>
 </div>
 </div>
@@ -593,7 +590,7 @@ y_i \sim \mathcal{N}(y_M(x_i;\theta), \sigma)
 </div>
 </div>
 <div class="section" id="the-prior">
-<h2><span class="section-number">16.3. </span>The Prior<a class="headerlink" href="#the-prior" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.2. </span>The Prior<a class="headerlink" href="#the-prior" title="Permalink to this headline">¶</a></h2>
 <p>We have computed the likelihood, now we need to think about the prior <span class="math notranslate nohighlight">\(\pr(\theta\mid I)\)</span>.</p>
 <p>This is where Bayesianism gets a bit controversial… what can we actually say about the slope and intercept before we fit our data?</p>
 <p>There are several approaches to choosing priors that you’ll come across in practice (more on this later):</p>
@@ -644,7 +641,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 </div>
 </div>
 <div class="section" id="id1">
-<h2><span class="section-number">16.4. </span>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.3. </span>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p><em>Plot the posterior probability distribution for the slope and intercept, once for each prior. You might use <code class="docutils literal notranslate"><span class="pre">plt.contourf()</span></code> or <code class="docutils literal notranslate"><span class="pre">plt.pcolor()</span></code>. How different are the distributions?</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -656,7 +653,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 <p>You should find that the form of the prior in this case makes very little difference to the final posterior. In general, this often ends up being the case: for all the worrying about the effect of the prior, when you have enough data to constrain your model well, the prior has very little effect.</p>
 </div>
 <div class="section" id="id2">
-<h2><span class="section-number">16.5. </span>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">16.4. </span>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><em>Modify the dataset – how do the results change if you have very few data points or very large errors?</em></p></li>
 <li><p><em>If you finish this quickly, try adding 1-sigma and 2-sigma contours to your plot, keeping in mind that the probabilities are not normalized. You can add them to your plot with <code class="docutils literal notranslate"><span class="pre">plt.contour()</span></code>.</em></p></li>
@@ -670,7 +667,7 @@ The mode of a probability distribution is perhaps slightly informative, but it i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/exercise_BayesianParameterEstimation_23_0.png" src="../../../_images/exercise_BayesianParameterEstimation_23_0.png" />
+<img alt="../../../_images/exercise_BayesianParameterEstimation_22_0.png" src="../../../_images/exercise_BayesianParameterEstimation_22_0.png" />
 </div>
 </div>
 <div class="section" id="id3">

@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -595,8 +600,8 @@ signals, which must exceed an activation threshold to yield an
 output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.</p>
 <p>This behaviour has inspired a simple mathematical model for an artificial neuron.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41ae9cfe-e14e-4b88-8e60-c65e98cfc566">
-<span class="eqno">(29.1)<a class="headerlink" href="#equation-41ae9cfe-e14e-4b88-8e60-c65e98cfc566" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8dec3bb8-416a-425b-aab2-c0343cbb02de">
+<span class="eqno">(29.1)<a class="headerlink" href="#equation-8dec3bb8-416a-425b-aab2-c0343cbb02de" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
 \end{equation}\]</div>
@@ -757,8 +762,8 @@ fully-connected, which means that each neuron receives a weighted sum
 of the outputs of <em>all</em> neurons in the previous layer.</p>
 <!-- !split -->
 <p>First, for each node <span class="math notranslate nohighlight">\(j\)</span> in the first hidden layer, we calculate a weighted sum <span class="math notranslate nohighlight">\(z_j^1\)</span> of the input coordinates <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-31fd267c-7c61-404d-adf8-4966f9573c22">
-<span class="eqno">(29.2)<a class="headerlink" href="#equation-31fd267c-7c61-404d-adf8-4966f9573c22" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
+<div class="amsmath math notranslate nohighlight" id="equation-8acbaf5e-02cd-4746-a700-deffe4783b2f">
+<span class="eqno">(29.2)<a class="headerlink" href="#equation-8acbaf5e-02cd-4746-a700-deffe4783b2f" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(b_j^1\)</span> is the so-called bias which is normally needed in
 case of zero activation weights or inputs. How to fix the biases and
@@ -766,16 +771,16 @@ the weights will be discussed below.  The value of <span class="math notranslate
 argument to the activation function <span class="math notranslate nohighlight">\(f\)</span> of each node <span class="math notranslate nohighlight">\(j\)</span>, The
 variable <span class="math notranslate nohighlight">\(n\)</span> stands for all possible inputs to a given node <span class="math notranslate nohighlight">\(j\)</span> in the
 first layer.  We define  the output <span class="math notranslate nohighlight">\(y_j^1\)</span> of all neurons in layer 1 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0794a70f-9d51-4cda-bd52-6db6d7b3c78d">
-<span class="eqno">(29.3)<a class="headerlink" href="#equation-0794a70f-9d51-4cda-bd52-6db6d7b3c78d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cc987bd2-891b-4e77-8d7e-25e7159fb816">
+<span class="eqno">(29.3)<a class="headerlink" href="#equation-cc987bd2-891b-4e77-8d7e-25e7159fb816" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
 \end{equation}\]</div>
 <p>where we assume that all nodes in the same layer have identical
 activation functions, hence the notation <span class="math notranslate nohighlight">\(f\)</span>. In general, we could assume in the more general case that different layers have different activation functions.
 In this case we would identify these functions with a superscript <span class="math notranslate nohighlight">\(l\)</span> for the <span class="math notranslate nohighlight">\(l\)</span>-th layer,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d9d83f3-468c-497a-a9cc-3dd3fdb21c4e">
-<span class="eqno">(29.4)<a class="headerlink" href="#equation-3d9d83f3-468c-497a-a9cc-3dd3fdb21c4e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-284d2e85-a844-4436-82c0-ae397cf4cbd4">
+<span class="eqno">(29.4)<a class="headerlink" href="#equation-284d2e85-a844-4436-82c0-ae397cf4cbd4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}\]</div>
@@ -785,15 +790,15 @@ the subsequent layer can be calculated and so forth until the output
 is obtained.</p>
 <!-- !split -->
 <p>The output of neuron <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f79f0ffc-50af-400a-8fc1-82949746fb52">
-<span class="eqno">(29.5)<a class="headerlink" href="#equation-f79f0ffc-50af-400a-8fc1-82949746fb52" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-311732cf-aa4a-4116-b2c8-731616cdfc9d">
+<span class="eqno">(29.5)<a class="headerlink" href="#equation-311732cf-aa4a-4116-b2c8-731616cdfc9d" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^2 &amp;= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &amp;= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
 \end{align}\]</div>
 <p>where we have substituted <span class="math notranslate nohighlight">\(y_k^1\)</span> with the inputs <span class="math notranslate nohighlight">\(x_k\)</span>. Finally, the ANN output reads</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3164342c-64bc-485f-a251-4917cec877a3">
-<span class="eqno">(29.6)<a class="headerlink" href="#equation-3164342c-64bc-485f-a251-4917cec877a3" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-62cc99bd-28b3-42f7-8de7-5596782257c6">
+<span class="eqno">(29.6)<a class="headerlink" href="#equation-62cc99bd-28b3-42f7-8de7-5596782257c6" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
  &amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
   + b_1^3\right]
@@ -801,8 +806,8 @@ is obtained.</p>
 <!-- !split -->
 <p>We can generalize this expression to an MLP with <span class="math notranslate nohighlight">\(L\)</span> hidden
 layers. The complete functional form is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3d9c6f4-bc82-4afc-a5bf-aa2967316974">
-<span class="eqno">(29.7)<a class="headerlink" href="#equation-b3d9c6f4-bc82-4afc-a5bf-aa2967316974" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cf0e9433-4cf8-4ff8-9f4d-f30d923a343c">
+<span class="eqno">(29.7)<a class="headerlink" href="#equation-cf0e9433-4cf8-4ff8-9f4d-f30d923a343c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &amp;&amp;
  \label{completeNN}
 \end{align}\]</div>
@@ -816,8 +821,8 @@ mapping of real-valued vectors <span class="math notranslate nohighlight">\(\bol
 <p>Furthermore, the flexibility and universality of an MLP can be
 illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1debacc-2b53-4fd7-96ff-00adee8a035c">
-<span class="eqno">(29.8)<a class="headerlink" href="#equation-a1debacc-2b53-4fd7-96ff-00adee8a035c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e992868-e1a9-4c54-9b88-98b2fe6220cb">
+<span class="eqno">(29.8)<a class="headerlink" href="#equation-3e992868-e1a9-4c54-9b88-98b2fe6220cb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}\]</div>
 <p>where the parameters <span class="math notranslate nohighlight">\(c_i\)</span> are weights and biases. By adjusting these
@@ -835,8 +840,8 @@ is the bias <span class="math notranslate nohighlight">\(b_i^l\)</span> and acti
 <p>We have that <span class="math notranslate nohighlight">\(\boldsymbol{W}_l\)</span> is an <span class="math notranslate nohighlight">\(N_{l-1} \times N_l\)</span> matrix, while <span class="math notranslate nohighlight">\(\boldsymbol{b}_l\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}_l\)</span> are <span class="math notranslate nohighlight">\(N_l \times 1\)</span> column vectors.
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d9b1bec-ad5c-4254-abfc-eec971d7f375">
-<span class="eqno">(29.9)<a class="headerlink" href="#equation-7d9b1bec-ad5c-4254-abfc-eec971d7f375" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-80314a44-a4fa-418e-8acb-126eb9cda004">
+<span class="eqno">(29.9)<a class="headerlink" href="#equation-80314a44-a4fa-418e-8acb-126eb9cda004" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &amp;w^2_{12} &amp;w^2_{13} \\
@@ -859,8 +864,8 @@ the equation for the activations of hidden layer 2 (assuming three nodes for sim
 <div class="section" id="matrix-vector-notation-and-activation">
 <h3>Matrix-vector notation  and activation<a class="headerlink" href="#matrix-vector-notation-and-activation" title="Permalink to this headline">¶</a></h3>
 <p>The activation of node <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ebaf375-115c-4cc7-9426-462b371816af">
-<span class="eqno">(29.10)<a class="headerlink" href="#equation-7ebaf375-115c-4cc7-9426-462b371816af" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6fa361e5-e0ce-4601-a58f-efe53ccad2da">
+<span class="eqno">(29.10)<a class="headerlink" href="#equation-6fa361e5-e0ce-4601-a58f-efe53ccad2da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
 \end{equation}\]</div>
@@ -1030,18 +1035,18 @@ trouble in calculating</p>
 <!-- !split -->
 <p>We have now three equations that are essential for the computations of the derivatives of the cost function at the output layer. These equations are needed to start the algorithm and they are</p>
 <p><em>The starting equations.</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-23df3029-286a-49a9-9b05-e4a06294ec3b">
-<span class="eqno">(29.11)<a class="headerlink" href="#equation-23df3029-286a-49a9-9b05-e4a06294ec3b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7359903b-5e01-4fc9-9f81-4dc9b26b5e8e">
+<span class="eqno">(29.11)<a class="headerlink" href="#equation-7359903b-5e01-4fc9-9f81-4dc9b26b5e8e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1480a79b-7952-4ad4-b815-00e60824ce96">
-<span class="eqno">(29.12)<a class="headerlink" href="#equation-1480a79b-7952-4ad4-b815-00e60824ce96" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-394a30e0-6010-4616-b80d-e62b85b51f3d">
+<span class="eqno">(29.12)<a class="headerlink" href="#equation-394a30e0-6010-4616-b80d-e62b85b51f3d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f2ac46f-bb9a-4788-851b-897c93310b75">
-<span class="eqno">(29.13)<a class="headerlink" href="#equation-4f2ac46f-bb9a-4788-851b-897c93310b75" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f620565e-1c29-4c02-9653-a3c7dc84806c">
+<span class="eqno">(29.13)<a class="headerlink" href="#equation-f620565e-1c29-4c02-9653-a3c7dc84806c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
 \end{equation}\]</div>
 <p>An interesting consequence of the above equations is that when the

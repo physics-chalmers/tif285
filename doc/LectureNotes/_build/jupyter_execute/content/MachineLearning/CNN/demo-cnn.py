@@ -2,10 +2,8 @@
 # coding: utf-8
 
 # # Image recognition demonstration with Convolutional Neural Networks
-# 
-# Last revised: 20-Oct-2019 by Christian Forssén [christian.forssen@chalmers.se]
 
-# ##### Copyright 2019 The TensorFlow Authors.
+# **Copyright 2019 The TensorFlow Authors.**
 
 # In[1]:
 
@@ -51,7 +49,7 @@
 
 # ### Import TensorFlow
 
-# In[1]:
+# In[2]:
 
 
 from __future__ import absolute_import, division, print_function, unicode_literals
@@ -157,7 +155,7 @@ model.summary()
 
 # ### Compile and train the model
 
-# In[10]:
+# In[9]:
 
 
 model.compile(optimizer='adam',
@@ -170,7 +168,7 @@ history = model.fit(train_images, train_labels, epochs=5,
 
 # ### Evaluate the model
 
-# In[11]:
+# In[10]:
 
 
 plt.plot(history.history['accuracy'], label='accuracy')
@@ -183,7 +181,7 @@ plt.legend(loc='lower right')
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 
 
-# In[12]:
+# In[11]:
 
 
 print(test_acc)
@@ -194,7 +192,7 @@ print(test_acc)
 # ## Making predictions
 # from https://www.tensorflow.org/tutorials/keras/classification
 
-# In[16]:
+# In[12]:
 
 
 # Helper libraries
@@ -222,7 +220,7 @@ predictions[0]
 
 # A prediction is an array of 10 numbers. They represent the model's "confidence" that the image corresponds to each of the 10 different articles of clothing. You can see which label has the highest confidence value:
 
-# In[17]:
+# In[15]:
 
 
 np.argmax(predictions[0])
@@ -230,7 +228,7 @@ np.argmax(predictions[0])
 
 # So, the model is most confident that this image is an ankle boot, or `class_names[9]`. Examining the test label shows that this classification is correct:
 
-# In[18]:
+# In[16]:
 
 
 test_labels[0]
@@ -238,7 +236,7 @@ test_labels[0]
 
 # Graph this to look at the full set of 10 class predictions.
 
-# In[19]:
+# In[17]:
 
 
 def plot_image(i, predictions_array, true_label, img):
@@ -275,7 +273,7 @@ def plot_value_array(i, predictions_array, true_label):
 
 # Let's look at the 0th image, predictions, and prediction array. Correct prediction labels are blue and incorrect prediction labels are red. The number gives the percentage (out of 100) for the predicted label.
 
-# In[24]:
+# In[18]:
 
 
 i = 0
@@ -287,7 +285,7 @@ plot_value_array(i, predictions[i],  test_labels.reshape(-1))
 plt.show()
 
 
-# In[25]:
+# In[19]:
 
 
 i = 12
@@ -301,7 +299,7 @@ plt.show()
 
 # Let's plot several images with their predictions. Note that the model can be wrong even when very confident.
 
-# In[26]:
+# In[20]:
 
 
 # Plot the first X test images, their predicted labels, and the true labels.

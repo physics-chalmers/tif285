@@ -42,8 +42,6 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -250,7 +248,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -406,13 +409,8 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#copyright-2019-the-tensorflow-authors">
-   33.1. Copyright 2019 The TensorFlow Authors.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#convolutional-neural-network-cnn">
-   33.2. Convolutional Neural Network (CNN)
+   33.1. Convolutional Neural Network (CNN)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -454,12 +452,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#making-predictions">
-   33.3. Making predictions
+   33.2. Making predictions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#make-predictions">
-   33.4. Make predictions
+   33.3. Make predictions
   </a>
  </li>
 </ul>
@@ -475,9 +473,7 @@
                 
   <div class="section" id="image-recognition-demonstration-with-convolutional-neural-networks">
 <h1><span class="section-number">33. </span>Image recognition demonstration with Convolutional Neural Networks<a class="headerlink" href="#image-recognition-demonstration-with-convolutional-neural-networks" title="Permalink to this headline">¶</a></h1>
-<p>Last revised: 20-Oct-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
-<div class="section" id="copyright-2019-the-tensorflow-authors">
-<h2><span class="section-number">33.1. </span>Copyright 2019 The TensorFlow Authors.<a class="headerlink" href="#copyright-2019-the-tensorflow-authors" title="Permalink to this headline">¶</a></h2>
+<p><strong>Copyright 2019 The TensorFlow Authors.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -495,9 +491,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="convolutional-neural-network-cnn">
-<h2><span class="section-number">33.2. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.1. </span>Convolutional Neural Network (CNN)<a class="headerlink" href="#convolutional-neural-network-cnn" title="Permalink to this headline">¶</a></h2>
 <table class="tfo-notebook-buttons" align="left">
   <td>
     <a target="_blank" href="https://www.tensorflow.org/tutorials/images/cnn">
@@ -533,20 +528,6 @@
 
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">79</span><span class="n">c9fadb4712</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>   <span class="k">pass</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> 
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;tensorflow&#39;
 </pre></div>
 </div>
 </div>
@@ -605,6 +586,12 @@
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-09 09:39:33.595262: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 </pre></div>
 </div>
 </div>
@@ -705,17 +692,19 @@ _________________________________________________________________
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train on 50000 samples, validate on 10000 samples
-Epoch 1/5
-50000/50000 [==============================] - 71s 1ms/sample - loss: 0.7506 - accuracy: 0.7376 - val_loss: 0.9007 - val_accuracy: 0.6905
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-10-09 09:39:34.860375: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:176] None of the MLIR Optimization Passes are enabled (registered 2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/5
+1563/1563 [==============================] - 37s 23ms/step - loss: 1.5132 - accuracy: 0.4460 - val_loss: 1.2684 - val_accuracy: 0.5484
 Epoch 2/5
-50000/50000 [==============================] - 80s 2ms/sample - loss: 0.7068 - accuracy: 0.7528 - val_loss: 0.8791 - val_accuracy: 0.6998
+1563/1563 [==============================] - 30s 19ms/step - loss: 1.1424 - accuracy: 0.5980 - val_loss: 1.1146 - val_accuracy: 0.6045
 Epoch 3/5
-50000/50000 [==============================] - 74s 1ms/sample - loss: 0.6664 - accuracy: 0.7675 - val_loss: 0.8525 - val_accuracy: 0.7093
+1563/1563 [==============================] - 29s 19ms/step - loss: 0.9930 - accuracy: 0.6530 - val_loss: 0.9650 - val_accuracy: 0.6653
 Epoch 4/5
-50000/50000 [==============================] - 59s 1ms/sample - loss: 0.6230 - accuracy: 0.7814 - val_loss: 0.9023 - val_accuracy: 0.7008
+1563/1563 [==============================] - 31s 20ms/step - loss: 0.8954 - accuracy: 0.6858 - val_loss: 0.9756 - val_accuracy: 0.6576
 Epoch 5/5
-50000/50000 [==============================] - 60s 1ms/sample - loss: 0.5915 - accuracy: 0.7912 - val_loss: 0.8767 - val_accuracy: 0.7001
+1563/1563 [==============================] - 33s 21ms/step - loss: 0.8188 - accuracy: 0.7130 - val_loss: 0.8548 - val_accuracy: 0.7025
 </pre></div>
 </div>
 </div>
@@ -737,7 +726,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000/1 - 3s - loss: 0.7809 - accuracy: 0.7001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>313/313 - 2s - loss: 0.8548 - accuracy: 0.7025
 </pre></div>
 </div>
 <img alt="../../../_images/demo-cnn_26_1.png" src="../../../_images/demo-cnn_26_1.png" />
@@ -750,7 +739,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7001
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7024999856948853
 </pre></div>
 </div>
 </div>
@@ -759,7 +748,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="making-predictions">
-<h2><span class="section-number">33.3. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.2. </span>Making predictions<a class="headerlink" href="#making-predictions" title="Permalink to this headline">¶</a></h2>
 <p>from https://www.tensorflow.org/tutorials/keras/classification</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -772,7 +761,7 @@ Epoch 5/5
 </div>
 </div>
 <div class="section" id="make-predictions">
-<h2><span class="section-number">33.4. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">33.3. </span>Make predictions<a class="headerlink" href="#make-predictions" title="Permalink to this headline">¶</a></h2>
 <p>With the model trained, you can use it to make predictions about some images.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -789,9 +778,9 @@ Epoch 5/5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.5361874e-05, 3.3945053e-06, 2.4135884e-04, 9.7084451e-01,
-       5.4398575e-04, 2.7594345e-02, 3.2636296e-04, 2.2021560e-04,
-       1.8840440e-04, 2.0753182e-06], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.7154896e-03, 2.6618538e-03, 7.2713662e-03, 6.6110706e-01,
+       2.9156616e-04, 1.6294569e-01, 7.0837662e-02, 1.9914852e-04,
+       8.6583160e-02, 5.3869672e-03], dtype=float32)
 </pre></div>
 </div>
 </div>

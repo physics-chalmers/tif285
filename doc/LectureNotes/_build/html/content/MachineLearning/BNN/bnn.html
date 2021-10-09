@@ -252,7 +252,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../GP/exercise_GP.html">
-   27. Exercise: Gaussian processes
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
   </a>
  </li>
  <li class="toctree-l1">
@@ -471,8 +476,8 @@
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I\)</span> are the weights of the neuron and we have included a bias (<span class="math notranslate nohighlight">\(b \equiv w_0\)</span>).</p>
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-907815d6-be86-442f-8285-0904dac6cf9f">
-<span class="eqno">(34.1)<a class="headerlink" href="#equation-907815d6-be86-442f-8285-0904dac6cf9f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-341edb75-9d7c-4612-879f-6604e1ab2223">
+<span class="eqno">(34.1)<a class="headerlink" href="#equation-341edb75-9d7c-4612-879f-6604e1ab2223" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
 \end{align}\]</div>
@@ -600,8 +605,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 + \log \, p(\mathcal{D}).
 \end{align*}\]</div>
 <p>Note that the logarithm of the last term has no dependence on <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> and the integration of <span class="math notranslate nohighlight">\(q\)</span> will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the <strong>Evidence Lower Bound</strong> (ELBO)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b272297f-21b5-427b-8ba5-0ebbf2512500">
-<span class="eqno">(34.2)<a class="headerlink" href="#equation-b272297f-21b5-427b-8ba5-0ebbf2512500" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f03e33e4-708f-47ed-8445-7e6c94b436d6">
+<span class="eqno">(34.2)<a class="headerlink" href="#equation-f03e33e4-708f-47ed-8445-7e6c94b436d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \log \, p(\mathcal{D}) \ge 
 - \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
@@ -635,8 +640,8 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 <h3>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h3>
 <p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
 <p>All three terms in equation (<a class="reference external" href="#eq:elbo">eq:elbo</a>) are expectations w.r.t. the variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>. In this paper they use the variational free energy <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> as a cost function (since it should be <em>minimized</em>). This quantity can be approximated by drawing <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> samples <span class="math notranslate nohighlight">\(\boldsymbol{w}^{(i)}\)</span> from <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-342b7a8f-ac2f-437d-9f3f-85fb93ad744a">
-<span class="eqno">(34.3)<a class="headerlink" href="#equation-342b7a8f-ac2f-437d-9f3f-85fb93ad744a" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-dbb12e6d-173b-4a0b-8952-890b76322350">
+<span class="eqno">(34.3)<a class="headerlink" href="#equation-dbb12e6d-173b-4a0b-8952-890b76322350" title="Permalink to this equation">¶</a></span>\[\begin{equation} 
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
 \log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
 \log \, p(\boldsymbol{w}^{(i)}) -

@@ -3,8 +3,6 @@
 
 # # Exercise: Bayesian parameter estimation
 
-# ### Import of modules
-
 # In[1]:
 
 

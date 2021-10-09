@@ -42,6 +42,8 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -858,7 +860,7 @@ k(\mathbf{x}, \mathbf{x}^\prime) = k_1(\mathbf{x}, \mathbf{x}^\prime) k_2(\mathb
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 13.499541372272377
+Objective : 13.472358120897074
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
@@ -908,9 +910,9 @@ with variance 1. We can see the posterior mean prediction and visualize the marg
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  X   mean Y   var Y   lo95%   hi95%
- 0.00  -0.29    1.20   -2.44    1.86
- 0.50  -0.00    1.10   -2.06    2.05
- 1.00   0.28    1.20   -1.87    2.43
+ 0.00  -0.34    1.20   -2.49    1.81
+ 0.50  -0.03    1.10   -2.09    2.02
+ 1.00   0.27    1.20   -1.88    2.42
  1.50   0.39    1.48   -1.99    2.77
 </pre></div>
 </div>
@@ -983,15 +985,15 @@ matrix <code class="docutils literal notranslate"><span class="pre">mu</span></c
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name : GP regression
-Objective : 6.420401275366609
+Objective : 8.778117733552062
 Number of Parameters : 3
 Number of Optimization Parameters : 3
 Updates : True
 Parameters:
-  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                   value  |  constraints  |  priors
-  <span class=" -Color -Color-Bold">rbf.variance           </span>  |      0.9122895507039205  |      +ve      |        
-  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |     0.13817121034560775  |      +ve      |        
-  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  2.7141508334076167e-10  |      +ve      |        
+  <span class=" -Color -Color-Bold">GP_regression.         </span>  |                value  |  constraints  |  priors
+  <span class=" -Color -Color-Bold">rbf.variance           </span>  |   0.8265210496983392  |      +ve      |        
+  <span class=" -Color -Color-Bold">rbf.lengthscale        </span>  |  0.12636577414897168  |      +ve      |        
+  <span class=" -Color -Color-Bold">Gaussian_noise.variance</span>  |  0.01847185990417295  |      +ve      |        
 </pre></div>
 </div>
 <img alt="../../../_images/exercise_GP_77_1.png" src="../../../_images/exercise_GP_77_1.png" />

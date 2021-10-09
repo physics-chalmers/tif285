@@ -1,5 +1,5 @@
 <!-- !split -->
-## Neural networks
+# Neural networks
 
 Artificial neural networks are computational systems that can learn to
 perform tasks by considering examples, generally without being
@@ -9,7 +9,7 @@ form of mathematical functions between layers. All layers can contain
 an arbitrary number of neurons, and each connection is represented by
 a weight variable.
 
-### Terminology
+## Terminology
 
 Each time we describe a neural network algorithm we will typically specify three things. 
 
@@ -26,7 +26,7 @@ Each time we describe a neural network algorithm we will typically specify three
   ```
 
 <!-- !split -->
-### Artificial neurons
+## Artificial neurons
 
 The field of artificial neural networks has a long history of
 development, and is closely connected with the advancement of computer
@@ -76,7 +76,7 @@ plethora of applications in essentially all disciplines, from the
 humanities to life science and medicine.
 
 <!-- !split -->
-### Neural network types
+## Neural network types
 
 An artificial neural network (ANN), is a computational model that
 consists of layers of connected neurons, or nodes or units.  We will
@@ -99,7 +99,7 @@ methods we discussed earlier.
 
 
 <!-- !split -->
-#### Feed-forward neural networks
+### Feed-forward neural networks
 
 The feed-forward neural network (FFNN) was the first and simplest type
 of ANNs that were devised. In this network, the information moves in
@@ -115,7 +115,7 @@ to *all* nodes in the subsequent layer, making this a so-called
 
 
 <!-- !split -->
-#### Convolutional Neural Network
+### Convolutional Neural Network
 
 A different variant of FFNNs are *convolutional neural networks*
 (CNNs), which have a connectivity pattern inspired by the animal
@@ -137,7 +137,7 @@ produces the outputs. They have wide applications in image and video
 recognition.
 
 <!-- !split -->
-#### Recurrent neural networks
+### Recurrent neural networks
 
 So far we have only mentioned ANNs where information flows in one
 direction: forward. *Recurrent neural networks* on the other hand,
@@ -151,7 +151,7 @@ example of such information is sentences, making recurrent NNs
 especially well-suited for handwriting and speech recognition.
 
 <!-- !split -->
-#### Other types of networks
+### Other types of networks
 
 There are many other kinds of ANNs that have been developed. One type
 that is specifically designed for interpolation in multidimensional
@@ -165,7 +165,7 @@ fully-connected FFNN. They are however usually treated as a separate
 type of NN due the unusual activation functions.
 
 <!-- !split -->
-### Multilayer perceptrons
+## Multilayer perceptrons
 
 The *multilayer perceptron* (MLP) is a very popular, and easy to implement approach, to deep learning. It consists of
 1. a neural network with one or more layers of nodes between the input and the output nodes.
@@ -184,7 +184,7 @@ so-called activation $\boldsymbol{z}$, we can think of this as a basis
 expansion of the original inputs $\boldsymbol{x}$. 
 
 <!-- !split -->
-#### Why multilayer perceptrons?
+### Why multilayer perceptrons?
 
 According to the [universal approximation
 theorem](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&rep=rep1&type=pdf), a feed-forward
@@ -204,7 +204,7 @@ as to not restrict the range of output values.
 
 
 <!-- !split -->
-#### Mathematical model
+### Mathematical model
 
 The output $y$ is produced via the activation function $f$
 
@@ -310,7 +310,7 @@ left and right, change slope or be rescaled which is the key to the
 flexibility of a neural network.
 
 <!-- !split -->
-#### Matrix-vector notation
+### Matrix-vector notation
 
 We can introduce a more convenient notation for the activations in an ANN. 
 
@@ -343,7 +343,7 @@ the equation for the activations of hidden layer 2 (assuming three nodes for sim
 
 
 <!-- !split -->
-#### Matrix-vector notation  and activation
+### Matrix-vector notation  and activation
 
 The activation of node $i$ in layer 2 is
 
@@ -362,7 +362,7 @@ $\mathrm{W}_l \boldsymbol{y}_{l-1}$ we move forward one layer.
 
 
 <!-- !split -->
-#### Activation functions
+### Activation functions
 
 A property that characterizes a neural network, other than its
 connectivity, is the choice of activation function(s).  The following restrictions are imposed on an activation function for a FFNN to fulfill the universal approximation theorem
@@ -420,7 +420,7 @@ $$
 
 
 <!-- !split -->
-#### Relevance
+### Relevance
 
 The *sigmoid* function are more biologically plausible because the
 output of inactive neurons are zero. Such activation function are
@@ -430,7 +430,7 @@ become the most popular for *deep neural networks*
 
 
 <!-- !split -->
-### Deriving the back propagation code for a multilayer perceptron model
+## Deriving the back propagation code for a multilayer perceptron model
 
 Note: figures will be inserted later!
 
@@ -456,7 +456,7 @@ reproduce), while the outputs of the network after having propagated
 all inputs $\boldsymbol{x}$ are given by $y_i$.  Other cost functions can also be considered.
 
 <!-- !split -->
-#### Definitions
+### Definitions
 
 With our definition of the targets $\boldsymbol{t}$, the outputs of the
 network $\boldsymbol{y}$ and the inputs $\boldsymbol{x}$ we
@@ -497,7 +497,7 @@ $$
 
 
 <!-- !split -->
-#### Derivatives and the chain rule
+### Derivatives and the chain rule
 
 From the definition of the activation $z_j^l$ we have
 
@@ -525,7 +525,7 @@ $$
 
 
 <!-- !split -->
-#### Derivative of the cost function
+### Derivative of the cost function
 
 With these definitions we can now compute the derivative of the cost function in terms of the weights.
 
@@ -556,7 +556,7 @@ $$
 
 
 <!-- !split -->
-#### Bringing it together, first back propagation equation
+### Bringing it together, first back propagation equation
 
 We have thus
 
@@ -613,7 +613,7 @@ $$
 $$
 
 <!-- !split -->
-#### Derivatives in terms of $z_j^L$
+### Derivatives in terms of $z_j^L$
 
 It is also easy to see that our previous equation can be written as
 
@@ -682,7 +682,7 @@ to do so we need to represent the error in the layer before the final
 one $L-1$ in terms of the errors in the final output layer.
 
 <!-- !split -->
-#### Final back-propagating equation
+### Final back-propagating equation
 
 We have that (replacing $L$ with a general layer $l$)
 
@@ -721,7 +721,7 @@ This is our final equation.
 We are now ready to set up the algorithm for back propagation and learning the weights and biases.
 
 <!-- !split -->
-### Setting up the back-propagation algorithm
+## Setting up the back-propagation algorithm
 
 
 
@@ -767,7 +767,7 @@ Here it is convenient to use stochastic gradient descent with mini-batches and a
 
 
 <!-- !split  -->
-### Learning challenges
+## Learning challenges
 
 The back-propagation algorithm works by going from
 the output layer to the input layer, propagating the error gradient. The learning algorithm uses these
@@ -785,7 +785,7 @@ bigger. The result is that many of the layers get large updates of the
 weights and the learning algorithm diverges. This is the **exploding gradients problem**, which is mostly encountered in recurrent neural networks. More generally, deep neural networks suffer from unstable gradients, different layers may learn at widely different speeds
 
 <!-- !split  -->
-#### Is the Logistic activation function (Sigmoid) our choice?
+### Is the Logistic activation function (Sigmoid) our choice?
 
 Although this unfortunate behavior has been empirically observed for
 quite a while (it was one of the reasons why deep neural networks were
@@ -810,7 +810,7 @@ better than the logistic function in deep networks).
 
 
 <!-- !split -->
-#### The derivative of the Logistic funtion
+### The derivative of the Logistic funtion
 
 Looking at the logistic activation function, when inputs become large
 (negative or positive), the function saturates at 0 or 1, with a
@@ -844,7 +844,7 @@ fast to compute).
 
 
 <!-- !split -->
-#### The RELU function family
+### The RELU function family
 
 The Rectifier Linear Unit (ReLU) uses the following activation function
 
@@ -876,7 +876,7 @@ ELU(z) = \left\{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) & z < 0,\\  z 
 $$
 
 <!-- !split -->
-#### Which activation function should we use?
+### Which activation function should we use?
 
 In general it seems that the ELU activation function is better than
 the leaky ReLU function (and its variants), which is better than
@@ -893,7 +893,7 @@ bootstrap to evaluate other activation functions.
 
 
 <!-- !split  -->
-### A top-down perspective on Neural networks
+## A top-down perspective on Neural networks
 
 The first thing we would like to do is divide the data into two or three
 parts. A training set, a validation or dev (development) set, and a
@@ -924,7 +924,7 @@ can serve as another important diagnostic when using DNNs for
 supervised learning.
 
 <!-- !split -->
-### Limitations of supervised learning with deep networks
+## Limitations of supervised learning with deep networks
 
 Like all statistical methods, supervised learning using neural
 networks has important limitations. This is especially important when

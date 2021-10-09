@@ -58,7 +58,7 @@ A Gaussian process is a stochastic process (a collection of random variables ind
 
 
 <!-- !split -->
-#### References:
+### References:
 
 1. [Gaussian Processes for Machine Learning](http://www.gaussianprocess.org/gpml), Carl Edward Rasmussen and Chris Williams, the MIT Press, 2006, [online version](http://www.gaussianprocess.org/gpml/chapters).
 2. [GPy](https://sheffieldml.github.io/GPy/): a Gaussian Process (GP) framework written in python, from the Sheffield machine learning group.
@@ -302,7 +302,7 @@ $$
 The prediction of the (Gaussian) pdf for $t^{(N+1)}$ requires an inversion of the covariance matrix $\boldsymbol{C}_{N+1}$.
 ```
 
-#### Elegant linear algebra tricks to obtain $\boldsymbol{C}_{N+1}^{-1}$
+### Elegant linear algebra tricks to obtain $\boldsymbol{C}_{N+1}^{-1}$
 
 Let us split the $\boldsymbol{C}_{N+1}$ covariance matrix into four different blocks
 
@@ -413,7 +413,7 @@ where the $M \times 1$ mean vector and $M \times M$ covariance matrix are
 ```
 
 
-#### Optimizing the GP model hyperparameters
+### Optimizing the GP model hyperparameters
 
 Predictions can be made once we have
 1. Chosen an appropriate covariance function.

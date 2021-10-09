@@ -36,14 +36,14 @@
 # 
 # We can use the Jupyter notebook as a super calculator much like Mathematica and Matlab.  **Try some basic operations, modifying and evaluating the following cells, noting that exponentiation is with** `**` **and not** `^`.
 
-# In[ ]:
+# In[1]:
 
 
 1 + 1  # Everything after a number sign / pound sign / hashtag) 
        #  is a comment
 
 
-# In[ ]:
+# In[2]:
 
 
 3.2 * 4.713
@@ -51,7 +51,7 @@
 
 # Note that if we want a floating point number (which will be the same as a `double` in C++), we *always* include a decimal point (even when we don't have to) while a number without a decimal point is an integer.
 
-# In[ ]:
+# In[3]:
 
 
 3.**2
@@ -59,24 +59,18 @@
 
 # We can define integer, floating point, and string variables, perform operations on them, and print them.  Note that we don't have to predefine the type of a variable and we can use underscores in the names (unlike Mathematica).  **Evaluate the following cells and then try your own versions.** 
 
-# In[7]:
+# In[4]:
 
 
 x = 5.
 print(x)
 x   # If the last line of a cell returns a value, it is printed.
 
-
-# In[8]:
-
-
 y = 3.*x**2 - 2.*x + 7.
 print('y = ', y)           # Strings delimited by ' 's
-
-
 # There are several ways to print strings that includes variables from your code. We recommend using the relatively newly added `fstring`. See, e.g., this [blog](https://cito.github.io/blog/f-strings/) for examples. 
 
-# In[9]:
+# In[5]:
 
 
 print(f'y = {y:.0f}')      # Just a preview: more on format later 
@@ -85,7 +79,7 @@ print(f'y = {y:.2f}')      #  (note that this uses the "new" fstring)
 
 # The `fstring` will be used predominantly in this course, but you might also encounter older formatting syntax.
 
-# In[15]:
+# In[ ]:
 
 
 print('x = %.2f  y = %.2f' %(x,y)) 
@@ -93,7 +87,7 @@ print('x = {0:.2f}  y = {1:.2f}'.format(x, y))
 print(f'x = {x:.2f}  y = {y:.2f}')
 
 
-# In[16]:
+# In[ ]:
 
 
 first_name = 'Christian'     # Strings delimited by ' 's
@@ -106,7 +100,7 @@ print(f'{first_name} {last_name}')
 
 # Ok, how about square roots and trigonometric functions and ... 
 # 
-# *(Note: the next cells will give error messages --- keep reading to see how to fix them.)*
+# *(Note: the next two cells will give error messages --- keep reading to see how to fix them.)*
 
 # In[ ]:
 
@@ -138,7 +132,9 @@ print(np.cos(0.))
 
 # ### Debugging aside . . .
 # 
-# Suppose you try to import and it fails (**go ahead and evaluate the cell**):
+# Suppose you try to import and it fails 
+# 
+# *go ahead and evaluate the cell*:
 
 # In[ ]:
 
@@ -154,7 +150,7 @@ import numpie
 # 
 # We will often use numpy arrays so we'll start with those.  They are *like* lists delimited by square brackets, i.e., `[]`s, and we will construct them with `np.arange(min, max, step)` to get an array from `min` to `max` in steps of `step`. Examples:
 
-# In[ ]:
+# In[6]:
 
 
 t_pts = np.arange(0., 10., .1)
@@ -240,7 +236,7 @@ add(2)
 # 
 # There are two bugs in the following function.  **Note the line where an error is first reported and fix the bugs sequentially (so you see the different error messages).**
 
-# In[ ]:
+# In[8]:
 
 
 def hello_function()
@@ -268,7 +264,7 @@ import matplotlib.pyplot as plt
 # 2. add one or more subplots;
 # 3. make a plot and display it.
 
-# In[ ]:
+# In[9]:
 
 
 t_pts = np.arange(0., 10., .1)     # step 0.
@@ -303,7 +299,7 @@ my_ax.legend();  # turn on legend
 
 # Now make two subplots:
 
-# In[ ]:
+# In[10]:
 
 
 y_pts = np.exp(t_pts)         # another function for a separate plot
@@ -345,7 +341,7 @@ fig.savefig("sine_and_exp_transparent.png", transparent=True)
 # 
 # The set of widgets we'll use here (there are others!) is from `ipywidgets`; we'll conventionally import the module as `import ipywidgets as widgets` and we'll also often use `display` from `Ipython.display`.
 
-# In[ ]:
+# In[11]:
 
 
 import numpy as np
@@ -359,7 +355,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 # The simplest form is to use `interact`, which we pass a function name and the variables with ranges.  By default this makes a *slider*, which takes on integer or floating point values depending on whether you put decimal points in the range. **Try it! Then modify the function and try again.**
 
-# In[ ]:
+# In[12]:
 
 
 # We can do this to any function
@@ -371,7 +367,7 @@ def test_f(x=5.):
 widgets.interact(test_f, x=(0.,10.));
 
 
-# In[ ]:
+# In[13]:
 
 
 # Explicit declaration of the widget (here FloatSlider) and details
@@ -386,7 +382,7 @@ widgets.interact(test_f,
 
 # Here's an example with some bells and whistles for a plot.  **Try making changes!**
 
-# In[ ]:
+# In[14]:
 
 
 def plot_it(freq=1., color='blue', lw=2, grid=True, xlabel='x', 
@@ -419,7 +415,7 @@ widgets.interact(plot_it,
 # 
 # Having used numpy arrrays to describe vectors, we are now ready to try out matrices. We can define a $3 \times 3 $ real matrix $\hat{A}$ as
 
-# In[1]:
+# In[15]:
 
 
 import numpy as np
@@ -429,7 +425,7 @@ print(A)
 
 # If we use the `shape` attribute we would get $(3, 3)$ as output, that is verifying that our matrix is a $3\times 3$ matrix. 
 
-# In[5]:
+# In[16]:
 
 
 A.shape
@@ -437,7 +433,7 @@ A.shape
 
 # We can slice the matrix and print for example the first column (Python organized matrix elements in a row-major order, see below) as
 
-# In[ ]:
+# In[17]:
 
 
 A = np.log(np.array([ [4.0, 7.0, 8.0], [3.0, 10.0, 11.0], [4.0, 5.0, 7.0] ]))
@@ -447,7 +443,7 @@ print(A[:,0])
 
 # We can continue this was by printing out other columns or rows. The example here prints out the second column
 
-# In[ ]:
+# In[18]:
 
 
 A = np.log(np.array([ [4.0, 7.0, 8.0], [3.0, 10.0, 11.0], [4.0, 5.0, 7.0] ]))
@@ -457,7 +453,7 @@ print(A[1,:])
 
 # Numpy contains many other functionalities that allow us to slice, subdivide etc etc arrays. We strongly recommend that you look up the [Numpy website for more details](http://www.numpy.org/). Useful functions when defining a matrix are the `np.zeros` function which declares a matrix of a given dimension and sets all elements to zero
 
-# In[ ]:
+# In[19]:
 
 
 n = 5
@@ -466,7 +462,7 @@ A = np.zeros( (n, n) )
 print(A)
 
 
-# In[ ]:
+# In[20]:
 
 
 n = 5
@@ -477,7 +473,7 @@ print(A)
 
 # or as uniformly distributed random numbers on $[0,1]$
 
-# In[ ]:
+# In[21]:
 
 
 n = 4
@@ -488,7 +484,7 @@ print(A)
 
 # The transpose of this matrix
 
-# In[ ]:
+# In[22]:
 
 
 A.T
@@ -496,7 +492,7 @@ A.T
 
 # The dot product of two matrices can be computed with the `numpy.dot` function. Note that it is not the same as the arithmetic $*$ operation that performs elementwise multiplication
 
-# In[ ]:
+# In[23]:
 
 
 print(r'The dot product:')
@@ -508,7 +504,7 @@ print(A*A)
 
 # The inverse of this matrix can be computed using the `numpy.linalg` module
 
-# In[ ]:
+# In[24]:
 
 
 Ainv = np.linalg.inv(A)
@@ -517,7 +513,7 @@ print(Ainv)
 
 # The dot product of a matrix by its inverse returns the identity matrix (with small floating point errors). Verify that this is true:
 
-# In[ ]:
+# In[25]:
 
 
 np.dot(A,Ainv)
@@ -525,7 +521,7 @@ np.dot(A,Ainv)
 
 # The eigenvalues and eigenvectors of a matrix can be computed with the `eig` function
 
-# In[ ]:
+# In[26]:
 
 
 eigenvalues, eigenvectors = np.linalg.eig(A)
