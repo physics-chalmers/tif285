@@ -252,11 +252,11 @@ The most common types of covariance functions are stationary, or translationally
 
 $$
 
-C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left( \left| \boldsymbol{x} - \boldsymbol{x}' \right|; \boldsymbol{\alpha} \right),
+C \left( \boldsymbol{x}, \boldsymbol{x}', \boldsymbol{\alpha} \right) = D \left(  \boldsymbol{x} - \boldsymbol{x}' ; \boldsymbol{\alpha} \right),
 
 $$
 
-where the function $D$ is often referred to as a *kernel*.
+where the function $D$ is often referred to as a *kernel*. Note that the $(\boldsymbol{x} - \boldsymbol{x}')$-dependence must be such that the kernel is symmetric.
 
 A very standard kernel is the RBF (also known as Exponentiated Quadratic or Gaussian kernel) which is differentiable infinitely many times (hence, very smooth),
 
