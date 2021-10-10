@@ -42,8 +42,6 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -583,8 +581,8 @@ fit a linear model to the default case if <span class="math notranslate nohighli
 default case <span class="math notranslate nohighlight">\(y^{(i)} \leq 0.5\)</span>.</p>
 <p>We would then have our
 weighted linear combination, namely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5abb59b3-2789-4348-86b4-82d43b64b81d">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-5abb59b3-2789-4348-86b4-82d43b64b81d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-89b85da6-ac0a-4154-b170-dc177a7dde11">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-89b85da6-ac0a-4154-b170-dc177a7dde11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> is a vector representing the possible outcomes, <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> is our
@@ -618,11 +616,11 @@ is the most common example of such a soft classifier. In logistic
 regression, the probability that a data point <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(i)}\)</span>
 belongs to a category <span class="math notranslate nohighlight">\(t^{(i)} \in \{0,1\}\)</span> is given by the so-called <em>logit</em> function (an example of a S-shape or <em>Sigmoid</em> function) which is meant to represent the likelihood for a given event,</p>
 <div class="math notranslate nohighlight">
-\[y(\boldsymbol{x}; \boldsymbol{w}) = y(a) = \frac{1}{1+e^{-a}} = \frac{e^a}{1+e^a},\]</div>
-<p>where the so called <em>activation</em> <span class="math notranslate nohighlight">\(a = a(\boldsymbol{x}; \boldsymbol{w})\)</span>.</p>
+\[y(\boldsymbol{x}; \boldsymbol{w}) = y(z) = \frac{1}{1+e^{-z}} = \frac{e^z}{1+e^z},\]</div>
+<p>where the so called <em>activation</em> <span class="math notranslate nohighlight">\(z = z(\boldsymbol{x}; \boldsymbol{w})\)</span>.</p>
 <ul class="simple">
-<li><p>Most frequently one uses <span class="math notranslate nohighlight">\(a = a(\boldsymbol{x}, \boldsymbol{w}) \equiv \boldsymbol{x} \cdot \boldsymbol{w}\)</span>.</p></li>
-<li><p>Note that <span class="math notranslate nohighlight">\(1-y(a)= y(-a)\)</span>.</p></li>
+<li><p>Most frequently one uses <span class="math notranslate nohighlight">\(z = z(\boldsymbol{x}, \boldsymbol{w}) \equiv \boldsymbol{x} \cdot \boldsymbol{w}\)</span>.</p></li>
+<li><p>Note that <span class="math notranslate nohighlight">\(1-y(z)= y(-z)\)</span>.</p></li>
 <li><p>The sigmoid function can be motivated in several different ways. E.g. in information theory this function represents the probability of a signal <span class="math notranslate nohighlight">\(s=1\)</span> rather than <span class="math notranslate nohighlight">\(s=0\)</span> when transmission occurs over a noisy channel.</p></li>
 </ul>
 <!-- !split -->
@@ -638,7 +636,7 @@ belongs to a category <span class="math notranslate nohighlight">\(t^{(i)} \in \
 <p>We assume now that we have two classes with <span class="math notranslate nohighlight">\(t^{(i)}\)</span> being either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>. Furthermore we assume also that we have only two parameters <span class="math notranslate nohighlight">\(w_0, w_1\)</span> and the predictors <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(i)} = \{ 1, x^{(i)} \}\)</span> defining the Sigmoid function. I.e., there is a single independent (input) variable <span class="math notranslate nohighlight">\(x\)</span>. We can produce probabilities from the classifier output <span class="math notranslate nohighlight">\(y^{(i)}\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &amp;= y(a^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
+p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &amp;= y(z^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
 p(t^{(i)}=0|x^{(i)},\boldsymbol{w}) &amp;= 1 - p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x^{(i)})}},
 \end{align*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = ( w_0, w_1)\)</span> are the weights we wish to extract from training data.</p>
@@ -652,8 +650,7 @@ p(t^{(i)}=0|x^{(i)},\boldsymbol{w}) &amp;= 1 - p(t^{(i)}=1|x^{(i)},\boldsymbol{w
 <!-- !split  -->
 <div class="section" id="maximum-likelihood">
 <h4>Maximum likelihood<a class="headerlink" href="#maximum-likelihood" title="Permalink to this headline">¶</a></h4>
-<p>In order to define the total likelihood for all possible outcomes from a<br />
-dataset <span class="math notranslate nohighlight">\(\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}\)</span>, with the binary labels
+<p>In order to define the total likelihood for all possible outcomes from a dataset <span class="math notranslate nohighlight">\(\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}\)</span>, with the binary labels
 <span class="math notranslate nohighlight">\(t^{(i)}\in\{0,1\}\)</span> and where the data points are drawn independently, we use the binary version of the <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Maximum Likelihood Estimation</a> (MLE) principle.
 We express the
 likelihood in terms of the product of the individual probabilities of a specific outcome <span class="math notranslate nohighlight">\(t^{(i)}\)</span>, that is</p>
@@ -751,17 +748,19 @@ Having access to the first derivative we can define an <em>on-line learning rule
 <h2><span class="section-number">28.4. </span>Including more classes<a class="headerlink" href="#including-more-classes" title="Permalink to this headline">¶</a></h2>
 <p>Until now we have mainly focused on two classes, the so-called binary
 system. Suppose we wish to extend to <span class="math notranslate nohighlight">\(K\)</span> classes.  We will then need to have <span class="math notranslate nohighlight">\(K-1\)</span> outputs <span class="math notranslate nohighlight">\(\boldsymbol{y}^{(i)} = \{ y_1^{(i)}, y_2^{(i)}, \ldots, y_{K-1}^{(i)} \}\)</span>.</p>
-<p><em>Question.</em>
-Why do we need only <span class="math notranslate nohighlight">\(K-1\)</span> outputs if there are <span class="math notranslate nohighlight">\(K\)</span> classes?</p>
-<p>Let us for the sake of simplicity assume we have only one independent (inout) variable. The activation functions for the outputs are (suppressing the index <span class="math notranslate nohighlight">\(i\)</span>)</p>
+<div class="admonition-question admonition">
+<p class="admonition-title">Question</p>
+<p>Why do we need only <span class="math notranslate nohighlight">\(K-1\)</span> outputs if there are <span class="math notranslate nohighlight">\(K\)</span> classes?</p>
+</div>
+<p>Let us for the sake of simplicity assume we have only one independent (inout) variable. The activations are (suppressing the index <span class="math notranslate nohighlight">\(i\)</span>)</p>
 <div class="math notranslate nohighlight">
-\[a_1 = w_{1,0}+w_{1,1}x_1,\]</div>
+\[z_1 = w_{1,0}+w_{1,1}x_1,\]</div>
 <div class="math notranslate nohighlight">
-\[a_2 = w_{2,0}+w_{2,1}x_1,\]</div>
+\[z_2 = w_{2,0}+w_{2,1}x_1,\]</div>
 <p>and so on until the class <span class="math notranslate nohighlight">\(C=K-1\)</span> class</p>
 <div class="math notranslate nohighlight">
-\[a_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,\]</div>
-<p>and the model is specified in term of <span class="math notranslate nohighlight">\(K-1\)</span> so-called log-odds or <strong>logit</strong> transformations <span class="math notranslate nohighlight">\(y_j^{(i)} = y(a_j^{(i)})\)</span>.</p>
+\[z_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,\]</div>
+<p>and the model is specified in term of <span class="math notranslate nohighlight">\(K-1\)</span> so-called log-odds or <strong>logit</strong> transformations <span class="math notranslate nohighlight">\(y_j^{(i)} = y(z_j^{(i)})\)</span>.</p>
 <!-- !split -->
 <div class="section" id="class-probabilities-the-softmax-function">
 <h3>Class probabilities: The Softmax function<a class="headerlink" href="#class-probabilities-the-softmax-function" title="Permalink to this headline">¶</a></h3>

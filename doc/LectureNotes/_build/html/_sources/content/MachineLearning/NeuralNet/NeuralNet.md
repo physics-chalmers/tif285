@@ -432,8 +432,6 @@ become the most popular for *deep neural networks*
 <!-- !split -->
 ## Deriving the back propagation code for a multilayer perceptron model
 
-Note: figures will be inserted later!
-
 As we have seen the final output of a feed-forward network can be expressed in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights $w_{ij}$ and we need to find an algorithm for changing them so that our errors are as small as possible.
 This leads us to the famous [back propagation algorithm](https://www.nature.com/articles/323533a0).
@@ -473,8 +471,19 @@ z_j^l = \sum_{i=1}^{M_{l-1}}w_{ij}^la_i^{l-1}+b_j^l,
 $$
 
 where $b_j^l$ are the biases from layer $l$.  Here $M_{l-1}$
-represents the total number of nodes/neurons/units of layer $l-1$. The
-figure here illustrates this equation.  We can rewrite this in a more
+represents the total number of nodes/neurons/units of layer $l-1$. 
+
+```{admonition} Activation outputs
+:class: tip
+In this derivation we will denote the output of neuron $j$ in layer $l$ as a_j^{l}. Collectively, all outputs from layer $l$ corresponds to the vector $\boldsymbol{a}^l$.
+```
+
+```{admonition} Final outputs
+:class: tip
+We will reserve the output notation $y$ exclusively for the final layer such that an $L$-layer network has final output $\boldsymbol{y} \equiv \boldsymbol{a}^L$. Note that it is quite common to use a different activation function for the final outputs as compared with the inner layers.
+```
+
+We can rewrite this *(figure to be inserted)* in a more
 compact form as the matrix-vector products we discussed earlier,
 
 $$

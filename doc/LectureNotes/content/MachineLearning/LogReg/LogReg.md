@@ -135,14 +135,14 @@ belongs to a category $t^{(i)} \in \{0,1\}$ is given by the so-called *logit* fu
 
 $$
 
-y(\boldsymbol{x}; \boldsymbol{w}) = y(a) = \frac{1}{1+e^{-a}} = \frac{e^a}{1+e^a},
+y(\boldsymbol{x}; \boldsymbol{w}) = y(z) = \frac{1}{1+e^{-z}} = \frac{e^z}{1+e^z},
 
 $$
 
-where the so called *activation* $a = a(\boldsymbol{x}; \boldsymbol{w})$. 
+where the so called *activation* $z = z(\boldsymbol{x}; \boldsymbol{w})$. 
 
-* Most frequently one uses $a = a(\boldsymbol{x}, \boldsymbol{w}) \equiv \boldsymbol{x} \cdot \boldsymbol{w}$.
-* Note that $1-y(a)= y(-a)$.
+* Most frequently one uses $z = z(\boldsymbol{x}, \boldsymbol{w}) \equiv \boldsymbol{x} \cdot \boldsymbol{w}$.
+* Note that $1-y(z)= y(-z)$.
 * The sigmoid function can be motivated in several different ways. E.g. in information theory this function represents the probability of a signal $s=1$ rather than $s=0$ when transmission occurs over a noisy channel.
 
 <!-- !split -->
@@ -156,7 +156,7 @@ where the so called *activation* $a = a(\boldsymbol{x}; \boldsymbol{w})$.
 
 We assume now that we have two classes with $t^{(i)}$ being either $0$ or $1$. Furthermore we assume also that we have only two parameters $w_0, w_1$ and the predictors $\boldsymbol{x}^{(i)} = \{ 1, x^{(i)} \}$ defining the Sigmoid function. I.e., there is a single independent (input) variable $x$. We can produce probabilities from the classifier output $y^{(i)}$
 \begin{align*}
-p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &= y(a^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
+p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) &= y(z^{(i)})= \frac{\exp{(w_0+w_1x^{(i)})}}{1+\exp{(w_0+w_1x^{(i)})}},\\
 p(t^{(i)}=0|x^{(i)},\boldsymbol{w}) &= 1 - p(t^{(i)}=1|x^{(i)},\boldsymbol{w}) = \frac{1}{1+\exp{(w_0+w_1x^{(i)})}},
 \end{align*}
 where $\boldsymbol{w} = ( w_0, w_1)$ are the weights we wish to extract from training data. 
@@ -172,8 +172,7 @@ In this course we will obviously also advocate (or at least make aware of) the m
 <!-- !split  -->
 #### Maximum likelihood
 
-In order to define the total likelihood for all possible outcomes from a  
-dataset $\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}$, with the binary labels
+In order to define the total likelihood for all possible outcomes from a dataset $\mathcal{D}=\{(x^{(i)}, t^{(i)},)\}$, with the binary labels
 $t^{(i)}\in\{0,1\}$ and where the data points are drawn independently, we use the binary version of the [Maximum Likelihood Estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) (MLE) principle. 
 We express the 
 likelihood in terms of the product of the individual probabilities of a specific outcome $t^{(i)}$, that is 
@@ -321,22 +320,21 @@ $$
 Until now we have mainly focused on two classes, the so-called binary
 system. Suppose we wish to extend to $K$ classes.  We will then need to have $K-1$ outputs $\boldsymbol{y}^{(i)} = \{ y_1^{(i)}, y_2^{(i)}, \ldots, y_{K-1}^{(i)} \}$. 
 
-*Question.* 
+```{admonition} Question
 Why do we need only $K-1$ outputs if there are $K$ classes?
+```
 
-
-
-Let us for the sake of simplicity assume we have only one independent (inout) variable. The activation functions for the outputs are (suppressing the index $i$)
-
-$$
-
-a_1 = w_{1,0}+w_{1,1}x_1,
+Let us for the sake of simplicity assume we have only one independent (inout) variable. The activations are (suppressing the index $i$)
 
 $$
 
+z_1 = w_{1,0}+w_{1,1}x_1,
+
 $$
 
-a_2 = w_{2,0}+w_{2,1}x_1,
+$$
+
+z_2 = w_{2,0}+w_{2,1}x_1,
 
 $$
 
@@ -344,11 +342,11 @@ and so on until the class $C=K-1$ class
 
 $$
 
-a_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,
+z_{K-1} = w_{(K-1),0}+w_{(K-1),1}x_1,
 
 $$
 
-and the model is specified in term of $K-1$ so-called log-odds or **logit** transformations $y_j^{(i)} = y(a_j^{(i)})$.
+and the model is specified in term of $K-1$ so-called log-odds or **logit** transformations $y_j^{(i)} = y(z_j^{(i)})$.
 
 
 <!-- !split -->
