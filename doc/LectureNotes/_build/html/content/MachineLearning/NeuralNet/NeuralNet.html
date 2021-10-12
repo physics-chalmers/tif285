@@ -428,8 +428,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multilayer-perceptrons">
-   29.4. Multilayer perceptrons
+  <a class="reference internal nav-link" href="#neural-network-architecture">
+   29.4. Neural network architecture
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -452,21 +452,21 @@
      Matrix-vector notation  and activation
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#activation-functions">
-     Activation functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relevance">
-     Relevance
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activation-rules">
+   29.5. Activation rules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-algorithm">
+   29.6. Learning algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#deriving-the-back-propagation-code-for-a-multilayer-perceptron-model">
-   29.5. Deriving the back propagation code for a multilayer perceptron model
+   29.7. Deriving the back propagation code for a multilayer perceptron model
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -506,12 +506,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setting-up-the-back-propagation-algorithm">
-   29.6. Setting up the back-propagation algorithm
+   29.8. Setting up the back-propagation algorithm
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-challenges">
-   29.7. Learning challenges
+   29.9. Learning challenges
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -538,12 +538,12 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-top-down-perspective-on-neural-networks">
-   29.8. A top-down perspective on Neural networks
+   29.10. A top-down perspective on Neural networks
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limitations-of-supervised-learning-with-deep-networks">
-   29.9. Limitations of supervised learning with deep networks
+   29.11. Limitations of supervised learning with deep networks
   </a>
  </li>
 </ul>
@@ -574,13 +574,13 @@ a weight variable.</p>
 <p class="admonition-title">Architecture</p>
 <p>The architecture specifies what variables are involved in the network and their topological relationships – for example, the variables involved in a neural net might be the weights of the connections between the neurons, along with the activities of the neurons.</p>
 </div>
-<div class="admonition-activity-rule admonition">
-<p class="admonition-title">Activity rule</p>
-<p>Most neural network models have short time-scale dynamics: local rules define how the activities of the neurons change in response to each other. Typically the activity rule depends on the weights (the parameters) in the network.</p>
+<div class="admonition-activation-rule admonition">
+<p class="admonition-title">Activation rule</p>
+<p>Most neural network models have short time-scale dynamics: local rules define how the activities of the neurons change in response to each other. Typically the activation rule depends on the weights (the parameters) in the network.</p>
 </div>
-<div class="admonition-learning-rule admonition">
-<p class="admonition-title">Learning rule</p>
-<p>The learning rule specifies the way in which the neural network’s weights change with time. This learning is usually viewed as taking place on a longer time scale than the time scale of the dynamics under the activity rule. Usually the learning rule will depend on the activities of the neurons. It may also depend on the values of target values supplied by a teacher and on the current value of the weights.</p>
+<div class="admonition-learning-algorithm admonition">
+<p class="admonition-title">Learning algorithm</p>
+<p>The learning algorithm specifies the way in which the neural network’s weights change with time. This learning is usually viewed as taking place on a longer time scale than the time scale of the dynamics under the activity rule. Usually the learning rule will depend on the activities of the neurons. It may also depend on the values of target values supplied by a teacher and on the current value of the weights.</p>
 </div>
 <!-- !split -->
 </div>
@@ -598,8 +598,8 @@ signals, which must exceed an activation threshold to yield an
 output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.</p>
 <p>This behaviour has inspired a simple mathematical model for an artificial neuron.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6af3faa8-8a86-4140-a351-448517a92003">
-<span class="eqno">(29.1)<a class="headerlink" href="#equation-6af3faa8-8a86-4140-a351-448517a92003" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfd9bc69-7808-45b7-8f02-688260b46a85">
+<span class="eqno">(29.1)<a class="headerlink" href="#equation-cfd9bc69-7808-45b7-8f02-688260b46a85" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
 \end{equation}\]</div>
@@ -712,9 +712,9 @@ type of NN due the unusual activation functions.</p>
 <!-- !split -->
 </div>
 </div>
-<div class="section" id="multilayer-perceptrons">
-<h2><span class="section-number">29.4. </span>Multilayer perceptrons<a class="headerlink" href="#multilayer-perceptrons" title="Permalink to this headline">¶</a></h2>
-<p>The <em>multilayer perceptron</em> (MLP) is a very popular, and easy to implement approach, to deep learning. It consists of</p>
+<div class="section" id="neural-network-architecture">
+<h2><span class="section-number">29.4. </span>Neural network architecture<a class="headerlink" href="#neural-network-architecture" title="Permalink to this headline">¶</a></h2>
+<p>Let us restrict ourselves in this lecture to feed-forward ANNs. The term <em>multilayer perceptron</em> (MLP) is used ambiguously in the literature, sometimes loosely to mean any feedforward ANN, sometimes strictly to refer to networks composed of multiple layers of perceptrons (with threshold activation). A general MLP consists of</p>
 <ol class="simple">
 <li><p>a neural network with one or more layers of nodes between the input and the output nodes.</p></li>
 <li><p>the multilayer network structure, or architecture, or topology, consists of an input layer, one or more hidden layers, and one output layer.</p></li>
@@ -760,8 +760,8 @@ fully-connected, which means that each neuron receives a weighted sum
 of the outputs of <em>all</em> neurons in the previous layer.</p>
 <!-- !split -->
 <p>First, for each node <span class="math notranslate nohighlight">\(j\)</span> in the first hidden layer, we calculate a weighted sum <span class="math notranslate nohighlight">\(z_j^1\)</span> of the input coordinates <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4055769e-b7e6-434b-8b14-db5d1b13d92d">
-<span class="eqno">(29.2)<a class="headerlink" href="#equation-4055769e-b7e6-434b-8b14-db5d1b13d92d" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
+<div class="amsmath math notranslate nohighlight" id="equation-f6004ae6-7da1-4d3f-a4b0-55e9df9266ea">
+<span class="eqno">(29.2)<a class="headerlink" href="#equation-f6004ae6-7da1-4d3f-a4b0-55e9df9266ea" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(b_j^1\)</span> is the so-called bias which is normally needed in
 case of zero activation weights or inputs. How to fix the biases and
@@ -769,16 +769,16 @@ the weights will be discussed below.  The value of <span class="math notranslate
 argument to the activation function <span class="math notranslate nohighlight">\(f\)</span> of each node <span class="math notranslate nohighlight">\(j\)</span>, The
 variable <span class="math notranslate nohighlight">\(n\)</span> stands for all possible inputs to a given node <span class="math notranslate nohighlight">\(j\)</span> in the
 first layer.  We define  the output <span class="math notranslate nohighlight">\(y_j^1\)</span> of all neurons in layer 1 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad55657f-a9d6-4060-9347-49d6153862b0">
-<span class="eqno">(29.3)<a class="headerlink" href="#equation-ad55657f-a9d6-4060-9347-49d6153862b0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-42a05a11-4a41-46bb-ab81-fc18f22b3e11">
+<span class="eqno">(29.3)<a class="headerlink" href="#equation-42a05a11-4a41-46bb-ab81-fc18f22b3e11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
 \end{equation}\]</div>
 <p>where we assume that all nodes in the same layer have identical
 activation functions, hence the notation <span class="math notranslate nohighlight">\(f\)</span>. In general, we could assume in the more general case that different layers have different activation functions.
 In this case we would identify these functions with a superscript <span class="math notranslate nohighlight">\(l\)</span> for the <span class="math notranslate nohighlight">\(l\)</span>-th layer,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a186ae8-ceea-403c-b56f-c2050150df60">
-<span class="eqno">(29.4)<a class="headerlink" href="#equation-4a186ae8-ceea-403c-b56f-c2050150df60" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8bf2e8e-cf5d-47d3-98fb-e1e9bfd894dd">
+<span class="eqno">(29.4)<a class="headerlink" href="#equation-d8bf2e8e-cf5d-47d3-98fb-e1e9bfd894dd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}\]</div>
@@ -788,15 +788,15 @@ the subsequent layer can be calculated and so forth until the output
 is obtained.</p>
 <!-- !split -->
 <p>The output of neuron <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9423cd4d-4801-4680-be65-66e557900804">
-<span class="eqno">(29.5)<a class="headerlink" href="#equation-9423cd4d-4801-4680-be65-66e557900804" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1c58ddf2-36f2-4dbc-8fee-4c61d130d391">
+<span class="eqno">(29.5)<a class="headerlink" href="#equation-1c58ddf2-36f2-4dbc-8fee-4c61d130d391" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^2 &amp;= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &amp;= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
 \end{align}\]</div>
 <p>where we have substituted <span class="math notranslate nohighlight">\(y_k^1\)</span> with the inputs <span class="math notranslate nohighlight">\(x_k\)</span>. Finally, the ANN output reads</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15500b75-85fb-4299-ae5b-aade779c1615">
-<span class="eqno">(29.6)<a class="headerlink" href="#equation-15500b75-85fb-4299-ae5b-aade779c1615" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-85ada467-182c-47b7-8565-6c6334e88ab4">
+<span class="eqno">(29.6)<a class="headerlink" href="#equation-85ada467-182c-47b7-8565-6c6334e88ab4" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
  &amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
   + b_1^3\right]
@@ -804,8 +804,8 @@ is obtained.</p>
 <!-- !split -->
 <p>We can generalize this expression to an MLP with <span class="math notranslate nohighlight">\(L\)</span> hidden
 layers. The complete functional form is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f4d57708-3fd3-44bb-b3d4-9af0d3759262">
-<span class="eqno">(29.7)<a class="headerlink" href="#equation-f4d57708-3fd3-44bb-b3d4-9af0d3759262" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8327f1fc-3698-4f1c-860f-cb5c3748d990">
+<span class="eqno">(29.7)<a class="headerlink" href="#equation-8327f1fc-3698-4f1c-860f-cb5c3748d990" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &amp;&amp;
  \label{completeNN}
 \end{align}\]</div>
@@ -819,8 +819,8 @@ mapping of real-valued vectors <span class="math notranslate nohighlight">\(\bol
 <p>Furthermore, the flexibility and universality of an MLP can be
 illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e1ce01b-02a6-4abb-a48c-51e644d0ea13">
-<span class="eqno">(29.8)<a class="headerlink" href="#equation-0e1ce01b-02a6-4abb-a48c-51e644d0ea13" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37dd3ed8-7f16-48de-a293-a4e96fc6796a">
+<span class="eqno">(29.8)<a class="headerlink" href="#equation-37dd3ed8-7f16-48de-a293-a4e96fc6796a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}\]</div>
 <p>where the parameters <span class="math notranslate nohighlight">\(c_i\)</span> are weights and biases. By adjusting these
@@ -838,8 +838,8 @@ is the bias <span class="math notranslate nohighlight">\(b_i^l\)</span> and acti
 <p>We have that <span class="math notranslate nohighlight">\(\boldsymbol{W}_l\)</span> is an <span class="math notranslate nohighlight">\(N_{l-1} \times N_l\)</span> matrix, while <span class="math notranslate nohighlight">\(\boldsymbol{b}_l\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}_l\)</span> are <span class="math notranslate nohighlight">\(N_l \times 1\)</span> column vectors.
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b370a79-5277-4641-a548-50f30a6a8fcc">
-<span class="eqno">(29.9)<a class="headerlink" href="#equation-5b370a79-5277-4641-a548-50f30a6a8fcc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-573fadd1-5462-4543-8158-6fba75776a5b">
+<span class="eqno">(29.9)<a class="headerlink" href="#equation-573fadd1-5462-4543-8158-6fba75776a5b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &amp;w^2_{12} &amp;w^2_{13} \\
@@ -862,8 +862,8 @@ the equation for the activations of hidden layer 2 (assuming three nodes for sim
 <div class="section" id="matrix-vector-notation-and-activation">
 <h3>Matrix-vector notation  and activation<a class="headerlink" href="#matrix-vector-notation-and-activation" title="Permalink to this headline">¶</a></h3>
 <p>The activation of node <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8df65e03-39ef-40cd-b6e6-8fcf26328f60">
-<span class="eqno">(29.10)<a class="headerlink" href="#equation-8df65e03-39ef-40cd-b6e6-8fcf26328f60" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2fe83a71-f1c6-4130-a5a3-85ac1526fb8d">
+<span class="eqno">(29.10)<a class="headerlink" href="#equation-2fe83a71-f1c6-4130-a5a3-85ac1526fb8d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
 \end{equation}\]</div>
@@ -874,8 +874,9 @@ used as input to the activation functions. For each operation
 <span class="math notranslate nohighlight">\(\mathrm{W}_l \boldsymbol{y}_{l-1}\)</span> we move forward one layer.</p>
 <!-- !split -->
 </div>
-<div class="section" id="activation-functions">
-<h3>Activation functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="activation-rules">
+<h2><span class="section-number">29.5. </span>Activation rules<a class="headerlink" href="#activation-rules" title="Permalink to this headline">¶</a></h2>
 <p>A property that characterizes a neural network, other than its
 connectivity, is the choice of activation function(s).  The following restrictions are imposed on an activation function for a FFNN to fulfill the universal approximation theorem</p>
 <ul class="simple">
@@ -898,8 +899,12 @@ functions Typical examples are the logistic <em>Sigmoid</em></p>
 <p>and the <em>hyperbolic tangent</em> function</p>
 <div class="math notranslate nohighlight">
 \[ f_\mathrm{tanh}(z) = \tanh(z)\]</div>
+<div class="admonition-noisy-networks admonition">
+<p class="admonition-title">Noisy networks</p>
+<p>Both the sigmoid and tanh activation functions imply that signals will be non-zero everywhere. This leads to inefficiencies in both feed-forward and back-propagation.</p>
+</div>
 <!-- !split -->
-<p><em>Rectifier activation functions</em>
+<p>The ambition to make some neurons quiet (or to simplify the gradients) leads to the family of <em>rectifier activation functions</em>
 The Rectifier Linear Unit (ReLU) uses the following activation function</p>
 <div class="math notranslate nohighlight">
 \[f_\mathrm{ReLU}(z) = \max(0,z).\]</div>
@@ -908,20 +913,60 @@ function, such as the leaky ReLU or the so-called
 exponential linear unit (ELU) function</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f_\mathrm{ELU}(z) = \left\{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) &amp; z &lt; 0,\\  z &amp; z \ge 0.\end{array}\right. \end{split}\]</div>
-<!-- !split -->
+<p>Finally, note that the final layer of a MLP often uses a different activation rule as it must produce a relevant output signal. This could be some linear activation function to give a continuous output for regression, or a softmax function for classification probabilities.</p>
 </div>
-<div class="section" id="relevance">
-<h3>Relevance<a class="headerlink" href="#relevance" title="Permalink to this headline">¶</a></h3>
-<p>The <em>sigmoid</em> function are more biologically plausible because the
-output of inactive neurons are zero. Such activation function are
-called <em>one-sided</em>. However, it has been shown that the hyperbolic
-tangent performs better than the sigmoid for training MLPs. It has
-become the most popular for <em>deep neural networks</em></p>
+<div class="section" id="learning-algorithm">
+<h2><span class="section-number">29.6. </span>Learning algorithm<a class="headerlink" href="#learning-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The determination of weights (learning) involves multiple choices</p>
+<ol class="simple">
+<li><p>Choosing a cost function, i.e., how to compare outputs with targets.</p>
+<ul class="simple">
+<li><p>Possible choices include: Mean-squared error (MSE), Mean-absolute error (MAE), Cross-Entropy.</p></li>
+<li><p>Regularization can be employed to avoid overfitting.</p></li>
+<li><p>Physics (model) knowledge can be incorporated in the construction of a relevant cost function.</p></li>
+</ul>
+</li>
+<li><p>Optimization algorithm.</p>
+<ul class="simple">
+<li><p>Back-propagation (see below) can be used to extract gradients of the cost function with respect to the weights. It corresponds to using the chain rule on the activation functions while traversing the different layers backwards.</p></li>
+<li><p>Popular gradient descent optimizers include:</p>
+<ul>
+<li><p>Standard stochastic gradient descent (SGD), possibly with batches.</p></li>
+<li><p>Momentum SGD (to incorporate a moving average)</p></li>
+<li><p>AdaGrad (with per-parameter learning rates)</p></li>
+<li><p>RMSprop (adapting the learning rates based on RMS gradients)</p></li>
+<li><p>Adam (combination of AdaGrad and RMSprop; also uses the second moment of weight gradients).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Splits of data</p>
+<ul class="simple">
+<li><p>Training data; used for training.</p></li>
+<li><p>Validation data; used to monitor learning and to adjust hyperparameters.</p></li>
+<li><p>Test data; for final test of perfomance.</p></li>
+</ul>
+</li>
+<li><p>Training</p>
+<ul class="simple">
+<li><p>It is critical that neither validation nor test data is used for adjusting the parameters.</p></li>
+<li><p>Data is often split into bacthes such that gradients are computed for a batch of data.</p></li>
+<li><p>A full pass of all data is known as an epoch. The validation score is evaluated at the end of each epoch.</p></li>
+<li><p>Hyperparameters that can be tuned include:</p>
+<ul>
+<li><p>The number of epochs (overfitting eventually)</p></li>
+<li><p>The batch size (interplay between stochasticity and efficiency)</p></li>
+<li><p>Learning rates.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>in conclusion, there are scary many options when designing an ANN. A physicist should always have the ambition to learn about the model itself.</p>
 <!-- !split -->
-</div>
 </div>
 <div class="section" id="deriving-the-back-propagation-code-for-a-multilayer-perceptron-model">
-<h2><span class="section-number">29.5. </span>Deriving the back propagation code for a multilayer perceptron model<a class="headerlink" href="#deriving-the-back-propagation-code-for-a-multilayer-perceptron-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">29.7. </span>Deriving the back propagation code for a multilayer perceptron model<a class="headerlink" href="#deriving-the-back-propagation-code-for-a-multilayer-perceptron-model" title="Permalink to this headline">¶</a></h2>
 <p>As we have seen the final output of a feed-forward network can be expressed in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> and we need to find an algorithm for changing them so that our errors are as small as possible.
 This leads us to the famous <a class="reference external" href="https://www.nature.com/articles/323533a0">back propagation algorithm</a>.</p>
@@ -1040,18 +1085,18 @@ trouble in calculating</p>
 <!-- !split -->
 <p>We have now three equations that are essential for the computations of the derivatives of the cost function at the output layer. These equations are needed to start the algorithm and they are</p>
 <p><em>The starting equations.</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-cff20619-6257-4672-a00c-9093cf7d2ae9">
-<span class="eqno">(29.11)<a class="headerlink" href="#equation-cff20619-6257-4672-a00c-9093cf7d2ae9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d241f5c6-4e4c-4ec5-aaa4-2f441197be0f">
+<span class="eqno">(29.11)<a class="headerlink" href="#equation-d241f5c6-4e4c-4ec5-aaa4-2f441197be0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ba604d2-4c87-4843-bd7b-77afb66edb60">
-<span class="eqno">(29.12)<a class="headerlink" href="#equation-2ba604d2-4c87-4843-bd7b-77afb66edb60" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-043ea8b2-5a67-4985-889b-dac2750c8c23">
+<span class="eqno">(29.12)<a class="headerlink" href="#equation-043ea8b2-5a67-4985-889b-dac2750c8c23" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e602a33-f212-4c6c-bf92-1e80b46a6645">
-<span class="eqno">(29.13)<a class="headerlink" href="#equation-3e602a33-f212-4c6c-bf92-1e80b46a6645" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-80347553-4ef8-4201-9af5-179194bd5dc8">
+<span class="eqno">(29.13)<a class="headerlink" href="#equation-80347553-4ef8-4201-9af5-179194bd5dc8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
 \end{equation}\]</div>
 <p>An interesting consequence of the above equations is that when the
@@ -1092,7 +1137,7 @@ one <span class="math notranslate nohighlight">\(L-1\)</span> in terms of the er
 </div>
 </div>
 <div class="section" id="setting-up-the-back-propagation-algorithm">
-<h2><span class="section-number">29.6. </span>Setting up the back-propagation algorithm<a class="headerlink" href="#setting-up-the-back-propagation-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">29.8. </span>Setting up the back-propagation algorithm<a class="headerlink" href="#setting-up-the-back-propagation-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The four equations  provide us with a way of computing the gradient of the cost function. Let us write this out in the form of an algorithm.</p>
 <p><em>Summary.</em></p>
 <ul class="simple">
@@ -1119,7 +1164,7 @@ Here it is convenient to use stochastic gradient descent with mini-batches and a
 <!-- !split  -->
 </div>
 <div class="section" id="learning-challenges">
-<h2><span class="section-number">29.7. </span>Learning challenges<a class="headerlink" href="#learning-challenges" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">29.9. </span>Learning challenges<a class="headerlink" href="#learning-challenges" title="Permalink to this headline">¶</a></h2>
 <p>The back-propagation algorithm works by going from
 the output layer to the input layer, propagating the error gradient. The learning algorithm uses these
 gradients to update each parameter with a Gradient Descent (GD) step.</p>
@@ -1222,7 +1267,7 @@ bootstrap to evaluate other activation functions.</p>
 </div>
 </div>
 <div class="section" id="a-top-down-perspective-on-neural-networks">
-<h2><span class="section-number">29.8. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">29.10. </span>A top-down perspective on Neural networks<a class="headerlink" href="#a-top-down-perspective-on-neural-networks" title="Permalink to this headline">¶</a></h2>
 <p>The first thing we would like to do is divide the data into two or three
 parts. A training set, a validation or dev (development) set, and a
 test set.</p>
@@ -1254,7 +1299,7 @@ supervised learning.</p>
 <!-- !split -->
 </div>
 <div class="section" id="limitations-of-supervised-learning-with-deep-networks">
-<h2><span class="section-number">29.9. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">29.11. </span>Limitations of supervised learning with deep networks<a class="headerlink" href="#limitations-of-supervised-learning-with-deep-networks" title="Permalink to this headline">¶</a></h2>
 <p>Like all statistical methods, supervised learning using neural
 networks has important limitations. This is especially important when
 one seeks to apply these methods, especially to physics problems. Like

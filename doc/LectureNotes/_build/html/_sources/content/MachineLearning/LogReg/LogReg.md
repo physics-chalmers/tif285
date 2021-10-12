@@ -242,11 +242,10 @@ $$
 
 where $E_W (\boldsymbol{w}) = \frac{1}{2} \sum_j w_j^2$ and $\alpha$ is known as the *weight decay*.
 
-*Question.* 
-Can you motivate why $\alpha$ is known as the weight decay? *Hint*: Recall the origin of this regularizer from a Bayesian perspective.
-
-
-
+```{admonition} Can you motivate why $\alpha$ is known as the weight decay?
+:class: tip
+*Hint*: Recall the origin of this regularizer from a Bayesian perspective.
+```
 
 <!-- !split -->
 #### Minimizing the cross entropy
@@ -285,15 +284,13 @@ $$
 
 *Notice.* 
 Having access to the first derivative we can define an *on-line learning rule* as follows:
-* For each input $i$, compute the error $e^{(i)} = t^{(i)} - y^{(i)}$.
-* Adjust the weights in a direction that would reduce this error: $\Delta w_j = \eta e^{(i)} x_j^{(i)}$.
-* The parameter $\eta$ is called the *learning rate*.
+* For each input $i$ (possibly permuting the sequence in each epoch) compute the error $e^{(i)} = t^{(i)} - y^{(i)}$.
+* Adjust the weights in a direction that would reduce this error: $\Delta w_j = \eta e^{(i)} x_j^{(i)}$. The parameter $\eta$ is called the *learning rate*.
+* Perform multiple passes through the data, where each pass is known as an *epoch*. The computation of outputs $\boldsymbol{y}$ given a set of weights $\boldsymbol{w}$ is known as a *forward pass*, while the computation of gradients and adjustment of weights is called *back-propagation*.
 
-This learning algorithm is a variant of *stochastic learning*.
+You will recognise this learning algorithm as *stochastic gradient descent*.
 
-
-
-Alternatively, one can perform *batch learning* for which multiple instances are combined into a batch, and the weights are adjusted following the matrix expression stated above. One can then repeat the training multiple times where each iteration consists of a *forward pass* (computing the outputs $\boldsymbol{y}$ given a set of weights $\boldsymbol{w}$) and *back-propagation* in which the gradient is computed and the weights are adjusted. At the end, one hopes to have reached an optimal set of weights.
+Alternatively, one can perform *batch learning* for which multiple instances are combined into a batch, and the weights are adjusted following the matrix expression stated above. At the end, one hopes to have reached an optimal set of weights.
 
 <!-- !split -->
 #### Extending to more predictors
@@ -380,3 +377,6 @@ Our earlier discussions were all specialized to
 the case with two classes only. It is easy to see from the above that
 what we derived earlier is compatible with these equations.
 
+```{admonition} Softmax in practice
+Most implememtations of softmax output for $K$-classification actually uses $K$ output signals. These outputs are then normalized by the total sum. This implies that there are separate weights for each output. 
+```

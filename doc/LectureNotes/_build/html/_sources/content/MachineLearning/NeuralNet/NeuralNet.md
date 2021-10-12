@@ -17,12 +17,12 @@ Each time we describe a neural network algorithm we will typically specify three
   The architecture specifies what variables are involved in the network and their topological relationships – for example, the variables involved in a neural net might be the weights of the connections between the neurons, along with the activities of the neurons.
   ```
 
-```{admonition} Activity rule
-  Most neural network models have short time-scale dynamics: local rules define how the activities of the neurons change in response to each other. Typically the activity rule depends on the weights (the parameters) in the network.
+```{admonition} Activation rule
+  Most neural network models have short time-scale dynamics: local rules define how the activities of the neurons change in response to each other. Typically the activation rule depends on the weights (the parameters) in the network.
   ```
   
-```{admonition} Learning rule
-  The learning rule specifies the way in which the neural network’s weights change with time. This learning is usually viewed as taking place on a longer time scale than the time scale of the dynamics under the activity rule. Usually the learning rule will depend on the activities of the neurons. It may also depend on the values of target values supplied by a teacher and on the current value of the weights.
+```{admonition} Learning algorithm
+  The learning algorithm specifies the way in which the neural network’s weights change with time. This learning is usually viewed as taking place on a longer time scale than the time scale of the dynamics under the activity rule. Usually the learning rule will depend on the activities of the neurons. It may also depend on the values of target values supplied by a teacher and on the current value of the weights.
   ```
 
 <!-- !split -->
@@ -113,7 +113,6 @@ to *all* nodes in the subsequent layer, making this a so-called
 *fully-connected* FFNN.
 
 
-
 <!-- !split -->
 ### Convolutional Neural Network
 
@@ -165,9 +164,10 @@ fully-connected FFNN. They are however usually treated as a separate
 type of NN due the unusual activation functions.
 
 <!-- !split -->
-## Multilayer perceptrons
+## Neural network architecture
 
-The *multilayer perceptron* (MLP) is a very popular, and easy to implement approach, to deep learning. It consists of
+Let us restrict ourselves in this lecture to feed-forward ANNs. The term *multilayer perceptron* (MLP) is used ambiguously in the literature, sometimes loosely to mean any feedforward ANN, sometimes strictly to refer to networks composed of multiple layers of perceptrons (with threshold activation). A general MLP consists of
+
 1. a neural network with one or more layers of nodes between the input and the output nodes.
 2. the multilayer network structure, or architecture, or topology, consists of an input layer, one or more hidden layers, and one output layer.
 3. the input nodes pass values to the first hidden layer, its nodes pass the information on to the second and so on till we reach the output layer.
@@ -362,7 +362,7 @@ $\mathrm{W}_l \boldsymbol{y}_{l-1}$ we move forward one layer.
 
 
 <!-- !split -->
-### Activation functions
+## Activation rules
 
 A property that characterizes a neural network, other than its
 connectivity, is the choice of activation function(s).  The following restrictions are imposed on an activation function for a FFNN to fulfill the universal approximation theorem
@@ -397,8 +397,12 @@ $$
 
 $$
 
+```{admonition} Noisy networks
+Both the sigmoid and tanh activation functions imply that signals will be non-zero everywhere. This leads to inefficiencies in both feed-forward and back-propagation. 
+```
+
 <!-- !split -->
-*Rectifier activation functions*
+The ambition to make some neurons quiet (or to simplify the gradients) leads to the family of *rectifier activation functions*
 The Rectifier Linear Unit (ReLU) uses the following activation function
 
 $$
@@ -417,17 +421,38 @@ f_\mathrm{ELU}(z) = \left\{\begin{array}{cc} \alpha\left( \exp{(z)}-1\right) & z
 
 $$
 
+Finally, note that the final layer of a MLP often uses a different activation rule as it must produce a relevant output signal. This could be some linear activation function to give a continuous output for regression, or a softmax function for classification probabilities.
 
+## Learning algorithm
 
-<!-- !split -->
-### Relevance
+The determination of weights (learning) involves multiple choices
 
-The *sigmoid* function are more biologically plausible because the
-output of inactive neurons are zero. Such activation function are
-called *one-sided*. However, it has been shown that the hyperbolic
-tangent performs better than the sigmoid for training MLPs. It has
-become the most popular for *deep neural networks*
-
+1. Choosing a cost function, i.e., how to compare outputs with targets.
+   * Possible choices include: Mean-squared error (MSE), Mean-absolute error (MAE), Cross-Entropy.
+   * Regularization can be employed to avoid overfitting.
+   * Physics (model) knowledge can be incorporated in the construction of a relevant cost function.
+2. Optimization algorithm.
+   * Back-propagation (see below) can be used to extract gradients of the cost function with respect to the weights. It corresponds to using the chain rule on the activation functions while traversing the different layers backwards.
+   * Popular gradient descent optimizers include:
+     - Standard stochastic gradient descent (SGD), possibly with batches.
+     - Momentum SGD (to incorporate a moving average)
+     - AdaGrad (with per-parameter learning rates)
+     - RMSprop (adapting the learning rates based on RMS gradients)
+     - Adam (combination of AdaGrad and RMSprop; also uses the second moment of weight gradients).
+3. Splits of data
+   * Training data; used for training.
+   * Validation data; used to monitor learning and to adjust hyperparameters.
+   * Test data; for final test of perfomance.
+4. Training
+   * It is critical that neither validation nor test data is used for adjusting the parameters.
+   * Data is often split into bacthes such that gradients are computed for a batch of data.
+   * A full pass of all data is known as an epoch. The validation score is evaluated at the end of each epoch.
+   * Hyperparameters that can be tuned include:
+     - The number of epochs (overfitting eventually)
+     - The batch size (interplay between stochasticity and efficiency)
+     - Learning rates.
+     
+in conclusion, there are scary many options when designing an ANN. A physicist should always have the ambition to learn about the model itself.
 
 <!-- !split -->
 ## Deriving the back propagation code for a multilayer perceptron model

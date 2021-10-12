@@ -581,8 +581,8 @@ fit a linear model to the default case if <span class="math notranslate nohighli
 default case <span class="math notranslate nohighlight">\(y^{(i)} \leq 0.5\)</span>.</p>
 <p>We would then have our
 weighted linear combination, namely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89b85da6-ac0a-4154-b170-dc177a7dde11">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-89b85da6-ac0a-4154-b170-dc177a7dde11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d6d0461-a4f0-43f0-8d6b-bdf7d79dd3d5">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-8d6d0461-a4f0-43f0-8d6b-bdf7d79dd3d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> is a vector representing the possible outcomes, <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> is our
@@ -689,8 +689,10 @@ Therefore, this cost function is known in statistics as the <strong>cross entrop
 <div class="math notranslate nohighlight">
 \[\mathcal{C}_W (\boldsymbol{w}) \equiv \mathcal{C} (\boldsymbol{w}) + \alpha E_W (\boldsymbol{w})\]</div>
 <p>where <span class="math notranslate nohighlight">\(E_W (\boldsymbol{w}) = \frac{1}{2} \sum_j w_j^2\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span> is known as the <em>weight decay</em>.</p>
-<p><em>Question.</em>
-Can you motivate why <span class="math notranslate nohighlight">\(\alpha\)</span> is known as the weight decay? <em>Hint</em>: Recall the origin of this regularizer from a Bayesian perspective.</p>
+<div class="tip admonition">
+<p class="admonition-title">Can you motivate why <span class="math notranslate nohighlight">\(\alpha\)</span> is known as the weight decay?</p>
+<p><em>Hint</em>: Recall the origin of this regularizer from a Bayesian perspective.</p>
+</div>
 <!-- !split -->
 </div>
 <div class="section" id="minimizing-the-cross-entropy">
@@ -725,12 +727,12 @@ derivative of the cost function in matrix form</p>
 <p><em>Notice.</em>
 Having access to the first derivative we can define an <em>on-line learning rule</em> as follows:</p>
 <ul class="simple">
-<li><p>For each input <span class="math notranslate nohighlight">\(i\)</span>, compute the error <span class="math notranslate nohighlight">\(e^{(i)} = t^{(i)} - y^{(i)}\)</span>.</p></li>
-<li><p>Adjust the weights in a direction that would reduce this error: <span class="math notranslate nohighlight">\(\Delta w_j = \eta e^{(i)} x_j^{(i)}\)</span>.</p></li>
-<li><p>The parameter <span class="math notranslate nohighlight">\(\eta\)</span> is called the <em>learning rate</em>.</p></li>
+<li><p>For each input <span class="math notranslate nohighlight">\(i\)</span> (possibly permuting the sequence in each epoch) compute the error <span class="math notranslate nohighlight">\(e^{(i)} = t^{(i)} - y^{(i)}\)</span>.</p></li>
+<li><p>Adjust the weights in a direction that would reduce this error: <span class="math notranslate nohighlight">\(\Delta w_j = \eta e^{(i)} x_j^{(i)}\)</span>. The parameter <span class="math notranslate nohighlight">\(\eta\)</span> is called the <em>learning rate</em>.</p></li>
+<li><p>Perform multiple passes through the data, where each pass is known as an <em>epoch</em>. The computation of outputs <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> given a set of weights <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span> is known as a <em>forward pass</em>, while the computation of gradients and adjustment of weights is called <em>back-propagation</em>.</p></li>
 </ul>
-<p>This learning algorithm is a variant of <em>stochastic learning</em>.</p>
-<p>Alternatively, one can perform <em>batch learning</em> for which multiple instances are combined into a batch, and the weights are adjusted following the matrix expression stated above. One can then repeat the training multiple times where each iteration consists of a <em>forward pass</em> (computing the outputs <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> given a set of weights <span class="math notranslate nohighlight">\(\boldsymbol{w}\)</span>) and <em>back-propagation</em> in which the gradient is computed and the weights are adjusted. At the end, one hopes to have reached an optimal set of weights.</p>
+<p>You will recognise this learning algorithm as <em>stochastic gradient descent</em>.</p>
+<p>Alternatively, one can perform <em>batch learning</em> for which multiple instances are combined into a batch, and the weights are adjusted following the matrix expression stated above. At the end, one hopes to have reached an optimal set of weights.</p>
 <!-- !split -->
 <div class="section" id="extending-to-more-predictors">
 <h4>Extending to more predictors<a class="headerlink" href="#extending-to-more-predictors" title="Permalink to this headline">¶</a></h4>
@@ -779,6 +781,10 @@ vector <span class="math notranslate nohighlight">\(\boldsymbol{x}^{(i)}\)</span
 <p>Our earlier discussions were all specialized to
 the case with two classes only. It is easy to see from the above that
 what we derived earlier is compatible with these equations.</p>
+<div class="admonition-softmax-in-practice admonition">
+<p class="admonition-title">Softmax in practice</p>
+<p>Most implememtations of softmax output for <span class="math notranslate nohighlight">\(K\)</span>-classification actually uses <span class="math notranslate nohighlight">\(K\)</span> output signals. These outputs are then normalized by the total sum. This implies that there are separate weights for each output.</p>
+</div>
 </div>
 </div>
 </div>
