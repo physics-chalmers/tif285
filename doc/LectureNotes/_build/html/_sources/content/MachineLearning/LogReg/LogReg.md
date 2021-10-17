@@ -232,7 +232,7 @@ $$
 
 In practice, just as for linear regression, one often supplements the cross-entropy cost function with additional regularization terms, usually $L_1$ and $L_2$ regularization. This introduces hyperparameters into the classifier.
 
-In particular, Lasso regularization is obtained by defining another cost function
+In particular, Ridge regularization is obtained by defining another cost function
 
 $$
 

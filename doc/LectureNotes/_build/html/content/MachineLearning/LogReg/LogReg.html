@@ -581,8 +581,8 @@ fit a linear model to the default case if <span class="math notranslate nohighli
 default case <span class="math notranslate nohighlight">\(y^{(i)} \leq 0.5\)</span>.</p>
 <p>We would then have our
 weighted linear combination, namely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d6d0461-a4f0-43f0-8d6b-bdf7d79dd3d5">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-8d6d0461-a4f0-43f0-8d6b-bdf7d79dd3d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b365b24e-0f7d-4724-b8cd-e5d8eecf4417">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-b365b24e-0f7d-4724-b8cd-e5d8eecf4417" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \boldsymbol{\tilde{y}} = \boldsymbol{X}^T\boldsymbol{w} +  \boldsymbol{\epsilon},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> is a vector representing the possible outcomes, <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> is our
@@ -685,7 +685,7 @@ Therefore, this cost function is known in statistics as the <strong>cross entrop
 <div class="section" id="regularization">
 <h4>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h4>
 <p>In practice, just as for linear regression, one often supplements the cross-entropy cost function with additional regularization terms, usually <span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_2\)</span> regularization. This introduces hyperparameters into the classifier.</p>
-<p>In particular, Lasso regularization is obtained by defining another cost function</p>
+<p>In particular, Ridge regularization is obtained by defining another cost function</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{C}_W (\boldsymbol{w}) \equiv \mathcal{C} (\boldsymbol{w}) + \alpha E_W (\boldsymbol{w})\]</div>
 <p>where <span class="math notranslate nohighlight">\(E_W (\boldsymbol{w}) = \frac{1}{2} \sum_j w_j^2\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span> is known as the <em>weight decay</em>.</p>

@@ -2,7 +2,7 @@
 # Bayesian neural networks
 The introduction part of this lecture is inspired by the chapter *"Learning as Inference"* in the excellent book [Information Theory, Inference, and Learning Algorithms](http://www.inference.org.uk/mackay/itila/) by David MacKay.
 
-Some python libraries that are relevant for Bayesian Neural Networks (as part of the general trend towards Probabilistic Programming in Machine Learning) are:
+Some python libraries that are relevant for Bayesian Neural Networks (and part of the general trend towards Probabilistic Programming in Machine Learning) are:
 * [PyMC3](https://docs.pymc.io/)
 * [Tensorflow Probability](https://www.tensorflow.org/probability)
 * [Keras](https://keras.io/) (for constructing tensorflow models).
@@ -10,10 +10,10 @@ Some python libraries that are relevant for Bayesian Neural Networks (as part of
 
 <!-- !split -->
 ## Basic neural network
-We will consider a neuron with a vector of $I$ input signals $\boldsymbol{x} = \left\{ \boldsymbol{x}^{(i)} \right\}_{i=1}^I$, and an output signal $y^{(i)}$, which is given by the non-linear function $y(a)$ of the *activation*
+We will consider a neuron with a vector of $I$ input signals $\boldsymbol{x} = \left\{ \boldsymbol{x}^{(i)} \right\}_{i=1}^I$, and an output signal $y^{(i)}$, which is given by the non-linear function $y(z)$ of the *activation*
 
 $$
- a = w_0 +  \sum_{i=1}^I w_i x_i, 
+ z = w_0 +  \sum_{i=1}^I w_i x_i, 
 $$
 
 where $\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I$ are the weights of the neuron and we have included a bias ($b \equiv w_0$).
@@ -43,38 +43,37 @@ $$
 $$
 
 that is designed to avoid overfitting.
-The error function can be interpreted as minus the log likelihood
+The error function can be interpreted as minus the log likelihood, with the likelihood
 
 $$
- p(\mathcal{D}|\boldsymbol{w}) = \exp\left[ - C(\boldsymbol{w}) \right]. 
+ p(\mathcal{D}|\boldsymbol{w}) \propto \exp\left[ - C(\boldsymbol{w}) \right]. 
 $$
 
-Similarly the regularizer can be interpreted in terms of a log prior probability distribution over the parameters
+Similarly the regularizer can be interpreted in terms of a log prior probability distribution over the parameters. With the quadratic $E_W$ given above, the corresponding prior distribution is a Gaussian with variance $\sigma_W^2 = 1/\alpha$ and $1/Z_W = (\alpha/2\pi)^{K/2}$, where $K$ is the number of parameters in $w$.
 
 $$
  p(\boldsymbol{w} | \alpha) = \frac{1}{Z_W(\alpha)} \exp \left[ -\alpha E_W \right]. 
 $$
 
-If $E_W$ is quadratic as given above, then the corresponding prior distribution is a Gaussian with variance $\sigma_W^2 = 1/\alpha$ and $1/Z_W = (\alpha/2\pi)^{K/2}$, where $K$ is the number of parameters in $w$.
 The objective function $C_W(w)$ then corresponds to the inference of the parameters $\boldsymbol{w}$ given the data
 
 $$
  p(\boldsymbol{w} | \mathcal{D}, \alpha) = \frac{p(D|\boldsymbol{w}) p(\boldsymbol{w}|\alpha)}{p(\mathcal{D}|\alpha)} = \frac{1}{Z_M} \exp [ -C_W(\boldsymbol{w}) ]. 
 $$
 
-We show the evolution of the probability distribution for a sequence of an increasing number of training data in the following figure. The network parameters $\boldsymbol{w}$ that are found by minimizing $C_W(\boldsymbol{w})$ can be interpreted as the (locally) most probable parameter vector $\boldsymbol{w}^*$.
+We show the evolution of the probability distribution for a sequence of an increasing number of training data ($N$) in the following figure. The targets are either 0 or 1, as indicated by red and blue markers. The network parameters $\boldsymbol{w}$ that are found by minimizing $C_W(\boldsymbol{w})$ can be interpreted as the most probable parameter vector $\boldsymbol{w}^*$.
 
 <!-- <img src="fig/BNN/scatter_joint_bnn_plot.png" width=800><p><em>Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights $p(w_1, w_2 | \mathcal{D}, \alpha)$ (i.e. marginalized over the bias $w_0$) for a sequence of $N=0,2,6,10$ training data.</em></p> -->
 ![<p><em>Scatter plot of training data and the corresponding bivariate posterior pdf for the neuron weights $p(w_1, w_2 | \mathcal{D}, \alpha)$ (i.e. marginalized over the bias $w_0$) for a sequence of $N=0,2,6,10$ training data.</em></p>](./figs/scatter_joint_bnn_plot.png)
 
-Instead, we will use the Bayesian approach and consider the information that is contained in the actual probability distribution. In fact, there are different uncertainties that should be addressed:
+In the following, we will rather use the Bayesian approach and consider the information that is contained in the actual probability distribution. In fact, there are different uncertainties that should be addressed:
 
 ```{admonition} Epistemic uncertainties
-  from uncertainties in the model. For a neural network, this uncertainty can, in principle, be reduced with more data and quantified using the Bayesian approach. Epistemic uncertainty is also known as **systematic uncertainty**.
+  correspond to uncertainties in the model. For a neural network we can learn about this uncertainty using test data. Epistemic uncertainty is also known as **systematic uncertainty**.
   ```
   
 ```{admonition} Aleatoric uncertainties
-  from inherent noise in the training data. This should be included in the likelihood function (and is therefore part of the Bayesian approach). It can, however, not be reduced with more data of the same quality. Aleatoric uncertainty is also known as **statistical uncertainty**. Aleatoric is derived from the Latin *alea* or dice, referring to a game of chance.
+  appear as a result of inherent noise in the training data. This should be included in the likelihood function (and is therefore part of the Bayesian approach). It can, however, not be reduced with more data of the same quality. Aleatoric uncertainty is also known as **statistical uncertainty**. Aleatoric is derived from the Latin *alea* or dice, referring to a game of chance.
   ```
 
 *Notice.* 
@@ -97,7 +96,7 @@ Returning to the binary classification problem, $y^{(n+1)}$ corresponds to the p
 
 $$
  p(y^{(n+1)} | x^{(n+1)}, D, \alpha) = \int d \boldsymbol{w} p( y^{(n+1)} | x^{(n+1)}, w, \alpha) p(w|D,\alpha), 
-$$
+$$ (eq:binaryinference)
 
 where we have also included the weight decay hyperparameter $\alpha$ from the prior (regularizer). Marginalization could, of course, also be performed over this parameter.
 
@@ -121,22 +120,25 @@ In contrast, predictions for points in the upper left or lower right corners are
 
 <!-- !split -->
 ## Bayesian neural networks in practice
-But how shall we compute the marginalization integral for serious neural networks with thousands of parameters?
+How can we compute the marginalization integral for neural networks with thousands of parameters?
 
 In short, there are three different approaches:
 
-1. **Sampling methods**, e.g. MCMC sampling (this approach would be exact as the number of samples $\rightarrow \infty$);
+1. **Sampling methods**, e.g. MCMC (this approach would be exact as the number of samples $\rightarrow \infty$);
 2. **Deterministic approximate methods**, for example using Gaussian approximations with the Laplace method;
 3. **Variational methods**.
 
-The first two are discussed in MacKay's book, while we will focus on the variational methods in the following.
+The first two have been discussed previously in these notes in the general context of Bayesian inference. In the following, we will focus on the variational methods.
 
 <!-- !split -->
 ### Variational inference for Bayesian neural networks
 
-Bayesian neural networks differ from plain neural networks in that their weights are assigned a probability distribution instead of a single value or point estimate. These probability distributions describe the uncertainty in weights and can be used to estimate uncertainty in predictions. Training a Bayesian neural network via variational inference learns the parameters of these distributions instead of the weights directly.
+Bayesian neural networks differ from plain neural networks in that their weights are assigned a probability distribution instead of a single value or point estimate. These probability distributions describe the uncertainty in weights and can be used to estimate uncertainty in predictions. 
 
-Unfortunately, an analytical solution for the weight posterior $p(\boldsymbol{w} \lvert \mathcal{D})$ in neural networks is intractable. We therefore have to approximate the true posterior with a proxy variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$ whose parameters we want to estimate. 
+Unfortunately, full inference of the weight posterior $p(\boldsymbol{w} \lvert \mathcal{D})$ for neural networks is usually intractable due to the large dimensionality. Instead we can attempt to approximate the true posterior with a proxy distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$ with variational parameters that we want to estimate. 
+
+Training a Bayesian neural network via variational inference implies learning the parameters of the proxy distribution rather than learning the real posterior.
+
 
 This can be done by minimizing the [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) between $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$ and the true posterior $p(\boldsymbol{w} \lvert \mathcal{D})$  w.r.t. $\boldsymbol{\theta}$.
 
@@ -149,14 +151,14 @@ The KL divergence is a numeric measure of the difference between two distributio
 
 $$
  D_\mathrm{KL}(q||p) = \int d \boldsymbol{w} q(\boldsymbol{w}) \log \frac{q(\boldsymbol{w})}{p(\boldsymbol{w})} \equiv \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w}) - \log \, p(\boldsymbol{w}) \right] 
-$$
+$$ (eq:KL)
 
-As we can see, the KL divergence calculates the expected log differences in between two distributions with respect to distribution q. It is a non-negative quantity and it is equal to zero only when the two distributions are identical.
+As we can see, the KL divergence corresponds to the expected log difference between two distributions with respect to distribution $q$. It is a non-negative quantity and it is equal to zero only when the two distributions are identical.
 
 Intuitively there are three scenarios:
-* if both $q$ and $p$ are high at the same positions, then we are happy;
+* if both $q$ and $p$ are high at the same positions, then we are succeeding;
 * if $q$ is high where $p$ is low, we pay a price;
-* if $q$ is low we don't care (because of the expectation).
+* if $q$ is low we don't care about $p$ (because of the expectation).
 
 The divergence measure is not symmetric, i.e., $D_\mathrm{KL}(p||q) \neq D_\mathrm{KL}(q||p)$. In fact, it is possibly more natural to reverse the arguments and compute $D_\mathrm{KL}(p||q)$. However, we choose $\mathrm{KL}(q||p)$ so that we can take expectations with respect to the known $q(\boldsymbol{w})$ distribution. In addition, the minimization of this KL divergence will encourage the fit to concentrate on plausible parameters since
 
@@ -182,14 +184,13 @@ D_\mathrm{KL}(q||p) &= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsymbol{
 
 Note that the logarithm of the last term has no dependence on $\boldsymbol{w}$ and the integration of $q$ will just give one since it should be a properly normalized pdf. This term is then the log marginal likelihood (or model evidence). Furthermore, since the KL divergence on the left hand side is bounded from below by zero we get the **Evidence Lower Bound** (ELBO)
 
-\begin{equation}
+$$
 \log \, p(\mathcal{D}) \ge 
 - \mathbb{E}_{q} \left[ \log \, q(\boldsymbol{w} \lvert \boldsymbol{\theta}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
 + \mathbb{E}_{q} \left[ \log \, p(\boldsymbol{w}) \right]
 \equiv J_\mathrm{ELBO}(\boldsymbol{\theta})
-\label{eq:elbo}
-\end{equation}
+$$ (eq:elbo)
 
 Variational inference was originally inspired by work in statistical physics, and with that analogy, $-J_\mathrm{ELBO}(\boldsymbol{\theta})$ is also called the **variational free energy** and sometimes denoted $\mathcal{F}(\mathcal{D},\boldsymbol{\theta})$.
 
@@ -198,11 +199,11 @@ The task at hand is therefore to find the set of parameters $\boldsymbol{\theta}
 $$
 
 \mathbb{E}_{q} \left[ \log \, p(\mathcal{D} \lvert \boldsymbol{w}) \right]
-= \sum{i=1}^N \mathbb{E}_{q} \left[ \log \, p( y^{(i)} \lvert \boldsymbol{x}^{(i)}, \boldsymbol{w}) \right].
+= \sum_{i=1}^N \mathbb{E}_{q} \left[ \log \, p( y^{(i)} \lvert \boldsymbol{x}^{(i)}, \boldsymbol{w}) \right].
 
 $$
 
-This problem constitutes a new and active area of research in machine learning and it permeates well with the overarching theme of this course which is inference from data. We will end by giving two pointers to further readings on this subject.
+This problem constitutes a new and active area of research in machine learning and it permeates well with the overarching theme of this course. We will end by giving two pointers to further readings on this subject.
 
 <!-- !split -->
 ### Bayesian neural networks in PyMC3
@@ -215,29 +216,28 @@ In the demonstration notebook of this lecture, it is shown how to use Variationa
 ![<p><em>The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.</em></p>](./figs/ADVI-classifier.png)
 
 See also 
-* Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). *Automatic Differentiation Variational Inference*. arXiv preprint arXiv:"1603.00788": 'https://arxiv.org/abs/1603.00788".
+* Kucukelbir, A., Tran, D., Ranganath, R., Gelman, A., and Blei, D. M. (2016). *Automatic Differentiation Variational Inference*. arXiv: [1603.00788](https://arxiv.org/abs/1603.00788).
 
 <!-- !split -->
 ### Bayes by Backprop
 
 The well-cited paper paper: [Weight Uncertainty in Neural Networks](https://arxiv.org/abs/1505.05424) (*Bayes by Backprop*) has been well described in the [blog entry](http://krasserm.github.io/2019/03/14/bayesian-neural-networks/) by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation. 
 
-All three terms in equation ([eq:elbo](#eq:elbo)) are expectations w.r.t. the variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$. In this paper they use the variational free energy $\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})$ as a cost function (since it should be *minimized*). This quantity can be approximated by drawing [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) samples $\boldsymbol{w}^{(i)}$ from $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$.
+All three terms in equation {eq}`eq:elbo` are expectations w.r.t. the variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$. In this paper they use the variational free energy $\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})$ as a cost function (since it should be *minimized*). This quantity can be approximated by drawing [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) samples $\boldsymbol{w}^{(i)}$ from $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$.
 
-\begin{equation} 
+$$
 \mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \approx {1 \over N} \sum_{i=1}^N \left[
 \log \, q(\boldsymbol{w}^{(i)} \lvert \boldsymbol{\theta}) -
 \log \, p(\boldsymbol{w}^{(i)}) -
 \log \, p(\mathcal{D} \lvert \boldsymbol{w}^{(i)})\right]
-\label{eq:VariationalFreeEnergy}
-\end{equation}
+$$ (eq:VariationalFreeEnergy)
 
 In the example used in the blog post, they use a Gaussian distribution for the variational posterior, parameterized by $\boldsymbol{\theta} = (\boldsymbol{\mu}, \boldsymbol{\sigma})$ where $\boldsymbol{\mu}$ is the mean vector of the distribution and $\boldsymbol{\sigma}$ the standard deviation vector. The elements of $\boldsymbol{\sigma}$ are the elements of a diagonal covariance matrix which means that weights are assumed to be uncorrelated. Instead of parameterizing the neural network with weights $\boldsymbol{w}$ directly, it is parameterized with $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ and therefore the number of parameters are doubled compared to a plain neural network.
 
 <!-- !split -->
 #### Network training
 
-A training iteration consists of a forward-pass and and backward-pass. During a forward pass a single sample is drawn from the variational posterior distribution. It is used to evaluate the approximate cost function defined by equation ([eq:VariationalFreeEnergy](#eq:VariationalFreeEnergy)). The first two terms of the cost function are data-independent and can be evaluated layer-wise, the last term is data-dependent and is evaluated at the end of the forward-pass. During a backward-pass, gradients of $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ are calculated via backpropagation so that their values can be updated by an optimizer.
+A training iteration consists of a forward-pass and and backward-pass. During a forward pass a single sample is drawn from the variational posterior distribution. It is used to evaluate the approximate cost function defined by equation {eq}`eq:VariationalFreeEnergy`. The first two terms of the cost function are data-independent and can be evaluated layer-wise, the last term is data-dependent and is evaluated at the end of the forward-pass. During a backward-pass, gradients of $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ are calculated via backpropagation so that their values can be updated by an optimizer.
 
 Since a forward pass involves a stochastic sampling step we have to apply the so-called *re-parameterization trick* for backpropagation to work. The trick is to sample from a parameter-free distribution and then transform the sampled $\boldsymbol{\epsilon}$ with a deterministic function $t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon})$ for which a gradient can be defined. In the blog post they choose $\boldsymbol{\epsilon}$ to be drawn from a standard normal distribution i.e. $\boldsymbol{\epsilon} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{I})$ and the function $t$ is taken to be $t(\boldsymbol{\mu}, \boldsymbol{\sigma}, \boldsymbol{\epsilon}) = \boldsymbol{\mu} + \boldsymbol{\sigma} \odot \boldsymbol{\epsilon}$, i.e., it shifts the sample by mean $\boldsymbol{\mu}$ and scales it with $\boldsymbol{\sigma}$ where $\odot$ is element-wise multiplication.
 

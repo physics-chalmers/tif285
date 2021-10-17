@@ -65,12 +65,51 @@ from sklearn import datasets, linear_model
 
 
 np.random.seed(0)
-X, y = datasets.make_moons(200, noise=0.20)
-clf = linear_model.LogisticRegressionCV(cv=5)
-clf.fit(X, y)
+X, y = datasets.make_moons(200, noise=1.20)
 
 
 # In[5]:
+
+
+X.shape
+
+
+# In[6]:
+
+
+y.shape
+
+
+# In[7]:
+
+
+fig,ax=plt.subplots(1,1)
+ax.scatter(X[y==0,0],X[y==0,1],c='r')
+ax.scatter(X[y==1,0],X[y==1,1],c='b')
+ax.set_xlabel(r'$x_1$')
+ax.set_ylabel(r'$x_2$');
+
+
+# In[8]:
+
+
+clf = linear_model.LogisticRegressionCV(cv=5,penalty='l2')
+clf.fit(X, y)
+
+
+# In[9]:
+
+
+clf.coef_
+
+
+# In[10]:
+
+
+clf.intercept_
+
+
+# In[11]:
 
 
 # Helper functions to visualize the data and the decision boundary
@@ -97,7 +136,7 @@ def plot_decision_boundary(pred_func, X, y,ax=[]):
         plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.RdBu)
 
 
-# In[6]:
+# In[12]:
 
 
 fig,ax = plt.subplots(figsize=(8,8))
@@ -127,7 +166,7 @@ ax.set_ylabel(r'$x_1$');
 # 1. Train the binary classifier on the data set. Perform rather many iterations.
 # 1. Plot the decision boundary and compare with the `scikit-learn` implementation above.
 
-# In[7]:
+# In[13]:
 
 
 def sigmoid(a):
@@ -200,7 +239,7 @@ def single_neuron_binary_classifier(x, t, iters=10000, alpha=0.1, eta0=0.01):
 # 1. Plot the decision boundary and compare with the Logistic Regression implementations above.
 # 1. What is the accuracy on the test set?
 
-# In[8]:
+# In[14]:
 
 
 # Install TensorFlow by updating the conda environment

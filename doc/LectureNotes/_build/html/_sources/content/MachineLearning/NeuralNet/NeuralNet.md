@@ -452,7 +452,7 @@ The determination of weights (learning) involves multiple choices
      - The batch size (interplay between stochasticity and efficiency)
      - Learning rates.
      
-in conclusion, there are scary many options when designing an ANN. A physicist should always have the ambition to learn about the model itself.
+In conclusion, there are scary many options when designing an ANN. A physicist should always have the ambition to learn about the model itself.
 
 <!-- !split -->
 ## Deriving the back propagation code for a multilayer perceptron model
