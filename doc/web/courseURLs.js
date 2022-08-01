@@ -61,9 +61,9 @@ if (inIframe()) {
 
 var discussions = "";
 if (inIframe()) {
-	discussions = courseURL + "external_tools/809";
+	discussions = courseURL + "external_tools/962";
 } else {
-	discussions = 'https://app.yata.se/course/74c641f1-b5de-46da-8a91-444c5bb45709/posts';
+	discussions = 'https://app.yata.se/course/17820382-e29e-479f-8e4e-15ea2618d2c7/posts';
 }
 
 // var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
