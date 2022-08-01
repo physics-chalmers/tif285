@@ -20,13 +20,13 @@ var gitBayesStatURL = "https://github.com/physics-chalmers/tif285/blob/master/do
 var gitMLURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/MachineLearning/";
 
 // course-specific URL
-var courseURL = "https://chalmers.instructure.com/courses/15029/";
+var courseURL = "https://chalmers.instructure.com/courses/20232/";
 
 // Course-specific url if the current page is within an iFrame.
 // Relative link to file if the current page is the top window
 var material = "";
 if (inIframe()) {
-	material = courseURL + "external_tools/770";
+	material = courseURL + "external_tools/958";
 } else {
 	material = 'material.html';
 }
@@ -40,21 +40,21 @@ if (inIframe()) {
 
 var schedule = "";
 if (inIframe()) {
-	schedule = courseURL + "external_tools/771";
+	schedule = courseURL + "external_tools/960";
 } else {
 	schedule = 'schedule.html';
 }
 
 var gettingstarted = "";
 if (inIframe()) {
-	gettingstarted = courseURL + "external_tools/772";
+	gettingstarted = courseURL + "external_tools/957";
 } else {
 	gettingstarted = 'gettingstarted.html';
 }
 
 var remoteteaching = "";
 if (inIframe()) {
-	remoteteaching = courseURL + "external_tools/800";
+	remoteteaching = courseURL + "external_tools/959";
 } else {
 	remoteteaching = 'remoteteaching.html';
 }
@@ -67,3 +67,8 @@ if (inIframe()) {
 }
 
 // var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
+
+// course PM on student portals
+var coursePMchalmers = "https://www.student.chalmers.se/sp/course?course_id=33624";
+var coursePMgu = "https://www.gu.se/studera/hitta-utbildning/bayesiansk-dataanalys-och-maskininlarning-fym285";
+var courseScheduleTimeEdit = "https://cloud.timeedit.net/chalmers/web/public/riq80QggY05Zx6Q5Q37y6Y7665Z456X663Z70Z6Q65o60Q6ZY0u0gQnwZq6Qo.html";
