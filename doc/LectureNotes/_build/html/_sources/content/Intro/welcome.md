@@ -43,9 +43,9 @@ The last statement extends to the open-source communities through which great co
 
 The development of this course would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and the fundamentals of machine learning:
 
-1. Phil Gregory, *"Bayesian Logical Data Analysis for the Physical Sciences"*, Cambridge University Press (2005).
-2. E. T. Jaynes, *"Probability Theory: The Logic of Science"*, Cambridge University Press (2003).
-3. David J.C. MacKay, *"Information Theory, Inference, and Learning Algorithms"*, Cambridge University Press (2005).
-4. D.S. Sivia, *"Data Analysis : A Bayesian Tutorial"*, Oxford University Press (2006).
+1. Phil Gregory, *"Bayesian Logical Data Analysis for the Physical Sciences"* {cite}`Gregory2005`.
+2. E. T. Jaynes, *"Probability Theory: The Logic of Science"* {cite}`Jaynes2003`.
+3. David J.C. MacKay, *"Information Theory, Inference, and Learning Algorithms"* {cite}`Mackay2003`.
+4. D.S. Sivia, *"Data Analysis : A Bayesian Tutorial"* {cite}`Sivia2006`.
 
 
