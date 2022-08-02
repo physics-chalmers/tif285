@@ -57,19 +57,49 @@ html:
 #  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
 #  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/    
 
-    
+#######################################################################################
+# Customize LaTeX via Sphinx
+# see also https://www.sphinx-doc.org/en/master/latex.html
 
+# old settings...
+#sphinx:
+#  config:
+#    bibtex_reference_style: label
+#    bibtex_default_style: 'alpha'  
+#    # By default MathJax version 2 is currently used. If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:  
+#    #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+#    #myst_override_mathjax: true
+ 
+# from tif385   
 sphinx:
   config:
-    bibtex_reference_style: label
-    bibtex_default_style: 'alpha'  
-    # By default MathJax version 2 is currently used. If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:  
-    #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    #myst_override_mathjax: true
-    
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+    # https://jupyterbook.org/advanced/pdf.html#pdf-latex
+    #CF removed. Tope level is chapter.
+    #latex_toplevel_sectioning: 'part'
+    # TODO: #917 this path will be the default in sphinx v4
+    # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # However, it is incompatible with the mathjax config below for macros
+    mathjax3_config:
+      TeX:
+        Macros:
+          "N": "\\mathbb{N}"
+          "floor": ["\\lfloor#1\\rfloor", 1]
+          "bmat": ["\\left[\\begin{array}"]
+          "emat": ["\\end{array}\\right]"]
+    latex_elements:
+        preamble: |
+          \newcommand\N{\mathbb{N}}
+          \newcommand\floor[1]{\lfloor#1\rfloor}
+          \newcommand{\bmat}{\left[\begin{array}}
+          \newcommand{\emat}{\end{array}\right]}
+          \renewcommand{\vec}[1]{\boldsymbol{#1}}
 
-
+#######################################################################################
 # Parse and render settings
 parse:
   myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
