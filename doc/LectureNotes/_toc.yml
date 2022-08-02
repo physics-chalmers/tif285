@@ -49,3 +49,7 @@ parts:
   - file: content/MachineLearning/BNN/bnn.md
   - file: content/MachineLearning/BNN/demo-bnn.ipynb
   - file: content/MachineLearning/BNN/exercises_BNN.ipynb
+- caption: Backmatter
+  numbered: 2
+  chapters:
+  - file: content/Backmatter/bibliography.md

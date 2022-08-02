@@ -53,7 +53,7 @@ html:
   comments:
     hypothesis              : false
     utterances              : 
-      repo: "https://github.com/physics-chalmers/tif285" # Allows to write comments that turns into git issues using utterances. See https://jupyterbook.org/en/stable/interactive/comments/utterances.html
+      repo: "https://github.com/physics-chalmers/tif285" # Allows to write comments that turns into git issues using utterances. Not yet working properly. See https://jupyterbook.org/en/stable/interactive/comments/utterances.html
 #  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
 #  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/    
 
@@ -99,12 +99,26 @@ sphinx:
           \newcommand{\emat}{\end{array}\right]}
           \renewcommand{\vec}[1]{\boldsymbol{#1}}
 
+  extra_extensions:
+    - sphinx_inline_tabs
+    
 #######################################################################################
 # Parse and render settings
 parse:
-  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
-  myst_enable_extensions    : ["dollarmath", "amsmath","html_image"]
-
+  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links (kept from CFs config)
+  myst_substitutions:
+      sub3: My _global_ value!  # unclear functionality
+  myst_enable_extensions:  # default extensions to enable in the myst parser. The original config had only ["dollarmath", "amsmath","html_image"]. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
 
 #######################################################################################
 # Launch button settings
