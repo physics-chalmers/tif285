@@ -178,14 +178,14 @@ neural_network = construct_nn(X_train, Y_train)
 
 # **Note**, however, that this is a mean-field approximation so we **ignore correlations** in the posterior.
 
-# In[6]:
+# In[ ]:
 
 
 from pymc3.theanof import set_tt_rng, MRG_RandomStreams
 set_tt_rng(MRG_RandomStreams(42))
 
 
-# In[7]:
+# In[ ]:
 
 
 get_ipython().run_cell_magic('time', '', '\nwith neural_network:\n    inference = pm.ADVI()\n    approx = pm.fit(n=30000, method=inference)')
@@ -197,7 +197,7 @@ get_ipython().run_cell_magic('time', '', '\nwith neural_network:\n    inference 
 
 # Plotting the objective function (ELBO) we can see that the optimization slowly improves the fit over time.
 
-# In[8]:
+# In[ ]:
 
 
 fig, ax = plt.subplots(figsize=(8,6))
@@ -209,13 +209,13 @@ ax.set_xlabel('iteration')
 plt.tight_layout();
 
 
-# In[9]:
+# In[ ]:
 
 
 fig.savefig('fig/ADVI-classifier_ELBO.png')
 
 
-# In[10]:
+# In[ ]:
 
 
 trace = approx.sample(draws=5000)
@@ -225,14 +225,14 @@ trace = approx.sample(draws=5000)
 # 1. We can use `sample_posterior_predictive() <../api/inference.rst>`__ to generate new data (in this case class predictions) from the posterior (sampled from the variational estimation).
 # 1. It is better to get the node directly and build theano graph using our approximation (approx.sample_node) , we get a lot of speed up
 
-# In[11]:
+# In[ ]:
 
 
 # We can get predicted probability from model
 neural_network.out.distribution.p
 
 
-# In[12]:
+# In[ ]:
 
 
 # create symbolic input
@@ -264,13 +264,13 @@ def production_step2():
 
 # See the difference
 
-# In[13]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('timeit', 'production_step1()')
 
 
-# In[14]:
+# In[ ]:
 
 
 get_ipython().run_line_magic('timeit', 'production_step2()')
@@ -278,13 +278,13 @@ get_ipython().run_line_magic('timeit', 'production_step2()')
 
 # Let’s go ahead and generate predictions:
 
-# In[15]:
+# In[ ]:
 
 
 pred = sample_proba(X_test, 500).mean(0) > 0.5
 
 
-# In[16]:
+# In[ ]:
 
 
 fig, ax = plt.subplots(figsize=(8,8))
@@ -294,7 +294,7 @@ sns.despine()
 ax.set(title='Predicted labels in testing set', xlabel='X', ylabel='Y');
 
 
-# In[17]:
+# In[ ]:
 
 
 print('Accuracy = {}%'.format((Y_test == pred).mean() * 100))
@@ -306,7 +306,7 @@ print('Accuracy = {}%'.format((Y_test == pred).mean() * 100))
 # 
 # For this, we evaluate the class probability predictions on a grid over the whole input space.
 
-# In[18]:
+# In[ ]:
 
 
 grid = pm.floatX(np.mgrid[-3:3:100j,-3:3:100j])
@@ -314,7 +314,7 @@ grid_2d = grid.reshape(2, -1).T
 dummy_out = np.ones(grid.shape[1], dtype=np.int8)
 
 
-# In[19]:
+# In[ ]:
 
 
 ppc = sample_proba(grid_2d ,500)
@@ -322,7 +322,7 @@ ppc = sample_proba(grid_2d ,500)
 
 # ### Probability surface
 
-# In[20]:
+# In[ ]:
 
 
 cmap = sns.diverging_palette(250, 12, s=85, l=25, as_cmap=True)
@@ -339,7 +339,7 @@ cbar.ax.set_ylabel('Posterior predictive mean probability of class label = 0');
 # 
 # So far, everything I showed we could have done with a non-Bayesian Neural Network. The mean of the posterior predictive for each class-label should be identical to maximum likelihood predicted values. However, we can also look at the standard deviation of the posterior predictive to get a sense for the uncertainty in our predictions. Here is what that looks like:
 
-# In[21]:
+# In[ ]:
 
 
 cmap = sns.cubehelix_palette(light=1, as_cmap=True)
@@ -362,7 +362,7 @@ cbar.ax.set_ylabel('Uncertainty (posterior predictive standard deviation)');
 # 
 # Fortunately, ADVI can be run on mini-batches as well. It just requires some setting up:
 
-# In[22]:
+# In[ ]:
 
 
 minibatch_x = pm.Minibatch(X_train, batch_size=50)
@@ -372,7 +372,7 @@ with neural_network_minibatch:
     approx = pm.fit(40000, method=pm.ADVI())
 
 
-# In[23]:
+# In[ ]:
 
 
 fig, ax = plt.subplots(figsize=(8,6))
@@ -388,7 +388,7 @@ ax.set_xlabel('iteration');
 
 # The plotting of traces in pyMC3 requires the ArviZ module.
 
-# In[24]:
+# In[ ]:
 
 
 pm.traceplot(trace);

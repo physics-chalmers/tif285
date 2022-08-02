@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
@@ -42,9 +42,7 @@
     <script src="../../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -87,7 +85,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../Intro/welcome.html">
-   Course aim
+   Introduction
   </a>
  </li>
 </ul>
@@ -593,6 +591,11 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (theano.tensor.blas): Using NumPy C-API based implementation for BLAS functions.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,6 +681,113 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You can find the C code in this temporary file: /var/folders/dg/22bl5zyn5971kkfq68h3d9280007gr/T/theano_compilation_error_30yn7fvy
+library imit=] is not found.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mf">76483e5</span><span class="n">b6882</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="k">return</span> <span class="n">neural_network</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> 
+<span class="ne">---&gt; </span><span class="mi">49</span> <span class="n">neural_network</span> <span class="o">=</span> <span class="n">construct_nn</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-5-76483e5b6882&gt;</span> in <span class="ni">construct_nn</span><span class="nt">(ann_input, ann_output)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>         <span class="c1"># Kind-of like a pointer we can redirect.</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="c1"># For more info, see: http://deeplearning.net/software/theano/library/compile/shared.html</span>
+<span class="ne">---&gt; </span><span class="mi">15</span>         <span class="n">ann_input</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Data</span><span class="p">(</span><span class="s1">&#39;ann_input&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">ann_output</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Data</span><span class="p">(</span><span class="s1">&#39;ann_output&#39;</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> 
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/pymc3/data.py</span> in <span class="ni">__new__</span><span class="nt">(self, name, value, dims, export_index_as_coords)</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>         <span class="c1"># To draw the node for this variable in the graphviz Digraph we need</span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span>         <span class="c1"># its shape.</span>
+<span class="ne">--&gt; </span><span class="mi">545</span>         <span class="n">shared_object</span><span class="o">.</span><span class="n">dshape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">shared_object</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span>         <span class="k">if</span> <span class="n">dims</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span>             <span class="n">shape_dims</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shape_from_dims</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/tensor/var.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>             <span class="k">return</span> <span class="n">theano</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span> 
+<span class="ne">--&gt; </span><span class="mi">255</span>     <span class="n">shape</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">theano</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> 
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">size</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/graph/op.py</span> in <span class="ni">__call__</span><span class="nt">(self, *inputs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span> 
+<span class="g g-Whitespace">    </span><span class="mi">252</span>         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">compute_test_value</span> <span class="o">!=</span> <span class="s2">&quot;off&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">253</span>             <span class="n">compute_test_value</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span> 
+<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_output</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/graph/op.py</span> in <span class="ni">compute_test_value</span><span class="nt">(node)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> 
+<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="c1"># Create a thunk that performs the computation</span>
+<span class="ne">--&gt; </span><span class="mi">126</span>     <span class="n">thunk</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">make_thunk</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">storage_map</span><span class="p">,</span> <span class="n">compute_map</span><span class="p">,</span> <span class="n">no_recycling</span><span class="o">=</span><span class="p">[])</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="n">thunk</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">storage_map</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inputs</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="n">thunk</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">storage_map</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">outputs</span><span class="p">]</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/graph/op.py</span> in <span class="ni">make_thunk</span><span class="nt">(self, node, storage_map, compute_map, no_recycling, impl)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>             <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">634</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_c_thunk</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">storage_map</span><span class="p">,</span> <span class="n">compute_map</span><span class="p">,</span> <span class="n">no_recycling</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">635</span>             <span class="k">except</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">,</span> <span class="n">MethodNotDefined</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span>                 <span class="c1"># We requested the c code, so don&#39;t catch the error.</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/graph/op.py</span> in <span class="ni">make_c_thunk</span><span class="nt">(self, node, storage_map, compute_map, no_recycling)</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span>                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;float16&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span>         <span class="n">outputs</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">make_thunk</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">601</span>             <span class="n">input_storage</span><span class="o">=</span><span class="n">node_input_storage</span><span class="p">,</span> <span class="n">output_storage</span><span class="o">=</span><span class="n">node_output_storage</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span>         <span class="n">thunk</span><span class="p">,</span> <span class="n">node_input_filters</span><span class="p">,</span> <span class="n">node_output_filters</span> <span class="o">=</span> <span class="n">outputs</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/basic.py</span> in <span class="ni">make_thunk</span><span class="nt">(self, input_storage, output_storage, storage_map)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1202</span>         <span class="n">init_tasks</span><span class="p">,</span> <span class="n">tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_init_tasks</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1203</span>         <span class="n">cthunk</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">in_storage</span><span class="p">,</span> <span class="n">out_storage</span><span class="p">,</span> <span class="n">error_storage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__compile__</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">1204</span>             <span class="n">input_storage</span><span class="p">,</span> <span class="n">output_storage</span><span class="p">,</span> <span class="n">storage_map</span>
+<span class="g g-Whitespace">   </span><span class="mi">1205</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1206</span> 
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/basic.py</span> in <span class="ni">__compile__</span><span class="nt">(self, input_storage, output_storage, storage_map)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1140</span>             <span class="n">input_storage</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1141</span>             <span class="n">output_storage</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1142</span>             <span class="n">storage_map</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1143</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1144</span>         <span class="k">return</span> <span class="p">(</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/basic.py</span> in <span class="ni">cthunk_factory</span><span class="nt">(self, error_storage, in_storage, out_storage, storage_map)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span>             <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_order</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1633</span>                 <span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">prepare_node</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">storage_map</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1634</span>             <span class="n">module</span> <span class="o">=</span> <span class="n">get_module_cache</span><span class="p">()</span><span class="o">.</span><span class="n">module_from_key</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">lnk</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1635</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1636</span>         <span class="nb">vars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputs</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">orphans</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/cmodule.py</span> in <span class="ni">module_from_key</span><span class="nt">(self, key, lnk)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>             <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1190</span>                 <span class="n">location</span> <span class="o">=</span> <span class="n">dlimport_workdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dirname</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1191</span>                 <span class="n">module</span> <span class="o">=</span> <span class="n">lnk</span><span class="o">.</span><span class="n">compile_cmodule</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1192</span>                 <span class="n">name</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="vm">__file__</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span>                 <span class="k">assert</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">location</span><span class="p">)</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/basic.py</span> in <span class="ni">compile_cmodule</span><span class="nt">(self, location)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1548</span>                     <span class="n">lib_dirs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lib_dirs</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1549</span>                     <span class="n">libs</span><span class="o">=</span><span class="n">libs</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1550</span>                     <span class="n">preargs</span><span class="o">=</span><span class="n">preargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>                 <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span>             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">/Applications/anaconda3/envs/tif285-dev-env/lib/python3.7/site-packages/theano/link/c/cmodule.py</span> in <span class="ni">compile_str</span><span class="nt">(module_name, src_code, location, include_dirs, lib_dirs, libs, preargs, py_module, hide_symbols)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2545</span>             <span class="n">compile_stderr</span> <span class="o">=</span> <span class="n">compile_stderr</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;. &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2546</span>             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+<span class="ne">-&gt; </span><span class="mi">2547</span>                 <span class="sa">f</span><span class="s2">&quot;Compilation failed (return status=</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">compile_stderr</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">2548</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2549</span>         <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">cmodule__compilation_warning</span> <span class="ow">and</span> <span class="n">compile_stderr</span><span class="p">:</span>
+
+<span class="nn">Exception: (&#39;Compilation failed (return status=1): In file included from /Users/f2bcf/.theano/compiledir_Darwin-20.6.0-x86_64-i386-64bit-i386-3.7.10-64/tmp1wjhcj82/mod.cpp:1:. /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:14:2: error: &quot;Something\&#39;s broken.  UCHAR_MAX should be defined in limits.h.&quot;. #error &quot;Something\&#39;s broken.  UCHAR_MAX should be defined in limits.h.&quot;.  ^. /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:18:2: error: &quot;Python\&#39;s source code assumes C\&#39;s unsigned char is an 8-bit type.&quot;. #error &quot;Python\&#39;s source code assumes C\&#39;s unsigned char is an 8-bit type.&quot;.  ^. /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:27:5: error: &quot;Python.h requires that stdio.h define NULL.&quot;. #   error &quot;Python.h requires that stdio.h define NULL.&quot;.     ^. In file included from /Users/f2bcf/.theano/compiledir_Darwin-20.6.0-x86_64-i386-64bit-i386-3.7.10-64/tmp1wjhcj82/mod.cpp:1:. In file included from /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:30:. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:73:64: error: use of undeclared identifier \&#39;strchr\&#39;. char* __libcpp_strchr(const char* __s, int __c) {return (char*)strchr(__s, __c);}.                                                                ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:80:75: error: use of undeclared identifier \&#39;strpbrk\&#39;. char* __libcpp_strpbrk(const char* __s1, const char* __s2) {return (char*)strpbrk(__s1, __s2);}.                                                                           ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:87:65: error: use of undeclared identifier \&#39;strrchr\&#39;; did you mean \&#39;strchr\&#39;?. char* __libcpp_strrchr(const char* __s, int __c) {return (char*)strrchr(__s, __c);}.                                                                 ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:75:13: note: \&#39;strchr\&#39; declared here. const char* strchr(const char* __s, int __c) {return __libcpp_strchr(__s, __c);}.             ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:94:49: error: unknown type name \&#39;size_t\&#39;. void* __libcpp_memchr(const void* __s, int __c, size_t __n) {return (void*)memchr(__s, __c, __n);}.                                                 ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:96:46: error: unknown type name \&#39;size_t\&#39;. const void* memchr(const void* __s, int __c, size_t __n) {return __libcpp_memchr(__s, __c, __n);}.                                              ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:98:46: error: unknown type name \&#39;size_t\&#39;.       void* memchr(      void* __s, int __c, size_t __n) {return __libcpp_memchr(__s, __c, __n);}.                                              ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:101:74: error: use of undeclared identifier \&#39;strstr\&#39;; did you mean \&#39;strchr\&#39;?. char* __libcpp_strstr(const char* __s1, const char* __s2) {return (char*)strstr(__s1, __s2);}.                                                                          ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:77:13: note: \&#39;strchr\&#39; declared here.       char* strchr(      char* __s, int __c) {return __libcpp_strchr(__s, __c);}.             ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:101:74: error: no matching function for call to \&#39;strchr\&#39;. char* __libcpp_strstr(const char* __s1, const char* __s2) {return (char*)strstr(__s1, __s2);}.                                                                          ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:77:13: note: candidate disabled: &lt;no message provided&gt;.       char* strchr(      char* __s, int __c) {return __libcpp_strchr(__s, __c);}.             ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:101:81: error: cannot initialize a parameter of type \&#39;char *\&#39; with an lvalue of type \&#39;const char *\&#39;. char* __libcpp_strstr(const char* __s1, const char* __s2) {return (char*)strstr(__s1, __s2);}.                                                                                 ^~~~. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/string.h:77:32: note: passing argument to parameter \&#39;__s\&#39; here.       char* strchr(      char* __s, int __c) {return __libcpp_strchr(__s, __c);}.                                ^. In file included from /Users/f2bcf/.theano/compiledir_Darwin-20.6.0-x86_64-i386-64bit-i386-3.7.10-64/tmp1wjhcj82/mod.cpp:1:. In file included from /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:34:. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/stdlib.h:142:34: error: unknown type name \&#39;ldiv_t\&#39;. inline _LIBCPP_INLINE_VISIBILITY ldiv_t div(long __x, long __y) _NOEXCEPT {.                                  ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/stdlib.h:143:12: error: no member named \&#39;ldiv\&#39; in the global namespace.   return ::ldiv(__x, __y);.          ~~^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/stdlib.h:146:34: error: unknown type name \&#39;lldiv_t\&#39;. inline _LIBCPP_INLINE_VISIBILITY lldiv_t div(long long __x,.                                  ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/stdlib.h:148:12: error: no member named \&#39;lldiv\&#39; in the global namespace.   return ::lldiv(__x, __y);.          ~~^. In file included from /Users/f2bcf/.theano/compiledir_Darwin-20.6.0-x86_64-i386-64bit-i386-3.7.10-64/tmp1wjhcj82/mod.cpp:1:. In file included from /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/Python.h:63:. In file included from /Applications/anaconda3/envs/tif285-dev-env/include/python3.7m/pyport.h:191:. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:771:93: error: no member named \&#39;acosf\&#39; in the global namespace; did you mean \&#39;acos\&#39;?. inline _LIBCPP_INLINE_VISIBILITY float       acos(float __lcpp_x) _NOEXCEPT       {return ::acosf(__lcpp_x);}.                                                                                           ~~^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:771:46: note: \&#39;acos\&#39; declared here. inline _LIBCPP_INLINE_VISIBILITY float       acos(float __lcpp_x) _NOEXCEPT       {return ::acosf(__lcpp_x);}.                                              ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:772:93: error: no member named \&#39;acosl\&#39;</span> in <span class="ni">the global namespace; did you mean \&#39;acos\&#39;?. inline _LIBCPP_INLINE_VISIBILITY long double acos(long double __lcpp_x) _NOEXCEPT {return ::acosl(__lcpp_x);}.                                                                                           ~~^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:771:46: note: \&#39;acos\&#39; declared here. inline _LIBCPP_INLINE_VISIBILITY float       acos(float __lcpp_x) _NOEXCEPT       {return ::acosf(__lcpp_x);}.                                              ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:778:38: error: call to \&#39;acos\&#39; is ambiguous. acos(_A1 __lcpp_x) _NOEXCEPT {return ::acos((double)__lcpp_x);}.                                      ^~~~~~. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:771:46: note: candidate function. inline _LIBCPP_INLINE_VISIBILITY float       acos(float __lcpp_x) _NOEXCEPT       {return ::acosf(__lcpp_x);}.                                              ^. /Applications/anaconda3/envs/tif285-dev-env/bin/../include/c++/v1/math.h:772:46: note: candidate function. inline _LIBCPP_INLINE_VISIBILITY long double acos(long double __lcpp_x) _NOEXCEPT {return ::acosl(__lcpp_x);}.                                              ^. fatal error: too many errors emitted, stopping now [-ferror-limit=]. 20 errors generated.. &#39;, &#39;FunctionGraph(Shape</span><span class="nt">(ann_input))&#39;)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>That’s not so bad. The <code class="docutils literal notranslate"><span class="pre">Normal</span></code> priors help regularize the weights. Usually we would add a constant <code class="docutils literal notranslate"><span class="pre">b</span></code> to the inputs but I omitted it here to keep the code cleaner.</p>
 </div>
@@ -704,16 +814,6 @@ and udated version: https://docs.pymc.io/notebooks/bayesian_neural_network_advi.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Loss = 194.33: 100%|██████████| 30000/30000 [00:50&lt;00:00, 599.17it/s]
-Finished [100%]: Average Loss = 194.49
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 47.2 s, sys: 6.09 s, total: 53.2 s
-Wall time: 2min 7s
-</pre></div>
-</div>
-</div>
 </div>
 <p>Performance wise that’s pretty good considering that NUTS is having a really hard time. Further below we make this even faster. To make it really fly, we probably want to run the Neural Network on the GPU.</p>
 <p>As samples are more convenient to work with, we can very quickly draw samples from the variational approximation using the <code class="docutils literal notranslate"><span class="pre">sample</span></code> method (this is just sampling from Normal distributions, so not at all the same like MCMC):</p>
@@ -729,9 +829,6 @@ Wall time: 2min 7s
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_22_0.png" src="../../../_images/demo-bnn_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -757,11 +854,6 @@ Wall time: 2min 7s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can get predicted probability from model</span>
 <span class="n">neural_network</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">p</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sigmoid.0
 </pre></div>
 </div>
 </div>
@@ -804,20 +896,10 @@ Wall time: 2min 7s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.68 s ± 278 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> production_step2()
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42.4 ms ± 2.8 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -840,18 +922,10 @@ Wall time: 2min 7s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_33_0.png" src="../../../_images/demo-bnn_33_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy = </span><span class="si">{}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">Y_test</span> <span class="o">==</span> <span class="n">pred</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy = 86.2%
 </pre></div>
 </div>
 </div>
@@ -893,9 +967,6 @@ Wall time: 2min 7s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_40_0.png" src="../../../_images/demo-bnn_40_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="uncertainty-in-predicted-value">
@@ -913,9 +984,6 @@ Wall time: 2min 7s
 <span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Uncertainty (posterior predictive standard deviation)&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_42_0.png" src="../../../_images/demo-bnn_42_0.png" />
 </div>
 </div>
 <p>We can see that very close to the decision boundary, our uncertainty as to which label to predict is highest. You can imagine that associating predictions with uncertainty is a critical property for many applications like health care. To further maximize accuracy, we might want to train the model primarily on samples from that high-uncertainty region.</p>
@@ -936,12 +1004,6 @@ Wall time: 2min 7s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Loss = 188.09: 100%|██████████| 40000/40000 [00:58&lt;00:00, 683.98it/s]
-Finished [100%]: Average Loss = 188.16
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -953,9 +1015,6 @@ Finished [100%]: Average Loss = 188.16
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_47_0.png" src="../../../_images/demo-bnn_47_0.png" />
-</div>
 </div>
 <p>As you can see, mini-batch ADVI’s running time is much lower. It also seems to converge faster.</p>
 <p>For fun, we can also look at the trace. The point is that we also get uncertainty of our Neural Network weights.</p>
@@ -965,9 +1024,6 @@ Finished [100%]: Average Loss = 188.16
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/demo-bnn_50_0.png" src="../../../_images/demo-bnn_50_0.png" />
 </div>
 </div>
 </div>

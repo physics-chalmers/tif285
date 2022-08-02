@@ -1,7 +1,12 @@
 # Book settings
 title: Learning from data
 author: Christian Forssén
+email: christian.forssen@chalmers.se
 logo: ./fig/logo.png
+description: >- # this means to ignore newlines
+  This book comprises the lecture notes for the course TIF285/FIM285
+  Learning from data taught at Chalmers University of Technology 
+  and Gothenburg University.
 
 latex:
   latex_documents:
