@@ -1,12 +1,11 @@
 # Introduction
 
-These are the lecture notes for the course TIF285/FYM285 Learning from data.
-The accompanying jupyter notebooks can be found in [this git repository](https://github.com/physics-chalmers/tif285).
+These are the lecture notes for the master-level course "Learning from data" (TIF285/FYM285) that is taught at Chalmers University of Technology and Göteborg University. The accompanying jupyter notebooks can be found in [this git repository](https://github.com/physics-chalmers/tif285).
 
 ## Course aim
 The course introduces a variety of central algorithms and methods essential for performing scientific data analysis using statistical inference and machine learning. Much emphasis is put on practical applications of Bayesian inference in the natural and engineering sciences, i.e. the ability to quantify the strength of inductive inference from facts (such as experimental data) to propositions such as scientific hypotheses and models.
 
-The course is project-based, and the students will be exposed to fundamental research problems through the various projects, with the aim to reproduce state-of-the-art scientific results. The students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.
+The course is project-based, and students will be exposed to fundamental research problems through the course projects that aim to reproduce state-of-the-art scientific results. Students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.
 
 <!-- !split -->
 ## About these lecture notes
@@ -40,9 +39,9 @@ These notes originated from an intensive three-week summer school course taught 
 
 The full list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than inadvertently omitting someone, I simply say thank you to all. More generally, I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.
 
-The last statement extends to the open-source communities that make so many great computing tools publicly available. In this course we take great advantage of open-source python libraries.  
+The last statement extends to the open-source communities through which great computing tools are made publicly available. In this course we take great advantage of open-source python libraries.  
 
-The development of this course also would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and machine learning:
+The development of this course would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and the fundamentals of machine learning:
 
 1. Phil Gregory, *"Bayesian Logical Data Analysis for the Physical Sciences"*, Cambridge University Press (2005).
 2. E. T. Jaynes, *"Probability Theory: The Logic of Science"*, Cambridge University Press (2003).

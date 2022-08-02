@@ -8,19 +8,6 @@ description: >- # this means to ignore newlines
   Learning from data taught at Chalmers University of Technology 
   and Gothenburg University.
 
-latex:
-  latex_documents:
-    targetname: book.tex
-
-sphinx:
-  config:
-    bibtex_reference_style: label
-    bibtex_default_style: 'alpha'  
-    # By default MathJax version 2 is currently used. If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:  
-    #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    #myst_override_mathjax: true
-    
 execute:
   execute_notebooks         : cache  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
   cache                     : ""    # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
@@ -31,13 +18,30 @@ execute:
   allow_errors              : false # If `False`, when a code cell raises an error the execution is stopped, otherwise all cells are always run.
   stderr_output             : show  # One of 'show', 'remove', 'remove-warn', 'warn', 'error', 'severe'
 
+#######################################################################################
+# LaTeX-specific settings
+latex:
+  latex_engine: xelatex             # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
+  latex_documents:
+    targetname: book.tex
 
-# Parse and render settings
-parse:
-  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
-  myst_enable_extensions    : ["dollarmath", "amsmath","html_image"]
+bibtex_bibfiles:
+  - references.bib
 
+bibtex_reference_style:
+  - author_year
+
+#######################################################################################
+# Information about where the book exists on the web
+repository:
+  url                       : https://github.com/physics-chalmers/tif285  # The URL to your book's repository
+  path_to_book              : "./doc/LectureNotes"  # A path to your book's folder, relative to the repository root.
+  branch                    : master  # Which branch of the repository should be used when creating links
+
+#######################################################################################
 # HTML-specific settings
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   favicon                   : ""  # A path to a favicon image
   use_edit_page_button      : false  # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
@@ -46,19 +50,32 @@ html:
   extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
   extra_footer              : ""  # Will be displayed underneath the footer.
   google_analytics_id       : ""  # A GA id that can be used to track book views.
-  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
-  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
   comments:
     hypothesis              : false
-    utterances              : false
+    utterances              : 
+      repo: "github-org/github-repo" # Allows to write comments that turns into git issues using utterances. See https://jupyterbook.org/en/stable/interactive/comments/utterances.html
+#  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
+#  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/    
 
-#######################################################################################
-# LaTeX-specific settings
-latex:
-  latex_engine              : pdflatex  # one of 'pdflatex', 'xelatex' (recommended for unicode), 'luatex', 'platex', 'uplatex'
-
-bibtex_bibfiles             : ["./references.bib"]
     
+
+sphinx:
+  config:
+    bibtex_reference_style: label
+    bibtex_default_style: 'alpha'  
+    # By default MathJax version 2 is currently used. If you are using a lot of math, you may want to try using version 3, which claims to improve load speeds by 60 - 80%:  
+    #mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    #myst_override_mathjax: true
+    
+
+
+# Parse and render settings
+parse:
+  myst_url_schemes          : [mailto, http, https]  # URI schemes that will be recognised as external URLs in Markdown links
+  myst_enable_extensions    : ["dollarmath", "amsmath","html_image"]
+
+
 #######################################################################################
 # Launch button settings
 launch_buttons:
@@ -66,8 +83,3 @@ launch_buttons:
   notebook_interface        : classic  # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
   thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
-
-repository:
-  url                       : https://github.com/physics-chalmers/tif285  # The URL to your book's repository
-  path_to_book              : "./doc/LectureNotes"  # A path to your book's folder, relative to the repository root.
-  branch                    : master  # Which branch of the repository should be used when creating links

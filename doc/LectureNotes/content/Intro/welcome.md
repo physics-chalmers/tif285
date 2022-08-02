@@ -1,12 +1,11 @@
 # Introduction
 
-These are the lecture notes for the course TIF285/FYM285 Learning from data.
-The accompanying jupyter notebooks can be found in [this git repository](https://github.com/physics-chalmers/tif285).
+These are the lecture notes for the master-level course "Learning from data" (TIF285/FYM285) that is taught at Chalmers University of Technology and Göteborg University. The accompanying jupyter notebooks can be found in [this git repository](https://github.com/physics-chalmers/tif285).
 
 ## Course aim
 The course introduces a variety of central algorithms and methods essential for performing scientific data analysis using statistical inference and machine learning. Much emphasis is put on practical applications of Bayesian inference in the natural and engineering sciences, i.e. the ability to quantify the strength of inductive inference from facts (such as experimental data) to propositions such as scientific hypotheses and models.
 
-The course is project-based, and the students will be exposed to fundamental research problems through the various projects, with the aim to reproduce state-of-the-art scientific results. The students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.
+The course is project-based, and students will be exposed to fundamental research problems through the course projects that aim to reproduce state-of-the-art scientific results. Students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.
 
 <!-- !split -->
 ## About these lecture notes

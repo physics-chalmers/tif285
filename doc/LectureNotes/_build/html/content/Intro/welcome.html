@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -40,9 +40,43 @@
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "github-org/github-repo");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -420,12 +454,11 @@
                 
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>These are the lecture notes for the course TIF285/FYM285 Learning from data.
-The accompanying jupyter notebooks can be found in <a class="reference external" href="https://github.com/physics-chalmers/tif285">this git repository</a>.</p>
+<p>These are the lecture notes for the master-level course “Learning from data” (TIF285/FYM285) that is taught at Chalmers University of Technology and Göteborg University. The accompanying jupyter notebooks can be found in <a class="reference external" href="https://github.com/physics-chalmers/tif285">this git repository</a>.</p>
 <div class="section" id="course-aim">
 <h2>Course aim<a class="headerlink" href="#course-aim" title="Permalink to this headline">¶</a></h2>
 <p>The course introduces a variety of central algorithms and methods essential for performing scientific data analysis using statistical inference and machine learning. Much emphasis is put on practical applications of Bayesian inference in the natural and engineering sciences, i.e. the ability to quantify the strength of inductive inference from facts (such as experimental data) to propositions such as scientific hypotheses and models.</p>
-<p>The course is project-based, and the students will be exposed to fundamental research problems through the various projects, with the aim to reproduce state-of-the-art scientific results. The students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.</p>
+<p>The course is project-based, and students will be exposed to fundamental research problems through the course projects that aim to reproduce state-of-the-art scientific results. Students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.</p>
 <!-- !split -->
 </div>
 <div class="section" id="about-these-lecture-notes">
@@ -462,8 +495,8 @@ The accompanying jupyter notebooks can be found in <a class="reference external"
 <li><p>Dr. Sarah Wesolowski, University of Pennsylvania</p></li>
 </ul>
 <p>The full list of people that have contributed with ideas, discussions, or by generously sharing their knowledge is very long. Rather than inadvertently omitting someone, I simply say thank you to all. More generally, I am truly thankful for being part of an academic environment in which ideas and efforts are shared rather than kept isolated.</p>
-<p>The last statement extends to the open-source communities that make so many great computing tools publicly available. In this course we take great advantage of open-source python libraries.</p>
-<p>The development of this course also would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and machine learning:</p>
+<p>The last statement extends to the open-source communities through which great computing tools are made publicly available. In this course we take great advantage of open-source python libraries.</p>
+<p>The development of this course would not have been possible without the knowledge gained through the study of several excellent textbooks, most of which are listed as recommended course literature. Here is a short list of those references that I have found particularly useful as a physicist learning Bayesian statistics and the fundamentals of machine learning:</p>
 <ol class="simple">
 <li><p>Phil Gregory, <em>“Bayesian Logical Data Analysis for the Physical Sciences”</em>, Cambridge University Press (2005).</p></li>
 <li><p>E. T. Jaynes, <em>“Probability Theory: The Logic of Science”</em>, Cambridge University Press (2003).</p></li>
