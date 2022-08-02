@@ -53,7 +53,7 @@ html:
   comments:
     hypothesis              : false
     utterances              : 
-      repo: "github-org/github-repo" # Allows to write comments that turns into git issues using utterances. See https://jupyterbook.org/en/stable/interactive/comments/utterances.html
+      repo: "https://github.com/physics-chalmers/tif285" # Allows to write comments that turns into git issues using utterances. See https://jupyterbook.org/en/stable/interactive/comments/utterances.html
 #  home_page_in_navbar       : true  # Whether to include your home page in the left Navigation Bar
 #  baseurl                   : ""  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/    
 
