@@ -76,6 +76,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -83,7 +85,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -335,6 +337,18 @@ commentsRunWhenDOMLoaded(addUtterances);
  <li class="toctree-l1">
   <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
    36. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Backmatter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Backmatter/bibliography.html">
+   37. Bibliography
   </a>
  </li>
 </ul>
@@ -874,14 +888,14 @@ Recall Bayes’ theorem with <span class="math notranslate nohighlight">\(\theta
 <ul class="simple">
 <li><p><em>What prior would you choose? How does this affect how long it takes you to arrive at the correct conclusion?</em> Note that the answer to this question may be <span class="math notranslate nohighlight">\(p_H\)</span> dependent.</p></li>
 <li><p><em>What would your standard be for deciding the coin was so unfair that you would walk away? That you’d call the police? That you’d try and publish the fact that you found an unfair coin in a scientific journal?</em> Hint: for the last one try thinking in terms of a “p value”. If you don’t know what that mean google “hypothesis testing”.</p></li>
-<li><p><em>What if you were <strong>sure</strong> the coin was unfair before you started? (E.g. you saw the person doctoring it.) What prior would you choose then? What happens to the posterior in this case?</em>  This one may be best answered without any hitting of shift-return…..</p></li>
+<li><p><em>What if you were <strong>sure</strong> the coin was unfair before you started? (E.g. you saw the person doctoring it.) What prior would you choose then? What happens to the posterior in this case?</em>  This one may be best answered without any hitting of shift-return…</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="degree-of-belief-intervals">
 <h2><span class="section-number">12.3. </span>Degree of belief intervals<a class="headerlink" href="#degree-of-belief-intervals" title="Permalink to this headline">¶</a></h2>
-<p>Now we are going to compute some Bayesian confidence intervals, aka DoB intervals, aka credibility intervals….
+<p>Now we are going to compute some Bayesian confidence intervals, aka DoB intervals, aka credibility intervals…
 You shoud go through this section once using the numbers provided, and then come back and run it again (or copy-paste the relevant lines) for other results from the widget. You can also employ priors other than those provided if you wish, but that takes a bit more work.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -12,8 +12,8 @@ In this lecture we will continue to explore linear regression and we will encoun
 
 This lecture is accompanied by a demonstration Jupyter notebook. Furthermore, you will get your own experience with these concepts when working on the linear regression exercise and the problem set.
 
-The lecture is based and inspired by material in several good textbooks: in particular chapter 4 in [Hands‑On Machine Learning with Scikit‑Learn and TensorFlow](http://shop.oreilly.com/product/0636920052289.do) by Aurelien Geron and chapter 5 in the 
-[Python Data Science Handbook](http://shop.oreilly.com/product/0636920034919.do) by Jake VanderPlas.
+The lecture is based and inspired by material in several good textbooks: in particular chapter 4 in [Hands‑On Machine Learning with Scikit‑Learn and TensorFlow](http://shop.oreilly.com/product/0636920052289.do) {cite}`Geron2017` by Aurelien Geron and chapter 5 in the 
+[Python Data Science Handbook](http://shop.oreilly.com/product/0636920034919.do) {cite}`Vanderplas2016` by Jake VanderPlas.
 The cross-validation example with Ridge Regularization is taken from teaching material developed by Morten Hjorth-Jensen at the Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University. 
 
 <!-- !split -->
@@ -161,7 +161,7 @@ $$
 
 with $t$ a finite positive number. 
 
-For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's](https://arxiv.org/abs/1509.09169) article or [Mehta et al's article](https://arxiv.org/abs/1803.08823).
+For more discussions of Ridge and Lasso regression, see: [Wessel van Wieringen's](https://arxiv.org/abs/1509.09169) {cite}`Vanwieringen2015` article or [Mehta et al's](https://arxiv.org/abs/1803.08823) {cite}`Mehta2019` article.
 
 <!-- !split -->
 ## The bias-variance tradeoff

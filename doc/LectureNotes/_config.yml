@@ -99,8 +99,9 @@ sphinx:
           \newcommand{\emat}{\end{array}\right]}
           \renewcommand{\vec}[1]{\boldsymbol{#1}}
 
-  extra_extensions:
-    - sphinx_inline_tabs
+# CF comment: extension not installed.
+#  extra_extensions:
+#    - sphinx_inline_tabs
     
 #######################################################################################
 # Parse and render settings

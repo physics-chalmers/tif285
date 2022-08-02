@@ -19,9 +19,7 @@ get_ipython().run_line_magic('matplotlib', 'inline')
 
 # ## Meet the Pandas
 # 
-# <p></p>
-# <img src="figs/pandas.jpg" width=600>
-# 
+# <img src="./figs/pandas.jpg" width=600>
 # 
 # [Pandas](https://pandas.pydata.org/) is a very useful Python package for reading and organizing data. It is an open source library
 # providing high-performance, easy-to-use data structures and data
@@ -175,7 +173,7 @@ print(df1)
 # m_n = 939.56536(8)\hspace{0.1cm} \mathrm{MeV}/c^2 = 1.0086649156(6)u.
 # $$
 
-# In the [2016 mass evaluation of by W.J.Huang, G.Audi, M.Wang, F.G.Kondev, S.Naimi and X.Xu](http://nuclearmasses.org/resources_folder/Wang_2017_Chinese_Phys_C_41_030003.pdf)
+# In the [2016 mass evaluation of by W.J.Huang, G.Audi, M.Wang, F.G.Kondev, S.Naimi and X.Xu](http://nuclearmasses.org/resources_folder/Wang_2017_Chinese_Phys_C_41_030003.pdf) {cite}`Wang2017`
 # there are data on masses and decays of 3437 nuclei.
 
 # The nuclear binding energy is defined as the energy required to break

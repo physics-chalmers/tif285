@@ -83,7 +83,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -338,6 +338,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Backmatter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Backmatter/bibliography.html">
+   37. Bibliography
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -555,7 +567,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <div class="section" id="some-history">
 <h3>Some history<a class="headerlink" href="#some-history" title="Permalink to this headline">¶</a></h3>
-<p>Adapted<a class="footnote-reference brackets" href="#sivia" id="id1">1</a> from D.S. Sivia <span id="id2">[]</span></p>
+<p>Adapted from D.S. Sivia <span id="id1">[<a class="reference internal" href="../../Backmatter/bibliography.html#id2">3</a>]</span></p>
 <blockquote>
 <div><p>Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].</p>
 </div></blockquote>
@@ -620,8 +632,8 @@ discrete and continuous PDFs, respectively, this condition is</p>
 <p>Let us consider some important, univariate distributions.
 The first one
 is the most basic PDF; namely the uniform distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-180a3631-55cd-411e-bbbf-7ccd6495f0c8">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-180a3631-55cd-411e-bbbf-7ccd6495f0c8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-398e8149-e751-4fb2-b34b-4bb86634d837">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-398e8149-e751-4fb2-b34b-4bb86634d837" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x).
 \label{eq:unifromPDF}
 \end{equation}\]</div>
@@ -656,8 +668,8 @@ p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
 <p>Let <span class="math notranslate nohighlight">\(h(x)\)</span> be an arbitrary continuous function on the domain of the stochastic
 variable <span class="math notranslate nohighlight">\(X\)</span> whose PDF is <span class="math notranslate nohighlight">\(p(x)\)</span>. We define the <em>expectation value</em>
 of <span class="math notranslate nohighlight">\(h\)</span> with respect to <span class="math notranslate nohighlight">\(p\)</span> as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f0fa5c3-84d6-4975-92a9-2ed7ccbff56e">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-8f0fa5c3-84d6-4975-92a9-2ed7ccbff56e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-07a62651-c79d-4aa8-923b-3dd0143c1606">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-07a62651-c79d-4aa8-923b-3dd0143c1606" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbb{E}_p[h] = \langle h \rangle_p \equiv \int\! h(x)p(x)\,dx
 \label{eq:expectation_value_of_h_wrt_p}
 \end{equation}\]</div>
@@ -779,12 +791,6 @@ while <span class="math notranslate nohighlight">\(P(x)\)</span> is the cumulati
 <li><p><code class="docutils literal notranslate"><span class="pre">rvs(size=numpts)</span></code> - generate numpts random values of the pdf.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">interval(alpha)</span></code> - Endpoints of the range that contains alpha percent of the distribution.</p></li>
 </ul>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="sivia"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006</p>
-</dd>
-</dl>
 </div>
 </div>
 </div>

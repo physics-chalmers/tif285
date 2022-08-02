@@ -41,9 +41,7 @@
 
 <!-- !split -->
 ### Some history
-Adapted[^Sivia] from D.S. Sivia {cite}`Sivia2006`
-
-[^Sivia]: Sivia, Devinderjit, and John Skilling. Data Analysis : A Bayesian Tutorial, OUP Oxford, 2006
+Adapted from D.S. Sivia {cite}`Sivia2006`
 
 > Although the frequency definition appears to be more objective, its range of validity is also far more limited. For example, Laplace used (his) probability theory to estimate the mass of Saturn, given orbital data that were available to him from various astronomical observatories. In essence, he computed the posterior pdf for the mass M , given the data and all the relevant background information I (such as a knowledge of the laws of classical mechanics): prob(M|{data},I); this is shown schematically in the figure [Fig. 1.2].
 

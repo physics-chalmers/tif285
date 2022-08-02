@@ -49,7 +49,7 @@ The basic process illustrated in Fig. [fig-inference](#fig-inference) is employe
 Thus, we will be able to study statistical inference methods for learning from data and use them in scientific applications. In particular, we will use **Bayesian statistics**. Simultaneously we will slowly develop a deeper understanding and probabilistic interpretation of machine learning algorithms through a statistical foundation. 
 
 <!-- !split -->
-*Edwin Jaynes*, in his influential [How does the brain do plausible reasoning?](https://link.springer.com/chapter/10.1007%2F978-94-009-3049-0_1), wrote:
+*Edwin Jaynes*, in his influential [How does the brain do plausible reasoning?](https://link.springer.com/chapter/10.1007%2F978-94-009-3049-0_1) {cite}`Jaynes1988`, wrote:
 > One of the most familiar facts of our experience is this: that there is such a thing as common sense, which enables us to do plausible reasoning in a fairly consistent way. People who have the same background of experience and the same amount of information about a proposition come to pretty much the same conclusions as to its plausibility. No jury has ever reached a verdict on the basis of pure deductive reasoning. Therefore the human brain must contain some fairly definite mechanism for plausible reasoning, undoubtedly much more complex than that required for deductive reasoning. But in order for this to be possible, there must exist consistent rules for carrying out plausible reasoning, in terms of operations so definite that they can be programmed on the computing machine which is the human brain.
 
 
