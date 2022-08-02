@@ -60,7 +60,7 @@ A Gaussian process is a stochastic process (a collection of random variables ind
 <!-- !split -->
 ### References:
 
-1. [Gaussian Processes for Machine Learning](http://www.gaussianprocess.org/gpml), Carl Edward Rasmussen and Chris Williams, the MIT Press, 2006, [online version](http://www.gaussianprocess.org/gpml/chapters).
+1. [Gaussian Processes for Machine Learning](http://www.gaussianprocess.org/gpml), Carl Edward Rasmussen and Chris Williams {cite}`Rasmussen2005`, [online version](http://www.gaussianprocess.org/gpml/chapters).
 2. [GPy](https://sheffieldml.github.io/GPy/): a Gaussian Process (GP) framework written in python, from the Sheffield machine learning group.
 
 <!-- !split -->

@@ -18,7 +18,7 @@ sns.set_context("talk")
 
 # ## Example: Gaussian noise and averages
 
-# Adapted from Sivia: *Data Analysis: A Bayesian Tutorial*
+# Adapted from Sivia: *Data Analysis: A Bayesian Tutorial* {cite}`Sivia2006`.
 # 
 # Here we'll take a look at a simple parameter-estimation problem. We will compare the frequentist and Bayesian approaches. This problem is an extended version of Example 2 in Ch 2.3 of the book by Sivia. This short book is very readable and is highly recommended.
 

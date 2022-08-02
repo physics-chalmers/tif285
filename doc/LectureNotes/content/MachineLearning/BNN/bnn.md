@@ -1,6 +1,6 @@
 <!-- !split -->
 # Bayesian neural networks
-The introduction part of this lecture is inspired by the chapter *"Learning as Inference"* in the excellent book [Information Theory, Inference, and Learning Algorithms](http://www.inference.org.uk/mackay/itila/) by David MacKay.
+The introduction part of this lecture is inspired by the chapter *"Learning as Inference"* in the excellent book [Information Theory, Inference, and Learning Algorithms](http://www.inference.org.uk/mackay/itila/) by David MacKay {cite}`Mackay2003`.
 
 Some python libraries that are relevant for Bayesian Neural Networks (and part of the general trend towards Probabilistic Programming in Machine Learning) are:
 * [PyMC3](https://docs.pymc.io/)
@@ -207,7 +207,7 @@ This problem constitutes a new and active area of research in machine learning a
 
 <!-- !split -->
 ### Bayesian neural networks in PyMC3
-In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the **Automatic Differentation Variational Inference** (ADVI) approach, described e.g. in [Automatic Variational Inference in Stan](https://arxiv.org/abs/1506.03431).
+In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the **Automatic Differentation Variational Inference** (ADVI) approach, described e.g. in [Automatic Variational Inference in Stan](https://arxiv.org/abs/1506.03431) {cite}`Kucukelbir2015`.
 
 <!-- <img src="fig/BNN/ADVI-classifier_ELBO.png" width=500><p><em>The training of the Bayesian binary classifier, that employs ADVI implemented in `pymc3`, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).</em></p> -->
 ![<p><em>The training of the Bayesian binary classifier, that employs ADVI implemented in `pymc3`, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).</em></p>](./figs/ADVI-classifier_ELBO.png)
@@ -221,7 +221,7 @@ See also
 <!-- !split -->
 ### Bayes by Backprop
 
-The well-cited paper paper: [Weight Uncertainty in Neural Networks](https://arxiv.org/abs/1505.05424) (*Bayes by Backprop*) has been well described in the [blog entry](http://krasserm.github.io/2019/03/14/bayesian-neural-networks/) by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation. 
+The well-cited paper paper: [Weight Uncertainty in Neural Networks](https://arxiv.org/abs/1505.05424) (*Bayes by Backprop*) {cite}`Blundell2015` has been well described in the [blog entry](http://krasserm.github.io/2019/03/14/bayesian-neural-networks/) by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation. 
 
 All three terms in equation {eq}`eq:elbo` are expectations w.r.t. the variational distribution $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$. In this paper they use the variational free energy $\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})$ as a cost function (since it should be *minimized*). This quantity can be approximated by drawing [Monte Carlo](https://en.wikipedia.org/wiki/Monte_Carlo_method) samples $\boldsymbol{w}^{(i)}$ from $q(\boldsymbol{w} \lvert \boldsymbol{\theta})$.
 

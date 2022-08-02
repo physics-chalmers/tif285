@@ -3,7 +3,7 @@
 
 # # Metropolis-Hasting MCMC sampling of a Poisson distribution 
 
-# This notebook was adapted from Example 1, section 12.2 in Gregory's *Bayesian Logical Data Analysis for the Physical Sciences*.
+# This notebook was adapted from Example 1, section 12.2 in Gregory's *Bayesian Logical Data Analysis for the Physical Sciences* {cite}`Gregory2005`.
 
 # The Poisson discrete random variable from scipy.stats is defined by (see [documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html))
 # 

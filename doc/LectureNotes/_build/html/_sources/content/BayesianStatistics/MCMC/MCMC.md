@@ -112,7 +112,7 @@ A sequence of points generated according to these rules is called a *Markov Chai
 Before describing the most basic implementation of the MCMC, namely the Metropolis and Metropolis-Hastings algorithms, let us list a few state-of-the-art implementations and packages that are available in Python (and often other languages)
 
 ```{admonition} emcee:
-  [emcee](https://emcee.readthedocs.io/en/latest/) is an MIT licensed pure-Python implementation of Goodman & Weare’s [Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler](http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml)
+  [emcee](https://emcee.readthedocs.io/en/latest/) {cite}`Foreman_Mackey_2013` is an MIT licensed pure-Python implementation of Goodman & Weare’s [Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler](http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml) {cite}`Goodman2010`
   ```
   
 ```{admonition} PyMC3:
@@ -124,7 +124,7 @@ Before describing the most basic implementation of the MCMC, namely the Metropol
   ```
   
 ```{admonition} PyMultiNest:
-  [PyMultiNest](https://johannesbuchner.github.io/PyMultiNest/) interacts with [MultiNest](https://github.com/farhanferoz/MultiNest), a Nested Sampling Monte Carlo library.
+  [PyMultiNest](https://johannesbuchner.github.io/PyMultiNest/) interacts with [MultiNest](https://github.com/farhanferoz/MultiNest) {cite}`Feroz2009`, a Nested Sampling Monte Carlo library.
   ```
 
 We have been using emcee extensively in this course. It is based on ensemble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some [lecture notes](http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html)

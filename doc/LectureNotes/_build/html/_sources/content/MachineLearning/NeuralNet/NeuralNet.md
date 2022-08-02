@@ -186,8 +186,8 @@ expansion of the original inputs $\boldsymbol{x}$.
 <!-- !split -->
 ### Why multilayer perceptrons?
 
-According to the [universal approximation
-theorem](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&rep=rep1&type=pdf), a feed-forward
+According to the universal approximation
+theorem {cite}`Cybenko1989`, a feed-forward
 neural network with just a single hidden layer containing a finite
 number of neurons can approximate a continuous multidimensional
 function to arbitrary accuracy, assuming the activation function for
@@ -459,7 +459,7 @@ In conclusion, there are scary many options when designing an ANN. A physicist s
 
 As we have seen the final output of a feed-forward network can be expressed in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights $w_{ij}$ and we need to find an algorithm for changing them so that our errors are as small as possible.
-This leads us to the famous [back propagation algorithm](https://www.nature.com/articles/323533a0).
+This leads us to the famous back propagation algorithm {cite}`Rumelhart1986`.
 
 The questions we want to ask are how do changes in the biases and the
 weights in our network change the cost function and how can we use the
@@ -826,8 +826,7 @@ quite a while (it was one of the reasons why deep neural networks were
 mostly abandoned for a long time), it is only around 2010 that
 significant progress was made in understanding it.
 
-A paper titled [Understanding the Difficulty of Training Deep
-Feedforward Neural Networks by Xavier Glorot and Yoshua Bengio](http://proceedings.mlr.press/v9/glorot10a.html) identified problems with the popular logistic
+Glorot and Bengio {cite}`Glorot2010` identified problems with the popular logistic
 sigmoid activation function and the weight initialization technique
 that was most popular at the time (namely random initialization using
 a normal distribution with a mean of 0 and a standard deviation of

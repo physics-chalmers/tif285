@@ -76,8 +76,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -571,7 +569,7 @@ p(\boldsymbol{\theta}_A | D, I) = \int p(\boldsymbol{\theta}_A, \boldsymbol{\the
 <p>Before describing the most basic implementation of the MCMC, namely the Metropolis and Metropolis-Hastings algorithms, let us list a few state-of-the-art implementations and packages that are available in Python (and often other languages)</p>
 <div class="admonition-emcee admonition">
 <p class="admonition-title">emcee:</p>
-<p><a class="reference external" href="https://emcee.readthedocs.io/en/latest/">emcee</a> is an MIT licensed pure-Python implementation of Goodman &amp; Weare’s <a class="reference external" href="http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml">Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler</a></p>
+<p><a class="reference external" href="https://emcee.readthedocs.io/en/latest/">emcee</a> <span id="id1">[<a class="reference internal" href="../../Backmatter/bibliography.html#id11">10</a>]</span> is an MIT licensed pure-Python implementation of Goodman &amp; Weare’s <a class="reference external" href="http://msp.berkeley.edu/camcos/2010/5-1/p04.xhtml">Affine Invariant Markov chain Monte Carlo (MCMC) Ensemble sampler</a> <span id="id2">[<a class="reference internal" href="../../Backmatter/bibliography.html#id12">11</a>]</span></p>
 </div>
 <div class="admonition-pymc3 admonition">
 <p class="admonition-title">PyMC3:</p>
@@ -583,7 +581,7 @@ p(\boldsymbol{\theta}_A | D, I) = \int p(\boldsymbol{\theta}_A, \boldsymbol{\the
 </div>
 <div class="admonition-pymultinest admonition">
 <p class="admonition-title">PyMultiNest:</p>
-<p><a class="reference external" href="https://johannesbuchner.github.io/PyMultiNest/">PyMultiNest</a> interacts with <a class="reference external" href="https://github.com/farhanferoz/MultiNest">MultiNest</a>, a Nested Sampling Monte Carlo library.</p>
+<p><a class="reference external" href="https://johannesbuchner.github.io/PyMultiNest/">PyMultiNest</a> interacts with <a class="reference external" href="https://github.com/farhanferoz/MultiNest">MultiNest</a> <span id="id3">[<a class="reference internal" href="../../Backmatter/bibliography.html#id13">12</a>]</span>, a Nested Sampling Monte Carlo library.</p>
 </div>
 <p>We have been using emcee extensively in this course. It is based on ensemble samplers (many MCMC walkers) with affine-invariance. For more details, there is the paper (see above) and some <a class="reference external" href="http://iacs-courses.seas.harvard.edu/courses/am207/blog/lecture-16.html">lecture notes</a></p>
 <!-- !split -->

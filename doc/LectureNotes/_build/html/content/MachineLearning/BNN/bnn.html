@@ -76,8 +76,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -503,7 +501,7 @@ commentsRunWhenDOMLoaded(addUtterances);
   <!-- !split -->
 <div class="section" id="bayesian-neural-networks">
 <h1><span class="section-number">34. </span>Bayesian neural networks<a class="headerlink" href="#bayesian-neural-networks" title="Permalink to this headline">¶</a></h1>
-<p>The introduction part of this lecture is inspired by the chapter <em>“Learning as Inference”</em> in the excellent book <a class="reference external" href="http://www.inference.org.uk/mackay/itila/">Information Theory, Inference, and Learning Algorithms</a> by David MacKay.</p>
+<p>The introduction part of this lecture is inspired by the chapter <em>“Learning as Inference”</em> in the excellent book <a class="reference external" href="http://www.inference.org.uk/mackay/itila/">Information Theory, Inference, and Learning Algorithms</a> by David MacKay <span id="id1">[<a class="reference internal" href="../../Backmatter/bibliography.html#id19">18</a>]</span>.</p>
 <p>Some python libraries that are relevant for Bayesian Neural Networks (and part of the general trend towards Probabilistic Programming in Machine Learning) are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.pymc.io/">PyMC3</a></p></li>
@@ -522,8 +520,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{w} = \left\{ w_i \right\}_{i=1}^I\)</span> are the weights of the neuron and we have included a bias (<span class="math notranslate nohighlight">\(b \equiv w_0\)</span>).</p>
 <p>The training of the network implies feeding it with training data and finding the sets of weights and biases that minimizes a loss function that has been selected for that particular problem.
 Consider, e.g., a classification problem where the single output <span class="math notranslate nohighlight">\(y\)</span> of the final network layer is a real number <span class="math notranslate nohighlight">\(\in [0,1]\)</span> that indicates the (discrete) probability for input <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> belonging to either class <span class="math notranslate nohighlight">\(t=1\)</span> or <span class="math notranslate nohighlight">\(t=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69d88a1e-8a54-4e77-8a1b-b61b91b2bdfc">
-<span class="eqno">(34.1)<a class="headerlink" href="#equation-69d88a1e-8a54-4e77-8a1b-b61b91b2bdfc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-165b0e50-2f64-4a7b-bf4f-b46a028f5d22">
+<span class="eqno">(34.1)<a class="headerlink" href="#equation-165b0e50-2f64-4a7b-bf4f-b46a028f5d22" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_{t=1} \equiv p(t=1 | \boldsymbol{w},\boldsymbol{x}) &amp;= y \\
 p_{t=0} \equiv p(t=0 | \boldsymbol{w},\boldsymbol{x}) &amp;= 1-y,
 \end{align}\]</div>
@@ -670,7 +668,7 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 </div>
 <div class="section" id="bayesian-neural-networks-in-pymc3">
 <h3>Bayesian neural networks in PyMC3<a class="headerlink" href="#bayesian-neural-networks-in-pymc3" title="Permalink to this headline">¶</a></h3>
-<p>In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the <strong>Automatic Differentation Variational Inference</strong> (ADVI) approach, described e.g. in <a class="reference external" href="https://arxiv.org/abs/1506.03431">Automatic Variational Inference in Stan</a>.</p>
+<p>In the demonstration notebook of this lecture, it is shown how to use Variational Inference in PyMC3 to fit a simple Bayesian Neural Network. That implementation is based on the <strong>Automatic Differentation Variational Inference</strong> (ADVI) approach, described e.g. in <a class="reference external" href="https://arxiv.org/abs/1506.03431">Automatic Variational Inference in Stan</a> <span id="id2">[<a class="reference internal" href="../../Backmatter/bibliography.html#id20">19</a>]</span>.</p>
 <!-- <img src="fig/BNN/ADVI-classifier_ELBO.png" width=500><p><em>The training of the Bayesian binary classifier, that employs ADVI implemented in `pymc3`, corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO).</em></p> -->
 <p><img alt="The training of the Bayesian binary classifier, that employs ADVI implemented in , corresponds to modifying the variational distribution's hyperparameters in order to maximize the Evidence Lower Bound (ELBO)." src="../../../_images/ADVI-classifier_ELBO.png" /></p>
 <!-- <img src="fig/BNN/ADVI-classifier.png" width=800><p><em>The predictions for a Bayesian binary classifier that has been learning using ADVI implemented in `pymc3`. The mean (left panel) and standard deviation (right panel) of the binary classifier's label predictions are shown.</em></p> -->
@@ -683,7 +681,7 @@ D_\mathrm{KL}(q||p) &amp;= \int d \boldsymbol{w} q(\boldsymbol{w}\lvert \boldsym
 </div>
 <div class="section" id="bayes-by-backprop">
 <h3>Bayes by Backprop<a class="headerlink" href="#bayes-by-backprop" title="Permalink to this headline">¶</a></h3>
-<p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
+<p>The well-cited paper paper: <a class="reference external" href="https://arxiv.org/abs/1505.05424">Weight Uncertainty in Neural Networks</a> (<em>Bayes by Backprop</em>) <span id="id3">[<a class="reference internal" href="../../Backmatter/bibliography.html#id21">20</a>]</span> has been well described in the <a class="reference external" href="http://krasserm.github.io/2019/03/14/bayesian-neural-networks/">blog entry</a> by Martin Krasser. The main points of this blog entry are reproduced below with some modifications and some adjustments of notation.</p>
 <p>All three terms in equation <a class="reference internal" href="#equation-eq-elbo">(34.4)</a> are expectations w.r.t. the variational distribution <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>. In this paper they use the variational free energy <span class="math notranslate nohighlight">\(\mathcal{F}(\mathcal{D},\boldsymbol{\theta}) \equiv -J_\mathrm{ELBO}(\boldsymbol{\theta})\)</span> as a cost function (since it should be <em>minimized</em>). This quantity can be approximated by drawing <a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> samples <span class="math notranslate nohighlight">\(\boldsymbol{w}^{(i)}\)</span> from <span class="math notranslate nohighlight">\(q(\boldsymbol{w} \lvert \boldsymbol{\theta})\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-eq-variationalfreeenergy">
 <span class="eqno">(34.5)<a class="headerlink" href="#equation-eq-variationalfreeenergy" title="Permalink to this equation">¶</a></span>\[

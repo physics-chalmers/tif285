@@ -76,8 +76,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -646,8 +644,8 @@ signals, which must exceed an activation threshold to yield an
 output. If the threshold is not overcome, the neuron remains inactive,
 i.e. has zero output.</p>
 <p>This behaviour has inspired a simple mathematical model for an artificial neuron.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28282309-4294-4aff-8835-f1718ca77dfc">
-<span class="eqno">(29.1)<a class="headerlink" href="#equation-28282309-4294-4aff-8835-f1718ca77dfc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e6ffcc49-b92a-4635-b71b-36ce7c9174a9">
+<span class="eqno">(29.1)<a class="headerlink" href="#equation-e6ffcc49-b92a-4635-b71b-36ce7c9174a9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y = f\left(\sum_{i=1}^n w_jx_j + b \right) = f(z),
  \label{artificialNeuron}
 \end{equation}\]</div>
@@ -779,8 +777,8 @@ expansion of the original inputs <span class="math notranslate nohighlight">\(\b
 <!-- !split -->
 <div class="section" id="why-multilayer-perceptrons">
 <h3>Why multilayer perceptrons?<a class="headerlink" href="#why-multilayer-perceptrons" title="Permalink to this headline">¶</a></h3>
-<p>According to the <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.441.7873&amp;rep=rep1&amp;type=pdf">universal approximation
-theorem</a>, a feed-forward
+<p>According to the universal approximation
+theorem <span id="id1">[<a class="reference internal" href="../../Backmatter/bibliography.html#id16">15</a>]</span>, a feed-forward
 neural network with just a single hidden layer containing a finite
 number of neurons can approximate a continuous multidimensional
 function to arbitrary accuracy, assuming the activation function for
@@ -808,8 +806,8 @@ fully-connected, which means that each neuron receives a weighted sum
 of the outputs of <em>all</em> neurons in the previous layer.</p>
 <!-- !split -->
 <p>First, for each node <span class="math notranslate nohighlight">\(j\)</span> in the first hidden layer, we calculate a weighted sum <span class="math notranslate nohighlight">\(z_j^1\)</span> of the input coordinates <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e142f6e-6884-41b3-b89e-93a5da4680e6">
-<span class="eqno">(29.2)<a class="headerlink" href="#equation-6e142f6e-6884-41b3-b89e-93a5da4680e6" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
+<div class="amsmath math notranslate nohighlight" id="equation-2f521a18-7041-47f6-bebd-f5e0cc0d0278">
+<span class="eqno">(29.2)<a class="headerlink" href="#equation-2f521a18-7041-47f6-bebd-f5e0cc0d0278" title="Permalink to this equation">¶</a></span>\[\begin{equation} z_j^1 = \sum_{i=1}^{n} w_{ji}^1 x_i + b_j^1
 \end{equation}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(b_j^1\)</span> is the so-called bias which is normally needed in
 case of zero activation weights or inputs. How to fix the biases and
@@ -817,16 +815,16 @@ the weights will be discussed below.  The value of <span class="math notranslate
 argument to the activation function <span class="math notranslate nohighlight">\(f\)</span> of each node <span class="math notranslate nohighlight">\(j\)</span>, The
 variable <span class="math notranslate nohighlight">\(n\)</span> stands for all possible inputs to a given node <span class="math notranslate nohighlight">\(j\)</span> in the
 first layer.  We define  the output <span class="math notranslate nohighlight">\(y_j^1\)</span> of all neurons in layer 1 as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a5a9ea51-db0f-451c-aa11-74f51ee272bf">
-<span class="eqno">(29.3)<a class="headerlink" href="#equation-a5a9ea51-db0f-451c-aa11-74f51ee272bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fdbb14c5-1850-4be5-a4ae-46ea6a1815ef">
+<span class="eqno">(29.3)<a class="headerlink" href="#equation-fdbb14c5-1850-4be5-a4ae-46ea6a1815ef" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_j^1 = f(z_j^1) = f\left(\sum_{i=1}^n w_{ji}^1 x_i  + b_j^1\right),
  \label{outputLayer1}
 \end{equation}\]</div>
 <p>where we assume that all nodes in the same layer have identical
 activation functions, hence the notation <span class="math notranslate nohighlight">\(f\)</span>. In general, we could assume in the more general case that different layers have different activation functions.
 In this case we would identify these functions with a superscript <span class="math notranslate nohighlight">\(l\)</span> for the <span class="math notranslate nohighlight">\(l\)</span>-th layer,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-332b763f-c28e-454e-bd5c-c0a990dc86c5">
-<span class="eqno">(29.4)<a class="headerlink" href="#equation-332b763f-c28e-454e-bd5c-c0a990dc86c5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28035872-38d9-482b-a304-ae1b18ebd174">
+<span class="eqno">(29.4)<a class="headerlink" href="#equation-28035872-38d9-482b-a304-ae1b18ebd174" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y_i^l = f^l(z_i^l) = f^l\left(\sum_{j=1}^{N_{l-1}} w_{ij}^l y_j^{l-1} + b_i^l\right),
  \label{generalLayer}
 \end{equation}\]</div>
@@ -836,15 +834,15 @@ the subsequent layer can be calculated and so forth until the output
 is obtained.</p>
 <!-- !split -->
 <p>The output of neuron <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d475b45-800e-4320-944f-0f922d70800c">
-<span class="eqno">(29.5)<a class="headerlink" href="#equation-9d475b45-800e-4320-944f-0f922d70800c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ab7fef8e-871a-41af-99bb-fc0b1a307834">
+<span class="eqno">(29.5)<a class="headerlink" href="#equation-ab7fef8e-871a-41af-99bb-fc0b1a307834" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^2 &amp;= f^2\left(\sum_{j=1}^N w_{ij}^2 y_j^1 + b_i^2\right) \\
  &amp;= f^2\left[\sum_{j=1}^N w_{ij}^2f^1\left(\sum_{k=1}^M w_{jk}^1 x_k + b_j^1\right) + b_i^2\right]
  \label{outputLayer2}
 \end{align}\]</div>
 <p>where we have substituted <span class="math notranslate nohighlight">\(y_k^1\)</span> with the inputs <span class="math notranslate nohighlight">\(x_k\)</span>. Finally, the ANN output reads</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac494306-7bb9-42e1-8a0e-11f84276b1d7">
-<span class="eqno">(29.6)<a class="headerlink" href="#equation-ac494306-7bb9-42e1-8a0e-11f84276b1d7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-18bfe783-76f2-4f99-81d4-088b379d60e1">
+<span class="eqno">(29.6)<a class="headerlink" href="#equation-18bfe783-76f2-4f99-81d4-088b379d60e1" title="Permalink to this equation">¶</a></span>\[\begin{align}
  y_i^3 &amp;= f^3\left(\sum_{j=1}^N w_{ij}^3 y_j^2 + b_i^3\right) \\
  &amp;= f^3\left[\sum_{j} w_{ij}^3 f^2\left(\sum_{k} w_{jk}^2 f^1\left(\sum_{m} w_{km}^1 x_m + b_k^1\right) + b_j^2\right)
   + b_1^3\right]
@@ -852,8 +850,8 @@ is obtained.</p>
 <!-- !split -->
 <p>We can generalize this expression to an MLP with <span class="math notranslate nohighlight">\(L\)</span> hidden
 layers. The complete functional form is,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2c8a1df-7169-40cf-837d-ca8a526e9082">
-<span class="eqno">(29.7)<a class="headerlink" href="#equation-f2c8a1df-7169-40cf-837d-ca8a526e9082" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c799494-3663-4960-b9bf-b84e882e064f">
+<span class="eqno">(29.7)<a class="headerlink" href="#equation-4c799494-3663-4960-b9bf-b84e882e064f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;y^{L+1}_i = f^{L+1}\left[\!\sum_{j=1}^{N_L} w_{ij}^L f^L \left(\sum_{k=1}^{N_{L-1}}w_{jk}^{L-1}\left(\dots f^1\left(\sum_{n=1}^{N_0} w_{mn}^1 x_n+ b_m^1\right)\dots\right)+b_k^{L-1}\right)+b_1^L\right] &amp;&amp;
  \label{completeNN}
 \end{align}\]</div>
@@ -867,8 +865,8 @@ mapping of real-valued vectors <span class="math notranslate nohighlight">\(\bol
 <p>Furthermore, the flexibility and universality of an MLP can be
 illustrated by realizing that the expression is essentially a nested
 sum of scaled activation functions of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b97ee301-b5f7-4762-89f1-6b609f896d8a">
-<span class="eqno">(29.8)<a class="headerlink" href="#equation-b97ee301-b5f7-4762-89f1-6b609f896d8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7337b913-59ae-43da-bee3-5858d58498e5">
+<span class="eqno">(29.8)<a class="headerlink" href="#equation-7337b913-59ae-43da-bee3-5858d58498e5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  f(x) = c_1 f(c_2 x + c_3) + c_4,
 \end{equation}\]</div>
 <p>where the parameters <span class="math notranslate nohighlight">\(c_i\)</span> are weights and biases. By adjusting these
@@ -886,8 +884,8 @@ is the bias <span class="math notranslate nohighlight">\(b_i^l\)</span> and acti
 <p>We have that <span class="math notranslate nohighlight">\(\boldsymbol{W}_l\)</span> is an <span class="math notranslate nohighlight">\(N_{l-1} \times N_l\)</span> matrix, while <span class="math notranslate nohighlight">\(\boldsymbol{b}_l\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}_l\)</span> are <span class="math notranslate nohighlight">\(N_l \times 1\)</span> column vectors.
 With this notation, the sum becomes a matrix-vector multiplication, and we can write
 the equation for the activations of hidden layer 2 (assuming three nodes for simplicity) as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46ae1513-3ee5-4a2f-b65d-f1ffe0a2d5cc">
-<span class="eqno">(29.9)<a class="headerlink" href="#equation-46ae1513-3ee5-4a2f-b65d-f1ffe0a2d5cc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16fb445e-a7d9-4634-83cf-322507d0f7e3">
+<span class="eqno">(29.9)<a class="headerlink" href="#equation-16fb445e-a7d9-4634-83cf-322507d0f7e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  \boldsymbol{y}_2 = f_2(\boldsymbol{W}_2 \boldsymbol{y}_{1} + \boldsymbol{b}_{2}) = 
  f_2\left(\left[\begin{array}{ccc}
     w^2_{11} &amp;w^2_{12} &amp;w^2_{13} \\
@@ -910,8 +908,8 @@ the equation for the activations of hidden layer 2 (assuming three nodes for sim
 <div class="section" id="matrix-vector-notation-and-activation">
 <h3>Matrix-vector notation  and activation<a class="headerlink" href="#matrix-vector-notation-and-activation" title="Permalink to this headline">¶</a></h3>
 <p>The activation of node <span class="math notranslate nohighlight">\(i\)</span> in layer 2 is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af372dd4-12cf-4fe3-9ac8-b26145caa9f9">
-<span class="eqno">(29.10)<a class="headerlink" href="#equation-af372dd4-12cf-4fe3-9ac8-b26145caa9f9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ceda285b-2145-4bdb-ae92-7f6b07820e02">
+<span class="eqno">(29.10)<a class="headerlink" href="#equation-ceda285b-2145-4bdb-ae92-7f6b07820e02" title="Permalink to this equation">¶</a></span>\[\begin{equation}
  y^2_i = f_2\Bigr(w^2_{i1}y^1_1 + w^2_{i2}y^1_2 + w^2_{i3}y^1_3 + b^2_i\Bigr) = 
  f_2\left(\sum_{j=1}^3 w^2_{ij} y_j^1 + b^2_i\right).
 \end{equation}\]</div>
@@ -1017,7 +1015,7 @@ exponential linear unit (ELU) function</p>
 <h2><span class="section-number">29.7. </span>Deriving the back propagation code for a multilayer perceptron model<a class="headerlink" href="#deriving-the-back-propagation-code-for-a-multilayer-perceptron-model" title="Permalink to this headline">¶</a></h2>
 <p>As we have seen the final output of a feed-forward network can be expressed in terms of basic matrix-vector multiplications.
 The unknowwn quantities are our weights <span class="math notranslate nohighlight">\(w_{ij}\)</span> and we need to find an algorithm for changing them so that our errors are as small as possible.
-This leads us to the famous <a class="reference external" href="https://www.nature.com/articles/323533a0">back propagation algorithm</a>.</p>
+This leads us to the famous back propagation algorithm <span id="id2">[<a class="reference internal" href="../../Backmatter/bibliography.html#id17">16</a>]</span>.</p>
 <p>The questions we want to ask are how do changes in the biases and the
 weights in our network change the cost function and how can we use the
 final output to modify the weights?</p>
@@ -1133,18 +1131,18 @@ trouble in calculating</p>
 <!-- !split -->
 <p>We have now three equations that are essential for the computations of the derivatives of the cost function at the output layer. These equations are needed to start the algorithm and they are</p>
 <p><em>The starting equations.</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab3e46f4-0dd0-43d5-ae0f-04f8eba1a539">
-<span class="eqno">(29.11)<a class="headerlink" href="#equation-ab3e46f4-0dd0-43d5-ae0f-04f8eba1a539" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12db5fad-baea-4f24-9270-f103dbe6a704">
+<span class="eqno">(29.11)<a class="headerlink" href="#equation-12db5fad-baea-4f24-9270-f103dbe6a704" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\cal C}(\boldsymbol{W^L})}{\partial w_{jk}^L}  =  \delta_j^La_k^{L-1},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38433db2-79e6-4501-a10f-ec91a9dd4792">
-<span class="eqno">(29.12)<a class="headerlink" href="#equation-38433db2-79e6-4501-a10f-ec91a9dd4792" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0f8698a-1fd2-4508-a3a3-46f978683f75">
+<span class="eqno">(29.12)<a class="headerlink" href="#equation-c0f8698a-1fd2-4508-a3a3-46f978683f75" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = f'(z_j^L)\frac{\partial {\cal C}}{\partial (a_j^L)},
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eeb0e468-fa90-4a0a-8cfc-de479bcb7748">
-<span class="eqno">(29.13)<a class="headerlink" href="#equation-eeb0e468-fa90-4a0a-8cfc-de479bcb7748" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-787aa7e6-7453-4990-8202-9f6021828381">
+<span class="eqno">(29.13)<a class="headerlink" href="#equation-787aa7e6-7453-4990-8202-9f6021828381" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \delta_j^L = \frac{\partial {\cal C}}{\partial b_j^L},
 \end{equation}\]</div>
 <p>An interesting consequence of the above equations is that when the
@@ -1232,8 +1230,7 @@ weights and the learning algorithm diverges. This is the <strong>exploding gradi
 quite a while (it was one of the reasons why deep neural networks were
 mostly abandoned for a long time), it is only around 2010 that
 significant progress was made in understanding it.</p>
-<p>A paper titled <a class="reference external" href="http://proceedings.mlr.press/v9/glorot10a.html">Understanding the Difficulty of Training Deep
-Feedforward Neural Networks by Xavier Glorot and Yoshua Bengio</a> identified problems with the popular logistic
+<p>Glorot and Bengio <span id="id3">[<a class="reference internal" href="../../Backmatter/bibliography.html#id18">17</a>]</span> identified problems with the popular logistic
 sigmoid activation function and the weight initialization technique
 that was most popular at the time (namely random initialization using
 a normal distribution with a mean of 0 and a standard deviation of

@@ -262,7 +262,7 @@ Despite its virtues, let us end our discussion of error-propagation with a salut
 <!-- !split -->
 ### Example: Taking the square root of a number
 
-(Example 3.6.2 in Sivia)
+(Example 3.6.2 in Sivia {cite}`Sivia2006`)
 
 * Assume that the amplitude of a Bragg peak is measured with an uncertainty $A = A_0 \pm \sigma_A$ from a least-squares fit to experimental data.
 * The Bragg peak amplitude is proportional to the square of a complex structure function: $A = |F|^2 \equiv f^2$.

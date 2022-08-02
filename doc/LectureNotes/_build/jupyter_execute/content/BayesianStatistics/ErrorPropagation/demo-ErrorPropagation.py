@@ -25,7 +25,7 @@ sns.set_context("talk")
 # ### A Bayesian billiard game
 # Adapted from the blog post [Frequentism and Bayesianism II: When Results Differ](http://jakevdp.github.io/blog/2014/06/06/frequentism-and-bayesianism-2-when-results-differ/) 
 # 
-# This example of nuisance parameters dates all the way back to the posthumous [1763 paper](http://www.stat.ucla.edu/history/essay.pdf) written by Thomas Bayes himself. The particular version of this problem used here is borrowed from [Eddy 2004](ftp://selab.janelia.org/pub/publications/Eddy-ATG3/Eddy-ATG3-reprint.pdf).
+# This example of nuisance parameters dates all the way back to the posthumous 1763 paper {cite}`Bayes1763` written by Thomas Bayes himself. The particular version of this problem used here is borrowed from [Eddy 2004](ftp://selab.janelia.org/pub/publications/Eddy-ATG3/Eddy-ATG3-reprint.pdf).
 # 
 # The setting is a rather contrived game in which Alice and Bob bet on the outcome of a process they can't directly observe:
 # 

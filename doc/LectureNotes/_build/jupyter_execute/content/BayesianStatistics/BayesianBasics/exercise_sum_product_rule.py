@@ -7,12 +7,12 @@
 # 
 # Physicist-friendly references:
 # 
-# * R. Trotta, [*Bayes in the sky: Bayesian inference and model selection in cosmology*](https://www.tandfonline.com/doi/abs/10.1080/00107510802066753), Contemp. Phys. **49**, 71 (2008)  [arXiv:0803.4089](https://arxiv.org/abs/0803.4089).
+# * R. Trotta, [*Bayes in the sky: Bayesian inference and model selection in cosmology*](https://www.tandfonline.com/doi/abs/10.1080/00107510802066753) {cite}`Trotta:2008qt`
 #         
-# * D.S. Sivia and J. Skilling, [*Data Analysis: A Bayesian Tutorial, 2nd edition*](https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320/ref=mt_paperback?_encoding=UTF8&me=&qid=), (Oxford University Press, 2006).
+# * D.S. Sivia and J. Skilling, [*Data Analysis: A Bayesian Tutorial, 2nd edition*](https://www.amazon.com/Data-Analysis-Bayesian-Devinderjit-Sivia/dp/0198568320/ref=mt_paperback?_encoding=UTF8&me=&qid=) {cite}`Sivia2006`
 #     
 # * P. Gregory,
-#      [*Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support*](https://www.amazon.com/Bayesian-Logical-Analysis-Physical-Sciences/dp/0521150124/ref=sr_1_1?s=books&ie=UTF8&qid=1538587731&sr=1-1&keywords=gregory+bayesian), (Cambridge University Press, 2010).
+#      [*Bayesian Logical Data Analysis for the Physical Sciences: A Comparative Approach with Mathematica® Support*](https://www.amazon.com/Bayesian-Logical-Analysis-Physical-Sciences/dp/0521150124/ref=sr_1_1?s=books&ie=UTF8&qid=1538587731&sr=1-1&keywords=gregory+bayesian) {cite}`Gregory2005`
 # 
 # $% Some LaTeX definitions we'll use.
 # \newcommand{\pr}{\textrm{p}}
