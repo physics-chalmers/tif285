@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22. The principle of maximum entropy &#8212; Learning from data</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "https://github.com/physics-chalmers/tif285");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="23. Assigning probabilities" href="demo-MaxEnt.html" />
+    <link rel="prev" title="21. Ignorance pdfs: Indifference and translation groups" href="IgnorancePDF.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/welcome.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_01.html">
+   3. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_02.html">
+   4. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/LinearRegression.html">
+   5. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/ModelValidation.html">
+   6. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   7. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
+   8. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/exercise_LinearRegression.html">
+   9. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianBasics.html">
+   10. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianRecipe.html">
+   11. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/demo-BayesianBasics.html">
+   12. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/exercise_sum_product_rule.html">
+   13. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/BayesianParameterEstimation.html">
+   14. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
+   15. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/exercise_BayesianParameterEstimation.html">
+   16. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/MCMC.html">
+   17. Markov Chain Monte Carlo sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/demo-MCMC.html">
+   18. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/ErrorPropagation.html">
+   19. Advantages of the Bayesian approach
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/demo-ErrorPropagation.html">
+   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="IgnorancePDF.html">
+   21. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   22. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo-MaxEnt.html">
+   23. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ModelSelection/ModelSelection.html">
+   24. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
+   25. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
+   26. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
+   28. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
+   29. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
+   30. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
+   31. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
+   32. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
+   33. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
+   34. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
+   35. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
+   36. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Backmatter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Backmatter/bibliography.html">
+   37. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/BayesianStatistics/MaxEnt/MaxEnt.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/BayesianStatistics/MaxEnt/MaxEnt.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-entropy-of-scandinavians">
+   22.1. The entropy of Scandinavians
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-monkey-argument">
+   22.2. The monkey argument
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-maximize-the-entropy">
+   22.3. Why maximize the entropy?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#continuous-case">
+     Continuous case
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derivation-of-common-pdfs-using-maxent">
+   22.4. Derivation of common pdfs using MaxEnt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-and-the-exponential-pdf">
+     Mean and the Exponential pdf
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variance-and-the-gaussian-pdf">
+     Variance and the Gaussian pdf
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counting-statistics-and-the-poisson-distribution">
+     Counting statistics and the Poisson distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!-- !split -->
+<div class="section" id="the-principle-of-maximum-entropy">
+<h1><span class="section-number">22. </span>The principle of maximum entropy<a class="headerlink" href="#the-principle-of-maximum-entropy" title="Permalink to this headline">¶</a></h1>
+<p>Having dealt with ignorance, let us move on to more enlightened situations.</p>
+<p>Consider a die with the usual six faces that was rolled a very large number of times. Suppose that we were only told that the average number of dots was 2.5. What (discrete) pdf would we assign? I.e. what are the probabilities <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> that the face on top had <span class="math notranslate nohighlight">\(i\)</span> dots after a single throw?</p>
+<!-- !split -->
+<p>The available information can be summarized as follows</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^6 p_i = 1, \qquad \sum_{i=1}^6 i p_i = 2.5\]</div>
+<p>This is obviously not a normal die, with uniform probability <span class="math notranslate nohighlight">\(p_i=1/6\)</span>, since the average result would then be 3.5. But there are many candidate pdfs that would reproduce the given information. Which one should we prefer?</p>
+<!-- !split -->
+<p>It turns out that there are several different arguments that all point in a direction that is very familiar to people with a physics background. Namely that we should prefer the probability distribution that maximizes an entropy measure, while fulfilling the given constraints.</p>
+<!-- !split -->
+<p>It will be shown below that the preferred pdf <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> is the one that maximizes</p>
+<div class="math notranslate nohighlight">
+\[Q\left( \{ p_i \} ; \lambda_0, \lambda_1 \right)
+= -\sum_{i=1}^6 p_i \log(p_i) 
++ \lambda_0 \left( 1 - \sum_{i=1}^6 p_i \right)
++ \lambda_1 \left( 2.5 - \sum_{i=1}^6 i p_i \right),\]</div>
+<p>where the constraints are included via the method of <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multipliers</a>.</p>
+<!-- !split -->
+<div class="section" id="the-entropy-of-scandinavians">
+<h2><span class="section-number">22.1. </span>The entropy of Scandinavians<a class="headerlink" href="#the-entropy-of-scandinavians" title="Permalink to this headline">¶</a></h2>
+<p>Let’s consider another pdf assignment problem. This is originally the <em>kangaroo problem</em> (Gull and Skilling, 1984), but translated here into a local context. The problem is stated as follows:</p>
+<p>Information:
+:<br />
+70% of all Scandinavians have blonde hair, and 10% of all Scandinavians are left handed.
+Question:
+:<br />
+On the basis of this information alone, what proportion of Scandinavians are both blonde and left handed?</p>
+<!-- !split -->
+<p>We note that for any one given Scandinavian there are four distinct possibilities:</p>
+<ol class="simple">
+<li><p>Blonde and left handed (probability <span class="math notranslate nohighlight">\(p_1\)</span>).</p></li>
+<li><p>Blonde and right handed (probability <span class="math notranslate nohighlight">\(p_2\)</span>).</p></li>
+<li><p>Not blonde and left handed (probability <span class="math notranslate nohighlight">\(p_3\)</span>).</p></li>
+<li><p>Not blonde and right handed (probability <span class="math notranslate nohighlight">\(p_4\)</span>).</p></li>
+</ol>
+<!-- !split -->
+<p>The following 2x2 contingency table</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:left head"><p>Left handed</p></th>
+<th class="text-align:left head"><p>Right handed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Not blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(p_4\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>can be written in terms of a single variable <span class="math notranslate nohighlight">\(x\)</span> due to the normalization condition <span class="math notranslate nohighlight">\(\sum_{i=1}^4 p_i = 1\)</span>, and the available information <span class="math notranslate nohighlight">\(p_1 + p_2 = 0.7\)</span> and <span class="math notranslate nohighlight">\(p_1 + p_3 = 0.1\)</span></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p></p></th>
+<th class="text-align:left head"><p>Left handed</p></th>
+<th class="text-align:left head"><p>Right handed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0 \le x \le 0.1\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.7-x\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Not blonde</p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.1-x\)</span></p></td>
+<td class="text-align:left"><p><span class="math notranslate nohighlight">\(0.2+x\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>But which choice of <span class="math notranslate nohighlight">\(x\)</span> is preferred?</p>
+<p>Here we will introduce the monkey argument to decide how to assign <span class="math notranslate nohighlight">\(x\)</span>. We will then show that this argument is equivalent to the principle of maximum entropy, which can be  formulated for more general scenarios and used to derive a number of commonly used pdfs.</p>
+<!-- !split -->
+</div>
+<div class="section" id="the-monkey-argument">
+<h2><span class="section-number">22.2. </span>The monkey argument<a class="headerlink" href="#the-monkey-argument" title="Permalink to this headline">¶</a></h2>
+<p>The monkey argument is a model for assigning probabilities to <span class="math notranslate nohighlight">\(M\)</span> different (discrete) alternatives that satisfy some constraints described by <span class="math notranslate nohighlight">\(I\)</span>. The argument goes as follows:</p>
+<ol class="simple">
+<li><p>Imagine a very large number of monkeys throwing <span class="math notranslate nohighlight">\(N\)</span> balls into <span class="math notranslate nohighlight">\(M\)</span> equally sized boxes. The final number of balls in box <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(n_i\)</span>.</p>
+<ul class="simple">
+<li><p>The normalization condition is satisfied via <span class="math notranslate nohighlight">\(N = \sum_{i=1}^M n_i\)</span>.</p></li>
+<li><p>The fraction of balls in each box gives a possible assignment for the corresponding probability <span class="math notranslate nohighlight">\(p_i = n_i / N\)</span>.</p></li>
+<li><p>The distribution of balls <span class="math notranslate nohighlight">\(\{ n_i \}\)</span> divided by <span class="math notranslate nohighlight">\(N\)</span> is therefore a candidate pdf <span class="math notranslate nohighlight">\(\{ p_i \}\)</span>.</p></li>
+</ul>
+</li>
+<li><p>After one round the monkeys have distributed their (huge number of) balls over the <span class="math notranslate nohighlight">\(M\)</span> boxes.</p>
+<ul class="simple">
+<li><p>The resulting pdf might not be consistent with the constraints in <span class="math notranslate nohighlight">\(I\)</span>, however, in which case it must be rejected as a possible candidate.</p></li>
+<li><p>The candidate pdf is recorded by an independent observer in the scenario that the constraints are in fact fulfilled.</p></li>
+</ul>
+</li>
+<li><p>After many such rounds, some distributions will be found to come up more often than others.</p>
+<ul class="simple">
+<li><p>The one that appears most frequently (and satisfies <span class="math notranslate nohighlight">\(I\)</span>) would be a sensible choice for <span class="math notranslate nohighlight">\(p(\{p_i\}|I)\)</span>.</p></li>
+<li><p>Since our ideal monkeys have no agenda of their own to influence the distribution, this most favoured distribution can be regarded as the one that best represents our given state of knowledge.</p></li>
+<li><p>No bananas are allowed!</p></li>
+</ul>
+</li>
+</ol>
+<p>Now, let us see how this preferred solution corresponds to the pdf with the largest <code class="docutils literal notranslate"><span class="pre">entropy</span></code>. Remember in the following that <span class="math notranslate nohighlight">\(N\)</span> (and <span class="math notranslate nohighlight">\(n_i\)</span>) are considered to be very large numbers (<span class="math notranslate nohighlight">\(N/M \gg 1\)</span>)</p>
+<!-- !split -->
+<ul class="simple">
+<li><p>There are <span class="math notranslate nohighlight">\(M^N\)</span> different ways to distribute the balls.</p></li>
+<li><p>The micro-states corresponding to a particular distribution <span class="math notranslate nohighlight">\(\{ n_i\}\)</span> are all connected to the same pdf <span class="math notranslate nohighlight">\(\{ p_i \}\)</span>. Therefore, the frequency of a given pdf is given by</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[F(\{p_i\}) = \frac{\text{number of ways of obtaining } \{n_i\}}{M^N}\]</div>
+<ul class="simple">
+<li><p>The number of micro-states, <span class="math notranslate nohighlight">\(W(\{n_i\}))\)</span>, in the nominator is equal to <span class="math notranslate nohighlight">\(N! / \prod_{i=1}^M n_i!\)</span>.</p></li>
+<li><p>We express the logarithm of this number using the Stirling approximation for factorials of large numbers, <span class="math notranslate nohighlight">\(\log(n!) \approx n\log(n) - n\)</span>, and finding a cancellation of <span class="math notranslate nohighlight">\(N-\sum_i n_i\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\log(W(\{n_i\})) = \log(N!) − \sum_{i=1}^M \log(n_i!) 
+\approx N\log(N) - \sum_{i=1}^M n_i\log(n_i),\]</div>
+<!-- !split -->
+<ul class="simple">
+<li><p>Therefore, the logarithm of the frequency of a given pdf is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\log(F(\{p_i\})) \approx -N \log(M) + N\log(N) - \sum_{i=1}^M n_i\log(n_i)\]</div>
+<p>Substituting <span class="math notranslate nohighlight">\(p_i = n_i/N\)</span>, and using the normalization condition finally gives</p>
+<div class="math notranslate nohighlight">
+\[\log(F(\{p_i\})) \approx -N \log(M) - N \sum_{i=1}^M p_i\log(p_i)\]</div>
+<!-- !split -->
+<p>Recall that the preferred pdf is the one that appears most frequently, i.e., that maximizes the above expression.
+We further note that <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(M\)</span> are constants such that the preferred pdf is given by the <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> that maximizes</p>
+<div class="math notranslate nohighlight">
+\[S = - \sum_{i=1}^M p_i\log(p_i).\]</div>
+<p>You might recognise this quantity as the <em>entropy</em> measure from statistical mechanics. The interpretation of entropy in statistical mechanics is the measure of uncertainty that remains about a system after its observable macroscopic properties, such as temperature, pressure and volume, have been properly taken into account. For a given set of macroscopic variables, the entropy measures the degree to which the probability of the system is spread out over different possible microstates. Specifically, entropy is a logarithmic measure of the number of micro-states with significant probability of being occupied <span class="math notranslate nohighlight">\(S = -k_B \sum_i p_i \log(p_i)\)</span>, where <span class="math notranslate nohighlight">\(k_B\)</span> is the Boltzmann constant.</p>
+<!-- !split -->
+</div>
+<div class="section" id="why-maximize-the-entropy">
+<h2><span class="section-number">22.3. </span>Why maximize the entropy?<a class="headerlink" href="#why-maximize-the-entropy" title="Permalink to this headline">¶</a></h2>
+<p>There are a few different arguments for why the entropy should be maximized when assigning probability distributions given some limited information:</p>
+<ol class="simple">
+<li><p>Information theory: maximum entropy=minimum information (Shannon, 1948).</p></li>
+<li><p>Logical consistency (Shore &amp; Johnson, 1960).</p></li>
+<li><p>Uncorrelated assignments related monotonically to <span class="math notranslate nohighlight">\(S\)</span> (Skilling, 1988).</p></li>
+</ol>
+<p>Consider the third argument. Let us check it empirically in the context of the problem of hair colour and handedness of Scandinavians. We are interested in determining <span class="math notranslate nohighlight">\(p_1 \equiv p(L,B|I) \equiv x\)</span>, the probability that a Scandinavian is both left-handed and blonde. However, in this simple example we can immediately realize that the assignment <span class="math notranslate nohighlight">\(p_1=0.07\)</span> is the only one that implies no correlation between left-handedness and hair color. Any joint probability smaller than 0.07 implies that left-handed people are less likely to be blonde, and any larger vale indicates that left-handed people are more likely to be blonde.</p>
+<div class="admonition-uncorrelated-assignments admonition">
+<p class="admonition-title">Uncorrelated assignments</p>
+<p>Unless you have specific information about the existence of a correlation, you should better not build it into the assignment of the probability distribution.</p>
+</div>
+<p>As argued, any assignment <span class="math notranslate nohighlight">\(p_1 \neq 0.07\)</span> corresponds to the existence of a correlation that was not explicitly specified in the provided information.</p>
+<div class="tip admonition">
+<p class="admonition-title">Question</p>
+<p>Can you show why <span class="math notranslate nohighlight">\(p_1 &lt; 0.07\)</span> and <span class="math notranslate nohighlight">\(p_1 &gt; 0.07\)</span> corresponds to left-handedness and blondeness being dependent variables?</p>
+</div>
+<!-- !split -->
+<p>Let us now empirically consider a few variational functions of <span class="math notranslate nohighlight">\(\{ p_i \}\)</span> and see if any of them gives a maximum that corresponds to the uncorrelated assignment <span class="math notranslate nohighlight">\(x=0.07\)</span>. Note that <span class="math notranslate nohighlight">\(x=0.07\)</span> implies <span class="math notranslate nohighlight">\(p_1 = 0.07, \, p_2 = 0.63, \, p_3 = 0.03, \, p_4 = 0.27\)</span>. A few variational functions and their prediction for <span class="math notranslate nohighlight">\(x\)</span> are shown in the following table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Variational function</p></th>
+<th class="text-align:left head"><p>argmax <span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="text-align:left head"><p>Implied correlation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i p_i \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.070</p></td>
+<td class="text-align:left"><p>None</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(\sum_i \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.053</p></td>
+<td class="text-align:left"><p>Negative</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i p_i^2 \log(p_i)\)</span></p></td>
+<td class="text-align:left"><p>0.100</p></td>
+<td class="text-align:left"><p>Positive</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p><span class="math notranslate nohighlight">\(-\sum_i \sqrt{p_i(1-p_i)}\)</span></p></td>
+<td class="text-align:left"><p>0.066</p></td>
+<td class="text-align:left"><p>Negative</p></td>
+</tr>
+</tbody>
+</table>
+<p>The assignment based on the entropy measure is the only one that respects this lack of correlations.</p>
+<!-- <img src="fig/MaxEnt/scandinavian_entropy.png" width=800><p><em>Four different variational functions $f\left( \{ p_i \} \right)$. The optimal $x$ for each one is shown by a circle. The uncorrelated assignment $x=0.07$ is shown by a vertical line.</em></p> -->
+<p><img alt="Four different variational functions . The optimal  for each one is shown by a circle. The uncorrelated assignment  is shown by a vertical line." src="../../../_images/scandinavian_entropy.png" /></p>
+<!-- !split -->
+<div class="section" id="continuous-case">
+<h3>Continuous case<a class="headerlink" href="#continuous-case" title="Permalink to this headline">¶</a></h3>
+<p>Let us return to the monkeys, but now with different probabilities for each bin. Then</p>
+<div class="math notranslate nohighlight">
+\[S= −\sum_{i=1}^M p_i \log \left( \frac{p_i}{m_i} \right),\]</div>
+<p>which is often known as the <em>Shannon-Jaynes entropy</em>, or the <em>Kullback number</em>, or the <em>cross entropy</em> (with opposite sign).</p>
+<p>Jaynes (1963) has pointed out that this generalization of the entropy, including a <em>Leqesgue measure</em> <span class="math notranslate nohighlight">\(m_i\)</span>, is necessary when we consider the limit of continuous parameters.</p>
+<div class="math notranslate nohighlight">
+\[S[p]= −\int p(x) \log \left( \frac{p(x)}{m(x)} \right).\]</div>
+<!-- !split -->
+<ul class="simple">
+<li><p>In particular, <span class="math notranslate nohighlight">\(m(x)\)</span> ensures that the entropy expression is invariant under a change of variables <span class="math notranslate nohighlight">\(x \to y=f(x)\)</span>.</p></li>
+<li><p>Typically, the transformation-group (invariance) arguments are appropriate for assigning <span class="math notranslate nohighlight">\(m(x) = \mathrm{constant}\)</span>.</p></li>
+<li><p>However, there are situations where other assignments for <span class="math notranslate nohighlight">\(m\)</span> represent the most ignorance. For example, in counting experiments one might assign <span class="math notranslate nohighlight">\(m(N) = M^N / N!\)</span> for the number of observed events <span class="math notranslate nohighlight">\(N\)</span> and a very large number of intervals <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
+</ul>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="derivation-of-common-pdfs-using-maxent">
+<h2><span class="section-number">22.4. </span>Derivation of common pdfs using MaxEnt<a class="headerlink" href="#derivation-of-common-pdfs-using-maxent" title="Permalink to this headline">¶</a></h2>
+<p>The principle of maximum entropy (MaxEnt) allows incorporation of further information, e.g. constraints on the mean, variance, etc, into the assignment of probability distributions.</p>
+<p>In summary, the MaxEnt approach aims to maximize the Shannon-Jaynes entropy and generates smooth functions.</p>
+<!-- !split -->
+<div class="section" id="mean-and-the-exponential-pdf">
+<h3>Mean and the Exponential pdf<a class="headerlink" href="#mean-and-the-exponential-pdf" title="Permalink to this headline">¶</a></h3>
+<p>Suppose that we have a pdf <span class="math notranslate nohighlight">\(p(x|I)\)</span> that is normalized over some interval <span class="math notranslate nohighlight">\([ x_\mathrm{min}, x_\mathrm{max}]\)</span>. Assume that we have information about its mean value, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[\langle x \rangle = \int x p(x|I) dx = \mu.\]</div>
+<p>Based only on this information, what functional form should we assign for the pdf that we will now denote <span class="math notranslate nohighlight">\(p(x|\mu)\)</span>?</p>
+<!-- !split -->
+<p>Let us use the principle of MaxEnt and maximize the entropy under the normalization and mean constraints. We will use Lagrange multipliers, and we will perform the optimization as a limiting case of a discrete problem; explicitly, we will maximize</p>
+<div class="math notranslate nohighlight">
+\[Q = -\sum_i p_i \log \left( \frac{p_i}{m_i} \right) + \lambda_0 \left( 1 - \sum_i p_i \right) + \lambda_1 \left( \mu - \sum_i x_i p_i \right).\]</div>
+<!-- !split -->
+<p>Setting <span class="math notranslate nohighlight">\(\partial Q / \partial p_j = 0\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[p_j = m_j \exp \left[ -(1+\lambda_0) \right] \exp \left[ -\lambda_1 x_j \right].\]</div>
+<p>With a uniform measure <span class="math notranslate nohighlight">\(m_j = \mathrm{constant}\)</span> we find (in the continuous limit) that</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu) = \mathcal{N} \exp \left[ -\lambda_1 x \right].\]</div>
+<!-- !split -->
+<p>The normalization constant (related to <span class="math notranslate nohighlight">\(\lambda_0\)</span>) and the remaining Lagrange multiplier, <span class="math notranslate nohighlight">\(\lambda_1\)</span>, can easily determined by fulfilling the two constraints.</p>
+<p>Assuming, e.g., that the normalization interval is <span class="math notranslate nohighlight">\(x \in [0, \infty[\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[\int_0^\infty p(x|\mu) dx = 1 = \left[ -\frac{\mathcal{N}}{\lambda_1} e^{-\lambda_1 x} \right]_0^\infty = \frac{\mathcal{N}}{\lambda_1} \quad \Rightarrow \quad \mathcal{N} = \lambda_1.\]</div>
+<p>The constraint for the mean then gives</p>
+<div class="math notranslate nohighlight">
+\[\mu = \lambda_1 \int_0^\infty x  e^{-\lambda_1 x} dx = \lambda_1 \frac{1!}{\lambda_1^2}
+= \frac{1}{\lambda_1}
+\quad \Rightarrow \quad \lambda_1 = \frac{1}{\mu}.\]</div>
+<p>So that the properly normalized pdf from MaxEnt principles becomes the exponential distribution</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu) = \frac{1}{\mu} \exp \left[ -\frac{x}{\mu} \right].\]</div>
+<!-- !split -->
+</div>
+<div class="section" id="variance-and-the-gaussian-pdf">
+<h3>Variance and the Gaussian pdf<a class="headerlink" href="#variance-and-the-gaussian-pdf" title="Permalink to this headline">¶</a></h3>
+<p>Suppose that we have information not only on the mean <span class="math notranslate nohighlight">\(\mu\)</span> but also on the variance</p>
+<div class="math notranslate nohighlight">
+\[\left\langle (x-\mu)^2 \right\rangle = \int (x-\mu)^2 p(x|I) dx = \sigma^2.\]</div>
+<p>The principle of MaxEnt will then result in the continuum assignment</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu,\sigma) \propto \exp \left[ - \lambda_1 ( x - \mu )^2 \right].\]</div>
+<!-- !split -->
+<p>Assuming that the limits of integration are <span class="math notranslate nohighlight">\(\pm \infty\)</span> we can determine both the normalization coefficient and the Lagrange multiplier. After some integration this results in the standard Gaussian pdf</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left[ - \frac{( x - \mu )^2}{2\sigma^2} \right].\]</div>
+<div class="admonition-the-normal-distribution admonition">
+<p class="admonition-title">The normal distribution</p>
+<p>This indicates that the normal distribution is the most honest representation of our state of knowledge when we only have information about the mean and the variance.</p>
+</div>
+<!-- !split -->
+<p><em>Notice.</em>
+These arguments extend easily to the case of several parameters. For example, considering <span class="math notranslate nohighlight">\(\{x_k\}\)</span> as the data <span class="math notranslate nohighlight">\(\{ D_k\}\)</span> with error bars <span class="math notranslate nohighlight">\(\{\sigma_k\}\)</span> and <span class="math notranslate nohighlight">\(\{\mu_k\}\)</span> as the model predictions, this allows us to identify the least-squares likelihood as the pdf which best represents our state of knowledge given only the value of the expected squared-deviation between our predictions and the data</p>
+<div class="math notranslate nohighlight">
+\[p\left( \{x_k\} | \{\mu_k, \sigma_k\} \right) = \prod_{k=1}^N \frac{1}{\sigma_k \sqrt{2\pi}} \exp \left[ - \frac{( x_k - \mu_k )^2}{2\sigma_k^2} \right].\]</div>
+<p>If we had convincing information about the covariance <span class="math notranslate nohighlight">\(\left\langle \left( x_i - \mu_i \right) \left( x_j - \mu_j \right) \right\rangle\)</span>, where <span class="math notranslate nohighlight">\(i \neq j\)</span>, then MaxEnt would assign a correlated, multivariate Gaussian pdf for <span class="math notranslate nohighlight">\(p\left( \{ x_k \} | I \right)\)</span>.</p>
+<!-- !split -->
+</div>
+<div class="section" id="counting-statistics-and-the-poisson-distribution">
+<h3>Counting statistics and the Poisson distribution<a class="headerlink" href="#counting-statistics-and-the-poisson-distribution" title="Permalink to this headline">¶</a></h3>
+<p>The derivation, and underlying arguments, for the binomial distribution and the Poisson statistic based on MaxEnt is found in Sivia, Secs 5.3.3 and 5.3.4.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/BayesianStatistics/MaxEnt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="IgnorancePDF.html" title="previous page"><span class="section-number">21. </span>Ignorance pdfs: Indifference and translation groups</a>
+    <a class='right-next' id="next-link" href="demo-MaxEnt.html" title="next page"><span class="section-number">23. </span>Assigning probabilities</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

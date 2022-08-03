@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24. Model Selection &#8212; Learning from data</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "https://github.com/physics-chalmers/tif285");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="25. Gaussian processes" href="../../MachineLearning/GP/GaussianProcesses.html" />
+    <link rel="prev" title="23. Assigning probabilities" href="../MaxEnt/demo-MaxEnt.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Learning from data</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/welcome.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/Intro.html">
+   1. Learning from data: Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/demo-Intro.html">
+   2. Reading Data and fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_01.html">
+   3. Python and Jupyter notebooks: part 01
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Intro/exercise_Jupyter_Python_intro_02.html">
+   4. Python and Jupyter notebooks: part 02
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Linear regression
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/LinearRegression.html">
+   5. Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/ModelValidation.html">
+   6. Model validation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/GradientDescent.html">
+   7. Gradient-descent optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/demo-ModelValidation.html">
+   8. Linear Regression and Model Validation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LinearRegression/exercise_LinearRegression.html">
+   9. Linear Regression exercise
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Bayesian statistics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianBasics.html">
+   10. Statistical inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/BayesianRecipe.html">
+   11. The Bayesian recipe
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/demo-BayesianBasics.html">
+   12. Interactive Bayesian Coin Tossing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianBasics/exercise_sum_product_rule.html">
+   13. Checking the sum and product rules, and their consequences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/BayesianParameterEstimation.html">
+   14. Inference With Parametric Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
+   15. Bayesian parameter estimation demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../BayesianParameterEstimation/exercise_BayesianParameterEstimation.html">
+   16. Exercise: Bayesian parameter estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/MCMC.html">
+   17. Markov Chain Monte Carlo sampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MCMC/demo-MCMC.html">
+   18. Metropolis-Hasting MCMC sampling of a Poisson distribution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/ErrorPropagation.html">
+   19. Advantages of the Bayesian approach
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ErrorPropagation/demo-ErrorPropagation.html">
+   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/IgnorancePDF.html">
+   21. Ignorance pdfs: Indifference and translation groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/MaxEnt.html">
+   22. The principle of maximum entropy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../MaxEnt/demo-MaxEnt.html">
+   23. Assigning probabilities
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   24. Model Selection
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Machine learning-A Bayesian perspective
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/GaussianProcesses.html">
+   25. Gaussian processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/demo-GaussianProcesses.html">
+   26. Gaussian processes demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/GP/exercise_GP.html">
+   27. Exercise: Gaussian processes using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GPy
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/LogReg/LogReg.html">
+   28. Logistic Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/NeuralNet.html">
+   29. Neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/demo-NeuralNet.html">
+   30. Neural network classifier demonstration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/NeuralNet/exercises_LogReg_NeuralNet.html">
+   31. Exercise: Logistic Regression and neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/cnn.html">
+   32. Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/CNN/demo-cnn.html">
+   33. Image recognition demonstration with Convolutional Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/bnn.html">
+   34. Bayesian neural networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/demo-bnn.html">
+   35. Variational Inference: Bayesian Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../MachineLearning/BNN/exercises_BNN.html">
+   36. Exercise: Bayesian neural networks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Backmatter
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../Backmatter/bibliography.html">
+   37. Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/content/BayesianStatistics/ModelSelection/ModelSelection.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/physics-chalmers/tif285"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/physics-chalmers/tif285/issues/new?title=Issue%20on%20page%20%2Fcontent/BayesianStatistics/ModelSelection/ModelSelection.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequentist-hypothesis-testing">
+   24.1. Frequentist hypothesis testing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-idea">
+     Basic idea
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hypothesis-testing-with-the-chi-squared-statistic">
+       Hypothesis testing with the chi-squared statistic
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-model-selection">
+   24.2. Bayesian model selection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-story-of-dr-a-and-prof-b">
+     The Story of Dr. A and Prof. B
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-adjustable-parameter-each">
+       One adjustable parameter each
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#one-adjustable-parameter-each-different-prior-ranges">
+       One adjustable parameter each; different prior ranges
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-with-parameter-estimation">
+     Comparison with parameter estimation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evidence-calculations">
+   24.3. Evidence calculations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#laplaces-method">
+     Laplace’s method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalization-of-a-multivariate-gaussian">
+     Normalization of a multivariate Gaussian
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="model-selection">
+<h1><span class="section-number">24. </span>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this headline">¶</a></h1>
+<!-- !split -->
+<p>So far, we have been concerned with the problem of parameter estimation. In studying the linear relationship between two quantities, for example, we discussed how to infer the slope and the offset of the associated straight-line model. Often, however, there is a question as to whether another functional form (such as quadratic or cubic) might be a more appropriate model. In this lecture, we will consider the broad class of scientific problems when there is uncertainty as to which one of a set of alternative models is most suitable. In the Bayesian terminology these can be labeled as <strong>Model Selection</strong> problems and we will discuss them in some depth.</p>
+<!-- !split -->
+<p>One of the main objectives in science is that of inferring the truth of one or more hypotheses about how some aspect of nature works. Because we are always in a state of incomplete information, we can never prove any hypothesis (theory) is true.</p>
+<!-- !split -->
+<p>We will start, however, with a brief discussion on sampling theory and the frequentist approach to <strong>hypothesis testing</strong>. This will involve the introduction of the <span class="math notranslate nohighlight">\(P\)</span>-value or significance measure—quantities that are often misinterpreted even by scientists themselves. See, for example, the following comment published in Nature (March 20, 2019): <a class="reference external" href="https://www.nature.com/articles/d41586-019-00857-9">Scientists rise up against statistical significance</a>.</p>
+<!-- !split -->
+<div class="section" id="frequentist-hypothesis-testing">
+<h2><span class="section-number">24.1. </span>Frequentist hypothesis testing<a class="headerlink" href="#frequentist-hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>Recall that in frequentist statistics, probability statements are restricted to random variables. A hypothesis can not be considered a random variable, and therefore we are restricted to a much more indirect approach when trying to infer its truth, or rather when attempting to falsify it.</p>
+<!-- !split -->
+<div class="section" id="basic-idea">
+<h3>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h3>
+<p>The standard sampling theory approach to hypothesis testing is to construct a statistical test. The basic idea is the following:</p>
+<p><em>Frequentist hypothesis testing.</em>
+The sampling theory hypothesis test is designed to compare a selected statistic from the measured data with expected results from a very large number of hypothetical repeated measurements under the assumption that a chosen null hypothesis (<span class="math notranslate nohighlight">\(\mathcal{H}_0\)</span>) is true.</p>
+<!-- !split -->
+<ul class="simple">
+<li><p>The null hypothesis is accepted or rejected purely on the basis of how unexpected the data were to <span class="math notranslate nohighlight">\(\mathcal{H}_0\)</span>, not on how much better the alternative hypothesis (<span class="math notranslate nohighlight">\(\mathcal{H}_A\)</span>) predicted the data.</p></li>
+</ul>
+<!-- !bpop -->
+<ul class="simple">
+<li><p>The degree of ‘‘unexpectedness’’ is based on a statistic, such as the sample mean or the <span class="math notranslate nohighlight">\(\chi^2\)</span> statistic.</p></li>
+<li><p>The statistic is a random variable and it is chosen so that its distribution can be easily computed given the truth of the null hypothesis. In other words, this is the distribution of the chosen statistic for a very large number of hypothetical repeated measurements under the assumption that the null hypothesis is true.</p></li>
+<li><p>This statistic is then computed for the observed data set and its value is compared with the distribution that is associated with the truth of the null hypothesis.</p></li>
+<li><p>If the statistic from the observed data falls in a very unlikely spot on this distribution (the threshold is to be defined beforehand) we choose to reject the null hypothesis at some confidence level on the basis of the measured data set.</p></li>
+</ul>
+<!-- !epop -->
+<!-- !split -->
+<div class="section" id="hypothesis-testing-with-the-chi-squared-statistic">
+<h4>Hypothesis testing with the chi-squared statistic<a class="headerlink" href="#hypothesis-testing-with-the-chi-squared-statistic" title="Permalink to this headline">¶</a></h4>
+<p>A very common statistic to use is the <span class="math notranslate nohighlight">\(\chi^2\)</span> measure. A good example is found in Gregory, ch 7.2.1, with the measurements of flux density from a distant galaxy over a period of 6000 days. The main steps of the presented analysis are the following:</p>
+<ul class="simple">
+<li><p>Choose as a null hypothesis that the galaxy has an unknown, but constant, flux density. If we can reject this hypothesis at e.g. the 95% confidence level, then this provides indirect evidence(?) for the alternative hypothesis that the radio emission is variable.</p></li>
+<li><p>In this example, it is assumed that the measurement errors are independent and identically distributed (<strong>iid</strong>) according to a normal distribution with a fixed standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> that is known beforehand.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(\chi^2\)</span> statistic from the data set is evaluated (<span class="math notranslate nohighlight">\(x_i\)</span> is the data and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the average from the sample)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\chi^2 = \sum_{i=1}^n \frac{(x_i - \bar{x})^2}{\sigma^2}.\]</div>
+<!-- !split -->
+<ul class="simple">
+<li><p>In our example we had 15 data points, but we are using them first to estimate the mean <span class="math notranslate nohighlight">\(\mu\)</span>. Therefore, we lose one degree of freedom and are left with 14. This number will determine the form of the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution that will be used for comparison with our actual <span class="math notranslate nohighlight">\(\chi^2\)</span> statistic.</p></li>
+<li><p>The question of how unlikely is this value of <span class="math notranslate nohighlight">\(\chi^2\)</span> is by convention interpreted in terms of the area in the tail of the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution beyond this line. This is called the <span class="math notranslate nohighlight">\(P\)</span>-value or significance.</p></li>
+<li><p>In some cases, a two-sided statistic should be considered instead.</p></li>
+</ul>
+<!-- !split -->
+<!-- <img src="fig/ModelSelection/gregory_7_2.png" width=600><p><em>The $\chi^2$ distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the $P$-value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)</em></p> -->
+<p><img alt="The  distribution for 14 degrees of freedom. The value computed from the measurements of flux density from a galaxy is indicated by a vertical line. The shaded area is the -value. It is 2% in this particular example so we would reject the null hypothesis with 98% confidence. (Gregory, Fig. 7.2)" src="../../../_images/gregory_7_2.png" /></p>
+<!-- !split -->
+<p>At the point of performing this comparison, and making a final statement, the sampling theory school divides itself into two camps:</p>
+<!-- !bpop -->
+<ol class="simple">
+<li><p>One camp uses the following protocol: first, before looking at the data, pick the significance level of the test (e.g. 5%), and determine the critical value of <span class="math notranslate nohighlight">\(\chi^2\)</span> above which the null hypothesis will be rejected. (The significance level is the fraction of times that the statistic <span class="math notranslate nohighlight">\(\chi^2\)</span> would exceed the critical value, if the null hypothesis were true.) Then, compare the actual <span class="math notranslate nohighlight">\(\chi^2\)</span> with the critical value, and declare the outcome of the test, and its significance level (which was fixed beforehand).</p></li>
+<li><p>The second camp looks at the data, finds <span class="math notranslate nohighlight">\(\chi^2\)</span>, then looks in the table of <span class="math notranslate nohighlight">\(\chi^2\)</span>-distributions for the significance level, <span class="math notranslate nohighlight">\(P\)</span>, for which the observed value of <span class="math notranslate nohighlight">\(\chi^2\)</span> would be the critical value. The result of the test is then reported by giving this value of <span class="math notranslate nohighlight">\(p\)</span>, which is the fraction of times that a result as extreme as the one observed, or more extreme, would be expected to arise if the null hypothesis were true.</p></li>
+</ol>
+<!-- !epop -->
+<!-- !split -->
+</div>
+</div>
+</div>
+<div class="section" id="bayesian-model-selection">
+<h2><span class="section-number">24.2. </span>Bayesian model selection<a class="headerlink" href="#bayesian-model-selection" title="Permalink to this headline">¶</a></h2>
+<!-- !split -->
+<!-- ======= The Story of Dr. A and Prof. B ======= -->
+<div class="section" id="the-story-of-dr-a-and-prof-b">
+<h3>The Story of Dr. A and Prof. B<a class="headerlink" href="#the-story-of-dr-a-and-prof-b" title="Permalink to this headline">¶</a></h3>
+<p>[Reproduced, with some modifications, from Sivia, 2006].</p>
+<blockquote>
+<div><p><em>Dr. A has a theory; Prof. B also has a theory, but with an adjustable parameter <span class="math notranslate nohighlight">\(\lambda\)</span>. Whose theory should we prefer on the basis of data <span class="math notranslate nohighlight">\(D\)</span>?</em>— Jefferys (1939), Gull (1988), Sivia (2006)</p>
+</div></blockquote>
+<!-- !split -->
+<p>It is clear that we need to evaluate the posterior probabilities for A and B being correct to ascertain the relative merit of the two theories. If the ratio of the posterior probabilities,</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-41">
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-eq-sivia-41" title="Permalink to this equation">¶</a></span>\[
+\text{posterior ratio} = \frac{p(A |D, I )}{p(B|D,I)}
+\]</div>
+<p>is very much greater than one, then we will prefer A’s theory; if it is very much less than one, then we prefer that of B; and if it is of order unity, then the current data is insufficient to make an informed judgement.</p>
+<p>To estimate the odds, let us start by applying Bayes’ theorem to both the numerator and the denominator; this gives</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-42">
+<span class="eqno">(24.2)<a class="headerlink" href="#equation-eq-sivia-42" title="Permalink to this equation">¶</a></span>\[
+\frac{p(A|D,I)}{p(B|D,I)} = \frac{p(D|A,I) p(A|I)}{p(D|B,I) p(B|I)}
+\]</div>
+<p>because the term <span class="math notranslate nohighlight">\(p(D|I)\)</span> cancels out, top and bottom. As usual, probability theory warns us immediately that the answer to our question depends partly on what we thought about the two theories before the analysis of the data. To be fair, we might take the ratio of the prior terms, on the far right of Eq. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a>, to be unity; a harsher assignment could be based on the past track records of the theorists! To assign the probabilities involving the experimental measurements, <span class="math notranslate nohighlight">\(p(D|A,I)\)</span> and <span class="math notranslate nohighlight">\(p(D|B,I)\)</span>, we need to be able to compare the data with the predictions of A and B: the larger the mismatch, the lower the corresponding probability. This calculation is straightforward for Dr A, but not for Prof B; the latter cannot make predictions without a value for <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>To circumvent this difficulty, we can use the sum and product rule to relate the probability we require to other pdfs which might be easier to assign. In particular, marginalization and the product rule allow us to express <span class="math notranslate nohighlight">\(p(D | B , I )\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-43">
+<span class="eqno">(24.3)<a class="headerlink" href="#equation-eq-sivia-43" title="Permalink to this equation">¶</a></span>\[
+p(D|B,I) = \int d\lambda p(D,\lambda|B,I) = 
+\int d\lambda p(D|\lambda,B,I) p(\lambda|B,I). 
+\]</div>
+<p>The first term in the integral <span class="math notranslate nohighlight">\(p(D | \lambda, B , I )\)</span>, where the value of <span class="math notranslate nohighlight">\(\lambda\)</span> is given, is now just an ordinary likelihood function; as such, it is on a par with <span class="math notranslate nohighlight">\(p(D|A,I)\)</span>. The second term is B’s prior pdf for <span class="math notranslate nohighlight">\(\lambda\)</span>; the onus is, therefore, on the theorist to articulate his or her state of knowledge, or ignorance, before getting access to the data.</p>
+<p>To proceed further analytically, let us make some simplifying approximations. Assume that, a priori, Prof B is only prepared to say that <span class="math notranslate nohighlight">\(\lambda\)</span> must lie between the limits <span class="math notranslate nohighlight">\(\lambda_\mathrm{min}\)</span> and <span class="math notranslate nohighlight">\(\lambda_\mathrm{max}\)</span>; we can then naively assign a uniform prior within this range:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-44">
+<span class="eqno">(24.4)<a class="headerlink" href="#equation-eq-sivia-44" title="Permalink to this equation">¶</a></span>\[
+p(\lambda|B,I) = \frac{1}{\lambda_\mathrm{max}-\lambda_\mathrm{min}} \quad \text{for } \lambda_\mathrm{min} \leq \lambda \leq \lambda_\mathrm{max}, 
+\]</div>
+<p>and zero otherwise. Let us also take it that there is a value <span class="math notranslate nohighlight">\(\lambda_0\)</span> which yields the closest agreement with the measurements; the corresponding probability <span class="math notranslate nohighlight">\(p(D|\lambda_0,B,I)\)</span> will be the maximum of B’s likelihood function. As long as this adjustable parameter lies in the neighbourhood of the optimal value, <span class="math notranslate nohighlight">\(\lambda_0 \pm (\delta\lambda)\)</span>, we would expect a reasonable fit to the data; this can be represented by the Gaussian pdf</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-45">
+<span class="eqno">(24.5)<a class="headerlink" href="#equation-eq-sivia-45" title="Permalink to this equation">¶</a></span>\[
+p(D|\lambda,B,I) = p(D|\lambda_0,B,I) \exp \left[ − \frac{(\lambda−\lambda_0)^2}{2(\delta\lambda)^2} \right]. 
+\]</div>
+<p>The assignments of the prior <a class="reference internal" href="#equation-eq-sivia-44">(24.4)</a> and the likelihood <a class="reference internal" href="#equation-eq-sivia-45">(24.5)</a> are illustrated in the figure below. We may note that, unlike the prior pdf <span class="math notranslate nohighlight">\(p(\lambda|B,I)\)</span>, B’s likelihood function need not be normalized with respect to <span class="math notranslate nohighlight">\(\lambda\)</span>; in other words, <span class="math notranslate nohighlight">\(p(D|\lambda_0,B,I)\)</span> need not equal <span class="math notranslate nohighlight">\(1/ (\delta\lambda) \sqrt{2\pi}\)</span> . This is because the <span class="math notranslate nohighlight">\(\lambda\)</span> in <span class="math notranslate nohighlight">\(p(D|\lambda,B,I)\)</span> appears in the conditioning statement, whereas the normalization requirement applies to quantities to the left of the ‘|’ symbol.</p>
+<p><img alt="A schematic representation of the prior pdf (dashed line) and the likelihood function (solid line) for the parameter  in Prof B’s theory. " src="../../../_images/fig41.png" /></p>
+<p>In the evaluation of <span class="math notranslate nohighlight">\(p(D | B , I )\)</span>, we can make use of the fact that the prior does not depend explicitly on <span class="math notranslate nohighlight">\(\lambda\)</span>; this enables us to take <span class="math notranslate nohighlight">\(p(\lambda|B,I)\)</span> outside the integral in Eq. <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-46">
+<span class="eqno">(24.6)<a class="headerlink" href="#equation-eq-sivia-46" title="Permalink to this equation">¶</a></span>\[
+p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} \int_{\lambda_\mathrm{min}}^{\lambda_\mathrm{max}} d\lambda
+p(D|\lambda,B,I),
+\]</div>
+<p>having set the limits according to the specified range. Assuming that the sharp cut-offs
+do not cause a significant truncation of the Gaussian pdf of the likelihood,
+its integral will be equal to <span class="math notranslate nohighlight">\((\delta\lambda) \sqrt{2\pi}\)</span> times <span class="math notranslate nohighlight">\(p(D|\lambda_0,B,I)\)</span>. The troublesome term then reduces to</p>
+<div class="math notranslate nohighlight">
+\[
+p(D|B,I) = \frac{1}{\lambda_\mathrm{max} - \lambda_\mathrm{min}} p(D|\lambda_0,B,I) (\delta\lambda) \sqrt{2\pi}.
+\]</div>
+<p>Substituting this into Eq. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a>, we finally see that the ratio of the posteriors required to answer our original question decomposes into the product of three terms:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-48">
+<span class="eqno">(24.7)<a class="headerlink" href="#equation-eq-sivia-48" title="Permalink to this equation">¶</a></span>\[
+\frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|A,I)}{p(D|\lambda_0,B,I)} \times \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{(\delta\lambda) \sqrt{2\pi}}. 
+\]</div>
+<p>The first term on the right-hand side reflects our relative prior preference for the alternative theories; to be fair, let us take it to be unity. The second term is a measure of how well the best predictions from each of the models agree with the data; with the added flexibility of his adjustable parameter, this maximum likelihood ratio can only favour B. The goodness-of-fit, however, cannot be the only thing that matters; if it was, we would always prefer more complicated explanations. Probability theory tells us that there is, indeed, another term to be considered. As assumed earlier in the evaluation of the marginal integral of Eq. <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a>, the prior range <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} - \lambda_\mathrm{min}\)</span> will generally be much larger than the uncertainty <span class="math notranslate nohighlight">\(\pm(\delta\lambda)\)</span> permitted by the data. As such, the final term in Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> acts to penalize B for the additional parameter; for this reason, it is often called an Ockham factor. That is to say, we have naturally encompassed the spirit of Ockham’s Razor: <em>‘Frustra fit per plura quod potest fieri per pauciora’</em> or, in English, <em>‘it is vain to do with more what can be done with fewer’</em> .</p>
+<p>Although it is satisfying to quantify the everyday guiding principle attributed to the thirteenth-century Franciscan monk William of Ockham (or Occam, in Latin), that we should prefer the simplest theory which agrees with the empirical evidence, we should not get too carried away by it. After all, what do we mean by the simpler theory if alternative models have the same number of adjustable parameters? In the choice between Gaussian and Lorentzian peak shapes, for example, both are defined by the position of the maximum and their width. All that we are obliged to do, and have done, in addressing such questions is to adhere to the rules of probability.</p>
+<p>While accepting the clear logic leading to Eq <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a>, many people rightly worry about the question of the limits <span class="math notranslate nohighlight">\(\lambda_\mathrm{min}\)</span> and <span class="math notranslate nohighlight">\(\lambda_\mathrm{max}\)</span>. Jeffreys (1939) himself was concerned and pointed out that there would be an infinite penalty for any new parameter if the range was allowed to go to <span class="math notranslate nohighlight">\(\pm\infty\)</span>. Stated in the abstract, this would appear to be a severe limitation. In practice, however, it is not generally such a problem: since the analysis is always used in specific contexts, a suitable choice can usually be made on the basis of the relevant background information. Even in uncharted territory, a small amount of thought soon reveals that our state of ignorance is always far from the <span class="math notranslate nohighlight">\(\pm\infty\)</span> scenario. If <span class="math notranslate nohighlight">\(\lambda\)</span> was the coupling constant (or strength) for a possible fifth force, for example, then we could put an upper bound on its magnitude because everybody would have noticed it by now if it had been large enough! We should also not lose sight of the fact that the precise form of Eq <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> stems from our stated simplifying approximations; if these are not appropriate, then Eqs. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a> and <a class="reference internal" href="#equation-eq-sivia-43">(24.3)</a> will lead us to a somewhat different formula.</p>
+<p>In most cases, our relative preference for A or B is dominated by the goodness of the fit to the data; that is to say, the maximum likelihood ratio in eqn <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> tends to overwhelm the contributions of the other two terms. The Ockham factor can play a crucial role, however, when both theories give comparably good agreement with the measurements. Indeed, it becomes increasingly important if B’s theory fails to give a significantly better fit as the quality of the data improves. In that case, <span class="math notranslate nohighlight">\((\delta\lambda)\)</span> continues to become smaller but the ratio of best-fit likelihoods remains close to unity; according to Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a>, therefore, A’s theory is favoured ever more strongly. By the same token, the Ockham effect disappears if the data are either few in number, of poor quality or just fail to shed new light on the problem at hand. This is simply because the posterior ratio of Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> is then roughly equal to the complementary prior one, since the empirical evidence is very weak; hence, there is no inherent preference for A’s theory unless it is explicitly encoded in <span class="math notranslate nohighlight">\(p(A|I)/p(B|I)\)</span>. This property can be verified formally by going back to Eqs. <a class="reference internal" href="#equation-eq-sivia-42">(24.2)</a>, <a class="reference internal" href="#equation-eq-sivia-45">(24.5)</a> and <a class="reference internal" href="#equation-eq-sivia-46">(24.6)</a>, and considering the poor-data limit in which
+<span class="math notranslate nohighlight">\((\delta\lambda) \gg \lambda_\mathrm{max}-\lambda_\mathrm{min}\)</span> and <span class="math notranslate nohighlight">\(p(D|\lambda_0,B,I) \approx p(D|A,I)\)</span>.</p>
+<!-- !split -->
+<div class="section" id="one-adjustable-parameter-each">
+<h4>One adjustable parameter each<a class="headerlink" href="#one-adjustable-parameter-each" title="Permalink to this headline">¶</a></h4>
+<p>Some further interesting features arise when we consider the case where Dr A also has one adjustable parameter; call it <span class="math notranslate nohighlight">\(\mu\)</span>. If we make the same sort of probability assignments, and simplifying approximations, as for Prof B, then we find that</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-49">
+<span class="eqno">(24.8)<a class="headerlink" href="#equation-eq-sivia-49" title="Permalink to this equation">¶</a></span>\[
+\frac{p(A|D,I)}{p(B|D,I)} =  \frac{p(A|I)}{p(B|I)} \times \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu(\lambda_\mathrm{max} - \lambda_\mathrm{min})}{\delta\lambda(\mu_\mathrm{max} - \mu_\mathrm{min})}. 
+\]</div>
+<!-- !split -->
+<p>This could represent the situation where we have to choose between a Gaussian and Lorentzian shape for a signal peak, but one associated parameter is not known. The position of the maximum may be fixed at the origin by theory, for example, and the amplitude constrained by the normalization of the data; A and B could then be the hypotheses favouring the alternative lineshapes, where <span class="math notranslate nohighlight">\(\delta\mu\)</span> and <span class="math notranslate nohighlight">\(\delta\lambda\)</span> are their related full-width-half-maxima. If we give equal weight to A and B before the analysis, and assign a similar large prior range for both <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span>, then Eq. <a class="reference internal" href="#equation-eq-sivia-49">(24.8)</a> reduces to</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{p(A|D,I)}{p(B|D,I)} \approx  \frac{p(D|\mu_0,A,I)}{p(D|\lambda_0,B,I)} \times \frac{\delta\mu}{\delta\lambda}. 
+\]</div>
+<!-- !split -->
+<p>For data of good quality, the dominant factor will tend to be the best-fit likelihood ratio. If both give comparable agreement with the measurements, however, then the shape with the larger error-bar for its associated parameter will be favoured. At first sight, it might seem rather odd that the less discriminating theory can gain the upper hand. It appears less strange once we realize that, in the context of model selection, a larger ‘error-bar’ means that more parameter values are consistent with the given hypothesis; hence its preferential treatment.</p>
+<!-- !split -->
+</div>
+<div class="section" id="one-adjustable-parameter-each-different-prior-ranges">
+<h4>One adjustable parameter each; different prior ranges<a class="headerlink" href="#one-adjustable-parameter-each-different-prior-ranges" title="Permalink to this headline">¶</a></h4>
+<p>Finally, we can also consider the situation where Mr A and Mr B have the same physical theory but assign a different prior range for <span class="math notranslate nohighlight">\(\lambda\)</span> (or <span class="math notranslate nohighlight">\(\mu\)</span>). Although Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> can be seen as representing the case when <span class="math notranslate nohighlight">\((\mu_\mathrm{max} - \mu_\mathrm{min})\)</span> is infinitesimally small, so that A has no flexibility, Eq. <a class="reference internal" href="#equation-eq-sivia-49">(24.8)</a> is more appropriate when the limits set by both theorists are large enough to encompass all the parameter values giving a reasonable fit to the data. With equal initial weighting towards A and B, the latter reduces to</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{p(A|D,I)}{p(B|D,I)} =  \frac{\lambda_\mathrm{max} - \lambda_\mathrm{min}}{\mu_\mathrm{max} - \mu_\mathrm{min}}. 
+\]</div>
+<p>because the best-fit likelihood ratio will be unity (since <span class="math notranslate nohighlight">\(\lambda_0 = \mu_0\)</span>) and <span class="math notranslate nohighlight">\(\delta\lambda = \delta\mu\)</span>. Thus, our analysis will lead us to prefer the theorist who gives the narrower prior range; this is not unreasonable as he must have had some additional insight to be able to predict the value of the parameter more accurately.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="comparison-with-parameter-estimation">
+<h3>Comparison with parameter estimation<a class="headerlink" href="#comparison-with-parameter-estimation" title="Permalink to this headline">¶</a></h3>
+<p>The dependence of the result in Eq. <a class="reference internal" href="#equation-eq-sivia-48">(24.7)</a> on the prior range <span class="math notranslate nohighlight">\((\lambda_\mathrm{max} - \lambda_\mathrm{min})\)</span> can seem a little strange, since we haven’t encountered such behaviour in the preceding chapters. It is instructive, therefore, to compare the model selection analysis with parameter estimation. To infer the value of <span class="math notranslate nohighlight">\(\lambda\)</span> from the data, given that B’s theory is correct, we use Bayes’ theorem:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sivia-410">
+<span class="eqno">(24.9)<a class="headerlink" href="#equation-eq-sivia-410" title="Permalink to this equation">¶</a></span>\[
+p(\lambda|D,B,I) = \frac{p(D|\lambda,B,I) p(\lambda|B,I)}{p(D|B,I)}. 
+\]</div>
+<p>The numerator is the familiar product of a prior and likelihood, and the denominator is usually omitted since it does not depend explicitly on <span class="math notranslate nohighlight">\(\lambda\)</span>; hence this relationship is often written as a proportionality. From the story of Dr A and Prof B, however, we find that the neglected term on the bottom plays a crucial role in ascertaining the merit of B’s theory relative to a competing alternative.</p>
+<!-- !split -->
+<ul class="simple">
+<li><p>In recognition of its new-found importance, the denominator in Bayes’ theorem is sometimes called the <strong>‘evidence’</strong> for B; it is also referred to as the ‘marginal likelihood’, the ‘global likelihood’ and the ‘prior predictive’.</p></li>
+<li><p>Since all the components necessary for both parameter estimation and model selection appear in Eq. <a class="reference internal" href="#equation-eq-sivia-410">(24.9)</a>, we are not dealing with any new principles; the only thing that sets them apart is that we are asking different questions of the data.</p></li>
+</ul>
+<!-- !split -->
+<p>A simple way to think about the difference between parameter estimation and model selection is to note that, to a good approximation, the former requires the location of the maximum of the likelihood function whereas the latter entails the calculation of its average value. As long as <span class="math notranslate nohighlight">\(\lambda_\mathrm{min}\)</span> and <span class="math notranslate nohighlight">\(\lambda_\mathrm{max}\)</span> encompass the significant region of <span class="math notranslate nohighlight">\(p(D|\lambda,B,I)\)</span> around <span class="math notranslate nohighlight">\(\lambda_0\)</span>, the precise bounds do not matter for estimating the optimal parameter and need not be specified. Since the prior range defines the domain over which the mean likelihood is computed, due thought is necessary when dealing with model selection. Indeed, it is precisely this act of comparing ‘average’ likelihoods rather than ‘maximum’ ones which introduces the desired Ockham balance to the goodness- of-fit criterion. Any likelihood gain from a better agreement with the data, allowed by the greater flexibility of a more complicated model, has to be weighed against the additional cost of averaging it over a larger parameter space.</p>
+<!-- !split -->
+</div>
+</div>
+<div class="section" id="evidence-calculations">
+<h2><span class="section-number">24.3. </span>Evidence calculations<a class="headerlink" href="#evidence-calculations" title="Permalink to this headline">¶</a></h2>
+<p>The actual computation of Bayesian evidences can be a challenging task. Recall that we often have knowledge of the posterior distribution only through sampling. In many cases, the simple Laplace method can be used to compute the evidence approximately, while in other cases we have to rely on special sampling algorithms such as nested sampling or parallel tempering with thermodynamic integration.</p>
+<!-- ===== Laplace's method ===== -->
+<!-- !split -->
+<div class="section" id="laplaces-method">
+<h3>Laplace’s method<a class="headerlink" href="#laplaces-method" title="Permalink to this headline">¶</a></h3>
+<p>The idea behind Laplace’s method is simple, namely to use the Taylor expansion of a function around its peak to construct a Gaussian approximation which can be easily integrated. Let us consider an unnormalized density <span class="math notranslate nohighlight">\(P^*(\theta)\)</span> that has a peak at a point <span class="math notranslate nohighlight">\(\theta_0\)</span>.
+We are interested in the evidence, <span class="math notranslate nohighlight">\(Z_P\)</span>, which is given by the integral</p>
+<div class="math notranslate nohighlight">
+\[
+Z_P = \int P^*(\theta) d^K\theta,
+\]</div>
+<p>where we consider the general case in which <span class="math notranslate nohighlight">\(\theta\)</span> is a <span class="math notranslate nohighlight">\(K\)</span>-dimensional vector of parameters.</p>
+<!-- !split -->
+<p>We Taylor-expand the logarithm <span class="math notranslate nohighlight">\(\log P^*\)</span> around the peak:</p>
+<div class="math notranslate nohighlight">
+\[
+\log P^*(\theta) = \log P^*(\theta_0) - \frac{1}{2} (\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) + \ldots,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Sigma^{-1} \equiv H\)</span> is the (Hessian) matrix of second derivatives at the maximum</p>
+<div class="math notranslate nohighlight">
+\[
+H_{ij} = - \left. \frac{\partial^2}{\partial \theta_i \partial \theta_j}  \log P^*(\theta)\right|_{\theta=\theta_0}.
+\]</div>
+<!-- !split -->
+<p>By truncating the Taylor expansion at the second order we find that <span class="math notranslate nohighlight">\(P^*(\theta)\)</span>
+is approximated by an unnormalized Gaussian,</p>
+<div class="math notranslate nohighlight">
+\[
+P^*(\theta) \approx P^*(\theta_0) \exp \left[ - \frac{1}{2}(\theta - \theta_0)^T \Sigma^{-1} (\theta - \theta_0) \right].
+\]</div>
+<p>The integral of this Gaussian is given by <span class="math notranslate nohighlight">\(P^*(\theta_0)\)</span> times (the inverse of) its normalization constant. Thus we approximate <span class="math notranslate nohighlight">\(Z_P\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+Z_P \approx P^*(\theta_0) \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}}.
+\]</div>
+<p>Predictions can then be made using this approximation. Physicists also call this widely-used approximation the saddle-point approximation.</p>
+<!-- !split -->
+<p>Note, in particular, that if we consider a chi-squared likelihood: <span class="math notranslate nohighlight">\(P^*(\theta) = \mathcal{L}(D|\theta) = \exp \left( -\frac{1}{2} \chi^2(\theta)\right)\)</span>, then we get</p>
+<div class="math notranslate nohighlight">
+\[
+Z_P \approx \exp \left( -\frac{1}{2} \chi^2(\theta_0)\right) \sqrt{\frac{(4\pi)^K}{\det\Sigma^{-1}}},
+\]</div>
+<p>where there is a factor <span class="math notranslate nohighlight">\(2^{K/2}\)</span> that comes from the extra factor <span class="math notranslate nohighlight">\(1/2\)</span> multiplying the covariance matrix <span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span> and therefore appearing in all <span class="math notranslate nohighlight">\(K\)</span> eigenvalues.</p>
+<!-- !split -->
+<p>Note that the Laplace approximation is basis-dependent: if <span class="math notranslate nohighlight">\(\theta\)</span> is transformed to a nonlinear function <span class="math notranslate nohighlight">\(u(\theta)\)</span> and the density is transformed to <span class="math notranslate nohighlight">\(P(u) = P(\theta) |d\theta/du|\)</span> then in general the approximate normalizing constants <span class="math notranslate nohighlight">\(Z_Q\)</span> will be different. This can be viewed as a defect—since the true value <span class="math notranslate nohighlight">\(Z_P\)</span> is basis-independent in this approximation—or an opportunity, because we can hunt for a choice of basis in which the Laplace approximation is most accurate.</p>
+<!-- !split -->
+</div>
+<div class="section" id="normalization-of-a-multivariate-gaussian">
+<h3>Normalization of a multivariate Gaussian<a class="headerlink" href="#normalization-of-a-multivariate-gaussian" title="Permalink to this headline">¶</a></h3>
+<p>The fact that the normalizing constant of a Gaussian is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\int d^K\theta \exp \left[ - \frac{1}{2}\theta^T \Sigma^{-1} \theta \right] = \sqrt{\frac{(2\pi)^K}{\det\Sigma^{-1}}},
+\]</div>
+<p>can be proved by making an orthogonal transformation into the basis <span class="math notranslate nohighlight">\(u\)</span> in which <span class="math notranslate nohighlight">\(\Sigma\)</span> is transformed into a diagonal matrix of eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span>. The integral then separates into a product of one-dimensional integrals, each of the form</p>
+<div class="math notranslate nohighlight">
+\[
+\int du_i \exp \left[ -\frac{1}{2} \lambda_i u_i^2 \right] = \sqrt{\frac{2\pi}{\lambda_i}}
+\]</div>
+<p>The product of the eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> is the determinant of <span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "physics-chalmers/tif285",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/BayesianStatistics/ModelSelection"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../MaxEnt/demo-MaxEnt.html" title="previous page"><span class="section-number">23. </span>Assigning probabilities</a>
+    <a class='right-next' id="next-link" href="../../MachineLearning/GP/GaussianProcesses.html" title="next page"><span class="section-number">25. </span>Gaussian processes</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Christian Forssén<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
