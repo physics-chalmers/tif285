@@ -36,10 +36,7 @@ temp*
 *default.profraw
 
 # jupyter-book build files
-#doc/LectureNotes/_build/*
-#doc/LectureNotes/_build/jupyter_execute
-#doc/LectureNotes/_build/.jupyter_cache
-#doc/LectureNotes/_build/.doctrees
+*_build
 
 # reveal
 reveal.js
