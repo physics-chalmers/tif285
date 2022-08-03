@@ -1,0 +1,3 @@
+[submodule "doc/tif285-book"]
+	path = doc/tif285-book
+	url = git@gitlab.com:cforssen/tif285-book.git
