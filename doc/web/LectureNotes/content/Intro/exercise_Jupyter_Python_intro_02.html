@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4. Python and Jupyter notebooks: part 02 &#8212; Learning from data</title>
+    <title>4. Exercise: Python and Jupyter notebooks; Lists and iterations &#8212; Learning from data</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -76,8 +76,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -90,7 +88,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5. Linear regression" href="../LinearRegression/LinearRegression.html" />
-    <link rel="prev" title="3. Python and Jupyter notebooks: part 01" href="exercise_Jupyter_Python_intro_01.html" />
+    <link rel="prev" title="3. Exercise: Python and Jupyter notebooks" href="exercise_Jupyter_Python_intro_01.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -145,12 +143,12 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="exercise_Jupyter_Python_intro_01.html">
-   3. Python and Jupyter notebooks: part 01
+   3. Exercise: Python and Jupyter notebooks
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   4. Python and Jupyter notebooks: part 02
+   4. Exercise: Python and Jupyter notebooks; Lists and iterations
   </a>
  </li>
 </ul>
@@ -459,13 +457,13 @@ commentsRunWhenDOMLoaded(addUtterances);
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#aside-list-comprehensions">
-   4.1. Aside: List comprehensions
+  <a class="reference internal nav-link" href="#iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot">
+   4.1. Iterating through a list of parameters to draw multiple lines on a plot
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot">
-   4.2. Iterating through a list of parameters to draw multiple lines on a plot
+  <a class="reference internal nav-link" href="#aside-list-comprehensions">
+   4.2. Aside: List comprehensions
   </a>
  </li>
 </ul>
@@ -479,13 +477,175 @@ commentsRunWhenDOMLoaded(addUtterances);
         
               <div>
                 
-  <div class="section" id="python-and-jupyter-notebooks-part-02">
-<h1><span class="section-number">4. </span>Python and Jupyter notebooks: part 02<a class="headerlink" href="#python-and-jupyter-notebooks-part-02" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="exercise-python-and-jupyter-notebooks-lists-and-iterations">
+<h1><span class="section-number">4. </span>Exercise: Python and Jupyter notebooks; Lists and iterations<a class="headerlink" href="#exercise-python-and-jupyter-notebooks-lists-and-iterations" title="Permalink to this headline">¶</a></h1>
 <p>Original version: Dick Furnstahl, Ohio State University<br/>
-Last revised: 22-Aug-2019 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
-<p>In this notebook we continue the tour of Python and Jupyter notebooks started in <code class="docutils literal notranslate"><span class="pre">TIF285_Jupyter_Python_intro_01.ipynb</span></code>.</p>
+Last revised: 3-Aug-2022 by Christian Forssén [christian.forssen&#64;chalmers.se]</p>
+<p>In this notebook we explore the use of lists and iterations.</p>
+<div class="section" id="iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot">
+<h2><span class="section-number">4.1. </span>Iterating through a list of parameters to draw multiple lines on a plot<a class="headerlink" href="#iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have a function of <span class="math notranslate nohighlight">\(x\)</span> that also depends on a parameter (call it <span class="math notranslate nohighlight">\(r\)</span>).  We want to plot the function vs. <span class="math notranslate nohighlight">\(x\)</span> for multiple values of <span class="math notranslate nohighlight">\(r\)</span>, either on the same plot or on separate plots.  We can do this with a lot of cutting-and-pasting, but how can we do it based on a list of <span class="math notranslate nohighlight">\(r\)</span> values, which we can easily modify?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span><span class="p">;</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">()</span> <span class="c1"># for plot formatting</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sine map function: f_r(x) = r sin(pi x)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose the <span class="math notranslate nohighlight">\(r\)</span> values initially of interest are 0.3, 0.5, 0.8, and 0.9.  First the multiple copy approach:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.3$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.5$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.8$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.9$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;sine map&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_7_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_7_0.png" />
+</div>
+</div>
+<p>This certainly works, but making changes is awkward and prone to error because we have to find where to change (or add another) <span class="math notranslate nohighlight">\(r\)</span> but we might not remember to change it correctly everywhere.</p>
+<p>With minor changes we have a much better implementation (try modifying the list of <span class="math notranslate nohighlight">\(r\)</span> values):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
+
+<span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
+
+<span class="c1"># Step through the list.  r is a dummy variable.</span>
+<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_list</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;sine map&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_9_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_9_0.png" />
+</div>
+</div>
+<p>Now suppose we want each the different <span class="math notranslate nohighlight">\(r\)</span> values to be plotted on separate graphs?  We could make multiple  copies of the single plot.  Instead, lets make a function to do any single plot and call it for each <span class="math notranslate nohighlight">\(r\)</span> in the list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
+
+<span class="k">def</span> <span class="nf">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
+
+<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;sine map for $r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    
+<span class="c1"># Step through the list.  r is a dummy variable.</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_list</span><span class="p">:</span>
+    <span class="n">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_11_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_11_0.png" />
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_11_1.png" src="../../_images/exercise_Jupyter_Python_intro_02_11_1.png" />
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_11_2.png" src="../../_images/exercise_Jupyter_Python_intro_02_11_2.png" />
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_11_3.png" src="../../_images/exercise_Jupyter_Python_intro_02_11_3.png" />
+</div>
+</div>
+<p>What if instead of distinct plots we wanted subplots of the same figure?  Then create the figure and subplot axes outside of the function and have the function return the modified axis object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
+
+<span class="k">def</span> <span class="nf">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ax_passed</span><span class="p">):</span>
+    <span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
+
+<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;sine map for $r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax_passed</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+  
+<span class="c1"># Step through the list.  r is a dummy variable.</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r_list</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_Jupyter_Python_intro_02_13_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_13_0.png" />
+</div>
+</div>
+</div>
 <div class="section" id="aside-list-comprehensions">
-<h2><span class="section-number">4.1. </span>Aside: List comprehensions<a class="headerlink" href="#aside-list-comprehensions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Aside: List comprehensions<a class="headerlink" href="#aside-list-comprehensions" title="Permalink to this headline">¶</a></h2>
 <p>In the plotting examples in the next section we use for loops to iterate through parameters or plots because it is familiar to anyone who has done programming.  In Python, however, it is often preferred to use a different construction called a list comprehension.  Here is a quick comparison of using for loop and using a list comprehension, followed by some representative further examples of list comprehensions. You can find much more information and other examples in the online Python documentation and other sources. (The examples here are from [<a class="reference external" href="https://hackernoon.com/list-comprehension-in-python-8895a785550b">https://hackernoon.com/list-comprehension-in-python-8895a785550b</a>].)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,168 +766,6 @@ Last revised: 22-Aug-2019 by Christian Forssén [christian.forssen&#64;chalmers.
 </div>
 </div>
 </div>
-<div class="section" id="iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot">
-<h2><span class="section-number">4.2. </span>Iterating through a list of parameters to draw multiple lines on a plot<a class="headerlink" href="#iterating-through-a-list-of-parameters-to-draw-multiple-lines-on-a-plot" title="Permalink to this headline">¶</a></h2>
-<p>Suppose we have a function of <span class="math notranslate nohighlight">\(x\)</span> that also depends on a parameter (call it <span class="math notranslate nohighlight">\(r\)</span>).  We want to plot the function vs. <span class="math notranslate nohighlight">\(x\)</span> for multiple values of <span class="math notranslate nohighlight">\(r\)</span>, either on the same plot or on separate plots.  We can do this with a lot of cutting-and-pasting, but how can we do it based on a list of <span class="math notranslate nohighlight">\(r\)</span> values, which we can easily modify?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span><span class="p">;</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">()</span> <span class="c1"># for plot formatting</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sine map function: f_r(x) = r sin(pi x)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<p>Suppose the <span class="math notranslate nohighlight">\(r\)</span> values initially of interest are 0.3, 0.5, 0.8, and 0.9.  First the multiple copy approach:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.3$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.5$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.8$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$r = 0.9$&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;sine map&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_15_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_15_0.png" />
-</div>
-</div>
-<p>This certainly works, but making changes is awkward and prone to error because we have to find where to change (or add another) <span class="math notranslate nohighlight">\(r\)</span> but we might not remember to change it correctly everywhere.</p>
-<p>With minor changes we have a much better implementation (try modifying the list of <span class="math notranslate nohighlight">\(r\)</span> values):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
-
-<span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
-
-<span class="c1"># Step through the list.  r is a dummy variable.</span>
-<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_list</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;sine map&#39;</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_17_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_17_0.png" />
-</div>
-</div>
-<p>Now suppose we want each the different <span class="math notranslate nohighlight">\(r\)</span> values to be plotted on separate graphs?  We could make multiple  copies of the single plot.  Instead, lets make a function to do any single plot and call it for each <span class="math notranslate nohighlight">\(r\)</span> in the list.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
-
-<span class="k">def</span> <span class="nf">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-    <span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
-
-<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;sine map for $r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    
-    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-    
-<span class="c1"># Step through the list.  r is a dummy variable.</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_list</span><span class="p">:</span>
-    <span class="n">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_19_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_19_0.png" />
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_19_1.png" src="../../_images/exercise_Jupyter_Python_intro_02_19_1.png" />
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_19_2.png" src="../../_images/exercise_Jupyter_Python_intro_02_19_2.png" />
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_19_3.png" src="../../_images/exercise_Jupyter_Python_intro_02_19_3.png" />
-</div>
-</div>
-<p>What if instead of distinct plots we wanted subplots of the same figure?  Then create the figure and subplot axes outside of the function and have the function return the modified axis object.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>    <span class="c1"># this could also be a numpy array</span>
-
-<span class="k">def</span> <span class="nf">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ax_passed</span><span class="p">):</span>
-    <span class="n">x_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># black y=x line</span>
-
-<span class="c1">#  Note the use of an f-string and LaTeX by putting rf in front of the label.</span>
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts</span><span class="p">,</span> <span class="n">sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x_pts</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(x)$&#39;</span><span class="p">)</span>
-    <span class="n">ax_passed</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s1">&#39;sine map for $r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">ax_passed</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-  
-<span class="c1"># Step through the list.  r is a dummy variable.</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">cols</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r_list</span><span class="p">):</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_sine_map</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/exercise_Jupyter_Python_intro_02_21_0.png" src="../../_images/exercise_Jupyter_Python_intro_02_21_0.png" />
-</div>
-</div>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -795,7 +793,7 @@ Last revised: 22-Aug-2019 by Christian Forssén [christian.forssen&#64;chalmers.
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="exercise_Jupyter_Python_intro_01.html" title="previous page"><span class="section-number">3. </span>Python and Jupyter notebooks: part 01</a>
+    <a class='left-prev' id="prev-link" href="exercise_Jupyter_Python_intro_01.html" title="previous page"><span class="section-number">3. </span>Exercise: Python and Jupyter notebooks</a>
     <a class='right-next' id="next-link" href="../LinearRegression/LinearRegression.html" title="next page"><span class="section-number">5. </span>Linear regression</a>
 
         </div>
