@@ -76,6 +76,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -88,7 +90,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="4. Exercise: Python and Jupyter notebooks; Lists and iterations" href="exercise_Jupyter_Python_intro_02.html" />
-    <link rel="prev" title="2. Reading Data and fitting" href="demo-Intro.html" />
+    <link rel="prev" title="2. Demonstration: Reading Data and fitting" href="demo-Intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -138,7 +140,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="demo-Intro.html">
-   2. Reading Data and fitting
+   2. Demonstration: Reading Data and fitting
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -175,12 +177,12 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LinearRegression/demo-ModelValidation.html">
-   8. Linear Regression and Model Validation demonstration
+   8. Demonstration: Linear Regression and Model Validation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LinearRegression/exercise_LinearRegression.html">
-   9. Linear Regression exercise
+   9. Exercise: Linear Regression
   </a>
  </li>
 </ul>
@@ -202,12 +204,12 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/BayesianBasics/demo-BayesianBasics.html">
-   12. Interactive Bayesian Coin Tossing
+   12. Demonstration: Interactive Bayesian Coin Tossing
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/BayesianBasics/exercise_sum_product_rule.html">
-   13. Checking the sum and product rules, and their consequences
+   13. Exercise: Checking the sum and product rules, and their consequences
   </a>
  </li>
  <li class="toctree-l1">
@@ -217,7 +219,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/BayesianParameterEstimation/demo-BayesianParameterEstimation.html">
-   15. Bayesian parameter estimation demonstration
+   15. Demonstration: Bayesian parameter estimation
   </a>
  </li>
  <li class="toctree-l1">
@@ -232,7 +234,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MCMC/demo-MCMC.html">
-   18. Metropolis-Hasting MCMC sampling of a Poisson distribution
+   18. Demonstration: Metropolis-Hasting MCMC sampling of a Poisson distribution
   </a>
  </li>
  <li class="toctree-l1">
@@ -242,7 +244,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/ErrorPropagation/demo-ErrorPropagation.html">
-   20. Learning from Data: Error propagation and nuisance parameters (demonstration)
+   20. Demonstration: Error propagation and nuisance parameters
   </a>
  </li>
  <li class="toctree-l1">
@@ -257,7 +259,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../BayesianStatistics/MaxEnt/demo-MaxEnt.html">
-   23. Assigning probabilities
+   23. Demonstration: Assigning probabilities
   </a>
  </li>
  <li class="toctree-l1">
@@ -279,7 +281,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/GP/demo-GaussianProcesses.html">
-   26. Gaussian processes demonstration
+   26. Demonstration: Gaussian processes
   </a>
  </li>
  <li class="toctree-l1">
@@ -304,7 +306,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/NeuralNet/demo-NeuralNet.html">
-   30. Neural network classifier demonstration
+   30. Demonstration: Neural network classifier
   </a>
  </li>
  <li class="toctree-l1">
@@ -319,7 +321,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/CNN/demo-cnn.html">
-   33. Image recognition demonstration with Convolutional Neural Networks
+   33. Demonstration: Image recognition with Convolutional Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
@@ -329,7 +331,7 @@ commentsRunWhenDOMLoaded(addUtterances);
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../MachineLearning/BNN/demo-bnn.html">
-   35. Variational Inference: Bayesian Neural Networks
+   35. Demonstration: Variational Inference and Bayesian Neural Networks
   </a>
  </li>
  <li class="toctree-l1">
@@ -1103,7 +1105,7 @@ Last revised: 3-Aug-2022 by Christian Forssén [christian.forssen&#64;chalmers.s
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="demo-Intro.html" title="previous page"><span class="section-number">2. </span>Reading Data and fitting</a>
+    <a class='left-prev' id="prev-link" href="demo-Intro.html" title="previous page"><span class="section-number">2. </span>Demonstration: Reading Data and fitting</a>
     <a class='right-next' id="next-link" href="exercise_Jupyter_Python_intro_02.html" title="next page"><span class="section-number">4. </span>Exercise: Python and Jupyter notebooks; Lists and iterations</a>
 
         </div>
