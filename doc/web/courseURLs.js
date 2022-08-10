@@ -8,16 +8,16 @@ function inIframe () {
 }
 
 // course-specific URL
-var bookURL = "https://physics-chalmers.github.io/tif285/doc/web/LectureNotes/";
-var bookIntroURL = "https://physics-chalmers.github.io/tif285/doc/web/LectureNotes/content/Intro/";
-var bookLinRegURL = "https://physics-chalmers.github.io/tif285/doc/web/LectureNotes/content/LinearRegression/";
-var bookBayesStatURL = "https://physics-chalmers.github.io/tif285/doc/web/LectureNotes/content/BayesianStatistics/";
-var bookMLURL = "https://physics-chalmers.github.io/tif285/doc/web/LectureNotes/content/MachineLearning/";
+var bookURL = "https://cforssen.gitlab.io/tif285-book/";
+var bookIntroURL = bookURL + "content/Intro/";
+var bookLinRegURL = bookURL + "content/LinearRegression/";
+var bookBayesStatURL = bookURL + "content/BayesianStatistics/";
+var bookMLURL = bookURL + "content/MachineLearning/";
 var gitURL = "https://github.com/physics-chalmers/tif285/";
-var gitIntroURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/Intro/";
-var gitLinRegURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/LinearRegression/";
-var gitBayesStatURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/BayesianStatistics/";
-var gitMLURL = "https://github.com/physics-chalmers/tif285/blob/master/doc/LectureNotes/content/MachineLearning/";
+var gitIntroURL = gitURL + "blob/master/doc/LectureNotes/content/Intro/";
+var gitLinRegURL = gitURL + "blob/master/doc/LectureNotes/content/LinearRegression/";
+var gitBayesStatURL = gitURL + "blob/master/doc/LectureNotes/content/BayesianStatistics/";
+var gitMLURL = gitURL + "blob/master/doc/LectureNotes/content/MachineLearning/";
 
 // course-specific URL
 var courseURL = "https://chalmers.instructure.com/courses/20232/";
