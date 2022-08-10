@@ -66,8 +66,6 @@ if (inIframe()) {
 	discussions = 'https://app.yata.se/course/17820382-e29e-479f-8e4e-15ea2618d2c7/posts';
 }
 
-// var project1 = "https://chalmers.instructure.com/courses/7773/assignments/4895";
-
 // course PM on student portals
 var coursePMchalmers = "https://www.student.chalmers.se/sp/course?course_id=33624";
 var coursePMgu = "https://www.gu.se/studera/hitta-utbildning/bayesiansk-dataanalys-och-maskininlarning-fym285";
