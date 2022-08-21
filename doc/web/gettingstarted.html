@@ -29,11 +29,13 @@
 <p>Using git, the course material can be downloaded by cloning the github repository:</p>
 <pre class="prettyprint"><code class="language-java">$ git clone --recurse-submodules https://github.com/physics-chalmers/tif285.git
 </code></pre>
-<p>after which it will be available in the <code>tif285</code> directory. Note that the lecture notes are maintained in a so called git submodule (tif285-book). The extra flag in the git clone command ensures that we fetch also that repository.
+<p>after which it will be available in the <code>tif285</code> directory. 
 
 You will have to perform a <code>git pull</code> operation when wou want to retrieve future updates in the github repository.</p>
 
-<p>When using the github repository to stay up-to-date with course material it is recommended to make a local copy of notebooks before starting to edit them. The easiest is probably to create a new directory with your local copies. The git approach, however, would be to create a new branch.
+<p>When using the github repository to stay up-to-date with course material it is Note that the lecture notes are maintained in a so called git submodule (tif285-book). The extra <code>--recurse-submodules</code> flag in the git clone command ensures that we fetch also that repository. You will then find all source files for the lecture notes in the <code>doc/tif285-book</code> directory. In particular, you might want to open and run the exercise and demonstration notebooks that are part of the lecture notes. These can be found in the subdirectories in <code>doc/tif285-book/content</code>.
+
+recommended to make a local copy of notebooks before starting to edit them. The easiest is probably to create a new directory with your local copies. The git approach, however, would be to create a new branch.
 </p>
 
 <p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
@@ -94,9 +96,9 @@ should show that you are using a Python3 version.
 <pre class="prettyprint"><code class="language-java">$ conda env create -f environment.yml
 </code></pre>
 
-<p>which reads the environment.yml file in your current directory.</p>
+<p>which reads the environment.yml file in your current directory. It will check dependencies and then download and install several packages. It might take a considerable time to run and you will probably be asked to accept the suggested installation procedure.</p>
 
-<p>Some packages might not be found in the default conda channels. One
+<p>Some packages that we will be using are not included in the default conda channels. One
 can either specify relevant package channel(s) in the environment.yml
 file (as done here), or add them to the default conda channel configuration via, e.g, <code>conda config --append channels conda-forge</code>
 </li>
@@ -131,14 +133,14 @@ file (as done here), or add them to the default conda channel configuration via,
 
 <p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the lecture contents. In the directory tree from the github repository:
 
-<pre class="prettyprint"><code class="language-java">$ cd doc/LectureNotes/content/
+<pre class="prettyprint"><code class="language-java">$ cd doc/tif285-book/content/
 $ jupyter notebook
 </code></pre>
 
-The Jupyter Notebook will open in your default browser. It should show a list of the subdirectories. It is recommended that you start with the two Jupyter-Python-intro notebooks in the Intro directory. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
+The Jupyter Notebook will open in your default browser. It should show a list of the subdirectories. It is recommended that you start with the Jupyter-Python-NumPy exercise notebooks in the Intro directory. Just double-click on the first one to get started. Make sure to evaluate the cells with <b>shift-return</b>.
 </p>
 
-<p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. Just evaluating a cell in a notebook, without changing any code, will register as a file update in git. One possibility is to create a separate git branch for your work.</p>
+<p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. The action of evaluating a cell in a notebook, without changing any code, will register as a file update in git. One possibility is to create a separate git branch for your work.</p>
 
 <p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank">Google's Colab</a> is a free Jupyter notebook environment that requires 
 no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>
