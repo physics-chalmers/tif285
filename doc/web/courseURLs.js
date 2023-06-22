@@ -20,7 +20,7 @@ var gitBayesStatURL = gitURL + "blob/master/doc/LectureNotes/content/BayesianSta
 var gitMLURL = gitURL + "blob/master/doc/LectureNotes/content/MachineLearning/";
 
 // course-specific URL
-var courseURL = "https://chalmers.instructure.com/courses/20232/";
+var courseURL = "https://chalmers.instructure.com/courses/25170/";
 
 // Course-specific url if the current page is within an iFrame.
 // Relative link to file if the current page is the top window
@@ -67,6 +67,6 @@ if (inIframe()) {
 }
 
 // course PM on student portals
-var coursePMchalmers = "https://www.student.chalmers.se/sp/course?course_id=33624";
+var coursePMchalmers = "https://www.student.chalmers.se/sp/course?course_id=36704";
 var coursePMgu = "https://www.gu.se/studera/hitta-utbildning/bayesiansk-dataanalys-och-maskininlarning-fym285";
-var courseScheduleTimeEdit = "https://cloud.timeedit.net/chalmers/web/public/riq80QggY05Zx6Q5Q37y6Y7665Z456X663Z70Z6Q65o60Q6ZY0u0gQnwZq6Qo.html";
+var courseScheduleTimeEdit = "https://cloud.timeedit.net/chalmers/web/public/s.html?i=6x0c3ynZdZ66QlyashxZ6Qx0nn_aQb6TXbQcIknl7l397FY36dgg6g5064Q7Zx0Y0";
