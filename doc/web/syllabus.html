@@ -1,464 +1,210 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<meta http-equiv="content-type" content="application/xhtml+xml/>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<title>Learning from data [TIF285]</title>
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&amp;subset=latin-ext&amp;display=swap" rel="stylesheet">
-<link href="tif285.css" rel="stylesheet" type="text/css" />
-
-<script src="courseURLs.js"></script>
-
-<base target="_parent">
-</head>
-
-<body>
-
-
-<div id="content">
-
-<div class='main_box'>
-<h2><span>Course Syllabus</span></h2>
-<h3><span>TIF285 / FYM285 Learning from data</span></h3>
-<h4><span>Bayesian data analysis and machine learning</span></h4>
-<h4><span>period 1, fall 2022 (7,5 ECTS)</span></h4>
-The course is offered by the Department of Physics
+<div class="main_box">
+    <h3><span>Learning from data (TIF285 / FYM285) Q1, fall 2023, 7.5 ECTS</span></h3>
+    <h4><span>Bayesian data analysis and machine learning</span></h4>
+    The course is offered by the Department of Physics
 </div>
-
-<div class='main_box'>
-<h3>Contact details</h3>
-&nbsp;
-  <dl><dt>Lecturer and examiner</dt>
-  <dd>
-  <a href="http://www.tsp.chalmers.se/">
-  Christian Forss&eacute;n</a>, 
-  room Origo N 6.114, tel. 031-7723261, <br/>
-  Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='chalmers.se'
-		name='christian.forssen'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	christian.forssen[at]chalmers.se
-	</NOSCRIPT>  
-  <br/>
-  </dd>
-  
-  <dt>Teaching assistants</dt>
+<div class="main_box">
+    <h2>Contact details</h2>
+    <dl>
+        <dt>Lecturer and examiner</dt>
+        <dd><a href="http://www.tsp.chalmers.se/"> Christian Forss&eacute;n</a>, room Origo N 6.114, tel. 031-7723261, <br />Email: christian.forssen[at]chalmers.se</dd>
+    </dl>
+    <dl>
+        <dt>Teaching assistants</dt>
+        <dd>
+    	<ul>
+        	<li>Esm&eacute;e Berger, floor 7, Origo N; Email: esmee.berger[at]chalmers.se</li>
+        	<li>Taylor Gray, floor 6, Origo N; Email: taylor.gray[at]chalmers.se</li>
+        	<li>Anna Kawecka, floor 8, Forskarhuset; Email: anna.kawecka[at]chalmers.se</li>
+        	<li>Oliver Thim, floor 6, Origo N; Email: oliver.thim[at]chalmers.se</li>
+    	</ul>
+    	</dd>
+    </dl>
+    <dl>
+        <dt>Student representatives</dt>
+        <dd>Contact details will be posted here.</dd>
+    </dl>
+</div>
+<div class="main_box">
+    <h2>Course aim</h2>
+    <p>The course introduces a variety of central algorithms and methods essential for performing scientific data analysis using statistical inference and machine learning. Much emphasis is put on practical applications of Bayesian inference in the natural and engineering sciences, i.e. the ability to quantify the strength of inductive inference from facts (such as experimental data) to propositions such as scientific hypotheses and models.</p>
+    <p>The course is project-based, and the students will be exposed to fundamental research problems through the various projects, with the aim to reproduce state-of-the-art scientific results. The students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects.</p>
+</div>
+<div class="main_box">
+    <h2>Schedule</h2>
     <ul>
-	<li>Shahnawaz Ahmed, floor 5, MC2; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='chalmers.se'
-		name='shahnawaz.ahmed'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	shahnawaz.ahmed[at]chalmers.se
-	</NOSCRIPT>  
-	</li>
-	<li>Noemi Bosio, floor 5, Forskarhuset; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='chalmers.se'
-		name='bosio'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-		bosio[at]chalmers.se>
-	</NOSCRIPT>  
-	</li>
-	<li>Isak Svensson, floor 6, Origo N; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='chalmers.se'
-		name='isak.svensson'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	svisak[at]chalmers.se
-	</NOSCRIPT>  
-	</li>
-	<li>Oliver Thim, floor 6, Origo N; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='chalmers.se'
-		name='oliver.thim'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	oliver.thim[at]chalmers.se
-	</NOSCRIPT>  
-	</li>
-      </ul>
-  
-  <dt>Student representatives</dt>
-  <dd>
-  <!-- Contact details will be posted here. -->
-
-  <!-- COURSE EVALUATORS -->
-    Rémi Albert; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='student.chalmers.se'
-		name='remia'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	remia[at]student.chalmers.se
-	</NOSCRIPT>  
-	<br/>
-	Jesper Karlsson Franzén; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='student.gu.se '
-		name='gusjespefr'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	gusjespefr[at]student.gu.se
-	</NOSCRIPT>  	
-	<br/>
-	Gerda Johansson; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='student.chalmers.se'
-		name='gerdaj'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	gerdaj[at]student.chalmers.se
-	</NOSCRIPT>
-	<br/>
-	Nastaran Fallah Randjbar; Email: 
-	<SCRIPT TYPE="text/javascript">
-		server='student.chalmers.se'
-		name='nastaran'
-		emailE=(name + '@' + server)
-		document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-	</SCRIPT>
-	<NOSCRIPT>
-    	nastaran[at]student.chalmers.se
-	</NOSCRIPT>
-  </dd>
-  </dl>
+        <li>See detailed <a title="Weekly schedule" href="https://chalmers.instructure.com/courses/25170/pages/weekly-schedule" data-api-endpoint="https://chalmers.instructure.com/api/v1/courses/25170/pages/weekly-schedule" data-api-returntype="Page">Weekly schedule</a>.</li>
+        <li>In general there are lectures on Mondays (13-15) and Tuesdays (10-12). Computer lab sessions take place on Mondays (15-17, with only two TAs) and Thursdays (8-12).</li>
+        <li>The main Thursday morning computer lab session will typically start with a demonstration or feedback discussion led by one of the teaching assistants.</li>
+        <li>The extra Monday afternoon computer lab session is remote.</li>
+        <li>See Remote teaching for more detailed information on the setup for live streaming.</li>
+        <li>Up-to-date schedule in <a href="https://cloud.timeedit.net/chalmers/web/public/s.html?i=6x0c3ynZdZ66QlyashxZ6Qx0nn_aQb6TXbQcIknl7l397FY36dgg6g5064Q7Zx0Y0">TimeEdit</a>.</li>
+    </ul>
 </div>
-
-<div class='main_box'>
-<h3>Course aim</h3>
-<p>The course introduces a variety of central algorithms and methods essential for performing scientific data analysis using statistical inference and machine learning. Much emphasis is put on practical applications of Bayesian inference in the natural and engineering sciences, i.e. the ability to quantify the strength of inductive inference from facts (such as experimental data) to propositions such as scientific hypotheses and models. </p>
-<p>The course is project-based, and the students will be exposed to fundamental research problems through the various projects, with the aim to reproduce state-of-the-art scientific results. The students will use the Python programming language, with relevant open-source libraries, and will learn to develop and structure computer codes for scientific data analysis projects. </p>
-</div>
-
-<div class='main_box'>
-<h3>Schedule</h3>
-<ul>
-<li>See detailed 
-    <script>
-	document.write('<a href="' + schedule + '">Weekly schedule</a>');
-	</script>
-	<noscript>
-		Weekly schedule
-	</noscript>
-	.</li>
-<li>In general there are lectures on Mondays (13-15), Tuesdays
-	(10-12). Computer lab sessions take place on Thursdays
-	(8-12) plus an extra remote supervision time slot on Mondays (15-17, with only two TAs).</li>
-<li>The main Thursday morning computer lab session will typically start with a demonstration or feedback discussion led by one of the teaching assistants. 
-</li>
-<li>The extra Monday afternoon computer lab session is remote.
-	<!-- REMOTE TEACHING -->
-	<li>
-	See
-    <script>
-	document.write('<a href="' + remoteteaching + '">Remote teaching</a>');
-	</script>
-	<noscript>
-		Remote teaching
-	</noscript>
-	for more detailed information on the setup for live streaming.
-	</li>
-<li>Up-to-date schedule in 
-	<script>
-	document.write('<a href="' + courseScheduleTimeEdit + '">TimeEdit</a>');
-	</script>
-	<noscript>
-	TimeEdit; URL requires java
-	</noscript>
-</li>
-</div>
-
-<div class='main_box'>
-<h3>Course literature</h3>
-	<ul>
-   		<li>Course textbook: <i>"Bayesian Logical Data Analysis for the Physical Sciences"</i>, by
-    	Phil Gregory, 2005. 
-		</li>
-		<li>Lecture notes: Christian Forssén, 
-      <script>
-		document.write('<a href="' + bookURL + 'index.html"><i>"Learning from data"</i></a>.');
-		</script>
-		<noscript>
-		<i>"Learning from data"</i> (URL requires java).
-		</noscript>
-    	Published under a <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons BY-NC</a> license (2021). The book format is powered by <a href="https://jupyterbook.org/">Jupyter Book</a>.
-		</li>
-   		<li>Additional reading: recommended advanced books within the different subtopics of this course. Most of them available as electronic resources.
-		</li>		
-	</ul>
-	See also
-    <script>
-		document.write('<a href="' + material + '">Course materials</a>');
-	</script>
-	<noscript>
-		Course materials
-	</noscript>
-	for links to electronic resources including e-books available via Chalmers library.
-</div>
-
-<div class='main_box'>
-<h3>Course design</h3>
-  <p> 
-  See the detailed
-    <script>
-	document.write('<a href="' + schedule + '">Weekly schedule</a>');
-	</script>
-	<noscript>
-		Weekly schedule
-	</noscript>
-  (with reading assignments).
-  </p>
-
-  <h4>Course organisation</h4>
-  <ul>
-    <li><b>Lectures with computer demonstrations</b>: background and theory, discussion problems, computer demonstrations using Jupyter notebooks.</li> 
-    <li><b>Supervised computational exercises</b>: group work on exercises, problem sets, and numerical projects in the computer lab with supervision.</li>
-    <li>Exercise- and project-based learning through work on analytical and numerical  exercises and problem sets plus computational projects with written reports.</li>
-  </ul>
-
-  <h4>Computer lab sessions</h4>
-  <p>Should be used for working on projects, exercises and problem sets. You will have the opportunity to discuss with the supervisors and with your fellow students. The main computer lab session on Thursdays takes place on campus. The extra session on Mondays is remote. The Thursday morning sessions will typically start with a demonstration or feedback discussion led by one of the teaching assistants (see the
-    <script>
-	document.write('<a href="' + schedule + '">Weekly schedule</a>');
-	</script>
-	<noscript>
-		Weekly schedule
-	</noscript>
-).
-
-Concerning which computer to use, you have three options:
-<ul>
-<li>Use one of the computers in rooms F-T7203, F-T7204, FT4011. These rooms are reserved for us on Thursdays from 8-12. They can also be used other times if available. </li>
-<li>Log in remotely to one of the Chalmers STUdat linux computers. See instructions at <a href="https://chalmers.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=304967f9ad004d3293b986a976e39833">https://chalmers.topdesk.net/</a>. Depending on your platform, find the relevant set of instructions for "How do I remotely access a StuDAT Linux computer from my [select platform]". You might want to use the /bin/bash shell rather than the default /bin/sh.</li>
-<li>Use your personal computer.</li>
-</ul>
-
-
-<h5>General recommendations:</h5>
+<div class="main_box">
+    <h2>Course literature</h2>
     <ul>
-    <li>
-    See detailed 
-    <script>
-	document.write('<a href="' + gettingstarted + '">Getting started</a>');
-	</script>
-	<noscript>
-		Getting started
-	</noscript>
-	instructions.
-    </li>
-    <li>
-    Weekly reading assignments and exercises provide hints to solve the projects and problem sets.
-    </li>
-    <li>
-    Try to establish a practice where you log your work with the exercises and projects. You may find such a log book very handy at later stages in your work, especially when you don't properly remember what a previous test version of your program did. Here you could also record the time spent on solving the exercise, various algorithms you may have tested, or questions that you would like to discuss further with your lab partner or the supervisor.
-    </li>
-    <li>
-    The course assumes a solid background in undergraduate mathematics (multivariable analysis, linear algebra, mathematical statistics). You might have to refresh your knowledge in these subjects by referring to undergraduate mathematics textbooks.
-    </li>
-    <li>
-    We will use the Python programming language. In particular, we will use Jupyter notebooks when working on numerical exercises, problems, and projects. You might not have worked with these tools before, in which case you will have to learn as you go. The exercises are constructed to facilitate this learning, and we provide suggestions for useful electronic resources. You might have to use these references throughout the course, and you're also encouraged to discuss with the teaching assistants. Experience from using Matlab or similar interpreted languages should be sufficient for quickly getting up to speed.
-    </li>
-    <li>We will briefly discuss version control approaches for code development during this course. The use of such an approach is, however, not yet an official learning outcome and will not be the required practice for your work on numerical projects. Still, you are encouraged to try this approach and the teachers will be happy to discuss implementations and recommended work flows. Version control is the most ethical approach to computational research. All files that are associated with this course are available via a public repository on <a href="https://github.com/physics-chalmers/tif285">github</a> that you are welcome to clone. 
-    </li>
-  </ul>
-</p>
-
+        <li>Lecture notes: <a href="https://cforssen.gitlab.io/tif285-book">Learning from data</a> by Christian Forss&eacute;n, Published under a <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons BY-NC</a> license (2021). The book format is powered by <a href="https://jupyterbook.org/">Jupyter Book</a>.</li>
+        <li>Course textbook: <i>"Bayesian Logical Data Analysis for the Physical Sciences"</i>, by Phil Gregory, 2005.</li>
+        <li>Additional reading: recommended advanced books within the different subtopics of this course. Most of them available as electronic resources.</li>
+    </ul>
+    See also for links to electronic resources including e-books available via Chalmers library.
 </div>
-
-
-<div class='main_box'>
-<h3>Learning objectives</h3>
-<p>after completion of the course the student should be able to:</p>
-<ul>
-<li>integrate knowledge of common statistical distributions and central concepts in Bayesian statistics into the analysis of scientific data;</li>
-<li>explain central aspects of Monte Carlo methods and Markov chains, and numerically apply these methods to sample multivariate probability densities;</li>
-<li>quantify and critically assess uncertainties of model parameters that are statistically inferred from scientific data; perform model comparison using a Bayesian viewpoint;</li>
-<li>understand and numerically implement several basic algorithms used in data analysis and  machine learning such as linear methods for regression and classification, simple neural networks and gaussian processes;</li>
-<li>use python to perform scientific data analysis using statistical inference and machine learning and to visualize numerical results.</li>
-<li>write well-structured technical reports where results and conclusions from a scientific data analysis are communicated in a clear way.</li>
-<li>maintain a scientific and ethical conduct in the process of analyzing data and writing computer programs.</li>
-</ul>
-</div>
-
-<div class='main_box'>
-<h3>Examination</h3>
-<p>The final grade is based on the performance on problem sets (performed individually) and the graded reports on computer projects (performed in groups of two students). There is no written exam. Ethical aspects will be explicitly examined.</p>
-
-  <h4>Problem sets</h4>
-  <p>There are three problem sets. These are strongly connected to the exercises that you will be working on in the computer labs. 
-  <ul>
-  <li>Each set contains a number of basic questions and a number of extra (often more advanced) ones. Most tasks are computational and it is recommended to work on them during the computer lab sessions.</li>
-  <li>The problem sets are examined individually. Hand-in of solution code via Canvas.</li>
-  <li>Students are allowed to discuss together and help each other when solving the problems. However, every student must understand and be able to explain his/her submitted solution. Plagiarism is not allowed (submissions will be both manually and automatically monitored).</li>
-  </ul>
-  </p>
-
-  <h5>Deadline, problem sets</h5> 
-  <p>Hand-in via Canvas. See specific deadlines on the corresponding Canvas Assignments.
-  <ul>
-  <li>Set 1: Friday, week 2</li>
-  <li>Set 2: Friday, week 4</li>
-  <li>Set 3: Friday, week 7</li>
-  </ul>
-  Problem sets that are handed in post deadline will only be eligible for points corresponding to the minimum required for a passing grade. Late hand-ins will be graded in December/January (handed in before Nov. 30th) or August/September (handed in before July 31st).</p>
-  </p>
-
-  <h4>Computer projects</h4>
-  <p>There are two computational projects. Each project contains a basic and an extra (optional) task.
-  <ul>
-  <li>The projects are performed in groups of two students. Join a project group via Canvas.</li>
-  <li>Each group has to hand in a written report (pdf format) that will be graded. See detailed instructions in the problem formulations.</li>
-  <li>Students are allowed to discuss together and help each other when working on the projects. However, every student must understand and be able to explain their submitted solutions. Plagiarism (of text and/or code) is not allowed (submissions will be both manually and automatically monitored).</li>
-  </ul>
-  </p>
-
-  <h5>Deadline, projects</h5> 
-  <p>Hand-in via Canvas. See specific deadlines on the corresponding Canvas Assignments.
-  <ul>
-  <li>Project 1: Friday, week 5</li>
-  <li>Project 2: Wednesday, exam week</li>
-  </ul>
-  Projects that are handed in post deadline will only be eligible for points from the basic tasks and will be graded in December/January (handed in before Nov. 30th) or August/September (handed in before July 31st).</p>
-
-<h4>Grading system</h4>
-
-<p>
-<dl>
-<dt>Pass (grade 3 / G / E)</dt>
-<dd>In order to pass the course you need to have a minimum number of points per task (4 points / problem set and 6 points / project), <b>and</b> you need &ge;30 points in total.</dd>
-<dt>Pass with distinction</dt>
-<dd>In order to pass the course with distinction (high grade) you need
-  a minimum number of points per task (6 points / problem set and 9
-  points / project) <b>and</b> a certain amount of points in total
-  (see table below). 
-</dd>
-</dl>
-</p>
-
-<p>The final grade, <b>given that the above minimum-point requirements per task are fulfilled</b>, is determined according to:
-   <table>
-     <tr>
-       <th>Total points</th>
-       <th colspan="2">Minimum points</th>
-       <th colspan="3">Grade</th>
-     </tr>
-     <tr>
-       <th>(max 100)</th>
-       <th>per set</th>
-       <th>per project</th>
-       <th>Chalmers</th>
-       <th>GU</th>
-       <th>ECTS</th>
-     </tr>
-
-     <tr>
-       <td> &ge; 80 </td>
-       <td> 6 </td>
-       <td> 9 </td>
-       <td> 5 </td>
-       <td> VG </td>
-       <td> A </td>
-     </tr>
-
-     <tr>
-       <td> 70 - 79 </td>
-       <td> 6 </td>
-       <td> 9 </td>
-       <td> 4 </td>
-       <td> VG </td>
-       <td> B </td>
-     </tr> 
-
-     <tr>
-       <td> 60 - 69 </td>
-       <td> 6 </td>
-       <td> 9 </td>
-       <td> 4 </td>
-       <td> G </td>
-       <td> C </td>
-     </tr>
-
-     <tr>
-       <td> 50 - 59 </td>
-       <td> 4 </td>
-       <td> 6 </td>
-       <td> 3 </td>
-       <td> G </td>
-       <td> D </td>
-     </tr>
-
-     <tr>
-       <td> 30 - 49 </td>
-       <td> 4 </td>
-       <td> 6 </td>
-       <td> 3 </td>
-       <td> G </td>
-       <td> E </td>
-     </tr>
-
-     <tr>
-       <td> < 30 </td>
-       <td> or < 4 </td>
-       <td> or < 6 </td>
-       <td> U </td>
-       <td> U </td>
-	   <td> F </td>
-     </tr>
-   </table>
-   </p>
-	<p>Note that ECTS grades are not implemented at Chalmers. The above table
-   just gives an indication of the approximate correspondance.</p>
-  
-	<h4>Chalmers and GU student portals</h4>
-  <p>Links to the course syllabus at the Chalmers and Gothenburg University student portals:
-	<ul>  
-	<li>
-		<script>
-		document.write('<a href="' + coursePMchalmers + '">TIF285 (Chalmers)</a>');
-		</script>
-		<noscript>
-		TIF285 (Chalmers); URL requires java
-		</noscript>
-	</li>
-	<li>
-		<script>
-		document.write('<a href="' + coursePMgu + '">FYM285 (GU)</a>');
-		</script>
-		<noscript>
-		FYM285 (GU); URL requires java
-		</noscript>
-	</li>
+<div class="main_box">
+    <h2>Course design</h2>
+    <ul>
+        <li><strong>Lectures with computer demonstrations</strong>: background and theory, discussion problems, computer demonstrations using Jupyter notebooks.</li>
+        <li><strong>Supervised computational exercises</strong>: group work on exercises, problem sets, and numerical projects in the computer lab with supervision.</li>
+        <li>Exercise- and project-based learning through work on analytical and numerical exercises and problem sets plus computational projects with written reports.</li>
+    </ul>
+    <p><strong>Computer lab sessions</strong></p>
+    <p>Should be used for working on projects, exercises and problem sets. You will have the opportunity to discuss with the supervisors and with your fellow students. The main computer lab session on Thursdays takes place on campus. The extra session on Mondays is remote. The Thursday morning sessions will typically start with a demonstration or feedback discussion led by one of the teaching assistants. Concerning which computer to use, you have three options:</p>
+    <ul>
+        <li>Use one of the computers in rooms F-T7203, F-T7204, FT4011. These rooms are reserved for us on Thursdays from 8-12. They can also be used other times if available.</li>
+        <li>Log in remotely to one of the Chalmers STUdat linux computers. See instructions at <a href="https://chalmers.topdesk.net/tas/public/ssp/content/detail/knowledgeitem?unid=304967f9ad004d3293b986a976e39833">https://chalmers.topdesk.net/</a>. Depending on your platform, find the relevant set of instructions for "How do I remotely access a StuDAT Linux computer from my [select platform]". You might want to use the /bin/bash shell rather than the default /bin/sh.</li>
+        <li>Use your personal computer.</li>
+    </ul>
+    <p><strong>General recommendations</strong></p>
+    <ul>
+        <li>See detailed Getting started instructions.</li>
+        <li>Weekly reading assignments and exercises provide hints to solve the projects and problem sets.</li>
+        <li>Try to establish a practice where you log your work with the exercises and projects. You may find such a log book very handy at later stages in your work, especially when you don't properly remember what a previous test version of your program did. Here you could also record the time spent on solving the exercise, various algorithms you may have tested, or questions that you would like to discuss further with your lab partner or the supervisor.</li>
+        <li>The course assumes a solid background in undergraduate mathematics (multivariable analysis, linear algebra, mathematical statistics). You might have to refresh your knowledge in these subjects by referring to undergraduate mathematics textbooks.</li>
+        <li>We will use the Python programming language. In particular, we will use Jupyter notebooks when working on numerical exercises, problems, and projects. You might not have worked with these tools before, in which case you will have to learn as you go. The exercises are constructed to facilitate this learning, and we provide suggestions for useful electronic resources. You might have to use these references throughout the course, and you're also encouraged to discuss with the teaching assistants. Experience from using Matlab or similar interpreted languages should be sufficient for quickly getting up to speed.</li>
+        <li>We will briefly discuss version control approaches for code development during this course. The use of such an approach is, however, not yet an official learning outcome and will not be the required practice for your work on numerical projects. Still, you are encouraged to try this approach and the teachers will be happy to discuss implementations and recommended work flows. Version control is the most ethical approach to computational research. All files that are associated with this course are available via a public repository on <a href="https://github.com/physics-chalmers/tif285">github</a> that you are welcome to clone.</li>
+    </ul>
+    <p><strong>Changes</strong></p>
+    Course changes since last year:
+    <ul>
+        <li>Use of Yata for code tasks in problem sets.</li>
+        <li>Complementing oral exams for problem sets.</li>
+        <li>Updated ethics lecture and list of discussion cases.</li>
 	</ul>
-	</p>
-
 </div>
-
+<div class="main_box">
+    <h2>Learning objectives</h2>
+    <p>after completion of the course the student should be able to:</p>
+    <ul>
+        <li>integrate knowledge of common statistical distributions and central concepts in Bayesian statistics into the analysis of scientific data;</li>
+        <li>explain central aspects of Monte Carlo methods and Markov chains, and numerically apply these methods to sample multivariate probability densities;</li>
+        <li>quantify and critically assess uncertainties of model parameters that are statistically inferred from scientific data; perform model comparison using a Bayesian viewpoint;</li>
+        <li>understand and numerically implement several basic algorithms used in data analysis and machine learning such as linear methods for regression and classification, simple neural networks and gaussian processes;</li>
+        <li>use python to perform scientific data analysis using statistical inference and machine learning and to visualize numerical results.</li>
+        <li>write well-structured technical reports where results and conclusions from a scientific data analysis are communicated in a clear way.</li>
+        <li>maintain a scientific and ethical conduct in the process of analyzing data and writing computer programs.</li>
+    </ul>
 </div>
-
-</body>
-</html>
+<div class="main_box">
+    <h2>Examination</h2>
+    <p>The final grade is based on the performance on problem sets (performed individually) and the graded reports on computer projects (performed in groups of two students). There is no written exam. Ethical aspects will be explicitly examined.</p>
+    <h3>Problem sets</h3>
+    <p>There are three problem sets. These are strongly connected to the exercises that you will be working on in the computer labs.</p>
+    <ul>
+        <li>Each set contains a number of basic questions and a number of extra (often more advanced) ones. Most tasks are computational and it is recommended to work on them during the computer lab sessions.</li>
+        <li>The problem sets are examined individually. Hand-in of solution code via Canvas.</li>
+        <li>Students are allowed to discuss together and help each other when solving the problems. However, every student must understand and be able to explain his/her submitted solution. Plagiarism is not allowed (submissions will be both manually and automatically monitored).</li>
+    </ul>
+    <h4>Deadline, problem sets</h4>
+    <p>Hand-in via Canvas. See specific deadlines on the corresponding Canvas Assignments.</p>
+    <ul>
+        <li>Set 1: Friday, week 2</li>
+        <li>Set 2: Friday, week 4</li>
+        <li>Set 3: Friday, week 7</li>
+    </ul>
+    <p>Problem sets that are handed in post deadline will only be eligible for points corresponding to the minimum required for a passing grade. Late hand-ins will be graded in December/January (handed in before Nov. 30th) or August/September (handed in before July 31st).</p>
+    <h3>Computer projects</h3>
+    <p>There are two computational projects. Each project contains a basic and an extra (optional) task.</p>
+    <ul>
+        <li>The projects are performed in groups of two students. Join a project group via Canvas.</li>
+        <li>Each group has to hand in a written report (pdf format) that will be graded. See detailed instructions in the problem formulations.</li>
+        <li>Students are allowed to discuss together and help each other when working on the projects. However, every student must understand and be able to explain their submitted solutions. Plagiarism (of text and/or code) is not allowed (submissions will be both manually and automatically monitored).</li>
+    </ul>
+    <h4>Deadline, projects</h4>
+    <p>Hand-in via Canvas. See specific deadlines on the corresponding Canvas Assignments.</p>
+    <ul>
+        <li>Project 1: Friday, week 5</li>
+        <li>Project 2: Wednesday, exam week</li>
+    </ul>
+    <p>Projects that are handed in post deadline will only be eligible for points from the basic tasks and will be graded in December/January (handed in before Nov. 30th) or August/September (handed in before July 31st).</p>
+    <h3>Grading system</h3>
+    <dl>
+        <dt>Pass (grade 3 / G / E)</dt>
+        <dd>In order to pass the course you need to have a minimum number of points per task (4 points / problem set and 6 points / project), <strong>and</strong> you need &ge;30 points in total.</dd>
+        <dt>Pass with distinction</dt>
+        <dd>In order to pass the course with distinction (high grade) you need a minimum number of points per task (6 points / problem set and 9 points / project) <strong>and</strong> a certain amount of points in total (see table below).</dd>
+    </dl>
+    <p>The final grade, <strong>given that the above minimum-point requirements per task are fulfilled</strong>, is determined according to:</p>
+    <table style="border-collapse: collapse;" border="1">
+        <caption>Grade table</caption>
+        <tbody>
+            <tr>
+                <th scope="col">Total points</th>
+                <th colspan="2" scope="col">Minimum points</th>
+                <th colspan="3" scope="col">Grade</th>
+            </tr>
+            <tr>
+                <th scope="col">(max 100)</th>
+                <th scope="col">per set</th>
+                <th scope="col">per project</th>
+                <th scope="col">Chalmers</th>
+                <th scope="col">GU</th>
+                <th scope="col">ECTS</th>
+            </tr>
+            <tr>
+                <td>&ge; 80</td>
+                <td>6</td>
+                <td>9</td>
+                <td>5</td>
+                <td>VG</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>70 - 79</td>
+                <td>6</td>
+                <td>9</td>
+                <td>4</td>
+                <td>VG</td>
+                <td>B</td>
+            </tr>
+            <tr>
+                <td>60 - 69</td>
+                <td>6</td>
+                <td>9</td>
+                <td>4</td>
+                <td>G</td>
+                <td>C</td>
+            </tr>
+            <tr>
+                <td>50 - 59</td>
+                <td>4</td>
+                <td>6</td>
+                <td>3</td>
+                <td>G</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>30 - 49</td>
+                <td>4</td>
+                <td>6</td>
+                <td>3</td>
+                <td>G</td>
+                <td>E</td>
+            </tr>
+            <tr>
+                <td>&lt; 30</td>
+                <td>or &lt; 4</td>
+                <td>or &lt; 6</td>
+                <td>U</td>
+                <td>U</td>
+                <td>F</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Note that ECTS grades are not implemented at Chalmers. The above table just gives an indication of the approximate correspondance.</p>
+    <h4>Chalmers and GU student portals</h4>
+    <p>Links to the course syllabus at the Chalmers and Gothenburg University student portals:</p>
+    <ul>
+        <li><a href="https://www.student.chalmers.se/sp/course?course_id=36704">TIF285 (Chalmers)</a></li>
+        <li><a href="https://www.gu.se/studera/hitta-utbildning/bayesiansk-dataanalys-och-maskininlarning-fym285">FYM285 (GU)</a></li>
+    </ul>
+</div>
