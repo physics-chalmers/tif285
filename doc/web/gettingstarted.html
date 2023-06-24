@@ -1,26 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<meta http-equiv="content-type" content="application/xhtml+xml/>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<title>Learning from data [TIF285]</title>
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&amp;subset=latin-ext&amp;display=swap" rel="stylesheet">
-<link href="tif285.css" rel="stylesheet" type="text/css" />
-
-<script src="courseURLs.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
-
-<base target="_parent">
-</head>
-
-<body>
-
-
-<div id="content">
-
  <div class='main_box'>
    <h3>Downloading course material</h3>
    <p>
@@ -36,6 +13,13 @@ You will have to perform a <code>git pull</code> operation when wou want to retr
 <p>Note that the lecture notes are maintained in a so called git submodule (tif285-book). The extra <code>--recurse-submodules</code> flag in the git clone command ensures that we fetch also that repository. You will then find all source files for the lecture notes in the <code>doc/tif285-book</code> directory. In particular, you might want to open and run the exercise and demonstration notebooks that are part of the lecture notes. These can be found in the subdirectories in <code>doc/tif285-book/content</code>.
 </p>
 
+<p>There are plenty of tutorials and guides how to use git. Two recommended ones are:
+<ul>
+<li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank">The Git Handbook</a> (a GitHub Guide),</li> 
+<li><a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git</a> (an online book by Scott Chacon and Ben Straub).</li> 
+</ul>
+</p>
+
 <p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
 <pre class="prettyprint"><code class="language-java">$ git config --global user.name "Emilia Student"
 $ git config --global user.email name@example.com
@@ -43,13 +27,6 @@ $ git config --global user.email name@example.com
 You might also want to set your default editor. Pick the one that you prefer. E.g.,
 <pre class="prettyprint"><code class="language-java">$ git config --global core.editor emacs/vi/nano/...
 </code></pre>
-</p>
-
-<p>There are plenty of tutorials and guides how to use git. Two recommended ones are:
-<ul>
-<li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank">The Git Handbook</a> (a GitHub Guide),</li> 
-<li><a href="https://git-scm.com/book/en/v2" target="_blank">Pro Git</a> (an online book by Scott Chacon and Ben Straub).</li> 
-</ul>
 </p>
 
 </div>
@@ -60,7 +37,7 @@ You might also want to set your default editor. Pick the one that you prefer. E.
 <p>We will make extensive use of Python as programming language and its myriad of available libraries. You will find Jupyter notebooks invaluable in your work since they make it possible to run Python code interactively with the immediate benefit of visualizing your data. Jupyter notebooks also offer the possibility to run Julia or R code, or even integrate code in compiled languages like C++, Fortran etc if you prefer. The focus in this course will be on Python.
 </p>
 
-<p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="../../environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
+<p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="https://github.com/physics-chalmers/tif285/blob/master/environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
 
 <p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that he miniconda installation requires 400 MB disk space.</p>
 
@@ -170,6 +147,3 @@ In addition, here are some other major libraries that we might not use in this c
 </p>
 
 </div>
-
-</body>
-</html>
