@@ -2,7 +2,7 @@ name: tif285-env
 channels:
 - conda-forge
 dependencies:
-- python=3.8
+- python>=3.8
 - numpy
 - scipy
 - matplotlib
@@ -18,6 +18,4 @@ dependencies:
 - scikit-image
 - pip
 - pip:
-  - gpy
-  - gpyopt
   - tensorflow
