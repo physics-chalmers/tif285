@@ -4,7 +4,11 @@
     <p>Using git, all course material can be downloaded by cloning the github repository:</p>
     <pre class="prettyprint"><code class="language-java">$ git clone --recurse-submodules https://github.com/physics-chalmers/tif285.git
 </code></pre>
-    <p>after which it will be available in the <code>tif285</code> directory. You will have to perform a <code>git pull</code> operation when wou want to retrieve future updates in the github repository. When using the github repository to stay up-to-date with course material it is recommended to make a local copy of notebooks before starting to edit them. The easiest is probably to create a new directory with your local copies. The git approach, however, would be to create a new branch.</p>
+  <p>after which it will be available in the <code>tif285</code> directory. You will have to perform a <code>git pull</code> operation (from within that directory) when you want to retrieve future updates in the github repository.</p>
+  <pre class="prettyprint"><code class="language-java">$ cd path/to/tif285
+$ git pull
+</code></pre>
+  <p>When using the github repository to stay up-to-date with course material it is recommended to make a local copy of notebooks before starting to edit them. The git approach, however, would be to create a new branch.</p>
     <p>Note that the lecture notes are maintained in a so called git submodule (tif285-book). The extra <code>--recurse-submodules</code> flag in the git clone command ensures that we fetch also that repository. You will then find all source files for the lecture notes in the <code>doc/tif285-book</code> directory. In particular, you might want to open and run the exercise and demonstration notebooks that are part of the lecture notes. These can be found in the subdirectories in <code>doc/tif285-book/content</code>.</p>
     <p>There are plenty of tutorials and guides how to use git. Two recommended ones are:</p>
     <ul>
@@ -23,9 +27,9 @@ $ git config --global user.email name@example.com
 </div>
 <div class="main_box">
     <h3><span>Python distribution</span></h3>
-    <p>We will make extensive use of Python as programming language and its myriad of available libraries. You will find Jupyter notebooks invaluable in your work since they make it possible to run Python code interactively with the immediate benefit of visualizing your data. Jupyter notebooks also offer the possibility to run Julia or R code, or even integrate code in compiled languages like C++, Fortran etc if you prefer. The focus in this course will be on Python.</p>
+    <p>We will use the Python programming language and will benefit from its myriad of available libraries. Jupyter notebooks offer a useful explorative coding environment since they make it possible to run Python code interactively and to visualize your data. Jupyter notebooks also offer the possibility to run Julia or R code, or even integrate compiled code written in C, C++, Fortran etc. The focus in this course, however, will be on Python.</p>
     <p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="https://github.com/physics-chalmers/tif285/blob/master/environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
-    <p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that he miniconda installation requires 400 MB disk space.</p>
+    <p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that the miniconda installation requires 400 MB disk space.</p>
     <ol>
         <li>Download and run the miniconda installer:
             <pre class="prettyprint"><code class="language-java">$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -36,15 +40,17 @@ $ bash Miniconda3-latest-Linux-x86_64.sh
         <li>Check the installation:
             <pre class="prettyprint"><code class="language-java">$ conda list
 </code></pre>
-            should give a list of python packages.
+            should give a list of python packages. Moreover,
             <pre class="prettyprint"><code class="language-java">$ which python
 </code></pre>
             should give the path to the conda python executable <code>~/miniconda3/bin/python</code> and
             <pre class="prettyprint"><code class="language-java">$ python --version
 </code></pre>
-            should show that you are using a Python3 version.
+            should show which Python3 version you are using.
         </li>
-        <li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.</li>
+        <li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.
+            <pre class="prettyprint"><code class="language-java">$ cd path/to/tif285
+</code></pre></li>
         <li>Create a virtual environment
             <pre class="prettyprint"><code class="language-java">$ conda env create -f environment.yml
 </code></pre>
@@ -73,8 +79,7 @@ $ bash Miniconda3-latest-Linux-x86_64.sh
 $ jupyter notebook
 </code></pre>
     The Jupyter Notebook will open in your default browser. It should show a list of the subdirectories. It is recommended that you start with the Jupyter-Python-NumPy exercise notebooks in the Intro directory. Just double-click on the first one to get started. Make sure to evaluate the cells with <strong>shift-return</strong>.
-    <p>&nbsp;</p>
-    <p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. The action of evaluating a cell in a notebook, without changing any code, will register as a file update in git. One possibility is to create a separate git branch for your work.</p>
+    <p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. The action of evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
     <p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank" rel="noopener">Google's Colab</a> is a free Jupyter notebook environment that requires no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>
 </div>
 <div class="main_box">
@@ -89,12 +94,11 @@ $ jupyter notebook
         <li><a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a> has simple and efficient tools for machine learning, data mining and data analysis</li>
         <li><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow</a> is a Python library for fast numerical computing created and released by Google</li>
     </ul>
-    <p>&nbsp;</p>
-    <p>We will also use several, specialized libraries such as <a href="https://emcee.readthedocs.io/en/latest/" target="_blank" rel="noopener">emcee</a> and <a href="https://sheffieldml.github.io/GPy/" target="_blank" rel="noopener">GPy</a>. In addition, here are some other major libraries that we might not use in this course, but that can be very useful in the context of Bayesian data analysis and machine learning:</p>
+    <p>We will also use some specialized libraries such as <a href="https://emcee.readthedocs.io/en/latest/" target="_blank" rel="noopener">emcee</a>. In addition, here are some other major libraries that we might not use in this course, but that can be very useful in the context of Bayesian data analysis and machine learning:</p>
     <ul>
-        <li><a href="https://github.com/HIPS/autograd" target="_blank" rel="noopener">Autograd</a> can automatically differentiate native Python and Numpy code. It can handle a large subset of Python's features, including loops, ifs, recursion and closures, and it can even take derivatives of derivatives of derivatives</li>
-        <li><a href="https://docs.pymc.io/" target="_blank" rel="noopener">PyMC3</a> is a probabilistic programming package for Python that allows users to fit Bayesian models using a variety of numerical methods, most notably Markov chain Monte Carlo (MCMC) and variational inference (VI).</li>
+      <li><a href="https://github.com/google/jax" target="_blank" rel="noopener">JAX</a> is a Python library for accelerator-oriented array computation and program transformation, designed for high-performance numerical computing and large-scale machine learning. With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions.</li>
+	<li><a href="https://docs.pymc.io/" target="_blank" rel="noopener">PyMC</a> is a probabilistic programming package for Python that allows users to fit Bayesian models using a variety of numerical methods, most notably Markov chain Monte Carlo (MCMC) and variational inference (VI).</li>
+	<li><a href="https://sheffieldml.github.io/GPy/" target="_blank" rel="noopener">GPy</a> is an advanced library for Gaussian Process modeling.</li>
         <li>And many more such as <a href="https://pytorch.org/" target="_blank" rel="noopener">pytorch</a>, <a href="https://pypi.org/project/Theano/" target="_blank" rel="noopener">Theano</a> etc</li>
     </ul>
-    <p>&nbsp;</p>
 </div>
