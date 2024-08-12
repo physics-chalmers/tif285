@@ -13,7 +13,6 @@ dependencies:
 - nbdime
 - emcee
 - corner
-- mkl-service
 - scikit-learn
 - scikit-image
 - pip
