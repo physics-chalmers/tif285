@@ -1,0 +1,5 @@
+EMULATOR DATA
+18/10/2022 09:50:31
+ name: E_He3_Nmax40_hw36_NNLOsat
+ domain dimension: 2
+ subspace dimension: 10
