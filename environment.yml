@@ -2,17 +2,16 @@ name: tif285-env
 channels:
 - conda-forge
 dependencies:
-- python>=3.8
+- python>=3.11
 - numpy
 - scipy
 - matplotlib
 - pandas
 - seaborn
-- jupyter
+- jupyterlab
+- ipykernel
 - ipywidgets
-- nbdime
 - emcee
 - corner
 - scikit-learn
-- scikit-image
-- tensorflow
+- pytorch
