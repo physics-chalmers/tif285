@@ -1,105 +1,262 @@
 <div class="main_box">
     <h3>Downloading course material</h3>
-    <p>All files that are associated with this course are available via a public git repository, hosted on <a href="https://github.com/physics-chalmers/tif285">github</a>. The use of <code>git</code> is encouraged, but not mandatory. The course material is also available via the course web page and can be downloaded from there.</p>
-    <p>Using git, all course material can be downloaded by cloning the github repository:</p>
-    <pre class="prettyprint"><code class="language-java">$ git clone --recurse-submodules https://github.com/physics-chalmers/tif285.git
-</code></pre>
-    <p>after which it will be available in the <code>tif285</code> directory. You will have to perform a <code>git pull</code> operation (from within that directory) when you want to retrieve future updates in the github repository.</p>
-    <pre class="prettyprint"><code class="language-java">$ cd path/to/tif285
-$ git pull
-</code></pre>
-    <p>When using the github repository to stay up-to-date with course material it is recommended to make a local copy of notebooks before starting to edit them. The git approach, however, would be to create a new branch.</p>
-    <p>Note that the lecture notes are maintained in a so called git submodule (tif285-book). The extra <code>--recurse-submodules</code> flag in the git clone command ensures that we fetch also that repository. You will then find all source files for the lecture notes in the <code>doc/tif285-book</code> directory. In particular, you might want to open and run the exercise and demonstration notebooks that are part of the lecture notes. These can be found in the subdirectories in <code>doc/tif285-book/content</code>.</p>
-    <p>There are plenty of tutorials and guides how to use git. Two recommended ones are:</p>
+
+    <h4>Prerequisites: Install git</h4>
+
+    <p>If you do not have git installed, download and install it from:</p>
     <ul>
-        <li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank" rel="noopener">The Git Handbook</a> (a GitHub Guide),</li>
-        <li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Pro Git</a> (an online book by Scott Chacon and Ben Straub).</li>
+        <li>
+            <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">
+                https://git-scm.com/downloads
+            </a>
+        </li>
+        <li>macOS: git is included with the Xcode Command Line Tools (<code>xcode-select --install</code>)</li>
+        <li>Linux: install via your package manager, e.g. <code>sudo apt install git</code></li>
     </ul>
-    <p>&nbsp;</p>
-    <p>You are encouraged to set your user name and email address. This is important because every Git commit uses this information, and it&rsquo;s immutably baked into the commits you start creating:</p>
-    <pre class="prettyprint"><code class="language-java">$ git config --global user.name "Emilia Student"
-$ git config --global user.email name@example.com
+
+    <p>Open a terminal and verify that git is available by running:</p>
+    <pre class="prettyprint"><code class="language-java">$ git --version
 </code></pre>
-    You might also want to set your default editor. Pick the one that you prefer. E.g.,
-    <pre class="prettyprint"><code class="language-java">$ git config --global core.editor emacs/vi/nano/...
+
+    <h4>Cloning the repository</h4>
+
+    <p>
+        Open a terminal, navigate to where you want to store the course material, and run:
+    </p>
+
+    <pre class="prettyprint"><code class="language-java">$ git clone https://github.com/physics-chalmers/tif285.git
 </code></pre>
-    <p>&nbsp;</p>
-</div>
-<div class="main_box">
-    <h3><span>Python distribution</span></h3>
-    <p>We will use the Python programming language and will benefit from its myriad of available libraries. Jupyter notebooks offer a useful explorative coding environment since they make it possible to run Python code interactively and to visualize your data. Jupyter notebooks also offer the possibility to run Julia or R code, or even integrate compiled code written in C, C++, Fortran etc. The focus in this course, however, will be on Python.</p>
-    <p>The notebooks that we will be using depend on several scientific python modules (see the list in <a href="https://github.com/physics-chalmers/tif285/blob/master/environment.yml">environment.yml</a>) and they require a python3.x installation.</p>
-    <p>These python modules and their dependencies are best installed using <code>conda</code> by creating a virtual environment. The <code>conda</code> package manager can easily be installed as a local user, which does not require administrator permissions. Note that the miniconda installation requires 400 MB disk space.</p>
-    <ol>
-        <li>Download and run the miniconda installer. On Linux this is done by:
-            <pre class="prettyprint"><code class="language-java">$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-$ bash Miniconda3-latest-Linux-x86_64.sh
+
+    <p>This creates a directory <code>tif285</code>. Move into it:</p>
+
+    <pre class="prettyprint"><code class="language-java">$ cd tif285
 </code></pre>
-            (For other operating systems, e.g. MacOS or Windows, more details about the miniconda installer can be found in the <a class="inline_disabled" title="Link" href="https://docs.anaconda.com/miniconda/" target="_blank" rel="noopener">conda documentation</a>) During the installation you will have to accept the license agreement. We also recommend to use the default installation directory <code>~/miniconda3</code> and to allow the installer to run <code>conda init</code> to set environment variables (this is done by typing yes when prompted). It is recommended to use the <code>bash</code> shell. Further details and troubleshooting is available at <a href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">conda.io</a>.
-        </li>
-        <li>Check the installation:
-            <pre class="prettyprint"><code class="language-java">$ conda list
+
+    <p>
+        The repository contains all notebooks and material needed for the course.
+    </p>
+
+    <h4>Keeping your local copy up to date</h4>
+    
+    <p>
+    	As the course material is updated, you can pull the latest changes by running the following command from inside the repository folder:
+    </p>
+
+    <pre class="prettyprint"><code class="language-java">$ git pull
 </code></pre>
-            should give a list of python packages. Moreover,
-            <pre class="prettyprint"><code class="language-java">$ which python
-</code></pre>
-            should give the path to the conda python executable <code>~/miniconda3/bin/python</code> and
-            <pre class="prettyprint"><code class="language-java">$ python --version
-</code></pre>
-            should show which Python3 version you are using.
-        </li>
-        <li>Make sure that you have downloaded the course material, preferably with <code>git clone</code> as described above. Go to the directory with the <code>environment.yml</code> file.
-            <pre class="prettyprint"><code class="language-java">$ cd path/to/tif285
-</code></pre>
-        </li>
-        <li>Create a virtual environment
-            <pre class="prettyprint"><code class="language-java">$ conda env create -f environment.yml
-</code></pre>
-            <p>which reads the environment.yml file in your current directory. It will check dependencies and then download and install several packages. It might take a considerable time to run and you will probably be asked to accept the suggested installation procedure.</p>
-            <p>Some packages that we will be using are not included in the default conda channels. One can either specify relevant package channel(s) in the environment.yml file (as done here), or add them to the default conda channel configuration via, e.g, <code>conda config --append channels conda-forge</code></p>
+
+    <h4>Recommended git guides</h4>
+
+    <ul>
+        <li>
+            <a href="https://guides.github.com/introduction/git-handbook/" target="_blank" rel="noopener">
+                The Git Handbook
+            </a>
         </li>
         <li>
-            <p>Once the virtual environment has been created it can be activated:</p>
-            <pre class="prettyprint"><code class="language-java">$ conda activate tif285-env
-</code></pre>
-            <p>For future reference, to deactivate the virtual environment:<code>conda deactivate</code></p>
+            <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">
+                Pro Git
+            </a>
         </li>
-        <li>
-            <p>To update the virtual environment (e.g. after adding packages to the <code>environment.yml</code> file)</p>
-            <pre class="prettyprint"><code class="language-java">$ conda env update -f environment.yml
-</code></pre>
-        </li>
-    </ol>
-    <p>There are also other options (<code>venv</code>, <code>pipenv</code>) for creating virtual environments with the python version and packages that we will be using. Or you can install packages, keeping track yourself of dependencies, using <code>pip install</code>.</p>
-</div>
-<div class="main_box">
-    <h3><span>Jupyter notebooks</span></h3>
-    <p><a href="https://jupyter.org/">Jupyter notebooks</a> will be used extensively in this course. It is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.</p>
-    <p>Therefore, once the environment is set up and activated, you are encouraged to get acquainted with the notebook workflow by starting a jupyter notebook in the directory with the lecture contents. In the directory tree from the github repository:</p>
-    <pre class="prettyprint"><code class="language-java">$ cd doc/tif285-book/content/
-$ jupyter notebook
-</code></pre>
-    The Jupyter Notebook will open in your default browser. It should show a list of the subdirectories. It is recommended that you start with the Jupyter-Python-NumPy exercise notebooks in the Intro directory. Just double-click on the first one to get started. Make sure to evaluate the cells with <strong>shift-return</strong>.
-    <p>However, a word of caution: Since Jupyter Notebooks are not pure text files (they are basically json files), they do not integrate seamlessly with git version control. The action of evaluating a cell in a notebook, without changing any code, will register as a file update in git.</p>
-    <p>As a final note: <a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank" rel="noopener">Google's Colab</a> is a free Jupyter notebook environment that requires no setup and runs entirely in the cloud. You are welcome to try it out, but we offer limited support.</p>
-</div>
-<div class="main_box">
-    <h3><span>Useful Python libraries</span></h3>
-    <p>This is a list of important Python libraries that we will use during this course</p>
-    <ul>
-        <li><a href="https://www.numpy.org/" target="_blank" rel="noopener">NumPy</a> is a highly popular library for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays</li>
-        <li><a href="https://pandas.pydata.org/" target="_blank" rel="noopener">The pandas</a> library provides high-performance, easy-to-use data structures and data analysis tools</li>
-        <li><a href="https://www.scipy.org/" target="_blank" rel="noopener">Scipy</a> (pronounced &ldquo;Sigh Pie&rdquo;) is a Python-based ecosystem of open-source software for mathematics, science, and engineering.</li>
-        <li><a href="https://matplotlib.org/" target="_blank" rel="noopener">Matplotlib</a> is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms.</li>
-        <li><a href="https://www.sympy.org/en/index.html" target="_blank" rel="noopener">SymPy</a> is a Python library for symbolic mathematics.</li>
-        <li><a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a> has simple and efficient tools for machine learning, data mining and data analysis</li>
-        <li><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow</a> is a Python library for fast numerical computing created and released by Google</li>
     </ul>
-    <p>We will also use some specialized libraries such as <a href="https://emcee.readthedocs.io/en/latest/" target="_blank" rel="noopener">emcee</a>. In addition, here are some other major libraries that we might not use in this course, but that can be very useful in the context of Bayesian data analysis and machine learning:</p>
-    <ul>
-        <li><a href="https://github.com/google/jax" target="_blank" rel="noopener">JAX</a> is a Python library for accelerator-oriented array computation and program transformation, designed for high-performance numerical computing and large-scale machine learning. With its updated version of Autograd, JAX can automatically differentiate native Python and NumPy functions.</li>
-        <li><a href="https://docs.pymc.io/" target="_blank" rel="noopener">PyMC</a> is a probabilistic programming package for Python that allows users to fit Bayesian models using a variety of numerical methods, most notably Markov chain Monte Carlo (MCMC) and variational inference (VI).</li>
-        <li><a href="https://sheffieldml.github.io/GPy/" target="_blank" rel="noopener">GPy</a> is an advanced library for Gaussian Process modeling.</li>
-        <li>And many more such as <a href="https://pytorch.org/" target="_blank" rel="noopener">pytorch</a>, <a href="https://pypi.org/project/Theano/" target="_blank" rel="noopener">Theano</a> etc</li>
-    </ul>
+
+    <p>&nbsp;</p>
 </div>
+
+
+<div class="main_box">
+    <h3><span>Python environment</span></h3>
+
+    <p>
+        To run the Jupyter notebooks you need a Python installation together with
+        scientific libraries (NumPy, SciPy, Matplotlib, and others).
+        These can be managed using <code>conda</code>, a package and environment manager
+        that works on Windows, macOS, and Linux.
+    </p>
+
+    <p>
+        We recommend installing conda via <strong>Miniforge</strong>, a minimal,
+        community-maintained distribution that is free to use without licensing restrictions
+        and comes pre-configured with the
+        <a href="https://conda-forge.org/" target="_blank" rel="noopener">conda-forge</a>
+        package channel. This replaces Anaconda’s defaults channel, which includes licensing terms that are problematic for many users.
+    </p>
+    
+    <h4>1. Installing Miniforge3 (fresh installation)</h4>
+
+    <h5>macOS</h5>
+    <p>Open a terminal and run one of the following commands:</p>
+
+    <p><strong>Apple Silicon (M1/M2/M3):</strong></p>
+    <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o Miniforge3.sh
+bash Miniforge3.sh
+</code></pre>
+
+    <p><strong>Intel Mac:</strong></p>
+    <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh -o Miniforge3.sh
+bash Miniforge3.sh
+</code></pre>
+
+    <p>Follow the prompts, accept the license, and allow the installer to initialise conda in your shell. When the installation is complete, close and reopen your terminal.</p>
+
+    <h5>Linux</h5>
+    <p>Open a terminal and run:</p>
+    <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -o Miniforge3.sh
+bash Miniforge3.sh
+</code></pre>
+<p>Follow the prompts as for macOS above.</p>
+
+
+<h5>Windows</h5>
+
+<p>
+    Download the Windows installer from the
+    <a href="https://conda-forge.org/download/" target="_blank" rel="noopener">
+        Miniforge download page
+    </a>, selecting the <code>Windows x86_64</code> option.
+    This will download <code>Miniforge3-Windows-x86_64.exe</code>.
+</p>
+
+<p>Run the installer and follow the graphical prompts. We recommend:</p>
+
+<ul>
+    <li>
+        Installing for the current user only (does not require administrator privileges)
+    </li>
+    <li>
+        Accepting the default installation path if possible. This may not be possible if the path
+        contains special characters (including spaces or accents). In such cases, choose another path.
+    </li>
+    <li>
+        <strong>Do not</strong> select <em>“Add Miniforge to my PATH environment variable”</em>.
+        This option has been found to cause problems for many users. Instead, use the
+        <strong>Miniforge Prompt</strong> that is added to your Start menu.
+    </li>
+</ul>
+
+<h5>Verify the installation</h5>
+
+<p>
+    Once installed, open the <strong>Miniforge Prompt</strong> (Windows) or a new
+    terminal (macOS/Linux) and verify the installation:
+</p>
+
+<pre class="prettyprint"><code class="language-java">conda --version
+</code></pre>
+
+<p>
+    You should see version 24.x or later. Miniforge should be configured with the
+    <code>conda-forge</code> channel by default, in which case no further channel
+    configuration is needed. However, to be sure, continue with the next step.
+</p>
+
+<h4>2. Updating an existing conda installation (even if just installed)</h4>
+
+<p>
+    Follow these steps to ensure your conda installation is compatible with current best practices.
+</p>
+
+<h5>Step 1 — Update conda to version 23.10.0 or later</h5>
+
+<p>
+    Conda 23.10.0 introduced <code>libmamba</code> as the default dependency solver,
+    which is significantly faster than the old solver. Check your current version
+    and update if needed:
+</p>
+
+<pre class="prettyprint"><code class="language-java">conda --version
+conda update -n base conda
+</code></pre>
+
+<p>
+    Verify the version is 23.10.0 or higher before proceeding.
+</p>
+
+<h5>Step 2 — Switch from the defaults channel to conda-forge</h5>
+
+<p>
+    The Anaconda <code>defaults</code> channel has licensing restrictions that are
+    problematic for many academic users. You can verify your channel configuration with:
+</p>
+
+<pre class="prettyprint"><code class="language-java">conda config --show channels
+</code></pre>
+
+<p>
+    The output should list only <code>conda-forge</code>.
+</p>
+
+<p>
+    If the defaults channel is used in your installation, then you should replace it with conda-forge:
+</p>
+
+<pre class="prettyprint"><code class="language-java">conda config --remove channels defaults
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+</code></pre>
+
+<p>
+    The strict channel priority setting is strongly recommended when using conda-forge exclusively
+    — it prevents packages from different channels from being mixed, which can cause subtle
+    dependency conflicts.
+</p>
+
+
+
+<h4>3. Creating the course environment</h4>
+
+<p>
+    The Python packages needed for this course are specified in the
+    <code>environment.yml</code> file in the repository. Navigate to
+    the <code>tif285</code> directory you cloned from GitHub and create the environment:
+</p>
+
+<pre class="prettyprint"><code class="language-java">conda env create -f environment.yml
+</code></pre>
+
+<p>
+    The environment creation will take a few minutes. When it completes successfully
+    you will see a message with instructions for activating the environment.
+</p>
+
+<h5>Activating and deactivating the environment</h5>
+
+<pre class="prettyprint"><code class="language-java">conda activate tif285-env       # activate
+conda deactivate                # deactivate when done
+</code></pre>
+
+<p>
+    On Windows, run these commands in the <strong>Miniforge Prompt</strong>.
+</p>
+
+
+
+<h4>4. Launching JupyterLab</h4>
+
+<p>
+    We recommend <strong>JupyterLab</strong> as the interface for working with the course notebooks.
+    Once the environment is activated, launch it with:
+</p>
+
+<pre class="prettyprint"><code class="language-java">jupyter lab
+</code></pre>
+
+<p>
+    This will open JupyterLab in your browser. Navigate to the notebook you want
+    to open using the file browser on the left.
+</p>
+
+<h5>Verifying the correct kernel</h5>
+
+<p>
+    When a notebook is open, check that the kernel shown in the upper right corner of
+    JupyterLab reads:
+</p>
+
+<p>
+    <strong>Python [conda env:tif285-env]</strong>
+</p>
+
+<p>
+    If it shows a different kernel, click on it and select the correct environment from the list.
+</p>
