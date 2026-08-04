@@ -1,262 +1,101 @@
 <div class="main_box">
     <h3>Downloading course material</h3>
-
     <h4>Prerequisites: Install git</h4>
-
     <p>If you do not have git installed, download and install it from:</p>
     <ul>
-        <li>
-            <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">
-                https://git-scm.com/downloads
-            </a>
-        </li>
+        <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener"> https://git-scm.com/downloads </a></li>
         <li>macOS: git is included with the Xcode Command Line Tools (<code>xcode-select --install</code>)</li>
         <li>Linux: install via your package manager, e.g. <code>sudo apt install git</code></li>
     </ul>
-
     <p>Open a terminal and verify that git is available by running:</p>
     <pre class="prettyprint"><code class="language-java">$ git --version
 </code></pre>
-
     <h4>Cloning the repository</h4>
-
-    <p>
-        Open a terminal, navigate to where you want to store the course material, and run:
-    </p>
-
+    <p>Open a terminal, navigate to where you want to store the course material, and run:</p>
     <pre class="prettyprint"><code class="language-java">$ git clone https://github.com/physics-chalmers/tif285.git
 </code></pre>
-
     <p>This creates a directory <code>tif285</code>. Move into it:</p>
-
     <pre class="prettyprint"><code class="language-java">$ cd tif285
 </code></pre>
-
-    <p>
-        The repository contains all notebooks and material needed for the course.
-    </p>
-
+    <p>The repository contains all notebooks and material needed for the course.</p>
     <h4>Keeping your local copy up to date</h4>
-    
-    <p>
-    	As the course material is updated, you can pull the latest changes by running the following command from inside the repository folder:
-    </p>
-
+    <p>As the course material is updated, you can pull the latest changes by running the following command from inside the repository folder:</p>
     <pre class="prettyprint"><code class="language-java">$ git pull
 </code></pre>
-
     <h4>Recommended git guides</h4>
-
     <ul>
-        <li>
-            <a href="https://guides.github.com/introduction/git-handbook/" target="_blank" rel="noopener">
-                The Git Handbook
-            </a>
-        </li>
-        <li>
-            <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">
-                Pro Git
-            </a>
-        </li>
+        <li><a href="https://guides.github.com/introduction/git-handbook/" target="_blank" rel="noopener"> The Git Handbook </a></li>
+        <li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener"> Pro Git </a></li>
     </ul>
-
     <p>&nbsp;</p>
 </div>
-
-
 <div class="main_box">
     <h3><span>Python environment</span></h3>
-
-    <p>
-        To run the Jupyter notebooks you need a Python installation together with
-        scientific libraries (NumPy, SciPy, Matplotlib, and others).
-        These can be managed using <code>conda</code>, a package and environment manager
-        that works on Windows, macOS, and Linux.
-    </p>
-
-    <p>
-        We recommend installing conda via <strong>Miniforge</strong>, a minimal,
-        community-maintained distribution that is free to use without licensing restrictions
-        and comes pre-configured with the
-        <a href="https://conda-forge.org/" target="_blank" rel="noopener">conda-forge</a>
-        package channel. This replaces Anaconda’s defaults channel, which includes licensing terms that are problematic for many users.
-    </p>
-    
+    <p>To run the Jupyter notebooks you need a Python installation together with scientific libraries (NumPy, SciPy, Matplotlib, and others). These can be managed using <code>conda</code>, a package and environment manager that works on Windows, macOS, and Linux.</p>
+    <p>We recommend installing conda via <strong>Miniforge</strong>, a minimal, community-maintained distribution that is free to use without licensing restrictions and comes pre-configured with the <a href="https://conda-forge.org/" target="_blank" rel="noopener">conda-forge</a> package channel. This replaces Anaconda&rsquo;s defaults channel, which includes licensing terms that are problematic for many users.</p>
     <h4>1. Installing Miniforge3 (fresh installation)</h4>
-
     <h5>macOS</h5>
     <p>Open a terminal and run one of the following commands:</p>
-
     <p><strong>Apple Silicon (M1/M2/M3):</strong></p>
     <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o Miniforge3.sh
 bash Miniforge3.sh
 </code></pre>
-
     <p><strong>Intel Mac:</strong></p>
     <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh -o Miniforge3.sh
 bash Miniforge3.sh
 </code></pre>
-
     <p>Follow the prompts, accept the license, and allow the installer to initialise conda in your shell. When the installation is complete, close and reopen your terminal.</p>
-
     <h5>Linux</h5>
     <p>Open a terminal and run:</p>
     <pre class="prettyprint"><code class="language-java">curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -o Miniforge3.sh
 bash Miniforge3.sh
 </code></pre>
-<p>Follow the prompts as for macOS above.</p>
-
-
-<h5>Windows</h5>
-
-<p>
-    Download the Windows installer from the
-    <a href="https://conda-forge.org/download/" target="_blank" rel="noopener">
-        Miniforge download page
-    </a>, selecting the <code>Windows x86_64</code> option.
-    This will download <code>Miniforge3-Windows-x86_64.exe</code>.
-</p>
-
-<p>Run the installer and follow the graphical prompts. We recommend:</p>
-
-<ul>
-    <li>
-        Installing for the current user only (does not require administrator privileges)
-    </li>
-    <li>
-        Accepting the default installation path if possible. This may not be possible if the path
-        contains special characters (including spaces or accents). In such cases, choose another path.
-    </li>
-    <li>
-        <strong>Do not</strong> select <em>“Add Miniforge to my PATH environment variable”</em>.
-        This option has been found to cause problems for many users. Instead, use the
-        <strong>Miniforge Prompt</strong> that is added to your Start menu.
-    </li>
-</ul>
-
-<h5>Verify the installation</h5>
-
-<p>
-    Once installed, open the <strong>Miniforge Prompt</strong> (Windows) or a new
-    terminal (macOS/Linux) and verify the installation:
-</p>
-
-<pre class="prettyprint"><code class="language-java">conda --version
+    <p>Follow the prompts as for macOS above.</p>
+    <h5>Windows</h5>
+    <p>Download the Windows installer from the <a href="https://conda-forge.org/download/" target="_blank" rel="noopener"> Miniforge download page </a>, selecting the <code>Windows x86_64</code> option. This will download <code>Miniforge3-Windows-x86_64.exe</code>.</p>
+    <p>Run the installer and follow the graphical prompts. We recommend:</p>
+    <ul>
+        <li>Installing for the current user only (does not require administrator privileges)</li>
+        <li>Accepting the default installation path if possible. This may not be possible if the path contains special characters (including spaces or accents). In such cases, choose another path.</li>
+        <li><strong>Do not</strong> select <em>&ldquo;Add Miniforge to my PATH environment variable&rdquo;</em>. This option has been found to cause problems for many users. Instead, use the <strong>Miniforge Prompt</strong> that is added to your Start menu.</li>
+    </ul>
+    <h5>Verify the installation</h5>
+    <p>Once installed, open the <strong>Miniforge Prompt</strong> (Windows) or a new terminal (macOS/Linux) and verify the installation:</p>
+    <pre class="prettyprint"><code class="language-java">conda --version
 </code></pre>
-
-<p>
-    You should see version 24.x or later. Miniforge should be configured with the
-    <code>conda-forge</code> channel by default, in which case no further channel
-    configuration is needed. However, to be sure, continue with the next step.
-</p>
-
-<h4>2. Updating an existing conda installation (even if just installed)</h4>
-
-<p>
-    Follow these steps to ensure your conda installation is compatible with current best practices.
-</p>
-
-<h5>Step 1 — Update conda to version 23.10.0 or later</h5>
-
-<p>
-    Conda 23.10.0 introduced <code>libmamba</code> as the default dependency solver,
-    which is significantly faster than the old solver. Check your current version
-    and update if needed:
-</p>
-
-<pre class="prettyprint"><code class="language-java">conda --version
+    <p>You should see version 24.x or later. Miniforge should be configured with the <code>conda-forge</code> channel by default, in which case no further channel configuration is needed. However, to be sure, continue with the next step.</p>
+    <h4>2. Updating an existing conda installation (even if just installed)</h4>
+    <p>Follow these steps to ensure your conda installation is compatible with current best practices.</p>
+    <h5>Step 1 &mdash; Update conda to version 23.10.0 or later</h5>
+    <p>Conda 23.10.0 introduced <code>libmamba</code> as the default dependency solver, which is significantly faster than the old solver. Check your current version and update if needed:</p>
+    <pre class="prettyprint"><code class="language-java">conda --version
 conda update -n base conda
 </code></pre>
-
-<p>
-    Verify the version is 23.10.0 or higher before proceeding.
-</p>
-
-<h5>Step 2 — Switch from the defaults channel to conda-forge</h5>
-
-<p>
-    The Anaconda <code>defaults</code> channel has licensing restrictions that are
-    problematic for many academic users. You can verify your channel configuration with:
-</p>
-
-<pre class="prettyprint"><code class="language-java">conda config --show channels
+    <p>Verify the version is 23.10.0 or higher before proceeding.</p>
+    <h5>Step 2 &mdash; Switch from the defaults channel to conda-forge</h5>
+    <p>The Anaconda <code>defaults</code> channel has licensing restrictions that are problematic for many academic users. You can verify your channel configuration with:</p>
+    <pre class="prettyprint"><code class="language-java">conda config --show channels
 </code></pre>
-
-<p>
-    The output should list only <code>conda-forge</code>.
-</p>
-
-<p>
-    If the defaults channel is used in your installation, then you should replace it with conda-forge:
-</p>
-
-<pre class="prettyprint"><code class="language-java">conda config --remove channels defaults
+    <p>The output should list only <code>conda-forge</code>.</p>
+    <p>If the defaults channel is used in your installation, then you should replace it with conda-forge:</p>
+    <pre class="prettyprint"><code class="language-java">conda config --remove channels defaults
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 </code></pre>
-
-<p>
-    The strict channel priority setting is strongly recommended when using conda-forge exclusively
-    — it prevents packages from different channels from being mixed, which can cause subtle
-    dependency conflicts.
-</p>
-
-
-
-<h4>3. Creating the course environment</h4>
-
-<p>
-    The Python packages needed for this course are specified in the
-    <code>environment.yml</code> file in the repository. Navigate to
-    the <code>tif285</code> directory you cloned from GitHub and create the environment:
-</p>
-
-<pre class="prettyprint"><code class="language-java">conda env create -f environment.yml
+    <p>The strict channel priority setting is strongly recommended when using conda-forge exclusively &mdash; it prevents packages from different channels from being mixed, which can cause subtle dependency conflicts.</p>
+    <h4>3. Creating the course environment</h4>
+    <p>The Python packages needed for this course are specified in the <code>environment.yml</code> file in the repository. Navigate to the <code>tif285</code> directory you cloned from GitHub and create the environment:</p>
+    <pre class="prettyprint"><code class="language-java">conda env create -f environment.yml
 </code></pre>
-
-<p>
-    The environment creation will take a few minutes. When it completes successfully
-    you will see a message with instructions for activating the environment.
-</p>
-
-<h5>Activating and deactivating the environment</h5>
-
-<pre class="prettyprint"><code class="language-java">conda activate tif285-env       # activate
+    <p>The environment creation will take a few minutes. When it completes successfully you will see a message with instructions for activating the environment.</p>
+    <h5>Activating and deactivating the environment</h5>
+    <pre class="prettyprint"><code class="language-java">conda activate tif285-env       # activate
 conda deactivate                # deactivate when done
 </code></pre>
-
-<p>
-    On Windows, run these commands in the <strong>Miniforge Prompt</strong>.
-</p>
-
-
-
-<h4>4. Launching JupyterLab</h4>
-
-<p>
-    We recommend <strong>JupyterLab</strong> as the interface for working with the course notebooks.
-    Once the environment is activated, launch it with:
-</p>
-
-<pre class="prettyprint"><code class="language-java">jupyter lab
+    <p>On Windows, run these commands in the <strong>Miniforge Prompt</strong>.</p>
+    <h4>4. Launching JupyterLab</h4>
+    <p>We recommend <strong>JupyterLab</strong> as the interface for working with the course notebooks. Once the environment is activated, launch it with:</p>
+    <pre class="prettyprint"><code class="language-java">jupyter lab
 </code></pre>
-
-<p>
-    This will open JupyterLab in your browser. Navigate to the notebook you want
-    to open using the file browser on the left.
-</p>
-
-<h5>Verifying the correct kernel</h5>
-
-<p>
-    When a notebook is open, check that the kernel shown in the upper right corner of
-    JupyterLab reads:
-</p>
-
-<p>
-    <strong>Python [conda env:tif285-env]</strong>
-</p>
-
-<p>
-    If it shows a different kernel, click on it and select the correct environment from the list.
-</p>
+    <p>This will open JupyterLab in your browser. Navigate to the notebook you want to open using the file browser on the left.</p>
+</div>
