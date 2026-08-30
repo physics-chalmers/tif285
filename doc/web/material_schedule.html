@@ -27,14 +27,14 @@
     <h3>Weekly schedule</h3>
     <p>Week-by-week themes and important dates:</p>
     <ul>
-        <li><a href="#lv1" target="_self">Week 1 - Introduction, linear and nonlinear models, model optimization</a></li>
-        <li><a href="#lv2" target="_self">Week 2 - Probability theory and Bayesian statistics, model discrepancy</a></li>
+        <li><a href="#lv1" target="_self">Week 1 - Introduction, linear and nonlinear models</a></li>
+        <li><a href="#lv2" target="_self">Week 2 - Probability theory and Bayesian statistics</a></li>
         <li><a href="#lv3" target="_self">Week 3 - Bayesian parameter estimation and workflow</a></li>
         <li><a href="#lv4" target="_self">Week 4 - Markov Chain Monte Carlo</a>
             <ul>
-                <li>Lecture: Ethics and data analysis (Tuesday 15-17)</li>
                 <li>Deadline: Problem set 1 (Wednesday)</li>
                 <li>Face-to-face discussions: Problem set 1 (Thursday 8-12)</li>
+                <li>Lecture: Ethics and data analysis (Friday 15-17)</li>
             </ul>
         </li>
         <li><a href="#lv5" target="_self">Week 5 - Assigning probabilities; Model selection</a>
@@ -59,9 +59,165 @@
         </li>
         <li>Exam week&nbsp;
             <ul>
-                <li>Deadline: Project report (Friday)</li>
                 <li>Oral exams</li>
+                <li>Deadline: Project report (Friday)</li>
             </ul>
         </li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />The course planning is preliminary. Some topics might be shifted around. Chapter and section numbers refer to the course textbook <em>Learning from data for physicists</em>. Sections listed as "Recommended reading" will not be covered at lectures, but might provide relevant background.
+    <hr />
+    <h4><a name="lv1"></a>Week 1 - Introduction, linear and nonlinear models</h4>
+    <ul>
+        <li>Invitation to inductive inference (ch. 1)</li>
+        <li>Introduction (ch. 2)</li>
+        <li>Overview of modeling (ch. 42)</li>
+        <li>Linear models (ch. 43)</li>
+        <li>Getting started (ch. 45-47; demonstration)</li>
+        <li>Recommended reading: Notation and overview of statistics material (ch. 38)</li>
+        <li>Extra reading: Geron ch. 4; Hastie ch. 3</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Demonstration Monday: Getting started.</li>
+        <li>Exercise: Jupyter notebooks and Python (sec. 48.1); Python lists and iterations (sec. 48.2); Linear algebra operations with NumPy (sec. 48.3)</li>
+        <li>Test problem</li>
+        <li>Problem set 1</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv2"></a>Week 2 - Probability theory and Bayesian statistics</h4>
+    <ul>
+        <li>Inference and PDFs (ch. 4)</li>
+        <li>More on PDFs (ch. 5)</li>
+        <li>Updating via Bayes' rule (ch. 6)</li>
+        <li>Demonstration: Bayesian coin tossing (secs. 6.2, 6.3)</li>
+        <li>Recommended reading: The probability measure (ch. 39); Working with probability distributions (ch. 40)</li>
+        <li>Extra reading: Sivia ch. 1</li>
+        <li>Extra reading: Gregory chs. 5, 6</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Demonstration Monday: Introduction to problem set 1.</li>
+        <li>Exercise: Probability sum and product rules (sec. 39.3)</li>
+        <li>Test problem</li>
+        <li>Problem set 1</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv3"></a>Week 3 - Bayesian parameter estimation and workflow</h4>
+    <ul>
+        <li>Error propagation (ch. 7)</li>
+        <li>Advantages of the Bayesian approach (sec. 8.1)</li>
+        <li>Bayesian research workflow (sec. 8.2)</li>
+        <li>Bayesian linear regression (secs. 8.3-8.5)</li>
+        <li>Demonstration: The bias-variance trade-off (sec. 8.6)</li>
+        <li>Recommended reading: Dealing with outliers (ch. 12); background for the extra problems in problem set 1</li>
+        <li>Extra reading: Gregory ch. 3</li>
+        <li>Extra reading: Sivia chs. 2, 3</li>
+        <li>Extra reading: MacKay ch. 3</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Demonstration Monday: Introduction to project 1.</li>
+        <li>Problem set 1</li>
+        <li>Project 1</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv4"></a>Week 4 - Markov Chain Monte Carlo</h4>
+    <ul>
+        <li>Intuition for MCMC (ch. 19)</li>
+        <li>MCMC in practice (ch. 21); we will focus on the sampling workflow and the convergence diagnostics.</li>
+        <li>Ensemble sampling (sec. 22.1)</li>
+        <li>Recommended reading: Details of MCMC (ch. 20); in particular stochastic processes (sec. 20.1) and Markov chains (sec. 20.4)</li>
+        <li>Recommended reading: State-of-the-art sampling implementations (ch. 23)</li>
+        <li>Lecture: Ethics and data analysis (Friday 15-17)</li>
+        <li>Extra reading: Gregory ch. 12</li>
+        <li>Extra reading: Sivia chs. 3, 4</li>
+        <li>Extra reading: MacKay ch. 29</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Demonstration Monday: Introduction to problem set 2.</li>
+        <li>Go through the Demonstration: Sampling of a Poisson distribution (sec. 19.4)</li>
+        <li>Face-to-face discussions: Problem set 1 (Thursday 8-12)</li>
+        <li>Problem set 2</li>
+        <li>Project 1</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv5"></a>Week 5 - Assigning probabilities; model selection</h4>
+    <ul>
+        <li>Assigning probabilities (ch. 11)</li>
+        <li>Model selection (ch. 14)</li>
+        <li>Recommended reading: Information criteria (sec. 14.5)</li>
+        <li>Seminar: Ethics and data analysis (Tuesday 15-17); mandatory for Chalmers MPPHS students</li>
+        <li>Extra reading: Gregory chs. 3, 4, 7, 8</li>
+        <li>Extra reading: Sivia chs. 4, 5</li>
+        <li>Extra reading: MacKay chs. 3, 28</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Face-to-face discussions: Problem set 1 (Thursday 8-12)</li>
+        <li>Problem set 2</li>
+        <li>Project 1</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv6"></a>Week 6 - Gaussian processes</h4>
+    <ul>
+        <li>Machine learning: overview and notation (ch. 25)</li>
+        <li>Model validation (sec. 25.3)</li>
+        <li>Gaussian processes (ch. 32)</li>
+        <li>Recommended reading: Data handling, machine learning and ethical aspects (sec. 25.2); Data bias and fairness in machine learning (sec. 25.4)</li>
+        <li>Extra reading: MacKay ch. 45</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Demonstration Monday: Introduction to project 2.</li>
+        <li>Go through the Demonstration: Gaussian processes (secs. 32.1, 32.4)</li>
+        <li>Problem set 2</li>
+        <li>Project 2</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv7"></a>Week 7 - Neural networks</h4>
+    <ul>
+        <li>Logistic regression (ch. 26)</li>
+        <li>Optimization and deep learning (sec. 26.1)</li>
+        <li>Artificial neural networks (ch. 27)</li>
+        <li>Demonstration: ANN for a simple function using PyTorch (sec. 27.3)</li>
+        <li>Demonstration: MNIST classifier in PyTorch (sec. 27.4)</li>
+        <li>Extra reading: MacKay chs. 38, 39, 44</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Exercise: Logistic regression and neural networks (sec. 26.5)</li>
+        <li>Face-to-face discussions: Problem set 2 (Thursday 8-12)</li>
+        <li>Problem set 2</li>
+        <li>Project 2</li>
+    </ul>
+</div>
+<div class="main_box">
+    <hr />
+    <h4><a name="lv8"></a>Week 8 - Bayesian neural networks</h4>
+    <ul>
+        <li>Bayesian neural networks (ch. 31)</li>
+        <li>Variational inference (sec. 31.3; preliminary)</li>
+        <li>Demonstration: Variational inference and Bayesian neural networks (sec. 31.4)</li>
+        <li>Extra reading: MacKay chs. 33, 41</li>
+    </ul>
+    <h4>Computer lab</h4>
+    <ul>
+        <li>Face-to-face discussions: Problem set 2 (Thursday 8-12)</li>
+        <li>Project 2</li>
     </ul>
 </div>
